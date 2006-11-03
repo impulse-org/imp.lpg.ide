@@ -1,4 +1,4 @@
-package org.jikespg.uide.editor;
+package org.eclipse.safari.jikespg.editor;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;

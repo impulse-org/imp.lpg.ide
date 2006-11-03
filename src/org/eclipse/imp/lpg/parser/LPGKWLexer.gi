@@ -3,7 +3,7 @@
 --
 %Options fp=JikesPGKWLexer
 %options single-productions
-%options package=org.jikespg.uide.parser
+%options package=org.eclipse.safari.jikespg.parser
 %options template=uide/KeywordTemplate.gi
 
 $Include

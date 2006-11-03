@@ -1,4 +1,4 @@
-package org.jikespg.uide.editor;
+package org.eclipse.safari.jikespg.editor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,8 +14,7 @@ import org.eclipse.uide.core.ErrorHandler;
 import org.eclipse.uide.editor.IFoldingUpdater;
 import org.eclipse.uide.parser.IParseController;
 
-//import org.jikespg.uide.parser.Ast.*;
-import org.jikespg.uide.parser.JikesPGParser.*;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
 
 public class FoldingUpdater implements IFoldingUpdater {
     private Annotation[] fOldAnnotations;

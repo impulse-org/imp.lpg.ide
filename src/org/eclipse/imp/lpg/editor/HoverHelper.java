@@ -1,4 +1,4 @@
-package org.jikespg.uide.editor;
+package org.eclipse.safari.jikespg.editor;
 
 import lpg.lpgjavaruntime.IToken;
 import lpg.lpgjavaruntime.PrsStream;
@@ -6,10 +6,10 @@ import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.uide.editor.IHoverHelper;
 import org.eclipse.uide.parser.IASTNodeLocator;
 import org.eclipse.uide.parser.IParseController;
-import org.jikespg.uide.parser.ASTUtils;
-import org.jikespg.uide.parser.JikesPGParser.ASTNode;
-import org.jikespg.uide.parser.JikesPGParser.IASTNodeToken;
-import org.jikespg.uide.parser.JikesPGParser.JikesPG;
+import org.eclipse.safari.jikespg.parser.ASTUtils;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.IASTNodeToken;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.JikesPG;
 
 public class HoverHelper implements IHoverHelper {
     public String getHoverHelpAt(IParseController parseController, ISourceViewer srcViewer, int offset) {

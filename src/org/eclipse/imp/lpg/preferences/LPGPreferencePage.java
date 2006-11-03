@@ -1,4 +1,4 @@
-package org.jikespg.uide.preferences;
+package org.eclipse.safari.jikespg.preferences;
 
 import java.util.HashSet;
 import org.eclipse.jface.preference.BooleanFieldEditor;
@@ -9,8 +9,8 @@ import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
-import org.jikespg.uide.JikesPGPlugin;
-import org.jikespg.uide.builder.JikesPGBuilder;
+import org.eclipse.safari.jikespg.JikesPGRuntimePlugin;
+import org.eclipse.safari.jikespg.builder.JikesPGBuilder;
 
 /**
  * This class represents a preference page that is contributed to the Preferences dialog. By 
@@ -28,7 +28,7 @@ public class JikesPGPreferencePage extends FieldEditorPreferencePage implements 
 
     public JikesPGPreferencePage() {
 	super(GRID);
-	setPreferenceStore(JikesPGPlugin.getInstance().getPreferenceStore());
+	setPreferenceStore(JikesPGRuntimePlugin.getInstance().getPreferenceStore());
 	setDescription("Preferences for the JikesPG parser/lexer generator");
     }
 

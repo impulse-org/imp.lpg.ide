@@ -1,7 +1,7 @@
 /*
  * Created on Jul 7, 2006
  */
-package org.jikespg.uide.editor;
+package org.eclipse.safari.jikespg.editor;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,14 +15,14 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uide.core.ILanguageService;
 import org.eclipse.uide.utils.MarkerUtils;
-import org.jikespg.uide.IJikesPGResources;
-import org.jikespg.uide.JikesPGPlugin;
-import org.jikespg.uide.parser.JikesPGParser.*;
+import org.eclipse.safari.jikespg.IJikesPGResources;
+import org.eclipse.safari.jikespg.JikesPGRuntimePlugin;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
 
 public class JikesPGLabelProvider implements ILabelProvider, ILanguageService {
     private Set fListeners= new HashSet();
 
-    private static ImageRegistry sImageRegistry= JikesPGPlugin.getInstance().getImageRegistry();
+    private static ImageRegistry sImageRegistry= JikesPGRuntimePlugin.getInstance().getImageRegistry();
 
     private static Image DEFAULT_IMAGE= sImageRegistry.get(IJikesPGResources.DEFAULT_AST);
 

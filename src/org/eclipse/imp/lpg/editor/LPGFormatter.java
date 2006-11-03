@@ -1,7 +1,7 @@
 /*
  * Created on Mar 24, 2006
  */
-package org.jikespg.uide.editor;
+package org.eclipse.safari.jikespg.editor;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -12,8 +12,8 @@ import lpg.lpgjavaruntime.IToken;
 import org.eclipse.uide.core.ILanguageService;
 import org.eclipse.uide.editor.ISourceFormatter;
 import org.eclipse.uide.parser.IParseController;
-import org.jikespg.uide.parser.JikesPGParser;
-import org.jikespg.uide.parser.JikesPGParser.*;
+import org.eclipse.safari.jikespg.parser.JikesPGParser;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
 
 public class JikesPGFormatter implements ILanguageService, ISourceFormatter {
     private int fIndentSize= 6;

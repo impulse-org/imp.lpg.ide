@@ -1,4 +1,4 @@
-package org.jikespg.uide.search;
+package org.eclipse.safari.jikespg.search;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.viewers.ILabelProvider;

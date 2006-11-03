@@ -1,6 +1,6 @@
-package org.jikespg.uide.compare;
+package org.eclipse.safari.jikespg.compare;
 
-import org.jikespg.uide.parser.JikesPGParser.*;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
 
 /**
  * A simple visitor that produces the immediate children of a given AST node, each

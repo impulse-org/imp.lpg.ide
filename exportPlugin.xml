@@ -4,7 +4,7 @@
 	<import file="../org.eclipse.safari.update/buildPluginCommon.xml"/>
 
 	<target name="init" depends="properties">
-		<property name="plugin.name" value="org.jikespg.uide"/>
+		<property name="plugin.name" value="org.eclipse.safari.jikespg.runtime"/>
 		<property name="plugin.version" value="${jikespg.version}"/>
 		<property name="plugin.jar.name" value="${plugin.name}_${plugin.version}.jar"/>
 		<property name="plugin.zip.name" value="${plugin.name}_${plugin.version}.zip"/>
@@ -46,7 +46,6 @@
 				<pathelement location="../lpg/lpg_${jikespg.version}.jar"/>
 				<pathelement location="../org.eclipse.uide.runtime/org.eclipse.uide.runtime_${jikespg.version}.jar"/>
 				<pathelement location="../com.ibm.watson.safari.xform/com.ibm.watson.safari.xform_${jikespg.version}.jar"/>
-				<pathelement location="../org.eclipse.uide/org.eclipse.uide_${jikespg.version}.jar"/>
 				<pathelement path="${eclipse.build.path}"/>
 			</classpath>
 			<src path="src/"/>

@@ -1,4 +1,4 @@
-package org.jikespg.uide.preferences;
+package org.eclipse.safari.jikespg.preferences;
 
 /**
  * Constant definitions for JikesPG plug-in preferences

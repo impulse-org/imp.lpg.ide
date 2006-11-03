@@ -1,0 +1,10 @@
+*.l
+JikesPGLexer.java
+JikesPGLexerprs.java
+JikesPGLexersym.java
+JikesPGParser.java
+JikesPGParserprs.java
+JikesPGParsersym.java
+JikesPGKWLexer.java
+JikesPGKWLexerprs.java
+JikesPGKWLexersym.java

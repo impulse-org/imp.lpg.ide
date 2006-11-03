@@ -1,7 +1,7 @@
 /*
  * Created on Oct 25, 2005
  */
-package org.jikespg.uide.preferences;
+package org.eclipse.safari.jikespg.preferences;
 
 import java.util.Set;
 

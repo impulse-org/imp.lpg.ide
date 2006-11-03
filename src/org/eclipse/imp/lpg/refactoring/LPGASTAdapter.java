@@ -1,14 +1,14 @@
-package org.jikespg.uide.refactoring;
+package org.eclipse.safari.jikespg.refactoring;
 
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import org.eclipse.uide.core.ILanguageService;
-import org.jikespg.uide.parser.GetChildrenVisitor;
-import org.jikespg.uide.parser.JikesPGParser;
-import org.jikespg.uide.parser.JikesPGParser.ASTNode;
-import org.jikespg.uide.parser.JikesPGParser.nonTerm;
-import org.jikespg.uide.parser.JikesPGParser.terminal;
+import org.eclipse.safari.jikespg.parser.GetChildrenVisitor;
+import org.eclipse.safari.jikespg.parser.JikesPGParser;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.nonTerm;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.terminal;
 import com.ibm.watson.safari.xform.pattern.matching.MatchResult;
 import com.ibm.watson.safari.xform.pattern.matching.Matcher;
 import com.ibm.watson.safari.xform.pattern.parser.ASTAdapterBase;
@@ -38,7 +38,7 @@ public class JikesPGASTAdapter extends ASTAdapterBase implements ILanguageServic
 
     public boolean isInstanceOfType(Object astNode, String typeName) {
         try {
-            return Class.forName("org.jikespg.uide.parser.JikesPGParser$" + typeName).isInstance(astNode);
+            return Class.forName("org.eclipse.safari.jikespg.parser.JikesPGParser$" + typeName).isInstance(astNode);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             return false;

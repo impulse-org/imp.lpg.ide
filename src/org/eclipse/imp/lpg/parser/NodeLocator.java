@@ -1,8 +1,9 @@
-package org.jikespg.uide.parser;
+package org.eclipse.safari.jikespg.parser;
 
 import lpg.lpgjavaruntime.IToken;
+
+import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
 import org.eclipse.uide.parser.IASTNodeLocator;
-import org.jikespg.uide.parser.JikesPGParser.ASTNode;
 
 public class NodeLocator implements IASTNodeLocator {
     private ASTNode fResult= null;

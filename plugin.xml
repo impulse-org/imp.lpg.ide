@@ -3,30 +3,12 @@
 <plugin>
 
    <extension
-         point="org.eclipse.ui.newWizards">
-      <category
-            id="org.jikespg.uide.wizards"
-            name="JikesPG"/>
-      <wizard
-            class="org.jikespg.uide.wizards.NewUIDEParserWizard"
-            icon="icons/newgrammarfile.gif"
-            category="org.eclipse.uide.wizards/org.eclipse.uide.wizards.parser"
-            name="JikesPG Grammar and Parser for UIDE"
-            id="org.jikespg.uide.NewJikesPGParserWizard"/>
-      <wizard
-            class="org.jikespg.uide.wizards.NewGrammarWizard"
-            icon="icons/newgrammarfile.gif"
-            category="org.jikespg.uide.wizards"
-            name="JikesPG Grammar and Parser"
-            id="org.jikespg.uide.NewJikesPGGrammarWizard"/>
-   </extension>
-   <extension
          id="jikesPGNature"
          name="JikesPG Nature"
          point="org.eclipse.core.resources.natures">
-      <builder id="org.jikespg.uide.jikesPGBuilder"/>
+      <builder id="org.eclipse.safari.jikespg.runtime.jikesPGBuilder"/>
       <runtime>
-         <run class="org.jikespg.uide.builder.JikesPGNature"/>
+         <run class="org.eclipse.safari.jikespg.builder.JikesPGNature"/>
       </runtime>
    </extension>
  
@@ -35,7 +17,7 @@
          name="JikesPG Grammar File Builder"
          point="org.eclipse.core.resources.builders">
       <builder>
-         <run class="org.jikespg.uide.builder.JikesPGBuilder"/>
+         <run class="org.eclipse.safari.jikespg.builder.JikesPGBuilder"/>
       </builder>
    </extension>
    <extension
@@ -50,7 +32,7 @@
             name="JikesPG UIDE"
             id="org.jikespg.uide"/>
       <view
-            class="org.jikespg.uide.views.JikesPGView"
+            class="org.eclipse.safari.jikespg.views.JikesPGView"
             icon="icons/sample.gif"
             category="org.jikespg.uide"
             name="JikesPG Console"
@@ -63,7 +45,7 @@
                ratio="0.5"
                relationship="right"
                relative="org.eclipse.ui.views.TaskList"
-               id="org.jikespg.uide.views.JikesPGView"/>
+               id="org.eclipse.safari.jikespg.views.JikesPGView"/>
       </perspectiveExtension>
    </extension>
    <extension
@@ -80,51 +62,44 @@
          name="JikesPG Grammar Specification Parser"
          point="org.eclipse.uide.runtime.parser">
       <parser
-            class="org.jikespg.uide.parser.ParseController"
+            class="org.eclipse.safari.jikespg.parser.ParseController"
             language="JikesPG"/>
    </extension>
    <extension
          point="org.eclipse.uide.runtime.tokenColorer">
       <tokenColorer
-            class="org.jikespg.uide.editor.TokenColorer"
+            class="org.eclipse.safari.jikespg.editor.TokenColorer"
             language="JikesPG"/>
    </extension>
    <extension
          point="org.eclipse.uide.runtime.outliner">
       <outliner
-            class="org.jikespg.uide.editor.Outliner"
+            class="org.eclipse.safari.jikespg.editor.Outliner"
             language="JikesPG"/>
    </extension>
    <extension
          point="org.eclipse.uide.runtime.contentProposer">
       <proposer
-            class="org.jikespg.uide.editor.ContentProposer"
+            class="org.eclipse.safari.jikespg.editor.ContentProposer"
             language="JikesPG"/>
    </extension>
    <extension
          point="org.eclipse.uide.runtime.hoverHelper">
       <hoverhelper
-            class="org.jikespg.uide.editor.HoverHelper"
+            class="org.eclipse.safari.jikespg.editor.HoverHelper"
             language="JikesPG"/>
    </extension>
-<!-- <extension
-         point="org.eclipse.uide.runtime.hyperLink">
-      <hyperlinkDetector
-            class="org.jikespg.uide.editor.HyperlinkDetector"
-            language="JikesPG"/>
-   </extension>
-  -->
    <extension
          point="org.eclipse.ui.popupMenus">
       <objectContribution
             adaptable="false"
-            id="org.jikespg.uide.projectContextMenu"
+            id="org.eclipse.safari.jikespg.projectContextMenu"
             nameFilter="*"
             objectClass="org.eclipse.jdt.core.IJavaProject">
          <action
-               class="org.jikespg.uide.EnableBuilder"
+               class="org.eclipse.safari.jikespg.actions.EnableBuilder"
                icon="icons/builderEnable.gif"
-               id="org.jikespg.uide.enableBuilderAction"
+               id="org.eclipse.safari.jikespg.enableBuilderAction"
                label="Enable &amp;JikesPG Builder"
                tooltip="Enable the JikesPG builder for this project"/>
       </objectContribution>
@@ -141,30 +116,30 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            class="org.jikespg.uide.preferences.JikesPGTabbedPreferencesPage"
-            id="org.jikespg.uide.tabbedPreferencesPage"
+            class="org.eclipse.safari.jikespg.preferences.JikesPGTabbedPreferencesPage"
+            id="org.eclipse.safari.jikespg.tabbedPreferencesPage"
             name="JikesPG Revised"/>
    </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">
-      <initializer class="org.jikespg.uide.preferences.PreferenceInitializer"/>
+      <initializer class="org.eclipse.safari.jikespg.preferences.PreferenceInitializer"/>
    </extension>
    <extension
          point="org.eclipse.compare.structureCreators">
       <structureCreator
-            class="org.jikespg.uide.compare.JikesPGStructureNode"
+            class="org.eclipse.safari.jikespg.compare.JikesPGStructureNode"
             extensions="g,gi"
-            id="org.jikespg.uide.structureCreator"/>
+            id="org.eclipse.safari.jikespg.structureCreator"/>
 <!--      <contentTypeBinding
-            contentTypeId="org.jikespg.uide.grammarFile"
-            structureCreatorId="org.jikespg.uide.structureCreator"/>
+            contentTypeId="org.eclipse.safari.jikespg.grammarFile"
+            structureCreatorId="org.eclipse.safari.jikespg.structureCreator"/>
   -->
    </extension>
 <!--   <extension
          point="org.eclipse.core.runtime.contentTypes">
       <content-type
             file-extensions="g,gi"
-            id="org.jikespg.uide.grammarFile"
+            id="org.eclipse.safari.jikespg.grammarFile"
             name="JikesPG Grammar File"
             priority="normal"/>
    </extension>
@@ -172,27 +147,27 @@
    <extension
          point="org.eclipse.compare.structureMergeViewers">
       <viewer
-            class="org.jikespg.uide.compare.StructureMergeViewerCreator"
+            class="org.eclipse.safari.jikespg.compare.StructureMergeViewerCreator"
             extensions="g,gi"
             id="org.jikespg.uide.viewer"/>
    </extension>
    <extension
          point="org.eclipse.uide.runtime.foldingUpdater">
       <foldingUpdater
-            class="org.jikespg.uide.editor.FoldingUpdater"
+            class="org.eclipse.safari.jikespg.editor.FoldingUpdater"
             language="JikesPG"/>
    </extension>
    <extension
          point="org.eclipse.uide.runtime.formatter">
       <formatter
-            class="org.jikespg.uide.editor.JikesPGFormatter"
+            class="org.eclipse.safari.jikespg.editor.JikesPGFormatter"
             language="JikesPG"/>
    </extension>
    <extension
          point="org.eclipse.search.searchPages">
       <page
             canSearchEnclosingProjects="true"
-            class="org.jikespg.uide.search.JikesPGSearchPage"
+            class="org.eclipse.safari.jikespg.search.JikesPGSearchPage"
             enabled="true"
             extensions="g:100"
             icon="icons/sample.gif"
@@ -203,38 +178,38 @@
    <extension
          point="org.eclipse.search.searchResultViewPages">
       <viewPage
-            class="org.jikespg.uide.search.JikesPGSearchResultPage"
+            class="org.eclipse.safari.jikespg.search.JikesPGSearchResultPage"
             id="org.jikespg.uide.searchResultViewPage"
-            searchResultClass="org.jikespg.uide.search.JikesPGSearchResult"/>
+            searchResultClass="org.eclipse.safari.jikespg.search.JikesPGSearchResult"/>
    </extension>
    <extension
          point="org.eclipse.uide.runtime.labelProvider">
          <labelProvider
-               class="org.jikespg.uide.editor.JikesPGLabelProvider"
+               class="org.eclipse.safari.jikespg.editor.JikesPGLabelProvider"
                language="jikespg"/>
    </extension>
    <extension
          point="org.eclipse.uide.runtime.outlineContentProvider">
          <outlineContentProvider
-         		class="org.jikespg.uide.editor.JikesPGContentProvider"
+         		class="org.eclipse.safari.jikespg.editor.JikesPGContentProvider"
          		language="jikespg"/>
    </extension>
    <extension
          point="org.eclipse.uide.runtime.refactoringContributions">
          <refactoringContributor
 				language="jikespg"
-				class="org.jikespg.uide.refactoring.JikesPGRefactoringContributor"/>
+				class="org.eclipse.safari.jikespg.refactoring.JikesPGRefactoringContributor"/>
    </extension>
    <extension
          point="org.eclipse.uide.runtime.referenceResolvers">
          <referenceResolver
                 language="jikespg"
-                class="org.jikespg.uide.editor.JikesPGReferenceResolver"/>
+                class="org.eclipse.safari.jikespg.editor.JikesPGReferenceResolver"/>
    </extension>
    <extension
          point="com.ibm.watson.safari.xform.astAdapter">
          <astAdapter
             language="JikesPG"
-            class="org.jikespg.uide.refactoring.JikesPGASTAdapter"/>
+            class="org.eclipse.safari.jikespg.refactoring.JikesPGASTAdapter"/>
    </extension>
 </plugin>

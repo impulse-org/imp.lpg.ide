@@ -1,4 +1,4 @@
-package org.jikespg.uide.views;
+package org.eclipse.safari.jikespg.views;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;

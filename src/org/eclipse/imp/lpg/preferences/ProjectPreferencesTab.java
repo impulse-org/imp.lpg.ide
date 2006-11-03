@@ -1,4 +1,4 @@
-package org.jikespg.uide.preferences;
+package org.eclipse.safari.jikespg.preferences;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -35,7 +35,7 @@ import org.eclipse.uide.preferences.fields.SafariBooleanFieldEditor;
 import org.eclipse.uide.preferences.fields.SafariDirectoryListFieldEditor;
 import org.eclipse.uide.preferences.fields.SafariFileFieldEditor;
 import org.eclipse.uide.preferences.fields.SafariStringFieldEditor;
-import org.jikespg.uide.builder.JikesPGBuilder;
+import org.eclipse.safari.jikespg.builder.JikesPGBuilder;
 import org.osgi.service.prefs.Preferences;
 
 

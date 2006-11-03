@@ -1,4 +1,4 @@
-package org.jikespg.uide.editor;
+package org.eclipse.safari.jikespg.editor;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -8,21 +8,21 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.uide.core.ILanguageService;
 import org.eclipse.uide.editor.OutlineInformationControl;
 import org.eclipse.uide.editor.OutlineInformationControl.OutlineContentProviderBase;
-import org.jikespg.uide.parser.JikesPGParser;
-import org.jikespg.uide.parser.JikesPGParser.ASTNode;
-import org.jikespg.uide.parser.JikesPGParser.ASTNodeToken;
-import org.jikespg.uide.parser.JikesPGParser.AbstractVisitor;
-import org.jikespg.uide.parser.JikesPGParser.JikesPG_itemList;
-import org.jikespg.uide.parser.JikesPGParser.NoticeSeg;
-import org.jikespg.uide.parser.JikesPGParser.action_segment;
-import org.jikespg.uide.parser.JikesPGParser.action_segmentList;
-import org.jikespg.uide.parser.JikesPGParser.include_segment;
-import org.jikespg.uide.parser.JikesPGParser.optTerminalAlias;
-import org.jikespg.uide.parser.JikesPGParser.optionList;
-import org.jikespg.uide.parser.JikesPGParser.option_spec;
-import org.jikespg.uide.parser.JikesPGParser.option_value0;
-import org.jikespg.uide.parser.JikesPGParser.rhsList;
-import org.jikespg.uide.parser.JikesPGParser.terminal_symbol0;
+import org.eclipse.safari.jikespg.parser.JikesPGParser;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNodeToken;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.AbstractVisitor;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.JikesPG_itemList;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.NoticeSeg;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.action_segment;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.action_segmentList;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.include_segment;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.optTerminalAlias;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.optionList;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.option_spec;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.option_value0;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.rhsList;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.terminal_symbol0;
 
 public class JikesPGContentProvider extends OutlineContentProviderBase implements ILanguageService {
     public JikesPGContentProvider() {

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.jikespg.uide.search;
+package org.eclipse.safari.jikespg.search;
 
 import java.util.HashSet;
 import java.util.Set;

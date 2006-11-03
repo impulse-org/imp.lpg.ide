@@ -1,4 +1,4 @@
-package org.jikespg.uide.preferences;
+package org.eclipse.safari.jikespg.preferences;
 
 
 import java.io.IOException;
@@ -9,8 +9,8 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.uide.preferences.ISafariPreferencesService;
-import org.jikespg.uide.JikesPGPlugin;
-import org.jikespg.uide.builder.JikesPGBuilder;
+import org.eclipse.safari.jikespg.JikesPGRuntimePlugin;
+import org.eclipse.safari.jikespg.builder.JikesPGBuilder;
 import org.osgi.framework.Bundle;
 
 /**
@@ -28,7 +28,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 	    ///*
     	// Commented this back in so that the original preferences
     	// page would have some values to display
-		IPreferenceStore store= JikesPGPlugin.getInstance().getPreferenceStore();
+		IPreferenceStore store= JikesPGRuntimePlugin.getInstance().getPreferenceStore();
 	
 		store.setDefault(PreferenceConstants.P_EMIT_MESSAGES, true);
 		store.setDefault(PreferenceConstants.P_GEN_LISTINGS, false);
@@ -40,7 +40,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(PreferenceConstants.P_NON_ROOT_EXTENSION_LIST, "gi");
 	    //*/
     
-		ISafariPreferencesService service = JikesPGPlugin.getPreferencesService();
+		ISafariPreferencesService service = JikesPGRuntimePlugin.getPreferencesService();
 		
 		// Examples:
 		service.setBooleanPreference(ISafariPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_EMIT_MESSAGES, true);
@@ -72,7 +72,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
     	if (execURL == null) {
     	    String errMsg= "Unable to find JikesPG executable at " + path + " in bundle " + bundle.getSymbolicName();
 
-    	    JikesPGPlugin.getInstance().writeErrorMsg(errMsg);
+    	    JikesPGRuntimePlugin.getInstance().writeErrorMsg(errMsg);
     	    throw new IllegalArgumentException(errMsg);
     	} else {
     	    // N.B.: The jikespg executable will normally be inside a jar file,
@@ -82,7 +82,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
     	    try {
     		url= Platform.asLocalURL(execURL);
     	    } catch (IOException e) {
-    		JikesPGPlugin.getInstance().writeErrorMsg("Unable to locate default JikesPG executable." + e.getMessage());
+    		JikesPGRuntimePlugin.getInstance().writeErrorMsg("Unable to locate default JikesPG executable." + e.getMessage());
     		return "???";
     	    }
 
@@ -91,7 +91,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
     	    if (os.equals("win32")) // remove leading slash from URL that shows up on Win32(?)
     		jikesPGExecPath= jikesPGExecPath.substring(1);
 
-    	    JikesPGPlugin.getInstance().maybeWriteInfoMsg("JikesPG executable apparently at '" + jikesPGExecPath + "'.");
+    	    JikesPGRuntimePlugin.getInstance().maybeWriteInfoMsg("JikesPG executable apparently at '" + jikesPGExecPath + "'.");
     	    return jikesPGExecPath;
     	}
     }

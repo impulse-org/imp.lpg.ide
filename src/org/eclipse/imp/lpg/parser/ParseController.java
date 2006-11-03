@@ -1,7 +1,7 @@
 /*
  * Created on Oct 28, 2005
  */
-package org.jikespg.uide.parser;
+package org.eclipse.safari.jikespg.parser;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,7 +16,7 @@ import org.eclipse.uide.parser.ILexer;
 import org.eclipse.uide.parser.IParseController;
 import org.eclipse.uide.parser.IParser;
 import org.eclipse.uide.parser.ParseError;
-import org.jikespg.uide.parser.JikesPGParser.ASTNode;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
 
 public class ParseController implements IParseController {
     private String filePath;

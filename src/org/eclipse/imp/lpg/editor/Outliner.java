@@ -1,4 +1,4 @@
-package org.jikespg.uide.editor;
+package org.eclipse.safari.jikespg.editor;
 
 import java.util.ArrayList;
 import java.util.Stack;
@@ -17,10 +17,9 @@ import org.eclipse.uide.defaults.DefaultOutliner;
 import org.eclipse.uide.editor.UniversalEditor;
 import org.eclipse.uide.parser.IParseController;
 
-//import jikesPG.safari.parser.JikesPGParser;
-import org.jikespg.uide.IJikesPGResources;
-import org.jikespg.uide.JikesPGPlugin;
-import org.jikespg.uide.parser.JikesPGParser.*;
+import org.eclipse.safari.jikespg.IJikesPGResources;
+import org.eclipse.safari.jikespg.JikesPGRuntimePlugin;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
 
 public class Outliner extends DefaultOutliner
 {
@@ -270,7 +269,7 @@ public class Outliner extends DefaultOutliner
 
 
     // FIXME Should dispose() this image at some point, no?
-    private static final Image sTreeItemImage= JikesPGPlugin.getInstance().getImageRegistry().get(IJikesPGResources.OUTLINE_ITEM);
+    private static final Image sTreeItemImage= JikesPGRuntimePlugin.getInstance().getImageRegistry().get(IJikesPGResources.OUTLINE_ITEM);
 
     public String producesImage(Iproduces produces) {
 	if (produces instanceof produces0)

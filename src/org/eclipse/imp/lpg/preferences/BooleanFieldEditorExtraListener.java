@@ -1,4 +1,4 @@
-package org.jikespg.uide.preferences;
+package org.eclipse.safari.jikespg.preferences;
 
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.util.IPropertyChangeListener;

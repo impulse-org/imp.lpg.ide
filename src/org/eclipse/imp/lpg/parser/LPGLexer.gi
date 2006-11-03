@@ -1,6 +1,6 @@
 %options la=15
 %options single-productions
-%options package=org.jikespg.uide.parser
+%options package=org.eclipse.safari.jikespg.parser
 %options template=uide/LexerTemplate.gi
 %options filter=JikesPGKWLexer.gi
 

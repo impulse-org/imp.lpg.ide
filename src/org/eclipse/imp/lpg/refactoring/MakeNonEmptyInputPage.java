@@ -1,4 +1,4 @@
-package org.jikespg.uide.refactoring;
+package org.eclipse.safari.jikespg.refactoring;
 
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.ltk.ui.refactoring.UserInputWizardPage;

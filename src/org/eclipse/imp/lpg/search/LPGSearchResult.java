@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.jikespg.uide.search;
+package org.eclipse.safari.jikespg.search;
 
 import java.util.Iterator;
 import java.util.Set;

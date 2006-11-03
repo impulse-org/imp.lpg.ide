@@ -1,4 +1,4 @@
-package org.jikespg.uide.compare;
+package org.eclipse.safari.jikespg.compare;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,9 +10,9 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
-import org.jikespg.uide.IJikesPGResources;
-import org.jikespg.uide.JikesPGPlugin;
-import org.jikespg.uide.parser.JikesPGParser.*;
+import org.eclipse.safari.jikespg.IJikesPGResources;
+import org.eclipse.safari.jikespg.JikesPGRuntimePlugin;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
 
 public class JikesPGStructureNode extends DocumentRangeNode implements ITypedElement {
     public final static int OPTION= 0;
@@ -125,7 +125,7 @@ public class JikesPGStructureNode extends DocumentRangeNode implements ITypedEle
 class ASTLabelProvider implements ILabelProvider {
     private Set fListeners= new HashSet();
 
-    private static ImageRegistry sImageRegistry= JikesPGPlugin.getInstance().getImageRegistry();
+    private static ImageRegistry sImageRegistry= JikesPGRuntimePlugin.getInstance().getImageRegistry();
 
     private static Image DEFAULT_IMAGE= sImageRegistry.get(IJikesPGResources.DEFAULT_AST);
 

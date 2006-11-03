@@ -1,11 +1,11 @@
-package org.jikespg.uide.parser;
+package org.eclipse.safari.jikespg.parser;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import org.jikespg.uide.editor.HoverHelper;
-import org.jikespg.uide.parser.JikesPGParser.*;
+import org.eclipse.safari.jikespg.editor.HoverHelper;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
 
 public class ASTUtils {
     private ASTUtils() { }

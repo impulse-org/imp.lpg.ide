@@ -1,4 +1,4 @@
-package org.jikespg.uide.preferences;
+package org.eclipse.safari.jikespg.preferences;
 
 
 import org.eclipse.jface.preference.PreferencePage;
@@ -19,7 +19,7 @@ import org.eclipse.uide.preferences.fields.SafariBooleanFieldEditor;
 import org.eclipse.uide.preferences.fields.SafariDirectoryListFieldEditor;
 import org.eclipse.uide.preferences.fields.SafariFileFieldEditor;
 import org.eclipse.uide.preferences.fields.SafariStringFieldEditor;
-import org.jikespg.uide.builder.JikesPGBuilder;
+import org.eclipse.safari.jikespg.builder.JikesPGBuilder;
 
 public class DefaultPreferencesTab extends SafariPreferencesTab {	
 

@@ -1,4 +1,4 @@
-package org.jikespg.uide.refactoring;
+package org.eclipse.safari.jikespg.refactoring;
 
 import java.util.ResourceBundle;
 import org.eclipse.ui.texteditor.TextEditorAction;

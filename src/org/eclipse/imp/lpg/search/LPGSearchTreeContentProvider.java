@@ -1,4 +1,4 @@
-package org.jikespg.uide.search;
+package org.eclipse.safari.jikespg.search;
 
 import java.util.HashMap;
 import java.util.HashSet;

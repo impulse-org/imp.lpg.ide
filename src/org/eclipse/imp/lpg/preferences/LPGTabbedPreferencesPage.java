@@ -1,4 +1,4 @@
-package org.jikespg.uide.preferences;
+package org.eclipse.safari.jikespg.preferences;
 
 //import jsdiv.JsdivPlugin;
 //import jsdiv.preferences.SWTUtils;
@@ -14,7 +14,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.uide.preferences.ISafariPreferencesService;
 import org.eclipse.uide.preferences.SafariPreferencesUtilities;
-import org.jikespg.uide.JikesPGPlugin;	//$ plugin name (based on language name?)
+import org.eclipse.safari.jikespg.JikesPGRuntimePlugin;	//$ plugin name (based on language name?)
 
 /**
  * CVS Preference Page
@@ -42,7 +42,7 @@ public class JikesPGTabbedPreferencesPage extends PreferencePage implements IWor
 	Composite configurationComposite = null;
 	Composite defaultComposite = null;
 													//$ plugin name (based on language name?)
-	private ISafariPreferencesService prefService = JikesPGPlugin.getPreferencesService();
+	private ISafariPreferencesService prefService = JikesPGRuntimePlugin.getPreferencesService();
 	private SafariPreferencesUtilities prefUtils = new SafariPreferencesUtilities(prefService);
 	
 

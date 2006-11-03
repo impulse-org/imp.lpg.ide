@@ -1,4 +1,4 @@
-package org.jikespg.uide.compare;
+package org.eclipse.safari.jikespg.compare;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -25,9 +25,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.uide.parser.ILexer;
 import org.eclipse.uide.parser.IParser;
 import org.eclipse.uide.utils.StreamUtils;
-import org.jikespg.uide.parser.JikesPGLexer;
-import org.jikespg.uide.parser.JikesPGParser;
-import org.jikespg.uide.parser.JikesPGParser.ASTNode;
+import org.eclipse.safari.jikespg.parser.JikesPGLexer;
+import org.eclipse.safari.jikespg.parser.JikesPGParser;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
 
 public class StructureMergeViewerCreator implements IViewerCreator {
     private static class JikesPGStructureCreator implements IStructureCreator {

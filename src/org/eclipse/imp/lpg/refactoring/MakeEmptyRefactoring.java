@@ -1,4 +1,4 @@
-package org.jikespg.uide.refactoring;
+package org.eclipse.safari.jikespg.refactoring;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -16,11 +16,11 @@ import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.uide.editor.UniversalEditor;
 import org.eclipse.uide.parser.IASTNodeLocator;
 import org.eclipse.uide.parser.IParseController;
-import org.jikespg.uide.parser.JikesPGParser.ASTNode;
-import org.jikespg.uide.parser.JikesPGParser.nonTerm;
-import org.jikespg.uide.parser.JikesPGParser.rhs;
-import org.jikespg.uide.parser.JikesPGParser.rhsList;
-import org.jikespg.uide.parser.JikesPGParser.symWithAttrsList;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.nonTerm;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.rhs;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.rhsList;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.symWithAttrsList;
 
 public class MakeEmptyRefactoring extends Refactoring {
     private final IFile fGrammarFile;

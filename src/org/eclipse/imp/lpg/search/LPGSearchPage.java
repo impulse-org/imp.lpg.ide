@@ -1,4 +1,4 @@
-package org.jikespg.uide.search;
+package org.eclipse.safari.jikespg.search;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;

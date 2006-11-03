@@ -1,14 +1,14 @@
 /*
  * Created on Oct 28, 2005
  */
-package org.jikespg.uide.editor;
+package org.eclipse.safari.jikespg.editor;
 
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uide.editor.ITokenColorer;
 import org.eclipse.uide.parser.IParseController;
-import org.jikespg.uide.parser.JikesPGLexer;
+import org.eclipse.safari.jikespg.parser.JikesPGLexer;
 import lpg.lpgjavaruntime.IToken;
 
 public class TokenColorer implements ITokenColorer {

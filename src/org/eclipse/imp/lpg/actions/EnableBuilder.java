@@ -1,4 +1,4 @@
-package org.jikespg.uide;
+package org.eclipse.safari.jikespg.actions;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.IJavaProject;
@@ -7,7 +7,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
-import org.jikespg.uide.builder.JikesPGNature;
+import org.eclipse.safari.jikespg.builder.JikesPGNature;
 
 public class EnableBuilder implements IWorkbenchWindowActionDelegate {
     private IProject fProject;

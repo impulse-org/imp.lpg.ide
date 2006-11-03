@@ -1,4 +1,4 @@
-package org.jikespg.uide.refactoring;
+package org.eclipse.safari.jikespg.refactoring;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.uide.editor.UniversalEditor;
