@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: JikesPG IDE Runtime
 Bundle-SymbolicName: org.eclipse.safari.jikespg.runtime; singleton:=true
-Bundle-Version: 1.0.32
+Bundle-Version: 1.0.33
 Bundle-Activator: org.eclipse.safari.jikespg.JikesPGRuntimePlugin
 Bundle-Vendor: rfuhrer@watson.ibm.com
 Bundle-Localization: plugin
