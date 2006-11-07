@@ -21,6 +21,7 @@
 		<property name="temp.folder" value="${basedir}/temp.folder"/>
 		<property name="lpg.location" value="../lpg"/>
 		<property name="lpg.executable" location="${lpg.location}/bin/lpg-${baseos}_${os.arch}"/>
+		<property name="lpg.templates" location="${lpg.location}/templates"/>
 	</target>
 
 	<target name="properties" if="eclipse.running">
@@ -34,9 +35,9 @@
 		<mkdir dir="${temp.folder}/${plugin.jar.name}.bin"/>
 		<!-- run jikespg to generate the parser and lexer -->
 		<echo message="Running JikesPG to generate parser and lexer"/>
-		<exec executable="${lpg.executable}" dir="src/org/jikespg/uide/parser"
+		<exec executable="${lpg.executable}" dir="src/org/eclipse/safari/jikespg/parser"
 		      failonerror="true" output="JikesPGParser.log">
-			<arg line="-include-directory=../../../../../../lpg/templates"/>
+			<arg line="-include-directory=${lpg.templates}"/>
 			<arg line="JikesPGParser.g"/>
 		</exec>
 		<!-- compile the source code -->
@@ -45,6 +46,7 @@
 			<classpath>
 				<pathelement location="../lpg/lpg_${jikespg.version}.jar"/>
 				<pathelement location="../org.eclipse.uide.runtime/org.eclipse.uide.runtime_${jikespg.version}.jar"/>
+				<pathelement location="../com.ibm.watson.smapifier/com.ibm.watson.smapifier_${jikespg.version}.jar"/>
 				<pathelement location="../com.ibm.watson.safari.xform/com.ibm.watson.safari.xform_${jikespg.version}.jar"/>
 				<pathelement path="${eclipse.build.path}"/>
 			</classpath>
@@ -57,10 +59,6 @@
 		<mkdir dir="${temp.folder}/${plugin.jar.name}.bin/icons"/>
 		<copy todir="${temp.folder}/${plugin.jar.name}.bin/icons" failonerror="true" overwrite="false">
 			<fileset dir="icons/"/>
-		</copy>
-		<mkdir dir="${temp.folder}/${plugin.jar.name}.bin/templates"/>
-		<copy todir="${temp.folder}/${plugin.jar.name}.bin/templates" failonerror="true" overwrite="false">
-			<fileset dir="templates/"/>
 		</copy>
 		<copy file="plugin.xml" todir="${temp.folder}/${plugin.jar.name}.bin" failonerror="true"/>
 		<mkdir dir="${build.result.folder}"/>
