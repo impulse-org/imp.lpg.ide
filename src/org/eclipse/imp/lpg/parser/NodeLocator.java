@@ -79,5 +79,12 @@ public class NodeLocator implements IASTNodeLocator {
     	ASTNode n = (ASTNode) node;
     	return getEndOffset(n) - getStartOffset(n);
     }
-    
+
+    public String getPath(Object node) {
+	// TODO Once we have pseudo-nodes for external decls (of the sort the reference
+	// resolver can return for cross-compilation-unit references), make this do
+	// something reasonable with them.
+    	ASTNode n = (ASTNode) node;
+	return n.leftIToken.getPrsStream().getFileName();
+    }
 }
