@@ -8,7 +8,7 @@ public class MakeEmptyRefactoringAction extends TextEditorAction {
 //    private final UniversalEditor fEditor;
 
     public MakeEmptyRefactoringAction(UniversalEditor editor) {
-	super(MakeNonEmptyRefactoringAction.ResBundle, "makeEmpty.", editor);
+	super(RefactoringResources.ResBundle, "makeEmpty.", editor);
 //	fEditor= editor;
     }
 

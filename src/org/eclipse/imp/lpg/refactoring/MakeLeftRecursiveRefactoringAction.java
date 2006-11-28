@@ -8,7 +8,7 @@ public class MakeLeftRecursiveRefactoringAction extends TextEditorAction {
 //    private final UniversalEditor fEditor;
 
     public MakeLeftRecursiveRefactoringAction(UniversalEditor editor) {
-	super(MakeNonEmptyRefactoringAction.ResBundle, "makeLeftRecursive.", editor);
+	super(RefactoringResources.ResBundle, "makeLeftRecursive.", editor);
 //	fEditor= editor;
     }
 

@@ -8,7 +8,7 @@ public class InlineNonTerminalRefactoringAction extends TextEditorAction {
 //    private final UniversalEditor fEditor;
 
     public InlineNonTerminalRefactoringAction(UniversalEditor editor) {
-	super(MakeNonEmptyRefactoringAction.ResBundle, "inlineNonTerminal.", editor);
+	super(RefactoringResources.ResBundle, "inlineNonTerminal.", editor);
 //	fEditor= editor;
     }
 
