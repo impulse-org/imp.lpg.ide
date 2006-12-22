@@ -8,12 +8,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import lpg.lpgjavaruntime.PrsStream;
-import org.eclipse.jface.text.BadLocationException;
-import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.jface.text.contentassist.IContextInformation;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.uide.editor.IContentProposer;
 import org.eclipse.uide.editor.SourceProposal;
 import org.eclipse.uide.parser.IASTNodeLocator;
@@ -23,7 +19,7 @@ import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
 
 public class ContentProposer implements IContentProposer {
 
-    public ICompletionProposal[] getContentProposals(IParseController controller, final int offset) {
+    public ICompletionProposal[] getContentProposals(IParseController controller, final int offset, ITextViewer textViewer) {
 	PrsStream parseStream= controller.getParser().getParseStream();
 	int thisTokIdx= parseStream.getTokenIndexAtCharacter(offset);
         if (thisTokIdx < 0) thisTokIdx= - thisTokIdx;
