@@ -1,125 +1,47 @@
 package org.eclipse.safari.jikespg.preferences;
 
-//import jsdiv.JsdivPlugin;
-//import jsdiv.preferences.SWTUtils;
 
-import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.preference.PreferencePage;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
+import org.eclipse.safari.jikespg.JikesPGRuntimePlugin;
 import org.eclipse.swt.widgets.TabFolder;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.uide.preferences.ISafariPreferencesService;
-import org.eclipse.uide.preferences.SafariPreferencesUtilities;
-import org.eclipse.safari.jikespg.JikesPGRuntimePlugin;	//$ plugin name (based on language name?)
+import org.eclipse.uide.preferences.SafariPreferencesTab;
+import org.eclipse.uide.preferences.SafariTabbedPreferencesPage;
 
 /**
- * CVS Preference Page
- * 
- * Allows the configuration of CVS specific options.
- * The currently supported options are:
- *  - Allow loading of CVS administration directory (CVSROOT)
- * 
- * There are currently a couple of deficiencies:
- *  1. The Repository view is not refreshed when the show CVSROOT option is changed
- *  2. There is no help associated with the page
+ * The Safari-based tabbed preferences page for JikesPG	
  */
-public class JikesPGTabbedPreferencesPage extends PreferencePage implements IWorkbenchPreferencePage {
-	
-
-	//ApplicablePreferencesTab applicableTab = null;
-	ProjectPreferencesTab projectTab = null;
-	InstancePreferencesTab instanceTab = null;
-	ConfigurationPreferencesTab configurationTab = null;
-	DefaultPreferencesTab defaultTab = null;
-
-	//Composite applicableComposite = null;
-	Composite projectComposite = null;
-	Composite instanceComposite = null;
-	Composite configurationComposite = null;
-	Composite defaultComposite = null;
-													//$ plugin name (based on language name?)
-	private ISafariPreferencesService prefService = JikesPGRuntimePlugin.getPreferencesService();
-	private SafariPreferencesUtilities prefUtils = new SafariPreferencesUtilities(prefService);
-	
-
-	
+public class JikesPGTabbedPreferencesPage extends SafariTabbedPreferencesPage {
 	
 	public JikesPGTabbedPreferencesPage() {
-		this.noDefaultAndApplyButton();
+		super();
+		// Get the language-specific preferences service in the
+		// language-specific tab
+		prefService = JikesPGRuntimePlugin.getPreferencesService();	//$ plugin name (based on language name or ?)
 	}
-
-	protected Control createContents(Composite parent) {
+	
+	
+	protected SafariPreferencesTab[] createTabs(
+			ISafariPreferencesService prefService, SafariTabbedPreferencesPage page, TabFolder tabFolder) 
+	{
+		SafariPreferencesTab[] tabs = new SafariPreferencesTab[4];
 		
-		// create a tab folder for the page
-		final TabFolder tabFolder = new TabFolder(parent, SWT.NONE);
-        final GridData gd= new GridData(SWT.FILL, SWT.CENTER, true, false);
-        gd.widthHint= 0;
-        gd.heightHint= SWT.DEFAULT;
-        gd.horizontalSpan= 1;
-        tabFolder.setLayoutData(gd);
+		JikesPGProjectPreferencesTab projectTab = new JikesPGProjectPreferencesTab(prefService);
+		projectTab.createProjectPreferencesTab(page, tabFolder);
+		tabs[0] = projectTab;
 
-//		applicableTab = new ApplicablePreferencesTab(prefService);
-//		applicableComposite = applicableTab.createApplicablePreferencesTab(tabFolder);
-		projectTab = new ProjectPreferencesTab(prefService);
-		projectComposite = projectTab.createProjectPreferencesTab(this, tabFolder);
-		instanceTab = new InstancePreferencesTab(prefService);
-		instanceComposite = instanceTab.createInstancePreferencesTab(this, 	tabFolder);
-		configurationTab = new ConfigurationPreferencesTab(prefService);
-		configurationComposite = configurationTab.createConfigurationPreferencesTab(this, tabFolder);
-		defaultTab = new DefaultPreferencesTab(prefService);
-		defaultComposite = defaultTab.createDefaultPreferencesTab(this, tabFolder);
-
-		Dialog.applyDialogFont(parent);
-
-		return tabFolder;
-	}
-
-	
-	public void performApply()
-	{
-		defaultTab.performApply();
-		configurationTab.performApply();
-		instanceTab.performApply();
-		projectTab.performApply();
-	}
-	
-    public boolean performCancel() {
-    	projectTab.performCancel();
-        return super.performCancel();		// just returns true
-    }
-
-	public void performDefaults()
-	{
-		//if (applicableComposite.isVisible()) return;
-		if (projectComposite.isVisible()) projectTab.performDefaults();
-		else if (instanceComposite.isVisible()) instanceTab.performDefaults();
-		else if (configurationComposite.isVisible()) configurationTab.performDefaults();
-		else if (defaultComposite.isVisible()) defaultTab.performDefaults();
-	}
-
-	
-	// Save the prevailing preferences
-	// (called from other controls, e.g., when varoius buttons are pushed)
-	public boolean performOk()
-	{
-		defaultTab.performOk();
-		configurationTab.performOk();
-		instanceTab.performOk();
-		projectTab.performOk();
-
-		return true;
-	}
-	
-
+		JikesPGInstancePreferencesTab instanceTab = new JikesPGInstancePreferencesTab(prefService);
+		instanceTab.createInstancePreferencesTab(page, 	tabFolder);
+		tabs[1] = instanceTab;
 		
-	public void init(IWorkbench workbench) {
+		JikesPGConfigurationPreferencesTab configurationTab = new JikesPGConfigurationPreferencesTab(prefService);
+		configurationTab.createConfigurationPreferencesTab(page, tabFolder);
+		tabs[2] = configurationTab;
+
+		JikesPGDefaultPreferencesTab defaultTab = new JikesPGDefaultPreferencesTab(prefService);
+		defaultTab.createDefaultPreferencesTab(page, tabFolder);
+		tabs[3] = defaultTab;
+		
+		return tabs;
 	}
-
-
-
 
 }
