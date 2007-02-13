@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import lpg.lpgjavaruntime.PrsStream;
+import lpg.javaruntime.IPrsStream;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.uide.editor.IContentProposer;
@@ -20,7 +20,7 @@ import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
 public class ContentProposer implements IContentProposer {
 
     public ICompletionProposal[] getContentProposals(IParseController controller, final int offset, ITextViewer textViewer) {
-	PrsStream parseStream= controller.getParser().getParseStream();
+	IPrsStream parseStream= controller.getParser().getParseStream();
 	int thisTokIdx= parseStream.getTokenIndexAtCharacter(offset);
         if (thisTokIdx < 0) thisTokIdx= - thisTokIdx;
 	JikesPG root= (JikesPG) controller.getCurrentAst();

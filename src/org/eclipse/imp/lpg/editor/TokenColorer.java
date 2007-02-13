@@ -9,7 +9,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.uide.editor.ITokenColorer;
 import org.eclipse.uide.parser.IParseController;
 import org.eclipse.safari.jikespg.parser.JikesPGLexer;
-import lpg.lpgjavaruntime.IToken;
+import lpg.javaruntime.IToken;
 
 public class TokenColorer implements ITokenColorer {
     static TextAttribute COMMENT;

@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import lpg.lpgjavaruntime.IToken;
+import lpg.javaruntime.IToken;
 import org.eclipse.uide.core.ILanguageService;
 import org.eclipse.uide.editor.ISourceFormatter;
 import org.eclipse.uide.parser.IParseController;

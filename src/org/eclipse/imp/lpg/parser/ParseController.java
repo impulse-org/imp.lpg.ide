@@ -5,9 +5,9 @@ package org.eclipse.safari.jikespg.parser;
 
 import java.util.Collections;
 import java.util.List;
-import lpg.lpgjavaruntime.IToken;
-import lpg.lpgjavaruntime.Monitor;
-import lpg.lpgjavaruntime.IMessageHandler;
+import lpg.javaruntime.IToken;
+import lpg.javaruntime.Monitor;
+import lpg.javaruntime.IMessageHandler;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;

@@ -6,13 +6,14 @@ import java.util.Iterator;
 import java.util.List;
 import org.eclipse.safari.jikespg.editor.HoverHelper;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
+import lpg.javaruntime.IAst;
 
 public class ASTUtils {
     private ASTUtils() { }
 
-    public static JikesPG getRoot(ASTNode node) {
+    public static JikesPG getRoot(IAst node) {
 	while (node != null && !(node instanceof JikesPG))
-	    node= node.parent;
+	    node = node.getParent();
 	return (JikesPG) node;
     }
 

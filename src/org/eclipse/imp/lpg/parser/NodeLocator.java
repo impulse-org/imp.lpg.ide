@@ -1,6 +1,6 @@
 package org.eclipse.safari.jikespg.parser;
 
-import lpg.lpgjavaruntime.IToken;
+import lpg.javaruntime.IToken;
 
 import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
 import org.eclipse.uide.parser.IASTNodeLocator;

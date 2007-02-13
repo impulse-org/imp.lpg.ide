@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import lpg.lpgjavaruntime.LexStream;
+import lpg.javaruntime.ILexStream;
 
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
@@ -126,7 +126,7 @@ public class FoldingUpdater implements IFoldingUpdater {
 
             if (optAction != null) {
                 // Make the action block and any surrounding whitespace foldable.
-                final LexStream lexStream= optAction.getIToken().getPrsStream().getLexStream();
+                final ILexStream lexStream= optAction.getIToken().getPrsStream().getLexStream();
                 int start= optAction.getLeftIToken().getStartOffset();
                 int len= optAction.getRightIToken().getEndOffset() - start + 3;
 
