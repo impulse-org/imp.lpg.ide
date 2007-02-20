@@ -6,7 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import org.eclipse.safari.jikespg.editor.HoverHelper;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
-import lpg.javaruntime.IAst;
+
+import lpg.runtime.IAst;
 
 public class ASTUtils {
     private ASTUtils() { }

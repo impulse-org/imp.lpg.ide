@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import lpg.javaruntime.ILexStream;
+import lpg.runtime.ILexStream;
 
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;

@@ -2,7 +2,9 @@ package org.eclipse.safari.jikespg.editor;
 
 import java.util.ArrayList;
 import java.util.Stack;
-import lpg.javaruntime.IToken;
+
+import lpg.runtime.IToken;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;

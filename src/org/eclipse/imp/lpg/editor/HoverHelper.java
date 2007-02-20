@@ -1,7 +1,8 @@
 package org.eclipse.safari.jikespg.editor;
 
-import lpg.javaruntime.IToken;
-import lpg.javaruntime.IPrsStream;
+import lpg.runtime.IPrsStream;
+import lpg.runtime.IToken;
+
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.uide.editor.IHoverHelper;
 import org.eclipse.uide.parser.IASTNodeLocator;
