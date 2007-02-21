@@ -2,13 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: JikesPG IDE Runtime
 Bundle-SymbolicName: org.eclipse.safari.jikespg.runtime; singleton:=true
-Bundle-Version: 1.0.44
+Bundle-Version: 1.0.45
 Bundle-Activator: org.eclipse.safari.jikespg.JikesPGRuntimePlugin
 Bundle-Vendor: rfuhrer@watson.ibm.com
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.uide.runtime,
  org.eclipse.core.resources,
  org.eclipse.ltk.core.refactoring,
  org.eclipse.ltk.ui.refactoring,
@@ -16,13 +15,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide,
  org.eclipse.ui.workbench.texteditor,
  org.eclipse.ui.editors,
- com.ibm.watson.safari.xform,
  org.eclipse.compare,
  org.eclipse.search,
  org.eclipse.jdt.core,
  org.eclipse.jdt.ui,
  com.ibm.watson.smapifier,
- lpg.runtime
+ lpg.runtime,
+ com.ibm.watson.safari.xform,
+ org.eclipse.uide.runtime
 Eclipse-AutoStart: true
 Export-Package: org.eclipse.safari.jikespg,
  org.eclipse.safari.jikespg.actions,
