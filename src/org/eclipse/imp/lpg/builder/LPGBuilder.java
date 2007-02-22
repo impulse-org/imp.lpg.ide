@@ -53,7 +53,8 @@ public class JikesPGBuilder extends SAFARIBuilderBase {
      * ID of the LPG plugin, which houses the templates, the LPG executable,
      * and the LPG runtime library
      */
-    public static final String LPG_PLUGIN_ID= "lpg";
+    // SMS 22 Feb 2007  lpg -> lpg.runtime
+    public static final String LPG_PLUGIN_ID= "lpg.runtime";
 
     private static final String SYNTAX_MSG_REGEXP= "(.*):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+): (Informative|Warning|Error): (.*)";
 
@@ -373,7 +374,8 @@ public class JikesPGBuilder extends SAFARIBuilderBase {
 	Bundle bundle= Platform.getBundle(LPG_PLUGIN_ID);
 	String os= Platform.getOS();
 	String plat= Platform.getOSArch();
-	Path path= new Path("bin/lpg-" + os + "_" + plat + (os.equals("win32") ? ".exe" : ""));
+	// SMS 	22 Feb 2007  "bin... -> "lpgexe...
+	Path path= new Path("lpgexe/lpg-" + os + "_" + plat + (os.equals("win32") ? ".exe" : ""));
 	URL execURL= Platform.find(bundle, path);
 
 	if (execURL == null) {
