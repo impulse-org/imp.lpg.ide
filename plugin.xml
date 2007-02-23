@@ -212,4 +212,10 @@
             language="JikesPG"
             class="org.eclipse.safari.jikespg.refactoring.JikesPGASTAdapter"/>
    </extension>
+   <extension
+         point="org.eclipse.uide.runtime.editorActionContributions">
+      <editorActionContributor
+            class="org.eclipse.safari.jikespg.actions.LanguageActionContributor"
+            language="jikespg"/>
+   </extension>
 </plugin>
