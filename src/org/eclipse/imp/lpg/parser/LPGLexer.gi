@@ -34,6 +34,10 @@ $Export
     COMMA
     LEFT_PAREN
     RIGHT_PAREN
+    LEFT_BRACKET
+    RIGHT_BRACKET
+    SHARP
+    VBAR
 $End
 
 $Terminals
@@ -120,9 +124,12 @@ $Rules
     Token ::= Block             /.$BeginJava makeToken($_BLOCK);$EndJava./
     Token ::= Equivalence       /.$BeginJava makeToken($_EQUIVALENCE);$EndJava./
     Token ::= Equivalence ?     /.$BeginJava makeToken($_PRIORITY_EQUIVALENCE);$EndJava./
+    Token ::= '#'               /.$BeginJava makeToken($_SHARP);$EndJava./
     Token ::= Arrow             /.$BeginJava makeToken($_ARROW);$EndJava./
     Token ::= Arrow ?           /.$BeginJava makeToken($_PRIORITY_ARROW);$EndJava./
     Token ::= '|'               /.$BeginJava makeToken($_OR_MARKER);$EndJava./
+    Token ::= '['               /.$BeginJava makeToken($_LEFT_BRACKET);$EndJava./
+    Token ::= ']'               /.$BeginJava makeToken($_RIGHT_BRACKET);$EndJava./
 
     digit -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 
@@ -190,6 +197,10 @@ $Rules
                        '%' | '&' | '^' | ':' | ';' | "'" | '\' | '|' | '{' | '}' |
                        '[' | ']' | '?' | ',' | '<' | '>' | '=' | '#' | '*'
 
+    specialNoDollarBracketSharp -> '+' | '-' | '(' | ')' | '"' | '!' | '@' | '`' | '~' | '.' | '/' |
+                       '%' | '&' | '^' | ':' | ';' | "'" | '\' | '|' | '{' | '}' |
+                       '?' | ',' | '<' | '>' | '=' | '*'
+
     specialNoDotOrSlash -> '+' | '-' | '(' | ')' | '"' | '!' | '@' | '`' | '~' |
                            '%' | '&' | '^' | ':' | ';' | "'" | '\' | '|' | '{' | '}' |
                            '[' | ']' | '?' | ',' | '<' | '>' | '=' | '#' | '*' | '$'
@@ -210,9 +221,9 @@ $Rules
                                                                       '%' | '&' | '^' | ':' | ';' | '\' | '|' | '{' | '}' |
                                                                       '[' | ']' | '?' | '>' | '=' | '#' | '*' | '$'
 
-    specialNoColonMinusSingleQuoteDoublequoteLeftAngleOrSlashDollarPercent -> '+' | '(' | ')' | '!' | '@' | '`' | '~' | '.' |
+    specialNoColonMinusSingleQuoteDoublequoteLeftAngleLRBracketOrSlashDollarPercent -> '+' | '(' | ')' | '!' | '@' | '`' | '~' | '.' |
                                                                               '&' | '^' | ';' | '\' | '{' | '}' |
-                                                                              '[' | ']' | '?' | ',' | '>' | '=' | '#' | '*'
+                                                                              '?' | ',' | '>' | '=' | '*'
 
     Eol -> LF | CR
 
@@ -268,9 +279,9 @@ $Rules
                   | MacroSymbol letter
                   | MacroSymbol digit
 
-    anyNonWhiteNoColonMinusSingleQuoteDoublequoteLeftAngleOrSlashDollarPercent -> letter | digit | specialNoColonMinusSingleQuoteDoublequoteLeftAngleOrSlashDollarPercent
-    normalSymbol ::= anyNonWhiteNoColonMinusSingleQuoteDoublequoteLeftAngleOrSlashDollarPercent
-                   | normalSymbol anyNonWhiteChar
+    anyNonWhiteNoColonMinusSingleQuoteDoublequoteLeftAngleLRBracketOrSlashDollarPercent -> letter | digit | specialNoColonMinusSingleQuoteDoublequoteLeftAngleLRBracketOrSlashDollarPercent
+    normalSymbol ::= anyNonWhiteNoColonMinusSingleQuoteDoublequoteLeftAngleLRBracketOrSlashDollarPercent
+                   | normalSymbol anyNonWhiteNoDollarBracketSharp
 
     --
     -- Below, we write special rules to recognize initial 
@@ -299,6 +310,7 @@ $Rules
     anyNonWhiteNoQuestionDollar -> letter | digit | specialNoQuestionDollar
     anyNonWhiteNoMinusRightAngleDollar -> letter | digit | specialNoMinusRightAngleDollar
     anyNonWhiteNoDollar -> letter | digit | specialNoDollar
+    anyNonWhiteNoDollarBracketSharp -> letter | digit | specialNoDollarBracketSharp
 
     anyNonWhiteNoOoDollar -> letterNoOo | digit | specialNoDollar
     anyNonWhiteNoPpDollar -> letterNoPp | digit | specialNoDollar
@@ -449,12 +461,12 @@ $Rules
    ast_type ::= aA sS tT _opt tT yY pP eE
               | aA tT 
 
-   option ::= attributes$a optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($a), $_SYMBOL); $EndJava./
-            | no attributes$a optionWhite  /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($a), $_SYMBOL); $EndJava./
+   option ::= attributes$a optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($a), getRhsLastTokenIndex($a), $_SYMBOL); $EndJava./
+            | no attributes$a optionWhite  /.$BeginJava  makeToken(getRhsFirstTokenIndex($a), getRhsLastTokenIndex($a), $_SYMBOL); $EndJava./
    attributes ::= aA tT tT rR iI bB uU tT eE sS
 
-   option ::= automatic_ast$a optionWhite  /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($a), $_SYMBOL); $EndJava./
-            | no automatic_ast$a optionWhite  /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($a), $_SYMBOL); $EndJava./
+   option ::= automatic_ast$a optionWhite  /.$BeginJava  makeToken(getRhsFirstTokenIndex($a), getRhsLastTokenIndex($a), $_SYMBOL); $EndJava./
+            | no automatic_ast$a optionWhite  /.$BeginJava  makeToken(getRhsFirstTokenIndex($a), getRhsLastTokenIndex($a), $_SYMBOL); $EndJava./
    option ::= automatic_ast$aa optionWhite '='$eq optionWhite automatic_ast_value$val optionWhite
           /.$BeginJava
                       makeToken(getRhsFirstTokenIndex($aa), getRhsLastTokenIndex($aa), $_SYMBOL);
@@ -472,20 +484,20 @@ $Rules
    -- backtrack
    -- byte
    --
-   option ::= backtrack$b optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($b), $_SYMBOL); $EndJava./
-            | no backtrack$b optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($b), $_SYMBOL); $EndJava./
+   option ::= backtrack$b optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($b), getRhsLastTokenIndex($b), $_SYMBOL); $EndJava./
+            | no backtrack$b optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($b), getRhsLastTokenIndex($b), $_SYMBOL); $EndJava./
    backtrack ::= bB aA cC kK tT rR aA cC kK
 
    option ::= byte$b optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($b), getRhsLastTokenIndex($b), $_SYMBOL); $EndJava./
-            | no byte$b optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($b), $_SYMBOL); $EndJava./
+            | no byte$b optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($b), getRhsLastTokenIndex($b), $_SYMBOL); $EndJava./
    byte ::= bB yY tT eE
    
 
    --
    -- conflicts
    --
-   option ::= conflicts$c optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($c), $_SYMBOL); $EndJava./
-            | no conflicts$c optionWhite  /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($c), $_SYMBOL); $EndJava./
+   option ::= conflicts$c optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($c), getRhsLastTokenIndex($c), $_SYMBOL); $EndJava./
+            | no conflicts$c optionWhite  /.$BeginJava  makeToken(getRhsFirstTokenIndex($c), getRhsLastTokenIndex($c), $_SYMBOL); $EndJava./
    conflicts ::= cC oO nN fF lL iI cC tT sS
 
    --
@@ -532,8 +544,8 @@ $Rules
           ./
    def_file ::= dD eE fF _opt fF iI lL eE
 
-   option ::= debug$d optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($d), $_SYMBOL); $EndJava./
-            | no debug$d optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($d), $_SYMBOL); $EndJava./
+   option ::= debug$d optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($d), getRhsLastTokenIndex($d), $_SYMBOL); $EndJava./
+            | no debug$d optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($d), getRhsLastTokenIndex($d), $_SYMBOL); $EndJava./
    debug ::= dD eE bB uU gG
 
    --
@@ -543,12 +555,12 @@ $Rules
    -- export_terminals
    -- extends_parsetable
    --
-   option ::= edit$e optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($e), $_SYMBOL); $EndJava./
-            | no edit$e optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($e), $_SYMBOL); $EndJava./
+   option ::= edit$e optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($e), getRhsLastTokenIndex($e), $_SYMBOL); $EndJava./
+            | no edit$e optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($e), getRhsLastTokenIndex($e), $_SYMBOL); $EndJava./
    edit ::= eE dD iI tT
 
-   option ::= error_maps$e optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($e), $_SYMBOL); $EndJava./
-            | no error_maps$e optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($e), $_SYMBOL); $EndJava./
+   option ::= error_maps$e optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($e), getRhsLastTokenIndex($e), $_SYMBOL); $EndJava./
+            | no error_maps$e optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($e), getRhsLastTokenIndex($e), $_SYMBOL); $EndJava./
    error_maps ::= eE rR rR oO rR _opt mM aA pP sS
                 | eE mM
 
@@ -606,8 +618,8 @@ $Rules
    export_prefix -> Value
    export_suffix -> Value
 
-   option ::= extends_parsetable$e optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($e), $_SYMBOL); $EndJava./
-            | no extends_parsetable$e optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($e), $_SYMBOL); $EndJava./
+   option ::= extends_parsetable$e optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($e), getRhsLastTokenIndex($e), $_SYMBOL); $EndJava./
+            | no extends_parsetable$e optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($e), getRhsLastTokenIndex($e), $_SYMBOL); $EndJava./
    option ::= extends_parsetable$ep optionWhite '='$eq optionWhite Value$val optionWhite
           /.$BeginJava
                       makeToken(getRhsFirstTokenIndex($ep), getRhsLastTokenIndex($ep), $_SYMBOL);
@@ -653,19 +665,19 @@ $Rules
           ./
    filter ::= fF iI lL tT eE rR
 
-   option ::= first$f optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($f), $_SYMBOL); $EndJava./
-            | no first$f optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($f), $_SYMBOL); $EndJava./
+   option ::= first$f optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($f), getRhsLastTokenIndex($f), $_SYMBOL); $EndJava./
+            | no first$f optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($f), getRhsLastTokenIndex($f), $_SYMBOL); $EndJava./
    first ::= fF iI rR sS tT
 
-   option ::= follow$f optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($f), $_SYMBOL); $EndJava./
-            | no follow$f optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($f), $_SYMBOL); $EndJava./
+   option ::= follow$f optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($f), getRhsLastTokenIndex($f), $_SYMBOL); $EndJava./
+            | no follow$f optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($f), getRhsLastTokenIndex($f), $_SYMBOL); $EndJava./
    follow ::= fF oO lL lL oO wW
 
    --
    -- goto_default
    --
-   option ::= goto_default$g optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($g), $_SYMBOL); $EndJava./
-            | no goto_default$g optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($g), $_SYMBOL); $EndJava./
+   option ::= goto_default$g optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($g), getRhsLastTokenIndex($g), $_SYMBOL); $EndJava./
+            | no goto_default$g optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($g), getRhsLastTokenIndex($g), $_SYMBOL); $EndJava./
    goto_default ::= gG oO tT oO _opt dD eE fF aA uU lL tT
                   | gG dD
 
@@ -728,7 +740,7 @@ $Rules
    -- list
    --
    option ::= lalr_level$l optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($l), getRhsLastTokenIndex($l), $_SYMBOL); $EndJava./
-            | no lalr_level$l optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($l), $_SYMBOL); $EndJava./
+            | no lalr_level$l optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($l), getRhsLastTokenIndex($l), $_SYMBOL); $EndJava./
    option ::= lalr_level$l optionWhite '='$eq optionWhite number$val optionWhite
           /.$BeginJava
                       makeToken(getRhsFirstTokenIndex($l), getRhsLastTokenIndex($l), $_SYMBOL);
@@ -741,8 +753,8 @@ $Rules
                 | lL aA
                 | lL lL
 
-   option ::= list$l optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($l), $_SYMBOL); $EndJava./
-            | no list$l optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($l), $_SYMBOL); $EndJava./
+   option ::= list$l optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($l), getRhsLastTokenIndex($l), $_SYMBOL); $EndJava./
+            | no list$l optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($l), getRhsLastTokenIndex($l), $_SYMBOL); $EndJava./
    list ::= lL iI sS tT 
 
    --
@@ -772,8 +784,8 @@ $Rules
    -- names
    -- nt_check
    --
-   option ::= names$n optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($n), $_SYMBOL); $EndJava./
-            | no names$n optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($n), $_SYMBOL); $EndJava./
+   option ::= names$n optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($n), getRhsLastTokenIndex($n), $_SYMBOL); $EndJava./
+            | no names$n optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($n), getRhsLastTokenIndex($n), $_SYMBOL); $EndJava./
    option ::= names$n optionWhite '='$eq optionWhite names_value$val optionWhite
           /.$BeginJava
                       makeToken(getRhsFirstTokenIndex($n), getRhsLastTokenIndex($n), $_SYMBOL);
@@ -788,8 +800,8 @@ $Rules
                  | mM iI nN iI mM uU mM
    
 
-   option ::= nt_check$n optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($n), $_SYMBOL); $EndJava./
-            | no nt_check$n optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($n), $_SYMBOL); $EndJava./
+   option ::= nt_check$n optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($n), getRhsLastTokenIndex($n), $_SYMBOL); $EndJava./
+            | no nt_check$n optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($n), getRhsLastTokenIndex($n), $_SYMBOL); $EndJava./
    nt_check ::= nN tT _opt cC hH eE cC kK
               | nN cC
 
@@ -826,8 +838,8 @@ $Rules
    -- programming_language
    -- prs_file
    --
-   option ::= parent_saved$ps optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($ps), $_SYMBOL); $EndJava ./
-            | no parent_saved$ps optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($ps), $_SYMBOL); $EndJava ./
+   option ::= parent_saved$ps optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($ps), getRhsLastTokenIndex($ps), $_SYMBOL); $EndJava ./
+            | no parent_saved$ps optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($ps), getRhsLastTokenIndex($ps), $_SYMBOL); $EndJava ./
    parent_saved ::= pP aA rR eE nN tT _opt sS aA vV eE dD
                   | pP sS
 
@@ -860,8 +872,8 @@ $Rules
           ./
    prefix ::= pP rR eE fF iI xX
 
-   option ::= priority$p optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($p), $_SYMBOL); $EndJava./
-            | no priority$p optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($p), $_SYMBOL); $EndJava./
+   option ::= priority$p optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($p), getRhsLastTokenIndex($p), $_SYMBOL); $EndJava./
+            | no priority$p optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($p), getRhsLastTokenIndex($p), $_SYMBOL); $EndJava./
    priority ::= pP rR iI oO rR iI tT yY
 
    option ::= programming_language$pl optionWhite '='$eq optionWhite programming_language_value$val optionWhite
@@ -895,21 +907,21 @@ $Rules
    --
    -- quiet
    --
-   option ::= quiet$q optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($q), $_SYMBOL); $EndJava./
-            | no quiet$q optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($q), $_SYMBOL); $EndJava./
+   option ::= quiet$q optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($q), getRhsLastTokenIndex($q), $_SYMBOL); $EndJava./
+            | no quiet$q optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($q), getRhsLastTokenIndex($q), $_SYMBOL); $EndJava./
    quiet ::= qQ uU iI eE tT
 
    --
    -- read_reduce
    -- remap_terminals
    --
-   option ::= read_reduce$r optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($r), $_SYMBOL); $EndJava./
-            | no read_reduce$r optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($r), $_SYMBOL); $EndJava./
+   option ::= read_reduce$r optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($r), getRhsLastTokenIndex($r), $_SYMBOL); $EndJava./
+            | no read_reduce$r optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($r), getRhsLastTokenIndex($r), $_SYMBOL); $EndJava./
    read_reduce ::= rR eE aA dD _opt rR eE dD uU cC eE
                  | rR rR
 
-   option ::= remap_terminals$r optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($r), $_SYMBOL); $EndJava./
-            | no remap_terminals$r optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($r), $_SYMBOL); $EndJava./
+   option ::= remap_terminals$r optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($r), getRhsLastTokenIndex($r), $_SYMBOL); $EndJava./
+            | no remap_terminals$r optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($r), getRhsLastTokenIndex($r), $_SYMBOL); $EndJava./
    remap_terminals ::= rR eE mM aA pP _opt tT eE rR mM iI nN aA lL sS
                      | rR tT
 
@@ -924,36 +936,36 @@ $Rules
    -- suffix
    -- sym_file
    --
-   option ::= scopes$s optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
-            | no scopes$s optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
+   option ::= scopes$s optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($s), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
+            | no scopes$s optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($s), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
    scopes ::= sS cC oO pP eE sS
 
-   option ::= serialize$s optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
-            | no serialize$s optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
+   option ::= serialize$s optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($s), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
+            | no serialize$s optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($s), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
    serialize ::= sS eE rR iI aA lL iI zZ eE
 
-   option ::= shift_default$s optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
-            | no shift_default$s optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
+   option ::= shift_default$s optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($s), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
+            | no shift_default$s optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($s), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
    shift_default ::= sS hH iI fF tT _opt dD eE fF aA uU lL tT
                    | sS dD
 
-   option ::= single_productions$s optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
-            | no single_productions$s optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
+   option ::= single_productions$s optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($s), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
+            | no single_productions$s optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($s), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
    single_productions ::= sS iI nN gG lL eE _opt pP rR oO dD uU cC tT iI oO nN sS
                         | sS pP
 
-   option ::= slr$s optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
-            | no slr$s optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
+   option ::= slr$s optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($s), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
+            | no slr$s optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($s), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
    slr ::= sS lL rR
 
-   option ::= soft_keywords$s optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
-            | no soft_keywords$s optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
+   option ::= soft_keywords$s optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($s), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
+            | no soft_keywords$s optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($s), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
    soft_keywords ::= sS oO fF tT _opt kK eE yY wW oO rR dD sS 
                    | sS oO fF tT
                    | sS kK
 
-   option ::= states$s optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
-            | no states$s optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
+   option ::= states$s optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($s), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
+            | no states$s optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($s), getRhsLastTokenIndex($s), $_SYMBOL); $EndJava ./
    states ::= sS tT aA tT eE sS
 
    option ::= suffix$s optionWhite '='$eq optionWhite Value$val optionWhite
@@ -1016,8 +1028,8 @@ $Rules
           ./
    trailers ::= tT rR aA iI lL eE rR sS
 
-   option ::= table$t optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($t), $_SYMBOL); $EndJava ./
-            | no table$t optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($t), $_SYMBOL); $EndJava ./
+   option ::= table$t optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($t), getRhsLastTokenIndex($t), $_SYMBOL); $EndJava ./
+            | no table$t optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($t), getRhsLastTokenIndex($t), $_SYMBOL); $EndJava ./
    option ::= table$t optionWhite '='$eq optionWhite programming_language_value$val optionWhite
           /.$BeginJava
                       makeToken(getRhsFirstTokenIndex($t), getRhsLastTokenIndex($t), $_SYMBOL);
@@ -1027,8 +1039,8 @@ $Rules
           ./
    table ::= tT aA bB lL eE 
 
-   option ::= trace$t optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($t), $_SYMBOL); $EndJava ./
-            | no trace$t optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($t), $_SYMBOL); $EndJava ./
+   option ::= trace$t optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($t), getRhsLastTokenIndex($t), $_SYMBOL); $EndJava ./
+            | no trace$t optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($t), getRhsLastTokenIndex($t), $_SYMBOL); $EndJava ./
    option ::= trace$t optionWhite '='$eq optionWhite trace_value$val optionWhite
           /.$BeginJava
                       makeToken(getRhsFirstTokenIndex($t), getRhsLastTokenIndex($t), $_SYMBOL);
@@ -1048,8 +1060,8 @@ $Rules
    -- visitor
    -- visitor_type
    --
-   option ::= variables$v optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($v), $_SYMBOL); $EndJava ./
-            | no variables$v optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($v), $_SYMBOL); $EndJava ./
+   option ::= variables$v optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($v), getRhsLastTokenIndex($v), $_SYMBOL); $EndJava ./
+            | no variables$v optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($v), getRhsLastTokenIndex($v), $_SYMBOL); $EndJava ./
    option ::= variables$v optionWhite '='$eq optionWhite variables_value$val optionWhite
           /.$BeginJava
                       makeToken(getRhsFirstTokenIndex($v), getRhsLastTokenIndex($v), $_SYMBOL);
@@ -1064,12 +1076,12 @@ $Rules
                      | nN oO nN _opt tT eE rR mM iI nN aA lL sS
                      | nN tT
 
-   option ::= verbose$v optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($v), $_SYMBOL); $EndJava ./
-            | no verbose$v optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($v), $_SYMBOL); $EndJava ./
+   option ::= verbose$v optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($v), getRhsLastTokenIndex($v), $_SYMBOL); $EndJava ./
+            | no verbose$v optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($v), getRhsLastTokenIndex($v), $_SYMBOL); $EndJava ./
    verbose ::= vV eE rR bB oO sS eE
 
-   option ::= visitor$v optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($v), $_SYMBOL); $EndJava ./
-            | no visitor$v optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($v), $_SYMBOL); $EndJava ./
+   option ::= visitor$v optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($v), getRhsLastTokenIndex($v), $_SYMBOL); $EndJava ./
+            | no visitor$v optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($v), getRhsLastTokenIndex($v), $_SYMBOL); $EndJava ./
    option ::= visitor$v optionWhite '='$eq optionWhite visitor_value$val optionWhite
           /.$BeginJava
                       makeToken(getRhsFirstTokenIndex($v), getRhsLastTokenIndex($v), $_SYMBOL);
@@ -1095,15 +1107,15 @@ $Rules
    --
    -- warnings
    --
-   option ::= warnings$w optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($w), $_SYMBOL); $EndJava ./
-            | no warnings$w optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($w), $_SYMBOL); $EndJava ./
+   option ::= warnings$w optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($w), getRhsLastTokenIndex($w), $_SYMBOL); $EndJava ./
+            | no warnings$w optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($w), getRhsLastTokenIndex($w), $_SYMBOL); $EndJava ./
    warnings ::= wW aA rR nN iI nN gG sS
 
    --
    -- xref
    --
-   option ::= xreference$x optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($x), $_SYMBOL); $EndJava ./
-            | no xreference$x optionWhite /.$BeginJava  makeToken(getLeftSpan(), getRhsLastTokenIndex($x), $_SYMBOL); $EndJava ./
+   option ::= xreference$x optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($x), getRhsLastTokenIndex($x), $_SYMBOL); $EndJava ./
+            | no xreference$x optionWhite /.$BeginJava  makeToken(getRhsFirstTokenIndex($x), getRhsLastTokenIndex($x), $_SYMBOL); $EndJava ./
    xreference ::= xX rR eE fF
                 | xX rR eE fF eE rR eE nN cC eE
 $End
