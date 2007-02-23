@@ -19,8 +19,8 @@ import org.eclipse.uide.parser.IASTNodeLocator;
 import org.eclipse.uide.parser.IParseController;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.nonTerm;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.rhs;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.rhsList;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.rule;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.ruleList;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.symWithAttrsList;
 
 public class MakeLeftRecursiveRefactoring extends Refactoring {
@@ -57,32 +57,32 @@ public class MakeLeftRecursiveRefactoring extends Refactoring {
     }
 
     public RefactoringStatus checkInitialConditions(IProgressMonitor pm) throws CoreException, OperationCanceledException {
-	if (!(fNode instanceof nonTerm) && !(fNode instanceof rhs))
+	if (!(fNode instanceof nonTerm) && !(fNode instanceof rule))
 	    return RefactoringStatus.createFatalErrorStatus("Make Left Recursive is only valid for non-terminals and recursive productions");
 
 	if (fNode instanceof nonTerm) {
 	    nonTerm nt= (nonTerm) fNode;
-	    rhsList rhSides= nt.getrhsList();
+	    ruleList rhSides= nt.getruleList();
 
 	    for(int i=0; i < rhSides.size(); i++)
-		checkProduction((rhs) rhSides.getElementAt(i), nt);
+		checkProduction((rule) rhSides.getElementAt(i), nt);
 	} else {
-	    rhs prod= (rhs) fNode;
+	    rule prod= (rule) fNode;
 	    checkProduction(prod, (nonTerm) prod.getParent());
 	}
 
 	return new RefactoringStatus();
     }
 
-    private RefactoringStatus checkProduction(rhs prod, nonTerm nt) {
+    private RefactoringStatus checkProduction(rule prod, nonTerm nt) {
 	symWithAttrsList rhsSyms= prod.getsymWithAttrsList();
 	final int N= rhsSyms.size();
 
 	for(int i= 0; i < N; i++) { // make sure the production is of the form a ::= b c ... a
-	    if (rhsSyms.getElementAt(i).toString().equals(nt.getSYMBOL().toString()))
+	    if (rhsSyms.getElementAt(i).toString().equals(nt.getruleNameWithAttributes().getSYMBOL().toString()))
 		return RefactoringStatus.createFatalErrorStatus("Non-terminal must have the form 'a ::= b c ... a'");
 	}
-	if (!rhsSyms.getElementAt(N-1).toString().equals(nt.getSYMBOL().toString()))
+	if (!rhsSyms.getElementAt(N-1).toString().equals(nt.getruleNameWithAttributes().getSYMBOL().toString()))
 	    return RefactoringStatus.createFatalErrorStatus("Non-terminal must have the form 'a ::= b c ... a'");
 	return new RefactoringStatus();
     }
@@ -91,9 +91,9 @@ public class MakeLeftRecursiveRefactoring extends Refactoring {
 	return new RefactoringStatus();
     }
 
-    private void rewriteProduction(rhs prod, nonTerm nt, TextFileChange tfc) {
+    private void rewriteProduction(rule prod, nonTerm nt, TextFileChange tfc) {
 	// TODO Replace hand-written transform code with usage of SAFARI AST rewriter.
-	String ntSym= nt.getSYMBOL().toString();
+	String ntSym= nt.getruleNameWithAttributes().getSYMBOL().toString();
 	symWithAttrsList syms= prod.getsymWithAttrsList();
 	int N= syms.size();
 	ASTNode symToDelete= syms.getElementAt(N-1);
@@ -114,12 +114,12 @@ public class MakeLeftRecursiveRefactoring extends Refactoring {
 
 	if (fNode instanceof nonTerm) {
 	    nt= (nonTerm) fNode;
-	    rhsList rhSides= nt.getrhsList();
+	    ruleList rhSides= nt.getruleList();
 
 	    for(int i=0; i < rhSides.size(); i++)
-		rewriteProduction((rhs) rhSides.getElementAt(i), nt, tfc);
+		rewriteProduction((rule) rhSides.getElementAt(i), nt, tfc);
 	} else {
-	    rhs prod= (rhs) fNode;
+	    rule prod= (rule) fNode;
 	    nt= (nonTerm) prod.getParent();
 	    rewriteProduction(prod, nt, tfc);
 	}

@@ -18,8 +18,8 @@ import org.eclipse.uide.parser.IASTNodeLocator;
 import org.eclipse.uide.parser.IParseController;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.nonTerm;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.rhs;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.rhsList;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.rule;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.ruleList;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.symWithAttrsList;
 
 public class MakeEmptyRefactoring extends Refactoring {
@@ -60,20 +60,20 @@ public class MakeEmptyRefactoring extends Refactoring {
 	    return RefactoringStatus.createFatalErrorStatus("Make Empty is only valid for non-terminals");
 
 	nonTerm nt= (nonTerm) fNode;
-	rhsList rhSides= nt.getrhsList();
+	ruleList rhSides= nt.getruleList();
 
 	if (rhSides.size() != 2)
 	    return RefactoringStatus.createFatalErrorStatus("Make Empty is only valid for non-terminals with 2 productions");
 
-	rhs rhs1= (rhs) rhSides.getElementAt(0);
-	rhs rhs2= (rhs) rhSides.getElementAt(1);
+	rule rhs1= (rule) rhSides.getElementAt(0);
+	rule rhs2= (rule) rhSides.getElementAt(1);
 
 	symWithAttrsList rhs1Syms= rhs1.getsymWithAttrsList();
 	symWithAttrsList rhs2Syms= rhs2.getsymWithAttrsList();
 
 	// swap rhs1/rhs2 as needed to ensure that rhs1 is the "leaf case"
 	if (rhs1Syms.size() == rhs2Syms.size() + 1) {
-	    rhs tmp= rhs1;
+	    rule tmp= rhs1;
 	    symWithAttrsList tmpList= rhs1Syms;
 
 	    rhs1= rhs2;
@@ -86,7 +86,7 @@ public class MakeEmptyRefactoring extends Refactoring {
 	    if (!rhs1Syms.getElementAt(i).toString().equals(rhs2Syms.getElementAt(i+1).toString()))
 		return RefactoringStatus.createFatalErrorStatus("Non-terminal must have the form 'a ::= b c ... | a b c ...'");
 	}
-	if (!rhs2Syms.getElementAt(0).toString().equals(nt.getSYMBOL().toString()))
+	if (!rhs2Syms.getElementAt(0).toString().equals(nt.getruleNameWithAttributes().getSYMBOL().toString()))
 	    return RefactoringStatus.createFatalErrorStatus("Non-terminal must have the form 'a ::= b c ... | a b c ...'");
 
 	return new RefactoringStatus();
@@ -99,16 +99,16 @@ public class MakeEmptyRefactoring extends Refactoring {
     public Change createChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
 	// TODO Replace hand-written transform code with usage of SAFARI AST rewriter.
 	nonTerm nt= (nonTerm) fNode;
-	rhsList rhSides= nt.getrhsList();
-	rhs rhs1= (rhs) rhSides.getElementAt(0);
-	rhs rhs2= (rhs) rhSides.getElementAt(1);
+	ruleList rhSides= nt.getruleList();
+	rule rhs1= (rule) rhSides.getElementAt(0);
+	rule rhs2= (rule) rhSides.getElementAt(1);
 
 	symWithAttrsList rhs1Syms= rhs1.getsymWithAttrsList();
 	symWithAttrsList rhs2Syms= rhs2.getsymWithAttrsList();
 	int N= rhs1Syms.size();
 
 	if (rhs1Syms.size() == rhs2Syms.size() + 1) {
-	    rhs tmp= rhs1;
+	    rule tmp= rhs1;
 	    symWithAttrsList tmpList= rhs1Syms;
 
 	    rhs1= rhs2;

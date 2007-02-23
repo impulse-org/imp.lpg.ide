@@ -106,7 +106,7 @@ public class JikesPGLabelProvider implements ILabelProvider, ILanguageService {
 	if (n instanceof defineSpec)
 	    return /*"macro " +*/((defineSpec) n).getmacro_name_symbol().toString();
 	if (n instanceof nonTerm)
-	    return /*"non-terminal " +*/((nonTerm) n).getSYMBOL().toString();
+	    return /*"non-terminal " +*/((nonTerm) n).getruleNameWithAttributes().getSYMBOL().toString();
 	if (n instanceof terminal)
 	    return /*"terminal " +*/((terminal) n).getterminal_symbol().toString();
 	if (n instanceof include_segment)
@@ -129,8 +129,8 @@ public class JikesPGLabelProvider implements ILabelProvider, ILanguageService {
 	    return ((drop_rule) n).getSYMBOL().toString();
 	if (n instanceof drop_ruleList)
 	    return "rules";
-	if (n instanceof rhs)
-	    return ((rhs) n).getsymWithAttrsList().toString();
+	if (n instanceof rule)
+	    return ((rule) n).getsymWithAttrsList().toString();
 	if (n instanceof symWithAttrsList)
 	    return ((symWithAttrsList) n).toString();
 	if (n instanceof keywordSpecList)

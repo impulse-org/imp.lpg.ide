@@ -7,11 +7,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-
 import lpg.runtime.IPrsStream;
-
+import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.jface.text.contentassist.IContextInformation;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.uide.editor.IContentProposer;
 import org.eclipse.uide.editor.SourceProposal;
 import org.eclipse.uide.parser.IASTNodeLocator;
@@ -104,7 +107,7 @@ public class ContentProposer implements IContentProposer {
 
         for(Iterator iter= nonTerms.iterator(); iter.hasNext(); ) {
             nonTerm nt= (nonTerm) iter.next();
-            String ntRawName= nt.getSYMBOL().toString();
+            String ntRawName= nt.getruleNameWithAttributes().getSYMBOL().toString();
             int idx= ntRawName.indexOf('$');
             final String ntName= (idx >= 0) ? ntRawName.substring(0, idx) : ntRawName;
 

@@ -224,26 +224,44 @@ public class JikesPGFormatter implements ILanguageService, ISourceFormatter {
             }
             public boolean visit(nonTerm n) {
                 fBuff.append(fIndentString);
-                fBuff.append(n.getSYMBOL());
-                if (n.getclassName() != null)
-                    fBuff.append(n.getclassName());
-                if (n.getarrayElement() != null)
-                    fBuff.append(n.getarrayElement());
+                fBuff.append(n.getruleNameWithAttributes().getSYMBOL());
                 if (fIndentProducesToWidestNonTerm) {
-                    for(int i=n.getSYMBOL().toString().length() + fIndentSize + 1; i <= prodIndent; i++)
+                    for(int i=n.getruleNameWithAttributes().getSYMBOL().toString().length() + fIndentSize + 1; i <= prodIndent; i++)
                         fBuff.append(' ');
                 } else
                     fBuff.append(' ');
                 fBuff.append(n.getproduces());
                 prodCount= 0;
                 if (!fIndentProducesToWidestNonTerm)
-                    prodIndent= fIndentSize + n.getSYMBOL().toString().length() + 1;
+                    prodIndent= fIndentSize + n.getruleNameWithAttributes().getSYMBOL().toString().length() + 1;
                 return true;
             }
+            public boolean visit(RuleName n) {
+        	fBuff.append(n.getSYMBOL());
+        	return true;
+            }
+//            public boolean visit(enumBitSpec n) {
+//        	fBuff.append('|');
+//        	fBuff.append(n.getclassName());
+//        	fBuff.append('|');
+//        	return false;
+//            }
+//            public boolean visit(enumListSpec n) {
+//        	fBuff.append('[');
+//        	fBuff.append(n.getclassName());
+//        	fBuff.append(']');
+//        	return false;
+//            }
+//            public boolean visit(enumValueSpec n) {
+//        	fBuff.append('#');
+//        	fBuff.append(n.getclassName());
+//        	fBuff.append('#');
+//        	return false;
+//            }
             public void endVisit(nonTerm n) {
                 fBuff.append('\n');
             }
-            public boolean visit(rhs n) {
+            public boolean visit(rule n) {
                 if (prodCount > 0) {
                     fBuff.append('\n');
                     for(int i=0; i < prodIndent; i++)
@@ -268,9 +286,8 @@ public class JikesPGFormatter implements ILanguageService, ISourceFormatter {
                 fBuff.append(n.getSYMBOL());
                 return false;
             }
-            public boolean visit(symWithAttrs2 n) {
+            public boolean visit(symAttrs n) {
                 fBuff.append(' ');
-                fBuff.append(n.getSYMBOL());
                 fBuff.append(n.getMACRO_NAME());
                 return false;
             }

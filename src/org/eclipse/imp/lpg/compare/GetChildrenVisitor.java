@@ -8,6 +8,7 @@ import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
  * The implementation below actually omits certain uninteresting intermediate nodes
  * from the structure.
  */
+// TODO RMF 11/15/2006 - Can we do without this hand-written class?
 public class GetChildrenVisitor extends AbstractVisitor implements Visitor {
     private final static Object[] NO_CHILDREN= new Object[0];
 
@@ -76,7 +77,7 @@ public class GetChildrenVisitor extends AbstractVisitor implements Visitor {
         fChildren= new Object[N];
         for(int i=0; i < N; i++) {
             nonTerm nt= (nonTerm) nonTermList.getElementAt(i);
-            fChildren[N-i-1]= new JikesPGStructureNode(nt, fStructureNode, JikesPGStructureNode.NONTERMINAL, nt.getSYMBOL().toString());
+            fChildren[N-i-1]= new JikesPGStructureNode(nt, fStructureNode, JikesPGStructureNode.NONTERMINAL, nt.getruleNameWithAttributes().getSYMBOL().toString());
         }
         return false;
     }

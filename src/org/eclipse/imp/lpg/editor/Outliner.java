@@ -216,24 +216,24 @@ public class Outliner extends DefaultOutliner
 		    fItemStack.pop();
 		}
 		public boolean visit(nonTerm n) {
-		    if (n.getrhsList().size() > 1)
-			fItemStack.push(createSubItem(symbolImage(n.getSYMBOL()), n));
+		    if (n.getruleList().size() > 1)
+			fItemStack.push(createSubItem(symbolImage(n.getruleNameWithAttributes().getSYMBOL()), n));
 		    return true;
 		}
 	        public void endVisit(nonTerm n) {
-		    if (n.getrhsList().size() > 1)
+		    if (n.getruleList().size() > 1)
 			fItemStack.pop();
 	        }
-	        public boolean visit(rhs n) {
+	        public boolean visit(rule n) {
 	            fRHSLabel = new StringBuffer();
 	            final nonTerm parentNonTerm= (nonTerm) n.getParent().getParent();
-		    if (parentNonTerm.getrhsList().size() == 1) {
-			fRHSLabel.append(parentNonTerm.getSYMBOL());
+		    if (parentNonTerm.getruleList().size() == 1) {
+			fRHSLabel.append(parentNonTerm.getruleNameWithAttributes().getSYMBOL());
 			fRHSLabel.append(" ::= ");
 		    }
 	            return true;
 	        }
-	        public void endVisit(rhs n) {
+	        public void endVisit(rule n) {
 	            createSubItem(fRHSLabel.toString(), n);
 	        }
 	        public void endVisit(symWithAttrs0 n) {
@@ -242,11 +242,7 @@ public class Outliner extends DefaultOutliner
 	        }
 	        public void endVisit(symWithAttrs1 n) {
 	            fRHSLabel.append(' ');
-	            fRHSLabel.append(n.getIToken().toString());
-	        }
-	        public void endVisit(symWithAttrs2 n) {
-	            fRHSLabel.append(' ');
-	            fRHSLabel.append(n.getSYMBOL().getIToken().toString());
+	            fRHSLabel.append(n.getSYMBOL().toString());
 	        }
 	        public boolean visit(TypesSeg n) {
 	            fItemStack.push(createTopItem("Types", n));

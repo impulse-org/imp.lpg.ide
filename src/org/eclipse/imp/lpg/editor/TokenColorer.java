@@ -23,6 +23,7 @@ public class TokenColorer implements ITokenColorer {
 
     static TextAttribute EMPTY;
 
+    static TextAttribute ANNOTATION;
 
     public TokenColorer() {
 	Display display= Display.getCurrent();
@@ -32,20 +33,24 @@ public class TokenColorer implements ITokenColorer {
 	KEYWORD= new TextAttribute(display.getSystemColor(SWT.COLOR_BLUE), null, SWT.BOLD);
 	EMPTY= new TextAttribute(display.getSystemColor(SWT.COLOR_DARK_GRAY), null, SWT.BOLD);
 	LITERAL= new TextAttribute(display.getSystemColor(SWT.COLOR_DARK_GRAY), null, SWT.ITALIC);
+	ANNOTATION= new TextAttribute(display.getSystemColor(SWT.COLOR_MAGENTA), null, SWT.ITALIC);
     }
 
     public TextAttribute getColoring(IParseController controller, IToken token) {
 	if (token.getKind() == JikesPGLexer.TK_EMPTY_KEY)
 	    return EMPTY;
-	else if (controller.isKeyword(token.getKind()))
+	if (controller.isKeyword(token.getKind()))
 	    return KEYWORD;
-	else if (token.getKind() == JikesPGLexer.TK_SYMBOL) {
+	if (token.getKind() == JikesPGLexer.TK_SYMBOL) {
 	    char ch= controller.getLexer().getLexStream().getInputChars()[token.getStartOffset()];
 	    if (ch == '\'' || ch == '"')
 		return LITERAL;
 	    return SYMBOL;
-	} else if (token.getKind() == JikesPGLexer.TK_SINGLE_LINE_COMMENT)
+	}
+	if (token.getKind() == JikesPGLexer.TK_SINGLE_LINE_COMMENT)
 	    return COMMENT;
+	if (token.getKind() == JikesPGLexer.TK_MACRO_NAME)
+	    return ANNOTATION;
 
 	return null;
     }

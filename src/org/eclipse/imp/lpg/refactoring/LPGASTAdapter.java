@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import org.eclipse.uide.core.ILanguageService;
-import org.eclipse.safari.jikespg.parser.GetChildrenVisitor;
 import org.eclipse.safari.jikespg.parser.JikesPGParser;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.nonTerm;
@@ -24,16 +23,14 @@ public class JikesPGASTAdapter extends ASTAdapterBase implements ILanguageServic
     protected String getName(Object astNode) {
 	ASTNode node= (ASTNode) astNode;
         if (node instanceof nonTerm)
-            return ((nonTerm) node).getSYMBOL().toString();
+            return ((nonTerm) node).getruleNameWithAttributes().getSYMBOL().toString();
         if (node instanceof terminal)
             return ((terminal) node).getterminal_symbol().toString();
         throw new IllegalArgumentException("AST node type " + node.getClass().getName() + " has no name!");
     }
 
     public Object[] getChildren(Object astNode) {
-	GetChildrenVisitor v= new GetChildrenVisitor();
-	((ASTNode) astNode).accept(v);
-        return v.getChildren();
+	return ((ASTNode) astNode).getAllChildren().toArray();
     }
 
     public boolean isInstanceOfType(Object astNode, String typeName) {

@@ -26,8 +26,8 @@ import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.IASTNodeToken;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.IsymWithAttrs;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.nonTerm;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.rhs;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.rhsList;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.rule;
+import org.eclipse.safari.jikespg.parser.JikesPGParser.ruleList;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.symWithAttrsList;
 
 public class InlineNonTerminalRefactoring extends Refactoring {
@@ -97,12 +97,12 @@ public class InlineNonTerminalRefactoring extends Refactoring {
 	} else
 	    return RefactoringStatus.createFatalErrorStatus("Inline Non-Terminal is only valid for non-terminal symbols");
 
-	rhsList rules= fNonTerm.getrhsList();
+	ruleList rules= fNonTerm.getruleList();
 
 	if (rules.size() != 1)
 	    return RefactoringStatus.createFatalErrorStatus("Inline Non-Terminal is only valid for non-terminals with a single production");
 
-	final rhs rule= (rhs) rules.getElementAt(0);
+	final rule rule= (rule) rules.getElementAt(0);
 
 	if (rule.getopt_action_segment() != null)
 	    return RefactoringStatus.createFatalErrorStatus("Non-terminal to be inlined cannot have an action block");

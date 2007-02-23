@@ -121,7 +121,7 @@ public class FoldingUpdater implements IFoldingUpdater {
             return true;
         }
 
-        public boolean visit(rhs n) {
+        public boolean visit(rule n) {
             final action_segment optAction= n.getopt_action_segment();
 
             if (optAction != null) {
