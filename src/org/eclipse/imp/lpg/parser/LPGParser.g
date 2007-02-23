@@ -6,6 +6,11 @@
 
 $Globals
     /.import org.eclipse.uide.parser.IParser;
+        import java.util.ArrayList;
+        import java.util.List;
+        import java.util.Map;
+        import java.util.HashMap;
+        import java.util.Set;
      ./
 $End
 
@@ -22,20 +27,64 @@ $Terminals
     OR_MARKER ::= '|'
     EQUAL ::= '='
     COMMA ::= ','
-    LEFT_PAREN ::= '('
+    LEFT_PAREN  ::= '('
     RIGHT_PAREN ::= ')'
+    LEFT_BRACKET ::= '['
+    RIGHT_BRACKET ::= ']'
+    SHARP ::= '#'
 $End
 
 $Start
     JikesPG
 $End
 
+$Headers
+    /.
+        public static class SymbolTable {
+            private Map<String,ASTNode> table = new HashMap<String,ASTNode>();
+
+            public void addDefinition(String name, ASTNode def) { table.put(name, def); }
+            public ASTNode lookup(String name) { return table.get(name); }
+            public List<String> allSymbolsOfType(Class type) {
+                List<String> result= new ArrayList<String>();
+
+                for(String sym: table.keySet()) {
+                    ASTNode def= table.get(sym);
+
+                    if (type.isInstance(def))
+                        result.add(sym);
+                }
+                return result;
+            }
+            public <T> List<T> allDefsOfType(Class<T> type) {
+                List<T> result = new ArrayList<T>();
+                
+                for(String sym: table.keySet()) {
+                    ASTNode def= table.get(sym);
+
+                    if (type.isInstance(def))
+                        result.add((T) def);
+                }
+                return result;
+            }
+            public Set<String> allSymbols() { return table.keySet(); }
+        }
+        protected static SymbolTable symtab;
+        { symtab = new SymbolTable(); }
+     ./
+$End
+
 $Rules
     JikesPG ::= options_segment JikesPG_INPUT
+    /.
+        public SymbolTable symbolTable;
+        void initialize() { symbolTable = symtab; }
+     ./
 
     JikesPG_INPUT$$JikesPG_item ::= $empty
                                 |   JikesPG_INPUT JikesPG_item
 
+    -- RMF 11/15/2006 - The following non-terminals should be renamed alias_segment_body, etc.
     JikesPG_item$AliasSeg       ::= ALIAS_KEY$                   alias_segment       END_KEY_OPT$
     JikesPG_item$AstSeg         ::= AST_KEY$                     ast_segment         END_KEY_OPT$
     JikesPG_item$DefineSeg      ::= DEFINE_KEY$                  define_segment      END_KEY_OPT$
@@ -72,21 +121,21 @@ $Rules
     -- $alias
     alias_segment$$aliasSpec ::= aliasSpec | alias_segment aliasSpec
 
-    aliasSpec ::= ERROR_KEY produces alias_rhs 
-    aliasSpec ::= EOL_KEY produces alias_rhs 
-    aliasSpec ::= EOF_KEY produces alias_rhs 
-    aliasSpec ::= IDENTIFIER_KEY produces alias_rhs 
-    aliasSpec ::= SYMBOL produces alias_rhs 
-    aliasSpec ::= alias_lhs_macro_name produces alias_rhs 
+    aliasSpec ::= ERROR_KEY produces alias_rhs
+    aliasSpec ::= EOL_KEY produces alias_rhs
+    aliasSpec ::= EOF_KEY produces alias_rhs
+    aliasSpec ::= IDENTIFIER_KEY produces alias_rhs
+    aliasSpec ::= SYMBOL produces alias_rhs
+    aliasSpec ::= alias_lhs_macro_name produces alias_rhs
 
     alias_lhs_macro_name ::= MACRO_NAME -- warning: escape prefix used in symbol
 
-    alias_rhs ::= SYMBOL 
+    alias_rhs ::= SYMBOL
     alias_rhs ::= MACRO_NAME -- warning: escape prefix used in symbol
-    alias_rhs ::= ERROR_KEY 
-    alias_rhs ::= EOL_KEY 
-    alias_rhs ::= EOF_KEY 
-    alias_rhs ::= EMPTY_KEY 
+    alias_rhs ::= ERROR_KEY
+    alias_rhs ::= EOL_KEY
+    alias_rhs ::= EOF_KEY
+    alias_rhs ::= EMPTY_KEY
     alias_rhs ::= IDENTIFIER_KEY
 
     -- $ast
@@ -95,6 +144,9 @@ $Rules
     -- $define
     define_segment$$defineSpec ::= defineSpec | define_segment defineSpec
     defineSpec ::= macro_name_symbol macro_segment
+    /.
+        void initialize() { symtab.addDefinition(_macro_name_symbol.toString(), this); }
+     ./
 
     macro_name_symbol ::= MACRO_NAME
     macro_name_symbol ::= SYMBOL -- warning: escape prefix missing...
@@ -122,7 +174,7 @@ $Rules
     -- $import
     import_segment  ::= SYMBOL drop_command_list
 
-    drop_command_list$$drop_command ::= drop_command | drop_command_list drop_command
+    drop_command_list$$drop_command ::= $empty | drop_command_list drop_command
 
     drop_command ::= DROPSYMBOLS_KEY drop_symbols
     drop_command ::= DROPRULES_KEY drop_rules
@@ -132,7 +184,7 @@ $Rules
     drop_rules$$drop_rule ::= drop_rule
     drop_rules$$drop_rule ::= drop_rules drop_rule
 
-    drop_rule ::= SYMBOL optMacroName produces rhsList
+    drop_rule ::= SYMBOL optMacroName produces ruleList
 
     optMacroName ::= $empty | MACRO_NAME
 
@@ -163,33 +215,45 @@ $Rules
 
     nonTermList$$nonTerm ::= $empty | nonTermList nonTerm
 
-    nonTerm$nonTerm ::= SYMBOL produces rhsList
-    nonTerm$nonTerm ::= SYMBOL MACRO_NAME$className produces rhsList
-    nonTerm$nonTerm ::= SYMBOL MACRO_NAME$className MACRO_NAME$arrayElement produces rhsList
-    rhsList$$rhs ::= rhs | rhsList '|'$ rhs
+    nonTerm ::= ruleNameWithAttributes produces ruleList
+    /.
+        void initialize() { symtab.addDefinition(_ruleNameWithAttributes.getSYMBOL().toString(), this); }
+     ./
 
---    rules$$Rule ::= SYMBOL produces rhs
---    rules$$Rule ::= SYMBOL MACRO_NAME$classname produces rhs
---    rules$$Rule ::= SYMBOL MACRO_NAME$className MACRO_NAME$arrayName produces rhs
---    rules$$Rule ::= rules '|'$ rhs
+    -- TODO Rename to nonTermNameWithAttributes
+    ruleNameWithAttributes$RuleName ::= SYMBOL -- ruleNameAttributes
+    ruleNameWithAttributes$RuleName ::= SYMBOL MACRO_NAME$className
+    ruleNameWithAttributes$RuleName ::= SYMBOL MACRO_NAME$className MACRO_NAME$arrayElement
+
+--  ruleNameAttributes$$ruleNameAttribute ::= $empty | ruleNameAttributes ruleNameAttribute
+--  ruleNameAttribute ::= MACRO_NAME
+--  ruleNameAttribute ::= enumListSpec
+--  ruleNameAttribute ::= enumValueSpec
+--  ruleNameAttribute ::= enumBitSpec
+
+--  enumListSpec  ::= '['$ className ']'$
+--  enumValueSpec ::= '#'$ className '#'$
+--  enumBitSpec   ::= '|'$ className '|'$
+
+--  className ::= SYMBOL
+
+    ruleList$$rule ::= rule | ruleList '|'$ rule
 
     produces ::= '::='
     produces ::= '::=?'
     produces ::= '->'
     produces ::= '->?'
 
---  rhs$RhsList$ ::= $empty
---  rhs$RhsList  ::= rhs SYMBOL
---  rhs$RhsList  ::= rhs EMPTY_KEY 
---  rhs$RhsList  ::= rhs action_segment
-
-    rhs ::= symWithAttrsList opt_action_segment
+    rule ::= symWithAttrsList opt_action_segment
 
     symWithAttrsList$$symWithAttrs ::= symWithAttrs | symWithAttrsList symWithAttrs
 
     symWithAttrs ::= EMPTY_KEY
-    symWithAttrs ::= SYMBOL
-    symWithAttrs ::= SYMBOL MACRO_NAME
+    symWithAttrs ::= SYMBOL optAttrList
+
+    -- TODO rename to 'symAttr'
+    optAttrList$symAttrs ::= $empty
+    optAttrList$symAttrs ::= MACRO_NAME
 
     opt_action_segment ::= $empty | action_segment
 
@@ -205,6 +269,9 @@ $Rules
 --  terminals_segment ::= terminals_segment terminal_symbol produces name
 
     terminal ::= terminal_symbol optTerminalAlias
+    /.
+        void initialize() { symtab.addDefinition(_terminal_symbol.toString(), this); }
+     ./
     optTerminalAlias ::= $empty | produces name
 
     terminal_symbol ::= SYMBOL
@@ -225,7 +292,14 @@ $Rules
     symbol_pair ::= SYMBOL SYMBOL
 
     --
-    recover_segment$$SYMBOL ::= $empty | recover_segment SYMBOL
+    recover_segment$$SYMBOL ::= $empty | recover_segment recover_symbol
+    
+    recover_symbol ::= SYMBOL
+    /.
+        void initialize() {
+           symtab.addDefinition(getSYMBOL().toString(), this);
+        }
+     ./
 
     END_KEY_OPT ::= $empty
     END_KEY_OPT ::= END_KEY 
