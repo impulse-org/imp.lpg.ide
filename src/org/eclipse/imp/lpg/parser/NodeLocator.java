@@ -51,9 +51,11 @@ public class NodeLocator implements IASTNodeLocator {
             // Use postVisit() so that we find the innermost AST node that contains the given text
             // range (innermost node's postVisit() will be the first postVisit() to be called).
             if (fResult == null) {
-        	IToken symTok= n.getLeftIToken();
+        	IToken symLeftTok= n.getLeftIToken();
+        	IToken symRightTok= n.getRightIToken();
+
         	// Consider position just to right of end of token part of the token
-        	if (fStartOffset >= symTok.getStartOffset() && fEndOffset <= symTok.getEndOffset()+1)
+        	if (fStartOffset >= symLeftTok.getStartOffset() && fEndOffset <= symRightTok.getEndOffset()+1)
         	    fResult= n;
             }
         }
