@@ -35,7 +35,6 @@ public class JikesPGNature extends ProjectNatureBase {
     }
 
     protected String getDownstreamBuilderID() {
-	// TODO Auto-generated method stub
-	return null;
+	return "org.eclipse.jdt.core.javabuilder";
     }
 }
