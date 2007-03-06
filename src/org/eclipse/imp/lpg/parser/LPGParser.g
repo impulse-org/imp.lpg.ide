@@ -246,7 +246,7 @@ $Rules
 
     rule ::= symWithAttrsList opt_action_segment
 
-    symWithAttrsList$$symWithAttrs ::= symWithAttrs | symWithAttrsList symWithAttrs
+    symWithAttrsList$$symWithAttrs ::= $empty | symWithAttrsList symWithAttrs
 
     symWithAttrs ::= EMPTY_KEY
     symWithAttrs ::= SYMBOL optAttrList
