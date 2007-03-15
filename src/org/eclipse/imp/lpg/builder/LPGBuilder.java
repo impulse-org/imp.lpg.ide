@@ -1,10 +1,5 @@
 package org.eclipse.safari.jikespg.builder;
 
-/*
- * Licensed Materials - Property of IBM,
- * (c) Copyright IBM Corp. 1998, 2004  All Rights Reserved
- */
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
