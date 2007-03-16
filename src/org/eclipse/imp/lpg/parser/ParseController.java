@@ -11,6 +11,7 @@ import lpg.runtime.IToken;
 import lpg.runtime.Monitor;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.uide.parser.IASTNodeLocator;
 import org.eclipse.uide.parser.ILexer;
@@ -20,47 +21,55 @@ import org.eclipse.uide.parser.ParseError;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
 
 public class ParseController implements IParseController {
-    private String filePath;
-    private IProject project;
-    private JikesPGParser parser;
-    private JikesPGLexer lexer;
-    private ASTNode currentAst;
-    private char keywords[][];
-    private boolean isKeyword[];
+    private IPath fFilePath;
+    private IProject fProject;
+    private JikesPGParser fParser;
+    private JikesPGLexer fLexer;
+    private ASTNode fCurrentAst;
+    private char fKeywords[][];
+    private boolean fIsKeyword[];
 
-    public void initialize(String filePath, IProject project, IMessageHandler handler) {
-	this.filePath= filePath;
-	this.project= project;
-	parser.setMessageHandler(handler);
+    public void initialize(IPath filePath, IProject project, IMessageHandler handler) {
+	fFilePath= filePath;
+	fProject= project;
+	fParser.setMessageHandler(handler);
+    }
+
+    public IProject getProject() {
+	return fProject;
+    }
+
+    public IPath getPath() {
+	return fFilePath;
     }
 
     public IParser getParser() {
-	return parser;
+	return fParser;
     }
 
     public ILexer getLexer() {
-	return lexer;
+	return fLexer;
     }
 
     public Object getCurrentAst() {
-	return currentAst;
+	return fCurrentAst;
     }
 
     public char[][] getKeywords() {
-	return keywords;
+	return fKeywords;
     }
 
     public boolean isKeyword(int kind) {
-	return isKeyword[kind];
+	return fIsKeyword[kind];
     }
 
     public int getTokenIndexAtCharacter(int offset) {
-	int index= parser.getParseStream().getTokenIndexAtCharacter(offset);
+	int index= fParser.getParseStream().getTokenIndexAtCharacter(offset);
 	return (index < 0 ? -index : index);
     }
 
     public IToken getTokenAtCharacter(int offset) {
-	return parser.getParseStream().getTokenAtCharacter(offset);
+	return fParser.getParseStream().getTokenAtCharacter(offset);
     }
 
     public IASTNodeLocator getNodeLocator() {
@@ -68,7 +77,7 @@ public class ParseController implements IParseController {
     }
 
     public boolean hasErrors() {
-	return currentAst == null;
+	return fCurrentAst == null;
     }
 
     public List getErrors() {
@@ -76,8 +85,8 @@ public class ParseController implements IParseController {
     }
 
     public ParseController() {
-	lexer= new JikesPGLexer(); // Create the lexer
-	parser= new JikesPGParser(lexer.getLexStream()); // Create the parser
+	fLexer= new JikesPGLexer(); // Create the lexer
+	fParser= new JikesPGParser(fLexer.getLexStream()); // Create the parser
     }
 
     class MyMonitor implements Monitor {
@@ -99,31 +108,31 @@ public class ParseController implements IParseController {
 	MyMonitor my_monitor= new MyMonitor(monitor);
 	char[] contentsArray= contents.toCharArray();
 
-	lexer.initialize(contentsArray, filePath);
-	parser.getParseStream().resetTokenStream();
-	lexer.lexer(my_monitor, parser.getParseStream()); // Lex the stream to produce the token stream
+	fLexer.initialize(contentsArray, fFilePath.toOSString());
+	fParser.getParseStream().resetTokenStream();
+	fLexer.lexer(my_monitor, fParser.getParseStream()); // Lex the stream to produce the token stream
 	if (my_monitor.isCancelled())
-	    return currentAst; // TODO currentAst might (probably will) be inconsistent wrt the lex stream now
-	currentAst= (ASTNode) parser.parser(my_monitor, 0);
-	if (currentAst == null)
-	    parser.dumpTokens();
-	if (keywords == null)
+	    return fCurrentAst; // TODO fCurrentAst might (probably will) be inconsistent wrt the lex stream now
+	fCurrentAst= (ASTNode) fParser.parser(my_monitor, 0);
+	if (fCurrentAst == null)
+	    fParser.dumpTokens();
+	if (fKeywords == null)
 	    initKeywords();
-	return currentAst;
+	return fCurrentAst;
     }
 
     private void initKeywords() {
-	String tokenKindNames[]= parser.getParseStream().orderedTerminalSymbols();
+	String tokenKindNames[]= fParser.getParseStream().orderedTerminalSymbols();
 
-	this.isKeyword= new boolean[tokenKindNames.length];
-	this.keywords= new char[tokenKindNames.length][];
+	this.fIsKeyword= new boolean[tokenKindNames.length];
+	this.fKeywords= new char[tokenKindNames.length][];
 
-	int[] keywordKinds= lexer.getKeywordKinds();
+	int[] keywordKinds= fLexer.getKeywordKinds();
 
 	for(int i= 1; i < keywordKinds.length; i++) {
-	    int index= parser.getParseStream().mapKind(keywordKinds[i]);
-	    isKeyword[index]= true;
-	    keywords[index]= parser.getParseStream().orderedTerminalSymbols()[index].toCharArray();
+	    int index= fParser.getParseStream().mapKind(keywordKinds[i]);
+	    fIsKeyword[index]= true;
+	    fKeywords[index]= fParser.getParseStream().orderedTerminalSymbols()[index].toCharArray();
 	}
     }
 }
