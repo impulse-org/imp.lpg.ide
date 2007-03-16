@@ -84,12 +84,6 @@
             language="JikesPG"/>
    </extension>
    <extension
-         point="org.eclipse.uide.runtime.hoverHelper">
-      <hoverhelper
-            class="org.eclipse.safari.jikespg.editor.HoverHelper"
-            language="JikesPG"/>
-   </extension>
-   <extension
          point="org.eclipse.ui.popupMenus">
       <objectContribution
             adaptable="false"
@@ -217,5 +211,11 @@
       <editorActionContributor
             class="org.eclipse.safari.jikespg.actions.LanguageActionContributor"
             language="jikespg"/>
+   </extension>
+   <extension
+         point="org.eclipse.uide.runtime.documentationProvider">
+         <docProvider
+             language="jikespg"
+             class="org.eclipse.safari.jikespg.editor.DocumentationProvider"/>
    </extension>
 </plugin>
