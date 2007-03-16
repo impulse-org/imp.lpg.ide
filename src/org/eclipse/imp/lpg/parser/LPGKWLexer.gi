@@ -152,11 +152,6 @@ $Rules
             $setResult($_NOTICE_KEY);
           $EndJava
         ./
-    Keyword ::= '$' o p t i o n -- this rule is used here only to record this keyword!
-        /.$BeginJava
-            $setResult($_OPTIONS_KEY);
-          $EndJava
-        ./
     Keyword ::= '$' t e r m i n a l s
         /.$BeginJava
             $setResult($_TERMINALS_KEY);
