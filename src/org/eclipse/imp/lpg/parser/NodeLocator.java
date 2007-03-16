@@ -2,7 +2,10 @@ package org.eclipse.safari.jikespg.parser;
 
 import lpg.runtime.IToken;
 
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
+import org.eclipse.uide.model.ICompilationUnit;
 import org.eclipse.uide.parser.IASTNodeLocator;
 
 public class NodeLocator implements IASTNodeLocator {
@@ -61,19 +64,26 @@ public class NodeLocator implements IASTNodeLocator {
         }
     }
     
-    
-    // SMS 14 Jun 2006
-    // Added to address change in IASTNodeLocator
-    
     public int getStartOffset(Object node) {
-    	ASTNode n = (ASTNode) node;
-    	return n.getLeftIToken().getStartOffset();
+	if (node instanceof ASTNode) {
+	    ASTNode n = (ASTNode) node;
+	    return n.getLeftIToken().getStartOffset();
+	} else if (node instanceof ICompilationUnit) {
+	    ICompilationUnit icu= (ICompilationUnit) node;
+	    return 0;
+	}
+	return 0;
     }
     
     
     public int getEndOffset(Object node) {
-    	ASTNode n = (ASTNode) node;
-    	return n.getRightIToken().getEndOffset();
+	if (node instanceof ASTNode) {
+	    ASTNode n = (ASTNode) node;
+	    return n.getRightIToken().getEndOffset();
+	} else if (node instanceof ICompilationUnit) {
+	    return 0;
+	}
+	return 0;
     }
     
     
@@ -82,11 +92,22 @@ public class NodeLocator implements IASTNodeLocator {
     	return getEndOffset(n) - getStartOffset(n);
     }
 
-    public String getPath(Object node) {
+    /**
+     * @return the workspace-relative path to the source file containing the given node
+     */
+    public IPath getPath(Object node) {
 	// TODO Once we have pseudo-nodes for external decls (of the sort the reference
 	// resolver can return for cross-compilation-unit references), make this do
 	// something reasonable with them.
-    	ASTNode n = (ASTNode) node;
-	return n.leftIToken.getPrsStream().getFileName();
+	if (node instanceof ASTNode) {
+	    ASTNode n = (ASTNode) node;
+	    return new Path(n.leftIToken.getPrsStream().getFileName());
+	} else if (node instanceof ICompilationUnit) {
+	    ICompilationUnit icu= (ICompilationUnit) node;
+	    if (icu.getPath().isAbsolute())
+		return icu.getPath();
+	    return icu.getProject().getRawProject().getFullPath().append(icu.getPath());
+	}
+	return null;
     }
 }

@@ -21,7 +21,7 @@ public class JikesPGReferenceResolver implements IReferenceResolver, ILanguageSe
 	if (!(node instanceof IASTNodeToken))
 	    return null;
 	JikesPG ast= (JikesPG) parseController.getCurrentAst();
-	final ASTNode def= ASTUtils.findDefOf((IASTNodeToken) node, (JikesPG) ast);
+	Object def= ASTUtils.findDefOf((IASTNodeToken) node, (JikesPG) ast, parseController);
 	return def;
     }
 
