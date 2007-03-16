@@ -22,6 +22,7 @@ import org.eclipse.uide.editor.UniversalEditor;
 import org.eclipse.uide.parser.IASTNodeLocator;
 import org.eclipse.uide.parser.IParseController;
 import org.eclipse.safari.jikespg.parser.ASTUtils;
+import org.eclipse.safari.jikespg.parser.ParseController;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.IASTNodeToken;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.IsymWithAttrs;
@@ -32,6 +33,7 @@ import org.eclipse.safari.jikespg.parser.JikesPGParser.symWithAttrsList;
 
 public class InlineNonTerminalRefactoring extends Refactoring {
     private final IFile fGrammarFile;
+    private final IParseController fParseController;
     private final ASTNode fNode;
     private nonTerm fNonTerm;
     private symWithAttrsList fRHS;
@@ -54,6 +56,7 @@ public class InlineNonTerminalRefactoring extends Refactoring {
 	}
 	fInlineAll= false;
 	fDeleteOrig= false;
+	fParseController= editor.getParseController();
     }
 
     public boolean getDeleteOrig() {
@@ -83,7 +86,7 @@ public class InlineNonTerminalRefactoring extends Refactoring {
 	    fNonTerm= (nonTerm) fNode;
 	    fInlineAll= true;
 	} else if (fNode instanceof IsymWithAttrs) {
-	    ASTNode def= ASTUtils.findDefOf(((IASTNodeToken) fNode), ASTUtils.getRoot(fNode));
+	    Object def= ASTUtils.findDefOf(((IASTNodeToken) fNode), ASTUtils.getRoot(fNode), fParseController);
 
 	    if (!(def instanceof nonTerm))
 		return RefactoringStatus.createFatalErrorStatus("Inline Non-Terminal is only valid for non-terminal symbols");
