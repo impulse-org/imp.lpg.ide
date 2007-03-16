@@ -7,6 +7,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.safari.jikespg.JikesPGRuntimePlugin;
 import org.eclipse.safari.jikespg.parser.ASTUtils;
+import org.eclipse.safari.jikespg.parser.ParseController;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.ui.IEditorInput;
@@ -22,6 +23,7 @@ public class GenerateSentenceAction extends TextEditorAction {
     private final ASTNode fNode;
     private final ASTNode fRoot;
     private final Set fRecursiveSet= new HashSet();
+    private IParseController parseController;
 
     public GenerateSentenceAction(UniversalEditor editor) {
 	super(LanguageActionContributor.ResBundle, "generateSentence.", editor);
@@ -43,14 +45,15 @@ public class GenerateSentenceAction extends TextEditorAction {
 
     public void run() {
 	UniversalEditor editor= (UniversalEditor) this.getTextEditor();
-	ASTNode nt;
+	Object nt;
 
+	parseController= editor.getParseController();
 	if (fNode instanceof symWithAttrs1) {
 	    symWithAttrs1 sym= (symWithAttrs1) fNode;
-	    nt= ASTUtils.findDefOf((IASTNodeToken) sym, (JikesPG) fRoot);
+	    nt= ASTUtils.findDefOf((IASTNodeToken) sym, (JikesPG) fRoot, parseController);
 	} else if (fNode instanceof IASTNodeToken) {
 	    IASTNodeToken tok= (IASTNodeToken) fNode;
-	    nt= ASTUtils.findDefOf(tok, (JikesPG) fRoot);
+	    nt= ASTUtils.findDefOf(tok, (JikesPG) fRoot, parseController);
 	} else
 	    nt= fNode;
 	if (!(nt instanceof nonTerm)) {
@@ -103,10 +106,10 @@ public class GenerateSentenceAction extends TextEditorAction {
 
 	for(int symIdx= 0; symIdx < symList.size(); symIdx++) {
 	    final IsymWithAttrs sym= symList.getsymWithAttrsAt(symIdx);
-	    ASTNode def= ASTUtils.findDefOf((IASTNodeToken) sym, (JikesPG) fRoot);
+	    Object def= ASTUtils.findDefOf((IASTNodeToken) sym, (JikesPG) fRoot, parseController);
 
 	    if (def != null)
-		buff.append(generateSentenceFor(def));
+		buff.append(generateSentenceFor((ASTNode) def));
 	    else
 		buff.append(generateSentenceFor((ASTNode) sym));
 	    if (symIdx < symList.size() - 1)

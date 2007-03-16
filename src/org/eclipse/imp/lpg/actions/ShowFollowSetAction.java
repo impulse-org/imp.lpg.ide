@@ -50,14 +50,15 @@ public class ShowFollowSetAction extends TextEditorAction {
 
     public void run() {
 	UniversalEditor editor= (UniversalEditor) this.getTextEditor();
-	ASTNode nt;
+	IParseController parseController= editor.getParseController();
+	Object nt;
 
 	if (fNode instanceof symWithAttrs1) {
 	    symWithAttrs1 sym= (symWithAttrs1) fNode;
-	    nt= ASTUtils.findDefOf(sym, fRoot);
+	    nt= ASTUtils.findDefOf(sym, fRoot, parseController);
 	} else if (fNode instanceof IASTNodeToken) {
 	    IASTNodeToken tok= (IASTNodeToken) fNode;
-	    nt= ASTUtils.findDefOf(tok, fRoot);
+	    nt= ASTUtils.findDefOf(tok, fRoot, parseController);
 	} else
 	    nt= fNode;
 

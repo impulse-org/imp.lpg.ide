@@ -49,16 +49,17 @@ public class ParseNonTerminalAction extends TextEditorAction implements InputHan
 
     public void run() {
 	UniversalEditor editor= (UniversalEditor) this.getTextEditor();
-	ASTNode nt;
+	IParseController parseController= editor.getParseController();
+	Object nt;
 
 	dumpSymbolTable();
 
 	if (fNode instanceof symWithAttrs1) {
 	    symWithAttrs1 sym= (symWithAttrs1) fNode;
-	    nt= ASTUtils.findDefOf((IASTNodeToken) sym, (JikesPG) fRoot);
+	    nt= ASTUtils.findDefOf((IASTNodeToken) sym, (JikesPG) fRoot, parseController);
 	} else if (fNode instanceof IASTNodeToken) {
 	    IASTNodeToken tok= (IASTNodeToken) fNode;
-	    nt= ASTUtils.findDefOf(tok, (JikesPG) fRoot);
+	    nt= ASTUtils.findDefOf(tok, (JikesPG) fRoot, parseController);
 	} else
 	    nt= fNode;
 
