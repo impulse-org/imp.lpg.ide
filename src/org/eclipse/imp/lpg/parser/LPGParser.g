@@ -275,6 +275,9 @@ $Rules
     optTerminalAlias ::= $empty | produces name
 
     terminal_symbol ::= SYMBOL
+    /.
+        void initialize() { symtab.addDefinition(getSYMBOL().toString(), this); }
+     ./
     terminal_symbol ::= MACRO_NAME -- warning: escape prefix used in symbol
 
     -- $trailers
