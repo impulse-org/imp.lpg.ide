@@ -56,7 +56,8 @@
             description="JikesPG Grammar Specification"
             extensions="g,gi,lpg"
             icon="grammarfile.gif"
-            language="JikesPG"/>
+            language="JikesPG"
+            natureID="org.eclipse.safari.jikespg.runtime.jikesPGNature"/>
    </extension>
    <extension
          name="JikesPG Grammar Specification Parser"
