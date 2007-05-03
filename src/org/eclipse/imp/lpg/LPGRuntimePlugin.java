@@ -5,8 +5,16 @@ import java.net.URL;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.uide.core.LanguageRegistry;
+import org.eclipse.uide.model.ICompilationUnit;
+import org.eclipse.uide.model.IPathEntry;
+import org.eclipse.uide.model.ISourceProject;
+import org.eclipse.uide.model.ModelFactory;
+import org.eclipse.uide.model.PathEntry;
+import org.eclipse.uide.model.ModelFactory.IFactoryExtender;
 import org.eclipse.uide.preferences.SafariPreferencesService;
 import org.eclipse.uide.runtime.SAFARIPluginBase;
 import org.eclipse.safari.jikespg.preferences.PreferenceConstants;
@@ -41,29 +49,21 @@ public class JikesPGRuntimePlugin extends SAFARIPluginBase {
         super.start(context);
 
         // Initialize the JikesPGPreferences fields with the preference store data.
-        // SMS 8 Sep 2006
-        // Switching preferences store to preferences service
-        //IPreferenceStore prefStore= getPreferenceStore();
         if (preferencesService == null) {
         	preferencesService = new SafariPreferencesService();
         	preferencesService.setLanguageName("jikespg");
         	(new PreferenceInitializer()).initializeDefaultPreferences();
         }
-        
-        // SMS 8 Sep 2006
-        // Trying preferences service without preferences cache
-        /*
-        JikesPGPreferenceCache.builderEmitMessages= prefStore.getBoolean(PreferenceConstants.P_EMIT_MESSAGES);
-        JikesPGPreferenceCache.useDefaultExecutable= prefStore.getBoolean(PreferenceConstants.P_USE_DEFAULT_EXEC);
-        JikesPGPreferenceCache.jikesPGExecutableFile= prefStore.getString(PreferenceConstants.P_JIKESPG_EXEC_PATH);
-        JikesPGPreferenceCache.useDefaultIncludeDir= prefStore.getBoolean(PreferenceConstants.P_USE_DEFAULT_INCLUDE_DIR);
-        JikesPGPreferenceCache.jikesPGIncludeDirs= prefStore.getString(PreferenceConstants.P_JIKESPG_INCLUDE_DIRS);
-        JikesPGPreferenceCache.rootExtensionList= new HashSet();
-        JikesPGPreferenceCache.rootExtensionList.addAll(Arrays.asList(prefStore.getString(PreferenceConstants.P_EXTENSION_LIST).split(",")));
-        JikesPGPreferenceCache.nonRootExtensionList= new HashSet();
-        JikesPGPreferenceCache.nonRootExtensionList.addAll(Arrays.asList(prefStore.getString(PreferenceConstants.P_NON_ROOT_EXTENSION_LIST).split(",")));
-        */
-        
+
+        ModelFactory.getInstance().installExtender(new IFactoryExtender() {
+	    public void extend(ISourceProject project) {
+		IPreferenceStore store= JikesPGRuntimePlugin.getInstance().getPreferenceStore();
+		IPath includeDir = new Path(store.getString(PreferenceConstants.P_JIKESPG_INCLUDE_DIRS));
+
+		project.getBuildPath().add(new PathEntry(IPathEntry.PathEntryType.SOURCE_FOLDER, includeDir));
+	    }
+	    public void extend(ICompilationUnit unit) { }
+	  }, LanguageRegistry.findLanguage("jikespg"));
         // SMS 8 Sep 2006 updated 30 Oct 2006
         // Not sure why the field fEmitInfoMessages is used in preference to the preference cache
         // (ask Bob F. about that).  If it is going to continue to be used, then it should probably
