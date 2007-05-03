@@ -13,6 +13,7 @@ import lpg.runtime.Monitor;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.uide.model.ISourceProject;
 import org.eclipse.uide.parser.IASTNodeLocator;
 import org.eclipse.uide.parser.ILexer;
 import org.eclipse.uide.parser.IParseController;
@@ -22,20 +23,20 @@ import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
 
 public class ParseController implements IParseController {
     private IPath fFilePath;
-    private IProject fProject;
+    private ISourceProject fProject;
     private JikesPGParser fParser;
     private JikesPGLexer fLexer;
     private ASTNode fCurrentAst;
     private char fKeywords[][];
     private boolean fIsKeyword[];
 
-    public void initialize(IPath filePath, IProject project, IMessageHandler handler) {
+    public void initialize(IPath filePath, ISourceProject project, IMessageHandler handler) {
 	fFilePath= filePath;
 	fProject= project;
 	fParser.setMessageHandler(handler);
     }
 
-    public IProject getProject() {
+    public ISourceProject getProject() {
 	return fProject;
     }
 
