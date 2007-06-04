@@ -3,6 +3,7 @@
  */
 package org.eclipse.safari.jikespg.parser;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -64,6 +65,10 @@ public class ParseController implements IParseController {
 	return fIsKeyword[kind];
     }
 
+    public String getSingleLineCommentPrefix() {
+    	return "--";
+    }
+    
     public int getTokenIndexAtCharacter(int offset) {
 	int index= fParser.getParseStream().getTokenIndexAtCharacter(offset);
 	return (index < 0 ? -index : index);
@@ -136,4 +141,22 @@ public class ParseController implements IParseController {
 	    fKeywords[index]= fParser.getParseStream().orderedTerminalSymbols()[index].toCharArray();
 	}
     }
+    
+    /*
+     * For the management of associated problem-marker types
+     */
+    
+    private static List problemMarkerTypes = new ArrayList();
+    
+    public List getProblemMarkerTypes() {
+    	return problemMarkerTypes;
+    }
+    
+    public void addProblemMarkerType(String problemMarkerType) {
+    	problemMarkerTypes.add(problemMarkerType);
+    }
+    
+	public void removeProblemMarkerType(String problemMarkerType) {
+		problemMarkerTypes.remove(problemMarkerType);
+	}
 }
