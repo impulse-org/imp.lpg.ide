@@ -2,6 +2,7 @@ package org.eclipse.safari.jikespg.parser;
 
 import lpg.runtime.IToken;
 
+import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
@@ -103,10 +104,15 @@ public class NodeLocator implements IASTNodeLocator {
 	    ASTNode n = (ASTNode) node;
 	    return new Path(n.leftIToken.getPrsStream().getFileName());
 	} else if (node instanceof ICompilationUnit) {
+            // TODO RMF 5 June 2007 - Perhaps this logic belongs elsewhere, on a base class?
 	    ICompilationUnit icu= (ICompilationUnit) node;
-	    if (icu.getPath().isAbsolute())
-		return icu.getPath();
-	    return icu.getProject().getRawProject().getFullPath().append(icu.getPath());
+	    if (icu.getPath().isAbsolute()) {
+                if (icu.getPath().getDevice() == null) {
+                    final IWorkspaceRoot wsRoot= icu.getProject().getRawProject().getWorkspace().getRoot();
+                    return wsRoot.getLocation().append(icu.getPath());
+                }
+                return icu.getPath();
+            } return icu.getProject().getRawProject().getFullPath().append(icu.getPath());
 	}
 	return null;
     }
