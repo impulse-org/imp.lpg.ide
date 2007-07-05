@@ -13,7 +13,6 @@ import org.eclipse.uide.model.ICompilationUnit;
 import org.eclipse.uide.model.IPathEntry;
 import org.eclipse.uide.model.ISourceProject;
 import org.eclipse.uide.model.ModelFactory;
-import org.eclipse.uide.model.PathEntry;
 import org.eclipse.uide.model.ModelFactory.IFactoryExtender;
 import org.eclipse.uide.preferences.SafariPreferencesService;
 import org.eclipse.uide.runtime.SAFARIPluginBase;
@@ -60,7 +59,7 @@ public class JikesPGRuntimePlugin extends SAFARIPluginBase {
 		IPreferenceStore store= JikesPGRuntimePlugin.getInstance().getPreferenceStore();
 		IPath includeDir = new Path(store.getString(PreferenceConstants.P_JIKESPG_INCLUDE_DIRS));
 
-		project.getBuildPath().add(new PathEntry(IPathEntry.PathEntryType.SOURCE_FOLDER, includeDir));
+		project.getBuildPath().add(ModelFactory.createPathEntry(IPathEntry.PathEntryType.SOURCE_FOLDER, includeDir));
 	    }
 	    public void extend(ICompilationUnit unit) { }
 	  }, LanguageRegistry.findLanguage("jikespg"));
