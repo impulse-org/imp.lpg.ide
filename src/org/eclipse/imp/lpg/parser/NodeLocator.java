@@ -11,8 +11,10 @@ import org.eclipse.uide.parser.IASTNodeLocator;
 
 public class NodeLocator implements IASTNodeLocator {
     private ASTNode fResult= null;
+    private final ParseController fParseController;
 
     public NodeLocator(ParseController controller) {
+	fParseController= controller;
     }
 
     public Object findNode(Object ast, int offset) {
@@ -93,16 +95,13 @@ public class NodeLocator implements IASTNodeLocator {
     	return getEndOffset(n) - getStartOffset(n);
     }
 
-    /**
-     * @return the workspace-relative path to the source file containing the given node
-     */
     public IPath getPath(Object node) {
 	// TODO Once we have pseudo-nodes for external decls (of the sort the reference
 	// resolver can return for cross-compilation-unit references), make this do
 	// something reasonable with them.
 	if (node instanceof ASTNode) {
 	    ASTNode n = (ASTNode) node;
-	    return new Path(n.leftIToken.getPrsStream().getFileName());
+	    return new Path(fParseController.getProject().getRawProject().getName() + "/" + n.leftIToken.getPrsStream().getFileName());
 	} else if (node instanceof ICompilationUnit) {
             // TODO RMF 5 June 2007 - Perhaps this logic belongs elsewhere, on a base class?
 	    ICompilationUnit icu= (ICompilationUnit) node;
@@ -112,7 +111,8 @@ public class NodeLocator implements IASTNodeLocator {
                     return wsRoot.getLocation().append(icu.getPath());
                 }
                 return icu.getPath();
-            } return icu.getProject().getRawProject().getFullPath().append(icu.getPath());
+            }
+	    return icu.getProject().getRawProject().getFullPath().append(icu.getPath());
 	}
 	return null;
     }
