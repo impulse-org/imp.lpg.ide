@@ -1,45 +1,46 @@
-package org.eclipse.safari.jikespg;
+package org.eclipse.imp.lpg;
 
 import java.net.URL;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.imp.core.LanguageRegistry;
+import org.eclipse.imp.model.ICompilationUnit;
+import org.eclipse.imp.model.IPathEntry;
+import org.eclipse.imp.model.ISourceProject;
+import org.eclipse.imp.model.ModelFactory;
+import org.eclipse.imp.model.ModelFactory.IFactoryExtender;
+import org.eclipse.imp.preferences.SafariPreferencesService;
+import org.eclipse.imp.runtime.SAFARIPluginBase;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
-import org.eclipse.uide.core.LanguageRegistry;
-import org.eclipse.uide.model.ICompilationUnit;
-import org.eclipse.uide.model.IPathEntry;
-import org.eclipse.uide.model.ISourceProject;
-import org.eclipse.uide.model.ModelFactory;
-import org.eclipse.uide.model.ModelFactory.IFactoryExtender;
-import org.eclipse.uide.preferences.SafariPreferencesService;
-import org.eclipse.uide.runtime.SAFARIPluginBase;
-import org.eclipse.safari.jikespg.preferences.PreferenceConstants;
-import org.eclipse.safari.jikespg.preferences.PreferenceInitializer;
+import org.eclipse.imp.lpg.ILPGResources;
+import org.eclipse.imp.lpg.preferences.PreferenceConstants;
+import org.eclipse.imp.lpg.preferences.PreferenceInitializer;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
 /**
  * The main plugin class to be used in the desktop.
  */
-public class JikesPGRuntimePlugin extends SAFARIPluginBase {
+public class LPGRuntimePlugin extends SAFARIPluginBase {
     public static final String kPluginID= "org.eclipse.safari.jikespg.runtime";
 
     /**
      * The unique instance of this plugin class
      */
-    protected static JikesPGRuntimePlugin sPlugin;
+    protected static LPGRuntimePlugin sPlugin;
     
     // SMS 8 Sep 2006
     protected static SafariPreferencesService preferencesService = null;
 
-    public static JikesPGRuntimePlugin getInstance() {
+    public static LPGRuntimePlugin getInstance() {
         return sPlugin;
     }
 
-    public JikesPGRuntimePlugin() {
+    public LPGRuntimePlugin() {
         super();
         sPlugin= this;
     }
@@ -56,7 +57,7 @@ public class JikesPGRuntimePlugin extends SAFARIPluginBase {
 
         ModelFactory.getInstance().installExtender(new IFactoryExtender() {
 	    public void extend(ISourceProject project) {
-		IPreferenceStore store= JikesPGRuntimePlugin.getInstance().getPreferenceStore();
+		IPreferenceStore store= LPGRuntimePlugin.getInstance().getPreferenceStore();
 		IPath includeDir = new Path(store.getString(PreferenceConstants.P_JIKESPG_INCLUDE_DIRS));
 
 		project.getBuildPath().add(ModelFactory.createPathEntry(IPathEntry.PathEntryType.SOURCE_FOLDER, includeDir));
@@ -81,23 +82,23 @@ public class JikesPGRuntimePlugin extends SAFARIPluginBase {
     protected void initializeImageRegistry(ImageRegistry reg) {
         IPath path= ICONS_PATH.append("default.gif");//$NON-NLS-1$
         ImageDescriptor imageDescriptor= createImageDescriptor(getInstance().getBundle(), path);
-        reg.put(IJikesPGResources.DEFAULT_AST, imageDescriptor);
+        reg.put(ILPGResources.DEFAULT_AST, imageDescriptor);
 
         path= ICONS_PATH.append("outline_item.gif");//$NON-NLS-1$
         imageDescriptor= createImageDescriptor(getInstance().getBundle(), path);
-        reg.put(IJikesPGResources.OUTLINE_ITEM, imageDescriptor);
+        reg.put(ILPGResources.OUTLINE_ITEM, imageDescriptor);
 
         path= ICONS_PATH.append("grammarfile.gif");//$NON-NLS-1$
         imageDescriptor= createImageDescriptor(getInstance().getBundle(), path);
-        reg.put(IJikesPGResources.GRAMMAR_FILE, imageDescriptor);
+        reg.put(ILPGResources.GRAMMAR_FILE, imageDescriptor);
 
         path= ICONS_PATH.append("grammarfile-warning.jpg");//$NON-NLS-1$
         imageDescriptor= createImageDescriptor(getInstance().getBundle(), path);
-        reg.put(IJikesPGResources.GRAMMAR_FILE_WARNING, imageDescriptor);
+        reg.put(ILPGResources.GRAMMAR_FILE_WARNING, imageDescriptor);
 
         path= ICONS_PATH.append("grammarfile-error.jpg");//$NON-NLS-1$
         imageDescriptor= createImageDescriptor(getInstance().getBundle(), path);
-        reg.put(IJikesPGResources.GRAMMAR_FILE_ERROR, imageDescriptor);
+        reg.put(ILPGResources.GRAMMAR_FILE_ERROR, imageDescriptor);
     }
 
     public static ImageDescriptor createImageDescriptor(Bundle bundle, IPath path) {

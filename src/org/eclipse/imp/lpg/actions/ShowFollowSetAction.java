@@ -1,4 +1,4 @@
-package org.eclipse.safari.jikespg.actions;
+package org.eclipse.imp.lpg.actions;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -7,20 +7,26 @@ import java.util.Set;
 import java.util.Stack;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.imp.editor.UniversalEditor;
+import org.eclipse.imp.lpg.parser.ASTUtils;
+import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
+import org.eclipse.imp.lpg.parser.LPGParser.IASTNodeToken;
+import org.eclipse.imp.lpg.parser.LPGParser.IsymWithAttrs;
+import org.eclipse.imp.lpg.parser.LPGParser.JikesPG;
+import org.eclipse.imp.lpg.parser.LPGParser.SymbolTable;
+import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
+import org.eclipse.imp.lpg.parser.LPGParser.rule;
+import org.eclipse.imp.lpg.parser.LPGParser.ruleList;
+import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs1;
+import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrsList;
+import org.eclipse.imp.lpg.parser.LPGParser.terminal;
+import org.eclipse.imp.parser.IASTNodeLocator;
+import org.eclipse.imp.parser.IParseController;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.safari.jikespg.parser.ASTUtils;
-import org.eclipse.safari.jikespg.parser.JikesPGParser;
-import org.eclipse.safari.jikespg.parser.ParseController;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
-import org.eclipse.safari.jikespg.views.GrammarInteractionView;
-import org.eclipse.safari.jikespg.views.GrammarInteractionView.InputHandler;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.texteditor.TextEditorAction;
-import org.eclipse.uide.editor.UniversalEditor;
-import org.eclipse.uide.parser.IASTNodeLocator;
-import org.eclipse.uide.parser.IParseController;
 
 public class ShowFollowSetAction extends TextEditorAction {
     private final IFile fGrammarFile;

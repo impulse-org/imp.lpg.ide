@@ -1,19 +1,19 @@
-package org.eclipse.safari.jikespg.search;
+package org.eclipse.imp.lpg.search;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.jface.viewers.TableViewer;
 
-public class JikesPGSearchTableContentProvider extends JikesPGSearchContentProvider {
-    public JikesPGSearchTableContentProvider(JikesPGSearchResultPage page) {
+public class LSearchTableContentProvider extends LSearchContentProvider {
+    public LSearchTableContentProvider(LSearchResultPage page) {
         super(page);
     }
 
     public Object[] getElements(Object inputElement) {
-        if (inputElement instanceof JikesPGSearchResult) {
+        if (inputElement instanceof LSearchResult) {
             Set filteredElements= new HashSet();
-            Object[] rawElements= ((JikesPGSearchResult) inputElement).getElements();
+            Object[] rawElements= ((LSearchResult) inputElement).getElements();
 
             for(int i= 0; i < rawElements.length; i++) {
                 // if (getPage().getDisplayedMatchCount(rawElements[i]) > 0)

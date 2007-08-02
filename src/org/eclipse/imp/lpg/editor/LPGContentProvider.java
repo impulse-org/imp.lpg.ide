@@ -1,18 +1,27 @@
-package org.eclipse.safari.jikespg.editor;
+package org.eclipse.imp.lpg.editor;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.uide.core.ILanguageService;
-import org.eclipse.uide.editor.OutlineInformationControl;
-import org.eclipse.uide.editor.OutlineInformationControl.OutlineContentProviderBase;
-import org.eclipse.safari.jikespg.parser.JikesPGParser;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
+import org.eclipse.imp.core.ILanguageService;
+import org.eclipse.imp.editor.OutlineInformationControl;
+import org.eclipse.imp.editor.OutlineInformationControl.OutlineContentProviderBase;
+import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
+import org.eclipse.imp.lpg.parser.LPGParser.ASTNodeToken;
+import org.eclipse.imp.lpg.parser.LPGParser.JikesPG_itemList;
+import org.eclipse.imp.lpg.parser.LPGParser.action_segment;
+import org.eclipse.imp.lpg.parser.LPGParser.action_segmentList;
+import org.eclipse.imp.lpg.parser.LPGParser.include_segment;
+import org.eclipse.imp.lpg.parser.LPGParser.optTerminalAlias;
+import org.eclipse.imp.lpg.parser.LPGParser.optionList;
+import org.eclipse.imp.lpg.parser.LPGParser.option_spec;
+import org.eclipse.imp.lpg.parser.LPGParser.option_value0;
+import org.eclipse.imp.lpg.parser.LPGParser.ruleList;
+import org.eclipse.imp.lpg.parser.LPGParser.terminal_symbol0;
 
-public class JikesPGContentProvider extends OutlineContentProviderBase implements ILanguageService {
-    public JikesPGContentProvider() {
+public class LPGContentProvider extends OutlineContentProviderBase implements ILanguageService {
+    public LPGContentProvider() {
 	this(false, null);
     }
 
@@ -22,7 +31,7 @@ public class JikesPGContentProvider extends OutlineContentProviderBase implement
      * @param provideMembers if <code>true</code> members below compilation units 
      * and class files are provided. 
      */
-    public JikesPGContentProvider(boolean provideMembers, OutlineInformationControl oic) {
+    public LPGContentProvider(boolean provideMembers, OutlineInformationControl oic) {
 	super(oic, true);
     }
 

@@ -1,10 +1,28 @@
-package org.eclipse.safari.jikespg.compare;
+package org.eclipse.imp.lpg.compare;
 
-import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
+import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
+import org.eclipse.imp.lpg.parser.LPGParser.AbstractVisitor;
+import org.eclipse.imp.lpg.parser.LPGParser.DefineSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.GlobalsSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.IJikesPG_item;
+import org.eclipse.imp.lpg.parser.LPGParser.JikesPG;
+import org.eclipse.imp.lpg.parser.LPGParser.JikesPG_itemList;
+import org.eclipse.imp.lpg.parser.LPGParser.RulesSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.TerminalsSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.Visitor;
+import org.eclipse.imp.lpg.parser.LPGParser.action_segmentList;
+import org.eclipse.imp.lpg.parser.LPGParser.defineSpec;
+import org.eclipse.imp.lpg.parser.LPGParser.defineSpecList;
+import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
+import org.eclipse.imp.lpg.parser.LPGParser.nonTermList;
+import org.eclipse.imp.lpg.parser.LPGParser.option_specList;
+import org.eclipse.imp.lpg.parser.LPGParser.rules_segment;
+import org.eclipse.imp.lpg.parser.LPGParser.terminal;
+import org.eclipse.imp.lpg.parser.LPGParser.terminalList;
 
 /**
  * A simple visitor that produces the immediate children of a given AST node, each
- * wrapped by a JikesPGStructureNode.<br>
+ * wrapped by a LPGStructureNode.<br>
  * The implementation below actually omits certain uninteresting intermediate nodes
  * from the structure.
  */
@@ -14,9 +32,9 @@ public class GetChildrenVisitor extends AbstractVisitor implements Visitor {
 
     Object[] fChildren= NO_CHILDREN;
 
-    private final JikesPGStructureNode fStructureNode;
+    private final LPGStructureNode fStructureNode;
 
-    public GetChildrenVisitor(JikesPGStructureNode node) {
+    public GetChildrenVisitor(LPGStructureNode node) {
         fStructureNode= node;
     }
 
@@ -28,12 +46,12 @@ public class GetChildrenVisitor extends AbstractVisitor implements Visitor {
         int count= 1 + itemList.size();
 
         fChildren= new Object[count];
-        fChildren[0]= new JikesPGStructureNode(options, fStructureNode, JikesPGStructureNode.OPTION, "options");
+        fChildren[0]= new LPGStructureNode(options, fStructureNode, LPGStructureNode.OPTION, "options");
 
         for(int i= 0; i < itemList.size(); i++) {
             IJikesPG_item item= itemList.getJikesPG_itemAt(i);
 
-            fChildren[i+1]= new JikesPGStructureNode((ASTNode) item, fStructureNode, JikesPGStructureNode.BODY, item.getLeftIToken().toString());
+            fChildren[i+1]= new LPGStructureNode((ASTNode) item, fStructureNode, LPGStructureNode.BODY, item.getLeftIToken().toString());
         }
         return false;
     }
@@ -43,7 +61,7 @@ public class GetChildrenVisitor extends AbstractVisitor implements Visitor {
         fChildren= new Object[globals.size()];
 
         for(int i=0; i < globals.size(); i++)
-            fChildren[i]= new JikesPGStructureNode(globals.getElementAt(i), fStructureNode, JikesPGStructureNode.GLOBAL, "global");
+            fChildren[i]= new LPGStructureNode(globals.getElementAt(i), fStructureNode, LPGStructureNode.GLOBAL, "global");
         return false;
     }
 
@@ -52,7 +70,7 @@ public class GetChildrenVisitor extends AbstractVisitor implements Visitor {
         fChildren= new Object[defs.size()];
         for(int i=0; i < defs.size(); i++) {
             defineSpec ds= defs.getdefineSpecAt(i);
-            fChildren[i]= new JikesPGStructureNode(ds, fStructureNode, JikesPGStructureNode.DEFINE, ds.getmacro_name_symbol().toString());
+            fChildren[i]= new LPGStructureNode(ds, fStructureNode, LPGStructureNode.DEFINE, ds.getmacro_name_symbol().toString());
         }
         return false;
     }
@@ -64,7 +82,7 @@ public class GetChildrenVisitor extends AbstractVisitor implements Visitor {
         fChildren= new Object[N];
         for(int i=0; i < N; i++) {
             terminal term= (terminal) termList.getElementAt(i);
-            fChildren[N-i-1]= new JikesPGStructureNode(term, fStructureNode, JikesPGStructureNode.TERMINAL, term.getterminal_symbol().toString());
+            fChildren[N-i-1]= new LPGStructureNode(term, fStructureNode, LPGStructureNode.TERMINAL, term.getterminal_symbol().toString());
         }
         return false;
     }
@@ -77,7 +95,7 @@ public class GetChildrenVisitor extends AbstractVisitor implements Visitor {
         fChildren= new Object[N];
         for(int i=0; i < N; i++) {
             nonTerm nt= (nonTerm) nonTermList.getElementAt(i);
-            fChildren[N-i-1]= new JikesPGStructureNode(nt, fStructureNode, JikesPGStructureNode.NONTERMINAL, nt.getruleNameWithAttributes().getSYMBOL().toString());
+            fChildren[N-i-1]= new LPGStructureNode(nt, fStructureNode, LPGStructureNode.NONTERMINAL, nt.getruleNameWithAttributes().getSYMBOL().toString());
         }
         return false;
     }

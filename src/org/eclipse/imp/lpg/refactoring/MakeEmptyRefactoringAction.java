@@ -1,8 +1,8 @@
-package org.eclipse.safari.jikespg.refactoring;
+package org.eclipse.imp.lpg.refactoring;
 
+import org.eclipse.imp.editor.UniversalEditor;
+import org.eclipse.imp.refactoring.RefactoringStarter;
 import org.eclipse.ui.texteditor.TextEditorAction;
-import org.eclipse.uide.editor.UniversalEditor;
-import org.eclipse.uide.refactoring.RefactoringStarter;
 
 public class MakeEmptyRefactoringAction extends TextEditorAction {
 //    private final UniversalEditor fEditor;

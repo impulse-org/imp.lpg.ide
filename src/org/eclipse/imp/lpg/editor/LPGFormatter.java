@@ -1,7 +1,7 @@
 /*
  * Created on Mar 24, 2006
  */
-package org.eclipse.safari.jikespg.editor;
+package org.eclipse.imp.lpg.editor;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -11,13 +11,13 @@ import java.util.Set;
 
 import lpg.runtime.IToken;
 
-import org.eclipse.uide.core.ILanguageService;
-import org.eclipse.uide.editor.ISourceFormatter;
-import org.eclipse.uide.parser.IParseController;
-import org.eclipse.safari.jikespg.parser.JikesPGParser;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
+import org.eclipse.imp.core.ILanguageService;
+import org.eclipse.imp.editor.ISourceFormatter;
+import org.eclipse.imp.lpg.parser.LPGParser;
+import org.eclipse.imp.lpg.parser.LPGParser.*;
+import org.eclipse.imp.parser.IParseController;
 
-public class JikesPGFormatter implements ILanguageService, ISourceFormatter {
+public class LPGFormatter implements ILanguageService, ISourceFormatter {
     private int fIndentSize= 6;
     private String fIndentString;
 
@@ -40,7 +40,7 @@ public class JikesPGFormatter implements ILanguageService, ISourceFormatter {
         final List/*<IToken>*/ fFollowingAdjuncts= new ArrayList();
         JikesPG root= (JikesPG) parseController.getCurrentAst();
 
-        root.accept(new JikesPGParser.AbstractVisitor() {
+        root.accept(new LPGParser.AbstractVisitor() {
             private int prodCount;
             private int prodIndent;
             public void unimplementedVisitor(String s) {

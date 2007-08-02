@@ -1,7 +1,7 @@
-package org.eclipse.safari.jikespg.preferences;
+package org.eclipse.imp.lpg.preferences;
 
 /**
- * Constant definitions for JikesPG plug-in preferences
+ * Constant definitions for LPG plug-in preferences
  */
 public class PreferenceConstants {
 	

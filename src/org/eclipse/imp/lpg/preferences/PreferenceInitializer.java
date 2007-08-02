@@ -1,11 +1,11 @@
-package org.eclipse.safari.jikespg.preferences;
+package org.eclipse.imp.lpg.preferences;
 
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
+import org.eclipse.imp.lpg.LPGRuntimePlugin;
+import org.eclipse.imp.lpg.builder.LPGBuilder;
+import org.eclipse.imp.preferences.ISafariPreferencesService;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.safari.jikespg.JikesPGRuntimePlugin;
-import org.eclipse.safari.jikespg.builder.JikesPGBuilder;
-import org.eclipse.uide.preferences.ISafariPreferencesService;
 
 /**
  * Initializes JikesPG preference default values.
@@ -22,19 +22,19 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 	    ///*
     	// Commented this back in so that the original preferences
     	// page would have some values to display
-		IPreferenceStore store= JikesPGRuntimePlugin.getInstance().getPreferenceStore();
+		IPreferenceStore store= LPGRuntimePlugin.getInstance().getPreferenceStore();
 	
 		store.setDefault(PreferenceConstants.P_EMIT_MESSAGES, getDefaultEmitMessages());
 		store.setDefault(PreferenceConstants.P_GEN_LISTINGS, getDefaultGenerateListings());
 		store.setDefault(PreferenceConstants.P_USE_DEFAULT_EXEC, getDefaultUseDefaultExecutable());
-		store.setDefault(PreferenceConstants.P_JIKESPG_EXEC_PATH, JikesPGBuilder.getDefaultExecutablePath());
+		store.setDefault(PreferenceConstants.P_JIKESPG_EXEC_PATH, LPGBuilder.getDefaultExecutablePath());
 		store.setDefault(PreferenceConstants.P_USE_DEFAULT_INCLUDE_DIR, getDefaultUseDefaultIncludeDirs());
-		store.setDefault(PreferenceConstants.P_JIKESPG_INCLUDE_DIRS, JikesPGBuilder.getDefaultIncludePath());
+		store.setDefault(PreferenceConstants.P_JIKESPG_INCLUDE_DIRS, LPGBuilder.getDefaultIncludePath());
 		store.setDefault(PreferenceConstants.P_EXTENSION_LIST, "g,lpg,gra");
 		store.setDefault(PreferenceConstants.P_NON_ROOT_EXTENSION_LIST, "gi");
 	    //*/
     
-		ISafariPreferencesService service = JikesPGRuntimePlugin.getPreferencesService();
+		ISafariPreferencesService service = LPGRuntimePlugin.getPreferencesService();
 		
 		// Examples:
 		service.setBooleanPreference(ISafariPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_EMIT_MESSAGES, getDefaultEmitMessages());
@@ -55,13 +55,13 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
     public static boolean getDefaultUseDefaultExecutable() { return true; }
     
     public static String getDefaultExecutablePath() {
-    	return JikesPGBuilder.getDefaultExecutablePath();
+    	return LPGBuilder.getDefaultExecutablePath();
     }
     
     public static boolean getDefaultUseDefaultIncludeDirs() { return true; }
     
     public static String getDefaultIncludePath() {
-    	return JikesPGBuilder.getDefaultIncludePath();
+    	return LPGBuilder.getDefaultIncludePath();
     }
     
     public static String getDefaultExtensionList() {

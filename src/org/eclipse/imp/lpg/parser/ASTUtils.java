@@ -1,29 +1,41 @@
-package org.eclipse.safari.jikespg.parser;
+package org.eclipse.imp.lpg.parser;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
+import lpg.runtime.IAst;
+
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.jdt.internal.corext.refactoring.CollectingSearchRequestor;
+import org.eclipse.imp.lpg.LPGRuntimePlugin;
+import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
+import org.eclipse.imp.lpg.parser.LPGParser.ASTNodeToken;
+import org.eclipse.imp.lpg.parser.LPGParser.AbstractVisitor;
+import org.eclipse.imp.lpg.parser.LPGParser.IASTNodeToken;
+import org.eclipse.imp.lpg.parser.LPGParser.IJikesPG_item;
+import org.eclipse.imp.lpg.parser.LPGParser.Imacro_name_symbol;
+import org.eclipse.imp.lpg.parser.LPGParser.IncludeSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.Ioption_value;
+import org.eclipse.imp.lpg.parser.LPGParser.JikesPG;
+import org.eclipse.imp.lpg.parser.LPGParser.JikesPG_itemList;
+import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
+import org.eclipse.imp.lpg.parser.LPGParser.option;
+import org.eclipse.imp.lpg.parser.LPGParser.optionList;
+import org.eclipse.imp.lpg.parser.LPGParser.option_spec;
+import org.eclipse.imp.lpg.parser.LPGParser.option_specList;
+import org.eclipse.imp.lpg.parser.LPGParser.option_value0;
+import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs1;
+import org.eclipse.imp.lpg.parser.LPGParser.terminal;
+import org.eclipse.imp.lpg.preferences.PreferenceConstants;
+import org.eclipse.imp.model.ICompilationUnit;
+import org.eclipse.imp.model.IPathEntry;
+import org.eclipse.imp.model.ISourceProject;
+import org.eclipse.imp.model.ModelFactory;
+import org.eclipse.imp.parser.IParseController;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.safari.jikespg.JikesPGRuntimePlugin;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
-import org.eclipse.safari.jikespg.preferences.PreferenceConstants;
-import org.eclipse.uide.model.ICompilationUnit;
-import org.eclipse.uide.model.IPathEntry;
-import org.eclipse.uide.model.ISourceProject;
-import org.eclipse.uide.model.ModelFactory;
-import org.eclipse.uide.parser.IParseController;
-
-import lpg.runtime.IAst;
 
 public class ASTUtils {
     private ASTUtils() { }
@@ -35,21 +47,21 @@ public class ASTUtils {
     }
 
     public static List<Imacro_name_symbol> getMacros(JikesPG root) {
-	JikesPGParser.SymbolTable st= root.symbolTable;
+	LPGParser.SymbolTable st= root.symbolTable;
 
         // DO NOT pick up macros from any imported file! They shouldn't be treated as defined in this scope!
         return st.allDefsOfType(Imacro_name_symbol.class);
     }
 
     public static List<nonTerm> getNonTerminals(JikesPG root) {
-	JikesPGParser.SymbolTable st= root.symbolTable;
+	LPGParser.SymbolTable st= root.symbolTable;
 
         // TODO: pick up non-terminals from imported files
         return st.allDefsOfType(nonTerm.class);
     }
 
     public static List<terminal> getTerminals(JikesPG root) {
-	JikesPGParser.SymbolTable st= root.symbolTable;
+	LPGParser.SymbolTable st= root.symbolTable;
 
         // TODO: pick up terminals from imported files???
         return st.allDefsOfType(terminal.class);
@@ -164,7 +176,7 @@ public class ASTUtils {
 		return ModelFactory.open(candidatePath, srcProject);
 	    }
 	}
-	IPreferenceStore store= JikesPGRuntimePlugin.getInstance().getPreferenceStore();
+	IPreferenceStore store= LPGRuntimePlugin.getInstance().getPreferenceStore();
 	IPath includeDir = new Path(store.getString(PreferenceConstants.P_JIKESPG_INCLUDE_DIRS));
 
 	return ModelFactory.open(includeDir.append(fileName), srcProject);

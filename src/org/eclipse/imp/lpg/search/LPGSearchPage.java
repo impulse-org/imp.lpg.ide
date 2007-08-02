@@ -1,4 +1,4 @@
-package org.eclipse.safari.jikespg.search;
+package org.eclipse.imp.lpg.search;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Widget;
 
-public class JikesPGSearchPage extends DialogPage implements ISearchPage {
+public class LSearchPage extends DialogPage implements ISearchPage {
     private class TypeSelectionListener implements SelectionListener {
         public void widgetSelected(SelectionEvent e) {
             Widget w= (Widget) e.getSource();
@@ -38,24 +38,24 @@ public class JikesPGSearchPage extends DialogPage implements ISearchPage {
     private Button fNonTermTypeButton;
     private Button fTermTypeButton;
 
-    public JikesPGSearchPage() {
+    public LSearchPage() {
         super("JikesPG Search", null);
     }
 
-    public JikesPGSearchPage(String title) {
+    public LSearchPage(String title) {
         this(title, null);
     }
 
-    public JikesPGSearchPage(String title, ImageDescriptor image) {
+    public LSearchPage(String title, ImageDescriptor image) {
         super(title, image);
     }
 
     public boolean performAction() {
         IProject project= ResourcesPlugin.getWorkspace().getRoot().getProject("JikesPGTest");
         boolean isWorkspaceScope= fContainer.getSelectedScope() == ISearchPageContainer.WORKSPACE_SCOPE;
-        JikesPGSearchScope scope= isWorkspaceScope ? JikesPGSearchScope.createWorkspaceScope() :
-            JikesPGSearchScope.createProjectScope(project);
-        JikesPGSearchQuery query= new JikesPGSearchQuery(fEntityName.getText(), fNonTerm, scope);
+        LSearchScope scope= isWorkspaceScope ? LSearchScope.createWorkspaceScope() :
+            LSearchScope.createProjectScope(project);
+        LSearchQuery query= new LSearchQuery(fEntityName.getText(), fNonTerm, scope);
 
         NewSearchUI.activateSearchResultView();
         NewSearchUI.runQueryInBackground(query);

@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: JikesPG IDE Runtime
-Bundle-SymbolicName: org.eclipse.safari.jikespg.runtime; singleton:=true
-Bundle-Version: 1.0.57
-Bundle-Activator: org.eclipse.safari.jikespg.JikesPGRuntimePlugin
+Bundle-Name: LPG IDE Runtime
+Bundle-SymbolicName: org.eclipse.imp.lpg.runtime;singleton:=true
+Bundle-Version: 1.0.58
+Bundle-Activator: org.eclipse.imp.lpg.LPGRuntimePlugin
 Bundle-Vendor: rfuhrer@watson.ibm.com
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
@@ -21,16 +21,16 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jdt.ui,
  com.ibm.watson.smapifier,
  lpg.runtime,
- com.ibm.watson.safari.xform,
- org.eclipse.uide.runtime
-Eclipse-AutoStart: true
-Export-Package: org.eclipse.safari.jikespg,
- org.eclipse.safari.jikespg.actions,
- org.eclipse.safari.jikespg.builder,
- org.eclipse.safari.jikespg.compare,
- org.eclipse.safari.jikespg.editor,
- org.eclipse.safari.jikespg.parser,
- org.eclipse.safari.jikespg.preferences,
- org.eclipse.safari.jikespg.refactoring,
- org.eclipse.safari.jikespg.search,
- org.eclipse.safari.jikespg.views
+ org.eclipse.imp.runtime,
+ org.eclipse.imp.xform
+Eclipse-LazyStart: true
+Export-Package: org.eclipse.imp.lpg,
+ org.eclipse.imp.lpg.actions,
+ org.eclipse.imp.lpg.builder,
+ org.eclipse.imp.lpg.compare,
+ org.eclipse.imp.lpg.editor,
+ org.eclipse.imp.lpg.parser,
+ org.eclipse.imp.lpg.preferences,
+ org.eclipse.imp.lpg.refactoring,
+ org.eclipse.imp.lpg.search,
+ org.eclipse.imp.lpg.views

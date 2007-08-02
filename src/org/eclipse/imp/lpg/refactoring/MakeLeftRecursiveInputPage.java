@@ -1,6 +1,5 @@
-package org.eclipse.safari.jikespg.refactoring;
+package org.eclipse.imp.lpg.refactoring;
 
-import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.ltk.ui.refactoring.UserInputWizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;

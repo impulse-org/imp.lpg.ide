@@ -1,9 +1,9 @@
 --
 -- The Java Keyword Lexer
 --
-%Options fp=JikesPGKWLexer
+%Options fp=LPGKWLexer
 %options single-productions
-%options package=org.eclipse.safari.jikespg.parser
+%options package=org.eclipse.imp.lpg.parser
 %options template=uide/KeywordTemplate.gi
 
 $Include

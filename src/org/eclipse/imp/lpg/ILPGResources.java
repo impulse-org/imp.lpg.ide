@@ -1,6 +1,6 @@
-package org.eclipse.safari.jikespg;
+package org.eclipse.imp.lpg;
 
-public interface IJikesPGResources {
+public interface ILPGResources {
     public static final String DEFAULT_AST= "default_ast";
 
     public static final String OUTLINE_ITEM= "outline_item";

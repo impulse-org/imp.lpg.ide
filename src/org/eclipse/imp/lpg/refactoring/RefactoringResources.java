@@ -1,4 +1,4 @@
-package org.eclipse.safari.jikespg.refactoring;
+package org.eclipse.imp.lpg.refactoring;
 
 import java.util.ResourceBundle;
 

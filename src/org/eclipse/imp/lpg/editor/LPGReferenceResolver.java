@@ -1,15 +1,15 @@
-package org.eclipse.safari.jikespg.editor;
+package org.eclipse.imp.lpg.editor;
 
-import org.eclipse.uide.core.ILanguageService;
-import org.eclipse.uide.editor.IReferenceResolver;
-import org.eclipse.uide.parser.IParseController;
-import org.eclipse.safari.jikespg.parser.ASTUtils;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.IASTNodeToken;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.JikesPG;
+import org.eclipse.imp.core.ILanguageService;
+import org.eclipse.imp.editor.IReferenceResolver;
+import org.eclipse.imp.lpg.parser.ASTUtils;
+import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
+import org.eclipse.imp.lpg.parser.LPGParser.IASTNodeToken;
+import org.eclipse.imp.lpg.parser.LPGParser.JikesPG;
+import org.eclipse.imp.parser.IParseController;
 
-public class JikesPGReferenceResolver implements IReferenceResolver, ILanguageService {
-    public JikesPGReferenceResolver() {
+public class LPGReferenceResolver implements IReferenceResolver, ILanguageService {
+    public LPGReferenceResolver() {
 	super();
     }
 

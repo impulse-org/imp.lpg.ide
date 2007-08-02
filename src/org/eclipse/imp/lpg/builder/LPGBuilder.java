@@ -1,4 +1,4 @@
-package org.eclipse.safari.jikespg.builder;
+package org.eclipse.imp.lpg.builder;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
@@ -16,33 +17,34 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.safari.jikespg.JikesPGRuntimePlugin;
-import org.eclipse.safari.jikespg.parser.*;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.import_segment;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.include_segment;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.option;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.option_value0;
-import org.eclipse.safari.jikespg.preferences.PreferenceConstants;
-import org.eclipse.safari.jikespg.views.JikesPGView;
-import org.eclipse.uide.core.SAFARIBuilderBase;
-import org.eclipse.uide.preferences.ISafariPreferencesService;
-import org.eclipse.uide.runtime.SAFARIPluginBase;
-import org.eclipse.uide.utils.StreamUtils;
+import org.eclipse.imp.core.SAFARIBuilderBase;
+import org.eclipse.imp.lpg.LPGRuntimePlugin;
+import org.eclipse.imp.lpg.parser.LPGLexer;
+import org.eclipse.imp.lpg.parser.LPGParser;
+import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
+import org.eclipse.imp.lpg.parser.LPGParser.import_segment;
+import org.eclipse.imp.lpg.parser.LPGParser.include_segment;
+import org.eclipse.imp.lpg.parser.LPGParser.option;
+import org.eclipse.imp.lpg.parser.LPGParser.option_value0;
+import org.eclipse.imp.lpg.preferences.PreferenceConstants;
+import org.eclipse.imp.lpg.views.LPGView;
+import org.eclipse.imp.preferences.ISafariPreferencesService;
+import org.eclipse.imp.runtime.SAFARIPluginBase;
+import org.eclipse.imp.utils.StreamUtils;
 import org.osgi.framework.Bundle;
 
 /**
  * @author rfuhrer@watson.ibm.com
  * @author CLaffra
  */
-public class JikesPGBuilder extends SAFARIBuilderBase {
+public class LPGBuilder extends SAFARIBuilderBase {
     /**
      * Extension ID of the JikesPG builder. Must match the ID in the corresponding
      * extension definition in plugin.xml.
      */
-    public static final String BUILDER_ID= JikesPGRuntimePlugin.kPluginID + ".jikesPGBuilder";
+    public static final String BUILDER_ID= LPGRuntimePlugin.kPluginID + ".jikesPGBuilder";
 
-    public static final String PROBLEM_MARKER_ID= JikesPGRuntimePlugin.kPluginID + ".problem";
+    public static final String PROBLEM_MARKER_ID= LPGRuntimePlugin.kPluginID + ".problem";
 
     /**
      * ID of the LPG plugin, which houses the templates, the LPG executable,
@@ -64,12 +66,12 @@ public class JikesPGBuilder extends SAFARIBuilderBase {
     // SMS 8 Sep 2006
 	ISafariPreferencesService prefService = null;
     {
-    	prefService = JikesPGRuntimePlugin.getPreferencesService();
+    	prefService = LPGRuntimePlugin.getPreferencesService();
     	prefService.setProject(getProject());
     }
 	
     protected SAFARIPluginBase getPlugin() {
-	return JikesPGRuntimePlugin.getInstance();
+	return LPGRuntimePlugin.getInstance();
     }
 
     protected String getErrorMarkerID() {
@@ -116,9 +118,9 @@ public class JikesPGBuilder extends SAFARIBuilderBase {
 	    String executablePath= getLPGExecutable();
 	    File parentDir= new File(fileName).getParentFile();
 
-	    JikesPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Running generator on grammar file '" + fileName + "'.");
-	    JikesPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Using executable at '" + executablePath + "'.");
-	    JikesPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Using template path '" + includePath + "'.");
+	    LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Running generator on grammar file '" + fileName + "'.");
+	    LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Using executable at '" + executablePath + "'.");
+	    LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Using template path '" + includePath + "'.");
 
 	    String cmd[]= new String[] {
 		    executablePath,
@@ -146,24 +148,24 @@ public class JikesPGBuilder extends SAFARIBuilderBase {
 		    // "-dat-directory=" + getOutputDirectory(resource.getProject()),
 		    fileName};
 	    Process process= Runtime.getRuntime().exec(cmd, new String[0], parentDir);
-	    JikesPGView consoleView= JikesPGView.getDefault();
+	    LPGView consoleView= LPGView.getDefault();
 
 	    processJikesPGOutput(file, process, consoleView);
 	    processJikesPGErrors(file, process, consoleView);
 	    doRefresh(file);
 	    collectDependencies(file);
-	    JikesPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Generator exit code == " + process.waitFor());
+	    LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Generator exit code == " + process.waitFor());
 	} catch (Exception e) {
-	    JikesPGRuntimePlugin.getInstance().logException(e.getMessage(), e);
+	    LPGRuntimePlugin.getInstance().logException(e.getMessage(), e);
 	}
     }
 
     protected void collectDependencies(IFile file) {
-        JikesPGLexer lexer= new JikesPGLexer(); // Create the lexer
-        JikesPGParser parser= new JikesPGParser(lexer.getLexStream()); // Create the parser
+        LPGLexer lexer= new LPGLexer(); // Create the lexer
+        LPGParser parser= new LPGParser(lexer.getLexStream()); // Create the parser
         String filePath= file.getLocation().toOSString();
 
-        JikesPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Collecting dependencies from file '" + file.getLocation().toOSString() + "'.");
+        LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Collecting dependencies from file '" + file.getLocation().toOSString() + "'.");
         try {
             String contents= StreamUtils.readStreamContents(file.getContents());
 
@@ -184,7 +186,7 @@ public class JikesPGBuilder extends SAFARIBuilderBase {
      * @param filePath 
      */
     private void findDependencies(ASTNode root, final String filePath) {
-        root.accept(new JikesPGParser.AbstractVisitor() {
+        root.accept(new LPGParser.AbstractVisitor() {
             public void unimplementedVisitor(String s) { }
             public boolean visit(option n) {
                 if (n.getSYMBOL().toString().equals("import_terminals")) {
@@ -211,21 +213,21 @@ public class JikesPGBuilder extends SAFARIBuilderBase {
         });
     }
 
-    private void processJikesPGErrors(IResource resource, Process process, JikesPGView view) throws IOException {
+    private void processJikesPGErrors(IResource resource, Process process, LPGView view) throws IOException {
 	InputStream is= process.getErrorStream();
 	BufferedReader in2= new BufferedReader(new InputStreamReader(is));
 
 	String line;
 	while ((line= in2.readLine()) != null) {
 	    if (view != null)
-		JikesPGView.println(line);
+		LPGView.println(line);
 	    if (parseSyntaxMessageCreateMarker(line))
 		;
 	    else if (line.indexOf("Input file ") == 0) {
 		parseMissingFileMessage(line, resource);
 	    } else
 		handleMiscMessage(line, resource);
-	    JikesPGRuntimePlugin.getInstance().writeErrorMsg(line);
+	    LPGRuntimePlugin.getInstance().writeErrorMsg(line);
 	}
 	is.close();
     }
@@ -233,14 +235,14 @@ public class JikesPGBuilder extends SAFARIBuilderBase {
     final String lineSep= System.getProperty("line.separator");
     final int lineSepBias= lineSep.length() - 1;
 
-    private void processJikesPGOutput(final IResource resource, Process process, JikesPGView view) throws IOException {
+    private void processJikesPGOutput(final IResource resource, Process process, LPGView view) throws IOException {
 	InputStream is= process.getInputStream();
 	BufferedReader in= new BufferedReader(new InputStreamReader(is));
 	String line= null;
 
 	while ((line= in.readLine()) != null) {
 	    if (view != null)
-		JikesPGView.println(line);
+		LPGView.println(line);
 	    else {
 		System.out.println(line);
 	    }
@@ -376,7 +378,7 @@ public class JikesPGBuilder extends SAFARIBuilderBase {
 	if (execURL == null) {
 	    String errMsg= "Unable to find JikesPG executable at " + path + " in bundle " + bundle.getSymbolicName();
 
-	    JikesPGRuntimePlugin.getInstance().writeErrorMsg(errMsg);
+	    LPGRuntimePlugin.getInstance().writeErrorMsg(errMsg);
 	    throw new IllegalArgumentException(errMsg);
 	} else {
 	    // N.B.: The jikespg executable will normally be inside a jar file,
@@ -386,7 +388,7 @@ public class JikesPGBuilder extends SAFARIBuilderBase {
 	    try {
 		url= Platform.asLocalURL(execURL);
 	    } catch (IOException e) {
-		JikesPGRuntimePlugin.getInstance().writeErrorMsg("Unable to locate default JikesPG executable." + e.getMessage());
+		LPGRuntimePlugin.getInstance().writeErrorMsg("Unable to locate default JikesPG executable." + e.getMessage());
 		return "???";
 	    }
 
@@ -395,7 +397,7 @@ public class JikesPGBuilder extends SAFARIBuilderBase {
 	    if (os.equals("win32")) // remove leading slash from URL that shows up on Win32(?)
 		jikesPGExecPath= jikesPGExecPath.substring(1);
 
-	    JikesPGRuntimePlugin.getInstance().maybeWriteInfoMsg("JikesPG executable apparently at '" + jikesPGExecPath + "'.");
+	    LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("JikesPG executable apparently at '" + jikesPGExecPath + "'.");
 	    return jikesPGExecPath;
 	}
     }

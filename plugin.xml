@@ -3,40 +3,40 @@
 <plugin>
 
    <extension
-         id="jikesPGNature"
-         name="JikesPG Nature"
+         id="LPGNature"
+         name="LPG Nature"
          point="org.eclipse.core.resources.natures">
-      <builder id="org.eclipse.safari.jikespg.runtime.jikesPGBuilder"/>
+      <builder id="org.eclipse.imp.lpg.runtime.LPGBuilder"/>
       <runtime>
-         <run class="org.eclipse.safari.jikespg.builder.JikesPGNature"/>
+         <run class="org.eclipse.imp.lpg.builder.LPGNature"/>
       </runtime>
    </extension>
  
    <extension
-         id="jikesPGBuilder"
-         name="JikesPG Grammar File Builder"
+         id="LPGBuilder"
+         name="LPG Grammar File Builder"
          point="org.eclipse.core.resources.builders">
       <builder>
-         <run class="org.eclipse.safari.jikespg.builder.JikesPGBuilder"/>
+         <run class="org.eclipse.imp.lpg.builder.LPGBuilder"/>
       </builder>
    </extension>
    <extension
          id="problem"
-         name="JikesPG Error"
+         name="LPG Error"
          point="org.eclipse.core.resources.markers">
       <super type="org.eclipse.core.resources.problemmarker"/>
    </extension>
    <extension
          point="org.eclipse.ui.views">
       <category
-            name="JikesPG UIDE"
-            id="org.jikespg.uide"/>
+            name="LPG IDE"
+            id="org.eclipse.imp.lpg.ide"/>
       <view
-            class="org.eclipse.safari.jikespg.views.JikesPGView"
+            class="org.eclipse.imp.lpg.views.LPGView"
             icon="icons/sample.gif"
-            category="org.jikespg.uide"
-            name="JikesPG Console"
-            id="org.jikespg.uide.views.JikesPGView"/>
+            category="org.eclipse.imp.lpg"
+            name="LPG Console"
+            id="org.eclipse.imp.lpg.views.LPGView"/>
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
@@ -45,178 +45,178 @@
                ratio="0.5"
                relationship="right"
                relative="org.eclipse.ui.views.TaskList"
-               id="org.eclipse.safari.jikespg.views.JikesPGView"/>
+               id="org.eclipse.imp.lpg.views.LPGView"/>
       </perspectiveExtension>
    </extension>
    <extension
-         id="org.jikespg.uide.jikesPG"
-         name="JikesPG Language"
-         point="org.eclipse.uide.runtime.languageDescription">
+         id="org.eclipse.imp.LPG"
+         name="LPG Language"
+         point="org.eclipse.imp.runtime.languageDescription">
       <language
-            description="JikesPG Grammar Specification"
+            description="LPG Grammar Specification"
             extensions="g,gi,lpg"
             icon="grammarfile.gif"
-            language="JikesPG"
-            natureID="org.eclipse.safari.jikespg.runtime.jikesPGNature"/>
+            language="LPG"
+            natureID="org.eclipse.imp.lpg.runtime.LPGNature"/>
    </extension>
    <extension
-         name="JikesPG Grammar Specification Parser"
-         point="org.eclipse.uide.runtime.parser">
+         name="LPG Grammar Specification Parser"
+         point="org.eclipse.imp.runtime.parser">
       <parser
-            class="org.eclipse.safari.jikespg.parser.ParseController"
-            language="JikesPG"/>
+            class="org.eclipse.imp.lpg.parser.ParseController"
+            language="LPG"/>
    </extension>
    <extension
-         point="org.eclipse.uide.runtime.tokenColorer">
+         point="org.eclipse.imp.runtime.tokenColorer">
       <tokenColorer
-            class="org.eclipse.safari.jikespg.editor.TokenColorer"
-            language="JikesPG"/>
+            class="org.eclipse.imp.lpg.editor.TokenColorer"
+            language="LPG"/>
    </extension>
    <extension
-         point="org.eclipse.uide.runtime.outliner">
+         point="org.eclipse.imp.runtime.outliner">
       <outliner
-            class="org.eclipse.safari.jikespg.editor.Outliner"
-            language="JikesPG"/>
+            class="org.eclipse.imp.lpg.editor.Outliner"
+            language="LPG"/>
    </extension>
    <extension
-         point="org.eclipse.uide.runtime.contentProposer">
+         point="org.eclipse.imp.runtime.contentProposer">
       <proposer
-            class="org.eclipse.safari.jikespg.editor.ContentProposer"
-            language="JikesPG"/>
+            class="org.eclipse.imp.lpg.editor.ContentProposer"
+            language="LPG"/>
    </extension>
    <extension
          point="org.eclipse.ui.popupMenus">
       <objectContribution
             adaptable="false"
-            id="org.eclipse.safari.jikespg.projectContextMenu"
+            id="org.eclipse.imp.lpg.projectContextMenu"
             nameFilter="*"
             objectClass="org.eclipse.jdt.core.IJavaProject">
          <action
-               class="org.eclipse.safari.jikespg.actions.EnableBuilder"
+               class="org.eclipse.imp.lpg.actions.EnableBuilder"
                icon="icons/builderEnable.gif"
-               id="org.eclipse.safari.jikespg.enableBuilderAction"
-               label="Enable &amp;JikesPG Builder"
-               tooltip="Enable the JikesPG builder for this project"/>
+               id="org.eclipse.imp.lpg.enableBuilderAction"
+               label="Enable &amp;LPG Builder"
+               tooltip="Enable the LPG builder for this project"/>
       </objectContribution>
    </extension>
 <!--   
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            class="org.jikespg.uide.preferences.JikesPGPreferencePage"
-            id="org.jikespg.uide.preferencePage"
-            name="JikesPG"/>
+            class="org.eclipse.imp.preferences.LPGPreferencePage"
+            id="org.eclipse.imp.preferencePage"
+            name="LPG"/>
    </extension>
 -->	
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            class="org.eclipse.safari.jikespg.preferences.JikesPGTabbedPreferencesPage"
-            id="org.eclipse.safari.jikespg.tabbedPreferencesPage"
-            name="JikesPG Revised"/>
+            class="org.eclipse.imp.lpg.preferences.LPGTabbedPreferencesPage"
+            id="org.eclipse.imp.lpg.tabbedPreferencesPage"
+            name="LPG"/>
    </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">
-      <initializer class="org.eclipse.safari.jikespg.preferences.PreferenceInitializer"/>
+      <initializer class="org.eclipse.imp.lpg.preferences.PreferenceInitializer"/>
    </extension>
    <extension
          point="org.eclipse.compare.structureCreators">
       <structureCreator
-            class="org.eclipse.safari.jikespg.compare.JikesPGStructureNode"
+            class="org.eclipse.imp.lpg.compare.LPGStructureNode"
             extensions="g,gi"
-            id="org.eclipse.safari.jikespg.structureCreator"/>
+            id="org.eclipse.imp.lpg.structureCreator"/>
 <!--      <contentTypeBinding
-            contentTypeId="org.eclipse.safari.jikespg.grammarFile"
-            structureCreatorId="org.eclipse.safari.jikespg.structureCreator"/>
+            contentTypeId="org.eclipse.imp.lpg.grammarFile"
+            structureCreatorId="org.eclipse.imp.lpg.structureCreator"/>
   -->
    </extension>
 <!--   <extension
          point="org.eclipse.core.runtime.contentTypes">
       <content-type
             file-extensions="g,gi"
-            id="org.eclipse.safari.jikespg.grammarFile"
-            name="JikesPG Grammar File"
+            id="org.eclipse.imp.lpg.grammarFile"
+            name="LPG Grammar File"
             priority="normal"/>
    </extension>
  -->
    <extension
          point="org.eclipse.compare.structureMergeViewers">
       <viewer
-            class="org.eclipse.safari.jikespg.compare.StructureMergeViewerCreator"
+            class="org.eclipse.imp.lpg.compare.StructureMergeViewerCreator"
             extensions="g,gi"
-            id="org.jikespg.uide.viewer"/>
+            id="org.eclipse.imp.viewer"/>
    </extension>
    <extension
-         point="org.eclipse.uide.runtime.foldingUpdater">
+         point="org.eclipse.imp.runtime.foldingUpdater">
       <foldingUpdater
-            class="org.eclipse.safari.jikespg.editor.FoldingUpdater"
-            language="JikesPG"/>
+            class="org.eclipse.imp.lpg.editor.FoldingUpdater"
+            language="LPG"/>
    </extension>
    <extension
-         point="org.eclipse.uide.runtime.formatter">
+         point="org.eclipse.imp.runtime.formatter">
       <formatter
-            class="org.eclipse.safari.jikespg.editor.JikesPGFormatter"
-            language="JikesPG"/>
+            class="org.eclipse.imp.lpg.editor.LPGFormatter"
+            language="LPG"/>
    </extension>
    <extension
          point="org.eclipse.search.searchPages">
       <page
             canSearchEnclosingProjects="true"
-            class="org.eclipse.safari.jikespg.search.JikesPGSearchPage"
+            class="org.eclipse.imp.lpg.search.LPGSearchPage"
             enabled="true"
             extensions="g:100"
             icon="icons/sample.gif"
-            id="org.jikespg.uide.searchPage"
-            label="JikesPG Search"
+            id="org.eclipse.imp.lpg.uide.searchPage"
+            label="LPG Search"
             showScopeSection="true"/>
    </extension>
    <extension
          point="org.eclipse.search.searchResultViewPages">
       <viewPage
-            class="org.eclipse.safari.jikespg.search.JikesPGSearchResultPage"
-            id="org.jikespg.uide.searchResultViewPage"
-            searchResultClass="org.eclipse.safari.jikespg.search.JikesPGSearchResult"/>
+            class="org.eclipse.imp.lpg.search.LPGSearchResultPage"
+            id="org.eclipse.imp.searchResultViewPage"
+            searchResultClass="org.eclipse.imp.lpg.search.LPGSearchResult"/>
    </extension>
    <extension
-         point="org.eclipse.uide.runtime.labelProvider">
+         point="org.eclipse.imp.runtime.labelProvider">
          <labelProvider
-               class="org.eclipse.safari.jikespg.editor.JikesPGLabelProvider"
-               language="jikespg"/>
+               class="org.eclipse.imp.lpg.editor.LPGLabelProvider"
+               language="LPG"/>
    </extension>
    <extension
-         point="org.eclipse.uide.runtime.outlineContentProvider">
+         point="org.eclipse.imp.runtime.outlineContentProvider">
          <outlineContentProvider
-         		class="org.eclipse.safari.jikespg.editor.JikesPGContentProvider"
-         		language="jikespg"/>
+         		class="org.eclipse.imp.lpg.editor.LPGContentProvider"
+         		language="LPG"/>
    </extension>
    <extension
-         point="org.eclipse.uide.runtime.refactoringContributions">
+         point="org.eclipse.imp.runtime.refactoringContributions">
          <refactoringContributor
-				language="jikespg"
-				class="org.eclipse.safari.jikespg.refactoring.JikesPGRefactoringContributor"/>
+				language="LPG"
+				class="org.eclipse.imp.lpg.refactoring.LPGRefactoringContributor"/>
    </extension>
    <extension
-         point="org.eclipse.uide.runtime.referenceResolvers">
+         point="org.eclipse.imp.runtime.referenceResolvers">
          <referenceResolver
-                language="jikespg"
-                class="org.eclipse.safari.jikespg.editor.JikesPGReferenceResolver"/>
+                language="LPG"
+                class="org.eclipse.imp.lpg.editor.LPGReferenceResolver"/>
    </extension>
    <extension
-         point="com.ibm.watson.safari.xform.astAdapter">
+         point="org.eclipse.imp.xform.astAdapter">
          <astAdapter
-            language="JikesPG"
-            class="org.eclipse.safari.jikespg.refactoring.JikesPGASTAdapter"/>
+            language="LPG"
+            class="org.eclipse.imp.lpg.refactoring.LPGASTAdapter"/>
    </extension>
    <extension
-         point="org.eclipse.uide.runtime.editorActionContributions">
+         point="org.eclipse.imp.runtime.editorActionContributions">
       <editorActionContributor
-            class="org.eclipse.safari.jikespg.actions.LanguageActionContributor"
-            language="jikespg"/>
+            class="org.eclipse.imp.lpg.actions.LanguageActionContributor"
+            language="LPG"/>
    </extension>
    <extension
-         point="org.eclipse.uide.runtime.documentationProvider">
+         point="org.eclipse.imp.runtime.documentationProvider">
          <docProvider
-             language="jikespg"
-             class="org.eclipse.safari.jikespg.editor.DocumentationProvider"/>
+             language="LPG"
+             class="org.eclipse.imp.lpg.editor.DocumentationProvider"/>
    </extension>
 </plugin>

@@ -1,7 +1,7 @@
 /*
  * Created on Oct 28, 2005
  */
-package org.eclipse.safari.jikespg.parser;
+package org.eclipse.imp.lpg.parser;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,22 +11,21 @@ import lpg.runtime.IMessageHandler;
 import lpg.runtime.IToken;
 import lpg.runtime.Monitor;
 
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.uide.model.ISourceProject;
-import org.eclipse.uide.parser.IASTNodeLocator;
-import org.eclipse.uide.parser.ILexer;
-import org.eclipse.uide.parser.IParseController;
-import org.eclipse.uide.parser.IParser;
-import org.eclipse.uide.parser.ParseError;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
+import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
+import org.eclipse.imp.model.ISourceProject;
+import org.eclipse.imp.parser.IASTNodeLocator;
+import org.eclipse.imp.parser.ILexer;
+import org.eclipse.imp.parser.IParseController;
+import org.eclipse.imp.parser.IParser;
+import org.eclipse.imp.parser.ParseError;
 
 public class ParseController implements IParseController {
     private IPath fFilePath;
     private ISourceProject fProject;
-    private JikesPGParser fParser;
-    private JikesPGLexer fLexer;
+    private LPGParser fParser;
+    private LPGLexer fLexer;
     private ASTNode fCurrentAst;
     private char fKeywords[][];
     private boolean fIsKeyword[];
@@ -91,8 +90,8 @@ public class ParseController implements IParseController {
     }
 
     public ParseController() {
-	fLexer= new JikesPGLexer(); // Create the lexer
-	fParser= new JikesPGParser(fLexer.getLexStream()); // Create the parser
+	fLexer= new LPGLexer(); // Create the lexer
+	fParser= new LPGParser(fLexer.getLexStream()); // Create the parser
     }
 
     class MyMonitor implements Monitor {

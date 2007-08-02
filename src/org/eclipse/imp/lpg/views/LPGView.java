@@ -1,4 +1,4 @@
-package org.eclipse.safari.jikespg.views;
+package org.eclipse.imp.lpg.views;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
@@ -6,23 +6,19 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 
-public class JikesPGView extends ViewPart {
+public class LPGView extends ViewPart {
     private Text text;
 
-    private static JikesPGView singleton;
+    private static LPGView singleton;
 
-    public JikesPGView() {
+    public LPGView() {
 	singleton= this;
     }
 
-    public static JikesPGView getDefault() {
+    public static LPGView getDefault() {
 	openView();
 	reset();
 	return singleton;

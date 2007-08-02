@@ -1,15 +1,15 @@
-package org.eclipse.safari.jikespg.preferences;
+package org.eclipse.imp.lpg.preferences;
 
 import java.util.HashSet;
 
+import org.eclipse.imp.lpg.LPGRuntimePlugin;
+import org.eclipse.imp.lpg.builder.LPGBuilder;
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
-import org.eclipse.safari.jikespg.JikesPGRuntimePlugin;
-import org.eclipse.safari.jikespg.builder.JikesPGBuilder;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
@@ -23,13 +23,13 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  * belongs to the main plug-in class. That way, preferences can be accessed directly via the
  * preference store.
  */
-public class JikesPGPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
+public class LPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
     private FileFieldEditor fExecField;
     private DirectoryListFieldEditor fTemplateField;
 
-    public JikesPGPreferencePage() {
+    public LPreferencePage() {
 	super(GRID);
-	setPreferenceStore(JikesPGRuntimePlugin.getInstance().getPreferenceStore());
+	setPreferenceStore(LPGRuntimePlugin.getInstance().getPreferenceStore());
 	setDescription("Preferences for the JikesPG parser/lexer generator");
     }
 
@@ -44,10 +44,10 @@ public class JikesPGPreferencePage extends FieldEditorPreferencePage implements 
 	    new IPropertyChangeListener() {
 	    	public void propertyChange(PropertyChangeEvent event) {
 	    	    if (event.getNewValue().equals(Boolean.TRUE)) {
-	    		fExecField.setEnabled(false, JikesPGPreferencePage.this.getFieldEditorParent());
-			fExecField.setStringValue(JikesPGBuilder.getDefaultExecutablePath());
+	    		fExecField.setEnabled(false, LPreferencePage.this.getFieldEditorParent());
+			fExecField.setStringValue(LPGBuilder.getDefaultExecutablePath());
 	    	    } else
-	    		fExecField.setEnabled(true, JikesPGPreferencePage.this.getFieldEditorParent());
+	    		fExecField.setEnabled(true, LPreferencePage.this.getFieldEditorParent());
 	    	}
 	    });
 
@@ -59,10 +59,10 @@ public class JikesPGPreferencePage extends FieldEditorPreferencePage implements 
 	    new IPropertyChangeListener() {
 	    	public void propertyChange(PropertyChangeEvent event) {
 	    	    if (event.getNewValue().equals(Boolean.TRUE)) {
-	    		fTemplateField.setEnabled(false, JikesPGPreferencePage.this.getFieldEditorParent());
-			fTemplateField.setStringValue(JikesPGBuilder.getDefaultIncludePath());
+	    		fTemplateField.setEnabled(false, LPreferencePage.this.getFieldEditorParent());
+			fTemplateField.setStringValue(LPGBuilder.getDefaultIncludePath());
 	    	    } else
-	    		fTemplateField.setEnabled(true, JikesPGPreferencePage.this.getFieldEditorParent());
+	    		fTemplateField.setEnabled(true, LPreferencePage.this.getFieldEditorParent());
 	    	}
 	    });
 	fTemplateField= new DirectoryListFieldEditor(PreferenceConstants.P_JIKESPG_INCLUDE_DIRS, "&Include directories:", getFieldEditorParent());
@@ -83,48 +83,48 @@ public class JikesPGPreferencePage extends FieldEditorPreferencePage implements 
 //	addField(new RadioGroupFieldEditor(PreferenceConstants.P_CHOICE, "An example of a multiple-choice preference", 1,
 //		new String[][] { { "&Choice 1", "choice1" }, { "C&hoice 2", "choice2" } }, getFieldEditorParent()));
 
-	if (JikesPGPreferenceCache.useDefaultExecutable)
+	if (LPreferenceCache.useDefaultExecutable)
 	    fExecField.setEnabled(false, getFieldEditorParent());
-	if (JikesPGPreferenceCache.useDefaultIncludeDir)
+	if (LPreferenceCache.useDefaultIncludeDir)
 	    fTemplateField.setEnabled(false, getFieldEditorParent());
 
 	getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
 	    public void propertyChange(PropertyChangeEvent event) {
 		if (event.getProperty().equals(PreferenceConstants.P_EMIT_MESSAGES))
-		    JikesPGPreferenceCache.builderEmitMessages= ((Boolean) event.getNewValue()).booleanValue();
+		    LPreferenceCache.builderEmitMessages= ((Boolean) event.getNewValue()).booleanValue();
 		else if (event.getProperty().equals(PreferenceConstants.P_GEN_LISTINGS))
-		    JikesPGPreferenceCache.generateListing= ((Boolean) event.getNewValue()).booleanValue();
+		    LPreferenceCache.generateListing= ((Boolean) event.getNewValue()).booleanValue();
 		else if (event.getProperty().equals(PreferenceConstants.P_JIKESPG_EXEC_PATH))
-		    JikesPGPreferenceCache.jikesPGExecutableFile= (String) event.getNewValue();
+		    LPreferenceCache.jikesPGExecutableFile= (String) event.getNewValue();
 		else if (event.getProperty().equals(PreferenceConstants.P_JIKESPG_INCLUDE_DIRS))
-		    JikesPGPreferenceCache.jikesPGIncludeDirs= (String) event.getNewValue();
+		    LPreferenceCache.jikesPGIncludeDirs= (String) event.getNewValue();
 		else if (event.getProperty().equals(PreferenceConstants.P_USE_DEFAULT_EXEC)) {
-		    JikesPGPreferenceCache.useDefaultExecutable= ((Boolean) event.getNewValue()).booleanValue();
+		    LPreferenceCache.useDefaultExecutable= ((Boolean) event.getNewValue()).booleanValue();
 		    if (event.getNewValue().equals(Boolean.TRUE)) {
 			fExecField.setEnabled(false, getFieldEditorParent());
-			fExecField.setStringValue(JikesPGBuilder.getDefaultExecutablePath());
+			fExecField.setStringValue(LPGBuilder.getDefaultExecutablePath());
 		    } else {
 			fExecField.setEnabled(true, getFieldEditorParent());
 		    }
 		} else if (event.getProperty().equals(PreferenceConstants.P_USE_DEFAULT_INCLUDE_DIR)) {
-		    JikesPGPreferenceCache.useDefaultIncludeDir= ((Boolean) event.getNewValue()).booleanValue();
+		    LPreferenceCache.useDefaultIncludeDir= ((Boolean) event.getNewValue()).booleanValue();
 		    if (event.getNewValue().equals(Boolean.TRUE)) {
 			fTemplateField.setEnabled(false, getFieldEditorParent());
-			fTemplateField.setStringValue(JikesPGBuilder.getDefaultIncludePath());
+			fTemplateField.setStringValue(LPGBuilder.getDefaultIncludePath());
 		    } else {
 			fTemplateField.setEnabled(true, getFieldEditorParent());
 		    }
 		} else if (event.getProperty().equals(PreferenceConstants.P_EXTENSION_LIST)) {
-		    JikesPGPreferenceCache.rootExtensionList= new HashSet();
+		    LPreferenceCache.rootExtensionList= new HashSet();
 		    String[] extens= ((String) event.getNewValue()).split(",");
 		    for(int i= 0; i < extens.length; i++) {
-			JikesPGPreferenceCache.rootExtensionList.add(extens[i]);
+			LPreferenceCache.rootExtensionList.add(extens[i]);
 		    }
 		} else if (event.getProperty().equals(PreferenceConstants.P_NON_ROOT_EXTENSION_LIST)) {
-		    JikesPGPreferenceCache.nonRootExtensionList= new HashSet();
+		    LPreferenceCache.nonRootExtensionList= new HashSet();
 		    String[] extens= ((String) event.getNewValue()).split(",");
 		    for(int i= 0; i < extens.length; i++) {
-			JikesPGPreferenceCache.nonRootExtensionList.add(extens[i]);
+			LPreferenceCache.nonRootExtensionList.add(extens[i]);
 		    }
 		}
 	    }

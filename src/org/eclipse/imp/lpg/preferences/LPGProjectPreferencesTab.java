@@ -1,19 +1,19 @@
-package org.eclipse.safari.jikespg.preferences;
+package org.eclipse.imp.lpg.preferences;
 
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.imp.preferences.ISafariPreferencesService;
+import org.eclipse.imp.preferences.ProjectPreferencesTab;
+import org.eclipse.imp.preferences.SafariPreferencesUtilities;
+import org.eclipse.imp.preferences.fields.SafariBooleanFieldEditor;
+import org.eclipse.imp.preferences.fields.SafariDirectoryListFieldEditor;
+import org.eclipse.imp.preferences.fields.SafariFieldEditor;
+import org.eclipse.imp.preferences.fields.SafariFileFieldEditor;
+import org.eclipse.imp.preferences.fields.SafariStringFieldEditor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Link;
-import org.eclipse.uide.preferences.ISafariPreferencesService;
-import org.eclipse.uide.preferences.ProjectPreferencesTab;
-import org.eclipse.uide.preferences.SafariPreferencesUtilities;
-import org.eclipse.uide.preferences.fields.SafariBooleanFieldEditor;
-import org.eclipse.uide.preferences.fields.SafariDirectoryListFieldEditor;
-import org.eclipse.uide.preferences.fields.SafariFieldEditor;
-import org.eclipse.uide.preferences.fields.SafariFileFieldEditor;
-import org.eclipse.uide.preferences.fields.SafariStringFieldEditor;
 import org.osgi.service.prefs.Preferences;
 
-public class JikesPGProjectPreferencesTab extends ProjectPreferencesTab {
+public class LProjectPreferencesTab extends ProjectPreferencesTab {
 
 	/*
 	 * In contrast to the other tabs, with the project tab the
@@ -31,7 +31,7 @@ public class JikesPGProjectPreferencesTab extends ProjectPreferencesTab {
 
 	
 	
-	public JikesPGProjectPreferencesTab(ISafariPreferencesService prefService) {
+	public LProjectPreferencesTab(ISafariPreferencesService prefService) {
 		super(prefService);
 	}
 

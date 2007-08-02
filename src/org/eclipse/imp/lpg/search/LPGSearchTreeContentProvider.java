@@ -1,4 +1,4 @@
-package org.eclipse.safari.jikespg.search;
+package org.eclipse.imp.lpg.search;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,10 +9,10 @@ import java.util.Set;
 import org.eclipse.jface.viewers.AbstractTreeViewer;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 
-public class JikesPGSearchTreeContentProvider extends JikesPGSearchContentProvider implements ITreeContentProvider {
+public class LSearchTreeContentProvider extends LSearchContentProvider implements ITreeContentProvider {
     private Map fChildrenMap;
 
-    public JikesPGSearchTreeContentProvider(JikesPGSearchResultPage page) {
+    public LSearchTreeContentProvider(LSearchResultPage page) {
         super(page);
     }
 

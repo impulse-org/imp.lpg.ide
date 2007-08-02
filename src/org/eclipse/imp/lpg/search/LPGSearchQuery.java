@@ -1,8 +1,9 @@
-package org.eclipse.safari.jikespg.search;
+package org.eclipse.imp.lpg.search;
 
 import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -13,25 +14,25 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.imp.utils.StreamUtils;
 import org.eclipse.search.ui.ISearchQuery;
 import org.eclipse.search.ui.ISearchResult;
 import org.eclipse.search.ui.text.Match;
-import org.eclipse.uide.utils.StreamUtils;
 
-public class JikesPGSearchQuery implements ISearchQuery {
+public class LSearchQuery implements ISearchQuery {
     private String fEntityRegexp;
 
     private boolean fIsNonTerm;
 
-    private JikesPGSearchResult fResult;
+    private LSearchResult fResult;
 
-    private JikesPGSearchScope fScope;
+    private LSearchScope fScope;
 
-    public JikesPGSearchQuery(String entityRegexp, boolean isNonTerm, JikesPGSearchScope scope) {
+    public LSearchQuery(String entityRegexp, boolean isNonTerm, LSearchScope scope) {
         fEntityRegexp= entityRegexp;
         fIsNonTerm= isNonTerm;
         fScope= scope;
-        fResult= new JikesPGSearchResult(this);
+        fResult= new LSearchResult(this);
     }
 
     public IStatus run(IProgressMonitor monitor) throws OperationCanceledException {
@@ -84,7 +85,7 @@ public class JikesPGSearchQuery implements ISearchQuery {
         return fResult;
     }
 
-    public JikesPGSearchScope getScope() {
+    public LSearchScope getScope() {
         return fScope;
     }
 }

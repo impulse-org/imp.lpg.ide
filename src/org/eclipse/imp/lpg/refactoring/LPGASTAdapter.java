@@ -1,18 +1,19 @@
-package org.eclipse.safari.jikespg.refactoring;
+package org.eclipse.imp.lpg.refactoring;
 
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import org.eclipse.uide.core.ILanguageService;
-import org.eclipse.safari.jikespg.parser.JikesPGParser;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.nonTerm;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.terminal;
-import com.ibm.watson.safari.xform.pattern.matching.MatchResult;
-import com.ibm.watson.safari.xform.pattern.matching.Matcher;
-import com.ibm.watson.safari.xform.pattern.parser.ASTAdapterBase;
 
-public class JikesPGASTAdapter extends ASTAdapterBase implements ILanguageService {
+import org.eclipse.imp.core.ILanguageService;
+import org.eclipse.imp.lpg.parser.LPGParser;
+import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
+import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
+import org.eclipse.imp.lpg.parser.LPGParser.terminal;
+import org.eclipse.imp.xform.pattern.matching.MatchResult;
+import org.eclipse.imp.xform.pattern.matching.Matcher;
+import org.eclipse.imp.xform.pattern.parser.ASTAdapterBase;
+
+public class LPGASTAdapter extends ASTAdapterBase implements ILanguageService {
     @Override
     protected Object getTargetType(Object astNode) {
         // The "targetType" concept probably won't make sense in JikesPG grammars
@@ -47,7 +48,7 @@ public class JikesPGASTAdapter extends ASTAdapterBase implements ILanguageServic
 
         ASTNode root= (ASTNode) astRoot;
 
-        root.accept(new JikesPGParser.AbstractVisitor() {
+        root.accept(new LPGParser.AbstractVisitor() {
             public boolean preVisit(ASTNode n) {
                 MatchResult m= matcher.match(n);
 
@@ -65,7 +66,7 @@ public class JikesPGASTAdapter extends ASTAdapterBase implements ILanguageServic
         final MatchResult[] result= new MatchResult[1];
         ASTNode root= (ASTNode) astRoot;
 
-        root.accept(new JikesPGParser.AbstractVisitor() {
+        root.accept(new LPGParser.AbstractVisitor() {
             public boolean preVisit(ASTNode n) {
                 if (result[0] != null)
                     return false; // already have a match

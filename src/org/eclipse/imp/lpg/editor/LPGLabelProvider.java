@@ -1,7 +1,7 @@
 /*
  * Created on Jul 7, 2006
  */
-package org.eclipse.safari.jikespg.editor;
+package org.eclipse.imp.lpg.editor;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,28 +9,28 @@ import java.util.Set;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.imp.core.ILanguageService;
+import org.eclipse.imp.lpg.ILPGResources;
+import org.eclipse.imp.lpg.LPGRuntimePlugin;
+import org.eclipse.imp.lpg.parser.LPGParser.*;
+import org.eclipse.imp.utils.MarkerUtils;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.uide.core.ILanguageService;
-import org.eclipse.uide.utils.MarkerUtils;
-import org.eclipse.safari.jikespg.IJikesPGResources;
-import org.eclipse.safari.jikespg.JikesPGRuntimePlugin;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
 
-public class JikesPGLabelProvider implements ILabelProvider, ILanguageService {
+public class LPGLabelProvider implements ILabelProvider, ILanguageService {
     private Set fListeners= new HashSet();
 
-    private static ImageRegistry sImageRegistry= JikesPGRuntimePlugin.getInstance().getImageRegistry();
+    private static ImageRegistry sImageRegistry= LPGRuntimePlugin.getInstance().getImageRegistry();
 
-    private static Image DEFAULT_IMAGE= sImageRegistry.get(IJikesPGResources.DEFAULT_AST);
+    private static Image DEFAULT_IMAGE= sImageRegistry.get(ILPGResources.DEFAULT_AST);
 
-    private static Image GRAMMAR_FILE_IMAGE= sImageRegistry.get(IJikesPGResources.GRAMMAR_FILE);
+    private static Image GRAMMAR_FILE_IMAGE= sImageRegistry.get(ILPGResources.GRAMMAR_FILE);
 
-    private static Image GRAMMAR_FILE_ERROR_IMAGE= sImageRegistry.get(IJikesPGResources.GRAMMAR_FILE_ERROR);
+    private static Image GRAMMAR_FILE_ERROR_IMAGE= sImageRegistry.get(ILPGResources.GRAMMAR_FILE_ERROR);
 
-    private static Image GRAMMAR_FILE_WARNING_IMAGE= sImageRegistry.get(IJikesPGResources.GRAMMAR_FILE_WARNING);
+    private static Image GRAMMAR_FILE_WARNING_IMAGE= sImageRegistry.get(ILPGResources.GRAMMAR_FILE_WARNING);
 
     public Image getImage(Object element) {
 	if (element instanceof IFile) {

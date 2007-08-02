@@ -1,20 +1,33 @@
-package org.eclipse.safari.jikespg.compare;
+package org.eclipse.imp.lpg.compare;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.compare.ITypedElement;
 import org.eclipse.compare.structuremergeviewer.DocumentRangeNode;
+import org.eclipse.imp.lpg.ILPGResources;
+import org.eclipse.imp.lpg.LPGRuntimePlugin;
+import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
+import org.eclipse.imp.lpg.parser.LPGParser.AliasSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.DefineSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.GlobalsSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.HeadersSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.ImportSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.IncludeSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.JikesPG;
+import org.eclipse.imp.lpg.parser.LPGParser.RulesSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.TerminalsSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.defineSpec;
+import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
+import org.eclipse.imp.lpg.parser.LPGParser.option_specList;
+import org.eclipse.imp.lpg.parser.LPGParser.terminal;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.safari.jikespg.IJikesPGResources;
-import org.eclipse.safari.jikespg.JikesPGRuntimePlugin;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
 
-public class JikesPGStructureNode extends DocumentRangeNode implements ITypedElement {
+public class LPGStructureNode extends DocumentRangeNode implements ITypedElement {
     public final static int OPTION= 0;
     public final static int BODY= 1;
     public static final int ACTION= 2;
@@ -43,12 +56,12 @@ public class JikesPGStructureNode extends DocumentRangeNode implements ITypedEle
 
     private ASTNode fASTNode;
 
-    public JikesPGStructureNode(ASTNode root, IDocument document, int typeCode, String name) {
+    public LPGStructureNode(ASTNode root, IDocument document, int typeCode, String name) {
         super(typeCode, buildIDFor(typeCode, name), document, offsetOf(root), lengthOf(root, document));
         fASTNode= root;
     }
 
-    public JikesPGStructureNode(ASTNode node, JikesPGStructureNode parent, int typeCode, String name) {
+    public LPGStructureNode(ASTNode node, LPGStructureNode parent, int typeCode, String name) {
 	super(typeCode, buildIDFor(typeCode, name), parent.getDocument(), offsetOf(node), lengthOf(node, parent.getDocument()));
         fASTNode= node;
     }
@@ -125,9 +138,9 @@ public class JikesPGStructureNode extends DocumentRangeNode implements ITypedEle
 class ASTLabelProvider implements ILabelProvider {
     private Set fListeners= new HashSet();
 
-    private static ImageRegistry sImageRegistry= JikesPGRuntimePlugin.getInstance().getImageRegistry();
+    private static ImageRegistry sImageRegistry= LPGRuntimePlugin.getInstance().getImageRegistry();
 
-    private static Image DEFAULT_IMAGE= sImageRegistry.get(IJikesPGResources.DEFAULT_AST);
+    private static Image DEFAULT_IMAGE= sImageRegistry.get(ILPGResources.DEFAULT_AST);
 
     public Image getImage(Object element) {
         ASTNode n= (ASTNode) element;

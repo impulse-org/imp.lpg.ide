@@ -1,7 +1,7 @@
 /*
  * Created on May 15, 2006
  */
-package org.eclipse.safari.jikespg.preferences;
+package org.eclipse.imp.lpg.preferences;
 
 import java.io.File;
 import java.util.Stack;

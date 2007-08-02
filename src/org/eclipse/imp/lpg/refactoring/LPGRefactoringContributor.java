@@ -1,11 +1,11 @@
-package org.eclipse.safari.jikespg.refactoring;
+package org.eclipse.imp.lpg.refactoring;
 
+import org.eclipse.imp.editor.UniversalEditor;
+import org.eclipse.imp.editor.UniversalEditor.IRefactoringContributor;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.uide.editor.UniversalEditor;
-import org.eclipse.uide.editor.UniversalEditor.IRefactoringContributor;
 
-public class JikesPGRefactoringContributor implements IRefactoringContributor {
-    public JikesPGRefactoringContributor() { }
+public class LPGRefactoringContributor implements IRefactoringContributor {
+    public LPGRefactoringContributor() { }
 
     public IAction[] getEditorRefactoringActions(UniversalEditor editor) {
 	return new IAction[] {

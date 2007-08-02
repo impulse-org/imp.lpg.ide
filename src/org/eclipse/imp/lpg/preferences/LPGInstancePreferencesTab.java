@@ -1,20 +1,20 @@
-package org.eclipse.safari.jikespg.preferences;
+package org.eclipse.imp.lpg.preferences;
 
+import org.eclipse.imp.preferences.ISafariPreferencesService;
+import org.eclipse.imp.preferences.InstancePreferencesTab;
+import org.eclipse.imp.preferences.SafariPreferencesUtilities;
+import org.eclipse.imp.preferences.fields.SafariBooleanFieldEditor;
+import org.eclipse.imp.preferences.fields.SafariDirectoryListFieldEditor;
+import org.eclipse.imp.preferences.fields.SafariFieldEditor;
+import org.eclipse.imp.preferences.fields.SafariFileFieldEditor;
+import org.eclipse.imp.preferences.fields.SafariStringFieldEditor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Link;
-import org.eclipse.uide.preferences.ISafariPreferencesService;
-import org.eclipse.uide.preferences.InstancePreferencesTab;
-import org.eclipse.uide.preferences.SafariPreferencesUtilities;
-import org.eclipse.uide.preferences.fields.SafariBooleanFieldEditor;
-import org.eclipse.uide.preferences.fields.SafariDirectoryListFieldEditor;
-import org.eclipse.uide.preferences.fields.SafariFieldEditor;
-import org.eclipse.uide.preferences.fields.SafariFileFieldEditor;
-import org.eclipse.uide.preferences.fields.SafariStringFieldEditor;
 
-public class JikesPGInstancePreferencesTab extends InstancePreferencesTab {
+public class LInstancePreferencesTab extends InstancePreferencesTab {
 
 	
-	public JikesPGInstancePreferencesTab(ISafariPreferencesService prefService) {
+	public LInstancePreferencesTab(ISafariPreferencesService prefService) {
 		super(prefService);
 	}
 

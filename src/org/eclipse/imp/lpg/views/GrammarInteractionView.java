@@ -1,6 +1,5 @@
-package org.eclipse.safari.jikespg.views;
+package org.eclipse.imp.lpg.views;
 
-import org.eclipse.safari.jikespg.actions.ParseNonTerminalAction;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;

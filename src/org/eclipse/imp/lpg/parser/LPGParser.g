@@ -1,11 +1,11 @@
 %options la=6
-%options package=org.eclipse.safari.jikespg.parser
+%options package=org.eclipse.imp.lpg.parser
 %options automatic_ast,ast_type=ASTNode,visitor=preorder,parent_saved
 %options template=uide/btParserTemplate.gi
-%options import_terminals=JikesPGLexer.gi
+%options import_terminals=LPGLexer.gi
 
 $Globals
-    /.import org.eclipse.uide.parser.IParser;
+    /.import org.eclipse.imp.parser.IParser;
         import java.util.ArrayList;
         import java.util.List;
         import java.util.Map;

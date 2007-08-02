@@ -1,16 +1,16 @@
 /*
  * Created on Oct 28, 2005
  */
-package org.eclipse.safari.jikespg.editor;
+package org.eclipse.imp.lpg.editor;
 
+import lpg.runtime.IToken;
+
+import org.eclipse.imp.editor.ITokenColorer;
+import org.eclipse.imp.lpg.parser.LPGLexer;
+import org.eclipse.imp.parser.IParseController;
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.uide.editor.ITokenColorer;
-import org.eclipse.uide.parser.IParseController;
-import org.eclipse.safari.jikespg.parser.JikesPGLexer;
-
-import lpg.runtime.IToken;
 
 public class TokenColorer implements ITokenColorer {
     static TextAttribute COMMENT;
@@ -37,19 +37,19 @@ public class TokenColorer implements ITokenColorer {
     }
 
     public TextAttribute getColoring(IParseController controller, IToken token) {
-	if (token.getKind() == JikesPGLexer.TK_EMPTY_KEY)
+	if (token.getKind() == LPGLexer.TK_EMPTY_KEY)
 	    return EMPTY;
 	if (controller.isKeyword(token.getKind()))
 	    return KEYWORD;
-	if (token.getKind() == JikesPGLexer.TK_SYMBOL) {
+	if (token.getKind() == LPGLexer.TK_SYMBOL) {
 	    char ch= controller.getLexer().getLexStream().getInputChars()[token.getStartOffset()];
 	    if (ch == '\'' || ch == '"')
 		return LITERAL;
 	    return SYMBOL;
 	}
-	if (token.getKind() == JikesPGLexer.TK_SINGLE_LINE_COMMENT)
+	if (token.getKind() == LPGLexer.TK_SINGLE_LINE_COMMENT)
 	    return COMMENT;
-	if (token.getKind() == JikesPGLexer.TK_MACRO_NAME)
+	if (token.getKind() == LPGLexer.TK_MACRO_NAME)
 	    return ANNOTATION;
 
 	return null;

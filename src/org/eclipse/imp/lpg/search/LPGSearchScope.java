@@ -1,7 +1,4 @@
-/**
- * 
- */
-package org.eclipse.safari.jikespg.search;
+package org.eclipse.imp.lpg.search;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,12 +6,12 @@ import java.util.Set;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 
-public class JikesPGSearchScope {
+public class LSearchScope {
     Set fProjects= new HashSet();
 
-    private JikesPGSearchScope() { }
+    private LSearchScope() { }
 
-    private JikesPGSearchScope(IProject p) {
+    private LSearchScope(IProject p) {
         fProjects.add(p);
     }
 
@@ -26,8 +23,8 @@ public class JikesPGSearchScope {
         return fProjects;
     }
 
-    public static JikesPGSearchScope createWorkspaceScope() {
-        JikesPGSearchScope scope= new JikesPGSearchScope();
+    public static LSearchScope createWorkspaceScope() {
+        LSearchScope scope= new LSearchScope();
         IProject[] projects= ResourcesPlugin.getWorkspace().getRoot().getProjects();
 
         for(int i= 0; i < projects.length; i++) {
@@ -36,7 +33,7 @@ public class JikesPGSearchScope {
         return scope;
     }
 
-    public static JikesPGSearchScope createProjectScope(IProject project) {
-        return new JikesPGSearchScope(project);
+    public static LSearchScope createProjectScope(IProject project) {
+        return new LSearchScope(project);
     }
 }

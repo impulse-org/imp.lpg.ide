@@ -1,4 +1,4 @@
-package org.eclipse.safari.jikespg.compare;
+package org.eclipse.imp.lpg.compare;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -18,16 +18,16 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.imp.lpg.parser.LPGLexer;
+import org.eclipse.imp.lpg.parser.LPGParser;
+import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
+import org.eclipse.imp.parser.ILexer;
+import org.eclipse.imp.parser.IParser;
+import org.eclipse.imp.utils.StreamUtils;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.uide.parser.ILexer;
-import org.eclipse.uide.parser.IParser;
-import org.eclipse.uide.utils.StreamUtils;
-import org.eclipse.safari.jikespg.parser.JikesPGLexer;
-import org.eclipse.safari.jikespg.parser.JikesPGParser;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
 
 public class StructureMergeViewerCreator implements IViewerCreator {
     private static class JikesPGStructureCreator implements IStructureCreator {
@@ -71,7 +71,7 @@ public class StructureMergeViewerCreator implements IViewerCreator {
                     }
                 }
 
-                return new JikesPGStructureNode(parseStream(sca, res.getFullPath()), doc, 0, "root");
+                return new LPGStructureNode(parseStream(sca, res.getFullPath()), doc, 0, "root");
             } catch (IOException io) {
             } catch (CoreException ce) {
             }
@@ -93,8 +93,8 @@ public class StructureMergeViewerCreator implements IViewerCreator {
         private ASTNode parseContents(String contents, IPath path) {
             if (contents == null) return null;
             char[] contentsArray= contents.toCharArray();
-            ILexer lexer= new JikesPGLexer();
-            IParser parser= new JikesPGParser(lexer.getLexStream());
+            ILexer lexer= new LPGLexer();
+            IParser parser= new LPGParser(lexer.getLexStream());
 
             lexer.initialize(contentsArray, path.toString());
             parser.getParseStream().resetTokenStream();
@@ -103,22 +103,22 @@ public class StructureMergeViewerCreator implements IViewerCreator {
         }
 
         public IStructureComparator locate(Object path, Object input) {
-            JikesPGStructureNode inputAST= (JikesPGStructureNode) input;
+            LPGStructureNode inputAST= (LPGStructureNode) input;
 
             // TODO Figure out when/why this is called and implement :-)
             return null;
         }
 
         public String getContents(Object node, boolean ignoreWhitespace) {
-            JikesPGStructureNode wrapper= (JikesPGStructureNode) node;
+            LPGStructureNode wrapper= (LPGStructureNode) node;
             ASTNode astNode= wrapper.getASTNode();
 
             return (astNode != null) ? astNode.toString() : "";
         }
 
         public void save(IStructureComparator node, Object input) {
-            if (node instanceof JikesPGStructureNode && input instanceof IEditableContent) {
-                IDocument document= ((JikesPGStructureNode) node).getDocument();
+            if (node instanceof LPGStructureNode && input instanceof IEditableContent) {
+                IDocument document= ((LPGStructureNode) node).getDocument();
                 IEditableContent bca= (IEditableContent) input;
                 String contents= document.get();
                 String encoding= null;

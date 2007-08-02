@@ -1,24 +1,24 @@
-package org.eclipse.safari.jikespg.search;
+package org.eclipse.imp.lpg.search;
 
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-public abstract class JikesPGSearchContentProvider implements IStructuredContentProvider {
+public abstract class LSearchContentProvider implements IStructuredContentProvider {
     protected static final Object[] EMPTY_ARR= new Object[0];
 
-    protected JikesPGSearchResult fResult;
+    protected LSearchResult fResult;
 
-    protected JikesPGSearchResultPage fPage;
+    protected LSearchResultPage fPage;
 
-    public JikesPGSearchContentProvider(JikesPGSearchResultPage page) {
+    public LSearchContentProvider(LSearchResultPage page) {
         fPage= page;
     }
 
     public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-        initialize((JikesPGSearchResult) newInput);
+        initialize((LSearchResult) newInput);
     }
 
-    protected void initialize(JikesPGSearchResult result) {
+    protected void initialize(LSearchResult result) {
         fResult= result;
     }
 
@@ -30,7 +30,7 @@ public abstract class JikesPGSearchContentProvider implements IStructuredContent
         // nothing to do
     }
 
-    protected JikesPGSearchResultPage getPage() {
+    protected LSearchResultPage getPage() {
         return fPage;
     }
 }

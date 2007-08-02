@@ -1,17 +1,17 @@
 %options la=15
 %options single-productions
-%options package=org.eclipse.safari.jikespg.parser
+%options package=org.eclipse.imp.lpg.parser
 %options template=uide/LexerTemplate.gi
-%options filter=JikesPGKWLexer.gi
+%options filter=LPGKWLexer.gi
 
 $Globals
     /.import java.util.*;
-    import org.eclipse.uide.parser.ILexer;./
+    import org.eclipse.imp.parser.ILexer;./
 $End
 
 $Define
     $additional_interfaces /., ILexer./
-    $kw_lexer_class /.$JikesPGKWLexer./
+    $kw_lexer_class /.$LPGKWLexer./
     $_IDENTIFIER /.$_MACRO_NAME./
 $End
 

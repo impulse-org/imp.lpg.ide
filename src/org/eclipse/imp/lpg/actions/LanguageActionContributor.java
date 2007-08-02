@@ -1,13 +1,13 @@
 /*
  * Created on Nov 12, 2006
  */
-package org.eclipse.safari.jikespg.actions;
+package org.eclipse.imp.lpg.actions;
 
 import java.util.ResourceBundle;
 
+import org.eclipse.imp.editor.UniversalEditor;
+import org.eclipse.imp.editor.UniversalEditor.ILanguageActionsContributor;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.uide.editor.UniversalEditor;
-import org.eclipse.uide.editor.UniversalEditor.ILanguageActionsContributor;
 
 public class LanguageActionContributor implements ILanguageActionsContributor {
     public LanguageActionContributor() {

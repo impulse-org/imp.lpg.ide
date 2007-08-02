@@ -1,4 +1,4 @@
-package org.eclipse.safari.jikespg.search;
+package org.eclipse.imp.lpg.search;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -9,8 +9,8 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.search.ui.text.AbstractTextSearchViewPage;
 import org.eclipse.swt.graphics.Image;
 
-public class JikesPGSearchResultPage extends AbstractTextSearchViewPage {
-    private final class JikesPGLabelProvider implements ILabelProvider {
+public class LSearchResultPage extends AbstractTextSearchViewPage {
+    private final class LPGLabelProvider implements ILabelProvider {
         public void addListener(ILabelProviderListener listener) {
         }
 
@@ -34,13 +34,13 @@ public class JikesPGSearchResultPage extends AbstractTextSearchViewPage {
         }
     }
 
-    private JikesPGSearchContentProvider fContentProvider;
+    private LSearchContentProvider fContentProvider;
 
-    public JikesPGSearchResultPage(int supportedLayouts) {
+    public LSearchResultPage(int supportedLayouts) {
         super(supportedLayouts);
     }
 
-    public JikesPGSearchResultPage() {
+    public LSearchResultPage() {
         super();
     }
 
@@ -59,8 +59,8 @@ public class JikesPGSearchResultPage extends AbstractTextSearchViewPage {
         viewer.setUseHashlookup(true);
 //        viewer.setSorter(new DecoratorIgnoringViewerSorter(postfixLabelProvider));
 //        viewer.setLabelProvider(new ColorDecoratingLabelProvider(postfixLabelProvider, PlatformUI.getWorkbench().getDecoratorManager().getLabelDecorator()));
-        viewer.setLabelProvider(new JikesPGLabelProvider());
-        fContentProvider= new JikesPGSearchTreeContentProvider(this);
+        viewer.setLabelProvider(new LPGLabelProvider());
+        fContentProvider= new LSearchTreeContentProvider(this);
         viewer.setContentProvider(fContentProvider);
 //        addDragAdapters(viewer);
     }
@@ -69,8 +69,8 @@ public class JikesPGSearchResultPage extends AbstractTextSearchViewPage {
         viewer.setUseHashlookup(true);
         // SortingLabelProvider sortingLabelProvider= new SortingLabelProvider(this);
         // viewer.setLabelProvider(new ColorDecoratingLabelProvider(sortingLabelProvider, PlatformUI.getWorkbench().getDecoratorManager().getLabelDecorator()));
-        viewer.setLabelProvider(new JikesPGLabelProvider());
-        fContentProvider= new JikesPGSearchTableContentProvider(this);
+        viewer.setLabelProvider(new LPGLabelProvider());
+        fContentProvider= new LSearchTableContentProvider(this);
         viewer.setContentProvider(fContentProvider);
         // viewer.setSorter(new DecoratorIgnoringViewerSorter(sortingLabelProvider));
         // setSortOrder(fCurrentSortOrder);

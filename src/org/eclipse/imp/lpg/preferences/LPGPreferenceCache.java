@@ -1,7 +1,7 @@
 /*
  * Created on Oct 25, 2005
  */
-package org.eclipse.safari.jikespg.preferences;
+package org.eclipse.imp.lpg.preferences;
 
 import java.util.Set;
 
@@ -11,7 +11,7 @@ import java.util.Set;
  * May be removed at some point in lieu of direct access to the preference store.
  * @author rfuhrer
  */
-public class JikesPGPreferenceCache {
+public class LPreferenceCache {
     public static boolean builderEmitMessages;
 
     /**
@@ -57,5 +57,5 @@ public class JikesPGPreferenceCache {
      */
     public static boolean generateListing;
 
-    private JikesPGPreferenceCache() {}
+    private LPreferenceCache() {}
 }

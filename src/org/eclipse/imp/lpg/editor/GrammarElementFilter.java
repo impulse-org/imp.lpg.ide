@@ -1,4 +1,4 @@
-package org.eclipse.safari.jikespg.editor;
+package org.eclipse.imp.lpg.editor;
 
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;

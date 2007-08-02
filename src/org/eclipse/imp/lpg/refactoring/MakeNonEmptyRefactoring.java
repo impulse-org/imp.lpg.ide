@@ -1,9 +1,17 @@
-package org.eclipse.safari.jikespg.refactoring;
+package org.eclipse.imp.lpg.refactoring;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.imp.editor.UniversalEditor;
+import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
+import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
+import org.eclipse.imp.lpg.parser.LPGParser.rule;
+import org.eclipse.imp.lpg.parser.LPGParser.ruleList;
+import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrsList;
+import org.eclipse.imp.parser.IASTNodeLocator;
+import org.eclipse.imp.parser.IParseController;
 import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.Refactoring;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
@@ -13,14 +21,6 @@ import org.eclipse.text.edits.MultiTextEdit;
 import org.eclipse.text.edits.ReplaceEdit;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.uide.editor.UniversalEditor;
-import org.eclipse.uide.parser.IASTNodeLocator;
-import org.eclipse.uide.parser.IParseController;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.nonTerm;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.rule;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.ruleList;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.symWithAttrsList;
 
 public class MakeNonEmptyRefactoring extends Refactoring {
     private final IFile fGrammarFile;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.eclipse.safari.jikespg.search;
+package org.eclipse.imp.lpg.search;
 
 import java.util.Iterator;
 import java.util.Set;
@@ -18,10 +18,10 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 
-class JikesPGSearchResult extends AbstractTextSearchResult implements IFileMatchAdapter, IEditorMatchAdapter {
-    JikesPGSearchQuery fQuery;
+class LSearchResult extends AbstractTextSearchResult implements IFileMatchAdapter, IEditorMatchAdapter {
+    LSearchQuery fQuery;
 
-    public JikesPGSearchResult(JikesPGSearchQuery q) {
+    public LSearchResult(LSearchQuery q) {
         super();
         fQuery= q;
 

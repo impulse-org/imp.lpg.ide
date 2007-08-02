@@ -1,13 +1,13 @@
-package org.eclipse.safari.jikespg.parser;
+package org.eclipse.imp.lpg.parser;
 
 import lpg.runtime.IToken;
 
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
-import org.eclipse.uide.model.ICompilationUnit;
-import org.eclipse.uide.parser.IASTNodeLocator;
+import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
+import org.eclipse.imp.model.ICompilationUnit;
+import org.eclipse.imp.parser.IASTNodeLocator;
 
 public class NodeLocator implements IASTNodeLocator {
     private ASTNode fResult= null;
@@ -34,7 +34,7 @@ public class NodeLocator implements IASTNodeLocator {
         return fResult;
     }
 
-    private class LocatingVisitor extends JikesPGParser.AbstractVisitor {
+    private class LocatingVisitor extends LPGParser.AbstractVisitor {
         private final int fStartOffset;
         private final int fEndOffset;
 

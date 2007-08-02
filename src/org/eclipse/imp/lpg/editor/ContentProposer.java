@@ -1,26 +1,28 @@
 /*
  * Created on Nov 1, 2005
  */
-package org.eclipse.safari.jikespg.editor;
+package org.eclipse.imp.lpg.editor;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+
 import lpg.runtime.IPrsStream;
-import org.eclipse.jface.text.BadLocationException;
-import org.eclipse.jface.text.IDocument;
+
+import org.eclipse.imp.editor.IContentProposer;
+import org.eclipse.imp.editor.SourceProposal;
+import org.eclipse.imp.lpg.parser.ASTUtils;
+import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
+import org.eclipse.imp.lpg.parser.LPGParser.Imacro_name_symbol;
+import org.eclipse.imp.lpg.parser.LPGParser.JikesPG;
+import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
+import org.eclipse.imp.lpg.parser.LPGParser.option;
+import org.eclipse.imp.lpg.parser.LPGParser.terminal;
+import org.eclipse.imp.parser.IASTNodeLocator;
+import org.eclipse.imp.parser.IParseController;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.jface.text.contentassist.IContextInformation;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.Point;
-import org.eclipse.uide.editor.IContentProposer;
-import org.eclipse.uide.editor.SourceProposal;
-import org.eclipse.uide.parser.IASTNodeLocator;
-import org.eclipse.uide.parser.IParseController;
-import org.eclipse.safari.jikespg.parser.ASTUtils;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.*;
 
 public class ContentProposer implements IContentProposer {
 

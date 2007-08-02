@@ -1,64 +1,17 @@
-package org.eclipse.safari.jikespg.editor;
+package org.eclipse.imp.lpg.editor;
 
 import java.util.ArrayList;
 import java.util.Stack;
 
 import lpg.runtime.IToken;
 
-import org.eclipse.safari.jikespg.IJikesPGResources;
-import org.eclipse.safari.jikespg.JikesPGRuntimePlugin;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNode;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.ASTNodeToken;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.AbstractVisitor;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.AliasSeg;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.AstSeg;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.DefineSeg;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.EofSeg;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.ExportSeg;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.GlobalsSeg;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.HeadersSeg;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.IASTNodeToken;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.IdentifierSeg;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.Iname;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.Ioption_value;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.Iproduces;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.Isymbol_list;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.Iterminal_symbol;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.JikesPG;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.KeywordsSeg;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.NoticeSeg;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.RulesSeg;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.SYMBOLList;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.TerminalsSeg;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.TrailersSeg;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.TypesSeg;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.defineSpec;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.import_segment;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.include_segment;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.name0;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.name1;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.name2;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.name3;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.name4;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.name5;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.nonTerm;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.optTerminalAlias;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.option;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.option_specList;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.option_value0;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.option_value1;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.produces0;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.produces1;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.produces2;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.produces3;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.rule;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.start_symbol0;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.start_symbol1;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.symWithAttrs0;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.symWithAttrs1;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.terminal;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.terminal_symbol1;
-import org.eclipse.safari.jikespg.parser.JikesPGParser.type_declarations;
+import org.eclipse.imp.core.ErrorHandler;
+import org.eclipse.imp.defaults.OutlinerBase;
+import org.eclipse.imp.editor.UniversalEditor;
+import org.eclipse.imp.lpg.ILPGResources;
+import org.eclipse.imp.lpg.LPGRuntimePlugin;
+import org.eclipse.imp.lpg.parser.LPGParser.*;
+import org.eclipse.imp.parser.IParseController;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -68,10 +21,6 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.texteditor.AbstractTextEditor;
-import org.eclipse.uide.core.ErrorHandler;
-import org.eclipse.uide.defaults.OutlinerBase;
-import org.eclipse.uide.editor.UniversalEditor;
-import org.eclipse.uide.parser.IParseController;
 
 // SMS 18 Apr 2007
 // Moved under OutlinerBase in a effort to see if we can't
@@ -323,7 +272,7 @@ public class Outliner extends OutlinerBase //DefaultOutliner
 
 
     // FIXME Should dispose() this image at some point, no?
-    private static final Image sTreeItemImage= JikesPGRuntimePlugin.getInstance().getImageRegistry().get(IJikesPGResources.OUTLINE_ITEM);
+    private static final Image sTreeItemImage= LPGRuntimePlugin.getInstance().getImageRegistry().get(ILPGResources.OUTLINE_ITEM);
 
     public String producesImage(Iproduces produces) {
 	if (produces instanceof produces0)
