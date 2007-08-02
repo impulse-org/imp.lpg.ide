@@ -12,9 +12,9 @@ import org.eclipse.imp.preferences.fields.SafariStringFieldEditor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Link;
 
-public class LDefaultPreferencesTab extends DefaultPreferencesTab {
+public class LPGDefaultPreferencesTab extends DefaultPreferencesTab {
 	
-	public LDefaultPreferencesTab(ISafariPreferencesService prefService) {
+	public LPGDefaultPreferencesTab(ISafariPreferencesService prefService) {
 		super(prefService);
 	}
 

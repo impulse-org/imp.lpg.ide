@@ -9,7 +9,7 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.search.ui.text.AbstractTextSearchViewPage;
 import org.eclipse.swt.graphics.Image;
 
-public class LSearchResultPage extends AbstractTextSearchViewPage {
+public class LPGSearchResultPage extends AbstractTextSearchViewPage {
     private final class LPGLabelProvider implements ILabelProvider {
         public void addListener(ILabelProviderListener listener) {
         }
@@ -34,13 +34,13 @@ public class LSearchResultPage extends AbstractTextSearchViewPage {
         }
     }
 
-    private LSearchContentProvider fContentProvider;
+    private LPGSearchContentProvider fContentProvider;
 
-    public LSearchResultPage(int supportedLayouts) {
+    public LPGSearchResultPage(int supportedLayouts) {
         super(supportedLayouts);
     }
 
-    public LSearchResultPage() {
+    public LPGSearchResultPage() {
         super();
     }
 
@@ -60,7 +60,7 @@ public class LSearchResultPage extends AbstractTextSearchViewPage {
 //        viewer.setSorter(new DecoratorIgnoringViewerSorter(postfixLabelProvider));
 //        viewer.setLabelProvider(new ColorDecoratingLabelProvider(postfixLabelProvider, PlatformUI.getWorkbench().getDecoratorManager().getLabelDecorator()));
         viewer.setLabelProvider(new LPGLabelProvider());
-        fContentProvider= new LSearchTreeContentProvider(this);
+        fContentProvider= new LPGSearchTreeContentProvider(this);
         viewer.setContentProvider(fContentProvider);
 //        addDragAdapters(viewer);
     }
@@ -70,7 +70,7 @@ public class LSearchResultPage extends AbstractTextSearchViewPage {
         // SortingLabelProvider sortingLabelProvider= new SortingLabelProvider(this);
         // viewer.setLabelProvider(new ColorDecoratingLabelProvider(sortingLabelProvider, PlatformUI.getWorkbench().getDecoratorManager().getLabelDecorator()));
         viewer.setLabelProvider(new LPGLabelProvider());
-        fContentProvider= new LSearchTableContentProvider(this);
+        fContentProvider= new LPGSearchTableContentProvider(this);
         viewer.setContentProvider(fContentProvider);
         // viewer.setSorter(new DecoratorIgnoringViewerSorter(sortingLabelProvider));
         // setSortOrder(fCurrentSortOrder);

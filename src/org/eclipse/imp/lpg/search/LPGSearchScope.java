@@ -6,12 +6,12 @@ import java.util.Set;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 
-public class LSearchScope {
+public class LPGSearchScope {
     Set fProjects= new HashSet();
 
-    private LSearchScope() { }
+    private LPGSearchScope() { }
 
-    private LSearchScope(IProject p) {
+    private LPGSearchScope(IProject p) {
         fProjects.add(p);
     }
 
@@ -23,8 +23,8 @@ public class LSearchScope {
         return fProjects;
     }
 
-    public static LSearchScope createWorkspaceScope() {
-        LSearchScope scope= new LSearchScope();
+    public static LPGSearchScope createWorkspaceScope() {
+        LPGSearchScope scope= new LPGSearchScope();
         IProject[] projects= ResourcesPlugin.getWorkspace().getRoot().getProjects();
 
         for(int i= 0; i < projects.length; i++) {
@@ -33,7 +33,7 @@ public class LSearchScope {
         return scope;
     }
 
-    public static LSearchScope createProjectScope(IProject project) {
-        return new LSearchScope(project);
+    public static LPGSearchScope createProjectScope(IProject project) {
+        return new LPGSearchScope(project);
     }
 }

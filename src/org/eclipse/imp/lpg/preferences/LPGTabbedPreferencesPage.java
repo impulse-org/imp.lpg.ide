@@ -10,9 +10,9 @@ import org.eclipse.imp.preferences.SafariTabbedPreferencesPage;
 /**
  * The Safari-based tabbed preferences page for LPG	
  */
-public class LTabbedPreferencesPage extends SafariTabbedPreferencesPage {
+public class LPGTabbedPreferencesPage extends SafariTabbedPreferencesPage {
 	
-	public LTabbedPreferencesPage() {
+	public LPGTabbedPreferencesPage() {
 		super();
 		// Get the language-specific preferences service in the
 		// language-specific tab
@@ -25,19 +25,19 @@ public class LTabbedPreferencesPage extends SafariTabbedPreferencesPage {
 	{
 		SafariPreferencesTab[] tabs = new SafariPreferencesTab[4];
 		
-		LProjectPreferencesTab projectTab = new LProjectPreferencesTab(prefService);
+		LPGProjectPreferencesTab projectTab = new LPGProjectPreferencesTab(prefService);
 		projectTab.createProjectPreferencesTab(page, tabFolder);
 		tabs[0] = projectTab;
 
-		LInstancePreferencesTab instanceTab = new LInstancePreferencesTab(prefService);
+		LPGInstancePreferencesTab instanceTab = new LPGInstancePreferencesTab(prefService);
 		instanceTab.createInstancePreferencesTab(page, 	tabFolder);
 		tabs[1] = instanceTab;
 		
-		LConfigurationPreferencesTab configurationTab = new LConfigurationPreferencesTab(prefService);
+		LPGConfigurationPreferencesTab configurationTab = new LPGConfigurationPreferencesTab(prefService);
 		configurationTab.createConfigurationPreferencesTab(page, tabFolder);
 		tabs[2] = configurationTab;
 
-		LDefaultPreferencesTab defaultTab = new LDefaultPreferencesTab(prefService);
+		LPGDefaultPreferencesTab defaultTab = new LPGDefaultPreferencesTab(prefService);
 		defaultTab.createDefaultPreferencesTab(page, tabFolder);
 		tabs[3] = defaultTab;
 		

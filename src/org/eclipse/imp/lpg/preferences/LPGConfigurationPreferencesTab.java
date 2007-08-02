@@ -11,10 +11,10 @@ import org.eclipse.imp.preferences.fields.SafariFieldEditor;
 import org.eclipse.imp.preferences.fields.SafariFileFieldEditor;
 import org.eclipse.imp.preferences.fields.SafariStringFieldEditor;
 
-public class LConfigurationPreferencesTab extends ConfigurationPreferencesTab {
+public class LPGConfigurationPreferencesTab extends ConfigurationPreferencesTab {
 		
 	
-	public LConfigurationPreferencesTab(ISafariPreferencesService prefService) {
+	public LPGConfigurationPreferencesTab(ISafariPreferencesService prefService) {
 		super(prefService);
 	}
 	

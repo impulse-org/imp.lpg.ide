@@ -13,7 +13,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Link;
 import org.osgi.service.prefs.Preferences;
 
-public class LProjectPreferencesTab extends ProjectPreferencesTab {
+public class LPGProjectPreferencesTab extends ProjectPreferencesTab {
 
 	/*
 	 * In contrast to the other tabs, with the project tab the
@@ -31,7 +31,7 @@ public class LProjectPreferencesTab extends ProjectPreferencesTab {
 
 	
 	
-	public LProjectPreferencesTab(ISafariPreferencesService prefService) {
+	public LPGProjectPreferencesTab(ISafariPreferencesService prefService) {
 		super(prefService);
 	}
 

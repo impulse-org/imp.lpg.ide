@@ -23,11 +23,11 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  * belongs to the main plug-in class. That way, preferences can be accessed directly via the
  * preference store.
  */
-public class LPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
+public class LPGPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
     private FileFieldEditor fExecField;
     private DirectoryListFieldEditor fTemplateField;
 
-    public LPreferencePage() {
+    public LPGPreferencePage() {
 	super(GRID);
 	setPreferenceStore(LPGRuntimePlugin.getInstance().getPreferenceStore());
 	setDescription("Preferences for the JikesPG parser/lexer generator");
@@ -44,10 +44,10 @@ public class LPreferencePage extends FieldEditorPreferencePage implements IWorkb
 	    new IPropertyChangeListener() {
 	    	public void propertyChange(PropertyChangeEvent event) {
 	    	    if (event.getNewValue().equals(Boolean.TRUE)) {
-	    		fExecField.setEnabled(false, LPreferencePage.this.getFieldEditorParent());
+	    		fExecField.setEnabled(false, LPGPreferencePage.this.getFieldEditorParent());
 			fExecField.setStringValue(LPGBuilder.getDefaultExecutablePath());
 	    	    } else
-	    		fExecField.setEnabled(true, LPreferencePage.this.getFieldEditorParent());
+	    		fExecField.setEnabled(true, LPGPreferencePage.this.getFieldEditorParent());
 	    	}
 	    });
 
@@ -59,10 +59,10 @@ public class LPreferencePage extends FieldEditorPreferencePage implements IWorkb
 	    new IPropertyChangeListener() {
 	    	public void propertyChange(PropertyChangeEvent event) {
 	    	    if (event.getNewValue().equals(Boolean.TRUE)) {
-	    		fTemplateField.setEnabled(false, LPreferencePage.this.getFieldEditorParent());
+	    		fTemplateField.setEnabled(false, LPGPreferencePage.this.getFieldEditorParent());
 			fTemplateField.setStringValue(LPGBuilder.getDefaultIncludePath());
 	    	    } else
-	    		fTemplateField.setEnabled(true, LPreferencePage.this.getFieldEditorParent());
+	    		fTemplateField.setEnabled(true, LPGPreferencePage.this.getFieldEditorParent());
 	    	}
 	    });
 	fTemplateField= new DirectoryListFieldEditor(PreferenceConstants.P_JIKESPG_INCLUDE_DIRS, "&Include directories:", getFieldEditorParent());
@@ -83,23 +83,23 @@ public class LPreferencePage extends FieldEditorPreferencePage implements IWorkb
 //	addField(new RadioGroupFieldEditor(PreferenceConstants.P_CHOICE, "An example of a multiple-choice preference", 1,
 //		new String[][] { { "&Choice 1", "choice1" }, { "C&hoice 2", "choice2" } }, getFieldEditorParent()));
 
-	if (LPreferenceCache.useDefaultExecutable)
+	if (LPGPreferenceCache.useDefaultExecutable)
 	    fExecField.setEnabled(false, getFieldEditorParent());
-	if (LPreferenceCache.useDefaultIncludeDir)
+	if (LPGPreferenceCache.useDefaultIncludeDir)
 	    fTemplateField.setEnabled(false, getFieldEditorParent());
 
 	getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
 	    public void propertyChange(PropertyChangeEvent event) {
 		if (event.getProperty().equals(PreferenceConstants.P_EMIT_MESSAGES))
-		    LPreferenceCache.builderEmitMessages= ((Boolean) event.getNewValue()).booleanValue();
+		    LPGPreferenceCache.builderEmitMessages= ((Boolean) event.getNewValue()).booleanValue();
 		else if (event.getProperty().equals(PreferenceConstants.P_GEN_LISTINGS))
-		    LPreferenceCache.generateListing= ((Boolean) event.getNewValue()).booleanValue();
+		    LPGPreferenceCache.generateListing= ((Boolean) event.getNewValue()).booleanValue();
 		else if (event.getProperty().equals(PreferenceConstants.P_JIKESPG_EXEC_PATH))
-		    LPreferenceCache.jikesPGExecutableFile= (String) event.getNewValue();
+		    LPGPreferenceCache.jikesPGExecutableFile= (String) event.getNewValue();
 		else if (event.getProperty().equals(PreferenceConstants.P_JIKESPG_INCLUDE_DIRS))
-		    LPreferenceCache.jikesPGIncludeDirs= (String) event.getNewValue();
+		    LPGPreferenceCache.jikesPGIncludeDirs= (String) event.getNewValue();
 		else if (event.getProperty().equals(PreferenceConstants.P_USE_DEFAULT_EXEC)) {
-		    LPreferenceCache.useDefaultExecutable= ((Boolean) event.getNewValue()).booleanValue();
+		    LPGPreferenceCache.useDefaultExecutable= ((Boolean) event.getNewValue()).booleanValue();
 		    if (event.getNewValue().equals(Boolean.TRUE)) {
 			fExecField.setEnabled(false, getFieldEditorParent());
 			fExecField.setStringValue(LPGBuilder.getDefaultExecutablePath());
@@ -107,7 +107,7 @@ public class LPreferencePage extends FieldEditorPreferencePage implements IWorkb
 			fExecField.setEnabled(true, getFieldEditorParent());
 		    }
 		} else if (event.getProperty().equals(PreferenceConstants.P_USE_DEFAULT_INCLUDE_DIR)) {
-		    LPreferenceCache.useDefaultIncludeDir= ((Boolean) event.getNewValue()).booleanValue();
+		    LPGPreferenceCache.useDefaultIncludeDir= ((Boolean) event.getNewValue()).booleanValue();
 		    if (event.getNewValue().equals(Boolean.TRUE)) {
 			fTemplateField.setEnabled(false, getFieldEditorParent());
 			fTemplateField.setStringValue(LPGBuilder.getDefaultIncludePath());
@@ -115,16 +115,16 @@ public class LPreferencePage extends FieldEditorPreferencePage implements IWorkb
 			fTemplateField.setEnabled(true, getFieldEditorParent());
 		    }
 		} else if (event.getProperty().equals(PreferenceConstants.P_EXTENSION_LIST)) {
-		    LPreferenceCache.rootExtensionList= new HashSet();
+		    LPGPreferenceCache.rootExtensionList= new HashSet();
 		    String[] extens= ((String) event.getNewValue()).split(",");
 		    for(int i= 0; i < extens.length; i++) {
-			LPreferenceCache.rootExtensionList.add(extens[i]);
+			LPGPreferenceCache.rootExtensionList.add(extens[i]);
 		    }
 		} else if (event.getProperty().equals(PreferenceConstants.P_NON_ROOT_EXTENSION_LIST)) {
-		    LPreferenceCache.nonRootExtensionList= new HashSet();
+		    LPGPreferenceCache.nonRootExtensionList= new HashSet();
 		    String[] extens= ((String) event.getNewValue()).split(",");
 		    for(int i= 0; i < extens.length; i++) {
-			LPreferenceCache.nonRootExtensionList.add(extens[i]);
+			LPGPreferenceCache.nonRootExtensionList.add(extens[i]);
 		    }
 		}
 	    }

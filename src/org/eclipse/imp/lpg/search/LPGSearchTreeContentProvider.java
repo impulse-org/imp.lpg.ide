@@ -9,10 +9,10 @@ import java.util.Set;
 import org.eclipse.jface.viewers.AbstractTreeViewer;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 
-public class LSearchTreeContentProvider extends LSearchContentProvider implements ITreeContentProvider {
+public class LPGSearchTreeContentProvider extends LPGSearchContentProvider implements ITreeContentProvider {
     private Map fChildrenMap;
 
-    public LSearchTreeContentProvider(LSearchResultPage page) {
+    public LPGSearchTreeContentProvider(LPGSearchResultPage page) {
         super(page);
     }
 

@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Widget;
 
-public class LSearchPage extends DialogPage implements ISearchPage {
+public class LPGSearchPage extends DialogPage implements ISearchPage {
     private class TypeSelectionListener implements SelectionListener {
         public void widgetSelected(SelectionEvent e) {
             Widget w= (Widget) e.getSource();
@@ -38,24 +38,24 @@ public class LSearchPage extends DialogPage implements ISearchPage {
     private Button fNonTermTypeButton;
     private Button fTermTypeButton;
 
-    public LSearchPage() {
+    public LPGSearchPage() {
         super("JikesPG Search", null);
     }
 
-    public LSearchPage(String title) {
+    public LPGSearchPage(String title) {
         this(title, null);
     }
 
-    public LSearchPage(String title, ImageDescriptor image) {
+    public LPGSearchPage(String title, ImageDescriptor image) {
         super(title, image);
     }
 
     public boolean performAction() {
         IProject project= ResourcesPlugin.getWorkspace().getRoot().getProject("JikesPGTest");
         boolean isWorkspaceScope= fContainer.getSelectedScope() == ISearchPageContainer.WORKSPACE_SCOPE;
-        LSearchScope scope= isWorkspaceScope ? LSearchScope.createWorkspaceScope() :
-            LSearchScope.createProjectScope(project);
-        LSearchQuery query= new LSearchQuery(fEntityName.getText(), fNonTerm, scope);
+        LPGSearchScope scope= isWorkspaceScope ? LPGSearchScope.createWorkspaceScope() :
+            LPGSearchScope.createProjectScope(project);
+        LPGSearchQuery query= new LPGSearchQuery(fEntityName.getText(), fNonTerm, scope);
 
         NewSearchUI.activateSearchResultView();
         NewSearchUI.runQueryInBackground(query);

@@ -18,10 +18,10 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 
-class LSearchResult extends AbstractTextSearchResult implements IFileMatchAdapter, IEditorMatchAdapter {
-    LSearchQuery fQuery;
+class LPGSearchResult extends AbstractTextSearchResult implements IFileMatchAdapter, IEditorMatchAdapter {
+    LPGSearchQuery fQuery;
 
-    public LSearchResult(LSearchQuery q) {
+    public LPGSearchResult(LPGSearchQuery q) {
         super();
         fQuery= q;
 

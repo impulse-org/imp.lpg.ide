@@ -5,15 +5,15 @@ import java.util.Set;
 
 import org.eclipse.jface.viewers.TableViewer;
 
-public class LSearchTableContentProvider extends LSearchContentProvider {
-    public LSearchTableContentProvider(LSearchResultPage page) {
+public class LPGSearchTableContentProvider extends LPGSearchContentProvider {
+    public LPGSearchTableContentProvider(LPGSearchResultPage page) {
         super(page);
     }
 
     public Object[] getElements(Object inputElement) {
-        if (inputElement instanceof LSearchResult) {
+        if (inputElement instanceof LPGSearchResult) {
             Set filteredElements= new HashSet();
-            Object[] rawElements= ((LSearchResult) inputElement).getElements();
+            Object[] rawElements= ((LPGSearchResult) inputElement).getElements();
 
             for(int i= 0; i < rawElements.length; i++) {
                 // if (getPage().getDisplayedMatchCount(rawElements[i]) > 0)

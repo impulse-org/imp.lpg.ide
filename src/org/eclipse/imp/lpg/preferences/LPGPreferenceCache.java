@@ -11,7 +11,7 @@ import java.util.Set;
  * May be removed at some point in lieu of direct access to the preference store.
  * @author rfuhrer
  */
-public class LPreferenceCache {
+public class LPGPreferenceCache {
     public static boolean builderEmitMessages;
 
     /**
@@ -57,5 +57,5 @@ public class LPreferenceCache {
      */
     public static boolean generateListing;
 
-    private LPreferenceCache() {}
+    private LPGPreferenceCache() {}
 }

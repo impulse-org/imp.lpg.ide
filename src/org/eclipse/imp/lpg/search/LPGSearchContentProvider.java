@@ -3,22 +3,22 @@ package org.eclipse.imp.lpg.search;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-public abstract class LSearchContentProvider implements IStructuredContentProvider {
+public abstract class LPGSearchContentProvider implements IStructuredContentProvider {
     protected static final Object[] EMPTY_ARR= new Object[0];
 
-    protected LSearchResult fResult;
+    protected LPGSearchResult fResult;
 
-    protected LSearchResultPage fPage;
+    protected LPGSearchResultPage fPage;
 
-    public LSearchContentProvider(LSearchResultPage page) {
+    public LPGSearchContentProvider(LPGSearchResultPage page) {
         fPage= page;
     }
 
     public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-        initialize((LSearchResult) newInput);
+        initialize((LPGSearchResult) newInput);
     }
 
-    protected void initialize(LSearchResult result) {
+    protected void initialize(LPGSearchResult result) {
         fResult= result;
     }
 
@@ -30,7 +30,7 @@ public abstract class LSearchContentProvider implements IStructuredContentProvid
         // nothing to do
     }
 
-    protected LSearchResultPage getPage() {
+    protected LPGSearchResultPage getPage() {
         return fPage;
     }
 }

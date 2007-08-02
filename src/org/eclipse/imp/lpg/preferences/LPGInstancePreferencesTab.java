@@ -11,10 +11,10 @@ import org.eclipse.imp.preferences.fields.SafariStringFieldEditor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Link;
 
-public class LInstancePreferencesTab extends InstancePreferencesTab {
+public class LPGInstancePreferencesTab extends InstancePreferencesTab {
 
 	
-	public LInstancePreferencesTab(ISafariPreferencesService prefService) {
+	public LPGInstancePreferencesTab(ISafariPreferencesService prefService) {
 		super(prefService);
 	}
 

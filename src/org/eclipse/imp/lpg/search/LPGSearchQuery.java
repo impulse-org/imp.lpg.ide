@@ -19,20 +19,20 @@ import org.eclipse.search.ui.ISearchQuery;
 import org.eclipse.search.ui.ISearchResult;
 import org.eclipse.search.ui.text.Match;
 
-public class LSearchQuery implements ISearchQuery {
+public class LPGSearchQuery implements ISearchQuery {
     private String fEntityRegexp;
 
     private boolean fIsNonTerm;
 
-    private LSearchResult fResult;
+    private LPGSearchResult fResult;
 
-    private LSearchScope fScope;
+    private LPGSearchScope fScope;
 
-    public LSearchQuery(String entityRegexp, boolean isNonTerm, LSearchScope scope) {
+    public LPGSearchQuery(String entityRegexp, boolean isNonTerm, LPGSearchScope scope) {
         fEntityRegexp= entityRegexp;
         fIsNonTerm= isNonTerm;
         fScope= scope;
-        fResult= new LSearchResult(this);
+        fResult= new LPGSearchResult(this);
     }
 
     public IStatus run(IProgressMonitor monitor) throws OperationCanceledException {
@@ -85,7 +85,7 @@ public class LSearchQuery implements ISearchQuery {
         return fResult;
     }
 
-    public LSearchScope getScope() {
+    public LPGSearchScope getScope() {
         return fScope;
     }
 }
