@@ -166,7 +166,7 @@
             enabled="true"
             extensions="g:100"
             icon="icons/sample.gif"
-            id="org.eclipse.imp.lpg.uide.searchPage"
+            id="org.eclipse.imp.lpg.searchPage"
             label="LPG Search"
             showScopeSection="true"/>
    </extension>
