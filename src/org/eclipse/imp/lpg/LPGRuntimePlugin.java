@@ -26,7 +26,7 @@ import org.osgi.framework.BundleContext;
  * The main plugin class to be used in the desktop.
  */
 public class LPGRuntimePlugin extends SAFARIPluginBase {
-    public static final String kPluginID= "org.eclipse.safari.jikespg.runtime";
+    public static final String kPluginID= "org.eclipse.imp.lpg.runtime";
 
     /**
      * The unique instance of this plugin class
