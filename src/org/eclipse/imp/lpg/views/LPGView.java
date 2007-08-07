@@ -58,7 +58,7 @@ public class LPGView extends ViewPart {
 //	    return;
 //	IWorkbenchPage page= win.getActivePage();
 //	try {
-//	    page.showView("org.jikespg.uide.views.JikesPGView");
+//	    page.showView("org.eclipse.imp.lpg.runtime.views.LPGView");
 //	} catch (Exception e) {
 //	}
 //	try {

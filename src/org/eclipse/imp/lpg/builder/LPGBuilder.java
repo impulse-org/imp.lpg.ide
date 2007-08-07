@@ -39,10 +39,10 @@ import org.osgi.framework.Bundle;
  */
 public class LPGBuilder extends SAFARIBuilderBase {
     /**
-     * Extension ID of the JikesPG builder. Must match the ID in the corresponding
+     * Extension ID of the LPG builder. Must match the ID in the corresponding
      * extension definition in plugin.xml.
      */
-    public static final String BUILDER_ID= LPGRuntimePlugin.kPluginID + ".jikesPGBuilder";
+    public static final String BUILDER_ID= LPGRuntimePlugin.kPluginID + ".LPGBuilder";
 
     public static final String PROBLEM_MARKER_ID= LPGRuntimePlugin.kPluginID + ".problem";
 
@@ -88,7 +88,7 @@ public class LPGBuilder extends SAFARIBuilderBase {
 
     protected boolean isSourceFile(IFile file) {
     	// SMS 8 Sep 2006
-    	//return !file.isDerived() && JikesPGPreferenceCache.rootExtensionList.contains(file.getFileExtension());
+    	//return !file.isDerived() && LPGPreferenceCache.rootExtensionList.contains(file.getFileExtension());
 
 	    String extensListed = prefService.getStringPreference(getProject(), PreferenceConstants.P_EXTENSION_LIST);
 	    String[] extens = extensListed.split(",");
@@ -99,7 +99,7 @@ public class LPGBuilder extends SAFARIBuilderBase {
 
     protected boolean isNonRootSourceFile(IFile file) {
     	// SMS 8 Sep 2006
-        //return !file.isDerived() && JikesPGPreferenceCache.nonRootExtensionList.contains(file.getFileExtension());
+        //return !file.isDerived() && LPGPreferenceCache.nonRootExtensionList.contains(file.getFileExtension());
  	    String extensListed = prefService.getStringPreference(getProject(), PreferenceConstants.P_NON_ROOT_EXTENSION_LIST);
 	    String[] extens = extensListed.split(",");
 	    HashSet nonrootExtensionsSet = new HashSet();
@@ -126,12 +126,12 @@ public class LPGBuilder extends SAFARIBuilderBase {
 		    executablePath,
 		    "-quiet",
 		    // SMS 8 Sep 2006
-		    //(JikesPGPreferenceCache.generateListing ? "-list" : "-nolist"),
+		    //(LPGPreferenceCache.generateListing ? "-list" : "-nolist"),
 		    (prefService.getBooleanPreference(getProject(), PreferenceConstants.P_GEN_LISTINGS) ? "-list" : "-nolist"),
 		    // In order for Windows to treat the following template path argument as
 		    // a single argument, despite any embedded spaces, it has to be completely
 		    // enclosed in double quotes. It does not suffice to quote only the path
-		    // part. However, for jikespg to treat the path properly, the path itself
+		    // part. However, for lpg to treat the path properly, the path itself
 		    // must also be quoted, since the outer quotes will be stripped by the
 		    // Windows shell (command/cmd.exe). As an added twist, if we used the same
 		    // kind of quote for both the inner and outer quoting, and the outer quotes
@@ -141,7 +141,7 @@ public class LPGBuilder extends SAFARIBuilderBase {
 		    // TODO RMF 7/21/05 -- Don't specify -dat-directory; causes performance issues with Eclipse.
 		    // Lexer tables can get quite large, so large that Java as spec'ed can't swallow them
 		    // when translated to a switch statement, or even an array initializer. As a result,
-		    // JikesPG supports the "-dat-directory" option to spill the tables into external data
+		    // LPG supports the "-dat-directory" option to spill the tables into external data
 		    // files loaded by the lexer at runtime. HOWEVER, loading these external data tables is
 		    // very slow when performed using the standard Eclipse/plugin classloader.
 		    // So: don't enable it by default.
@@ -150,8 +150,8 @@ public class LPGBuilder extends SAFARIBuilderBase {
 	    Process process= Runtime.getRuntime().exec(cmd, new String[0], parentDir);
 	    LPGView consoleView= LPGView.getDefault();
 
-	    processJikesPGOutput(file, process, consoleView);
-	    processJikesPGErrors(file, process, consoleView);
+	    processLPGOutput(file, process, consoleView);
+	    processLPGErrors(file, process, consoleView);
 	    doRefresh(file);
 	    collectDependencies(file);
 	    LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Generator exit code == " + process.waitFor());
@@ -197,14 +197,14 @@ public class LPGBuilder extends SAFARIBuilderBase {
                 return false;
             }
             /* (non-Javadoc)
-             * @see org.jikespg.uide.parser.JikesPGParser.AbstractVisitor#visit(org.jikespg.uide.parser.JikesPGParser.ImportSeg)
+             * @see org.lpg.uide.parser.LPGParser.AbstractVisitor#visit(org.lpg.uide.parser.LPGParser.ImportSeg)
              */
             public boolean visit(import_segment n) {
                 fDependencyInfo.addDependency(filePath, n.getSYMBOL().toString());
                 return false;
             }
             /* (non-Javadoc)
-             * @see org.jikespg.uide.parser.JikesPGParser.AbstractVisitor#visit(org.jikespg.uide.parser.JikesPGParser.include_segment1)
+             * @see org.eclipse.imp.lpg.runtime.parser.LPGParser.AbstractVisitor#visit(org.eclipse.imp.lpg.runtime.parser.LPGParser.include_segment1)
              */
             public boolean visit(include_segment n) {
                 fDependencyInfo.addDependency(filePath, n.getSYMBOL().toString());
@@ -213,7 +213,7 @@ public class LPGBuilder extends SAFARIBuilderBase {
         });
     }
 
-    private void processJikesPGErrors(IResource resource, Process process, LPGView view) throws IOException {
+    private void processLPGErrors(IResource resource, Process process, LPGView view) throws IOException {
 	InputStream is= process.getErrorStream();
 	BufferedReader in2= new BufferedReader(new InputStreamReader(is));
 
@@ -235,7 +235,7 @@ public class LPGBuilder extends SAFARIBuilderBase {
     final String lineSep= System.getProperty("line.separator");
     final int lineSepBias= lineSep.length() - 1;
 
-    private void processJikesPGOutput(final IResource resource, Process process, LPGView view) throws IOException {
+    private void processLPGOutput(final IResource resource, Process process, LPGView view) throws IOException {
 	InputStream is= process.getInputStream();
 	BufferedReader in= new BufferedReader(new InputStreamReader(is));
 	String line= null;
@@ -338,9 +338,9 @@ public class LPGBuilder extends SAFARIBuilderBase {
 
     public static String getIncludePath() {
     	// SMS 8 Sep 2006
-		//	if (JikesPGPreferenceCache.jikesPGIncludeDirs != null &&
-		//	    JikesPGPreferenceCache.jikesPGIncludeDirs.length() > 0)
-		//	    return JikesPGPreferenceCache.jikesPGIncludeDirs;
+		//	if (LPGPreferenceCache.LPGIncludeDirs != null &&
+		//	    LPGPreferenceCache.LPGIncludeDirs.length() > 0)
+		//	    return LPGPreferenceCache.LPGIncludeDirs;
 
 	return getDefaultIncludePath();
     }
@@ -363,7 +363,7 @@ public class LPGBuilder extends SAFARIBuilderBase {
 
     private String getLPGExecutable() throws IOException {
     	// SMS 8 Sep 2006
-    	//return JikesPGPreferenceCache.jikesPGExecutableFile;
+    	//return LPGPreferenceCache.LPGExecutableFile;
     	return prefService.getStringPreference(getProject(), PreferenceConstants.P_JIKESPG_EXEC_PATH);
     }
 
@@ -376,29 +376,29 @@ public class LPGBuilder extends SAFARIBuilderBase {
 	URL execURL= Platform.find(bundle, path);
 
 	if (execURL == null) {
-	    String errMsg= "Unable to find JikesPG executable at " + path + " in bundle " + bundle.getSymbolicName();
+	    String errMsg= "Unable to find LPG executable at " + path + " in bundle " + bundle.getSymbolicName();
 
 	    LPGRuntimePlugin.getInstance().writeErrorMsg(errMsg);
 	    throw new IllegalArgumentException(errMsg);
 	} else {
-	    // N.B.: The jikespg executable will normally be inside a jar file,
+	    // N.B.: The lpg executable will normally be inside a jar file,
 	    //       so use asLocalURL() to extract to a local file if needed.
 	    URL url;
 
 	    try {
 		url= Platform.asLocalURL(execURL);
 	    } catch (IOException e) {
-		LPGRuntimePlugin.getInstance().writeErrorMsg("Unable to locate default JikesPG executable." + e.getMessage());
+		LPGRuntimePlugin.getInstance().writeErrorMsg("Unable to locate default LPG executable." + e.getMessage());
 		return "???";
 	    }
 
-	    String jikesPGExecPath= url.getFile();
+	    String LPGExecPath= url.getFile();
 
 	    if (os.equals("win32")) // remove leading slash from URL that shows up on Win32(?)
-		jikesPGExecPath= jikesPGExecPath.substring(1);
+		LPGExecPath= LPGExecPath.substring(1);
 
-	    LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("JikesPG executable apparently at '" + jikesPGExecPath + "'.");
-	    return jikesPGExecPath;
+	    LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("LPG executable apparently at '" + LPGExecPath + "'.");
+	    return LPGExecPath;
 	}
     }
 }

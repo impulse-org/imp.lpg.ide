@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.imp.lpg.LPGRuntimePlugin;
 import org.eclipse.imp.utils.StreamUtils;
 import org.eclipse.search.ui.ISearchQuery;
 import org.eclipse.search.ui.ISearchResult;
@@ -66,7 +67,7 @@ public class LPGSearchQuery implements ISearchQuery {
                 e.printStackTrace();
             }
         }
-        return new Status(IStatus.OK, "org.jikespg.uide", 0, "Search complete", null);
+        return new Status(IStatus.OK, LPGRuntimePlugin.kPluginID, 0, "Search complete", null);
     }
 
     public String getLabel() {

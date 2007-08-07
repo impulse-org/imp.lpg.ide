@@ -62,9 +62,9 @@ public class GrammarInteractionView extends ViewPart {
 	    return;
 	IWorkbenchPage page= win.getActivePage();
 	try {
-	    page.showView("org.jikespg.uide.views.GrammarInteractionView");
+	    page.showView("org.eclipse.imp.lpg.runtime.views.GrammarInteractionView");
 	} catch (Exception e) {
-	}
+    }
     }
 
     public static void println(final String line) {

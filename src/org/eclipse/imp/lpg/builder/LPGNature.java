@@ -11,7 +11,7 @@ import org.eclipse.imp.runtime.IPluginLog;
 import com.ibm.watson.smapifier.builder.SmapiProjectNature;
 
 public class LPGNature extends ProjectNatureBase {
-    public static final String	k_natureID = LPGRuntimePlugin.kPluginID + ".jikesPGNature";
+    public static final String	k_natureID = LPGRuntimePlugin.kPluginID + ".LPGNature";
 
     public String getNatureID() {
 	return k_natureID;
