@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="org.jikespg.uide" default="build.update.jar" basedir=".">
-	<import file="../org.eclipse.safari.runtime.feature/buildCommon.xml"/>
-	<import file="../org.eclipse.safari.update/buildPluginCommon.xml"/>
+<project name="org.eclipse.imp.lpg.runtime" default="build.update.jar" basedir=".">
+	<import file="../org.eclipse.imp.runtime.feature/buildCommon.xml"/>
+	<import file="../org.eclipse.imp.update/buildPluginCommon.xml"/>
 
 	<target name="init" depends="properties">
 		<property name="plugin.name" value="org.eclipse.safari.jikespg.runtime"/>
