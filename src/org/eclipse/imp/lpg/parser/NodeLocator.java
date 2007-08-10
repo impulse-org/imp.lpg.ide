@@ -92,7 +92,7 @@ public class NodeLocator implements IASTNodeLocator {
     
     public int getLength(Object  node) {
     	ASTNode n = (ASTNode) node;
-    	return getEndOffset(n) - getStartOffset(n);
+    	return getEndOffset(n) - getStartOffset(n) + 1;
     }
 
     public IPath getPath(Object node) {
