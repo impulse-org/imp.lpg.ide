@@ -17,7 +17,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.imp.builder.SAFARIBuilderBase;
+import org.eclipse.imp.builder.BuilderBase;
 import org.eclipse.imp.lpg.LPGRuntimePlugin;
 import org.eclipse.imp.lpg.parser.LPGLexer;
 import org.eclipse.imp.lpg.parser.LPGParser;
@@ -29,7 +29,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.option_value0;
 import org.eclipse.imp.lpg.preferences.PreferenceConstants;
 import org.eclipse.imp.lpg.views.LPGView;
 import org.eclipse.imp.preferences.ISafariPreferencesService;
-import org.eclipse.imp.runtime.SAFARIPluginBase;
+import org.eclipse.imp.runtime.PluginBase;
 import org.eclipse.imp.utils.StreamUtils;
 import org.osgi.framework.Bundle;
 
@@ -37,7 +37,7 @@ import org.osgi.framework.Bundle;
  * @author rfuhrer@watson.ibm.com
  * @author CLaffra
  */
-public class LPGBuilder extends SAFARIBuilderBase {
+public class LPGBuilder extends BuilderBase {
     /**
      * Extension ID of the LPG builder. Must match the ID in the corresponding
      * extension definition in plugin.xml.
@@ -70,7 +70,7 @@ public class LPGBuilder extends SAFARIBuilderBase {
     	prefService.setProject(getProject());
     }
 	
-    protected SAFARIPluginBase getPlugin() {
+    protected PluginBase getPlugin() {
 	return LPGRuntimePlugin.getInstance();
     }
 

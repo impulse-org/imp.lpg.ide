@@ -14,7 +14,7 @@ import org.eclipse.imp.model.ISourceProject;
 import org.eclipse.imp.model.ModelFactory;
 import org.eclipse.imp.model.ModelFactory.IFactoryExtender;
 import org.eclipse.imp.preferences.SafariPreferencesService;
-import org.eclipse.imp.runtime.SAFARIPluginBase;
+import org.eclipse.imp.runtime.PluginBase;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
@@ -24,7 +24,7 @@ import org.osgi.framework.BundleContext;
 /**
  * The main plugin class to be used in the desktop.
  */
-public class LPGRuntimePlugin extends SAFARIPluginBase {
+public class LPGRuntimePlugin extends PluginBase {
     public static final String kPluginID= "org.eclipse.imp.lpg.runtime";
 
     /**
