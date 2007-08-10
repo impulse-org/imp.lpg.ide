@@ -219,4 +219,10 @@
              language="LPG"
              class="org.eclipse.imp.lpg.editor.DocumentationProvider"/>
    </extension>
+   <extension
+         point="org.eclipse.imp.runtime.markOccurrences">
+         <occurrenceMarker
+             language="LPG"
+             class="org.eclipse.imp.lpg.editor.LPGOccurrenceMarker"/>
+   </extension>
 </plugin>
