@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.imp.core.ILanguageService;
+import org.eclipse.imp.language.ILanguageService;
 import org.eclipse.imp.lpg.parser.LPGParser;
 import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
 import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;

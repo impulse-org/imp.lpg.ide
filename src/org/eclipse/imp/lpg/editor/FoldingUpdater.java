@@ -7,9 +7,9 @@ import java.util.List;
 import lpg.runtime.ILexStream;
 
 import org.eclipse.imp.core.ErrorHandler;
-import org.eclipse.imp.editor.IFoldingUpdater;
 import org.eclipse.imp.lpg.parser.LPGParser.*;
 import org.eclipse.imp.parser.IParseController;
+import org.eclipse.imp.services.IFoldingUpdater;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.projection.ProjectionAnnotation;

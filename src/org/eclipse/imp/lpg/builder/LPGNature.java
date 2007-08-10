@@ -4,7 +4,7 @@
 package org.eclipse.imp.lpg.builder;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.imp.core.ProjectNatureBase;
+import org.eclipse.imp.builder.ProjectNatureBase;
 import org.eclipse.imp.lpg.LPGRuntimePlugin;
 import org.eclipse.imp.runtime.IPluginLog;
 

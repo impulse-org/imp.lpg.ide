@@ -17,7 +17,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.imp.core.SAFARIBuilderBase;
+import org.eclipse.imp.builder.SAFARIBuilderBase;
 import org.eclipse.imp.lpg.LPGRuntimePlugin;
 import org.eclipse.imp.lpg.parser.LPGLexer;
 import org.eclipse.imp.lpg.parser.LPGParser;

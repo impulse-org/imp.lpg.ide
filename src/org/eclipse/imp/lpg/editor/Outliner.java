@@ -6,12 +6,12 @@ import java.util.Stack;
 import lpg.runtime.IToken;
 
 import org.eclipse.imp.core.ErrorHandler;
-import org.eclipse.imp.defaults.OutlinerBase;
 import org.eclipse.imp.editor.UniversalEditor;
 import org.eclipse.imp.lpg.ILPGResources;
 import org.eclipse.imp.lpg.LPGRuntimePlugin;
 import org.eclipse.imp.lpg.parser.LPGParser.*;
 import org.eclipse.imp.parser.IParseController;
+import org.eclipse.imp.services.base.OutlinerBase;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;

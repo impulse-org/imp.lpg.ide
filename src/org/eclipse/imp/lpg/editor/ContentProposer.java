@@ -10,7 +10,6 @@ import java.util.List;
 
 import lpg.runtime.IPrsStream;
 
-import org.eclipse.imp.editor.IContentProposer;
 import org.eclipse.imp.editor.SourceProposal;
 import org.eclipse.imp.lpg.parser.ASTUtils;
 import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
@@ -21,6 +20,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.option;
 import org.eclipse.imp.lpg.parser.LPGParser.terminal;
 import org.eclipse.imp.parser.IASTNodeLocator;
 import org.eclipse.imp.parser.IParseController;
+import org.eclipse.imp.services.IContentProposer;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 

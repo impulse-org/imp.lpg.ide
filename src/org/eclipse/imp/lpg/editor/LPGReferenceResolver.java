@@ -1,12 +1,12 @@
 package org.eclipse.imp.lpg.editor;
 
-import org.eclipse.imp.core.ILanguageService;
-import org.eclipse.imp.editor.IReferenceResolver;
+import org.eclipse.imp.language.ILanguageService;
 import org.eclipse.imp.lpg.parser.ASTUtils;
 import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
 import org.eclipse.imp.lpg.parser.LPGParser.IASTNodeToken;
 import org.eclipse.imp.lpg.parser.LPGParser.JikesPG;
 import org.eclipse.imp.parser.IParseController;
+import org.eclipse.imp.services.IReferenceResolver;
 
 public class LPGReferenceResolver implements IReferenceResolver, ILanguageService {
     public LPGReferenceResolver() {

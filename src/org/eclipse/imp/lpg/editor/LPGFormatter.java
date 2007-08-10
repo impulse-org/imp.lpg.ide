@@ -11,11 +11,11 @@ import java.util.Set;
 
 import lpg.runtime.IToken;
 
-import org.eclipse.imp.core.ILanguageService;
-import org.eclipse.imp.editor.ISourceFormatter;
+import org.eclipse.imp.language.ILanguageService;
 import org.eclipse.imp.lpg.parser.LPGParser;
 import org.eclipse.imp.lpg.parser.LPGParser.*;
 import org.eclipse.imp.parser.IParseController;
+import org.eclipse.imp.services.ISourceFormatter;
 
 public class LPGFormatter implements ILanguageService, ISourceFormatter {
     private int fIndentSize= 6;

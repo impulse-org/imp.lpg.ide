@@ -9,7 +9,7 @@ import java.util.Set;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.imp.core.ILanguageService;
+import org.eclipse.imp.language.ILanguageService;
 import org.eclipse.imp.lpg.ILPGResources;
 import org.eclipse.imp.lpg.LPGRuntimePlugin;
 import org.eclipse.imp.lpg.parser.LPGParser.*;
