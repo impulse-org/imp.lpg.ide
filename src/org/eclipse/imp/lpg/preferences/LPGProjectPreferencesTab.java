@@ -1,14 +1,14 @@
 package org.eclipse.imp.lpg.preferences;
 
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
-import org.eclipse.imp.preferences.ISafariPreferencesService;
+import org.eclipse.imp.preferences.IPreferencesService;
 import org.eclipse.imp.preferences.ProjectPreferencesTab;
-import org.eclipse.imp.preferences.SafariPreferencesUtilities;
-import org.eclipse.imp.preferences.fields.SafariBooleanFieldEditor;
-import org.eclipse.imp.preferences.fields.SafariDirectoryListFieldEditor;
-import org.eclipse.imp.preferences.fields.SafariFieldEditor;
-import org.eclipse.imp.preferences.fields.SafariFileFieldEditor;
-import org.eclipse.imp.preferences.fields.SafariStringFieldEditor;
+import org.eclipse.imp.preferences.PreferencesUtilities;
+import org.eclipse.imp.preferences.fields.BooleanFieldEditor;
+import org.eclipse.imp.preferences.fields.DirectoryListFieldEditor;
+import org.eclipse.imp.preferences.fields.FieldEditor;
+import org.eclipse.imp.preferences.fields.FileFieldEditor;
+import org.eclipse.imp.preferences.fields.StringFieldEditor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Link;
 import org.osgi.service.prefs.Preferences;
@@ -20,18 +20,18 @@ public class LPGProjectPreferencesTab extends ProjectPreferencesTab {
 	 * field editors have to be shared between two methods, so
 	 * they should be declared outside of both.
 	 */
-	SafariBooleanFieldEditor useDefaultExecField = null;
-	SafariFileFieldEditor execField = null;
-	SafariBooleanFieldEditor useDefaultGenIncludePathField = null;
-	SafariDirectoryListFieldEditor includeDirectoriesField = null;
-	SafariStringFieldEditor extensionsToProcessField = null;
-	SafariStringFieldEditor extensionsToIncludeField = null;
-	SafariBooleanFieldEditor emitDiagnosticMessagesField = null;
-	SafariBooleanFieldEditor generateListingsField = null;
+	BooleanFieldEditor useDefaultExecField = null;
+	FileFieldEditor execField = null;
+	BooleanFieldEditor useDefaultGenIncludePathField = null;
+	DirectoryListFieldEditor includeDirectoriesField = null;
+	StringFieldEditor extensionsToProcessField = null;
+	StringFieldEditor extensionsToIncludeField = null;
+	BooleanFieldEditor emitDiagnosticMessagesField = null;
+	BooleanFieldEditor generateListingsField = null;
 
 	
 	
-	public LPGProjectPreferencesTab(ISafariPreferencesService prefService) {
+	public LPGProjectPreferencesTab(IPreferencesService prefService) {
 		super(prefService);
 	}
 
@@ -40,7 +40,7 @@ public class LPGProjectPreferencesTab extends ProjectPreferencesTab {
 	/**
 	 * To create specific preferences fields.
 	 */
-	protected SafariFieldEditor[] createFields(Composite composite) {
+	protected FieldEditor[] createFields(Composite composite) {
 		
 		/*
 		 * FYI:  The parameters to makeNewStringField following the "composite" parameter
@@ -56,14 +56,14 @@ public class LPGProjectPreferencesTab extends ProjectPreferencesTab {
 	
 		useDefaultExecField = prefUtils.makeNewBooleanField(
 				prefPage, this,
-				prefService, ISafariPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_USE_DEFAULT_EXEC, "Use default generator executable?",
+				prefService, IPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_USE_DEFAULT_EXEC, "Use default generator executable?",
 				composite, false, true, true, PreferenceInitializer.getDefaultUseDefaultExecutable(), false, false, true);
 		Link useDefaultExecFieldDetails = prefUtils.createDetailsLink(composite, useDefaultExecField, useDefaultExecField.getChangeControl().getParent(), "Details ...");
 		detailsLinks.add(useDefaultExecFieldDetails);
 	
 		execField = prefUtils.makeNewFileField(
 				prefPage, this,
-				prefService, ISafariPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_JIKESPG_EXEC_PATH, "Generator executable",
+				prefService, IPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_JIKESPG_EXEC_PATH, "Generator executable",
 				composite, false, false, true, PreferenceInitializer.getDefaultExecutablePath(), false, "", true);
 		Link execFieldDetails = prefUtils.createDetailsLink(composite, execField, execField.getTextControl().getParent(), "Details ...");
 		detailsLinks.add(execFieldDetails);
@@ -76,19 +76,19 @@ public class LPGProjectPreferencesTab extends ProjectPreferencesTab {
 		execField.getTextControl().setEnabled(value);
 		execField.setEnabled(value, execField.getParent());
 		
-		SafariPreferencesUtilities.fillGridPlace(composite, 2);	
+		PreferencesUtilities.fillGridPlace(composite, 2);	
 		
 		
 		useDefaultGenIncludePathField = prefUtils.makeNewBooleanField(
 				prefPage, this,
-				prefService, ISafariPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_USE_DEFAULT_INCLUDE_DIR, "Use default generator include path?",
+				prefService, IPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_USE_DEFAULT_INCLUDE_DIR, "Use default generator include path?",
 				composite, false, true, true, PreferenceInitializer.getDefaultUseDefaultIncludeDirs(), false, false, true);
 		Link useDefaultGenIncludePathFieldDetails = prefUtils.createDetailsLink(composite, useDefaultGenIncludePathField, useDefaultGenIncludePathField.getChangeControl().getParent(), "Details ...");
 		detailsLinks.add(useDefaultGenIncludePathFieldDetails);
 	
 		includeDirectoriesField = prefUtils.makeNewDirectoryListField(
 				prefPage, this,
-				prefService, ISafariPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_JIKESPG_INCLUDE_DIRS, "Include directories:",
+				prefService, IPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_JIKESPG_INCLUDE_DIRS, "Include directories:",
 				composite, false, false, true, PreferenceInitializer.getDefaultIncludePath(), false, "", true);
 		Link includeDirectoriesFieldDetails = prefUtils.createDetailsLink(composite, includeDirectoriesField, includeDirectoriesField.getTextControl().getParent(), "Details ...");
 		detailsLinks.add(includeDirectoriesFieldDetails);
@@ -102,38 +102,38 @@ public class LPGProjectPreferencesTab extends ProjectPreferencesTab {
 		includeDirectoriesField.setEnabled(value, includeDirectoriesField.getParent());
 
 		
-		SafariPreferencesUtilities.fillGridPlace(composite, 2);	
+		PreferencesUtilities.fillGridPlace(composite, 2);	
 
 		
 		extensionsToProcessField = prefUtils.makeNewStringField(
 				prefPage, this,
-				prefService, ISafariPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_EXTENSION_LIST, "File-name extensions to process:",
+				prefService, IPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_EXTENSION_LIST, "File-name extensions to process:",
 				composite, false, false, true, PreferenceInitializer.getDefaultExtensionList(), false, "", true);
 		Link extensionsToProcessFieldDetails = prefUtils.createDetailsLink(composite, extensionsToProcessField, extensionsToProcessField.getTextControl().getParent(), "Details ...");
 		detailsLinks.add(extensionsToProcessFieldDetails);
 		
 		extensionsToIncludeField = prefUtils.makeNewStringField(
 				prefPage, this,
-				prefService, ISafariPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_NON_ROOT_EXTENSION_LIST, "File-name extensions for include files:",
+				prefService, IPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_NON_ROOT_EXTENSION_LIST, "File-name extensions for include files:",
 				composite, false, false, true, PreferenceInitializer.getDefaultNonRootExtensionList(), false, "", true);
 		Link extensionsToIncludeFieldDetails = prefUtils.createDetailsLink(composite, extensionsToIncludeField, extensionsToIncludeField.getTextControl().getParent(), "Details ...");
 		detailsLinks.add(extensionsToIncludeFieldDetails);
 		
 		emitDiagnosticMessagesField = prefUtils.makeNewBooleanField(
 				prefPage, this,
-				prefService, ISafariPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_EMIT_MESSAGES, "Emit diagnostic messages during build?",
+				prefService, IPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_EMIT_MESSAGES, "Emit diagnostic messages during build?",
 				composite, false, false, true, PreferenceInitializer.getDefaultEmitMessages(), false, false, true);
 		Link emitDiagnosticMessagesFieldDetails = prefUtils.createDetailsLink(composite, emitDiagnosticMessagesField, emitDiagnosticMessagesField.getChangeControl().getParent(), "Details ...");
 		detailsLinks.add(emitDiagnosticMessagesFieldDetails);
 		
 		generateListingsField = prefUtils.makeNewBooleanField(
 				prefPage, this,
-				prefService, ISafariPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_GEN_LISTINGS, "Generate listing files?",
+				prefService, IPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_GEN_LISTINGS, "Generate listing files?",
 				composite, false, false, true, PreferenceInitializer.getDefaultGenerateListings(), false, false, true);
 		Link generateListingsFieldDetails = prefUtils.createDetailsLink(composite, generateListingsField, generateListingsField.getChangeControl().getParent(), "Details ...");
 		detailsLinks.add(generateListingsFieldDetails);
 
-		SafariFieldEditor fields[] = new SafariFieldEditor[8];
+		FieldEditor fields[] = new FieldEditor[8];
 		fields[0] = useDefaultExecField;
 		fields[1] = execField;
 		fields[2] = useDefaultGenIncludePathField;
@@ -147,7 +147,7 @@ public class LPGProjectPreferencesTab extends ProjectPreferencesTab {
 	}
 	
 	
-	public void addressProjectSelection(ISafariPreferencesService.ProjectSelectionEvent event, Composite composite)
+	public void addressProjectSelection(IPreferencesService.ProjectSelectionEvent event, Composite composite)
 	{
 		boolean haveCurrentListeners = false;
 		
@@ -299,7 +299,7 @@ public class LPGProjectPreferencesTab extends ProjectPreferencesTab {
 			selectedProjectName.setStringValue("none selected");
 			
 			// Clear the preferences from the store
-			prefService.clearPreferencesAtLevel(ISafariPreferencesService.PROJECT_LEVEL);
+			prefService.clearPreferencesAtLevel(IPreferencesService.PROJECT_LEVEL);
 			
 			// Disable fields and make them non-editable
 			// Example:

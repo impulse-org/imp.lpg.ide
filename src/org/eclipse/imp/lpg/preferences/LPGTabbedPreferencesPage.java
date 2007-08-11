@@ -3,14 +3,14 @@ package org.eclipse.imp.lpg.preferences;
 
 import org.eclipse.imp.lpg.LPGRuntimePlugin;
 import org.eclipse.swt.widgets.TabFolder;
-import org.eclipse.imp.preferences.ISafariPreferencesService;
-import org.eclipse.imp.preferences.SafariPreferencesTab;
-import org.eclipse.imp.preferences.SafariTabbedPreferencesPage;
+import org.eclipse.imp.preferences.IPreferencesService;
+import org.eclipse.imp.preferences.PreferencesTab;
+import org.eclipse.imp.preferences.TabbedPreferencesPage;
 
 /**
  * The Safari-based tabbed preferences page for LPG	
  */
-public class LPGTabbedPreferencesPage extends SafariTabbedPreferencesPage {
+public class LPGTabbedPreferencesPage extends TabbedPreferencesPage {
 	
 	public LPGTabbedPreferencesPage() {
 		super();
@@ -20,10 +20,10 @@ public class LPGTabbedPreferencesPage extends SafariTabbedPreferencesPage {
 	}
 	
 	
-	protected SafariPreferencesTab[] createTabs(
-			ISafariPreferencesService prefService, SafariTabbedPreferencesPage page, TabFolder tabFolder) 
+	protected PreferencesTab[] createTabs(
+			IPreferencesService prefService, TabbedPreferencesPage page, TabFolder tabFolder) 
 	{
-		SafariPreferencesTab[] tabs = new SafariPreferencesTab[4];
+		PreferencesTab[] tabs = new PreferencesTab[4];
 		
 		LPGProjectPreferencesTab projectTab = new LPGProjectPreferencesTab(prefService);
 		projectTab.createProjectPreferencesTab(page, tabFolder);

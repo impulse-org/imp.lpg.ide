@@ -13,7 +13,8 @@ import org.eclipse.imp.model.IPathEntry;
 import org.eclipse.imp.model.ISourceProject;
 import org.eclipse.imp.model.ModelFactory;
 import org.eclipse.imp.model.ModelFactory.IFactoryExtender;
-import org.eclipse.imp.preferences.SafariPreferencesService;
+import org.eclipse.imp.preferences.IPreferencesService;
+import org.eclipse.imp.preferences.PreferencesService;
 import org.eclipse.imp.runtime.PluginBase;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -33,7 +34,7 @@ public class LPGRuntimePlugin extends PluginBase {
     protected static LPGRuntimePlugin sPlugin;
     
     // SMS 8 Sep 2006
-    protected static SafariPreferencesService preferencesService = null;
+    protected static PreferencesService preferencesService = null;
 
     public static LPGRuntimePlugin getInstance() {
         return sPlugin;
@@ -49,7 +50,7 @@ public class LPGRuntimePlugin extends PluginBase {
 
         // Initialize the JikesPGPreferences fields with the preference store data.
         if (preferencesService == null) {
-        	preferencesService = new SafariPreferencesService();
+        	preferencesService = new PreferencesService();
         	preferencesService.setLanguageName("jikespg");
         	(new PreferenceInitializer()).initializeDefaultPreferences();
         }
@@ -114,9 +115,9 @@ public class LPGRuntimePlugin extends PluginBase {
     
     // SMS 8 Sep 2006
     //private final static IPreferencesService preferencesService = Platform.getPreferencesService();
-    public static SafariPreferencesService getPreferencesService() {
+    public static PreferencesService getPreferencesService() {
     	if (preferencesService == null) {
-    		preferencesService = new SafariPreferencesService();
+    		preferencesService = new PreferencesService();
         	preferencesService.setLanguageName("jikespg");
            	(new PreferenceInitializer()).initializeDefaultPreferences();
     	}

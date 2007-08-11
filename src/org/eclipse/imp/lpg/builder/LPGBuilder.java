@@ -28,7 +28,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.option;
 import org.eclipse.imp.lpg.parser.LPGParser.option_value0;
 import org.eclipse.imp.lpg.preferences.PreferenceConstants;
 import org.eclipse.imp.lpg.views.LPGView;
-import org.eclipse.imp.preferences.ISafariPreferencesService;
+import org.eclipse.imp.preferences.IPreferencesService;
 import org.eclipse.imp.runtime.PluginBase;
 import org.eclipse.imp.utils.StreamUtils;
 import org.osgi.framework.Bundle;
@@ -64,7 +64,7 @@ public class LPGBuilder extends BuilderBase {
     private static final Pattern MISSING_MSG_PATTERN= Pattern.compile(MISSING_MSG_REGEXP);
     
     // SMS 8 Sep 2006
-	ISafariPreferencesService prefService = null;
+	IPreferencesService prefService = null;
     {
     	prefService = LPGRuntimePlugin.getPreferencesService();
     	prefService.setProject(getProject());

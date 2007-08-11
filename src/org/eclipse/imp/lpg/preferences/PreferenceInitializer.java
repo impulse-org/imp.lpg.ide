@@ -4,7 +4,7 @@ package org.eclipse.imp.lpg.preferences;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.imp.lpg.LPGRuntimePlugin;
 import org.eclipse.imp.lpg.builder.LPGBuilder;
-import org.eclipse.imp.preferences.ISafariPreferencesService;
+import org.eclipse.imp.preferences.IPreferencesService;
 import org.eclipse.jface.preference.IPreferenceStore;
 
 /**
@@ -34,17 +34,17 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(PreferenceConstants.P_NON_ROOT_EXTENSION_LIST, "gi");
 	    //*/
     
-		ISafariPreferencesService service = LPGRuntimePlugin.getPreferencesService();
+		IPreferencesService service = LPGRuntimePlugin.getPreferencesService();
 		
 		// Examples:
-		service.setBooleanPreference(ISafariPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_EMIT_MESSAGES, getDefaultEmitMessages());
-		service.setBooleanPreference(ISafariPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_GEN_LISTINGS, getDefaultGenerateListings());
-		service.setBooleanPreference(ISafariPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_USE_DEFAULT_EXEC, getDefaultUseDefaultExecutable());
-		service.setStringPreference(ISafariPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_JIKESPG_EXEC_PATH, getDefaultExecutablePath());
-		service.setBooleanPreference(ISafariPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_USE_DEFAULT_INCLUDE_DIR, getDefaultUseDefaultIncludeDirs());		
-		service.setStringPreference(ISafariPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_JIKESPG_INCLUDE_DIRS, getDefaultIncludePath());
-		service.setStringPreference(ISafariPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_EXTENSION_LIST, getDefaultExtensionList());
-		service.setStringPreference(ISafariPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_NON_ROOT_EXTENSION_LIST, getDefaultNonRootExtensionList());
+		service.setBooleanPreference(IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_EMIT_MESSAGES, getDefaultEmitMessages());
+		service.setBooleanPreference(IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_GEN_LISTINGS, getDefaultGenerateListings());
+		service.setBooleanPreference(IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_USE_DEFAULT_EXEC, getDefaultUseDefaultExecutable());
+		service.setStringPreference(IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_JIKESPG_EXEC_PATH, getDefaultExecutablePath());
+		service.setBooleanPreference(IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_USE_DEFAULT_INCLUDE_DIR, getDefaultUseDefaultIncludeDirs());		
+		service.setStringPreference(IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_JIKESPG_INCLUDE_DIRS, getDefaultIncludePath());
+		service.setStringPreference(IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_EXTENSION_LIST, getDefaultExtensionList());
+		service.setStringPreference(IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_NON_ROOT_EXTENSION_LIST, getDefaultNonRootExtensionList());
     }
     
     
