@@ -51,14 +51,14 @@ public class LPGRuntimePlugin extends PluginBase {
         // Initialize the JikesPGPreferences fields with the preference store data.
         if (preferencesService == null) {
         	preferencesService = new PreferencesService();
-        	preferencesService.setLanguageName("jikespg");
+        	preferencesService.setLanguageName("lpg");
         	(new PreferenceInitializer()).initializeDefaultPreferences();
         }
 
         ModelFactory.getInstance().installExtender(new IFactoryExtender() {
 	    public void extend(ISourceProject project) {
 		IPreferenceStore store= LPGRuntimePlugin.getInstance().getPreferenceStore();
-		IPath includeDir = new Path(store.getString(PreferenceConstants.P_JIKESPG_INCLUDE_DIRS));
+		IPath includeDir = new Path(store.getString(PreferenceConstants.P_LPG_INCLUDE_DIRS));
 
 		project.getBuildPath().add(ModelFactory.createPathEntry(IPathEntry.PathEntryType.SOURCE_FOLDER, includeDir));
 	    }

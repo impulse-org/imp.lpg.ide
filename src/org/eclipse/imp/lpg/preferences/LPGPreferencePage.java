@@ -30,7 +30,7 @@ public class LPGPreferencePage extends FieldEditorPreferencePage implements IWor
     public LPGPreferencePage() {
 	super(GRID);
 	setPreferenceStore(LPGRuntimePlugin.getInstance().getPreferenceStore());
-	setDescription("Preferences for the JikesPG parser/lexer generator");
+	setDescription("Preferences for the LPG parser/lexer generator");
     }
 
     /**
@@ -53,7 +53,7 @@ public class LPGPreferencePage extends FieldEditorPreferencePage implements IWor
 
 	    
 	    
-	fExecField= new FileFieldEditor(PreferenceConstants.P_JIKESPG_EXEC_PATH, "Generator e&xecutable:", getFieldEditorParent());
+	fExecField= new FileFieldEditor(PreferenceConstants.P_LPG_EXEC_PATH, "Generator e&xecutable:", getFieldEditorParent());
 
 	final BooleanFieldEditor useDefaultTemplateField= new BooleanFieldEditorExtraListener(PreferenceConstants.P_USE_DEFAULT_INCLUDE_DIR, "Use default generator include path", getFieldEditorParent(),
 	    new IPropertyChangeListener() {
@@ -65,7 +65,7 @@ public class LPGPreferencePage extends FieldEditorPreferencePage implements IWor
 	    		fTemplateField.setEnabled(true, LPGPreferencePage.this.getFieldEditorParent());
 	    	}
 	    });
-	fTemplateField= new DirectoryListFieldEditor(PreferenceConstants.P_JIKESPG_INCLUDE_DIRS, "&Include directories:", getFieldEditorParent());
+	fTemplateField= new DirectoryListFieldEditor(PreferenceConstants.P_LPG_INCLUDE_DIRS, "&Include directories:", getFieldEditorParent());
 
 	addField(useDefaultExecField);
 	addField(fExecField);
@@ -94,9 +94,9 @@ public class LPGPreferencePage extends FieldEditorPreferencePage implements IWor
 		    LPGPreferenceCache.builderEmitMessages= ((Boolean) event.getNewValue()).booleanValue();
 		else if (event.getProperty().equals(PreferenceConstants.P_GEN_LISTINGS))
 		    LPGPreferenceCache.generateListing= ((Boolean) event.getNewValue()).booleanValue();
-		else if (event.getProperty().equals(PreferenceConstants.P_JIKESPG_EXEC_PATH))
+		else if (event.getProperty().equals(PreferenceConstants.P_LPG_EXEC_PATH))
 		    LPGPreferenceCache.jikesPGExecutableFile= (String) event.getNewValue();
-		else if (event.getProperty().equals(PreferenceConstants.P_JIKESPG_INCLUDE_DIRS))
+		else if (event.getProperty().equals(PreferenceConstants.P_LPG_INCLUDE_DIRS))
 		    LPGPreferenceCache.jikesPGIncludeDirs= (String) event.getNewValue();
 		else if (event.getProperty().equals(PreferenceConstants.P_USE_DEFAULT_EXEC)) {
 		    LPGPreferenceCache.useDefaultExecutable= ((Boolean) event.getNewValue()).booleanValue();

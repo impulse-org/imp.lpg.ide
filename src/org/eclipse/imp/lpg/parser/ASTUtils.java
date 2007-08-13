@@ -177,7 +177,7 @@ public class ASTUtils {
 	    }
 	}
 	IPreferenceStore store= LPGRuntimePlugin.getInstance().getPreferenceStore();
-	IPath includeDir = new Path(store.getString(PreferenceConstants.P_JIKESPG_INCLUDE_DIRS));
+	IPath includeDir = new Path(store.getString(PreferenceConstants.P_LPG_INCLUDE_DIRS));
 
 	return ModelFactory.open(includeDir.append(fileName), srcProject);
     }

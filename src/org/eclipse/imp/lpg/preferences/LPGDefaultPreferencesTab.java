@@ -68,7 +68,7 @@ public class LPGDefaultPreferencesTab extends DefaultPreferencesTab {
 		
 		execField = prefUtils.makeNewFileField(
 				prefPage, this,
-				prefService, IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_JIKESPG_EXEC_PATH, "Generator executable",
+				prefService, IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_LPG_EXEC_PATH, "Generator executable",
 				composite, false, false, true, PreferenceInitializer.getDefaultExecutablePath(), false, "", false);
 		Link execFieldDetails = prefUtils.createDetailsLink(composite, execField, execField.getTextControl().getParent(), "Details ...");
 
@@ -88,7 +88,7 @@ public class LPGDefaultPreferencesTab extends DefaultPreferencesTab {
 		
 		includeDirectoriesField = prefUtils.makeNewDirectoryListField(
 				prefPage, this,
-				prefService, IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_JIKESPG_INCLUDE_DIRS, "Include directories:",
+				prefService, IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_LPG_INCLUDE_DIRS, "Include directories:",
 				composite, false, false, true, PreferenceInitializer.getDefaultIncludePath(), false, "", false);
 		Link includeDirectoriesFieldDetails = prefUtils.createDetailsLink(composite, includeDirectoriesField, includeDirectoriesField.getTextControl().getParent(), "Details ...");
 		

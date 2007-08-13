@@ -14,6 +14,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
@@ -64,12 +65,8 @@ public class LPGBuilder extends BuilderBase {
     private static final Pattern MISSING_MSG_PATTERN= Pattern.compile(MISSING_MSG_REGEXP);
     
     // SMS 8 Sep 2006
-	IPreferencesService prefService = null;
-    {
-    	prefService = LPGRuntimePlugin.getPreferencesService();
-    	prefService.setProject(getProject());
-    }
-	
+    private IPreferencesService prefService= LPGRuntimePlugin.getPreferencesService();
+
     protected PluginBase getPlugin() {
 	return LPGRuntimePlugin.getInstance();
     }
@@ -112,6 +109,10 @@ public class LPGBuilder extends BuilderBase {
     }
 
     protected void compile(final IFile file, IProgressMonitor monitor) {
+	if (prefService.getProject() == null) {
+	    prefService.setProject(getProject());
+	}
+
 	String fileName= file.getLocation().toOSString();
 	String includePath= getIncludePath();
 	try {
@@ -336,13 +337,14 @@ public class LPGBuilder extends BuilderBase {
 	return false;
     }
 
-    public static String getIncludePath() {
+    public String getIncludePath() {
     	// SMS 8 Sep 2006
 		//	if (LPGPreferenceCache.LPGIncludeDirs != null &&
 		//	    LPGPreferenceCache.LPGIncludeDirs.length() > 0)
 		//	    return LPGPreferenceCache.LPGIncludeDirs;
 
-	return getDefaultIncludePath();
+	String projSpecIncPath= prefService.getStringPreference(PreferenceConstants.P_LPG_INCLUDE_DIRS);
+	return projSpecIncPath + ";" + getDefaultIncludePath();
     }
 
     public static String getDefaultIncludePath() {
@@ -351,7 +353,7 @@ public class LPGBuilder extends BuilderBase {
 	try {
 	    // Use getEntry() rather than getResource(), since the "templates" folder is
 	    // no longer inside the plugin jar (which is now expanded upon installation).
-	    String tmplPath= Platform.asLocalURL(bundle.getEntry("templates")).getFile();
+	    String tmplPath= FileLocator.toFileURL(bundle.getEntry("templates")).getFile();
 
 	    if (Platform.getOS().equals("win32"))
 		tmplPath= tmplPath.substring(1);
@@ -364,7 +366,7 @@ public class LPGBuilder extends BuilderBase {
     private String getLPGExecutable() throws IOException {
     	// SMS 8 Sep 2006
     	//return LPGPreferenceCache.LPGExecutableFile;
-    	return prefService.getStringPreference(getProject(), PreferenceConstants.P_JIKESPG_EXEC_PATH);
+    	return prefService.getStringPreference(getProject(), PreferenceConstants.P_LPG_EXEC_PATH);
     }
 
     public static String getDefaultExecutablePath() {
@@ -373,7 +375,7 @@ public class LPGBuilder extends BuilderBase {
 	String plat= Platform.getOSArch();
 	// SMS 	22 Feb 2007  "bin... -> "lpgexe...
 	Path path= new Path("lpgexe/lpg-" + os + "_" + plat + (os.equals("win32") ? ".exe" : ""));
-	URL execURL= Platform.find(bundle, path);
+	URL execURL= FileLocator.find(bundle, path, null);
 
 	if (execURL == null) {
 	    String errMsg= "Unable to find LPG executable at " + path + " in bundle " + bundle.getSymbolicName();
@@ -386,7 +388,7 @@ public class LPGBuilder extends BuilderBase {
 	    URL url;
 
 	    try {
-		url= Platform.asLocalURL(execURL);
+		url= FileLocator.toFileURL(execURL);
 	    } catch (IOException e) {
 		LPGRuntimePlugin.getInstance().writeErrorMsg("Unable to locate default LPG executable." + e.getMessage());
 		return "???";

@@ -27,9 +27,9 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(PreferenceConstants.P_EMIT_MESSAGES, getDefaultEmitMessages());
 		store.setDefault(PreferenceConstants.P_GEN_LISTINGS, getDefaultGenerateListings());
 		store.setDefault(PreferenceConstants.P_USE_DEFAULT_EXEC, getDefaultUseDefaultExecutable());
-		store.setDefault(PreferenceConstants.P_JIKESPG_EXEC_PATH, LPGBuilder.getDefaultExecutablePath());
+		store.setDefault(PreferenceConstants.P_LPG_EXEC_PATH, LPGBuilder.getDefaultExecutablePath());
 		store.setDefault(PreferenceConstants.P_USE_DEFAULT_INCLUDE_DIR, getDefaultUseDefaultIncludeDirs());
-		store.setDefault(PreferenceConstants.P_JIKESPG_INCLUDE_DIRS, LPGBuilder.getDefaultIncludePath());
+		store.setDefault(PreferenceConstants.P_LPG_INCLUDE_DIRS, LPGBuilder.getDefaultIncludePath());
 		store.setDefault(PreferenceConstants.P_EXTENSION_LIST, "g,lpg,gra");
 		store.setDefault(PreferenceConstants.P_NON_ROOT_EXTENSION_LIST, "gi");
 	    //*/
@@ -40,9 +40,9 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		service.setBooleanPreference(IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_EMIT_MESSAGES, getDefaultEmitMessages());
 		service.setBooleanPreference(IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_GEN_LISTINGS, getDefaultGenerateListings());
 		service.setBooleanPreference(IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_USE_DEFAULT_EXEC, getDefaultUseDefaultExecutable());
-		service.setStringPreference(IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_JIKESPG_EXEC_PATH, getDefaultExecutablePath());
+		service.setStringPreference(IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_LPG_EXEC_PATH, getDefaultExecutablePath());
 		service.setBooleanPreference(IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_USE_DEFAULT_INCLUDE_DIR, getDefaultUseDefaultIncludeDirs());		
-		service.setStringPreference(IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_JIKESPG_INCLUDE_DIRS, getDefaultIncludePath());
+		service.setStringPreference(IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_LPG_INCLUDE_DIRS, getDefaultIncludePath());
 		service.setStringPreference(IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_EXTENSION_LIST, getDefaultExtensionList());
 		service.setStringPreference(IPreferencesService.DEFAULT_LEVEL, PreferenceConstants.P_NON_ROOT_EXTENSION_LIST, getDefaultNonRootExtensionList());
     }

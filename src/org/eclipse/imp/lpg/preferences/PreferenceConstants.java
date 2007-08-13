@@ -5,9 +5,9 @@ package org.eclipse.imp.lpg.preferences;
  */
 public class PreferenceConstants {
 	
-    public static final String P_JIKESPG_EXEC_PATH= "execPath";
+    public static final String P_LPG_EXEC_PATH= "execPath";
 
-    public static final String P_JIKESPG_INCLUDE_DIRS= "includeDirs";
+    public static final String P_LPG_INCLUDE_DIRS= "includeDirs";
 
     public static final String P_USE_DEFAULT_EXEC= "useDefaultExec";
 

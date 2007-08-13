@@ -63,7 +63,7 @@ public class LPGProjectPreferencesTab extends ProjectPreferencesTab {
 	
 		execField = prefUtils.makeNewFileField(
 				prefPage, this,
-				prefService, IPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_JIKESPG_EXEC_PATH, "Generator executable",
+				prefService, IPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_LPG_EXEC_PATH, "Generator executable",
 				composite, false, false, true, PreferenceInitializer.getDefaultExecutablePath(), false, "", true);
 		Link execFieldDetails = prefUtils.createDetailsLink(composite, execField, execField.getTextControl().getParent(), "Details ...");
 		detailsLinks.add(execFieldDetails);
@@ -88,7 +88,7 @@ public class LPGProjectPreferencesTab extends ProjectPreferencesTab {
 	
 		includeDirectoriesField = prefUtils.makeNewDirectoryListField(
 				prefPage, this,
-				prefService, IPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_JIKESPG_INCLUDE_DIRS, "Include directories:",
+				prefService, IPreferencesService.PROJECT_LEVEL, PreferenceConstants.P_LPG_INCLUDE_DIRS, "Include directories:",
 				composite, false, false, true, PreferenceInitializer.getDefaultIncludePath(), false, "", true);
 		Link includeDirectoriesFieldDetails = prefUtils.createDetailsLink(composite, includeDirectoriesField, includeDirectoriesField.getTextControl().getParent(), "Details ...");
 		detailsLinks.add(includeDirectoriesFieldDetails);
@@ -273,11 +273,11 @@ public class LPGProjectPreferencesTab extends ProjectPreferencesTab {
 			// Example
 			if (useDefaultExecFieldHolder != null) addProjectPreferenceChangeListeners(
 					useDefaultExecField, PreferenceConstants.P_USE_DEFAULT_EXEC, useDefaultExecFieldHolder);
-			if (execFieldHolder != null) addProjectPreferenceChangeListeners(execField, PreferenceConstants.P_JIKESPG_EXEC_PATH, execFieldHolder);
+			if (execFieldHolder != null) addProjectPreferenceChangeListeners(execField, PreferenceConstants.P_LPG_EXEC_PATH, execFieldHolder);
 			if (useDefaultGenIncludePathFieldHolder != null) addProjectPreferenceChangeListeners(
 					useDefaultGenIncludePathField, PreferenceConstants.P_USE_DEFAULT_INCLUDE_DIR, useDefaultGenIncludePathFieldHolder);
 			if (includeDirectoriesFieldHolder != null) addProjectPreferenceChangeListeners(
-					includeDirectoriesField, PreferenceConstants.P_JIKESPG_INCLUDE_DIRS	, includeDirectoriesFieldHolder);
+					includeDirectoriesField, PreferenceConstants.P_LPG_INCLUDE_DIRS	, includeDirectoriesFieldHolder);
 			if (extensionsToProcessFieldHolder != null) addProjectPreferenceChangeListeners(
 					extensionsToProcessField, PreferenceConstants.P_EXTENSION_LIST, extensionsToProcessFieldHolder);
 			if (extensionsToIncludeFieldHolder != null) addProjectPreferenceChangeListeners(
