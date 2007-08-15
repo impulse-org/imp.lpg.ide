@@ -103,7 +103,7 @@
 
     Token ::= OptionLines
     Token ::= MacroSymbol       /.$BeginJava checkForKeyWord();$EndJava./
-    Token ::= Symbol            /.$BeginJava makeToken($_SYMBOL);$EndJava./
+    Token ::= Symbol            /.$BeginJava checkForKeyWord($_SYMBOL);$EndJava./
     Token ::= Block             /.$BeginJava makeToken($_BLOCK);$EndJava./
     Token ::= Equivalence       /.$BeginJava makeToken($_EQUIVALENCE);$EndJava./
     Token ::= Equivalence ?     /.$BeginJava makeToken($_PRIORITY_EQUIVALENCE);$EndJava./
