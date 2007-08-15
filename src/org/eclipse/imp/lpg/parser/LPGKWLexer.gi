@@ -4,19 +4,18 @@
 %Options fp=LPGKWLexer
 %options single-productions
 %options package=org.eclipse.imp.lpg.parser
-%options template=uide/KeywordTemplate.gi
+%options template=KeywordTemplate.gi
 
-$Include
+%Include
     --
     -- Each upper case letter is mapped into is corresponding
     -- lower case counterpart. For example, if an 'A' appears
     -- in the input, it is mapped into Char_a just like 'a'.
     --
-    uide\KWLexerFoldedCaseMap.gi
-$End
+    KWLexerFoldedCaseMap.gi
+%End
 
-$Export
-
+%Export
    ALIAS_KEY
    AST_KEY
    DEFINE_KEY
@@ -45,141 +44,142 @@ $Export
    TRAILERS_KEY
    TYPES_KEY
 
-$End
+%End
 
-$Start
+%Start
     Keyword
-$End
+%End
 
-$Rules
-    Keyword ::= '$' a l i a s
+%Rules
+    Keyword ::= KeyPrefix a l i a s
         /.$BeginJava
             $setResult($_ALIAS_KEY);
           $EndJava
         ./
-    Keyword ::= '$' a s t
+    Keyword ::= KeyPrefix a s t
         /.$BeginJava
             $setResult($_AST_KEY);
           $EndJava
         ./
-    Keyword ::= '$' d e f i n e
+    Keyword ::= KeyPrefix d e f i n e
         /.$BeginJava
             $setResult($_DEFINE_KEY);
           $EndJava
         ./
-     Keyword ::= '$' d i s j o i n t p r e d e c e s s o r s e t s
+     Keyword ::= KeyPrefix d i s j o i n t p r e d e c e s s o r s e t s
         /.$BeginJava
             $setResult($_DISJOINTPREDECESSORSETS_KEY);
           $EndJava
         ./
-    Keyword ::= '$' d r o p r u l e s
+    Keyword ::= KeyPrefix d r o p r u l e s
         /.$BeginJava
             $setResult($_DROPRULES_KEY);
           $EndJava
         ./
-    Keyword ::= '$' d r o p s y m b o l s
+    Keyword ::= KeyPrefix d r o p s y m b o l s
         /.$BeginJava
             $setResult($_DROPSYMBOLS_KEY);
           $EndJava
         ./
-    Keyword ::= '$' e m p t y
+    Keyword ::= KeyPrefix e m p t y
         /.$BeginJava
             $setResult($_EMPTY_KEY);
           $EndJava
         ./
-    Keyword ::= '$' e n d
+    Keyword ::= KeyPrefix e n d
         /.$BeginJava
             $setResult($_END_KEY);
           $EndJava
         ./
-    Keyword ::= '$' e r r o r
+    Keyword ::= KeyPrefix e r r o r
         /.$BeginJava
             $setResult($_ERROR_KEY);
           $EndJava
         ./
-    Keyword ::= '$' e o l
+    Keyword ::= KeyPrefix e o l
         /.$BeginJava
             $setResult($_EOL_KEY);
           $EndJava
         ./
-    Keyword ::= '$' e o f
+    Keyword ::= KeyPrefix e o f
         /.$BeginJava
             $setResult($_EOF_KEY);
           $EndJava
         ./
-    Keyword ::= '$' e x p o r t
+    Keyword ::= KeyPrefix e x p o r t
         /.$BeginJava
             $setResult($_EXPORT_KEY);
           $EndJava
         ./
-    Keyword ::= '$' g l o b a l s
+    Keyword ::= KeyPrefix g l o b a l s
         /.$BeginJava
             $setResult($_GLOBALS_KEY);
           $EndJava
         ./
-    Keyword ::= '$' h e a d e r s
+    Keyword ::= KeyPrefix h e a d e r s
         /.$BeginJava
             $setResult($_HEADERS_KEY);
           $EndJava
         ./
-    Keyword ::= '$' i d e n t i f i e r
+    Keyword ::= KeyPrefix i d e n t i f i e r
         /.$BeginJava
             $setResult($_IDENTIFIER_KEY);
           $EndJava
         ./
-    Keyword ::= '$' i m p o r t
+    Keyword ::= KeyPrefix i m p o r t
         /.$BeginJava
             $setResult($_IMPORT_KEY);
           $EndJava
         ./
-    Keyword ::= '$' i n c l u d e
+    Keyword ::= KeyPrefix i n c l u d e
         /.$BeginJava
             $setResult($_INCLUDE_KEY);
           $EndJava
         ./
-    Keyword ::= '$' k e y w o r d s
+    Keyword ::= KeyPrefix k e y w o r d s
         /.$BeginJava
             $setResult($_KEYWORDS_KEY);
           $EndJava
         ./
-    Keyword ::= '$' n a m e s
+    Keyword ::= KeyPrefix n a m e s
         /.$BeginJava
             $setResult($_NAMES_KEY);
           $EndJava
         ./
-    Keyword ::= '$' n o t i c e
+    Keyword ::= KeyPrefix n o t i c e
         /.$BeginJava
             $setResult($_NOTICE_KEY);
           $EndJava
         ./
-    Keyword ::= '$' t e r m i n a l s
+    Keyword ::= KeyPrefix t e r m i n a l s
         /.$BeginJava
             $setResult($_TERMINALS_KEY);
           $EndJava
         ./
-    Keyword ::= '$' r e c o v e r
+    Keyword ::= KeyPrefix r e c o v e r
         /.$BeginJava
             $setResult($_RECOVER_KEY);
           $EndJava
         ./
-    Keyword ::= '$' r u l e s
+    Keyword ::= KeyPrefix r u l e s
         /.$BeginJava
             $setResult($_RULES_KEY);
           $EndJava
         ./
-    Keyword ::= '$' s t a r t 
+    Keyword ::= KeyPrefix s t a r t 
         /.$BeginJava
             $setResult($_START_KEY);
           $EndJava
         ./
-    Keyword ::= '$' t r a i l e r s
+    Keyword ::= KeyPrefix t r a i l e r s
         /.$BeginJava
             $setResult($_TRAILERS_KEY);
           $EndJava
         ./
-    Keyword ::= '$' t y p e s
+    Keyword ::= KeyPrefix t y p e s
         /.$BeginJava
             $setResult($_TYPES_KEY);
           $EndJava
         ./
-$End
+    KeyPrefix ::= '$' | '%'
+%End

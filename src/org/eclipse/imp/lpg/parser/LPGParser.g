@@ -1,10 +1,10 @@
 %options la=6
 %options package=org.eclipse.imp.lpg.parser
 %options automatic_ast,ast_type=ASTNode,visitor=preorder,parent_saved
-%options template=uide/btParserTemplate.gi
+%options template=btParserTemplate.gi
 %options import_terminals=LPGLexer.gi
 
-$Globals
+%Globals
     /.import org.eclipse.imp.parser.IParser;
         import java.util.ArrayList;
         import java.util.List;
@@ -12,14 +12,14 @@ $Globals
         import java.util.HashMap;
         import java.util.Set;
      ./
-$End
+%End
 
-$Define
+%Define
     $ast_class /.Object./
     $additional_interfaces /., IParser./
-$End
+%End
 
-$Terminals
+%Terminals
     EQUIVALENCE ::= '::='
     PRIORITY_EQUIVALENCE ::= '::=?'
     ARROW ::= '->'
@@ -32,13 +32,13 @@ $Terminals
     LEFT_BRACKET ::= '['
     RIGHT_BRACKET ::= ']'
     SHARP ::= '#'
-$End
+%End
 
-$Start
+%Start
     JikesPG
-$End
+%End
 
-$Headers
+%Headers
     /.
         public static class SymbolTable {
             private Map<String,ASTNode> table = new HashMap<String,ASTNode>();
@@ -72,9 +72,9 @@ $Headers
         protected static SymbolTable symtab;
         { symtab = new SymbolTable(); }
      ./
-$End
+%End
 
-$Rules
+%Rules
     JikesPG ::= options_segment JikesPG_INPUT
     /.
         public SymbolTable symbolTable;
@@ -309,4 +309,4 @@ $Rules
 
     action_segment_list$$action_segment ::= $empty
     action_segment_list$$action_segment ::= action_segment_list action_segment 
-$End
+%End
