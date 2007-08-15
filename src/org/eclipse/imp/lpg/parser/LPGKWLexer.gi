@@ -1,6 +1,3 @@
---
--- The Java Keyword Lexer
---
 %Options fp=LPGKWLexer
 %options single-productions
 %options package=org.eclipse.imp.lpg.parser
@@ -181,5 +178,5 @@
             $setResult($_TYPES_KEY);
           $EndJava
         ./
-    KeyPrefix ::= '$' | '%'
+    KeyPrefix -> '$' | '%'
 %End
