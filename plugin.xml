@@ -6,46 +6,57 @@
          id="LPGNature"
          name="LPG Nature"
          point="org.eclipse.core.resources.natures">
-      <builder id="org.eclipse.imp.lpg.runtime.LPGBuilder"/>
+      <builder
+            id="org.eclipse.imp.lpg.runtime.LPGBuilder">
+      </builder>
       <runtime>
-         <run class="org.eclipse.imp.lpg.builder.LPGNature"/>
+         <run
+               class="org.eclipse.imp.lpg.builder.LPGNature">
+         </run>
       </runtime>
    </extension>
- 
    <extension
          id="LPGBuilder"
          name="LPG Grammar File Builder"
          point="org.eclipse.core.resources.builders">
       <builder>
-         <run class="org.eclipse.imp.lpg.builder.LPGBuilder"/>
+         <run
+               class="org.eclipse.imp.lpg.builder.LPGBuilder">
+         </run>
       </builder>
    </extension>
    <extension
          id="problem"
          name="LPG Error"
          point="org.eclipse.core.resources.markers">
-      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super
+            type="org.eclipse.core.resources.problemmarker">
+      </super>
    </extension>
    <extension
          point="org.eclipse.ui.views">
       <category
             name="LPG IDE"
-            id="org.eclipse.imp.lpg.ide"/>
+            id="org.eclipse.imp.lpg.ide">
+      </category>
       <view
-            class="org.eclipse.imp.lpg.views.LPGView"
+            name="LPG Console"
             icon="icons/sample.gif"
             category="org.eclipse.imp.lpg"
-            name="LPG Console"
-            id="org.eclipse.imp.lpg.views.LPGView"/>
+            class="org.eclipse.imp.lpg.views.LPGView"
+            id="org.eclipse.imp.lpg.views.LPGView">
+      </view>
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
-      <perspectiveExtension targetID="org.eclipse.ui.resourcePerspective">
+      <perspectiveExtension
+            targetID="org.eclipse.ui.resourcePerspective">
          <view
                ratio="0.5"
-               relationship="right"
                relative="org.eclipse.ui.views.TaskList"
-               id="org.eclipse.imp.lpg.views.LPGView"/>
+               relationship="right"
+               id="org.eclipse.imp.lpg.views.LPGView">
+         </view>
       </perspectiveExtension>
    </extension>
    <extension
@@ -53,176 +64,178 @@
          name="LPG Language"
          point="org.eclipse.imp.runtime.languageDescription">
       <language
-            description="LPG Grammar Specification"
-            extensions="g,gi,lpg"
             icon="grammarfile.gif"
-            language="LPG"
-            natureID="org.eclipse.imp.lpg.runtime.LPGNature"/>
+            extensions="g,gi,lpg"
+            description="LPG Grammar Specification"
+            natureID="org.eclipse.imp.lpg.runtime.LPGNature"
+            language="LPG">
+      </language>
    </extension>
    <extension
          name="LPG Grammar Specification Parser"
          point="org.eclipse.imp.runtime.parser">
       <parser
             class="org.eclipse.imp.lpg.parser.ParseController"
-            language="LPG"/>
+            language="LPG">
+      </parser>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.tokenColorer">
       <tokenColorer
             class="org.eclipse.imp.lpg.editor.TokenColorer"
-            language="LPG"/>
+            language="LPG">
+      </tokenColorer>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.outliner">
       <outliner
             class="org.eclipse.imp.lpg.editor.Outliner"
-            language="LPG"/>
+            language="LPG">
+      </outliner>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.contentProposer">
       <proposer
             class="org.eclipse.imp.lpg.editor.ContentProposer"
-            language="LPG"/>
+            language="LPG">
+      </proposer>
    </extension>
    <extension
          point="org.eclipse.ui.popupMenus">
       <objectContribution
+            objectClass="org.eclipse.jdt.core.IJavaProject"
             adaptable="false"
-            id="org.eclipse.imp.lpg.projectContextMenu"
             nameFilter="*"
-            objectClass="org.eclipse.jdt.core.IJavaProject">
+            id="org.eclipse.imp.lpg.projectContextMenu">
          <action
-               class="org.eclipse.imp.lpg.actions.EnableBuilder"
-               icon="icons/builderEnable.gif"
-               id="org.eclipse.imp.lpg.enableBuilderAction"
                label="Enable &amp;LPG Builder"
-               tooltip="Enable the LPG builder for this project"/>
+               icon="icons/builderEnable.gif"
+               tooltip="Enable the LPG builder for this project"
+               class="org.eclipse.imp.lpg.actions.EnableBuilder"
+               id="org.eclipse.imp.lpg.enableBuilderAction">
+         </action>
       </objectContribution>
-   </extension>
-<!--   
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            class="org.eclipse.imp.preferences.LPGPreferencePage"
-            id="org.eclipse.imp.preferencePage"
-            name="LPG"/>
-   </extension>
--->	
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            class="org.eclipse.imp.lpg.preferences.LPGTabbedPreferencesPage"
-            id="org.eclipse.imp.lpg.tabbedPreferencesPage"
-            name="LPG"/>
    </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">
-      <initializer class="org.eclipse.imp.lpg.preferences.PreferenceInitializer"/>
+      <initializer
+            class="org.eclipse.imp.lpg.preferences.PreferenceInitializer">
+      </initializer>
    </extension>
    <extension
          point="org.eclipse.compare.structureCreators">
       <structureCreator
-            class="org.eclipse.imp.lpg.compare.LPGStructureNode"
             extensions="g,gi"
-            id="org.eclipse.imp.lpg.structureCreator"/>
-<!--      <contentTypeBinding
-            contentTypeId="org.eclipse.imp.lpg.grammarFile"
-            structureCreatorId="org.eclipse.imp.lpg.structureCreator"/>
-  -->
+            class="org.eclipse.imp.lpg.compare.LPGStructureNode"
+            id="org.eclipse.imp.lpg.structureCreator">
+      </structureCreator>
    </extension>
-<!--   <extension
-         point="org.eclipse.core.runtime.contentTypes">
-      <content-type
-            file-extensions="g,gi"
-            id="org.eclipse.imp.lpg.grammarFile"
-            name="LPG Grammar File"
-            priority="normal"/>
-   </extension>
- -->
    <extension
          point="org.eclipse.compare.structureMergeViewers">
       <viewer
-            class="org.eclipse.imp.lpg.compare.StructureMergeViewerCreator"
             extensions="g,gi"
-            id="org.eclipse.imp.viewer"/>
+            class="org.eclipse.imp.lpg.compare.StructureMergeViewerCreator"
+            id="org.eclipse.imp.viewer">
+      </viewer>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.foldingUpdater">
       <foldingUpdater
             class="org.eclipse.imp.lpg.editor.FoldingUpdater"
-            language="LPG"/>
+            language="LPG">
+      </foldingUpdater>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.formatter">
       <formatter
             class="org.eclipse.imp.lpg.editor.LPGFormatter"
-            language="LPG"/>
+            language="LPG">
+      </formatter>
    </extension>
    <extension
          point="org.eclipse.search.searchPages">
       <page
+            showScopeSection="true"
             canSearchEnclosingProjects="true"
-            class="org.eclipse.imp.lpg.search.LPGSearchPage"
-            enabled="true"
-            extensions="g:100"
-            icon="icons/sample.gif"
-            id="org.eclipse.imp.lpg.searchPage"
             label="LPG Search"
-            showScopeSection="true"/>
+            enabled="true"
+            icon="icons/sample.gif"
+            extensions="g:100"
+            class="org.eclipse.imp.lpg.search.LPGSearchPage"
+            id="org.eclipse.imp.lpg.searchPage">
+      </page>
    </extension>
    <extension
          point="org.eclipse.search.searchResultViewPages">
       <viewPage
             class="org.eclipse.imp.lpg.search.LPGSearchResultPage"
-            id="org.eclipse.imp.searchResultViewPage"
-            searchResultClass="org.eclipse.imp.lpg.search.LPGSearchResult"/>
+            searchResultClass="org.eclipse.imp.lpg.search.LPGSearchResult"
+            id="org.eclipse.imp.searchResultViewPage">
+      </viewPage>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.labelProvider">
-         <labelProvider
-               class="org.eclipse.imp.lpg.editor.LPGLabelProvider"
-               language="LPG"/>
+      <labelProvider
+            class="org.eclipse.imp.lpg.editor.LPGLabelProvider"
+            language="LPG">
+      </labelProvider>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.outlineContentProvider">
-         <outlineContentProvider
-         		class="org.eclipse.imp.lpg.editor.LPGContentProvider"
-         		language="LPG"/>
+      <outlineContentProvider
+            class="org.eclipse.imp.lpg.editor.LPGContentProvider"
+            language="LPG">
+      </outlineContentProvider>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.refactoringContributions">
-         <refactoringContributor
-				language="LPG"
-				class="org.eclipse.imp.lpg.refactoring.LPGRefactoringContributor"/>
+      <refactoringContributor
+            class="org.eclipse.imp.lpg.refactoring.LPGRefactoringContributor"
+            language="LPG">
+      </refactoringContributor>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.referenceResolvers">
-         <referenceResolver
-                language="LPG"
-                class="org.eclipse.imp.lpg.editor.LPGReferenceResolver"/>
+      <referenceResolver
+            class="org.eclipse.imp.lpg.editor.LPGReferenceResolver"
+            language="LPG">
+      </referenceResolver>
    </extension>
    <extension
          point="org.eclipse.imp.xform.astAdapter">
-         <astAdapter
-            language="LPG"
-            class="org.eclipse.imp.lpg.refactoring.LPGASTAdapter"/>
+      <astAdapter
+            class="org.eclipse.imp.lpg.refactoring.LPGASTAdapter"
+            language="LPG">
+      </astAdapter>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.editorActionContributions">
       <editorActionContributor
             class="org.eclipse.imp.lpg.actions.LanguageActionContributor"
-            language="LPG"/>
+            language="LPG">
+      </editorActionContributor>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.documentationProvider">
-         <docProvider
-             language="LPG"
-             class="org.eclipse.imp.lpg.editor.DocumentationProvider"/>
+      <docProvider
+            class="org.eclipse.imp.lpg.editor.DocumentationProvider"
+            language="LPG">
+      </docProvider>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.markOccurrences">
-         <occurrenceMarker
-             language="LPG"
-             class="org.eclipse.imp.lpg.editor.LPGOccurrenceMarker"/>
+      <occurrenceMarker
+            class="org.eclipse.imp.lpg.editor.LPGOccurrenceMarker"
+            language="LPG">
+      </occurrenceMarker>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="LPG Preferences"
+            class="org.eclipse.imp.lpg.preferences.LPGPreferencesDialog"
+            id="org.eclipse.imp.lpg.preferencesDialog">
+      </page>
+   </extension>
+
 </plugin>
