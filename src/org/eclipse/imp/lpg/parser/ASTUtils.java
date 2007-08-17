@@ -29,7 +29,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.option_specList;
 import org.eclipse.imp.lpg.parser.LPGParser.option_value0;
 import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs1;
 import org.eclipse.imp.lpg.parser.LPGParser.terminal;
-import org.eclipse.imp.lpg.preferences.PreferenceConstants;
+import org.eclipse.imp.lpg.preferences.LPGPreferencesDialogConstants;
 import org.eclipse.imp.model.ICompilationUnit;
 import org.eclipse.imp.model.IPathEntry;
 import org.eclipse.imp.model.ISourceProject;
@@ -177,7 +177,7 @@ public class ASTUtils {
 	    }
 	}
 	IPreferenceStore store= LPGRuntimePlugin.getInstance().getPreferenceStore();
-	IPath includeDir = new Path(store.getString(PreferenceConstants.P_LPG_INCLUDE_DIRS));
+	IPath includeDir = new Path(store.getString(LPGPreferencesDialogConstants.P_INCLUDEPATHTOUSE));
 
 	return ModelFactory.open(includeDir.append(fileName), srcProject);
     }
