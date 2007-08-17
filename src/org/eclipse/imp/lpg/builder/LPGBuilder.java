@@ -27,7 +27,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.import_segment;
 import org.eclipse.imp.lpg.parser.LPGParser.include_segment;
 import org.eclipse.imp.lpg.parser.LPGParser.option;
 import org.eclipse.imp.lpg.parser.LPGParser.option_value0;
-import org.eclipse.imp.lpg.preferences.PreferenceConstants;
+import org.eclipse.imp.lpg.preferences.LPGPreferencesDialogConstants;
 import org.eclipse.imp.lpg.views.LPGView;
 import org.eclipse.imp.preferences.IPreferencesService;
 import org.eclipse.imp.runtime.PluginBase;
@@ -87,7 +87,7 @@ public class LPGBuilder extends BuilderBase {
     	// SMS 8 Sep 2006
     	//return !file.isDerived() && LPGPreferenceCache.rootExtensionList.contains(file.getFileExtension());
 
-	    String extensListed = prefService.getStringPreference(getProject(), PreferenceConstants.P_EXTENSION_LIST);
+	    String extensListed = prefService.getStringPreference(getProject(), LPGPreferencesDialogConstants.P_SOURCEFILEEXTENSIONS);
 	    String[] extens = extensListed.split(",");
 	    HashSet rootExtensionsSet = new HashSet();
 	    for(int i= 0; i < extens.length; i++) { rootExtensionsSet.add(extens[i]); }
@@ -97,7 +97,7 @@ public class LPGBuilder extends BuilderBase {
     protected boolean isNonRootSourceFile(IFile file) {
     	// SMS 8 Sep 2006
         //return !file.isDerived() && LPGPreferenceCache.nonRootExtensionList.contains(file.getFileExtension());
- 	    String extensListed = prefService.getStringPreference(getProject(), PreferenceConstants.P_NON_ROOT_EXTENSION_LIST);
+ 	    String extensListed = prefService.getStringPreference(getProject(), LPGPreferencesDialogConstants.P_INCLUDEFILEEXTENSIONS);
 	    String[] extens = extensListed.split(",");
 	    HashSet nonrootExtensionsSet = new HashSet();
 	    for(int i= 0; i < extens.length; i++) { nonrootExtensionsSet.add(extens[i]); }
@@ -128,7 +128,7 @@ public class LPGBuilder extends BuilderBase {
 		    "-quiet",
 		    // SMS 8 Sep 2006
 		    //(LPGPreferenceCache.generateListing ? "-list" : "-nolist"),
-		    (prefService.getBooleanPreference(getProject(), PreferenceConstants.P_GEN_LISTINGS) ? "-list" : "-nolist"),
+		    (prefService.getBooleanPreference(getProject(), LPGPreferencesDialogConstants.P_GENERATELISTINGS) ? "-list" : "-nolist"),
 		    // In order for Windows to treat the following template path argument as
 		    // a single argument, despite any embedded spaces, it has to be completely
 		    // enclosed in double quotes. It does not suffice to quote only the path
@@ -343,7 +343,7 @@ public class LPGBuilder extends BuilderBase {
 		//	    LPGPreferenceCache.LPGIncludeDirs.length() > 0)
 		//	    return LPGPreferenceCache.LPGIncludeDirs;
 
-	String projSpecIncPath= prefService.getStringPreference(PreferenceConstants.P_LPG_INCLUDE_DIRS);
+	String projSpecIncPath= prefService.getStringPreference(LPGPreferencesDialogConstants.P_INCLUDEPATHTOUSE);
 	return projSpecIncPath + ";" + getDefaultIncludePath();
     }
 
@@ -364,9 +364,8 @@ public class LPGBuilder extends BuilderBase {
     }
 
     private String getLPGExecutable() throws IOException {
-    	// SMS 8 Sep 2006
     	//return LPGPreferenceCache.LPGExecutableFile;
-    	return prefService.getStringPreference(getProject(), PreferenceConstants.P_LPG_EXEC_PATH);
+    	return prefService.getStringPreference(getProject(), LPGPreferencesDialogConstants.P_EXECUTABLETOUSE);
     }
 
     public static String getDefaultExecutablePath() {
