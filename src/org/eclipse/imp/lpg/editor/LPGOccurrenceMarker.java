@@ -3,12 +3,12 @@ package org.eclipse.imp.lpg.editor;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.imp.editor.IOccurrenceMarker;
 import org.eclipse.imp.lpg.parser.ASTUtils;
 import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
 import org.eclipse.imp.lpg.parser.LPGParser.IASTNodeToken;
 import org.eclipse.imp.lpg.parser.LPGParser.JikesPG;
 import org.eclipse.imp.parser.IParseController;
+import org.eclipse.imp.services.IOccurrenceMarker;
 
 public class LPGOccurrenceMarker implements IOccurrenceMarker {
 
