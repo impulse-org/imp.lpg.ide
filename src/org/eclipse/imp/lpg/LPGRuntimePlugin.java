@@ -2,9 +2,9 @@ package org.eclipse.imp.lpg;
 
 import java.net.URL;
 
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.imp.language.LanguageRegistry;
 import org.eclipse.imp.lpg.preferences.LPGPreferencesDialogConstants;
 import org.eclipse.imp.lpg.preferences.LPGPreferencesDialogInitializer;
@@ -13,9 +13,9 @@ import org.eclipse.imp.model.IPathEntry;
 import org.eclipse.imp.model.ISourceProject;
 import org.eclipse.imp.model.ModelFactory;
 import org.eclipse.imp.model.ModelFactory.IFactoryExtender;
-import org.eclipse.imp.preferences.PreferenceInitializer;
 import org.eclipse.imp.preferences.PreferencesService;
 import org.eclipse.imp.runtime.PluginBase;
+import org.eclipse.imp.utils.ExtensionPointFactory;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
@@ -32,9 +32,10 @@ public class LPGRuntimePlugin extends PluginBase {
      * The unique instance of this plugin class
      */
     protected static LPGRuntimePlugin sPlugin;
-    
 
     protected static PreferencesService preferencesService = null;
+
+    private static String kLanguageID;
 
     public static LPGRuntimePlugin getInstance() {
         return sPlugin;
@@ -48,7 +49,9 @@ public class LPGRuntimePlugin extends PluginBase {
     public void start(BundleContext context) throws Exception {
         super.start(context);
 
-        // Initialize the JikesPGPreferences fields with the preference store data.
+        kLanguageID= ExtensionPointFactory.getLanguageName(kPluginID);
+
+        // Initialize the LPGPreferences fields with the preference store data.
         if (preferencesService == null) {
         	preferencesService = getPreferencesService();
         }
@@ -63,7 +66,7 @@ public class LPGRuntimePlugin extends PluginBase {
 			    }
 			    public void extend(ICompilationUnit unit) { }
 			},
-		    LanguageRegistry.findLanguage("jikespg"));
+		    LanguageRegistry.findLanguage(kLanguageID));
 
         fEmitInfoMessages = preferencesService.getBooleanPreference(LPGPreferencesDialogConstants.P_EMITDIAGNOSTICS);
     }
@@ -93,11 +96,15 @@ public class LPGRuntimePlugin extends PluginBase {
     }
 
     public static ImageDescriptor createImageDescriptor(Bundle bundle, IPath path) {
-        URL url= Platform.find(bundle, path);
+        URL url= FileLocator.find(bundle, path, null);
         if (url != null) {
             return ImageDescriptor.createFromURL(url);
         }
         return null;
+    }
+
+    public static String getLanguageID() {
+        return kLanguageID;
     }
 
     public String getID() {
@@ -107,7 +114,7 @@ public class LPGRuntimePlugin extends PluginBase {
     public static PreferencesService getPreferencesService() {
     	if (preferencesService == null) {
         	preferencesService = new PreferencesService();
-        	preferencesService.setLanguageName("LPG");
+        	preferencesService.setLanguageName(kLanguageID);
         	new LPGPreferencesDialogInitializer().initializeDefaultPreferences();
     	}
     	return preferencesService;
@@ -121,6 +128,4 @@ public class LPGRuntimePlugin extends PluginBase {
             return;
         writeInfoMsg(msg);
     }
-
-    
 }
