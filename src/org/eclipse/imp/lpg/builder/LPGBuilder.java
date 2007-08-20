@@ -371,9 +371,9 @@ public class LPGBuilder extends BuilderBase {
     public static String getDefaultExecutablePath() {
 	Bundle bundle= Platform.getBundle(LPG_PLUGIN_ID);
 	String os= Platform.getOS();
-	String plat= Platform.getOSArch();
+	String arch= Platform.getOSArch();
 	// SMS 	22 Feb 2007  "bin... -> "lpgexe...
-	Path path= new Path("lpgexe/lpg-" + os + "_" + plat + (os.equals("win32") ? ".exe" : ""));
+	Path path= new Path("lpgexe/lpg-" + os + "_" + arch + (os.equals(Platform.OS_WIN32) ? ".exe" : ""));
 	URL execURL= FileLocator.find(bundle, path, null);
 
 	if (execURL == null) {
@@ -395,7 +395,7 @@ public class LPGBuilder extends BuilderBase {
 
 	    String LPGExecPath= url.getFile();
 
-	    if (os.equals("win32")) // remove leading slash from URL that shows up on Win32(?)
+	    if (os.equals(Platform.OS_WIN32)) // remove leading slash from URL that shows up on Win32(?)
 		LPGExecPath= LPGExecPath.substring(1);
 
 	    LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("LPG executable apparently at '" + LPGExecPath + "'.");
