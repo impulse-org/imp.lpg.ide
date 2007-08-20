@@ -49,7 +49,7 @@ public class LPGRuntimePlugin extends PluginBase {
     public void start(BundleContext context) throws Exception {
         super.start(context);
 
-        kLanguageID= ExtensionPointFactory.getLanguageName(kPluginID);
+        kLanguageID= ExtensionPointFactory.getLanguageID(kPluginID);
 
         // Initialize the LPGPreferences fields with the preference store data.
         if (preferencesService == null) {
