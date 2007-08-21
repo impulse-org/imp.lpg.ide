@@ -35,6 +35,8 @@ import org.eclipse.imp.model.IPathEntry;
 import org.eclipse.imp.model.ISourceProject;
 import org.eclipse.imp.model.ModelFactory;
 import org.eclipse.imp.parser.IParseController;
+import org.eclipse.imp.preferences.IPreferencesService;
+import org.eclipse.imp.preferences.PreferencesService;
 import org.eclipse.jface.preference.IPreferenceStore;
 
 public class ASTUtils {
@@ -176,8 +178,8 @@ public class ASTUtils {
 		return ModelFactory.open(candidatePath, srcProject);
 	    }
 	}
-	IPreferenceStore store= LPGRuntimePlugin.getInstance().getPreferenceStore();
-	IPath includeDir = new Path(store.getString(LPGPreferencesDialogConstants.P_INCLUDEPATHTOUSE));
+	IPreferencesService prefService= new PreferencesService(project, LPGRuntimePlugin.getLanguageID());
+	IPath includeDir = new Path(prefService.getStringPreference(LPGPreferencesDialogConstants.P_INCLUDEPATHTOUSE));
 
 	return ModelFactory.open(includeDir.append(fileName), srcProject);
     }
