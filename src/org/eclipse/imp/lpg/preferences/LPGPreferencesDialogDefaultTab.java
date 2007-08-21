@@ -77,10 +77,10 @@ public class LPGPreferencesDialogDefaultTab extends DefaultPreferencesTab {
 
 
 		prefUtils.createToggleFieldListener(UseDefaultExecutable, ExecutableToUse, false);
-		boolean UseDefaultExecutableValue = UseDefaultExecutable.getBooleanValue();
-		ExecutableToUse.getTextControl().setEditable(UseDefaultExecutableValue);
-		ExecutableToUse.getTextControl().setEnabled(UseDefaultExecutableValue);
-		ExecutableToUse.setEnabled(UseDefaultExecutableValue, ExecutableToUse.getParent());
+		boolean isEnabledExecutableToUse = !UseDefaultExecutable.getBooleanValue();
+		ExecutableToUse.getTextControl().setEditable(isEnabledExecutableToUse);
+		ExecutableToUse.getTextControl().setEnabled(isEnabledExecutableToUse);
+		ExecutableToUse.setEnabled(isEnabledExecutableToUse, ExecutableToUse.getParent());
 
 
 		BooleanFieldEditor UseDefaultIncludePath = prefUtils.makeNewBooleanField(
@@ -110,10 +110,10 @@ public class LPGPreferencesDialogDefaultTab extends DefaultPreferencesTab {
 
 
 		prefUtils.createToggleFieldListener(UseDefaultIncludePath, IncludePathToUse, false);
-		boolean UseDefaultIncludePathValue = UseDefaultIncludePath.getBooleanValue();
-		IncludePathToUse.getTextControl().setEditable(UseDefaultIncludePathValue);
-		IncludePathToUse.getTextControl().setEnabled(UseDefaultIncludePathValue);
-		IncludePathToUse.setEnabled(UseDefaultIncludePathValue, IncludePathToUse.getParent());
+		boolean isEnabledIncludePathToUse = !UseDefaultIncludePath.getBooleanValue();
+		IncludePathToUse.getTextControl().setEditable(isEnabledIncludePathToUse);
+		IncludePathToUse.getTextControl().setEnabled(isEnabledIncludePathToUse);
+		IncludePathToUse.setEnabled(isEnabledIncludePathToUse, IncludePathToUse.getParent());
 
 
 		StringFieldEditor SourceFileExtensions = prefUtils.makeNewStringField(

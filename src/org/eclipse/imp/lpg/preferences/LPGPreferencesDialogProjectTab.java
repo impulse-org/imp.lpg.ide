@@ -43,7 +43,7 @@ public class LPGPreferencesDialogProjectTab extends ProjectPreferencesTab {
 			page, tab, prefsService,
 			"project", "UseDefaultExecutable", "UseDefaultExecutable",
 			parent,
-			true, true,
+			false, false,
 			true, true,
 			false, false,
 			true);
@@ -56,7 +56,7 @@ public class LPGPreferencesDialogProjectTab extends ProjectPreferencesTab {
 			page, tab, prefsService,
 			"project", "ExecutableToUse", "ExecutableToUse",
 			parent,
-			true, true,
+			false, false,
 			false, "Unspecified",
 			true, "",
 			true);
@@ -66,17 +66,17 @@ public class LPGPreferencesDialogProjectTab extends ProjectPreferencesTab {
 
 
 		prefUtils.createToggleFieldListener(UseDefaultExecutable, ExecutableToUse, false);
-		boolean UseDefaultExecutableValue = UseDefaultExecutable.getBooleanValue();
-		ExecutableToUse.getTextControl().setEditable(UseDefaultExecutableValue);
-		ExecutableToUse.getTextControl().setEnabled(UseDefaultExecutableValue);
-		ExecutableToUse.setEnabled(UseDefaultExecutableValue, ExecutableToUse.getParent());
+		boolean isEnabledExecutableToUse = false;
+		ExecutableToUse.getTextControl().setEditable(isEnabledExecutableToUse);
+		ExecutableToUse.getTextControl().setEnabled(isEnabledExecutableToUse);
+		ExecutableToUse.setEnabled(isEnabledExecutableToUse, ExecutableToUse.getParent());
 
 
 		BooleanFieldEditor UseDefaultIncludePath = prefUtils.makeNewBooleanField(
 			page, tab, prefsService,
 			"project", "UseDefaultIncludePath", "UseDefaultIncludePath",
 			parent,
-			true, true,
+			false, false,
 			true, false,
 			false, false,
 			true);
@@ -89,7 +89,7 @@ public class LPGPreferencesDialogProjectTab extends ProjectPreferencesTab {
 			page, tab, prefsService,
 			"project", "IncludePathToUse", "IncludePathToUse",
 			parent,
-			true, true,
+			false, false,
 			true, ".",
 			true, "",
 			true);
@@ -99,17 +99,17 @@ public class LPGPreferencesDialogProjectTab extends ProjectPreferencesTab {
 
 
 		prefUtils.createToggleFieldListener(UseDefaultIncludePath, IncludePathToUse, false);
-		boolean UseDefaultIncludePathValue = UseDefaultIncludePath.getBooleanValue();
-		IncludePathToUse.getTextControl().setEditable(UseDefaultIncludePathValue);
-		IncludePathToUse.getTextControl().setEnabled(UseDefaultIncludePathValue);
-		IncludePathToUse.setEnabled(UseDefaultIncludePathValue, IncludePathToUse.getParent());
+		boolean isEnabledIncludePathToUse = false;
+		IncludePathToUse.getTextControl().setEditable(isEnabledIncludePathToUse);
+		IncludePathToUse.getTextControl().setEnabled(isEnabledIncludePathToUse);
+		IncludePathToUse.setEnabled(isEnabledIncludePathToUse, IncludePathToUse.getParent());
 
 
 		StringFieldEditor SourceFileExtensions = prefUtils.makeNewStringField(
 			page, tab, prefsService,
 			"project", "SourceFileExtensions", "SourceFileExtensions",
 			parent,
-			true, true,
+			false, false,
 			true, "g,lpg,gra",
 			true, "",
 			true);
@@ -122,7 +122,7 @@ public class LPGPreferencesDialogProjectTab extends ProjectPreferencesTab {
 			page, tab, prefsService,
 			"project", "IncludeFileExtensions", "IncludeFileExtensions",
 			parent,
-			true, true,
+			false, false,
 			false, "Unspecified",
 			true, "",
 			true);
@@ -135,7 +135,7 @@ public class LPGPreferencesDialogProjectTab extends ProjectPreferencesTab {
 			page, tab, prefsService,
 			"project", "EmitDiagnostics", "EmitDiagnostics",
 			parent,
-			true, true,
+			false, false,
 			true, false,
 			false, false,
 			true);
@@ -148,7 +148,7 @@ public class LPGPreferencesDialogProjectTab extends ProjectPreferencesTab {
 			page, tab, prefsService,
 			"project", "GenerateListings", "GenerateListings",
 			parent,
-			true, true,
+			false, false,
 			true, false,
 			false, false,
 			true);
@@ -227,18 +227,15 @@ public class LPGPreferencesDialogProjectTab extends ProjectPreferencesTab {
 				// overwritten by values set here--so the values set here should be consistent
 				// with what the listener would set.
 
-				// Used in setting enabled and editable status
-				boolean enabledState = false;
-
 				UseDefaultExecutableHolder = UseDefaultExecutable.getChangeControl().getParent();
 				prefUtils.setField(UseDefaultExecutable, UseDefaultExecutableHolder);
 				UseDefaultExecutable.getChangeControl().setEnabled(true);
 
 				ExecutableToUseHolder = ExecutableToUse.getTextControl().getParent();
 				prefUtils.setField(ExecutableToUse, ExecutableToUseHolder);
-				ExecutableToUse.getTextControl().setEditable(true);
-				ExecutableToUse.getTextControl().setEnabled(true);
-				ExecutableToUse.setEnabled(true, ExecutableToUse.getParent());
+				ExecutableToUse.getTextControl().setEditable(!UseDefaultExecutable.getBooleanValue());
+				ExecutableToUse.getTextControl().setEnabled(!UseDefaultExecutable.getBooleanValue());
+				ExecutableToUse.setEnabled(!UseDefaultExecutable.getBooleanValue(), ExecutableToUse.getParent());
 
 				UseDefaultIncludePathHolder = UseDefaultIncludePath.getChangeControl().getParent();
 				prefUtils.setField(UseDefaultIncludePath, UseDefaultIncludePathHolder);
@@ -246,9 +243,9 @@ public class LPGPreferencesDialogProjectTab extends ProjectPreferencesTab {
 
 				IncludePathToUseHolder = IncludePathToUse.getTextControl().getParent();
 				prefUtils.setField(IncludePathToUse, IncludePathToUseHolder);
-				IncludePathToUse.getTextControl().setEditable(true);
-				IncludePathToUse.getTextControl().setEnabled(true);
-				IncludePathToUse.setEnabled(true, IncludePathToUse.getParent());
+				IncludePathToUse.getTextControl().setEditable(!UseDefaultIncludePath.getBooleanValue());
+				IncludePathToUse.getTextControl().setEnabled(!UseDefaultIncludePath.getBooleanValue());
+				IncludePathToUse.setEnabled(!UseDefaultIncludePath.getBooleanValue(), IncludePathToUse.getParent());
 
 				SourceFileExtensionsHolder = SourceFileExtensions.getTextControl().getParent();
 				prefUtils.setField(SourceFileExtensions, SourceFileExtensionsHolder);
@@ -326,6 +323,8 @@ public class LPGPreferencesDialogProjectTab extends ProjectPreferencesTab {
 			// Remove listeners
 			removeProjectPreferenceChangeListeners();
 			haveCurrentListeners = false;
+			// To help assure that field properties are established properly
+			performApply();
 		}
 	}
 
