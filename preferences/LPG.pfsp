@@ -2,7 +2,7 @@
 page LPG {
 
     tabs {
-    	default in { iseditable true; }
+    	default in { iseditable false; }
     	configuration in { }
     	instance in { }	
     	project in { }
