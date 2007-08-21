@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
@@ -30,6 +31,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.option_value0;
 import org.eclipse.imp.lpg.preferences.LPGPreferencesDialogConstants;
 import org.eclipse.imp.lpg.views.LPGView;
 import org.eclipse.imp.preferences.IPreferencesService;
+import org.eclipse.imp.preferences.PreferencesService;
 import org.eclipse.imp.runtime.PluginBase;
 import org.eclipse.imp.utils.StreamUtils;
 import org.osgi.framework.Bundle;
@@ -64,8 +66,7 @@ public class LPGBuilder extends BuilderBase {
     private static final String MISSING_MSG_REGEXP= "Input file \"([^\"]+)\" could not be read";
     private static final Pattern MISSING_MSG_PATTERN= Pattern.compile(MISSING_MSG_REGEXP);
     
-    // SMS 8 Sep 2006
-    private IPreferencesService prefService= LPGRuntimePlugin.getPreferencesService();
+    private IPreferencesService prefService= new PreferencesService(null, LPGRuntimePlugin.getLanguageID());
 
     protected PluginBase getPlugin() {
 	return LPGRuntimePlugin.getInstance();
@@ -338,11 +339,8 @@ public class LPGBuilder extends BuilderBase {
     }
 
     public String getIncludePath() {
-    	// SMS 8 Sep 2006
-		//	if (LPGPreferenceCache.LPGIncludeDirs != null &&
-		//	    LPGPreferenceCache.LPGIncludeDirs.length() > 0)
-		//	    return LPGPreferenceCache.LPGIncludeDirs;
-
+	if (prefService.getBooleanPreference(LPGPreferencesDialogConstants.P_USEDEFAULTINCLUDEPATH))
+	    return getDefaultIncludePath();
 	String projSpecIncPath= prefService.getStringPreference(LPGPreferencesDialogConstants.P_INCLUDEPATHTOUSE);
 	return projSpecIncPath + ";" + getDefaultIncludePath();
     }
@@ -364,7 +362,8 @@ public class LPGBuilder extends BuilderBase {
     }
 
     private String getLPGExecutable() throws IOException {
-    	//return LPGPreferenceCache.LPGExecutableFile;
+	if (prefService.getBooleanPreference(LPGPreferencesDialogConstants.P_USEDEFAULTEXECUTABLE))
+	    return getDefaultExecutablePath();
     	return prefService.getStringPreference(getProject(), LPGPreferencesDialogConstants.P_EXECUTABLETOUSE);
     }
 
