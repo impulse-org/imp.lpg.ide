@@ -54,7 +54,7 @@ public class LPGPreferencesDialogDefaultTab extends DefaultPreferencesTab {
 			page, tab, prefsService,
 			"default", "UseDefaultExecutable", "UseDefaultExecutable",
 			parent,
-			true, true,
+			false, false,
 			true, true,
 			false, false,
 			false);
@@ -67,7 +67,7 @@ public class LPGPreferencesDialogDefaultTab extends DefaultPreferencesTab {
 			page, tab, prefsService,
 			"default", "ExecutableToUse", "ExecutableToUse",
 			parent,
-			true, true,
+			false, false,
 			false, "Unspecified",
 			true, "",
 			false);
@@ -87,7 +87,7 @@ public class LPGPreferencesDialogDefaultTab extends DefaultPreferencesTab {
 			page, tab, prefsService,
 			"default", "UseDefaultIncludePath", "UseDefaultIncludePath",
 			parent,
-			true, true,
+			false, false,
 			true, false,
 			false, false,
 			false);
@@ -100,7 +100,7 @@ public class LPGPreferencesDialogDefaultTab extends DefaultPreferencesTab {
 			page, tab, prefsService,
 			"default", "IncludePathToUse", "IncludePathToUse",
 			parent,
-			true, true,
+			false, false,
 			true, ".",
 			true, "",
 			false);
@@ -120,7 +120,7 @@ public class LPGPreferencesDialogDefaultTab extends DefaultPreferencesTab {
 			page, tab, prefsService,
 			"default", "SourceFileExtensions", "SourceFileExtensions",
 			parent,
-			true, true,
+			false, false,
 			true, "g,lpg,gra",
 			true, "",
 			false);
@@ -133,7 +133,7 @@ public class LPGPreferencesDialogDefaultTab extends DefaultPreferencesTab {
 			page, tab, prefsService,
 			"default", "IncludeFileExtensions", "IncludeFileExtensions",
 			parent,
-			true, true,
+			false, false,
 			false, "Unspecified",
 			true, "",
 			false);
@@ -146,7 +146,7 @@ public class LPGPreferencesDialogDefaultTab extends DefaultPreferencesTab {
 			page, tab, prefsService,
 			"default", "EmitDiagnostics", "EmitDiagnostics",
 			parent,
-			true, true,
+			false, false,
 			true, false,
 			false, false,
 			false);
@@ -159,7 +159,7 @@ public class LPGPreferencesDialogDefaultTab extends DefaultPreferencesTab {
 			page, tab, prefsService,
 			"default", "GenerateListings", "GenerateListings",
 			parent,
-			true, true,
+			false, false,
 			true, false,
 			false, false,
 			false);
