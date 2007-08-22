@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
@@ -127,8 +126,6 @@ public class LPGBuilder extends BuilderBase {
 	    String cmd[]= new String[] {
 		    executablePath,
 		    "-quiet",
-		    // SMS 8 Sep 2006
-		    //(LPGPreferenceCache.generateListing ? "-list" : "-nolist"),
 		    (prefService.getBooleanPreference(getProject(), LPGPreferencesDialogConstants.P_GENERATELISTINGS) ? "-list" : "-nolist"),
 		    // In order for Windows to treat the following template path argument as
 		    // a single argument, despite any embedded spaces, it has to be completely
