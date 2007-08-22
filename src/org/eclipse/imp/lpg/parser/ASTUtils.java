@@ -1,5 +1,6 @@
 package org.eclipse.imp.lpg.parser;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -179,9 +180,17 @@ public class ASTUtils {
 	    }
 	}
 	IPreferencesService prefService= new PreferencesService(project, LPGRuntimePlugin.getLanguageID());
-	IPath includeDir = new Path(prefService.getStringPreference(LPGPreferencesDialogConstants.P_INCLUDEPATHTOUSE));
+	String includeSearchPath= prefService.getStringPreference(LPGPreferencesDialogConstants.P_INCLUDEPATHTOUSE);
+	String[] includeDirs= includeSearchPath.split(";");
 
-	return ModelFactory.open(includeDir.append(fileName), srcProject);
+	for(int i= 0; i < includeDirs.length; i++) {
+	    IPath includeDirPath= new Path(includeDirs[i]);
+	    IPath includeFile= includeDirPath.append(fileName);
+
+	    if (new File(includeFile.toOSString()).exists())
+		return ModelFactory.open(includeFile, srcProject);
+	}
+	return null;
     }
 
     public static ICompilationUnit lookupSourceFile(ISourceProject project, IPath refLocation, String filePath) {
