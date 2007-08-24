@@ -97,6 +97,14 @@
     Token
 %End
 
+%Notice
+/.
+// (C) Copyright IBM Corporation 2007
+// 
+// This file is part of the Eclipse IMP.
+./
+%End
+
 %Rules
     Token ::= white /.$BeginJava skipToken(); $EndJava./
     Token ::= singleLineComment /.$BeginJava makeComment($_SINGLE_LINE_COMMENT); $EndJava./

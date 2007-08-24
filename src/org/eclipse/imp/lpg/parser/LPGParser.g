@@ -4,6 +4,14 @@
 %options template=btParserTemplate.gi
 %options import_terminals=LPGLexer.gi
 
+%Notice
+/.
+// (C) Copyright IBM Corporation 2007
+// 
+// This file is part of the Eclipse IMP.
+./
+%End
+
 %Globals
     /.import org.eclipse.imp.parser.IParser;
         import java.util.ArrayList;
@@ -81,7 +89,7 @@
         void initialize() { symbolTable = symtab; }
      ./
 
-    JikesPG_INPUT$$JikesPG_item ::= $empty
+    JikesPG_INPUT$$JikesPG_item ::= %empty
                                 |   JikesPG_INPUT JikesPG_item
 
     -- RMF 11/15/2006 - The following non-terminals should be renamed alias_segment_body, etc.
@@ -109,11 +117,11 @@
     JikesPG_item$PredecessorSeg ::= DISJOINTPREDECESSORSETS_KEY$ predecessor_segment END_KEY_OPT$
 
     -- %options
-    options_segment$$option_spec ::= $empty | options_segment option_spec
+    options_segment$$option_spec ::= %empty | options_segment option_spec
     option_spec$option_spec ::= OPTIONS_KEY$ option_list
     option_list$$option ::= option | option_list ','$ option
     option ::= SYMBOL option_value
-    option_value ::= $empty | '='$ SYMBOL | '='$ '('$ symbol_list ')'$
+    option_value ::= %empty | '='$ SYMBOL | '='$ '('$ symbol_list ')'$
 
     symbol_list$$SYMBOL ::= SYMBOL
                           | symbol_list ','$ SYMBOL
@@ -174,7 +182,7 @@
     -- $import
     import_segment  ::= SYMBOL drop_command_list
 
-    drop_command_list$$drop_command ::= $empty | drop_command_list drop_command
+    drop_command_list$$drop_command ::= %empty | drop_command_list drop_command
 
     drop_command ::= DROPSYMBOLS_KEY drop_symbols
     drop_command ::= DROPRULES_KEY drop_rules
@@ -186,7 +194,7 @@
 
     drop_rule ::= SYMBOL optMacroName produces ruleList
 
-    optMacroName ::= $empty | MACRO_NAME
+    optMacroName ::= %empty | MACRO_NAME
 
     -- $include
     include_segment ::= SYMBOL
@@ -213,7 +221,7 @@
     -- $rules
     rules_segment ::= action_segment_list nonTermList
 
-    nonTermList$$nonTerm ::= $empty | nonTermList nonTerm
+    nonTermList$$nonTerm ::= %empty | nonTermList nonTerm
 
     nonTerm ::= ruleNameWithAttributes produces ruleList
     /.
@@ -225,7 +233,7 @@
     ruleNameWithAttributes$RuleName ::= SYMBOL MACRO_NAME$className
     ruleNameWithAttributes$RuleName ::= SYMBOL MACRO_NAME$className MACRO_NAME$arrayElement
 
---  ruleNameAttributes$$ruleNameAttribute ::= $empty | ruleNameAttributes ruleNameAttribute
+--  ruleNameAttributes$$ruleNameAttribute ::= %empty | ruleNameAttributes ruleNameAttribute
 --  ruleNameAttribute ::= MACRO_NAME
 --  ruleNameAttribute ::= enumListSpec
 --  ruleNameAttribute ::= enumValueSpec
@@ -246,16 +254,16 @@
 
     rule ::= symWithAttrsList opt_action_segment
 
-    symWithAttrsList$$symWithAttrs ::= $empty | symWithAttrsList symWithAttrs
+    symWithAttrsList$$symWithAttrs ::= %empty | symWithAttrsList symWithAttrs
 
     symWithAttrs ::= EMPTY_KEY
     symWithAttrs ::= SYMBOL optAttrList
 
     -- TODO rename to 'symAttr'
-    optAttrList$symAttrs ::= $empty
+    optAttrList$symAttrs ::= %empty
     optAttrList$symAttrs ::= MACRO_NAME
 
-    opt_action_segment ::= $empty | action_segment
+    opt_action_segment ::= %empty | action_segment
 
     action_segment ::= BLOCK 
 
@@ -272,7 +280,7 @@
     /.
         void initialize() { symtab.addDefinition(_terminal_symbol.toString(), this); }
      ./
-    optTerminalAlias ::= $empty | produces name
+    optTerminalAlias ::= %empty | produces name
 
     terminal_symbol ::= SYMBOL
     /.
@@ -290,12 +298,12 @@
     barSymbolList$$SYMBOL ::= SYMBOL | barSymbolList '|'$ SYMBOL
 
     --
-    predecessor_segment$$symbol_pair ::= $empty | predecessor_segment symbol_pair
+    predecessor_segment$$symbol_pair ::= %empty | predecessor_segment symbol_pair
 
     symbol_pair ::= SYMBOL SYMBOL
 
     --
-    recover_segment$$SYMBOL ::= $empty | recover_segment recover_symbol
+    recover_segment$$SYMBOL ::= %empty | recover_segment recover_symbol
     
     recover_symbol ::= SYMBOL
     /.
@@ -304,9 +312,9 @@
         }
      ./
 
-    END_KEY_OPT ::= $empty
+    END_KEY_OPT ::= %empty
     END_KEY_OPT ::= END_KEY 
 
-    action_segment_list$$action_segment ::= $empty
+    action_segment_list$$action_segment ::= %empty
     action_segment_list$$action_segment ::= action_segment_list action_segment 
 %End
