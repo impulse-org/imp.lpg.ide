@@ -8,3 +8,5 @@ LPGParsersym.java
 LPGKWLexer.java
 LPGKWLexerprs.java
 LPGKWLexersym.java
+LPGKWLexerexp.java
+LPGLexerexp.java
