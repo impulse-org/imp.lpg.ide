@@ -51,124 +51,124 @@ public class LPGPreferencesDialogDefaultTab extends DefaultPreferencesTab {
 	 */
 	protected FieldEditor[] createFields(
 		TabbedPreferencesPage page, PreferencesTab tab, String tabLevel,
-		Composite parent, IPreferencesService prefsService)
+		Composite parent)
 	{
 		List fields = new ArrayList();
 
-		BooleanFieldEditor UseDefaultExecutable = prefUtils.makeNewBooleanField(
-			page, tab, prefsService,
+		BooleanFieldEditor UseDefaultExecutable = fPrefUtils.makeNewBooleanField(
+			page, tab, fPrefService,
 			"default", "UseDefaultExecutable", "UseDefaultExecutable",
 			parent,
 			false, false,
 			true, true,
 			false, false,
 			false);
-			Link UseDefaultExecutableDetailsLink = prefUtils.createDetailsLink(parent, UseDefaultExecutable, UseDefaultExecutable.getChangeControl().getParent(), "Details ...");
+			Link UseDefaultExecutableDetailsLink = fPrefUtils.createDetailsLink(parent, UseDefaultExecutable, UseDefaultExecutable.getChangeControl().getParent(), "Details ...");
 
 		fields.add(UseDefaultExecutable);
 
 
-		FileFieldEditor ExecutableToUse = prefUtils.makeNewFileField(
-			page, tab, prefsService,
+		FileFieldEditor ExecutableToUse = fPrefUtils.makeNewFileField(
+			page, tab, fPrefService,
 			"default", "ExecutableToUse", "ExecutableToUse",
 			parent,
 			false, false,
 			false, "Unspecified",
 			true, "",
 			false);
-			Link ExecutableToUseDetailsLink = prefUtils.createDetailsLink(parent, ExecutableToUse, ExecutableToUse.getTextControl().getParent(), "Details ...");
+			Link ExecutableToUseDetailsLink = fPrefUtils.createDetailsLink(parent, ExecutableToUse, ExecutableToUse.getTextControl().getParent(), "Details ...");
 
 		fields.add(ExecutableToUse);
 
 
-		prefUtils.createToggleFieldListener(UseDefaultExecutable, ExecutableToUse, false);
+		fPrefUtils.createToggleFieldListener(UseDefaultExecutable, ExecutableToUse, false);
 		boolean isEnabledExecutableToUse = !UseDefaultExecutable.getBooleanValue();
 		ExecutableToUse.getTextControl().setEditable(isEnabledExecutableToUse);
 		ExecutableToUse.getTextControl().setEnabled(isEnabledExecutableToUse);
 		ExecutableToUse.setEnabled(isEnabledExecutableToUse, ExecutableToUse.getParent());
 
 
-		BooleanFieldEditor UseDefaultIncludePath = prefUtils.makeNewBooleanField(
-			page, tab, prefsService,
+		BooleanFieldEditor UseDefaultIncludePath = fPrefUtils.makeNewBooleanField(
+			page, tab, fPrefService,
 			"default", "UseDefaultIncludePath", "UseDefaultIncludePath",
 			parent,
 			false, false,
 			true, false,
 			false, false,
 			false);
-			Link UseDefaultIncludePathDetailsLink = prefUtils.createDetailsLink(parent, UseDefaultIncludePath, UseDefaultIncludePath.getChangeControl().getParent(), "Details ...");
+			Link UseDefaultIncludePathDetailsLink = fPrefUtils.createDetailsLink(parent, UseDefaultIncludePath, UseDefaultIncludePath.getChangeControl().getParent(), "Details ...");
 
 		fields.add(UseDefaultIncludePath);
 
 
-		DirectoryListFieldEditor IncludePathToUse = prefUtils.makeNewDirectoryListField(
-			page, tab, prefsService,
+		DirectoryListFieldEditor IncludePathToUse = fPrefUtils.makeNewDirectoryListField(
+			page, tab, fPrefService,
 			"default", "IncludePathToUse", "IncludePathToUse",
 			parent,
 			false, false,
 			true, ".",
 			true, "",
 			false);
-			Link IncludePathToUseDetailsLink = prefUtils.createDetailsLink(parent, IncludePathToUse, IncludePathToUse.getTextControl().getParent(), "Details ...");
+			Link IncludePathToUseDetailsLink = fPrefUtils.createDetailsLink(parent, IncludePathToUse, IncludePathToUse.getTextControl().getParent(), "Details ...");
 
 		fields.add(IncludePathToUse);
 
 
-		prefUtils.createToggleFieldListener(UseDefaultIncludePath, IncludePathToUse, false);
+		fPrefUtils.createToggleFieldListener(UseDefaultIncludePath, IncludePathToUse, false);
 		boolean isEnabledIncludePathToUse = !UseDefaultIncludePath.getBooleanValue();
 		IncludePathToUse.getTextControl().setEditable(isEnabledIncludePathToUse);
 		IncludePathToUse.getTextControl().setEnabled(isEnabledIncludePathToUse);
 		IncludePathToUse.setEnabled(isEnabledIncludePathToUse, IncludePathToUse.getParent());
 
 
-		StringFieldEditor SourceFileExtensions = prefUtils.makeNewStringField(
-			page, tab, prefsService,
+		StringFieldEditor SourceFileExtensions = fPrefUtils.makeNewStringField(
+			page, tab, fPrefService,
 			"default", "SourceFileExtensions", "SourceFileExtensions",
 			parent,
 			false, false,
 			true, "g,lpg,gra",
 			true, "",
 			false);
-			Link SourceFileExtensionsDetailsLink = prefUtils.createDetailsLink(parent, SourceFileExtensions, SourceFileExtensions.getTextControl().getParent(), "Details ...");
+			Link SourceFileExtensionsDetailsLink = fPrefUtils.createDetailsLink(parent, SourceFileExtensions, SourceFileExtensions.getTextControl().getParent(), "Details ...");
 
 		fields.add(SourceFileExtensions);
 
 
-		StringFieldEditor IncludeFileExtensions = prefUtils.makeNewStringField(
-			page, tab, prefsService,
+		StringFieldEditor IncludeFileExtensions = fPrefUtils.makeNewStringField(
+			page, tab, fPrefService,
 			"default", "IncludeFileExtensions", "IncludeFileExtensions",
 			parent,
 			false, false,
 			false, "Unspecified",
 			true, "",
 			false);
-			Link IncludeFileExtensionsDetailsLink = prefUtils.createDetailsLink(parent, IncludeFileExtensions, IncludeFileExtensions.getTextControl().getParent(), "Details ...");
+			Link IncludeFileExtensionsDetailsLink = fPrefUtils.createDetailsLink(parent, IncludeFileExtensions, IncludeFileExtensions.getTextControl().getParent(), "Details ...");
 
 		fields.add(IncludeFileExtensions);
 
 
-		BooleanFieldEditor EmitDiagnostics = prefUtils.makeNewBooleanField(
-			page, tab, prefsService,
+		BooleanFieldEditor EmitDiagnostics = fPrefUtils.makeNewBooleanField(
+			page, tab, fPrefService,
 			"default", "EmitDiagnostics", "EmitDiagnostics",
 			parent,
 			false, false,
 			true, false,
 			false, false,
 			false);
-			Link EmitDiagnosticsDetailsLink = prefUtils.createDetailsLink(parent, EmitDiagnostics, EmitDiagnostics.getChangeControl().getParent(), "Details ...");
+			Link EmitDiagnosticsDetailsLink = fPrefUtils.createDetailsLink(parent, EmitDiagnostics, EmitDiagnostics.getChangeControl().getParent(), "Details ...");
 
 		fields.add(EmitDiagnostics);
 
 
-		BooleanFieldEditor GenerateListings = prefUtils.makeNewBooleanField(
-			page, tab, prefsService,
+		BooleanFieldEditor GenerateListings = fPrefUtils.makeNewBooleanField(
+			page, tab, fPrefService,
 			"default", "GenerateListings", "GenerateListings",
 			parent,
 			false, false,
 			true, false,
 			false, false,
 			false);
-			Link GenerateListingsDetailsLink = prefUtils.createDetailsLink(parent, GenerateListings, GenerateListings.getChangeControl().getParent(), "Details ...");
+			Link GenerateListingsDetailsLink = fPrefUtils.createDetailsLink(parent, GenerateListings, GenerateListings.getChangeControl().getParent(), "Details ...");
 
 		fields.add(GenerateListings);
 
