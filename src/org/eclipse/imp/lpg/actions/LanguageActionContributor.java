@@ -28,5 +28,5 @@ public class LanguageActionContributor implements ILanguageActionsContributor {
 		};
     }
 
-    public static ResourceBundle ResBundle= ResourceBundle.getBundle("org.eclipse.safari.jikespg.actions.ActionMessages");
+    public static ResourceBundle ResBundle= ResourceBundle.getBundle("org.eclipse.imp.lpg.actions.ActionMessages");
 }
