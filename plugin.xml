@@ -232,7 +232,7 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            name="LPG Preferences"
+            name="LPG"
             class="org.eclipse.imp.lpg.preferences.LPGPreferencesDialog"
             id="org.eclipse.imp.lpg.preferencesDialog">
       </page>
