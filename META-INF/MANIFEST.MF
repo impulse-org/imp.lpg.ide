@@ -23,7 +23,8 @@ Require-Bundle: org.eclipse.ui,
  lpg.runtime,
  org.eclipse.imp.runtime,
  org.eclipse.imp.xform,
- org.eclipse.core.variables
+ org.eclipse.core.variables,
+ org.eclipse.ui.console
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.imp.lpg,
  org.eclipse.imp.lpg.actions,
