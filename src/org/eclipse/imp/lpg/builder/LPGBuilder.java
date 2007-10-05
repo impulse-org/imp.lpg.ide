@@ -33,11 +33,12 @@ import org.eclipse.imp.lpg.parser.LPGParser.include_segment;
 import org.eclipse.imp.lpg.parser.LPGParser.option;
 import org.eclipse.imp.lpg.parser.LPGParser.option_value0;
 import org.eclipse.imp.lpg.preferences.LPGPreferencesDialogConstants;
-import org.eclipse.imp.lpg.views.LPGView;
 import org.eclipse.imp.preferences.IPreferencesService;
 import org.eclipse.imp.preferences.PreferencesService;
 import org.eclipse.imp.runtime.PluginBase;
 import org.eclipse.imp.utils.StreamUtils;
+import org.eclipse.ui.console.MessageConsole;
+import org.eclipse.ui.console.MessageConsoleStream;
 import org.osgi.framework.Bundle;
 
 /**
@@ -45,6 +46,8 @@ import org.osgi.framework.Bundle;
  * @author CLaffra
  */
 public class LPGBuilder extends BuilderBase {
+    private static final String LPG_BUILDER_CONSOLE= "LPG Build";
+
     /**
      * Extension ID of the LPG builder. Must match the ID in the corresponding
      * extension definition in plugin.xml.
@@ -72,6 +75,8 @@ public class LPGBuilder extends BuilderBase {
     
     private IPreferencesService prefService= new PreferencesService(null, LPGRuntimePlugin.getLanguageID());
 
+    private boolean fEmitDiagnostics; // Set by compile() to current pref value
+
     protected PluginBase getPlugin() {
 	return LPGRuntimePlugin.getInstance();
     }
@@ -94,7 +99,7 @@ public class LPGBuilder extends BuilderBase {
 
 	    String extensListed = prefService.getStringPreference(getProject(), LPGPreferencesDialogConstants.P_SOURCEFILEEXTENSIONS);
 	    String[] extens = extensListed.split(",");
-	    HashSet rootExtensionsSet = new HashSet();
+	    HashSet<String> rootExtensionsSet = new HashSet<String>();
 	    for(int i= 0; i < extens.length; i++) { rootExtensionsSet.add(extens[i]); }
     	return !file.isDerived() && rootExtensionsSet.contains(file.getFileExtension());
     }
@@ -102,10 +107,12 @@ public class LPGBuilder extends BuilderBase {
     protected boolean isNonRootSourceFile(IFile file) {
     	// SMS 8 Sep 2006
         //return !file.isDerived() && LPGPreferenceCache.nonRootExtensionList.contains(file.getFileExtension());
- 	    String extensListed = prefService.getStringPreference(getProject(), LPGPreferencesDialogConstants.P_INCLUDEFILEEXTENSIONS);
-	    String[] extens = extensListed.split(",");
-	    HashSet nonrootExtensionsSet = new HashSet();
-	    for(int i= 0; i < extens.length; i++) { nonrootExtensionsSet.add(extens[i]); }
+        String extensListed = prefService.getStringPreference(getProject(), LPGPreferencesDialogConstants.P_INCLUDEFILEEXTENSIONS);
+        String[] extens = extensListed.split(",");
+        HashSet<String> nonrootExtensionsSet = new HashSet<String>();
+        for(int i= 0; i < extens.length; i++) {
+            nonrootExtensionsSet.add(extens[i]);
+        }
     	return !file.isDerived() && nonrootExtensionsSet.contains(file.getFileExtension());
     }
 
@@ -113,15 +120,25 @@ public class LPGBuilder extends BuilderBase {
 	return resource.getFullPath().lastSegment().equals("bin");
     }
 
+    protected MessageConsoleStream getConsoleStream() {
+        return fEmitDiagnostics ? findConsole(LPG_BUILDER_CONSOLE).newMessageStream() : null;
+    }
+
     protected void compile(final IFile file, IProgressMonitor monitor) {
 	if (prefService.getProject() == null) {
 	    prefService.setProject(getProject());
 	}
+	fEmitDiagnostics= prefService.getBooleanPreference(LPGPreferencesDialogConstants.P_EMITDIAGNOSTICS);
 
 	String fileName= file.getLocation().toOSString();
 	String includePath= getIncludePath();
 	try {
 	    String executablePath= getLPGExecutable();
+
+	    if (executablePath.length() == 0)
+	        return;
+
+	    String includeSearchPath= "-include-directory='" + includePath + "'";
 	    File parentDir= new File(fileName).getParentFile();
 
 	    LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Running generator on grammar file '" + fileName + "'.");
@@ -141,7 +158,7 @@ public class LPGBuilder extends BuilderBase {
 		    // kind of quote for both the inner and outer quoting, and the outer quotes
 		    // survived, the part that actually needed quoting would be "bare"! Hence
 		    // we use double quotes for the outer level and single quotes inside.
-		    "\"-include-directory='" + includePath + "'\"",
+		    (fIsWin32 ? "\"" + includeSearchPath + "\"" : includeSearchPath),
 		    // TODO RMF 7/21/05 -- Don't specify -dat-directory; causes performance issues with Eclipse.
 		    // Lexer tables can get quite large, so large that Java as spec'ed can't swallow them
 		    // when translated to a switch statement, or even an array initializer. As a result,
@@ -152,10 +169,10 @@ public class LPGBuilder extends BuilderBase {
 		    // "-dat-directory=" + getOutputDirectory(resource.getProject()),
 		    fileName};
 	    Process process= Runtime.getRuntime().exec(cmd, new String[0], parentDir);
-	    LPGView consoleView= LPGView.getDefault();
+            MessageConsoleStream msgStream= getConsoleStream();
 
-	    processLPGOutput(file, process, consoleView);
-	    processLPGErrors(file, process, consoleView);
+	    processLPGOutput(file, process, msgStream);
+	    processLPGErrors(file, process, msgStream);
 	    doRefresh(file);
 	    collectDependencies(file);
 	    LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Generator exit code == " + process.waitFor());
@@ -217,14 +234,15 @@ public class LPGBuilder extends BuilderBase {
         });
     }
 
-    private void processLPGErrors(IResource resource, Process process, LPGView view) throws IOException {
+    private void processLPGErrors(IResource resource, Process process, MessageConsoleStream stream) throws IOException {
 	InputStream is= process.getErrorStream();
 	BufferedReader in2= new BufferedReader(new InputStreamReader(is));
 
 	String line;
 	while ((line= in2.readLine()) != null) {
-	    if (view != null)
-		LPGView.println(line);
+	    if (fEmitDiagnostics)
+	        stream.println(line);
+
 	    if (parseSyntaxMessageCreateMarker(line))
 		;
 	    else if (line.indexOf("Input file ") == 0) {
@@ -239,17 +257,16 @@ public class LPGBuilder extends BuilderBase {
     final String lineSep= System.getProperty("line.separator");
     final int lineSepBias= lineSep.length() - 1;
 
-    private void processLPGOutput(final IResource resource, Process process, LPGView view) throws IOException {
+    private static boolean fIsWin32= Platform.getOS().equals(Platform.OS_WIN32);
+
+    private void processLPGOutput(final IResource resource, Process process, MessageConsoleStream stream) throws IOException {
 	InputStream is= process.getInputStream();
 	BufferedReader in= new BufferedReader(new InputStreamReader(is));
 	String line= null;
 
 	while ((line= in.readLine()) != null) {
-	    if (view != null)
-		LPGView.println(line);
-	    else {
-		System.out.println(line);
-	    }
+	    if (fEmitDiagnostics)
+	        stream.println(line);
 	    if (line.length() == 0)
 		continue;
 
@@ -272,32 +289,33 @@ public class LPGBuilder extends BuilderBase {
 	    createMarker(file, 1, 0, 1, msg.substring(10), IMarker.SEVERITY_ERROR);
 	    return;
 	}
-	if (msg.indexOf("Number of ") < 0 &&
-	    !msg.startsWith("(C) Copyright") &&
-	    !msg.startsWith("IBM LALR Parser")) {
-	    Matcher matcher= SYNTAX_MSG_NOSEV_PATTERN.matcher(msg);
+	if (msg.indexOf("Number of ") >= 0 ||
+	    msg.startsWith("(C) Copyright") ||
+	    msg.startsWith("IBM LALR Parser"))
+            return;
 
-	    if (matcher.matches()) {
-		String errorFile= matcher.group(1);
-		String projectLoc= getProject().getLocation().toString();
+        Matcher matcher= SYNTAX_MSG_NOSEV_PATTERN.matcher(msg);
 
-		if (errorFile.startsWith(projectLoc))
-		    errorFile= errorFile.substring(projectLoc.length());
+        if (matcher.matches()) {
+            String errorFile= matcher.group(1);
+            String projectLoc= getProject().getLocation().toString();
 
-		IResource errorResource= getProject().getFile(errorFile);
-		int startLine= Integer.parseInt(matcher.group(2));
-//		int startCol= Integer.parseInt(matcher.group(3));
-//		int endLine= Integer.parseInt(matcher.group(4));
-//		int endCol= Integer.parseInt(matcher.group(5));
-		int startChar= Integer.parseInt(matcher.group(6)) - 1;// - (startLine - 1) * lineSepBias + 1;
-		int endChar= Integer.parseInt(matcher.group(7));// - (endLine - 1) * lineSepBias + 1;
-		String descrip= matcher.group(8);
+            if (errorFile.startsWith(projectLoc))
+                errorFile= errorFile.substring(projectLoc.length());
 
-		if (startLine == 0) startLine= 1;
-		createMarker(errorResource, startLine, startChar, endChar, descrip, IMarker.SEVERITY_WARNING);
-	    } else
-		createMarker(file, 1, 0, 1, msg, IMarker.SEVERITY_INFO);
-	}
+            IResource errorResource= getProject().getFile(errorFile);
+            int startLine= Integer.parseInt(matcher.group(2));
+//	    int startCol= Integer.parseInt(matcher.group(3));
+//	    int endLine= Integer.parseInt(matcher.group(4));
+//	    int endCol= Integer.parseInt(matcher.group(5));
+            int startChar= Integer.parseInt(matcher.group(6)) - 1;// - (startLine - 1) * lineSepBias + 1;
+            int endChar= Integer.parseInt(matcher.group(7));// - (endLine - 1) * lineSepBias + 1;
+            String descrip= matcher.group(8);
+
+            if (startLine == 0) startLine= 1;
+                createMarker(errorResource, startLine, startChar, endChar, descrip, IMarker.SEVERITY_WARNING);
+        } else
+            createMarker(file, 1, 0, 1, msg, IMarker.SEVERITY_INFO);
     }
 
     private void parseMissingFileMessage(String msg, IResource file) {
@@ -322,6 +340,10 @@ public class LPGBuilder extends BuilderBase {
 		errorFile= errorFile.substring(projectLoc.length());
 
 	    IResource errorResource= getProject().getFile(errorFile);
+
+            if (!errorResource.exists())
+                return true;
+
 	    int startLine= Integer.parseInt(matcher.group(2));
 //	    int startCol= Integer.parseInt(matcher.group(3));
 //	    int endLine= Integer.parseInt(matcher.group(4));
@@ -332,12 +354,16 @@ public class LPGBuilder extends BuilderBase {
 	    String descrip= matcher.group(9);
 
 	    if (startLine == 0) startLine= 1;
-	    createMarker(errorResource, startLine, startChar, endChar, descrip,
-                    (severity.equals("Informative") ? IMarker.SEVERITY_INFO :
-                        (severity.equals("Warning") ? IMarker.SEVERITY_WARNING : IMarker.SEVERITY_ERROR)));
+	    if (startChar < 0) { startChar= 0; endChar= 1; }
+	    createMarker(errorResource, startLine, startChar, endChar, descrip, mapSeverity(severity));
 	    return true;
 	}
 	return false;
+    }
+
+    private int mapSeverity(String severity) {
+        return severity.equals("Informative") ? IMarker.SEVERITY_INFO :
+            (severity.equals("Warning") ? IMarker.SEVERITY_WARNING : IMarker.SEVERITY_ERROR);
     }
 
     public String getIncludePath() {
@@ -355,7 +381,7 @@ public class LPGBuilder extends BuilderBase {
 	    // no longer inside the plugin jar (which is now expanded upon installation).
 	    String tmplPath= FileLocator.toFileURL(bundle.getEntry("templates")).getFile();
 
-	    if (Platform.getOS().equals("win32"))
+	    if (fIsWin32)
 		tmplPath= tmplPath.substring(1);
 	    return tmplPath;
 	} catch(IOException e) {
@@ -364,9 +390,15 @@ public class LPGBuilder extends BuilderBase {
     }
 
     private String getLPGExecutable() throws IOException {
-	if (prefService.getBooleanPreference(LPGPreferencesDialogConstants.P_USEDEFAULTEXECUTABLE))
-	    return getDefaultExecutablePath();
-    	return prefService.getStringPreference(getProject(), LPGPreferencesDialogConstants.P_EXECUTABLETOUSE);
+        String result;
+        if (prefService.getBooleanPreference(LPGPreferencesDialogConstants.P_USEDEFAULTEXECUTABLE))
+            result= getDefaultExecutablePath();
+        result= prefService.getStringPreference(getProject(), LPGPreferencesDialogConstants.P_EXECUTABLETOUSE);
+    	if (!(new File(result)).exists()) {
+    	    postMsgDialog("No LPG Executable", "The LPG executable cannot be found at the location you specified. Please change the setting in the LPG preferences page.");
+            return "";
+    	}
+    	return result;
     }
 
     public static String getDefaultExecutablePath() {
@@ -374,7 +406,7 @@ public class LPGBuilder extends BuilderBase {
 	String os= Platform.getOS();
 	String arch= Platform.getOSArch();
 	// SMS 	22 Feb 2007  "bin... -> "lpgexe...
-	Path path= new Path("lpgexe/lpg-" + os + "_" + arch + (os.equals(Platform.OS_WIN32) ? ".exe" : ""));
+	Path path= new Path("lpgexe/lpg-" + os + "_" + arch + (fIsWin32 ? ".exe" : ""));
 	URL execURL= FileLocator.find(bundle, path, null);
 
 	if (execURL == null) {
