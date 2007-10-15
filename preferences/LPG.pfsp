@@ -1,27 +1,25 @@
-	
 page LPG {
-
     tabs {
     	default in { iseditable false; }
     	configuration in { }
     	instance in { }	
     	project in { }
     }
-    	
+
     fields {
-    	boolean UseDefaultExecutable { hasspecial true; defvalue true; }
-    	file  ExecutableToUse { defvalue "C:\\eclipse\\workspaces\\eclipse-3.2.2-2\\lpg.runtime.java\\lpgexe\\lpg-win32_x86.exe"; }
+    	boolean UseDefaultExecutable  { hasspecial true; defvalue true; }
+    	file    ExecutableToUse       { defvalue "C:\\eclipse\\workspaces\\eclipse-3.2.2-2\\lpg.runtime.java\\lpgexe\\lpg-win32_x86.exe"; }
     	boolean UseDefaultIncludePath { hasspecial false; defvalue true; }
-    	dirlist  IncludePathToUse { hasspecial "."; defvalue ".;..;"; }
-    	string SourceFileExtensions { hasspecial "g,lpg,gra"; defvalue "g"; }
-    	string IncludeFileExtensions { defvalue "gi"; }
-    	boolean EmitDiagnostics { hasspecial false; defvalue true; }
-	boolean GenerateListings { hasspecial false; defvalue true; }
+    	dirlist IncludePathToUse      { hasspecial "."; defvalue ".;..;"; }
+    	string  SourceFileExtensions  { hasspecial "g,lpg,gra"; defvalue "g"; }
+    	string  IncludeFileExtensions { defvalue "gi"; }
+    	boolean EmitDiagnostics       { hasspecial false; defvalue true; }
+	boolean GenerateListings      { hasspecial false; defvalue true; }
+	boolean QuietOutput           { defvalue true; }
     }
-    
+
     conditionals {
         ExecutableToUse against UseDefaultExecutable;
         IncludePathToUse against UseDefaultIncludePath;
     }
-
 }
