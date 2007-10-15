@@ -30,6 +30,6 @@
 		<nature>org.eclipse.pde.PluginNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.imp.lpg.runtime.LPGNature</nature>
-		<nature>com.ibm.watson.smapifier.smapinature</nature>
+		<nature>org.eclipse.imp.smapifier.smapinature</nature>
 	</natures>
 </projectDescription>

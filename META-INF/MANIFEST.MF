@@ -19,12 +19,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.search,
  org.eclipse.jdt.core,
  org.eclipse.jdt.ui,
- com.ibm.watson.smapifier,
  lpg.runtime,
  org.eclipse.imp.runtime,
  org.eclipse.imp.xform,
  org.eclipse.core.variables,
- org.eclipse.ui.console
+ org.eclipse.ui.console,
+ org.eclipse.imp.smapifier
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.imp.lpg,
  org.eclipse.imp.lpg.actions,

@@ -48,7 +48,7 @@
 			<classpath>
 				<pathelement location="../lpg.runtime.java/bin"/>
 				<pathelement location="../org.eclipse.imp.runtime/bin"/>
-				<pathelement location="../com.ibm.watson.smapifier/bin"/>
+				<pathelement location="../org.eclipse.imp.smapifier/bin"/>
 				<pathelement location="../org.eclipse.imp.xform/bin"/>
 				<pathelement path="${eclipse.build.path}"/>
 			</classpath>

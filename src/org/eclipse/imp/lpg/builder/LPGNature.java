@@ -13,7 +13,7 @@ import org.eclipse.imp.builder.ProjectNatureBase;
 import org.eclipse.imp.lpg.LPGRuntimePlugin;
 import org.eclipse.imp.runtime.IPluginLog;
 
-import com.ibm.watson.smapifier.builder.SmapiProjectNature;
+import org.eclipse.imp.smapifier.builder.SmapiProjectNature;
 
 public class LPGNature extends ProjectNatureBase {
     public static final String	k_natureID = LPGRuntimePlugin.kPluginID + ".LPGNature";
