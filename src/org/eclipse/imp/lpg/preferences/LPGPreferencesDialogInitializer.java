@@ -34,7 +34,7 @@ public class LPGPreferencesDialogInitializer extends AbstractPreferenceInitializ
 		service.setStringPreference(IPreferencesService.DEFAULT_LEVEL, LPGPreferencesDialogConstants.P_INCLUDEPATHTOUSE, getDefaultIncludePath());
 		service.setStringPreference(IPreferencesService.DEFAULT_LEVEL, LPGPreferencesDialogConstants.P_SOURCEFILEEXTENSIONS, "g");
 		service.setStringPreference(IPreferencesService.DEFAULT_LEVEL, LPGPreferencesDialogConstants.P_INCLUDEFILEEXTENSIONS, "gi");
-		service.setBooleanPreference(IPreferencesService.DEFAULT_LEVEL, LPGPreferencesDialogConstants.P_EMITDIAGNOSTICS, true);
+		service.setBooleanPreference(IPreferencesService.DEFAULT_LEVEL, LPGPreferencesDialogConstants.P_EMITDIAGNOSTICS, false);
 		service.setBooleanPreference(IPreferencesService.DEFAULT_LEVEL, LPGPreferencesDialogConstants.P_GENERATELISTINGS, true);
 	}
 	
