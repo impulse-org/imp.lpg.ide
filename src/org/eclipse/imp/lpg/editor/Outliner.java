@@ -186,11 +186,18 @@ public class Outliner extends OutlinerBase //DefaultOutliner
 		public void endVisit(KeywordsSeg n) {
 		    fItemStack.pop();
 		}
+		public boolean visit(StartSeg n) {
+		    fItemStack.push(createTopItem("Start", n));
+		    return true;
+		}
+		public void endVisit(StartSeg n) {
+		    fItemStack.pop();
+		}
 	        public void endVisit(start_symbol0 n) {
-	            createTopItem("Start = " + symbolImage(n), n);
+	            createSubItem(symbolImage(n), n);
 	        }
 		public void endVisit(start_symbol1 n) {
-	            createTopItem("Start = " + symbolImage(n), n);
+	            createSubItem("Start = " + symbolImage(n), n);
 		}
 		public boolean visit(TerminalsSeg n) {
 		    fItemStack.push(createTopItem("Terminals", n));

@@ -268,7 +268,7 @@
     action_segment ::= BLOCK 
 
     -- $start
-    start_segment ::= start_symbol
+    start_segment$$start_symbol ::= start_symbol | start_segment start_symbol
     start_symbol  ::= SYMBOL 
     start_symbol  ::= MACRO_NAME
 
