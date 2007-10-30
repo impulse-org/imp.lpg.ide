@@ -169,7 +169,7 @@ public class LPGBuilder extends BuilderBase {
 		    // "-dat-directory=" + getOutputDirectory(resource.getProject()),
 		    fileName};
 	    Process process= Runtime.getRuntime().exec(cmd, new String[0], parentDir);
-            MessageConsoleStream msgStream= getConsoleStream();
+        MessageConsoleStream msgStream= getConsoleStream();
 
 	    processLPGOutput(file, process, msgStream);
 	    processLPGErrors(file, process, msgStream);
@@ -383,6 +383,16 @@ public class LPGBuilder extends BuilderBase {
 
 	    if (fIsWin32)
 		tmplPath= tmplPath.substring(1);
+	    
+	    // SMS 30 Oct 2007
+	    // We need to account for the "local" (i.e., IMP) versions of the templates
+	    // in the include path.
+	    bundle = Platform.getBundle("org.eclipse.imp.lpg.metatooling");
+	    String addendum = FileLocator.toFileURL(bundle.getEntry("templates")).getFile();
+	    if (fIsWin32)
+			addendum= addendum.substring(1);
+	    tmplPath = tmplPath + ";" + addendum;
+	    
 	    return tmplPath;
 	} catch(IOException e) {
 	    return null;
