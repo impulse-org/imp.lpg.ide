@@ -32,6 +32,7 @@ public class ParseController implements IParseController {
     private LPGParser fParser;
     private LPGLexer fLexer;
     private ASTNode fCurrentAst;
+    private JavaActionBlockVisitor actionVisitor;
     private char fKeywords[][];
     private boolean fIsKeyword[];
 
@@ -96,7 +97,8 @@ public class ParseController implements IParseController {
 
     public ParseController() {
 	fLexer= new LPGLexer(); // Create the lexer
-	fParser= new LPGParser(fLexer.getLexStream()); // Create the parser
+	fParser= new LPGParser(fLexer); //fLexer.getLexStream()); // Create the parser
+	actionVisitor = new JavaActionBlockVisitor();
     }
 
     class MyMonitor implements Monitor {
@@ -126,6 +128,10 @@ public class ParseController implements IParseController {
 	fCurrentAst= (ASTNode) fParser.parser(my_monitor, 0);
 	if (fCurrentAst == null)
 	    fParser.dumpTokens();
+	else {
+        actionVisitor.initialize(fParser);
+        fCurrentAst.accept(actionVisitor);
+    }
 	if (fKeywords == null)
 	    initKeywords();
 	return fCurrentAst;

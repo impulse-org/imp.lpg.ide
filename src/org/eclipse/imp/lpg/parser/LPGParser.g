@@ -147,7 +147,7 @@
     alias_rhs ::= IDENTIFIER_KEY
 
     -- $ast
-    ast_segment ::= action_segment
+    ast_segment ::= action_segment_list
 
     -- $define
     define_segment$$defineSpec ::= defineSpec | define_segment defineSpec
@@ -266,6 +266,11 @@
     opt_action_segment ::= %empty | action_segment
 
     action_segment ::= BLOCK 
+    /.
+            private JavaParser.Ast ast;
+            public JavaParser.Ast getAst() { return ast; }
+            public void setAst(JavaParser.Ast ast) { this.ast = ast; }
+    ./
 
     -- $start
     start_segment$$start_symbol ::= start_symbol | start_segment start_symbol
