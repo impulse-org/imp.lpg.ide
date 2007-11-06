@@ -3,7 +3,7 @@
 --
 %Options fp=JavaKWLexer
 %options package=org.eclipse.imp.lpg.parser
-%options template=KeyWordTemplateD.g
+%options template=KeywordTemplateD.g
 
 $Include
     KWLexerLowerCaseMap.gi
