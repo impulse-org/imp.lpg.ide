@@ -5,7 +5,7 @@
 %options fp=JavaParser
 %options verbose
 %options package=org.eclipse.imp.lpg.parser
-%options template=btParserTemplate.gi
+%options template=btParserTemplateF.gi
 %options import_terminals=GJavaLexer.gi
 
 %Notice

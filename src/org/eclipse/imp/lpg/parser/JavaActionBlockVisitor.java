@@ -5,13 +5,13 @@ import org.eclipse.imp.lpg.parser.LPGParser.*;
 public class JavaActionBlockVisitor extends AbstractVisitor
 {
     private JavaLexer javaLexer = new JavaLexer(); // lexer can be shared.
-    private JavaParser javaParser;
+    private JavaParser javaParser = new JavaParser(javaLexer);
 
     public void initialize(LPGParser env)
     {
-        javaLexer.initialize(env.getInputChars(), env.getFileName());
-        javaParser = new JavaParser(javaLexer); // allocate new parser (and parse stream).
-        javaParser.setMessageHandler(env.getMessageHandler());
+        javaLexer.initialize(env.getParseStream().getInputChars(), env.getParseStream().getFileName());
+        javaParser.reset(javaLexer); // allocate a new parse stream.
+        javaParser.getParseStream().setMessageHandler(env.getParseStream().getMessageHandler());
     }
          
     private void parseClassBodyDeclarationsopt(action_segmentList list) {
@@ -23,7 +23,7 @@ public class JavaActionBlockVisitor extends AbstractVisitor
         int start_offset = n.getBLOCK().getStartOffset() + 2,
             end_offset   = n.getBLOCK().getEndOffset() - 2;
         javaParser.getParseStream().resetTokenStream();
-        javaLexer.lexer(javaParser, start_offset, end_offset);
+        javaLexer.lexer(javaParser.getParseStream(), start_offset, end_offset);
         n.setAst(javaParser.parseClassBodyDeclarationsopt());
     }
 
@@ -36,7 +36,7 @@ public class JavaActionBlockVisitor extends AbstractVisitor
         int start_offset = n.getBLOCK().getStartOffset() + 2,
             end_offset   = n.getBLOCK().getEndOffset() - 2;
         javaParser.getParseStream().resetTokenStream();
-        javaLexer.lexer(javaParser, start_offset, end_offset);
+        javaLexer.lexer(javaParser.getParseStream(), start_offset, end_offset);
         n.setAst(javaParser.parser());
     }
 
