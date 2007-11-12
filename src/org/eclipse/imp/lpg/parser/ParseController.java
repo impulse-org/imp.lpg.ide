@@ -29,6 +29,7 @@ import org.eclipse.imp.parser.ParseError;
 public class ParseController implements IParseController {
     private IPath fFilePath;
     private ISourceProject fProject;
+    private IMessageHandler fHandler;
     private LPGParser fParser;
     private LPGLexer fLexer;
     private ASTNode fCurrentAst;
@@ -39,7 +40,7 @@ public class ParseController implements IParseController {
     public void initialize(IPath filePath, ISourceProject project, IMessageHandler handler) {
 	fFilePath= filePath;
 	fProject= project;
-	fParser.setMessageHandler(handler);
+	fHandler= handler;
     }
 
     public ISourceProject getProject() {
@@ -122,13 +123,14 @@ public class ParseController implements IParseController {
 
 	fLexer.initialize(contentsArray, fFilePath.toOSString());
 	fParser.getParseStream().resetTokenStream();
+	fParser.getParseStream().setMessageHandler(fHandler);
 	fLexer.lexer(my_monitor, fParser.getParseStream()); // Lex the stream to produce the token stream
 	if (my_monitor.isCancelled())
 	    return fCurrentAst; // TODO fCurrentAst might (probably will) be inconsistent wrt the lex stream now
 	fCurrentAst= (ASTNode) fParser.parser(my_monitor, 0);
 	if (fCurrentAst == null)
-	    fParser.dumpTokens();
-	else {
+	    fParser.getParseStream().dumpTokens();
+	else { // TODO: only do this when automatic-ast is requested
         actionVisitor.initialize(fParser);
         fCurrentAst.accept(actionVisitor);
     }
@@ -138,7 +140,7 @@ public class ParseController implements IParseController {
     }
 
     private void initKeywords() {
-	String tokenKindNames[]= fParser.getParseStream().orderedTerminalSymbols();
+	String tokenKindNames[]= fParser.orderedTerminalSymbols();
 
 	this.fIsKeyword= new boolean[tokenKindNames.length];
 	this.fKeywords= new char[tokenKindNames.length][];
@@ -148,7 +150,7 @@ public class ParseController implements IParseController {
 	for(int i= 1; i < keywordKinds.length; i++) {
 	    int index= fParser.getParseStream().mapKind(keywordKinds[i]);
 	    fIsKeyword[index]= true;
-	    fKeywords[index]= fParser.getParseStream().orderedTerminalSymbols()[index].toCharArray();
+	    fKeywords[index]= fParser.orderedTerminalSymbols()[index].toCharArray();
 	}
     }
     
