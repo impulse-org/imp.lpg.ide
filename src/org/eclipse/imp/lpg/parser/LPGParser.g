@@ -1,7 +1,7 @@
 %options la=6
 %options package=org.eclipse.imp.lpg.parser
 %options automatic_ast,ast_type=ASTNode,visitor=preorder,parent_saved
-%options template=btParserTemplate.gi
+%options template=dtParserTemplateF.gi
 %options import_terminals=LPGLexer.gi
 
 %Notice

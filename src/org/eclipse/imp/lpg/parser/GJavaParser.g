@@ -12,7 +12,7 @@
     /.//
     // This is the grammar specification from the Final Draft of the generic spec.
     //./
-%End 
+%End
 
 %Globals
     /.
@@ -107,8 +107,8 @@
     MINUS_EQUAL                ::= -=
     NOT                        ::= !
     NOT_EQUAL                  ::= !=
-    REMAINDER                  ::= %
-    REMAINDER_EQUAL            ::= %=  
+    REMAINDER                  ::= '%'
+    REMAINDER_EQUAL            ::= '%='
     AND                        ::= &
     AND_AND                    ::= && 
     AND_EQUAL                  ::= &= 
@@ -149,10 +149,15 @@
     UNSIGNED_RIGHT_SHIFT       ::= >>>
     UNSIGNED_RIGHT_SHIFT_EQUAL ::= >>>=
     ELLIPSIS                   ::= ...
+    
+    BeginAction                ::= "$BeginAction"
+    EndAction                  ::= "$EndAction"
+    BeginJava                  ::= "$BeginJava"
+    EndJava                    ::= "$EndJava"
 %End
 
 %Start
-    CompilationUnit ClassBodyDeclarationsopt
+    CompilationUnit ClassBodyDeclarationsopt LPGUserAction
 %End
 
 %Rules
@@ -165,6 +170,9 @@
                             System.out.println("Turning keyword " + getIDENTIFIER().toString() + " into an identifier");
                     }
         ./
+        
+    LPGUserAction ::= "$BeginAction" BlockStatementsopt "$EndAction"
+                    | "$BeginJava"   BlockStatementsopt "$EndJava"
 
     -- Chapter 4
 
@@ -853,7 +861,7 @@
     MultiplicativeExpression ::= UnaryExpression
                                | MultiplicativeExpression * UnaryExpression
                                | MultiplicativeExpression / UnaryExpression
-                               | MultiplicativeExpression % UnaryExpression
+                               | MultiplicativeExpression '%' UnaryExpression
     
     AdditiveExpression ::= MultiplicativeExpression
                          | AdditiveExpression + MultiplicativeExpression
@@ -905,7 +913,7 @@
     AssignmentOperator ::= =
                          | *=
                          | /=
-                         | %=
+                         | '%='
                          | +=
                          | -=
                          | <<=

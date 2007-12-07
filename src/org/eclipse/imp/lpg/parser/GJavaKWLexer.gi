@@ -1,15 +1,15 @@
 --
 -- The Java KeyWord Lexer
 --
-%Options fp=JavaKWLexer
+%Options fp=JavaKWLexer,states
 %options package=org.eclipse.imp.lpg.parser
-%options template=KeywordTemplateD.g
+%options template=KeywordTemplate.gi
 
-$Include
-    KWLexerLowerCaseMap.gi
-$End
+%Include
+    KWLexerMap.gi
+%End
 
-$Export
+%Export
     abstract
     assert
     boolean
@@ -63,18 +63,23 @@ $Export
     void
     volatile
     while
-$End
+    
+    BeginAction
+    BeginJava
+    EndAction
+    EndJava
+%End
 
-$Terminals
+%Terminals
     a    b    c    d    e    f    g    h    i    j    k    l    m
     n    o    p    q    r    s    t    u    v    w    x    y    z
-$End
+%End
 
-$Start
+%Start
     KeyWord
-$End
+%End
 
-$Rules
+%Rules
 
     -- The Goal for the parser is a single Keyword
 
@@ -395,4 +400,39 @@ $Rules
             $setResult($_while);
           $EndAction
         ./
-$End
+
+    KeyWord ::= '$' bB eE gG iI nN aA cC tT iI oO nN
+        /.$BeginAction
+            $setResult($_BeginAction);
+          $EndAction
+        ./
+              | '$' bB eE gG iI nN jJ aA vV aA
+        /.$BeginAction
+            $setResult($_BeginJava);
+          $EndAction
+        ./
+
+    KeyWord ::= '$' eE nN dD aA cC tT iI oO nN
+        /.$BeginAction
+            $setResult($_EndAction);
+          $EndAction
+        ./
+              | '$' eE nN dD jJ aA vV aA
+        /.$BeginAction
+            $setResult($_EndJava);
+          $EndAction
+        ./
+
+    aA -> a | A
+    bB -> b | B 
+    cC -> c | C
+    dD -> d | D
+    eE -> e | E
+    gG -> g | G
+    iI -> i | I 
+    jJ -> j | J 
+    nN -> n | N
+    oO -> o | O
+    tT -> t | T
+    vV -> v | V 
+%End

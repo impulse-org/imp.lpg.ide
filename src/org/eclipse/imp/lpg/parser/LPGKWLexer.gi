@@ -40,7 +40,6 @@
    START_KEY
    TRAILERS_KEY
    TYPES_KEY
-
 %End
 
 %Start
@@ -146,6 +145,11 @@
             $setResult($_KEYWORDS_KEY);
           $EndJava
         ./
+    Keyword ::= KeyPrefix s o f t k e y w o r d s
+        /.$BeginJava
+            $setResult($_KEYWORDS_KEY);
+          $EndJava
+        ./
     Keyword ::= KeyPrefix n a m e s
         /.$BeginJava
             $setResult($_NAMES_KEY);
@@ -186,5 +190,6 @@
             $setResult($_TYPES_KEY);
           $EndJava
         ./
+        
     KeyPrefix -> '$' | '%'
 %End

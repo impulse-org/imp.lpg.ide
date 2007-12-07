@@ -1,7 +1,7 @@
 %options la=15
 %options single-productions
 %options package=org.eclipse.imp.lpg.parser
-%options template=LexerTemplate.gi
+%options template=LexerTemplateF.gi
 %options filter=LPGKWLexer.gi
 
 %Globals
@@ -16,7 +16,7 @@
 %End
 
 %Include
-    LexerBasicMap.gi
+    LexerBasicMapF.gi
 %End
 
 %Export

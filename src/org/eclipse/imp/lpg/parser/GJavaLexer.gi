@@ -5,7 +5,7 @@
 %Options fp=JavaLexer
 %options single_productions
 %options package=org.eclipse.imp.lpg.parser
-%options template=LexerTemplate.gi
+%options template=LexerTemplateF.gi
 %options filter=GJavaKWLexer.gi
 
 $Define
@@ -17,7 +17,7 @@ $Define
 $End
 
 $Include
-    LexerBasicMap.gi
+    LexerBasicMapF.gi
 $End
 
 --$Include
