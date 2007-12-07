@@ -1,41 +1,50 @@
 package org.eclipse.imp.lpg.parser;
 
+import lpg.runtime.*;
 import org.eclipse.imp.lpg.parser.LPGParser.*;
 
-public class JavaActionBlockVisitor extends AbstractVisitor
+public abstract class JavaActionBlockVisitor extends AbstractVisitor
 {
     private JavaLexer javaLexer = new JavaLexer(); // lexer can be shared.
-    private JavaParser javaParser = new JavaParser(javaLexer);
+    private JavaParser javaParser = new JavaParser();
 
-    public void initialize(LPGParser env)
+    public void reset(LPGParser env)
     {
-        javaLexer.initialize(env.getParseStream().getInputChars(), env.getParseStream().getFileName());
-        javaParser.reset(javaLexer); // allocate a new parse stream.
-        javaParser.getParseStream().setMessageHandler(env.getParseStream().getMessageHandler());
-    }
+    	PrsStream prs_stream = env.getParseStream();
+    	javaLexer.reset(prs_stream.getInputChars(), prs_stream.getFileName());
+    	javaLexer.getLexStream().setMessageHandler(prs_stream.getMessageHandler());
+   	}
          
-    private void parseClassBodyDeclarationsopt(action_segmentList list) {
+    protected void parseClassBodyDeclarationsopt(action_segmentList list) {
         for (int i = 0; i < list.size(); i++)
             parseClassBodyDeclarationsopt((action_segment) list.getaction_segmentAt(i));
     }
         
-    private void parseClassBodyDeclarationsopt(action_segment n) {
+    protected void parseClassBodyDeclarationsopt(action_segment n) {
         int start_offset = n.getBLOCK().getStartOffset() + 2,
             end_offset   = n.getBLOCK().getEndOffset() - 2;
-        javaParser.getParseStream().resetTokenStream();
+        javaParser.reset(javaLexer.getLexStream()); // allocate a new parse stream.
         javaLexer.lexer(javaParser.getParseStream(), start_offset, end_offset);
         n.setAst(javaParser.parseClassBodyDeclarationsopt());
     }
 
-    private void parse(action_segmentList list) {
+    protected void parse(action_segmentList list) {
         for (int i = 0; i < list.size(); i++)
             parse((action_segment) list.getaction_segmentAt(i));
     }
    
-    private void parse(action_segment n) {
+    protected void parseLPGUserAction(action_segment n) {
         int start_offset = n.getBLOCK().getStartOffset() + 2,
             end_offset   = n.getBLOCK().getEndOffset() - 2;
-        javaParser.getParseStream().resetTokenStream();
+        javaParser.reset(javaLexer.getLexStream()); // allocate a new parse stream.
+        javaLexer.lexer(javaParser.getParseStream(), start_offset, end_offset);
+        n.setAst(javaParser.parseLPGUserAction());
+    }
+
+    protected void parse(action_segment n) {
+        int start_offset = n.getBLOCK().getStartOffset() + 2,
+            end_offset   = n.getBLOCK().getEndOffset() - 2;
+        javaParser.reset(javaLexer.getLexStream()); // allocate a new parse stream.
         javaLexer.lexer(javaParser.getParseStream(), start_offset, end_offset);
         n.setAst(javaParser.parser());
     }
@@ -73,10 +82,5 @@ public class JavaActionBlockVisitor extends AbstractVisitor
          return false;
     }
 
-    public boolean visit(rule n) {
-        action_segment a = n.getopt_action_segment();
-        if (a != null)
-            parseClassBodyDeclarationsopt(a);
-        return false;
-    }
+    public abstract boolean visit(rule n);
 }
