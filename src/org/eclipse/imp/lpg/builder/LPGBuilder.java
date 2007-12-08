@@ -423,7 +423,7 @@ public class LPGBuilder extends BuilderBase {
 	    String errMsg= "Unable to find LPG executable at " + path + " in bundle " + bundle.getSymbolicName();
 
 	    LPGRuntimePlugin.getInstance().writeErrorMsg(errMsg);
-	    return null;
+	    return "";
 	} else {
 	    // N.B.: The lpg executable will normally be inside a jar file,
 	    //       so use asLocalURL() to extract to a local file if needed.
