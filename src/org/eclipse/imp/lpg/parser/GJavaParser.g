@@ -171,7 +171,8 @@
                     }
         ./
         
-    LPGUserAction ::= "$BeginAction" BlockStatementsopt "$EndAction"
+    LPGUserAction ::= BlockStatementsopt
+                    | "$BeginAction" BlockStatementsopt "$EndAction"
                     | "$BeginJava"   BlockStatementsopt "$EndJava"
 
     -- Chapter 4
