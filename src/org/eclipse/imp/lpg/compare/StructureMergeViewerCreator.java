@@ -97,12 +97,8 @@ public class StructureMergeViewerCreator implements IViewerCreator {
 
         private ASTNode parseContents(String contents, IPath path) {
             if (contents == null) return null;
-            char[] contentsArray= contents.toCharArray();
-            ILexer lexer= new LPGLexer();
+            ILexer lexer= new LPGLexer(contents.toCharArray(), path.toString());
             IParser parser= new LPGParser(lexer.getLexStream());
-
-            lexer.initialize(contentsArray, path.toString());
-            parser.getParseStream().resetTokenStream();
             lexer.lexer(null, parser.getParseStream()); // Lex the stream to produce the token stream
             return (ASTNode) parser.parser(null, 0);
         }
