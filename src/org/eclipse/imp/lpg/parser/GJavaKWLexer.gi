@@ -68,6 +68,9 @@
     BeginJava
     EndAction
     EndJava
+    NoAction
+    NullAction
+    BadAction
 %End
 
 %Terminals
@@ -423,6 +426,22 @@
           $EndAction
         ./
 
+    KeyWord ::= '$' nN oO aA cC tT iI oO nN
+        /.$BeginAction
+            $setResult($_NoAction);
+          $EndAction
+        ./
+    KeyWord ::= '$' nN uU lL lL aA cC tT iI oO nN
+        /.$BeginAction
+            $setResult($_NullAction);
+          $EndAction
+        ./
+    KeyWord ::= '$' bB aA dD aA cC tT iI oO nN
+        /.$BeginAction
+            $setResult($_BadAction);
+          $EndAction
+        ./
+
     aA -> a | A
     bB -> b | B 
     cC -> c | C
@@ -431,8 +450,10 @@
     gG -> g | G
     iI -> i | I 
     jJ -> j | J 
+    lL -> l | L 
     nN -> n | N
     oO -> o | O
     tT -> t | T
+    uU -> u | U
     vV -> v | V 
 %End

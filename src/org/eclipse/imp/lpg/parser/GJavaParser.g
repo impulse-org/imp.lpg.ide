@@ -154,6 +154,9 @@
     EndAction                  ::= "$EndAction"
     BeginJava                  ::= "$BeginJava"
     EndJava                    ::= "$EndJava"
+    NoAction                   ::= "$NoAction"
+    NullAction                 ::= "$NullAction"
+    BadAction                  ::= "$BadAction"
 %End
 
 %Start
@@ -174,6 +177,10 @@
     LPGUserAction ::= BlockStatementsopt
                     | "$BeginAction" BlockStatementsopt "$EndAction"
                     | "$BeginJava"   BlockStatementsopt "$EndJava"
+                    | "$NoAction"
+                    | "$NullAction"
+                    | "$BadAction"
+                    
 
     -- Chapter 4
 
