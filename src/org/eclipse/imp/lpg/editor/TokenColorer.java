@@ -12,7 +12,9 @@ import lpg.runtime.IToken;
 
 import org.eclipse.imp.lpg.parser.LPGLexer;
 import org.eclipse.imp.parser.IParseController;
+import org.eclipse.imp.parser.SimpleLPGParseController;
 import org.eclipse.imp.services.ITokenColorer;
+import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -41,10 +43,12 @@ public class TokenColorer implements ITokenColorer {
 	ANNOTATION= new TextAttribute(display.getSystemColor(SWT.COLOR_MAGENTA), null, SWT.ITALIC);
     }
 
-    public TextAttribute getColoring(IParseController controller, IToken token) {
-	if (token.getKind() == LPGLexer.TK_EMPTY_KEY)
+    public TextAttribute getColoring(IParseController controller, Object o) {
+        IToken token= (IToken) o;
+
+        if (token.getKind() == LPGLexer.TK_EMPTY_KEY)
 	    return EMPTY;
-	if (controller.isKeyword(token.getKind()))
+	if (((SimpleLPGParseController) controller).isKeyword(token.getKind()))
 	    return KEYWORD;
 	if (token.getKind() == LPGLexer.TK_SYMBOL) {
 	    char ch= controller.getLexer().getLexStream().getInputChars()[token.getStartOffset()];
@@ -58,5 +62,9 @@ public class TokenColorer implements ITokenColorer {
 	    return ANNOTATION;
 
 	return null;
+    }
+
+    public IRegion calculateDamageExtent(IRegion seed) {
+        return seed; // TODO naive, doesn't work in general
     }
 }
