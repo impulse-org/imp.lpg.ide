@@ -181,9 +181,9 @@
       </labelProvider>
    </extension>
    <extension
-         point="org.eclipse.imp.runtime.outlineContentProvider">
+         point="org.eclipse.imp.runtime.modelTreeBuilder">
       <outlineContentProvider
-            class="org.eclipse.imp.lpg.editor.LPGContentProvider"
+            class="org.eclipse.imp.lpg.editor.LPGTreeModelBuilder"
             language="LPG">
       </outlineContentProvider>
    </extension>
@@ -236,6 +236,12 @@
             class="org.eclipse.imp.lpg.preferences.LPGPreferencesDialog"
             id="org.eclipse.imp.lpg.preferencesDialog">
       </page>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.indexContributor">
+      <indexContributor
+            class="org.eclipse.imp.lpg.runtime.LPGIndexContributor"
+            language="lpg"/>
    </extension>
 
 </plugin>
