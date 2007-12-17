@@ -5,6 +5,7 @@
  */
 package org.eclipse.imp.lpg.parser;
 
+import lpg.runtime.IAst;
 import lpg.runtime.IToken;
 
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -12,9 +13,9 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
 import org.eclipse.imp.model.ICompilationUnit;
-import org.eclipse.imp.parser.IASTNodeLocator;
+import org.eclipse.imp.parser.ISourcePositionLocator;
 
-public class NodeLocator implements IASTNodeLocator {
+public class NodeLocator implements ISourcePositionLocator {
     private ASTNode fResult= null;
     private final ParseController fParseController;
 
@@ -72,32 +73,39 @@ public class NodeLocator implements IASTNodeLocator {
         }
     }
     
-    public int getStartOffset(Object node) {
-	if (node instanceof ASTNode) {
-	    ASTNode n = (ASTNode) node;
+    public int getStartOffset(Object entity) {
+	if (entity instanceof IAst) {
+	    IAst n = (IAst) entity;
 	    return n.getLeftIToken().getStartOffset();
-	} else if (node instanceof ICompilationUnit) {
-	    ICompilationUnit icu= (ICompilationUnit) node;
+	} else if (entity instanceof ICompilationUnit) {
+	    ICompilationUnit icu= (ICompilationUnit) entity;
 	    return 0;
-	}
+	} else if (entity instanceof IToken) {
+	    IToken t= (IToken) entity;
+            return t.getStartOffset();
+        }
 	return 0;
     }
-    
-    
-    public int getEndOffset(Object node) {
-	if (node instanceof ASTNode) {
-	    ASTNode n = (ASTNode) node;
+
+    public int getEndOffset(Object entity) {
+	if (entity instanceof IAst) {
+	    IAst n = (IAst) entity;
 	    return n.getRightIToken().getEndOffset();
-	} else if (node instanceof ICompilationUnit) {
+	} else if (entity instanceof ICompilationUnit) {
 	    return 0;
+        } else if (entity instanceof IToken) {
+            IToken t= (IToken) entity;
+            return t.getEndOffset();
 	}
 	return 0;
     }
-    
-    
-    public int getLength(Object  node) {
-    	ASTNode n = (ASTNode) node;
-    	return getEndOffset(n) - getStartOffset(n) + 1;
+
+    public int getLength(Object entity) {
+        if (entity instanceof ICompilationUnit) {
+            return 0;
+        } else {
+            return getEndOffset(entity) - getStartOffset(entity) + 1;
+        }
     }
 
     public IPath getPath(Object node) {
