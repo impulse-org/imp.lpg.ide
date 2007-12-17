@@ -6,7 +6,7 @@
 package org.eclipse.imp.lpg.refactoring;
 
 import org.eclipse.imp.editor.UniversalEditor;
-import org.eclipse.imp.editor.UniversalEditor.IRefactoringContributor;
+import org.eclipse.imp.services.IRefactoringContributor;
 import org.eclipse.jface.action.IAction;
 
 public class LPGRefactoringContributor implements IRefactoringContributor {
