@@ -13,8 +13,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import lpg.runtime.IPrsStream;
-
 import org.eclipse.imp.editor.SourceProposal;
 import org.eclipse.imp.lpg.parser.ASTUtils;
 import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
@@ -23,8 +21,8 @@ import org.eclipse.imp.lpg.parser.LPGParser.JikesPG;
 import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
 import org.eclipse.imp.lpg.parser.LPGParser.option;
 import org.eclipse.imp.lpg.parser.LPGParser.terminal;
-import org.eclipse.imp.parser.IASTNodeLocator;
 import org.eclipse.imp.parser.IParseController;
+import org.eclipse.imp.parser.ISourcePositionLocator;
 import org.eclipse.imp.services.IContentProposer;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
@@ -32,15 +30,12 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 public class ContentProposer implements IContentProposer {
 
     public ICompletionProposal[] getContentProposals(IParseController controller, final int offset, ITextViewer textViewer) {
-	IPrsStream parseStream= controller.getParser().getParseStream();
-	int thisTokIdx= parseStream.getTokenIndexAtCharacter(offset);
-        if (thisTokIdx < 0) thisTokIdx= - thisTokIdx;
 	JikesPG root= (JikesPG) controller.getCurrentAst();
 
         if (root == null)
             return new ICompletionProposal[0];
 
-        IASTNodeLocator locator= controller.getNodeLocator();
+        ISourcePositionLocator locator= controller.getNodeLocator();
 	ASTNode thisNode= (ASTNode) locator.findNode(root, offset);
         final String prefixToken= thisNode.getLeftIToken().toString();
         final String prefix= prefixToken.substring(0, offset - thisNode.getLeftIToken().getStartOffset());

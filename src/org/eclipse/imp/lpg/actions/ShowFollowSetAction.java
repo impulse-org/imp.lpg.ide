@@ -25,7 +25,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.ruleList;
 import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs1;
 import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrsList;
 import org.eclipse.imp.lpg.parser.LPGParser.terminal;
-import org.eclipse.imp.parser.IASTNodeLocator;
+import org.eclipse.imp.parser.ISourcePositionLocator;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.graphics.Point;
@@ -204,7 +204,7 @@ nextRule:
     private ASTNode findNode(UniversalEditor editor) {
 	Point sel= editor.getSelection();
 	IParseController parseController= editor.getParseController();
-	IASTNodeLocator locator= parseController.getNodeLocator();
+	ISourcePositionLocator locator= parseController.getNodeLocator();
 
 	return (ASTNode) locator.findNode(fRoot, sel.x);
     }

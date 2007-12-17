@@ -29,7 +29,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrsList;
 import org.eclipse.imp.lpg.parser.LPGParser.terminal;
 import org.eclipse.imp.lpg.views.GrammarInteractionView;
 import org.eclipse.imp.lpg.views.GrammarInteractionView.InputHandler;
-import org.eclipse.imp.parser.IASTNodeLocator;
+import org.eclipse.imp.parser.ISourcePositionLocator;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.graphics.Point;
@@ -186,7 +186,7 @@ public class ParseNonTerminalAction extends TextEditorAction implements InputHan
     private ASTNode findNode(UniversalEditor editor) {
 	Point sel= editor.getSelection();
 	IParseController parseController= editor.getParseController();
-	IASTNodeLocator locator= parseController.getNodeLocator();
+	ISourcePositionLocator locator= parseController.getNodeLocator();
 
 	return (ASTNode) locator.findNode(fRoot, sel.x);
     }

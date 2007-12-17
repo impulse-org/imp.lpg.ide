@@ -15,7 +15,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
 import org.eclipse.imp.lpg.parser.LPGParser.rule;
 import org.eclipse.imp.lpg.parser.LPGParser.ruleList;
 import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrsList;
-import org.eclipse.imp.parser.IASTNodeLocator;
+import org.eclipse.imp.parser.ISourcePositionLocator;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.Refactoring;
@@ -51,7 +51,7 @@ public class MakeNonEmptyRefactoring extends Refactoring {
 	Point sel= editor.getSelection();
 	IParseController parseController= editor.getParseController();
 	ASTNode root= (ASTNode) parseController.getCurrentAst();
-	IASTNodeLocator locator= parseController.getNodeLocator();
+	ISourcePositionLocator locator= parseController.getNodeLocator();
 
 	return (ASTNode) locator.findNode(root, sel.x);
     }
