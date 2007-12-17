@@ -11,7 +11,7 @@ package org.eclipse.imp.lpg.actions;
 import java.util.ResourceBundle;
 
 import org.eclipse.imp.editor.UniversalEditor;
-import org.eclipse.imp.editor.UniversalEditor.ILanguageActionsContributor;
+import org.eclipse.imp.services.ILanguageActionsContributor;
 import org.eclipse.jface.action.IAction;
 
 public class LanguageActionContributor implements ILanguageActionsContributor {
