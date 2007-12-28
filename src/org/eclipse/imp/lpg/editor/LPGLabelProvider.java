@@ -18,7 +18,11 @@ import org.eclipse.imp.editor.ModelTreeNode;
 import org.eclipse.imp.language.ILanguageService;
 import org.eclipse.imp.lpg.ILPGResources;
 import org.eclipse.imp.lpg.LPGRuntimePlugin;
+import org.eclipse.imp.lpg.builder.LPGBuilder;
 import org.eclipse.imp.lpg.parser.LPGParser.*;
+import org.eclipse.imp.lpg.preferences.LPGPreferencesDialogConstants;
+import org.eclipse.imp.model.ISourceEntity;
+import org.eclipse.imp.preferences.PreferencesService;
 import org.eclipse.imp.utils.MarkerUtils;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -39,17 +43,27 @@ public class LPGLabelProvider implements ILabelProvider, ILanguageService {
     private static Image GRAMMAR_FILE_WARNING_IMAGE= sImageRegistry.get(ILPGResources.GRAMMAR_FILE_WARNING);
 
     public Image getImage(Object element) {
-	if (element instanceof IFile) {
-	    IFile file= (IFile) element;
-	    int sev= MarkerUtils.getMaxProblemMarkerSeverity(file, IResource.DEPTH_ONE);
-
-	    switch(sev) {
-	    case IMarker.SEVERITY_ERROR: return GRAMMAR_FILE_ERROR_IMAGE;
-	    case IMarker.SEVERITY_WARNING: return GRAMMAR_FILE_WARNING_IMAGE;
-	    default:
-		return GRAMMAR_FILE_IMAGE;
-	    }
-	}
+        if (element instanceof ISourceEntity) {
+            ISourceEntity entity= (ISourceEntity) element;
+            IResource r= entity.getResource();
+            if (r instanceof IFile) {
+                IFile file= (IFile) r;
+                final PreferencesService preferencesService= LPGRuntimePlugin.getPreferencesService();
+                if (!preferencesService.getStringPreference(LPGPreferencesDialogConstants.P_SOURCEFILEEXTENSIONS).contains(file.getLocation().getFileExtension()) &&
+                    !preferencesService.getStringPreference(LPGPreferencesDialogConstants.P_INCLUDEFILEEXTENSIONS).contains(file.getLocation().getFileExtension()))
+                    return null;
+                int sev= MarkerUtils.getMaxProblemMarkerSeverity(file, IResource.DEPTH_ONE);
+                switch (sev) {
+                case IMarker.SEVERITY_ERROR:
+                    return GRAMMAR_FILE_ERROR_IMAGE;
+                case IMarker.SEVERITY_WARNING:
+                    return GRAMMAR_FILE_WARNING_IMAGE;
+                default:
+                    return GRAMMAR_FILE_IMAGE;
+                }
+            }
+            return null;
+        }
 	ASTNode n= (element instanceof ModelTreeNode) ?
 	        (ASTNode) ((ModelTreeNode) element).getASTNode() :
                 (ASTNode) element;
