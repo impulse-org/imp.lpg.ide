@@ -45,30 +45,37 @@ public class LPGLabelProvider implements ILabelProvider, ILanguageService {
     public Image getImage(Object element) {
         if (element instanceof ISourceEntity) {
             ISourceEntity entity= (ISourceEntity) element;
-            IResource r= entity.getResource();
-            if (r instanceof IFile) {
-                IFile file= (IFile) r;
-                final PreferencesService preferencesService= LPGRuntimePlugin.getPreferencesService();
-                if (!preferencesService.getStringPreference(LPGPreferencesDialogConstants.P_SOURCEFILEEXTENSIONS).contains(file.getLocation().getFileExtension()) &&
-                    !preferencesService.getStringPreference(LPGPreferencesDialogConstants.P_INCLUDEFILEEXTENSIONS).contains(file.getLocation().getFileExtension()))
-                    return null;
-                int sev= MarkerUtils.getMaxProblemMarkerSeverity(file, IResource.DEPTH_ONE);
-                switch (sev) {
-                case IMarker.SEVERITY_ERROR:
-                    return GRAMMAR_FILE_ERROR_IMAGE;
-                case IMarker.SEVERITY_WARNING:
-                    return GRAMMAR_FILE_WARNING_IMAGE;
-                default:
-                    return GRAMMAR_FILE_IMAGE;
-                }
-            }
-            return null;
+
+            return getImageFor(entity.getResource());
+        }
+        if (element instanceof IResource) {
+            return getImageFor((IResource) element);
         }
 	ASTNode n= (element instanceof ModelTreeNode) ?
 	        (ASTNode) ((ModelTreeNode) element).getASTNode() :
                 (ASTNode) element;
 
 	return getImageFor(n);
+    }
+
+    private Image getImageFor(IResource res) {
+        if (res instanceof IFile) {
+            IFile file= (IFile) res;
+            final PreferencesService preferencesService= LPGRuntimePlugin.getPreferencesService();
+            if (!preferencesService.getStringPreference(LPGPreferencesDialogConstants.P_SOURCEFILEEXTENSIONS).contains(file.getLocation().getFileExtension()) &&
+                !preferencesService.getStringPreference(LPGPreferencesDialogConstants.P_INCLUDEFILEEXTENSIONS).contains(file.getLocation().getFileExtension()))
+                return null;
+            int sev= MarkerUtils.getMaxProblemMarkerSeverity(file, IResource.DEPTH_ONE);
+            switch (sev) {
+            case IMarker.SEVERITY_ERROR:
+                return GRAMMAR_FILE_ERROR_IMAGE;
+            case IMarker.SEVERITY_WARNING:
+                return GRAMMAR_FILE_WARNING_IMAGE;
+            default:
+                return GRAMMAR_FILE_IMAGE;
+            }
+        }
+        return null;
     }
 
     public static Image getImageFor(ASTNode n) {
