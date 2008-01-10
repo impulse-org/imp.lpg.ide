@@ -57,6 +57,8 @@ import org.eclipse.imp.services.base.TreeModelBuilderBase;
 public class LPGTreeModelBuilder extends TreeModelBuilderBase {
     @Override
     public void visitTree(Object root) {
+    	if (root == null) return;
+    	
         ASTNode rootNode= (ASTNode) root;
         LPGModelVisitor visitor= new LPGModelVisitor();
 
