@@ -7,6 +7,7 @@ package org.eclipse.imp.lpg.editor;
 
 import org.eclipse.imp.language.ILanguageService;
 import org.eclipse.imp.lpg.parser.ASTUtils;
+import org.eclipse.imp.lpg.parser.ParseController;
 import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
 import org.eclipse.imp.lpg.parser.LPGParser.IASTNodeToken;
 import org.eclipse.imp.lpg.parser.LPGParser.JikesPG;
@@ -47,6 +48,6 @@ public class DocumentationProvider implements IDocumentationProvider, ILanguageS
     }
 
     public static String getSubstring(IParseController parseController, int start, int end) {
-        return new String(parseController.getLexer().getLexStream().getInputChars(), start, end-start+1);
+        return new String(((ParseController) parseController).getLexer().getLexStream().getInputChars(), start, end-start+1);
     }
 }

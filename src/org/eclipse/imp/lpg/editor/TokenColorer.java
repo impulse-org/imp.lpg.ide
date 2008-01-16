@@ -51,7 +51,7 @@ public class TokenColorer implements ITokenColorer {
 	if (((SimpleLPGParseController) controller).isKeyword(token.getKind()))
 	    return KEYWORD;
 	if (token.getKind() == LPGLexer.TK_SYMBOL) {
-	    char ch= controller.getLexer().getLexStream().getInputChars()[token.getStartOffset()];
+	    char ch= ((SimpleLPGParseController) controller).getLexer().getLexStream().getInputChars()[token.getStartOffset()];
 	    if (ch == '\'' || ch == '"')
 		return LITERAL;
 	    return SYMBOL;
