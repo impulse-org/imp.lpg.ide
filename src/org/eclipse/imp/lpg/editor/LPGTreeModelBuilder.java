@@ -187,8 +187,13 @@ public class LPGTreeModelBuilder extends TreeModelBuilderBase {
             popSubItem();
         }
 
-        public void endVisit(include_segment n) {
+        public boolean visit(include_segment n) {
             pushSubItem(n);
+            return true;
+        }
+
+        public void endVisit(include_segment n) {
+            popSubItem();
         }
 
         public boolean visit(IdentifierSeg n) {
