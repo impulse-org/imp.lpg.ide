@@ -16,7 +16,7 @@ import org.eclipse.imp.model.ICompilationUnit;
 import org.eclipse.imp.parser.ISourcePositionLocator;
 
 public class NodeLocator implements ISourcePositionLocator {
-    private ASTNode fResult= null;
+    private IAst fResult= null;
     private final ParseController fParseController;
 
     public NodeLocator(ParseController controller) {
@@ -53,13 +53,13 @@ public class NodeLocator implements ISourcePositionLocator {
             fEndOffset= endOffset;
         }
 
-        public ASTNode getResult() { return fResult; }
+        public IAst getResult() { return fResult; }
 
         public void unimplementedVisitor(String s) {
 //            System.out.println(s);
         }
 
-        public void postVisit(ASTNode n) {
+        public void postVisit(IAst n) {
             // Use postVisit() so that we find the innermost AST node that contains the given text
             // range (innermost node's postVisit() will be the first postVisit() to be called).
             if (fResult == null) {
