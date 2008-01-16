@@ -18,16 +18,14 @@ import org.eclipse.compare.IViewerCreator;
 import org.eclipse.compare.structuremergeviewer.IStructureComparator;
 import org.eclipse.compare.structuremergeviewer.IStructureCreator;
 import org.eclipse.compare.structuremergeviewer.StructureDiffViewer;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.imp.lpg.parser.LPGLexer;
-import org.eclipse.imp.lpg.parser.LPGParser;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.imp.lpg.parser.ParseController;
 import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
-import org.eclipse.imp.parser.ILexer;
-import org.eclipse.imp.parser.IParser;
+import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.utils.StreamUtils;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
@@ -83,12 +81,6 @@ public class StructureMergeViewerCreator implements IViewerCreator {
             return null;
         }
 
-        private ASTNode parseFile(IFile file) throws IOException, CoreException {
-            String contents= StreamUtils.readStreamContents(file.getContents(), file.getCharset());
-
-            return parseContents(contents, file.getLocation());
-        }
-
         private ASTNode parseStream(IStreamContentAccessor sca, IPath path) throws IOException, CoreException {
             String contents= StreamUtils.readStreamContents(sca);
 
@@ -96,11 +88,8 @@ public class StructureMergeViewerCreator implements IViewerCreator {
         }
 
         private ASTNode parseContents(String contents, IPath path) {
-            if (contents == null) return null;
-            ILexer lexer= new LPGLexer(contents.toCharArray(), path.toString());
-            IParser parser= new LPGParser(lexer.getLexStream());
-            lexer.lexer(null, parser.getParseStream()); // Lex the stream to produce the token stream
-            return (ASTNode) parser.parser(null, 0);
+        	IParseController parser = new ParseController();
+            return (ASTNode) parser.parse(contents, false, new NullProgressMonitor());
         }
 
         public IStructureComparator locate(Object path, Object input) {
