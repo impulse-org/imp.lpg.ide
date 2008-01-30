@@ -10,9 +10,9 @@ import java.net.URL;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.preferences.DefaultScope;
 import org.eclipse.imp.language.LanguageRegistry;
 import org.eclipse.imp.lpg.preferences.LPGPreferencesDialogConstants;
-import org.eclipse.imp.lpg.preferences.LPGPreferencesDialogInitializer;
 import org.eclipse.imp.model.ICompilationUnit;
 import org.eclipse.imp.model.IPathEntry;
 import org.eclipse.imp.model.ISourceProject;
@@ -120,7 +120,16 @@ public class LPGRuntimePlugin extends PluginBase {
     	if (preferencesService == null) {
         	preferencesService = new PreferencesService();
         	preferencesService.setLanguageName(kLanguageID);
-        	new LPGPreferencesDialogInitializer().initializeDefaultPreferences();
+        	
+    		// To trigger the automatic invocation of the preferences initializer:
+    		try {
+    			new DefaultScope().getNode(kPluginID);
+    		} catch (Exception e) {
+    			// If this ever happens, it will probably be because the preferences
+    			// and their initializer haven't been defined yet.  In that situation
+    			// there's not really anything to do--you can't initialize preferences
+    			// that don't exist.  So swallow the exception and continue ...
+    		}
     	}
     	return preferencesService;
     }
