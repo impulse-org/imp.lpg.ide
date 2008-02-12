@@ -7,6 +7,7 @@ package org.eclipse.imp.lpg.builder;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -37,7 +38,6 @@ import org.eclipse.imp.preferences.IPreferencesService;
 import org.eclipse.imp.preferences.PreferencesService;
 import org.eclipse.imp.runtime.PluginBase;
 import org.eclipse.imp.utils.StreamUtils;
-import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
 import org.osgi.framework.Bundle;
 
@@ -182,24 +182,27 @@ public class LPGBuilder extends BuilderBase {
     }
 
     protected void collectDependencies(IFile file) {
-        LPGLexer lexer= new LPGLexer(); // Create the lexer
-        LPGParser parser= new LPGParser(lexer.getLexStream()); // Create the parser
-        String filePath= file.getLocation().toOSString();
 
         LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Collecting dependencies from file '" + file.getLocation().toOSString() + "'.");
+
+        LPGLexer lexer= new LPGLexer(); // Create the lexer        
+        // SMS 12 Feb 2008
+        // Previously attempted to get lex stream before it has been set,
+        // so added a call to reset(..) here.  This call to reset(..)
+        // obviates the need to initialize the lexer later on in the
+        // method (so code related to that can be removed)
         try {
-            String contents= StreamUtils.readStreamContents(file.getContents());
-
-            lexer.initialize(contents.toCharArray(), filePath);
-            lexer.lexer(null, parser.getParseStream());
-
-            ASTNode ast= (ASTNode) parser.parser();
-
-            if (ast != null)
-        	findDependencies(ast, file.getFullPath().toString());
-        } catch (CoreException ce) {
-            
+        	lexer.reset(file.getLocation().toString(), 8);
+        } catch (IOException e) {
+        	
         }
+        LPGParser parser= new LPGParser(lexer.getLexStream()); // Create the parser
+
+        lexer.lexer(null, parser.getParseStream());
+        ASTNode ast= (ASTNode) parser.parser();
+
+        if (ast != null)
+        	findDependencies(ast, file.getFullPath().toString());
     }
 
     /**
