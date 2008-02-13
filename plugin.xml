@@ -122,7 +122,7 @@
             class="org.eclipse.imp.lpg.preferences.LPGPreferencesDialogInitializer">
       </initializer>
    </extension>
-   <extension
+<!-- <extension
          point="org.eclipse.compare.structureCreators">
       <structureCreator
             extensions="g,gi"
@@ -138,6 +138,7 @@
             id="org.eclipse.imp.viewer">
       </viewer>
    </extension>
+ -->
    <extension
          point="org.eclipse.imp.runtime.foldingUpdater">
       <foldingUpdater
