@@ -25,6 +25,7 @@ import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.parser.ISourcePositionLocator;
 import org.eclipse.imp.services.IContentProposer;
 import org.eclipse.jface.text.ITextViewer;
+import org.eclipse.jface.text.Region;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 public class ContentProposer implements IContentProposer {
@@ -48,14 +49,32 @@ public class ContentProposer implements IContentProposer {
 	    if (thisNode == opt.getSYMBOL()) {
 		proposals.addAll(computeOptionKeyProposals(prefix, offset));
 	    }
-        } else if (prefix.startsWith("$"))
+        } else if (prefix.startsWith("%")) {
+            proposals.addAll(computeSegmentCompletions(prefix, offset, root));
+        } else if (prefix.startsWith("$")) {
             proposals.addAll(computeMacroCompletions(prefix, offset, root));
-        else {
+        } else {
             proposals.addAll(computeNonTerminalCompletions(prefix, offset, root));
             proposals.addAll(computeTerminalCompletions(prefix, offset, root));
         }
-
         return proposals.toArray(new ICompletionProposal[proposals.size()]);
+    }
+
+    private final static String[] SEGMENT_KEYS= {
+        "define", "export", "globals", "headers", "identifiers", "include", "import",
+        "keywords", "notice", "recover", "rules", "start", "terminals", "types"
+    };
+
+    private Collection<? extends ICompletionProposal> computeSegmentCompletions(String prefix, int offset, JikesPG root) {
+        Collection<SourceProposal> result= new ArrayList<SourceProposal>();
+        for(int i= 0; i < SEGMENT_KEYS.length; i++) {
+            String key= SEGMENT_KEYS[i];
+            if (prefix.length() == 1 || key.startsWith(prefix.substring(1).toLowerCase())) {
+                String addlInfo= "%" + key + "\n" + "%End";
+                result.add(new SourceProposal(key, addlInfo, prefix, new Region(offset, 0), addlInfo));
+            }
+        }
+        return result;
     }
 
     private final static String[] OPTION_KEYS= {
@@ -82,8 +101,9 @@ public class ContentProposer implements IContentProposer {
 	Collection<SourceProposal> result= new ArrayList<SourceProposal>();
 	for(int i= 0; i < OPTION_KEYS.length; i++) {
 	    String key= OPTION_KEYS[i];
-	    if (key.startsWith(prefix))
-		result.add(new SourceProposal(key, prefix, offset));
+	    if (key.startsWith(prefix)) {
+		result.add(new SourceProposal(key, key, prefix, offset));
+            }
 	}
 	return result;
     }
@@ -114,7 +134,8 @@ public class ContentProposer implements IContentProposer {
             final String ntName= (idx >= 0) ? ntRawName.substring(0, idx) : ntRawName;
 
             if (ntName.startsWith(prefix)) {
-                result.add(new SourceProposal(ntName, prefix, offset));
+                String addlInfo= nt.toString();
+                result.add(new SourceProposal(ntName, ntName, prefix, new Region(offset, 0), addlInfo));
             }
         }
         return result;
