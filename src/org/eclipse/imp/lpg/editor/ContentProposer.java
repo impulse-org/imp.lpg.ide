@@ -13,6 +13,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import lpg.runtime.IToken;
+
 import org.eclipse.imp.editor.SourceProposal;
 import org.eclipse.imp.lpg.parser.ASTUtils;
 import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
@@ -38,8 +40,9 @@ public class ContentProposer implements IContentProposer {
 
         ISourcePositionLocator locator= controller.getNodeLocator();
 	ASTNode thisNode= (ASTNode) locator.findNode(root, offset);
-        final String prefixToken= thisNode.getLeftIToken().toString();
-        final String prefix= prefixToken.substring(0, offset - thisNode.getLeftIToken().getStartOffset());
+        IToken thisLeftToken= thisNode.getLeftIToken();
+        final String prefixToken= (offset >= thisLeftToken.getStartOffset() && offset < thisLeftToken.getEndOffset()) ? thisLeftToken.toString() : null;
+        final String prefix= (prefixToken != null) ? prefixToken.substring(0, offset - thisLeftToken.getStartOffset()) : "";
 
         final List<ICompletionProposal> proposals= new ArrayList<ICompletionProposal>();
 
