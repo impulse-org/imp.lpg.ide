@@ -11,7 +11,6 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.imp.language.ILanguageSyntaxProperties;
 import org.eclipse.imp.lpg.builder.LPGBuilder;
 import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
 import org.eclipse.imp.lpg.parser.LPGParser.IASTNodeToken;
@@ -30,6 +29,7 @@ import org.eclipse.imp.parser.IParser;
 import org.eclipse.imp.parser.ISourcePositionLocator;
 import org.eclipse.imp.parser.MessageHandlerAdapter;
 import org.eclipse.imp.parser.SimpleLPGParseController;
+import org.eclipse.imp.services.ILanguageSyntaxProperties;
 
 public class ParseController extends SimpleLPGParseController implements IParseController {
     private LPGParser fParser;

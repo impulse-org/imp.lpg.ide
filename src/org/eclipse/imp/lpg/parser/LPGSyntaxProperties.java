@@ -1,6 +1,6 @@
 package org.eclipse.imp.lpg.parser;
 
-import org.eclipse.imp.language.ILanguageSyntaxProperties;
+import org.eclipse.imp.services.ILanguageSyntaxProperties;
 
 public class LPGSyntaxProperties implements ILanguageSyntaxProperties {
 
