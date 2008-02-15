@@ -20,7 +20,7 @@ import org.eclipse.imp.model.ModelFactory;
 import org.eclipse.imp.model.ModelFactory.IFactoryExtender;
 import org.eclipse.imp.preferences.PreferencesService;
 import org.eclipse.imp.runtime.PluginBase;
-import org.eclipse.imp.utils.ExtensionPointFactory;
+import org.eclipse.imp.utils.ExtensionFactory;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
@@ -54,7 +54,7 @@ public class LPGRuntimePlugin extends PluginBase {
     public void start(BundleContext context) throws Exception {
         super.start(context);
 
-        kLanguageID= ExtensionPointFactory.getLanguageID(kPluginID);
+        kLanguageID= ExtensionFactory.retrieveLanguageIdFromPlugin(kPluginID);
 
         // Initialize the LPGPreferences fields with the preference store data.
         if (preferencesService == null) {
