@@ -26,6 +26,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.terminal;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.parser.ISourcePositionLocator;
 import org.eclipse.imp.services.IContentProposer;
+import org.eclipse.imp.utils.HTMLPrinter;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.Region;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
@@ -52,7 +53,7 @@ public class ContentProposer implements IContentProposer {
 	    if (thisNode == opt.getSYMBOL()) {
 		proposals.addAll(computeOptionKeyProposals(prefix, offset));
 	    }
-        } else if (prefix.startsWith("%")) {
+        } else if (thisNode.getParent() instanceof JikesPG || prefix.startsWith("%")) {
             proposals.addAll(computeSegmentCompletions(prefix, offset, root));
         } else if (prefix.startsWith("$")) {
             proposals.addAll(computeMacroCompletions(prefix, offset, root));
@@ -64,17 +65,23 @@ public class ContentProposer implements IContentProposer {
     }
 
     private final static String[] SEGMENT_KEYS= {
-        "define", "export", "globals", "headers", "identifiers", "include", "import",
-        "keywords", "notice", "recover", "rules", "start", "terminals", "types"
+        "Define", "Export", "Globals", "Headers", "Identifiers", "Include", "Import",
+        "Keywords", "Notice", "Recover", "Rules", "Start", "Terminals", "Types"
     };
 
     private Collection<? extends ICompletionProposal> computeSegmentCompletions(String prefix, int offset, JikesPG root) {
         Collection<SourceProposal> result= new ArrayList<SourceProposal>();
         for(int i= 0; i < SEGMENT_KEYS.length; i++) {
             String key= SEGMENT_KEYS[i];
-            if (prefix.length() == 1 || key.startsWith(prefix.substring(1).toLowerCase())) {
-                String addlInfo= "%" + key + "\n" + "%End";
-                result.add(new SourceProposal(key, addlInfo, prefix, new Region(offset, 0), addlInfo));
+            if (prefix.length() <= 1 || key.toLowerCase().startsWith(prefix.substring(1).toLowerCase())) {
+                String newText= "%" + key + "\n" + "  " + "\n" + "%End";
+                StringBuffer addlInfo= new StringBuffer();
+                HTMLPrinter.addSmallHeader(addlInfo, key);
+                HTMLPrinter.addParagraph(addlInfo, "%" + key);
+                HTMLPrinter.addParagraph(addlInfo, "  ...");
+                HTMLPrinter.addParagraph(addlInfo, "%End");
+                int cursorLoc= offset + key.length() + 4;
+                result.add(new SourceProposal(key, newText, prefix, new Region(offset, 0), cursorLoc, addlInfo.toString()));
             }
         }
         return result;
@@ -87,7 +94,7 @@ public class ContentProposer implements IContentProposer {
 	"def-file", "edit", "error-maps", "escape", 
 	"extends-parsetable", "export-terminals", "factory", "file-prefix",
 	"filter", "first", "follow", "goto-default",
-	"grm-file", "imp-file", "import-terminals", "include-directory",
+	"grm-file", "headers", "imp-file", "import-terminals", "include-directory",
 	"lalr-level", "list", "margin", "max_cases",
 	"names", "nt-check", "or-marker", "out_directory",
 	"package", "parent_saved", "parsetable-interfaces", "prefix",
@@ -95,9 +102,34 @@ public class ContentProposer implements IContentProposer {
 	"read-reduce", "remap-terminals", "scopes", "serialize",
 	"shift-default", "single-productions", "slr", "soft-keywords",
 	"states", "suffix", "sym-file", "tab-file",
-	"table", "template", "trace", "variables",
+	"table", "template", "trace", "trailers", "variables",
 	"verbose", "visitor", "visitor-type", "warnings",
     	"xref"
+    };
+
+    private final static String[] OPTION_ARGS= {
+        "action=(<string>,<string>,<string>)", "ast_directory=<directory_name>", "ast_type=MyASTNode",
+        "attributes",
+        "automatic_ast={none,nested,toplevel}", "backtrack", "byte", "conflicts",
+        "dat-directory=<directory_name>", "dat-file=<file_name>", "dcl-file=<file_name>", "debug",
+        "def-file=<file_name>", "edit", "error-maps", "escape=<character>", 
+        "extends-parsetable=<string>", "export-terminals=<string>", "factory=<string>",
+        "file-prefix=<string>", "filter=<filter_spec_file_name>", "first", "follow", "goto-default",
+        "grm-file", "headers=(<string>,<string>,<string>)", "imp-file=<string>",
+        "import-terminals=<file_name>", "include-directory=<directory_name>",
+        "lalr-level=<integer>", "list", "margin=<integer>", "max_cases=<integer>",
+        "names={optimized,maximum,minimum}", "nt-check", "or-marker=<character>",
+        "out_directory=<directory_name>",
+        "package=org.my.package", "parent_saved", "parsetable-interfaces=<string>", "prefix=<string>",
+        "priority", "programming_language={xml,c,cpp,java,plx,plxasm,ml}", "prs-file=<file_name>",
+        "quiet",
+        "read-reduce", "remap-terminals", "scopes", "serialize",
+        "shift-default", "single-productions", "slr", "soft-keywords",
+        "states", "suffix=<string>", "sym-file=<file_name>", "tab-file=<file_name>",
+        "table", "template=<file_name>", "trace={conflicts,full}", "trailers=(<string>,<string>,<string>)",
+        "variables={none,both,terminals,nt,nonterminals}",
+        "verbose", "visitor={none,default,preorder}", "visitor-type=<string>", "warnings",
+        "xref"
     };
 
     private Collection<SourceProposal> computeOptionKeyProposals(String prefix, int offset) {
@@ -105,7 +137,10 @@ public class ContentProposer implements IContentProposer {
 	for(int i= 0; i < OPTION_KEYS.length; i++) {
 	    String key= OPTION_KEYS[i];
 	    if (key.startsWith(prefix)) {
-		result.add(new SourceProposal(key, key, prefix, offset));
+                StringBuffer addlInfo= new StringBuffer();
+                HTMLPrinter.addSmallHeader(addlInfo, key);
+                HTMLPrinter.addParagraph(addlInfo, HTMLPrinter.convertToHTMLContent(OPTION_ARGS[i]));
+		result.add(new SourceProposal(key, key, prefix, new Region(offset, 0), addlInfo.toString()));
             }
 	}
 	return result;
@@ -137,8 +172,10 @@ public class ContentProposer implements IContentProposer {
             final String ntName= (idx >= 0) ? ntRawName.substring(0, idx) : ntRawName;
 
             if (ntName.startsWith(prefix)) {
-                String addlInfo= nt.toString();
-                result.add(new SourceProposal(ntName, ntName, prefix, new Region(offset, 0), addlInfo));
+                StringBuffer addlInfo= new StringBuffer();
+                HTMLPrinter.addSmallHeader(addlInfo, ntName);
+                HTMLPrinter.addParagraph(addlInfo, nt.toString());
+                result.add(new SourceProposal(ntName, ntName, prefix, new Region(offset, 0), addlInfo.toString()));
             }
         }
         return result;
