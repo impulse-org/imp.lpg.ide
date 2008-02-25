@@ -2,7 +2,7 @@
 <version pluginID="org.eclipse.imp.lpg.runtime"
          versionID="1.0.72">
     <file path="/org.eclipse.imp.lpg.runtime/META-INF/MANIFEST.MF"
-          version="1.74"/>
+          version="1.75"/>
     <file path="/org.eclipse.imp.lpg.runtime/icons/builderEnable.gif"
           version="1.1"/>
     <file path="/org.eclipse.imp.lpg.runtime/icons/default.gif"
