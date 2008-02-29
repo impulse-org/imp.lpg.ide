@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: LPG IDE Runtime
+Bundle-Name: LPG IDE Runtime (Incubation)
 Bundle-SymbolicName: org.eclipse.imp.lpg.runtime;singleton:=true
 Bundle-Version: 1.0.72
 Bundle-Activator: org.eclipse.imp.lpg.LPGRuntimePlugin
