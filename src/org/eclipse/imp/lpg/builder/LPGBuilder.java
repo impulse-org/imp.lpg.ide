@@ -391,10 +391,12 @@ public class LPGBuilder extends BuilderBase {
 	    // We need to account for the "local" (i.e., IMP) versions of the templates
 	    // in the include path.
 	    bundle = Platform.getBundle("org.eclipse.imp.lpg.metatooling");
-	    String addendum = FileLocator.toFileURL(bundle.getEntry("templates")).getFile();
-	    if (fIsWin32)
-			addendum= addendum.substring(1);
-	    tmplPath = tmplPath + ";" + addendum;
+	    if (bundle != null) {
+		    String addendum = FileLocator.toFileURL(bundle.getEntry("templates")).getFile();
+		    if (fIsWin32)
+				addendum= addendum.substring(1);
+		    tmplPath = tmplPath + ";" + addendum;
+	    }
 	    
 	    return tmplPath;
 	} catch(IOException e) {
