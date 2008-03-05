@@ -25,7 +25,7 @@ public class LanguageActionContributor implements ILanguageActionsContributor {
 		new ParseNonTerminalAction(editor),
 		new ShowFirstSetAction(editor),
 		new ShowFollowSetAction(editor)
-		};
+	};
     }
 
     public static ResourceBundle ResBundle= ResourceBundle.getBundle("org.eclipse.imp.lpg.actions.ActionMessages");
