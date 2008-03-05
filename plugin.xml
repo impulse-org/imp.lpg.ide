@@ -238,31 +238,17 @@
             id="org.eclipse.imp.lpg.preferencesDialog">
       </page>
    </extension>
-   <extension
+<!--  <extension
          point="org.eclipse.imp.runtime.indexContributor">
       <indexContributor
             class="org.eclipse.imp.lpg.runtime.LPGIndexContributor"
             language="lpg"/>
    </extension>
-<!--   <extension
+  -->
+   <extension
          point="org.eclipse.imp.runtime.identityMapper">
       <identityMapper
             class="org.eclipse.imp.lpg.compare.LPGIdentityMapper"
             language="LPG"/>
    </extension>
-   <extension
-         point="org.eclipse.imp.pdb.analyzerFactory">
-      <analyzerFactory
-            class="org.eclipse.imp.lpg.analysis.LPGFactGeneratorFactory"
-            name="LPG Fact Generator">
-            <signatureDescriptor>
-                <inputs>
-                </inputs>
-                <outputs>
-                    <typeDescriptor type="org.lpg.callGraphType"/>
-                </outputs>
-            </signatureDescriptor>
-      </analyzerFactory>
-   </extension>
-  -->
 </plugin>
