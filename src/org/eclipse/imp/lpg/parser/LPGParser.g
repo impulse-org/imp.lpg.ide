@@ -4,14 +4,6 @@
 %options template=dtParserTemplateF.gi
 %options import_terminals=LPGLexer.gi
 
-%Notice
-/.
-// (C) Copyright IBM Corporation 2007
-// 
-// This file is part of the Eclipse IMP.
-./
-%End
-
 %Globals
     /.import org.eclipse.imp.parser.IParser;
         import java.util.ArrayList;
