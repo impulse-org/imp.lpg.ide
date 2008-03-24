@@ -380,7 +380,7 @@ public class LPGBuilder extends BuilderBase {
 	if (prefService.getBooleanPreference(LPGPreferencesDialogConstants.P_USEDEFAULTINCLUDEPATH))
 	    return getDefaultIncludePath();
 	String projSpecIncPath= prefService.getStringPreference(LPGPreferencesDialogConstants.P_INCLUDEPATHTOUSE);
-	return projSpecIncPath + ";" + getDefaultIncludePath();
+	return projSpecIncPath; //+ ";" + getDefaultIncludePath();
     }
 
     public static String getDefaultIncludePath() {
@@ -415,7 +415,8 @@ public class LPGBuilder extends BuilderBase {
         String result;
         if (prefService.getBooleanPreference(LPGPreferencesDialogConstants.P_USEDEFAULTEXECUTABLE))
             result= getDefaultExecutablePath();
-        result= prefService.getStringPreference(getProject(), LPGPreferencesDialogConstants.P_EXECUTABLETOUSE);
+        else
+        	result= prefService.getStringPreference(getProject(), LPGPreferencesDialogConstants.P_EXECUTABLETOUSE);
     	if (!(new File(result)).exists()) {
     	    postMsgDialog("No LPG Executable", "The LPG executable cannot be found at the location you specified. Please change the setting in the LPG preferences page.");
             return "";
