@@ -184,7 +184,7 @@ public class LPGBuilder extends BuilderBase {
 	    collectDependencies(file);
 	    LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Generator exit code == " + process.waitFor());
 	} catch (Exception e) {
-	    LPGRuntimePlugin.getInstance().logException(e.getMessage(), e);
+	    LPGRuntimePlugin.getInstance().logException(e.getMessage() == null ? "<no information>" : e.getMessage(), e);
 	}
     }
 
@@ -407,6 +407,8 @@ public class LPGBuilder extends BuilderBase {
 	    
 	    return tmplPath;
 	} catch(IOException e) {
+	    LPGRuntimePlugin.getInstance().logException(e.getMessage() == null ?
+	    		"Returning null:  <no information>" : "Returning null:  " + e.getMessage(), e);
 	    return null;
 	}
     }
