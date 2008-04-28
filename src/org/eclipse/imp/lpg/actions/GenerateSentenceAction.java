@@ -205,11 +205,12 @@ public class GenerateSentenceAction extends TextEditorAction {
 	return false;
     }
 
-    private boolean isEmpty(rule rhsElem) {
-	symWithAttrsList symList= rhsElem.getsymWithAttrsList();
-
-	return (symList.size() == 1 && symList.getsymWithAttrsAt(0).getLeftIToken().toString().equals("$empty"));
-    }
+    // SMS 27 Apr 2008:  unused
+//  private boolean isEmpty(rule rhsElem) {
+//	symWithAttrsList symList= rhsElem.getsymWithAttrsList();
+//
+//	return (symList.size() == 1 && symList.getsymWithAttrsAt(0).getLeftIToken().toString().equals("$empty"));
+//    }
 
     private ASTNode getAST(UniversalEditor editor) {
 	IParseController parseController= editor.getParseController();
