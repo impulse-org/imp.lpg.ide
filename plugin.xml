@@ -183,10 +183,10 @@
    </extension>
    <extension
          point="org.eclipse.imp.runtime.modelTreeBuilder">
-      <outlineContentProvider
+      <treeBuilder
             class="org.eclipse.imp.lpg.editor.LPGTreeModelBuilder"
             language="LPG">
-      </outlineContentProvider>
+      </treeBuilder>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.refactoringContributions">
