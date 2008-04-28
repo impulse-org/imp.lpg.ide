@@ -57,7 +57,10 @@ public class LPGRuntimePlugin extends PluginBase {
         super();
         sPlugin= this;
     }
-
+    
+      // SMS 27 Apr 2008
+      // Commented out to replace with version back-ported from Eclipse 3.3 adaptation
+      // Later:  uncommented
     public void start(BundleContext context) throws Exception {
         super.start(context);
 
@@ -83,6 +86,21 @@ public class LPGRuntimePlugin extends PluginBase {
         fEmitInfoMessages = preferencesService.getBooleanPreference(LPGPreferencesDialogConstants.P_EMITDIAGNOSTICS);
     }
 
+    
+    // SMS 27 Apr 2008
+    // Version back-ported from adaptation for Eclipse 3.3
+//    public void start(BundleContext context) throws Exception {
+//        super.start(context);
+//
+//        try {
+//        	fEmitInfoMessages = getPreferencesService().getBooleanPreference(LPGPreferencesDialogConstants.P_EMITDIAGNOSTICS);
+//        } catch(IllegalArgumentException e) {
+//        	// FIXME Preference not available, assuming yes
+//        	fEmitInfoMessages = true;
+//        }
+//    }
+    
+    
     public static final IPath ICONS_PATH= new Path("icons/"); //$NON-NLS-1$
 
     protected void initializeImageRegistry(ImageRegistry reg) {
@@ -141,7 +159,7 @@ public class LPGRuntimePlugin extends PluginBase {
     	return preferencesService;
     }
 
-    // Overwriting method in SAFAIPluginBase because at that level we don't have
+    // Overwriting method in PluginBase because at that level we don't have
     // a preferences service to query dynamically, only a field set from this level
     // at the time of preference initialization
     public void maybeWriteInfoMsg(String msg) {
