@@ -134,6 +134,8 @@ public class LPGRuntimePlugin extends PluginBase {
     }
 
     public static String getLanguageID() {
+    	if(kLanguageID == null)
+    		kLanguageID= ExtensionFactory.retrieveLanguageIdFromPlugin(kPluginID);
         return kLanguageID;
     }
 
@@ -144,7 +146,9 @@ public class LPGRuntimePlugin extends PluginBase {
     public static PreferencesService getPreferencesService() {
     	if (preferencesService == null) {
         	preferencesService = new PreferencesService();
-        	preferencesService.setLanguageName(kLanguageID);
+        	// SMS patch (replaced one line)
+//        	preferencesService.setLanguageName(kLanguageID);
+        	preferencesService.setLanguageName(getLanguageID());
         	
     		// To trigger the automatic invocation of the preferences initializer:
     		try {
