@@ -27,6 +27,7 @@ public class FoldingUpdater extends FolderBase {
     private class FoldingVisitor extends AbstractVisitor {
         public void unimplementedVisitor(String s) { }
 
+        // TODO Make an LPG-specific extension of FolderBase that knows about IAst's and IToken's, and hoist this code up there.
         private void makeAnnotation(ASTNode n) {
             int start= n.getLeftIToken().getStartOffset();
             int len= n.getRightIToken().getEndOffset() - start + 1;
@@ -42,6 +43,7 @@ public class FoldingUpdater extends FolderBase {
             while (ls.getCharValue(start+len) == ' ' || ls.getCharValue(start+len) == '\t') {
                 len++;
             }
+            // For some reason, simply testing against Character.LINE_SEPARATOR here doesn't work.
             if (ls.getCharValue(start+len) == '\n' || ls.getCharValue(start+len) == '\r')
                 len++;
             FoldingUpdater.this.makeAnnotation(start, len);
