@@ -45,6 +45,11 @@ public class FoldingUpdater implements IFoldingUpdater {
         }
 
         private void makeAnnotation(ASTNode n) {
+            // Following is necessary if one edits an empty grammar file; there's an
+            // options segment with an empty textual extent, which causes Position()
+            // a heartache.
+            if (n.getLeftIToken().getEndOffset() >= n.getRightIToken().getStartOffset())
+                return;
             ProjectionAnnotation annotation= new ProjectionAnnotation();
             int start= n.getLeftIToken().getStartOffset();
             int len= n.getRightIToken().getEndOffset() - start;
