@@ -77,7 +77,7 @@ public class LPGBuilder extends BuilderBase {
     private static final String SYNTAX_MSG_NOSEV_REGEXP= "(.*):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+): (.*)";
     private static final Pattern SYNTAX_MSG_NOSEV_PATTERN= Pattern.compile(SYNTAX_MSG_NOSEV_REGEXP);
 
-    private static final String MISSING_MSG_REGEXP= "Input file \"([^\"]+)\" could not be read";
+    private static final String MISSING_MSG_REGEXP= " file \"([^\"]+)\" could not be read";
     private static final Pattern MISSING_MSG_PATTERN= Pattern.compile(MISSING_MSG_REGEXP);
     
     private IPreferencesService prefService= new PreferencesService(null, LPGRuntimePlugin.getLanguageID());
@@ -255,7 +255,7 @@ public class LPGBuilder extends BuilderBase {
 
 	    if (parseSyntaxMessageCreateMarker(line))
 		;
-	    else if (line.indexOf("Input file ") == 0) {
+	    else if (line.indexOf("could not be read.") >= 0) {
 		parseMissingFileMessage(line, resource);
 	    } else
 		handleMiscMessage(line, resource);
@@ -282,7 +282,7 @@ public class LPGBuilder extends BuilderBase {
 
 	    if (parseSyntaxMessageCreateMarker(line))
 		;
-	    else if (line.indexOf("Input file ") == 0) {
+	    else if (line.indexOf("could not be read.") >= 0) {
 		parseMissingFileMessage(line, resource);
 	    } else
 		handleMiscMessage(line, resource);
