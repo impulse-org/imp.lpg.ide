@@ -18,17 +18,17 @@ package org.eclipse.imp.lpg.actions;
 import java.util.ResourceBundle;
 
 import org.eclipse.imp.editor.UniversalEditor;
-import org.eclipse.imp.services.ILanguageActionsContributor;
+import org.eclipse.imp.services.base.DefaultLanguageActionsContributor;
 import org.eclipse.jface.action.IAction;
 
-public class LanguageActionContributor implements ILanguageActionsContributor {
+public class LanguageActionContributor extends DefaultLanguageActionsContributor {
     public LanguageActionContributor() {
-	super();
+	  super();
     }
 
     public IAction[] getEditorActions(UniversalEditor editor) {
 	return new IAction[] {
-		new GenerateSentenceAction(editor),
+	    new GenerateSentenceAction(editor),
 		new ParseNonTerminalAction(editor),
 		new ShowFirstSetAction(editor),
 		new ShowFollowSetAction(editor)
