@@ -40,11 +40,11 @@ public class FoldingUpdater extends FolderBase {
 
             ILexStream ls= n.getLeftIToken().getPrsStream().getLexStream();
 
-            while (ls.getCharValue(start+len) == ' ' || ls.getCharValue(start+len) == '\t') {
+            while (start + len < ls.getStreamLength() && (ls.getCharValue(start+len) == ' ' || ls.getCharValue(start+len) == '\t')) {
                 len++;
             }
             // For some reason, simply testing against Character.LINE_SEPARATOR here doesn't work.
-            if (ls.getCharValue(start+len) == '\n' || ls.getCharValue(start+len) == '\r')
+            if (start + len < ls.getStreamLength() && (ls.getCharValue(start+len) == '\n' || ls.getCharValue(start+len) == '\r'))
                 len++;
             FoldingUpdater.this.makeAnnotation(start, len);
         }
