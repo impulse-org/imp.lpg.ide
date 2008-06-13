@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.imp.lpg.LPGRuntimePlugin;
 import org.eclipse.imp.lpg.builder.LPGBuilder;
 import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
 import org.eclipse.imp.lpg.parser.LPGParser.IASTNodeToken;
@@ -46,6 +47,7 @@ public class ParseController extends SimpleLPGParseController implements IParseC
     private JavaActionBlockVisitor actionVisitor;
 
     public ParseController() {
+        super(LPGRuntimePlugin.getLanguageID());
         fLexer= new LPGLexer(); // Create the lexer
         fParser= new LPGParser();
     }
