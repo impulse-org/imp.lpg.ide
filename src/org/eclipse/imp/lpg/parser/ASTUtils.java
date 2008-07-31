@@ -50,7 +50,6 @@ import org.eclipse.imp.model.ModelFactory;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.preferences.IPreferencesService;
 import org.eclipse.imp.preferences.PreferencesService;
-import org.eclipse.jface.preference.IPreferenceStore;
 
 public class ASTUtils {
     private ASTUtils() { }
@@ -251,4 +250,38 @@ public class ASTUtils {
 	}
 	return result;
     }
+    
+    
+    /**
+     * Finds all of the occurrences of a terminal symbol among the
+     * nonterminals in the grammar rules.
+     * 
+     * @param term	The terminal symbol
+     * @return		A list of the AST nodes that represent matches
+     * 				of the given terminal node
+     */
+    public static List<ASTNode> findRefsOf(final terminal term) {
+    	final List<ASTNode> result= new ArrayList<ASTNode>();
+    	JikesPG root= getRoot(term);
+    	List<nonTerm> nonTerms= getNonTerminals(root);
+
+    	// Indexed search would be nice here...
+    	for(int i=0; i < nonTerms.size(); i++) {
+    	    nonTerm nt= nonTerms.get(i);
+    	    final String symbolName= term.toString();
+
+    	    nt.accept(new AbstractVisitor() {
+    		public void unimplementedVisitor(String s) { }
+    		public boolean visit(symWithAttrs1 n) {
+    		    if (n.getSYMBOL().toString().equals(symbolName))
+    			result.add(n);
+    		    return super.visit(n);
+    		}
+    	    });
+    	}
+    	return result;
+        }
+    
+    
+    
 }
