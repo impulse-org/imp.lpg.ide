@@ -224,11 +224,11 @@
       </docProvider>
    </extension>
    <extension
-         point="org.eclipse.imp.runtime.markOccurrences">
-      <occurrenceMarker
+         point="org.eclipse.imp.runtime.occurrenceIdentifier">
+      <occurrenceIdentifier
             class="org.eclipse.imp.lpg.editor.LPGOccurrenceMarker"
             language="LPG">
-      </occurrenceMarker>
+      </occurrenceIdentifier>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">
