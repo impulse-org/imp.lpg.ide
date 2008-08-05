@@ -42,7 +42,7 @@
       <view
             name="LPG Console"
             icon="icons/sample.gif"
-            category="org.eclipse.imp.lpg"
+            category="org.eclipse.imp.lpg.ide"
             class="org.eclipse.imp.lpg.views.LPGView"
             id="org.eclipse.imp.lpg.views.LPGView">
       </view>
