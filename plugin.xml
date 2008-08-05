@@ -224,7 +224,7 @@
       </docProvider>
    </extension>
    <extension
-         point="org.eclipse.imp.runtime.occurrenceIdentifier">
+         point="org.eclipse.imp.runtime.markOccurrences">
       <occurrenceIdentifier
             class="org.eclipse.imp.lpg.editor.LPGOccurrenceMarker"
             language="LPG">
