@@ -42,6 +42,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.RulesSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.SYMBOLList;
 import org.eclipse.imp.lpg.parser.LPGParser.StartSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.TerminalsSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.TrailersSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.TypesSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.action_segment;
 import org.eclipse.imp.lpg.parser.LPGParser.action_segmentList;
@@ -101,11 +102,11 @@ public class LPGLabelProvider implements ILabelProvider {
         if (element instanceof IResource) {
             return getImageFor((IResource) element);
         }
-	ASTNode n= (element instanceof ModelTreeNode) ?
-	        (ASTNode) ((ModelTreeNode) element).getASTNode() :
-                (ASTNode) element;
+        ASTNode n= (element instanceof ModelTreeNode) ?
+                (ASTNode) ((ModelTreeNode) element).getASTNode() :
+                    (ASTNode) element;
 
-	return getImageFor(n);
+        return getImageFor(n);
     }
 
     private Image getImageFor(IResource res) {
@@ -129,134 +130,136 @@ public class LPGLabelProvider implements ILabelProvider {
     }
 
     public static Image getImageFor(ASTNode n) {
-	return DEFAULT_IMAGE;
+        return DEFAULT_IMAGE;
     }
 
     public String getText(Object element) {
-	ASTNode n= (element instanceof ModelTreeNode) ?
+        ASTNode n= (element instanceof ModelTreeNode) ?
                 (ASTNode) ((ModelTreeNode) element).getASTNode() :
                 (ASTNode) element;
 
-	return getLabelFor(n);
+        return getLabelFor(n);
     }
 
     public static String getLabelFor(ASTNode n) {
-	if (n instanceof JikesPG)
-	    return "grammar";
-	if (n instanceof option_specList)
-	    return "options";
-	if (n instanceof AliasSeg)
-	    return "aliases";
-	if (n instanceof DefineSeg)
-	    return "defines";
+        if (n instanceof JikesPG)
+            return "grammar";
+        if (n instanceof option_specList)
+            return "options";
+        if (n instanceof AliasSeg)
+            return "aliases";
+        if (n instanceof DefineSeg)
+            return "defines";
         if (n instanceof ExportSeg)
             return "export";
-	if (n instanceof GlobalsSeg)
-	    return "globals";
-	if (n instanceof HeadersSeg)
-	    return "headers";
-	if (n instanceof IdentifierSeg)
-	    return "identifiers";
-	if (n instanceof ImportSeg)
-	    return "imports";
-	if (n instanceof IncludeSeg)
-	    return "includes";
-	if (n instanceof JikesPG_itemList)
-	    return "item list";
-	if (n instanceof KeywordsSeg)
-	    return "keywords";
-	if (n instanceof NoticeSeg)
-	    return "notice";
-	if (n instanceof StartSeg)
-	    return "start symbol";
-	if (n instanceof RulesSeg)
-	    return "rules";
-	if (n instanceof TerminalsSeg)
-	    return "terminals";
-	if (n instanceof TypesSeg)
-	    return "types";
+        if (n instanceof GlobalsSeg)
+            return "globals";
+        if (n instanceof HeadersSeg)
+            return "headers";
+        if (n instanceof IdentifierSeg)
+            return "identifiers";
+        if (n instanceof ImportSeg)
+            return "imports";
+        if (n instanceof IncludeSeg)
+            return "includes";
+        if (n instanceof JikesPG_itemList)
+            return "item list";
+        if (n instanceof KeywordsSeg)
+            return "keywords";
+        if (n instanceof NoticeSeg)
+            return "notice";
+        if (n instanceof StartSeg)
+            return "start symbol";
+        if (n instanceof RulesSeg)
+            return "rules";
+        if (n instanceof TerminalsSeg)
+            return "terminals";
+        if (n instanceof TrailersSeg)
+            return "trailers";
+        if (n instanceof TypesSeg)
+            return "types";
 
-	if (n instanceof option_spec)
-	    return "option spec";
-	if (n instanceof optionList)
-	    return "%option " + ((optionList) n).getoptionAt(0).getSYMBOL() + "...";
-	if (n instanceof nonTermList)
-	    return "non-terminals";
-	if (n instanceof option) {
+        if (n instanceof option_spec)
+            return "option spec";
+        if (n instanceof optionList)
+            return "%option " + ((optionList) n).getoptionAt(0).getSYMBOL() + "...";
+        if (n instanceof nonTermList)
+            return "non-terminals";
+        if (n instanceof option) {
             option o= (option) n;
-	    return o.getSYMBOL().toString() + (o.getoption_value() != null ? o.getoption_value().toString() : "");
+            return o.getSYMBOL().toString() + (o.getoption_value() != null ? o.getoption_value().toString() : "");
         }
-	if (n instanceof defineSpecList)
-	    return "defines";
-	if (n instanceof defineSpec)
-	    return /*"macro " +*/((defineSpec) n).getmacro_name_symbol().toString();
-	if (n instanceof nonTerm)
-	    return /*"non-terminal " +*/((nonTerm) n).getruleNameWithAttributes().getSYMBOL().toString();
-	if (n instanceof terminal)
-	    return /*"terminal " +*/((terminal) n).getterminal_symbol().toString();
-	if (n instanceof include_segment)
-	    return ((include_segment) n).getSYMBOL().toString();
-	if (n instanceof action_segmentList)
-	    return "actions";
-	if (n instanceof action_segment)
-	    return ((action_segment) n).getBLOCK().toString();
-	if (n instanceof terminalList)
-	    return "terminals";
-	if (n instanceof start_symbol0)
-	    return ((start_symbol0) n).getSYMBOL().toString();
-	if (n instanceof drop_commandList)
-	    return "drop";
-	if (n instanceof drop_command0)
-	    return "drop symbols";
-	if (n instanceof drop_command1)
-	    return "drop rules";
-	if (n instanceof drop_rule)
-	    return ((drop_rule) n).getSYMBOL().toString();
-	if (n instanceof drop_ruleList)
-	    return "rules";
-	if (n instanceof rule) {
+        if (n instanceof defineSpecList)
+            return "defines";
+        if (n instanceof defineSpec)
+            return /*"macro " +*/((defineSpec) n).getmacro_name_symbol().toString();
+        if (n instanceof nonTerm)
+            return /*"non-terminal " +*/((nonTerm) n).getruleNameWithAttributes().getSYMBOL().toString();
+        if (n instanceof terminal)
+            return /*"terminal " +*/((terminal) n).getterminal_symbol().toString();
+        if (n instanceof include_segment)
+            return ((include_segment) n).getSYMBOL().toString();
+        if (n instanceof action_segmentList)
+            return "actions";
+        if (n instanceof action_segment)
+            return ((action_segment) n).getBLOCK().toString();
+        if (n instanceof terminalList)
+            return "terminals";
+        if (n instanceof start_symbol0)
+            return ((start_symbol0) n).getSYMBOL().toString();
+        if (n instanceof drop_commandList)
+            return "drop";
+        if (n instanceof drop_command0)
+            return "drop symbols";
+        if (n instanceof drop_command1)
+            return "drop rules";
+        if (n instanceof drop_rule)
+            return ((drop_rule) n).getSYMBOL().toString();
+        if (n instanceof drop_ruleList)
+            return "rules";
+        if (n instanceof rule) {
             rule r= (rule) n;
             nonTerm nt= (nonTerm) r.getParent().getParent();
             String nonTermName= nt.getruleNameWithAttributes().getSYMBOL().toString();
-	    return nonTermName + " " + nt.getproduces() + " " + r.getsymWithAttrsList().toString();
+            return nonTermName + " " + nt.getproduces() + " " + r.getsymWithAttrsList().toString();
         }
-	if (n instanceof symWithAttrsList)
-	    return ((symWithAttrsList) n).toString();
-	if (n instanceof keywordSpecList)
-	    return "keywords";
-	if (n instanceof keywordSpec) {
-	    keywordSpec kspec= (keywordSpec) n;
-	    return kspec.getterminal_symbol().toString() + (kspec.getname() != null ? " ::= " + kspec.getname().toString() : "");
-	}
-	if (n instanceof rules_segment)
-	    return "rules";
-//	if (n instanceof types_segment1)
-//	    return "types???";
-	if (n instanceof SYMBOLList)
-	    return n.toString();
-	if (n instanceof type_declarationsList)
-	    return "types";
-	if (n instanceof type_declarations)
-	    return ((type_declarations) n).getSYMBOL().toString();
-	if (n instanceof import_segment)
-	    return "import " + ((import_segment) n).getSYMBOL().toString();
-	if (n instanceof ASTNodeToken)
-	    return ((ASTNodeToken) n).toString();
+        if (n instanceof symWithAttrsList)
+            return ((symWithAttrsList) n).toString();
+        if (n instanceof keywordSpecList)
+            return "keywords";
+        if (n instanceof keywordSpec) {
+            keywordSpec kspec= (keywordSpec) n;
+            return kspec.getterminal_symbol().toString() + (kspec.getname() != null ? " ::= " + kspec.getname().toString() : "");
+        }
+        if (n instanceof rules_segment)
+            return "rules";
+        //	if (n instanceof types_segment1)
+        //	    return "types???";
+        if (n instanceof SYMBOLList)
+            return n.toString();
+        if (n instanceof type_declarationsList)
+            return "types";
+        if (n instanceof type_declarations)
+            return ((type_declarations) n).getSYMBOL().toString();
+        if (n instanceof import_segment)
+            return "import " + ((import_segment) n).getSYMBOL().toString();
+        if (n instanceof ASTNodeToken)
+            return ((ASTNodeToken) n).toString();
 
-	return "<???>";
+        return "<???>";
     }
 
     public void addListener(ILabelProviderListener listener) {
-	fListeners.add(listener);
+        fListeners.add(listener);
     }
 
     public void dispose() {}
 
     public boolean isLabelProperty(Object element, String property) {
-	return false;
+        return false;
     }
 
     public void removeListener(ILabelProviderListener listener) {
-	fListeners.remove(listener);
+        fListeners.remove(listener);
     }
 }
