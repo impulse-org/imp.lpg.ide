@@ -7,19 +7,14 @@ page LPG {
     }
 
     fields {
-    	boolean UseDefaultExecutable  { hasspecial true; defvalue true; }
-    	file    ExecutableToUse       { defvalue "${pluginResource:lpg.runtime/lpgexe/lpg-${os}_${arch}}"; }
-    	boolean UseDefaultIncludePath { hasspecial false; defvalue true; }
-    	dirlist IncludePathToUse      { hasspecial "."; defvalue ".;..;${pluginResource:lpg.runtime/templates}"; }
-    	string  SourceFileExtensions  { hasspecial "g,lpg,gra"; defvalue "g"; }
+    	boolean UseDefaultExecutable  { defvalue true; }
+    	file    ExecutableToUse       { defvalue "${pluginResource:lpg.runtime/lpgexe/lpg-${os}_${arch}}"; } unless UseDefaultExecutable
+    	boolean UseDefaultIncludePath { defvalue true; }
+    	dirlist IncludePathToUse      { defvalue ".;..;${pluginResource:lpg.runtime/templates}"; } unless UseDefaultIncludePath
+    	string  SourceFileExtensions  { defvalue "g"; }
     	string  IncludeFileExtensions { defvalue "gi"; }
-    	boolean EmitDiagnostics       { hasspecial false; defvalue true; }
-        boolean GenerateListings      { hasspecial false; defvalue true; }
+    	boolean EmitDiagnostics       { defvalue true; }
+        boolean GenerateListings      { defvalue true; }
         boolean QuietOutput           { defvalue true; }
-    }
-
-    conditionals {
-        ExecutableToUse against UseDefaultExecutable;
-        IncludePathToUse against UseDefaultIncludePath;
     }
 }
