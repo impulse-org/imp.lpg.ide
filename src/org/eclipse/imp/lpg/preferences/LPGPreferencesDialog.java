@@ -40,22 +40,22 @@ public class LPGPreferencesDialog extends TabbedPreferencesPage {
 
 		LPGPreferencesDialogProjectTab projectTab = new LPGPreferencesDialogProjectTab(
 				prefService);
-		projectTab.createProjectPreferencesTab(page, tabFolder);
+		projectTab.createTabContents(page, tabFolder);
 		tabs[0] = projectTab;
 
 		LPGPreferencesDialogInstanceTab instanceTab = new LPGPreferencesDialogInstanceTab(
 				prefService);
-		instanceTab.createInstancePreferencesTab(page, tabFolder);
+		instanceTab.createTabContents(page, tabFolder);
 		tabs[1] = instanceTab;
 
 		LPGPreferencesDialogConfigurationTab configurationTab = new LPGPreferencesDialogConfigurationTab(
 				prefService);
-		configurationTab.createConfigurationPreferencesTab(page, tabFolder);
+		configurationTab.createTabContents(page, tabFolder);
 		tabs[2] = configurationTab;
 
 		LPGPreferencesDialogDefaultTab defaultTab = new LPGPreferencesDialogDefaultTab(
 				prefService);
-		defaultTab.createDefaultPreferencesTab(page, tabFolder);
+		defaultTab.createTabContents(page, tabFolder);
 		tabs[3] = defaultTab;
 
 		return tabs;

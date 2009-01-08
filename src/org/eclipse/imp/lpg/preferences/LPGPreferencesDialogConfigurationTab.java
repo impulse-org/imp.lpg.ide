@@ -22,57 +22,48 @@ import org.eclipse.imp.preferences.*;
 import org.eclipse.imp.preferences.fields.*;
 import org.osgi.service.prefs.Preferences;
 
-//		 TODO:  Import additional classes for specific field types from
-//		 org.eclipse.uide.preferences.fields
-
 /**
  * The configuration level preferences tab.
  */
-
-
 public class LPGPreferencesDialogConfigurationTab extends ConfigurationPreferencesTab {
 
 	public LPGPreferencesDialogConfigurationTab(IPreferencesService prefService) {
-		super(prefService);
+		super(prefService, false);
 	}
 
 	/**
 	 * Creates specific preference fields with settings appropriate to
 	 * the configuration preferences level.
 	 *
-	 * Overrides an unimplemented method in PreferencesTab.
-	 *
 	 * @return    An array that contains the created preference fields
-	 *
 	 */
-	protected FieldEditor[] createFields(
-		TabbedPreferencesPage page, PreferencesTab tab, String tabLevel,
-		Composite parent)
+	@Override
+	protected FieldEditor[] createFields(TabbedPreferencesPage page, Composite parent)
 	{
 		List fields = new ArrayList();
 
 		BooleanFieldEditor UseDefaultExecutable = fPrefUtils.makeNewBooleanField(
-			page, tab, fPrefService,
-			"configuration", "UseDefaultExecutable", "UseDefaultExecutable",
+			page, this, fPrefService,
+			"configuration", "UseDefaultExecutable", "UseDefaultExecutable", "",
 			parent,
 			true, true,
 			true, true,
 			false, false,
 			true);
-			Link UseDefaultExecutableDetailsLink = fPrefUtils.createDetailsLink(parent, UseDefaultExecutable, UseDefaultExecutable.getChangeControl().getParent(), "Details ...");
+		Link UseDefaultExecutableDetailsLink = fPrefUtils.createDetailsLink(parent, UseDefaultExecutable, UseDefaultExecutable.getChangeControl().getParent(), "Details ...");
 
 		fields.add(UseDefaultExecutable);
 
 
 		FileFieldEditor ExecutableToUse = fPrefUtils.makeNewFileField(
-			page, tab, fPrefService,
-			"configuration", "ExecutableToUse", "ExecutableToUse",
+			page, this, fPrefService,
+			"configuration", "ExecutableToUse", "ExecutableToUse", "",
 			parent,
 			true, true,
 			false, "Unspecified",
 			true, "",
 			true);
-			Link ExecutableToUseDetailsLink = fPrefUtils.createDetailsLink(parent, ExecutableToUse, ExecutableToUse.getTextControl().getParent(), "Details ...");
+		Link ExecutableToUseDetailsLink = fPrefUtils.createDetailsLink(parent, ExecutableToUse, ExecutableToUse.getTextControl().getParent(), "Details ...");
 
 		fields.add(ExecutableToUse);
 
@@ -85,27 +76,27 @@ public class LPGPreferencesDialogConfigurationTab extends ConfigurationPreferenc
 
 
 		BooleanFieldEditor UseDefaultIncludePath = fPrefUtils.makeNewBooleanField(
-			page, tab, fPrefService,
-			"configuration", "UseDefaultIncludePath", "UseDefaultIncludePath",
+			page, this, fPrefService,
+			"configuration", "UseDefaultIncludePath", "UseDefaultIncludePath", "",
 			parent,
 			true, true,
 			true, false,
 			false, false,
 			true);
-			Link UseDefaultIncludePathDetailsLink = fPrefUtils.createDetailsLink(parent, UseDefaultIncludePath, UseDefaultIncludePath.getChangeControl().getParent(), "Details ...");
+		Link UseDefaultIncludePathDetailsLink = fPrefUtils.createDetailsLink(parent, UseDefaultIncludePath, UseDefaultIncludePath.getChangeControl().getParent(), "Details ...");
 
 		fields.add(UseDefaultIncludePath);
 
 
 		DirectoryListFieldEditor IncludePathToUse = fPrefUtils.makeNewDirectoryListField(
-			page, tab, fPrefService,
-			"configuration", "IncludePathToUse", "IncludePathToUse",
+			page, this, fPrefService,
+			"configuration", "IncludePathToUse", "IncludePathToUse", "",
 			parent,
 			true, true,
 			true, ".",
 			true, "",
 			true);
-			Link IncludePathToUseDetailsLink = fPrefUtils.createDetailsLink(parent, IncludePathToUse, IncludePathToUse.getTextControl().getParent(), "Details ...");
+		Link IncludePathToUseDetailsLink = fPrefUtils.createDetailsLink(parent, IncludePathToUse, IncludePathToUse.getTextControl().getParent(), "Details ...");
 
 		fields.add(IncludePathToUse);
 
@@ -118,53 +109,53 @@ public class LPGPreferencesDialogConfigurationTab extends ConfigurationPreferenc
 
 
 		StringFieldEditor SourceFileExtensions = fPrefUtils.makeNewStringField(
-			page, tab, fPrefService,
-			"configuration", "SourceFileExtensions", "SourceFileExtensions",
+			page, this, fPrefService,
+			"configuration", "SourceFileExtensions", "SourceFileExtensions", "",
 			parent,
 			true, true,
 			true, "g,lpg,gra",
 			true, "",
 			true);
-			Link SourceFileExtensionsDetailsLink = fPrefUtils.createDetailsLink(parent, SourceFileExtensions, SourceFileExtensions.getTextControl().getParent(), "Details ...");
+		Link SourceFileExtensionsDetailsLink = fPrefUtils.createDetailsLink(parent, SourceFileExtensions, SourceFileExtensions.getTextControl().getParent(), "Details ...");
 
 		fields.add(SourceFileExtensions);
 
 
 		StringFieldEditor IncludeFileExtensions = fPrefUtils.makeNewStringField(
-			page, tab, fPrefService,
-			"configuration", "IncludeFileExtensions", "IncludeFileExtensions",
+			page, this, fPrefService,
+			"configuration", "IncludeFileExtensions", "IncludeFileExtensions", "",
 			parent,
 			true, true,
 			false, "Unspecified",
 			true, "",
 			true);
-			Link IncludeFileExtensionsDetailsLink = fPrefUtils.createDetailsLink(parent, IncludeFileExtensions, IncludeFileExtensions.getTextControl().getParent(), "Details ...");
+		Link IncludeFileExtensionsDetailsLink = fPrefUtils.createDetailsLink(parent, IncludeFileExtensions, IncludeFileExtensions.getTextControl().getParent(), "Details ...");
 
 		fields.add(IncludeFileExtensions);
 
 
 		BooleanFieldEditor EmitDiagnostics = fPrefUtils.makeNewBooleanField(
-			page, tab, fPrefService,
-			"configuration", "EmitDiagnostics", "EmitDiagnostics",
+			page, this, fPrefService,
+			"configuration", "EmitDiagnostics", "EmitDiagnostics", "",
 			parent,
 			true, true,
 			true, false,
 			false, false,
 			true);
-			Link EmitDiagnosticsDetailsLink = fPrefUtils.createDetailsLink(parent, EmitDiagnostics, EmitDiagnostics.getChangeControl().getParent(), "Details ...");
+		Link EmitDiagnosticsDetailsLink = fPrefUtils.createDetailsLink(parent, EmitDiagnostics, EmitDiagnostics.getChangeControl().getParent(), "Details ...");
 
 		fields.add(EmitDiagnostics);
 
 
 		BooleanFieldEditor GenerateListings = fPrefUtils.makeNewBooleanField(
-			page, tab, fPrefService,
-			"configuration", "GenerateListings", "GenerateListings",
+			page, this, fPrefService,
+			"configuration", "GenerateListings", "GenerateListings", "",
 			parent,
 			true, true,
 			true, false,
 			false, false,
 			true);
-			Link GenerateListingsDetailsLink = fPrefUtils.createDetailsLink(parent, GenerateListings, GenerateListings.getChangeControl().getParent(), "Details ...");
+		Link GenerateListingsDetailsLink = fPrefUtils.createDetailsLink(parent, GenerateListings, GenerateListings.getChangeControl().getParent(), "Details ...");
 
 		fields.add(GenerateListings);
 
