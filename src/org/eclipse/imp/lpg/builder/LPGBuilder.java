@@ -14,7 +14,6 @@ package org.eclipse.imp.lpg.builder;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -26,7 +25,6 @@ import java.util.regex.Pattern;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
@@ -44,7 +42,6 @@ import org.eclipse.imp.lpg.preferences.LPGPreferencesDialogConstants;
 import org.eclipse.imp.preferences.IPreferencesService;
 import org.eclipse.imp.preferences.PreferencesService;
 import org.eclipse.imp.runtime.PluginBase;
-import org.eclipse.imp.utils.StreamUtils;
 import org.eclipse.ui.console.MessageConsoleStream;
 import org.osgi.framework.Bundle;
 
@@ -80,24 +77,24 @@ public class LPGBuilder extends BuilderBase {
     private static final String MISSING_MSG_REGEXP= " file \"([^\"]+)\" could not be read";
     private static final Pattern MISSING_MSG_PATTERN= Pattern.compile(MISSING_MSG_REGEXP);
     
-    private IPreferencesService prefService= new PreferencesService(null, LPGRuntimePlugin.getLanguageID());
+    private IPreferencesService prefService= new PreferencesService(null, LPGRuntimePlugin.getInstance().getLanguageID());
 
     private boolean fEmitDiagnostics; // Set by compile() to current pref value
 
     protected PluginBase getPlugin() {
-	return LPGRuntimePlugin.getInstance();
+        return LPGRuntimePlugin.getInstance();
     }
 
     protected String getErrorMarkerID() {
-	return PROBLEM_MARKER_ID;
+        return PROBLEM_MARKER_ID;
     }
 
     protected String getWarningMarkerID() {
-	return PROBLEM_MARKER_ID;
+        return PROBLEM_MARKER_ID;
     }
 
     protected String getInfoMarkerID() {
-	return PROBLEM_MARKER_ID;
+        return PROBLEM_MARKER_ID;
     }
 
     protected boolean isSourceFile(IFile file) {
@@ -124,7 +121,7 @@ public class LPGBuilder extends BuilderBase {
     }
 
     protected boolean isOutputFolder(IResource resource) {
-	return resource.getFullPath().lastSegment().equals("bin");
+        return resource.getFullPath().lastSegment().equals("bin");
     }
 
     protected MessageConsoleStream getConsoleStream() {
@@ -132,64 +129,69 @@ public class LPGBuilder extends BuilderBase {
     }
 
     protected void compile(final IFile file, IProgressMonitor monitor) {
-	if (prefService.getProject() == null) {
-	    prefService.setProject(getProject());
-	}
-	fEmitDiagnostics= prefService.getBooleanPreference(LPGPreferencesDialogConstants.P_EMITDIAGNOSTICS);
+        if (prefService.getProject() == null) {
+            prefService.setProject(getProject());
+        }
+        fEmitDiagnostics= prefService.getBooleanPreference(getProject(), LPGPreferencesDialogConstants.P_EMITDIAGNOSTICS);
 
-	String fileName= file.getLocation().toOSString();
-	String includePath= getIncludePath();
-	try {
-	    String executablePath= getLPGExecutable();
+        String fileName= file.getLocation().toOSString();
+        try {
+            String executablePath= getLPGExecutable();
 
-	    if (executablePath.length() == 0)
-	        return;
+            if (executablePath.length() == 0)
+                return;
 
-	    String includeSearchPath= "-include-directory='" + includePath + "'";
-	    File parentDir= new File(fileName).getParentFile();
+            File parentDir= new File(fileName).getParentFile();
+            String includePath= getIncludePath();
+            String[] cmd= buildCmdlineArgs(fileName, executablePath, includePath);
 
-	    LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Running generator on grammar file '" + fileName + "'.");
-	    LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Using executable at '" + executablePath + "'.");
-	    LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Using template path '" + includePath + "'.");
+            LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Running generator on grammar file '" + fileName + "'.");
+            LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Using executable at '" + executablePath + "'.");
+            LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Using template path '" + includePath + "'.");
 
-	    String cmd[]= new String[] {
-		    executablePath,
-		    "-quiet",
-		    (prefService.getBooleanPreference(getProject(), LPGPreferencesDialogConstants.P_GENERATELISTINGS) ? "-list" : "-nolist"),
-		    // In order for Windows to treat the following template path argument as
-		    // a single argument, despite any embedded spaces, it has to be completely
-		    // enclosed in double quotes. It does not suffice to quote only the path
-		    // part. However, for lpg to treat the path properly, the path itself
-		    // must also be quoted, since the outer quotes will be stripped by the
-		    // Windows shell (command/cmd.exe). As an added twist, if we used the same
-		    // kind of quote for both the inner and outer quoting, and the outer quotes
-		    // survived, the part that actually needed quoting would be "bare"! Hence
-		    // we use double quotes for the outer level and single quotes inside.
-		    (fIsWin32 ? "\"" + includeSearchPath + "\"" : includeSearchPath),
-		    // TODO RMF 7/21/05 -- Don't specify -dat-directory; causes performance issues with Eclipse.
-		    // Lexer tables can get quite large, so large that Java as spec'ed can't swallow them
-		    // when translated to a switch statement, or even an array initializer. As a result,
-		    // LPG supports the "-dat-directory" option to spill the tables into external data
-		    // files loaded by the lexer at runtime. HOWEVER, loading these external data tables is
-		    // very slow when performed using the standard Eclipse/plugin classloader.
-		    // So: don't enable it by default.
-		    // "-dat-directory=" + getOutputDirectory(resource.getProject()),
-		    fileName};
-	    Process process= Runtime.getRuntime().exec(cmd, new String[0], parentDir);
-        MessageConsoleStream msgStream= getConsoleStream();
+            Process process= Runtime.getRuntime().exec(cmd, new String[0], parentDir);
+            MessageConsoleStream msgStream= getConsoleStream();
 
-	    processLPGOutput(file, process, msgStream);
-	    processLPGErrors(file, process, msgStream);
-	    doRefresh(file);
-	    collectDependencies(file);
-	    LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Generator exit code == " + process.waitFor());
-	} catch (Exception e) {
-	    LPGRuntimePlugin.getInstance().logException(e.getMessage() == null ? "<no information>" : e.getMessage(), e);
-	}
+            processLPGOutput(file, process, msgStream);
+            processLPGErrors(file, process, msgStream);
+            doRefresh(file);
+            collectDependencies(file);
+            LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Generator exit code == " + process.waitFor());
+        } catch (Exception e) {
+            LPGRuntimePlugin.getInstance().logException(e.getMessage() == null ? "<no information>" : e.getMessage(), e);
+        }
+    }
+
+    private String[] buildCmdlineArgs(String fileName, String executablePath, String includePath) {
+        String includeSearchPath= "-include-directory='" + includePath + "'";
+
+        String cmd[]= new String[] {
+                executablePath,
+                "-quiet",
+                (prefService.getBooleanPreference(getProject(), LPGPreferencesDialogConstants.P_GENERATELISTINGS) ? "-list" : "-nolist"),
+                // In order for Windows to treat the following template path argument as
+                // a single argument, despite any embedded spaces, it has to be completely
+                // enclosed in double quotes. It does not suffice to quote only the path
+                // part. However, for lpg to treat the path properly, the path itself
+                // must also be quoted, since the outer quotes will be stripped by the
+                // Windows shell (command/cmd.exe). As an added twist, if we used the same
+                // kind of quote for both the inner and outer quoting, and the outer quotes
+                // survived, the part that actually needed quoting would be "bare"! Hence
+                // we use double quotes for the outer level and single quotes inside.
+                (fIsWin32 ? "\"" + includeSearchPath + "\"" : includeSearchPath),
+                // TODO RMF 7/21/05 -- Don't specify -dat-directory; causes performance issues with Eclipse.
+                // Lexer tables can get quite large, so large that Java as spec'ed can't swallow them
+                // when translated to a switch statement, or even an array initializer. As a result,
+                // LPG supports the "-dat-directory" option to spill the tables into external data
+                // files loaded by the lexer at runtime. HOWEVER, loading these external data tables is
+                // very slow when performed using the standard Eclipse/plugin classloader.
+                // So: don't enable it by default.
+                // "-dat-directory=" + getOutputDirectory(resource.getProject()),
+                fileName};
+        return cmd;
     }
 
     protected void collectDependencies(IFile file) {
-
         LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Collecting dependencies from file '" + file.getLocation().toOSString() + "'.");
 
         LPGLexer lexer= new LPGLexer(); // Create the lexer        
