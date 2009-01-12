@@ -190,7 +190,7 @@ public class ASTUtils {
 		return ModelFactory.open(candidatePath, srcProject);
 	    }
 	}
-	IPreferencesService prefService= new PreferencesService(project, LPGRuntimePlugin.getLanguageID());
+	IPreferencesService prefService= new PreferencesService(project, LPGRuntimePlugin.getInstance().getLanguageID());
 	String includeSearchPath= prefService.getStringPreference(LPGPreferencesDialogConstants.P_INCLUDEPATHTOUSE);
 	String[] includeDirs= includeSearchPath.split(";");
 

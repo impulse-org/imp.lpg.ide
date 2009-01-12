@@ -112,7 +112,7 @@ public class LPGLabelProvider implements ILabelProvider {
     private Image getImageFor(IResource res) {
         if (res instanceof IFile) {
             IFile file= (IFile) res;
-            final PreferencesService preferencesService= LPGRuntimePlugin.getPreferencesService();
+            final PreferencesService preferencesService= LPGRuntimePlugin.getInstance().getPreferencesService();
             if (!preferencesService.getStringPreference(LPGPreferencesDialogConstants.P_SOURCEFILEEXTENSIONS).contains(file.getLocation().getFileExtension()) &&
                 !preferencesService.getStringPreference(LPGPreferencesDialogConstants.P_INCLUDEFILEEXTENSIONS).contains(file.getLocation().getFileExtension()))
                 return null;

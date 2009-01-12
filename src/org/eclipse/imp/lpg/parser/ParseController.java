@@ -47,8 +47,8 @@ public class ParseController extends SimpleLPGParseController implements IParseC
     private JavaActionBlockVisitor actionVisitor;
 
     public ParseController() {
-        super(LPGRuntimePlugin.getLanguageID());
-        fLexer= new LPGLexer(); // Create the lexer
+        super(LPGRuntimePlugin.getInstance().getLanguageID());
+        fLexer= new LPGLexer();
         fParser= new LPGParser();
     }
 

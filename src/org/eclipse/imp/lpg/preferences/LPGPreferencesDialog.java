@@ -31,7 +31,7 @@ public class LPGPreferencesDialog extends TabbedPreferencesPage {
 		super();
 		// Get the language-specific preferences service
 		// SMS 28 Mar 2007:  parameterized full name of plugin class
-		prefService = LPGRuntimePlugin.getPreferencesService();
+		prefService = LPGRuntimePlugin.getInstance().getPreferencesService();
 	}
 
 	protected PreferencesTab[] createTabs(IPreferencesService prefService,

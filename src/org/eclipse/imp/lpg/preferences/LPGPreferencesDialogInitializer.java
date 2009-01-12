@@ -19,15 +19,13 @@ import org.eclipse.imp.preferences.IPreferencesService;
 /**
  * Initializations of default values for preferences.
  */
-
-
 public class LPGPreferencesDialogInitializer extends AbstractPreferenceInitializer {
 	/*
 	 * (non-Javadoc)
 	 * @see org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer#initializeDefaultPreferences()
 	 */
 	public void initializeDefaultPreferences() {
-		IPreferencesService service = LPGRuntimePlugin.getPreferencesService();
+		IPreferencesService service = LPGRuntimePlugin.getInstance().getPreferencesService();
 
 		service.setBooleanPreference(IPreferencesService.DEFAULT_LEVEL, LPGPreferencesDialogConstants.P_USEDEFAULTEXECUTABLE, true);
 		service.setStringPreference(IPreferencesService.DEFAULT_LEVEL, LPGPreferencesDialogConstants.P_EXECUTABLETOUSE, getExecutableToUse());
