@@ -17,7 +17,6 @@ import java.net.URL;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.preferences.DefaultScope;
 import org.eclipse.imp.language.LanguageRegistry;
 import org.eclipse.imp.lpg.preferences.LPGPreferencesDialogConstants;
 import org.eclipse.imp.model.ICompilationUnit;
@@ -133,7 +132,7 @@ public class LPGRuntimePlugin extends PluginBase {
         return null;
     }
 
-    public static String getLanguageID() {
+    public String getLanguageID() {
     	if(kLanguageID == null)
     		kLanguageID= ExtensionFactory.retrieveLanguageIdFromPlugin(kPluginID);
         return kLanguageID;
@@ -142,28 +141,8 @@ public class LPGRuntimePlugin extends PluginBase {
     public String getID() {
         return kPluginID;
     }
-    
-    public static PreferencesService getPreferencesService() {
-    	if (preferencesService == null) {
-        	preferencesService = new PreferencesService();
-        	// SMS patch (replaced one line)
-//        	preferencesService.setLanguageName(kLanguageID);
-        	preferencesService.setLanguageName(getLanguageID());
-        	
-    		// To trigger the automatic invocation of the preferences initializer:
-    		try {
-    			new DefaultScope().getNode(kPluginID);
-    		} catch (Exception e) {
-    			// If this ever happens, it will probably be because the preferences
-    			// and their initializer haven't been defined yet.  In that situation
-    			// there's not really anything to do--you can't initialize preferences
-    			// that don't exist.  So swallow the exception and continue ...
-    		}
-    	}
-    	return preferencesService;
-    }
 
-    // Overwriting method in PluginBase because at that level we don't have
+    // Overriding method in PluginBase because at that level we don't have
     // a preferences service to query dynamically, only a field set from this level
     // at the time of preference initialization
     public void maybeWriteInfoMsg(String msg) {
