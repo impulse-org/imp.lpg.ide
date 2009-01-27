@@ -3,10 +3,10 @@
 --
 %Options fp=JavaKWLexer,states
 %options package=org.eclipse.imp.lpg.parser
-%options template=KeywordTemplate.gi
+%options template=KeywordTemplateF.gi
 
 %Include
-    KWLexerMap.gi
+    KWLexerMapF.gi
 %End
 
 %Export

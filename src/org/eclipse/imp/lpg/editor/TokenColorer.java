@@ -18,6 +18,7 @@ package org.eclipse.imp.lpg.editor;
 import lpg.runtime.IToken;
 
 import org.eclipse.imp.lpg.parser.LPGLexer;
+import org.eclipse.imp.lpg.parser.LPGParsersym;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.parser.SimpleLPGParseController;
 import org.eclipse.imp.services.ITokenColorer;
@@ -53,19 +54,19 @@ public class TokenColorer implements ITokenColorer {
     public TextAttribute getColoring(IParseController controller, Object o) {
         IToken token= (IToken) o;
 
-        if (token.getKind() == LPGLexer.TK_EMPTY_KEY)
+        if (token.getKind() == LPGParsersym.TK_EMPTY_KEY)
 	    return EMPTY;
 	if (((SimpleLPGParseController) controller).isKeyword(token.getKind()))
 	    return KEYWORD;
-	if (token.getKind() == LPGLexer.TK_SYMBOL) {
-	    char ch= ((SimpleLPGParseController) controller).getLexer().getLexStream().getInputChars()[token.getStartOffset()];
+	if (token.getKind() == LPGParsersym.TK_SYMBOL) {
+	    char ch= ((SimpleLPGParseController) controller).getParser().getParseStream().getInputChars()[token.getStartOffset()];
 	    if (ch == '\'' || ch == '"')
 		return LITERAL;
 	    return SYMBOL;
 	}
-	if (token.getKind() == LPGLexer.TK_SINGLE_LINE_COMMENT)
+	if (token.getKind() == LPGParsersym.TK_SINGLE_LINE_COMMENT)
 	    return COMMENT;
-	if (token.getKind() == LPGLexer.TK_MACRO_NAME)
+	if (token.getKind() == LPGParsersym.TK_MACRO_NAME)
 	    return ANNOTATION;
 
 	return null;

@@ -55,6 +55,6 @@ public class DocumentationProvider implements IDocumentationProvider, ILanguageS
     }
 
     public static String getSubstring(IParseController parseController, int start, int end) {
-        return new String(((ParseController) parseController).getLexer().getLexStream().getInputChars(), start, end-start+1);
+        return new String(((ParseController) parseController).getParser().getParseStream().getInputChars(), start, end-start+1);
     }
 }

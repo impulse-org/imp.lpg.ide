@@ -1,7 +1,7 @@
 %Options fp=LPGKWLexer
 %options single-productions
 %options package=org.eclipse.imp.lpg.parser
-%options template=KeywordTemplate.gi
+%options template=KeywordTemplateF.gi
 
 %Include
     --
@@ -9,7 +9,7 @@
     -- lower case counterpart. For example, if an 'A' appears
     -- in the input, it is mapped into Char_a just like 'a'.
     --
-    KWLexerFoldedCaseMap.gi
+    KWLexerFoldedCaseMapF.gi
 %End
 
 %Export
