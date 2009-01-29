@@ -61,11 +61,15 @@ public class LPGBuilder extends BuilderBase {
     public static final String PROBLEM_MARKER_ID= LPGRuntimePlugin.kPluginID + ".problem";
 
     /**
-     * ID of the LPG plugin, which houses the templates, the LPG executable,
-     * and the LPG runtime library
+     * ID of the LPG runtime plugin, which houses the LPG runtime library
      */
     // SMS 22 Feb 2007  lpg -> lpg.runtime
-    public static final String LPG_PLUGIN_ID= "lpg.runtime";
+    public static final String LPG_RUNTIME_PLUGIN_ID= "lpg.runtime";
+
+    /**
+     * ID of the LPG generator plugin, which houses the LPG executable and the templates.
+     */
+    public static final String LPG_GENERATOR_PLUGIN_ID= "lpg.generator";
 
     private static final String SYNTAX_MSG_REGEXP= "(.*):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+): (Informative|Warning|Error): (.*)";
 
@@ -247,23 +251,23 @@ public class LPGBuilder extends BuilderBase {
     }
 
     private void processLPGErrors(IResource resource, Process process, MessageConsoleStream stream) throws IOException {
-	InputStream is= process.getErrorStream();
-	BufferedReader in2= new BufferedReader(new InputStreamReader(is));
+        InputStream is= process.getErrorStream();
+        BufferedReader in2= new BufferedReader(new InputStreamReader(is));
 
-	String line;
-	while ((line= in2.readLine()) != null) {
-	    if (fEmitDiagnostics)
-	        stream.println(line);
+        String line;
+        while ((line= in2.readLine()) != null) {
+            if (fEmitDiagnostics)
+                stream.println(line);
 
-	    if (parseSyntaxMessageCreateMarker(line))
-		;
-	    else if (line.indexOf("could not be read.") >= 0) {
-		parseMissingFileMessage(line, resource);
-	    } else
-		handleMiscMessage(line, resource);
-	    LPGRuntimePlugin.getInstance().writeErrorMsg(line);
-	}
-	is.close();
+            if (parseSyntaxMessageCreateMarker(line))
+                ;
+            else if (line.indexOf("could not be read.") >= 0) {
+                parseMissingFileMessage(line, resource);
+            } else
+                handleMiscMessage(line, resource);
+            LPGRuntimePlugin.getInstance().writeErrorMsg(line);
+        }
+        is.close();
     }
 
     final String lineSep= System.getProperty("line.separator");
@@ -272,38 +276,38 @@ public class LPGBuilder extends BuilderBase {
     private static boolean fIsWin32= Platform.getOS().equals(Platform.OS_WIN32);
 
     private void processLPGOutput(final IResource resource, Process process, MessageConsoleStream stream) throws IOException {
-	InputStream is= process.getInputStream();
-	BufferedReader in= new BufferedReader(new InputStreamReader(is));
-	String line= null;
+        InputStream is= process.getInputStream();
+        BufferedReader in= new BufferedReader(new InputStreamReader(is));
+        String line= null;
 
-	while ((line= in.readLine()) != null) {
-	    if (fEmitDiagnostics)
-	        stream.println(line);
-	    if (line.length() == 0)
-		continue;
+        while ((line= in.readLine()) != null) {
+            if (fEmitDiagnostics)
+                stream.println(line);
+            if (line.length() == 0)
+                continue;
 
-	    if (parseSyntaxMessageCreateMarker(line))
-		;
-	    else if (line.indexOf("could not be read.") >= 0) {
-		parseMissingFileMessage(line, resource);
-	    } else
-		handleMiscMessage(line, resource);
-	}
+            if (parseSyntaxMessageCreateMarker(line))
+                ;
+            else if (line.indexOf("could not be read.") >= 0) {
+                parseMissingFileMessage(line, resource);
+            } else
+                handleMiscMessage(line, resource);
+        }
     }
 
     private void handleMiscMessage(String msg, IResource file) {
-	if (msg.length() == 0) return;
-	if (msg.startsWith("Unable to open")) {
-	    createMarker(file, 1, -1, -1, msg, IMarker.SEVERITY_ERROR);
-	    return;
-	}
-	if (msg.startsWith("***ERROR: ")) {
-	    createMarker(file, 1, 0, 1, msg.substring(10), IMarker.SEVERITY_ERROR);
-	    return;
-	}
-	if (msg.indexOf("Number of ") >= 0 ||
-	    msg.startsWith("(C) Copyright") ||
-	    msg.startsWith("IBM LALR Parser"))
+        if (msg.length() == 0) return;
+        if (msg.startsWith("Unable to open")) {
+            createMarker(file, 1, -1, -1, msg, IMarker.SEVERITY_ERROR);
+            return;
+        }
+        if (msg.startsWith("***ERROR: ")) {
+            createMarker(file, 1, 0, 1, msg.substring(10), IMarker.SEVERITY_ERROR);
+            return;
+        }
+        if (msg.indexOf("Number of ") >= 0 ||
+                msg.startsWith("(C) Copyright") ||
+                msg.startsWith("IBM LALR Parser"))
             return;
 
         Matcher matcher= SYNTAX_MSG_NOSEV_PATTERN.matcher(msg);
@@ -331,46 +335,46 @@ public class LPGBuilder extends BuilderBase {
     }
 
     private void parseMissingFileMessage(String msg, IResource file) {
-	Matcher matcher= MISSING_MSG_PATTERN.matcher(msg);
+        Matcher matcher= MISSING_MSG_PATTERN.matcher(msg);
 
-	if (matcher.matches()) {
-	    String missingFile= matcher.group(1);
-	    int refLine= 1; // Integer.parseInt(matcher.group(2))
+        if (matcher.matches()) {
+            String missingFile= matcher.group(1);
+            int refLine= 1; // Integer.parseInt(matcher.group(2))
 
-	    createMarker(file, refLine, -1, -1, "Non-existent file referenced: " + missingFile, IMarker.SEVERITY_ERROR);
-	}
+            createMarker(file, refLine, -1, -1, "Non-existent file referenced: " + missingFile, IMarker.SEVERITY_ERROR);
+        }
     }
 
     private boolean parseSyntaxMessageCreateMarker(final String msg) {
-	Matcher matcher= SYNTAX_MSG_PATTERN.matcher(msg);
+        Matcher matcher= SYNTAX_MSG_PATTERN.matcher(msg);
 
-	if (matcher.matches()) {
-	    String errorFile= matcher.group(1);
-	    String projectLoc= getProject().getLocation().toString();
+        if (matcher.matches()) {
+            String errorFile= matcher.group(1);
+            String projectLoc= getProject().getLocation().toString();
 
-	    if (errorFile.startsWith(projectLoc))
-		errorFile= errorFile.substring(projectLoc.length());
+            if (errorFile.startsWith(projectLoc))
+                errorFile= errorFile.substring(projectLoc.length());
 
-	    IResource errorResource= getProject().getFile(errorFile);
+            IResource errorResource= getProject().getFile(errorFile);
 
             if (!errorResource.exists())
                 return true;
 
-	    int startLine= Integer.parseInt(matcher.group(2));
-//	    int startCol= Integer.parseInt(matcher.group(3));
-//	    int endLine= Integer.parseInt(matcher.group(4));
-//	    int endCol= Integer.parseInt(matcher.group(5));
-	    int startChar= Integer.parseInt(matcher.group(6)) - 1;// - (startLine - 1) * lineSepBias + 1;
-	    int endChar= Integer.parseInt(matcher.group(7));// - (endLine - 1) * lineSepBias + 1;
+            int startLine= Integer.parseInt(matcher.group(2));
+//          int startCol= Integer.parseInt(matcher.group(3));
+//          int endLine= Integer.parseInt(matcher.group(4));
+//          int endCol= Integer.parseInt(matcher.group(5));
+            int startChar= Integer.parseInt(matcher.group(6)) - 1;// - (startLine - 1) * lineSepBias + 1;
+            int endChar= Integer.parseInt(matcher.group(7));// - (endLine - 1) * lineSepBias + 1;
             String severity= matcher.group(8);
-	    String descrip= matcher.group(9);
+            String descrip= matcher.group(9);
 
-	    if (startLine == 0) startLine= 1;
-	    if (startChar < 0) { startChar= 0; endChar= 1; }
-	    createMarker(errorResource, startLine, startChar, endChar, descrip, mapSeverity(severity));
-	    return true;
-	}
-	return false;
+            if (startLine == 0) startLine= 1;
+            if (startChar < 0) { startChar= 0; endChar= 1; }
+            createMarker(errorResource, startLine, startChar, endChar, descrip, mapSeverity(severity));
+            return true;
+        }
+        return false;
     }
 
     private int mapSeverity(String severity) {
@@ -379,40 +383,29 @@ public class LPGBuilder extends BuilderBase {
     }
 
     public String getIncludePath() {
-	if (prefService.getBooleanPreference(LPGPreferencesDialogConstants.P_USEDEFAULTINCLUDEPATH))
-	    return getDefaultIncludePath();
-	String projSpecIncPath= prefService.getStringPreference(LPGPreferencesDialogConstants.P_INCLUDEPATHTOUSE);
-	return projSpecIncPath; //+ ";" + getDefaultIncludePath();
+        if (prefService.getBooleanPreference(LPGPreferencesDialogConstants.P_USEDEFAULTINCLUDEPATH))
+            return getDefaultIncludePath();
+        String projSpecIncPath= prefService.getStringPreference(LPGPreferencesDialogConstants.P_INCLUDEPATHTOUSE);
+        return projSpecIncPath; //+ ";" + getDefaultIncludePath();
     }
 
     public static String getDefaultIncludePath() {
-	Bundle bundle= Platform.getBundle(LPG_PLUGIN_ID);
+        Bundle bundle= Platform.getBundle(LPG_GENERATOR_PLUGIN_ID);
 
-	try {
-	    // Use getEntry() rather than getResource(), since the "templates" folder is
-	    // no longer inside the plugin jar (which is now expanded upon installation).
-	    String tmplPath= FileLocator.toFileURL(bundle.getEntry("templates")).getFile();
+        try {
+            // Use getEntry() rather than getResource(), since the "templates" folder is
+            // no longer inside the plugin jar (which is now expanded upon installation).
+            String tmplPath= FileLocator.toFileURL(bundle.getEntry("templates")).getFile();
 
-	    if (fIsWin32)
-		tmplPath= tmplPath.substring(1);
-	    
-	    // SMS 30 Oct 2007
-	    // We need to account for the "local" (i.e., IMP) versions of the templates
-	    // in the include path.
-	    bundle = Platform.getBundle("org.eclipse.imp.lpg.metatooling");
-	    if (bundle != null) {
-		    String addendum = FileLocator.toFileURL(bundle.getEntry("templates")).getFile();
-		    if (fIsWin32)
-				addendum= addendum.substring(1);
-		    tmplPath = tmplPath + ";" + addendum;
-	    }
-	    
-	    return tmplPath;
-	} catch(IOException e) {
-	    LPGRuntimePlugin.getInstance().logException(e.getMessage() == null ?
-	    		"Returning null:  <no information>" : "Returning null:  " + e.getMessage(), e);
-	    return null;
-	}
+            if (fIsWin32)
+                tmplPath= tmplPath.substring(1);
+
+            return tmplPath;
+        } catch(IOException e) {
+            LPGRuntimePlugin.getInstance().logException(e.getMessage() == null ?
+                    "Returning null:  <no information>" : "Returning null:  " + e.getMessage(), e);
+            return null;
+        }
     }
 
     private String getLPGExecutable() throws IOException {
@@ -429,37 +422,37 @@ public class LPGBuilder extends BuilderBase {
     }
 
     public static String getDefaultExecutablePath() {
-	Bundle bundle= Platform.getBundle(LPG_PLUGIN_ID);
-	String os= Platform.getOS();
-	String arch= Platform.getOSArch();
-	// SMS 	22 Feb 2007  "bin... -> "lpgexe...
-	Path path= new Path("lpgexe/lpg-" + os + "_" + arch + (fIsWin32 ? ".exe" : ""));
-	URL execURL= FileLocator.find(bundle, path, null);
+        Bundle bundle= Platform.getBundle(LPG_GENERATOR_PLUGIN_ID);
+        String os= Platform.getOS();
+        String arch= Platform.getOSArch();
+        // SMS 	22 Feb 2007  "bin... -> "lpgexe...
+        Path path= new Path("lpgexe/lpg-" + os + "_" + arch + (fIsWin32 ? ".exe" : ""));
+        URL execURL= FileLocator.find(bundle, path, null);
 
-	if (execURL == null) {
-	    String errMsg= "Unable to find LPG executable at " + path + " in bundle " + bundle.getSymbolicName();
+        if (execURL == null) {
+            String errMsg= "Unable to find LPG executable at " + path + " in bundle " + bundle.getSymbolicName();
 
-	    LPGRuntimePlugin.getInstance().writeErrorMsg(errMsg);
-	    return "";
-	} else {
-	    // N.B.: The lpg executable will normally be inside a jar file,
-	    //       so use asLocalURL() to extract to a local file if needed.
-	    URL url;
+            LPGRuntimePlugin.getInstance().writeErrorMsg(errMsg);
+            return "";
+        } else {
+            // N.B.: The lpg executable will normally be inside a jar file,
+            //       so use asLocalURL() to extract to a local file if needed.
+            URL url;
 
-	    try {
-		url= FileLocator.toFileURL(execURL);
-	    } catch (IOException e) {
-		LPGRuntimePlugin.getInstance().writeErrorMsg("Unable to locate default LPG executable." + e.getMessage());
-		return "???";
-	    }
+            try {
+                url= FileLocator.toFileURL(execURL);
+            } catch (IOException e) {
+                LPGRuntimePlugin.getInstance().writeErrorMsg("Unable to locate default LPG executable." + e.getMessage());
+                return "???";
+            }
 
-	    String LPGExecPath= url.getFile();
+            String LPGExecPath= url.getFile();
 
-	    if (os.equals(Platform.OS_WIN32)) // remove leading slash from URL that shows up on Win32(?)
-		LPGExecPath= LPGExecPath.substring(1);
+            if (os.equals(Platform.OS_WIN32)) // remove leading slash from URL that shows up on Win32(?)
+                LPGExecPath= LPGExecPath.substring(1);
 
-	    LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("LPG executable apparently at '" + LPGExecPath + "'.");
-	    return LPGExecPath;
-	}
+            LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("LPG executable apparently at '" + LPGExecPath + "'.");
+            return LPGExecPath;
+        }
     }
 }
