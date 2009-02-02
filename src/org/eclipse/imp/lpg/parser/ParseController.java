@@ -138,9 +138,13 @@ public class ParseController extends SimpleLPGParseController implements IParseC
         fLexer.reset(contentsArray, fFilePath.toOSString());
         fParser.reset(fLexer.getLexStream());
         fParser.getParseStream().setMessageHandler(new MessageHandlerAdapter(handler));
-        fLexer.lexer(my_monitor, fParser.getParseStream()); // Lex the stream to
-                                                            // produce the token
-                                                            // stream
+
+        // RMF 1/31/2009 - Call cacheKeywordsOnce() at the earliest possible moment, which is just
+        // after the lexer and parser are initialized, but before they're called on the source text.
+        cacheKeywordsOnce();
+
+        fLexer.lexer(my_monitor, fParser.getParseStream()); // Lex the stream to produce the token stream
+
         if (my_monitor.isCancelled())
             return fCurrentAst; // TODO fCurrentAst might (probably will) be
                                 // inconsistent wrt the lex stream now
@@ -170,7 +174,6 @@ public class ParseController extends SimpleLPGParseController implements IParseC
                 ((ASTNode) fCurrentAst).accept(actionVisitor);
             }
         }
-        cacheKeywordsOnce();
         return fCurrentAst;
     }
 }
