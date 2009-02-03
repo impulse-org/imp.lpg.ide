@@ -172,9 +172,9 @@
     --               '%' | '&' | '^' | ':' | ';' | "'" | '\' | '|' | '{' | '}' |
     --               '[' | ']' | '?' | ',' | '<' | '>' | '=' | '#' | '*' | '$'
 
-    specialNoDotDollar -> '+' | '-' | '(' | ')' | '"' | '!' | '@' | '`' | '~' | '/' |
-                          '%' | '&' | '^' | ':' | ';' | "'" | '\' | '|' | '{' | '}' |
-                          '[' | ']' | '?' | ',' | '<' | '>' | '=' | '#' | '*'
+    specialNoExclamationDotColonDollar -> '+' | '-' | '(' | ')' | '"' | '@' | '`' | '~' | '/' |
+                                          '%' | '&' | '^' | ';' | "'" | '\' | '|' | '{' | '}' |
+                                          '[' | ']' | '?' | ',' | '<' | '>' | '=' | '#' | '*'
 
     specialNoColonDollar -> '+' | '-' | '(' | ')' | '"' | '!' | '@' | '`' | '~' | '.' | '/' |
                             '%' | '&' | '^' | ';' | "'" | '\' | '|' | '{' | '}' |
@@ -203,6 +203,14 @@
     specialNoDotOrSlash -> '+' | '-' | '(' | ')' | '"' | '!' | '@' | '`' | '~' |
                            '%' | '&' | '^' | ':' | ';' | "'" | '\' | '|' | '{' | '}' |
                            '[' | ']' | '?' | ',' | '<' | '>' | '=' | '#' | '*' | '$'
+
+    specialNoColonOrSlash -> '+' | '-' | '(' | ')' | '"' | '!' | '@' | '`' | '~' | '.' |
+                             '%' | '&' | '^' | ';' | "'" | '\' | '|' | '{' | '}' |
+                             '[' | ']' | '?' | ',' | '<' | '>' | '=' | '#' | '*' | '$'
+
+    specialNoExclamationOrSlash -> '+' | '-' | '(' | ')' | '"' | '@' | '`' | '~' | '.' |
+                                   '%' | '&' | '^' | ':' | ';' | "'" | '\' | '|' | '{' | '}' |
+                                   '[' | ']' | '?' | ',' | '<' | '>' | '=' | '#' | '*' | '$'
 
     specialNoDoubleQuote -> '+' | '-' | '(' | ')' | '!' | '@' | '`' | '~' | '.' | '/' |
                             '%' | '&' | '^' | ':' | ';' | "'" | '\' | '|' | '{' | '}' |
@@ -239,10 +247,10 @@
 
     notEOLOrRightAngle -> letter | digit | specialNoRightAngle | Space | HT | FF
 
-    notEOLOrQuotes ::= $empty
+    notEOLOrQuotes ::= %Empty
                      | notEOLOrQuotes notEOLOrQuote
 
-    notEOLOrDoubleQuotes ::= $empty
+    notEOLOrDoubleQuotes ::= %Empty
                            | notEOLOrDoubleQuotes notEOLOrDoubleQuote
 
     notEOLOrRightAngles ::= notEOLOrRightAngle
@@ -254,17 +262,39 @@
     Equivalence ::= ':' ':' '='
     Arrow       ::= '-' '>'
 
+    Exclamations ::= '!'
+                   | Exclamations '!'
+
+    InsideExclamationBlockChar -> letter | whiteChar | digit | specialNoExclamationOrSlash
+
+    InsideExclamationBlock ::= %Empty
+                             | InsideExclamationBlock InsideExclamationBlockChar
+                             | InsideExclamationBlock Exclamations InsideExclamationBlockChar
+                             | InsideExclamationBlock '/'
+
     Dots ::= '.'
            | Dots '.'
 
-    InsideBlockChar -> letter | whiteChar | digit | specialNoDotOrSlash
+    InsideDotBlockChar -> letter | whiteChar | digit | specialNoDotOrSlash
 
-    InsideBlock ::= $empty
-                  | InsideBlock InsideBlockChar
-                  | InsideBlock Dots InsideBlockChar
-                  | InsideBlock '/'
+    InsideDotBlock ::= %Empty
+                     | InsideDotBlock InsideDotBlockChar
+                     | InsideDotBlock Dots InsideDotBlockChar
+                     | InsideDotBlock '/'
 
-    Block ::= '/' '.' InsideBlock Dots '/'
+    Colons ::= ':'
+             | Colons ':'
+
+    InsideColonBlockChar -> letter | whiteChar | digit | specialNoColonOrSlash
+
+    InsideColonBlock ::= %Empty
+                       | InsideColonBlock InsideColonBlockChar
+                       | InsideColonBlock Colons InsideColonBlockChar
+                       | InsideColonBlock '/'
+
+    Block ::= '/' '.' InsideDotBlock Dots '/'
+            | '/' ':' InsideColonBlock Colons '/'
+            | '/' '!' InsideExclamationBlock Exclamations '/'
 
     Symbol -> delimitedSymbol
             | specialSymbol
@@ -303,7 +333,7 @@
     letterNoSs -> AfterASCII | '_' | aA | bB | cC | dD | eE | fF | gG | hH | iI | jJ | kK | lL | mM | nN | oO | pP | qQ | rR | tT | uU | vV | wW | xX | yY | zZ
 
     anyNonWhiteNoLetterDollar -> digit | specialNoDollar
-    anyNonWhiteNoDotDollar -> letter | digit | specialNoDotDollar
+    anyNonWhiteNoExclamationDotColonDollar -> letter | digit | specialNoExclamationDotColonDollar
     anyNonWhiteNoColonDollar -> letter | digit | specialNoColonDollar
     anyNonWhiteNoEqualDollar -> letter | digit | specialNoEqualDollar
     anyNonWhiteNoQuestionDollar -> letter | digit | specialNoQuestionDollar
@@ -335,7 +365,7 @@
                           | '%' oO pP tT iI oO nN
 
     complexSpecialSymbol ::= '<' anyNonWhiteNoLetterDollar
-                           | '/' anyNonWhiteNoDotDollar
+                           | '/' anyNonWhiteNoExclamationDotColonDollar
                            | ':' anyNonWhiteNoColonDollar
                            | ':' ':' anyNonWhiteNoEqualDollar
                            | ':' ':' '=' anyNonWhiteNoQuestionDollar
@@ -385,7 +415,7 @@
 
    OptionComment ::= singleLineComment /.$BeginJava makeComment($_SINGLE_LINE_COMMENT); $EndJava./
    
-   _opt -> $empty
+   _opt -> %Empty
          | '_'
          | '-'
 
@@ -408,7 +438,7 @@
            | optionSymbol '-'
 
    optionWhiteChar -> Space | HT | FF
-   optionWhite ::= $empty
+   optionWhite ::= %Empty
                  | optionWhite optionWhiteChar
 
    optionList ::= option
