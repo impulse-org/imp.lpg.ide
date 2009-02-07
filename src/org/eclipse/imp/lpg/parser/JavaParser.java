@@ -258,7 +258,7 @@ public class JavaParser implements RuleAction
 
         public String toString()
         {
-            return leftIToken.getILexStream().toString(leftIToken.getStartOffset(), rightIToken.getEndOffset());
+            return leftIToken.getPrsStream().toString(leftIToken, rightIToken);
         }
 
         public Ast(IToken token) { this.leftIToken = this.rightIToken = token; }
@@ -296,26 +296,11 @@ public class JavaParser implements RuleAction
          */
         public abstract java.util.ArrayList getAllChildren();
 
-        public boolean equals(Object o)
-        {
-            if (o == this) return true;
-            if (! (o instanceof Ast)) return false;
-            Ast other = (Ast) o;
-            return getLeftIToken().getILexStream() == other.getLeftIToken().getILexStream() &&
-                   getLeftIToken().getTokenIndex() == other.getLeftIToken().getTokenIndex() &&
-                   getRightIToken().getILexStream() == other.getRightIToken().getILexStream() &&
-                   getRightIToken().getTokenIndex() == other.getRightIToken().getTokenIndex();
-        }
-
-        public int hashCode()
-        {
-            int hash = 7;
-            if (getLeftIToken().getILexStream() != null) hash = hash * 31 + getLeftIToken().getILexStream().hashCode();
-            hash = hash * 31 + getLeftIToken().getTokenIndex();
-            if (getRightIToken().getILexStream() != null) hash = hash * 31 + getRightIToken().getILexStream().hashCode();
-            hash = hash * 31 + getRightIToken().getTokenIndex();
-            return hash;
-        }
+        /**
+         * Since the Ast type has no children, any two instances of it are equal.
+         */
+        public boolean equals(Object o) { return o instanceof Ast; }
+        public abstract int hashCode();
         public abstract void accept(IAstVisitor v);
     }
 
@@ -370,6 +355,18 @@ public class JavaParser implements RuleAction
             return (java.util.ArrayList) getArrayList().clone();
         }
 
+        public abstract boolean equals(Object o);
+
+        public int hashCode()
+        {
+            int hash = 7;
+            for (int i = 0; i < size(); i++)
+            {
+                Ast element = getElementAt(i);
+                hash = hash * 31 + (element == null ? 0 : element.hashCode());
+            }
+            return hash;
+        }
     }
 
     static public class AstToken extends Ast implements IAstToken
@@ -388,16 +385,12 @@ public class JavaParser implements RuleAction
             if (o == this) return true;
             if (! (o instanceof AstToken)) return false;
             AstToken other = (AstToken) o;
-            return getIToken().getILexStream() == other.getIToken().getILexStream() &&
-                   getIToken().getTokenIndex() == other.getIToken().getTokenIndex();
+            return toString().equals(other.toString());
         }
 
         public int hashCode()
         {
-            int hash = 7;
-            if (getIToken().getILexStream() != null) hash = hash * 31 + getIToken().getILexStream().hashCode();
-            hash = hash * 31 + getIToken().getTokenIndex();
-            return hash;
+            return toString().hashCode();
         }
 
         public void accept(IAstVisitor v)
@@ -5291,8 +5284,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ClassType)) return false;
-            if (! super.equals(o)) return false;
             ClassType other = (ClassType) o;
             if (! _TypeName.equals(other._TypeName)) return false;
             if (_TypeArgumentsopt == null)
@@ -5304,7 +5303,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_TypeName.hashCode());
             hash = hash * 31 + (_TypeArgumentsopt == null ? 0 : _TypeArgumentsopt.hashCode());
             return hash;
@@ -5372,8 +5371,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof InterfaceType)) return false;
-            if (! super.equals(o)) return false;
             InterfaceType other = (InterfaceType) o;
             if (! _TypeName.equals(other._TypeName)) return false;
             if (_TypeArgumentsopt == null)
@@ -5385,7 +5390,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_TypeName.hashCode());
             hash = hash * 31 + (_TypeArgumentsopt == null ? 0 : _TypeArgumentsopt.hashCode());
             return hash;
@@ -5460,8 +5465,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof TypeName)) return false;
-            if (! super.equals(o)) return false;
             TypeName other = (TypeName) o;
             if (! _TypeName.equals(other._TypeName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -5471,7 +5482,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_TypeName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -5544,8 +5555,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ArrayType)) return false;
-            if (! super.equals(o)) return false;
             ArrayType other = (ArrayType) o;
             if (! _Type.equals(other._Type)) return false;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
@@ -5555,7 +5572,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_Type.hashCode());
             hash = hash * 31 + (_LBRACKET.hashCode());
             hash = hash * 31 + (_RBRACKET.hashCode());
@@ -5625,8 +5642,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof TypeParameter)) return false;
-            if (! super.equals(o)) return false;
             TypeParameter other = (TypeParameter) o;
             if (! _TypeVariable.equals(other._TypeVariable)) return false;
             if (_TypeBoundopt == null)
@@ -5638,7 +5661,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_TypeVariable.hashCode());
             hash = hash * 31 + (_TypeBoundopt == null ? 0 : _TypeBoundopt.hashCode());
             return hash;
@@ -5712,8 +5735,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof TypeBound)) return false;
-            if (! super.equals(o)) return false;
             TypeBound other = (TypeBound) o;
             if (! _extends.equals(other._extends)) return false;
             if (! _ClassOrInterfaceType.equals(other._ClassOrInterfaceType)) return false;
@@ -5726,7 +5755,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_extends.hashCode());
             hash = hash * 31 + (_ClassOrInterfaceType.hashCode());
             hash = hash * 31 + (_AdditionalBoundListopt == null ? 0 : _AdditionalBoundListopt.hashCode());
@@ -5797,8 +5826,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof AdditionalBoundList)) return false;
-            if (! super.equals(o)) return false;
             AdditionalBoundList other = (AdditionalBoundList) o;
             if (! _AdditionalBoundList.equals(other._AdditionalBoundList)) return false;
             if (! _AdditionalBound.equals(other._AdditionalBound)) return false;
@@ -5807,7 +5842,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_AdditionalBoundList.hashCode());
             hash = hash * 31 + (_AdditionalBound.hashCode());
             return hash;
@@ -5872,8 +5907,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof AdditionalBound)) return false;
-            if (! super.equals(o)) return false;
             AdditionalBound other = (AdditionalBound) o;
             if (! _AND.equals(other._AND)) return false;
             if (! _InterfaceType.equals(other._InterfaceType)) return false;
@@ -5882,7 +5923,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_AND.hashCode());
             hash = hash * 31 + (_InterfaceType.hashCode());
             return hash;
@@ -5953,8 +5994,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof TypeArguments)) return false;
-            if (! super.equals(o)) return false;
             TypeArguments other = (TypeArguments) o;
             if (! _LESS.equals(other._LESS)) return false;
             if (! _ActualTypeArgumentList.equals(other._ActualTypeArgumentList)) return false;
@@ -5964,7 +6011,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_LESS.hashCode());
             hash = hash * 31 + (_ActualTypeArgumentList.hashCode());
             hash = hash * 31 + (_GREATER.hashCode());
@@ -6041,8 +6088,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ActualTypeArgumentList)) return false;
-            if (! super.equals(o)) return false;
             ActualTypeArgumentList other = (ActualTypeArgumentList) o;
             if (! _ActualTypeArgumentList.equals(other._ActualTypeArgumentList)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -6052,7 +6105,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ActualTypeArgumentList.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_ActualTypeArgument.hashCode());
@@ -6122,8 +6175,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof Wildcard)) return false;
-            if (! super.equals(o)) return false;
             Wildcard other = (Wildcard) o;
             if (! _QUESTION.equals(other._QUESTION)) return false;
             if (_WildcardBoundsOpt == null)
@@ -6135,7 +6194,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_QUESTION.hashCode());
             hash = hash * 31 + (_WildcardBoundsOpt == null ? 0 : _WildcardBoundsOpt.hashCode());
             return hash;
@@ -6210,8 +6269,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof PackageName)) return false;
-            if (! super.equals(o)) return false;
             PackageName other = (PackageName) o;
             if (! _PackageName.equals(other._PackageName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -6221,7 +6286,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_PackageName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -6298,8 +6363,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ExpressionName)) return false;
-            if (! super.equals(o)) return false;
             ExpressionName other = (ExpressionName) o;
             if (! _AmbiguousName.equals(other._AmbiguousName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -6309,7 +6380,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_AmbiguousName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -6386,8 +6457,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof MethodName)) return false;
-            if (! super.equals(o)) return false;
             MethodName other = (MethodName) o;
             if (! _AmbiguousName.equals(other._AmbiguousName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -6397,7 +6474,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_AmbiguousName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -6474,8 +6551,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof PackageOrTypeName)) return false;
-            if (! super.equals(o)) return false;
             PackageOrTypeName other = (PackageOrTypeName) o;
             if (! _PackageOrTypeName.equals(other._PackageOrTypeName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -6485,7 +6568,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_PackageOrTypeName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -6562,8 +6645,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof AmbiguousName)) return false;
-            if (! super.equals(o)) return false;
             AmbiguousName other = (AmbiguousName) o;
             if (! _AmbiguousName.equals(other._AmbiguousName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -6573,7 +6662,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_AmbiguousName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -6655,8 +6744,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof CompilationUnit)) return false;
-            if (! super.equals(o)) return false;
             CompilationUnit other = (CompilationUnit) o;
             if (_PackageDeclarationopt == null)
                 if (other._PackageDeclarationopt != null) return false;
@@ -6675,7 +6770,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_PackageDeclarationopt == null ? 0 : _PackageDeclarationopt.hashCode());
             hash = hash * 31 + (_ImportDeclarationsopt == null ? 0 : _ImportDeclarationsopt.hashCode());
             hash = hash * 31 + (_TypeDeclarationsopt == null ? 0 : _TypeDeclarationsopt.hashCode());
@@ -6746,8 +6841,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ImportDeclarations)) return false;
-            if (! super.equals(o)) return false;
             ImportDeclarations other = (ImportDeclarations) o;
             if (! _ImportDeclarations.equals(other._ImportDeclarations)) return false;
             if (! _ImportDeclaration.equals(other._ImportDeclaration)) return false;
@@ -6756,7 +6857,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ImportDeclarations.hashCode());
             hash = hash * 31 + (_ImportDeclaration.hashCode());
             return hash;
@@ -6825,8 +6926,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof TypeDeclarations)) return false;
-            if (! super.equals(o)) return false;
             TypeDeclarations other = (TypeDeclarations) o;
             if (! _TypeDeclarations.equals(other._TypeDeclarations)) return false;
             if (! _TypeDeclaration.equals(other._TypeDeclaration)) return false;
@@ -6835,7 +6942,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_TypeDeclarations.hashCode());
             hash = hash * 31 + (_TypeDeclaration.hashCode());
             return hash;
@@ -6915,8 +7022,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof PackageDeclaration)) return false;
-            if (! super.equals(o)) return false;
             PackageDeclaration other = (PackageDeclaration) o;
             if (_Annotationsopt == null)
                 if (other._Annotationsopt != null) return false;
@@ -6930,7 +7043,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_Annotationsopt == null ? 0 : _Annotationsopt.hashCode());
             hash = hash * 31 + (_package.hashCode());
             hash = hash * 31 + (_PackageName.hashCode());
@@ -7005,8 +7118,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof SingleTypeImportDeclaration)) return false;
-            if (! super.equals(o)) return false;
             SingleTypeImportDeclaration other = (SingleTypeImportDeclaration) o;
             if (! _import.equals(other._import)) return false;
             if (! _TypeName.equals(other._TypeName)) return false;
@@ -7016,7 +7135,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_import.hashCode());
             hash = hash * 31 + (_TypeName.hashCode());
             hash = hash * 31 + (_SEMICOLON.hashCode());
@@ -7101,8 +7220,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof TypeImportOnDemandDeclaration)) return false;
-            if (! super.equals(o)) return false;
             TypeImportOnDemandDeclaration other = (TypeImportOnDemandDeclaration) o;
             if (! _import.equals(other._import)) return false;
             if (! _PackageOrTypeName.equals(other._PackageOrTypeName)) return false;
@@ -7114,7 +7239,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_import.hashCode());
             hash = hash * 31 + (_PackageOrTypeName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
@@ -7209,8 +7334,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof SingleStaticImportDeclaration)) return false;
-            if (! super.equals(o)) return false;
             SingleStaticImportDeclaration other = (SingleStaticImportDeclaration) o;
             if (! _import.equals(other._import)) return false;
             if (! _static.equals(other._static)) return false;
@@ -7223,7 +7354,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_import.hashCode());
             hash = hash * 31 + (_static.hashCode());
             hash = hash * 31 + (_TypeName.hashCode());
@@ -7320,8 +7451,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof StaticImportOnDemandDeclaration)) return false;
-            if (! super.equals(o)) return false;
             StaticImportOnDemandDeclaration other = (StaticImportOnDemandDeclaration) o;
             if (! _import.equals(other._import)) return false;
             if (! _static.equals(other._static)) return false;
@@ -7334,7 +7471,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_import.hashCode());
             hash = hash * 31 + (_static.hashCode());
             hash = hash * 31 + (_TypeName.hashCode());
@@ -7479,8 +7616,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof NormalClassDeclaration)) return false;
-            if (! super.equals(o)) return false;
             NormalClassDeclaration other = (NormalClassDeclaration) o;
             if (_ClassModifiersopt == null)
                 if (other._ClassModifiersopt != null) return false;
@@ -7506,7 +7649,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ClassModifiersopt == null ? 0 : _ClassModifiersopt.hashCode());
             hash = hash * 31 + (_class.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -7585,8 +7728,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ClassModifiers)) return false;
-            if (! super.equals(o)) return false;
             ClassModifiers other = (ClassModifiers) o;
             if (! _ClassModifiers.equals(other._ClassModifiers)) return false;
             if (! _ClassModifier.equals(other._ClassModifier)) return false;
@@ -7595,7 +7744,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ClassModifiers.hashCode());
             hash = hash * 31 + (_ClassModifier.hashCode());
             return hash;
@@ -7666,8 +7815,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof TypeParameters)) return false;
-            if (! super.equals(o)) return false;
             TypeParameters other = (TypeParameters) o;
             if (! _LESS.equals(other._LESS)) return false;
             if (! _TypeParameterList.equals(other._TypeParameterList)) return false;
@@ -7677,7 +7832,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_LESS.hashCode());
             hash = hash * 31 + (_TypeParameterList.hashCode());
             hash = hash * 31 + (_GREATER.hashCode());
@@ -7754,8 +7909,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof TypeParameterList)) return false;
-            if (! super.equals(o)) return false;
             TypeParameterList other = (TypeParameterList) o;
             if (! _TypeParameterList.equals(other._TypeParameterList)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -7765,7 +7926,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_TypeParameterList.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_TypeParameter.hashCode());
@@ -7832,8 +7993,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof Super)) return false;
-            if (! super.equals(o)) return false;
             Super other = (Super) o;
             if (! _extends.equals(other._extends)) return false;
             if (! _ClassType.equals(other._ClassType)) return false;
@@ -7842,7 +8009,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_extends.hashCode());
             hash = hash * 31 + (_ClassType.hashCode());
             return hash;
@@ -7907,8 +8074,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof Interfaces)) return false;
-            if (! super.equals(o)) return false;
             Interfaces other = (Interfaces) o;
             if (! _implements.equals(other._implements)) return false;
             if (! _InterfaceTypeList.equals(other._InterfaceTypeList)) return false;
@@ -7917,7 +8090,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_implements.hashCode());
             hash = hash * 31 + (_InterfaceTypeList.hashCode());
             return hash;
@@ -7992,8 +8165,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof InterfaceTypeList)) return false;
-            if (! super.equals(o)) return false;
             InterfaceTypeList other = (InterfaceTypeList) o;
             if (! _InterfaceTypeList.equals(other._InterfaceTypeList)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -8003,7 +8182,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_InterfaceTypeList.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_InterfaceType.hashCode());
@@ -8079,8 +8258,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ClassBody)) return false;
-            if (! super.equals(o)) return false;
             ClassBody other = (ClassBody) o;
             if (! _LBRACE.equals(other._LBRACE)) return false;
             if (_ClassBodyDeclarationsopt == null)
@@ -8093,7 +8278,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_LBRACE.hashCode());
             hash = hash * 31 + (_ClassBodyDeclarationsopt == null ? 0 : _ClassBodyDeclarationsopt.hashCode());
             hash = hash * 31 + (_RBRACE.hashCode());
@@ -8164,8 +8349,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ClassBodyDeclarations)) return false;
-            if (! super.equals(o)) return false;
             ClassBodyDeclarations other = (ClassBodyDeclarations) o;
             if (! _ClassBodyDeclarations.equals(other._ClassBodyDeclarations)) return false;
             if (! _ClassBodyDeclaration.equals(other._ClassBodyDeclaration)) return false;
@@ -8174,7 +8365,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ClassBodyDeclarations.hashCode());
             hash = hash * 31 + (_ClassBodyDeclaration.hashCode());
             return hash;
@@ -8286,8 +8477,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof FieldDeclaration)) return false;
-            if (! super.equals(o)) return false;
             FieldDeclaration other = (FieldDeclaration) o;
             if (_FieldModifiersopt == null)
                 if (other._FieldModifiersopt != null) return false;
@@ -8301,7 +8498,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_FieldModifiersopt == null ? 0 : _FieldModifiersopt.hashCode());
             hash = hash * 31 + (_Type.hashCode());
             hash = hash * 31 + (_VariableDeclarators.hashCode());
@@ -8380,8 +8577,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof VariableDeclarators)) return false;
-            if (! super.equals(o)) return false;
             VariableDeclarators other = (VariableDeclarators) o;
             if (! _VariableDeclarators.equals(other._VariableDeclarators)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -8391,7 +8594,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_VariableDeclarators.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_VariableDeclarator.hashCode());
@@ -8468,8 +8671,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof VariableDeclarator)) return false;
-            if (! super.equals(o)) return false;
             VariableDeclarator other = (VariableDeclarator) o;
             if (! _VariableDeclaratorId.equals(other._VariableDeclaratorId)) return false;
             if (! _EQUAL.equals(other._EQUAL)) return false;
@@ -8479,7 +8688,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_VariableDeclaratorId.hashCode());
             hash = hash * 31 + (_EQUAL.hashCode());
             hash = hash * 31 + (_VariableInitializer.hashCode());
@@ -8556,8 +8765,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof VariableDeclaratorId)) return false;
-            if (! super.equals(o)) return false;
             VariableDeclaratorId other = (VariableDeclaratorId) o;
             if (! _VariableDeclaratorId.equals(other._VariableDeclaratorId)) return false;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
@@ -8567,7 +8782,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_VariableDeclaratorId.hashCode());
             hash = hash * 31 + (_LBRACKET.hashCode());
             hash = hash * 31 + (_RBRACKET.hashCode());
@@ -8638,8 +8853,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof FieldModifiers)) return false;
-            if (! super.equals(o)) return false;
             FieldModifiers other = (FieldModifiers) o;
             if (! _FieldModifiers.equals(other._FieldModifiers)) return false;
             if (! _FieldModifier.equals(other._FieldModifier)) return false;
@@ -8648,7 +8869,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_FieldModifiers.hashCode());
             hash = hash * 31 + (_FieldModifier.hashCode());
             return hash;
@@ -8713,8 +8934,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof MethodDeclaration)) return false;
-            if (! super.equals(o)) return false;
             MethodDeclaration other = (MethodDeclaration) o;
             if (! _MethodHeader.equals(other._MethodHeader)) return false;
             if (! _MethodBody.equals(other._MethodBody)) return false;
@@ -8723,7 +8950,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_MethodHeader.hashCode());
             hash = hash * 31 + (_MethodBody.hashCode());
             return hash;
@@ -8815,8 +9042,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof MethodHeader)) return false;
-            if (! super.equals(o)) return false;
             MethodHeader other = (MethodHeader) o;
             if (_MethodModifiersopt == null)
                 if (other._MethodModifiersopt != null) return false;
@@ -8837,7 +9070,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_MethodModifiersopt == null ? 0 : _MethodModifiersopt.hashCode());
             hash = hash * 31 + (_TypeParametersopt == null ? 0 : _TypeParametersopt.hashCode());
             hash = hash * 31 + (_ResultType.hashCode());
@@ -8947,8 +9180,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof FormalParameterList)) return false;
-            if (! super.equals(o)) return false;
             FormalParameterList other = (FormalParameterList) o;
             if (! _FormalParameters.equals(other._FormalParameters)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -8958,7 +9197,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_FormalParameters.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_LastFormalParameter.hashCode());
@@ -9035,8 +9274,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof FormalParameters)) return false;
-            if (! super.equals(o)) return false;
             FormalParameters other = (FormalParameters) o;
             if (! _FormalParameters.equals(other._FormalParameters)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -9046,7 +9291,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_FormalParameters.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_FormalParameter.hashCode());
@@ -9122,8 +9367,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof FormalParameter)) return false;
-            if (! super.equals(o)) return false;
             FormalParameter other = (FormalParameter) o;
             if (_VariableModifiersopt == null)
                 if (other._VariableModifiersopt != null) return false;
@@ -9136,7 +9387,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_VariableModifiersopt == null ? 0 : _VariableModifiersopt.hashCode());
             hash = hash * 31 + (_Type.hashCode());
             hash = hash * 31 + (_VariableDeclaratorId.hashCode());
@@ -9207,8 +9458,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof VariableModifiers)) return false;
-            if (! super.equals(o)) return false;
             VariableModifiers other = (VariableModifiers) o;
             if (! _VariableModifiers.equals(other._VariableModifiers)) return false;
             if (! _VariableModifier.equals(other._VariableModifier)) return false;
@@ -9217,7 +9474,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_VariableModifiers.hashCode());
             hash = hash * 31 + (_VariableModifier.hashCode());
             return hash;
@@ -9329,8 +9586,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof LastFormalParameter)) return false;
-            if (! super.equals(o)) return false;
             LastFormalParameter other = (LastFormalParameter) o;
             if (_VariableModifiersopt == null)
                 if (other._VariableModifiersopt != null) return false;
@@ -9347,7 +9610,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_VariableModifiersopt == null ? 0 : _VariableModifiersopt.hashCode());
             hash = hash * 31 + (_Type.hashCode());
             hash = hash * 31 + (_Ellipsisopt == null ? 0 : _Ellipsisopt.hashCode());
@@ -9420,8 +9683,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof MethodModifiers)) return false;
-            if (! super.equals(o)) return false;
             MethodModifiers other = (MethodModifiers) o;
             if (! _MethodModifiers.equals(other._MethodModifiers)) return false;
             if (! _MethodModifier.equals(other._MethodModifier)) return false;
@@ -9430,7 +9699,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_MethodModifiers.hashCode());
             hash = hash * 31 + (_MethodModifier.hashCode());
             return hash;
@@ -9495,8 +9764,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof Throws)) return false;
-            if (! super.equals(o)) return false;
             Throws other = (Throws) o;
             if (! _throws.equals(other._throws)) return false;
             if (! _ExceptionTypeList.equals(other._ExceptionTypeList)) return false;
@@ -9505,7 +9780,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_throws.hashCode());
             hash = hash * 31 + (_ExceptionTypeList.hashCode());
             return hash;
@@ -9580,8 +9855,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ExceptionTypeList)) return false;
-            if (! super.equals(o)) return false;
             ExceptionTypeList other = (ExceptionTypeList) o;
             if (! _ExceptionTypeList.equals(other._ExceptionTypeList)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -9591,7 +9872,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ExceptionTypeList.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_ExceptionType.hashCode());
@@ -9687,8 +9968,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof StaticInitializer)) return false;
-            if (! super.equals(o)) return false;
             StaticInitializer other = (StaticInitializer) o;
             if (! _static.equals(other._static)) return false;
             if (! _Block.equals(other._Block)) return false;
@@ -9697,7 +9984,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_static.hashCode());
             hash = hash * 31 + (_Block.hashCode());
             return hash;
@@ -9780,8 +10067,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ConstructorDeclaration)) return false;
-            if (! super.equals(o)) return false;
             ConstructorDeclaration other = (ConstructorDeclaration) o;
             if (_ConstructorModifiersopt == null)
                 if (other._ConstructorModifiersopt != null) return false;
@@ -9798,7 +10091,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ConstructorModifiersopt == null ? 0 : _ConstructorModifiersopt.hashCode());
             hash = hash * 31 + (_ConstructorDeclarator.hashCode());
             hash = hash * 31 + (_Throwsopt == null ? 0 : _Throwsopt.hashCode());
@@ -9891,8 +10184,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ConstructorDeclarator)) return false;
-            if (! super.equals(o)) return false;
             ConstructorDeclarator other = (ConstructorDeclarator) o;
             if (_TypeParametersopt == null)
                 if (other._TypeParametersopt != null) return false;
@@ -9910,7 +10209,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_TypeParametersopt == null ? 0 : _TypeParametersopt.hashCode());
             hash = hash * 31 + (_SimpleTypeName.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
@@ -9985,8 +10284,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ConstructorModifiers)) return false;
-            if (! super.equals(o)) return false;
             ConstructorModifiers other = (ConstructorModifiers) o;
             if (! _ConstructorModifiers.equals(other._ConstructorModifiers)) return false;
             if (! _ConstructorModifier.equals(other._ConstructorModifier)) return false;
@@ -9995,7 +10300,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ConstructorModifiers.hashCode());
             hash = hash * 31 + (_ConstructorModifier.hashCode());
             return hash;
@@ -10078,8 +10383,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ConstructorBody)) return false;
-            if (! super.equals(o)) return false;
             ConstructorBody other = (ConstructorBody) o;
             if (! _LBRACE.equals(other._LBRACE)) return false;
             if (_ExplicitConstructorInvocationopt == null)
@@ -10096,7 +10407,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_LBRACE.hashCode());
             hash = hash * 31 + (_ExplicitConstructorInvocationopt == null ? 0 : _ExplicitConstructorInvocationopt.hashCode());
             hash = hash * 31 + (_BlockStatementsopt == null ? 0 : _BlockStatementsopt.hashCode());
@@ -10189,8 +10500,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof EnumDeclaration)) return false;
-            if (! super.equals(o)) return false;
             EnumDeclaration other = (EnumDeclaration) o;
             if (_ClassModifiersopt == null)
                 if (other._ClassModifiersopt != null) return false;
@@ -10208,7 +10525,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ClassModifiersopt == null ? 0 : _ClassModifiersopt.hashCode());
             hash = hash * 31 + (_enum.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -10306,8 +10623,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof EnumBody)) return false;
-            if (! super.equals(o)) return false;
             EnumBody other = (EnumBody) o;
             if (! _LBRACE.equals(other._LBRACE)) return false;
             if (_EnumConstantsopt == null)
@@ -10328,7 +10651,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_LBRACE.hashCode());
             hash = hash * 31 + (_EnumConstantsopt == null ? 0 : _EnumConstantsopt.hashCode());
             hash = hash * 31 + (_Commaopt == null ? 0 : _Commaopt.hashCode());
@@ -10409,8 +10732,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof EnumConstants)) return false;
-            if (! super.equals(o)) return false;
             EnumConstants other = (EnumConstants) o;
             if (! _EnumConstants.equals(other._EnumConstants)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -10420,7 +10749,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_EnumConstants.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_EnumConstant.hashCode());
@@ -10512,8 +10841,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof EnumConstant)) return false;
-            if (! super.equals(o)) return false;
             EnumConstant other = (EnumConstant) o;
             if (_Annotationsopt == null)
                 if (other._Annotationsopt != null) return false;
@@ -10533,7 +10868,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_Annotationsopt == null ? 0 : _Annotationsopt.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
             hash = hash * 31 + (_Argumentsopt == null ? 0 : _Argumentsopt.hashCode());
@@ -10611,8 +10946,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof Arguments)) return false;
-            if (! super.equals(o)) return false;
             Arguments other = (Arguments) o;
             if (! _LPAREN.equals(other._LPAREN)) return false;
             if (_ArgumentListopt == null)
@@ -10625,7 +10966,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_ArgumentListopt == null ? 0 : _ArgumentListopt.hashCode());
             hash = hash * 31 + (_RPAREN.hashCode());
@@ -10695,8 +11036,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof EnumBodyDeclarations)) return false;
-            if (! super.equals(o)) return false;
             EnumBodyDeclarations other = (EnumBodyDeclarations) o;
             if (! _SEMICOLON.equals(other._SEMICOLON)) return false;
             if (_ClassBodyDeclarationsopt == null)
@@ -10708,7 +11055,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_SEMICOLON.hashCode());
             hash = hash * 31 + (_ClassBodyDeclarationsopt == null ? 0 : _ClassBodyDeclarationsopt.hashCode());
             return hash;
@@ -10806,8 +11153,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof NormalInterfaceDeclaration)) return false;
-            if (! super.equals(o)) return false;
             NormalInterfaceDeclaration other = (NormalInterfaceDeclaration) o;
             if (_InterfaceModifiersopt == null)
                 if (other._InterfaceModifiersopt != null) return false;
@@ -10829,7 +11182,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_InterfaceModifiersopt == null ? 0 : _InterfaceModifiersopt.hashCode());
             hash = hash * 31 + (_interface.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -10906,8 +11259,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof InterfaceModifiers)) return false;
-            if (! super.equals(o)) return false;
             InterfaceModifiers other = (InterfaceModifiers) o;
             if (! _InterfaceModifiers.equals(other._InterfaceModifiers)) return false;
             if (! _InterfaceModifier.equals(other._InterfaceModifier)) return false;
@@ -10916,7 +11275,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_InterfaceModifiers.hashCode());
             hash = hash * 31 + (_InterfaceModifier.hashCode());
             return hash;
@@ -10990,8 +11349,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof InterfaceBody)) return false;
-            if (! super.equals(o)) return false;
             InterfaceBody other = (InterfaceBody) o;
             if (! _LBRACE.equals(other._LBRACE)) return false;
             if (_InterfaceMemberDeclarationsopt == null)
@@ -11004,7 +11369,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_LBRACE.hashCode());
             hash = hash * 31 + (_InterfaceMemberDeclarationsopt == null ? 0 : _InterfaceMemberDeclarationsopt.hashCode());
             hash = hash * 31 + (_RBRACE.hashCode());
@@ -11075,8 +11440,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof InterfaceMemberDeclarations)) return false;
-            if (! super.equals(o)) return false;
             InterfaceMemberDeclarations other = (InterfaceMemberDeclarations) o;
             if (! _InterfaceMemberDeclarations.equals(other._InterfaceMemberDeclarations)) return false;
             if (! _InterfaceMemberDeclaration.equals(other._InterfaceMemberDeclaration)) return false;
@@ -11085,7 +11456,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_InterfaceMemberDeclarations.hashCode());
             hash = hash * 31 + (_InterfaceMemberDeclaration.hashCode());
             return hash;
@@ -11191,8 +11562,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ConstantDeclaration)) return false;
-            if (! super.equals(o)) return false;
             ConstantDeclaration other = (ConstantDeclaration) o;
             if (_ConstantModifiersopt == null)
                 if (other._ConstantModifiersopt != null) return false;
@@ -11205,7 +11582,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ConstantModifiersopt == null ? 0 : _ConstantModifiersopt.hashCode());
             hash = hash * 31 + (_Type.hashCode());
             hash = hash * 31 + (_VariableDeclarators.hashCode());
@@ -11276,8 +11653,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ConstantModifiers)) return false;
-            if (! super.equals(o)) return false;
             ConstantModifiers other = (ConstantModifiers) o;
             if (! _ConstantModifiers.equals(other._ConstantModifiers)) return false;
             if (! _ConstantModifier.equals(other._ConstantModifier)) return false;
@@ -11286,7 +11669,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ConstantModifiers.hashCode());
             hash = hash * 31 + (_ConstantModifier.hashCode());
             return hash;
@@ -11384,8 +11767,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof AbstractMethodDeclaration)) return false;
-            if (! super.equals(o)) return false;
             AbstractMethodDeclaration other = (AbstractMethodDeclaration) o;
             if (_AbstractMethodModifiersopt == null)
                 if (other._AbstractMethodModifiersopt != null) return false;
@@ -11407,7 +11796,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_AbstractMethodModifiersopt == null ? 0 : _AbstractMethodModifiersopt.hashCode());
             hash = hash * 31 + (_TypeParametersopt == null ? 0 : _TypeParametersopt.hashCode());
             hash = hash * 31 + (_ResultType.hashCode());
@@ -11484,8 +11873,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof AbstractMethodModifiers)) return false;
-            if (! super.equals(o)) return false;
             AbstractMethodModifiers other = (AbstractMethodModifiers) o;
             if (! _AbstractMethodModifiers.equals(other._AbstractMethodModifiers)) return false;
             if (! _AbstractMethodModifier.equals(other._AbstractMethodModifier)) return false;
@@ -11494,7 +11889,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_AbstractMethodModifiers.hashCode());
             hash = hash * 31 + (_AbstractMethodModifier.hashCode());
             return hash;
@@ -11580,8 +11975,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof AnnotationTypeDeclaration)) return false;
-            if (! super.equals(o)) return false;
             AnnotationTypeDeclaration other = (AnnotationTypeDeclaration) o;
             if (_InterfaceModifiersopt == null)
                 if (other._InterfaceModifiersopt != null) return false;
@@ -11596,7 +11997,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_InterfaceModifiersopt == null ? 0 : _InterfaceModifiersopt.hashCode());
             hash = hash * 31 + (_AT.hashCode());
             hash = hash * 31 + (_interface.hashCode());
@@ -11676,8 +12077,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof AnnotationTypeBody)) return false;
-            if (! super.equals(o)) return false;
             AnnotationTypeBody other = (AnnotationTypeBody) o;
             if (! _LBRACE.equals(other._LBRACE)) return false;
             if (_AnnotationTypeElementDeclarationsopt == null)
@@ -11690,7 +12097,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_LBRACE.hashCode());
             hash = hash * 31 + (_AnnotationTypeElementDeclarationsopt == null ? 0 : _AnnotationTypeElementDeclarationsopt.hashCode());
             hash = hash * 31 + (_RBRACE.hashCode());
@@ -11761,8 +12168,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof AnnotationTypeElementDeclarations)) return false;
-            if (! super.equals(o)) return false;
             AnnotationTypeElementDeclarations other = (AnnotationTypeElementDeclarations) o;
             if (! _AnnotationTypeElementDeclarations.equals(other._AnnotationTypeElementDeclarations)) return false;
             if (! _AnnotationTypeElementDeclaration.equals(other._AnnotationTypeElementDeclaration)) return false;
@@ -11771,7 +12184,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_AnnotationTypeElementDeclarations.hashCode());
             hash = hash * 31 + (_AnnotationTypeElementDeclaration.hashCode());
             return hash;
@@ -11836,8 +12249,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof DefaultValue)) return false;
-            if (! super.equals(o)) return false;
             DefaultValue other = (DefaultValue) o;
             if (! _default.equals(other._default)) return false;
             if (! _ElementValue.equals(other._ElementValue)) return false;
@@ -11846,7 +12265,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_default.hashCode());
             hash = hash * 31 + (_ElementValue.hashCode());
             return hash;
@@ -11915,8 +12334,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof Annotations)) return false;
-            if (! super.equals(o)) return false;
             Annotations other = (Annotations) o;
             if (! _Annotations.equals(other._Annotations)) return false;
             if (! _Annotation.equals(other._Annotation)) return false;
@@ -11925,7 +12350,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_Annotations.hashCode());
             hash = hash * 31 + (_Annotation.hashCode());
             return hash;
@@ -12011,8 +12436,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof NormalAnnotation)) return false;
-            if (! super.equals(o)) return false;
             NormalAnnotation other = (NormalAnnotation) o;
             if (! _AT.equals(other._AT)) return false;
             if (! _TypeName.equals(other._TypeName)) return false;
@@ -12027,7 +12458,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_AT.hashCode());
             hash = hash * 31 + (_TypeName.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
@@ -12108,8 +12539,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ElementValuePairs)) return false;
-            if (! super.equals(o)) return false;
             ElementValuePairs other = (ElementValuePairs) o;
             if (! _ElementValuePairs.equals(other._ElementValuePairs)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -12119,7 +12556,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ElementValuePairs.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_ElementValuePair.hashCode());
@@ -12192,8 +12629,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ElementValuePair)) return false;
-            if (! super.equals(o)) return false;
             ElementValuePair other = (ElementValuePair) o;
             if (! _SimpleName.equals(other._SimpleName)) return false;
             if (! _EQUAL.equals(other._EQUAL)) return false;
@@ -12203,7 +12646,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_SimpleName.hashCode());
             hash = hash * 31 + (_EQUAL.hashCode());
             hash = hash * 31 + (_ElementValue.hashCode());
@@ -12288,8 +12731,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ElementValueArrayInitializer)) return false;
-            if (! super.equals(o)) return false;
             ElementValueArrayInitializer other = (ElementValueArrayInitializer) o;
             if (! _LBRACE.equals(other._LBRACE)) return false;
             if (_ElementValuesopt == null)
@@ -12306,7 +12755,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_LBRACE.hashCode());
             hash = hash * 31 + (_ElementValuesopt == null ? 0 : _ElementValuesopt.hashCode());
             hash = hash * 31 + (_Commaopt == null ? 0 : _Commaopt.hashCode());
@@ -12385,8 +12834,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ElementValues)) return false;
-            if (! super.equals(o)) return false;
             ElementValues other = (ElementValues) o;
             if (! _ElementValues.equals(other._ElementValues)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -12396,7 +12851,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ElementValues.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_ElementValue.hashCode());
@@ -12463,8 +12918,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof MarkerAnnotation)) return false;
-            if (! super.equals(o)) return false;
             MarkerAnnotation other = (MarkerAnnotation) o;
             if (! _AT.equals(other._AT)) return false;
             if (! _TypeName.equals(other._TypeName)) return false;
@@ -12473,7 +12934,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_AT.hashCode());
             hash = hash * 31 + (_TypeName.hashCode());
             return hash;
@@ -12556,8 +13017,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof SingleElementAnnotation)) return false;
-            if (! super.equals(o)) return false;
             SingleElementAnnotation other = (SingleElementAnnotation) o;
             if (! _AT.equals(other._AT)) return false;
             if (! _TypeName.equals(other._TypeName)) return false;
@@ -12569,7 +13036,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_AT.hashCode());
             hash = hash * 31 + (_TypeName.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
@@ -12658,8 +13125,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ArrayInitializer)) return false;
-            if (! super.equals(o)) return false;
             ArrayInitializer other = (ArrayInitializer) o;
             if (! _LBRACE.equals(other._LBRACE)) return false;
             if (_VariableInitializersopt == null)
@@ -12676,7 +13149,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_LBRACE.hashCode());
             hash = hash * 31 + (_VariableInitializersopt == null ? 0 : _VariableInitializersopt.hashCode());
             hash = hash * 31 + (_Commaopt == null ? 0 : _Commaopt.hashCode());
@@ -12755,8 +13228,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof VariableInitializers)) return false;
-            if (! super.equals(o)) return false;
             VariableInitializers other = (VariableInitializers) o;
             if (! _VariableInitializers.equals(other._VariableInitializers)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -12766,7 +13245,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_VariableInitializers.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_VariableInitializer.hashCode());
@@ -12842,8 +13321,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof Block)) return false;
-            if (! super.equals(o)) return false;
             Block other = (Block) o;
             if (! _LBRACE.equals(other._LBRACE)) return false;
             if (_BlockStatementsopt == null)
@@ -12856,7 +13341,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_LBRACE.hashCode());
             hash = hash * 31 + (_BlockStatementsopt == null ? 0 : _BlockStatementsopt.hashCode());
             hash = hash * 31 + (_RBRACE.hashCode());
@@ -12927,8 +13412,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof BlockStatements)) return false;
-            if (! super.equals(o)) return false;
             BlockStatements other = (BlockStatements) o;
             if (! _BlockStatements.equals(other._BlockStatements)) return false;
             if (! _BlockStatement.equals(other._BlockStatement)) return false;
@@ -12937,7 +13428,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_BlockStatements.hashCode());
             hash = hash * 31 + (_BlockStatement.hashCode());
             return hash;
@@ -13002,8 +13493,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof LocalVariableDeclarationStatement)) return false;
-            if (! super.equals(o)) return false;
             LocalVariableDeclarationStatement other = (LocalVariableDeclarationStatement) o;
             if (! _LocalVariableDeclaration.equals(other._LocalVariableDeclaration)) return false;
             if (! _SEMICOLON.equals(other._SEMICOLON)) return false;
@@ -13012,7 +13509,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_LocalVariableDeclaration.hashCode());
             hash = hash * 31 + (_SEMICOLON.hashCode());
             return hash;
@@ -13086,8 +13583,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof LocalVariableDeclaration)) return false;
-            if (! super.equals(o)) return false;
             LocalVariableDeclaration other = (LocalVariableDeclaration) o;
             if (_VariableModifiersopt == null)
                 if (other._VariableModifiersopt != null) return false;
@@ -13100,7 +13603,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_VariableModifiersopt == null ? 0 : _VariableModifiersopt.hashCode());
             hash = hash * 31 + (_Type.hashCode());
             hash = hash * 31 + (_VariableDeclarators.hashCode());
@@ -13185,8 +13688,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof IfThenStatement)) return false;
-            if (! super.equals(o)) return false;
             IfThenStatement other = (IfThenStatement) o;
             if (! _if.equals(other._if)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -13198,7 +13707,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_if.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -13299,8 +13808,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof IfThenElseStatement)) return false;
-            if (! super.equals(o)) return false;
             IfThenElseStatement other = (IfThenElseStatement) o;
             if (! _if.equals(other._if)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -13314,7 +13829,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_if.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -13419,8 +13934,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof IfThenElseStatementNoShortIf)) return false;
-            if (! super.equals(o)) return false;
             IfThenElseStatementNoShortIf other = (IfThenElseStatementNoShortIf) o;
             if (! _if.equals(other._if)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -13434,7 +13955,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_if.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -13540,8 +14061,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof LabeledStatement)) return false;
-            if (! super.equals(o)) return false;
             LabeledStatement other = (LabeledStatement) o;
             if (! _identifier.equals(other._identifier)) return false;
             if (! _COLON.equals(other._COLON)) return false;
@@ -13551,7 +14078,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_identifier.hashCode());
             hash = hash * 31 + (_COLON.hashCode());
             hash = hash * 31 + (_Statement.hashCode());
@@ -13624,8 +14151,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof LabeledStatementNoShortIf)) return false;
-            if (! super.equals(o)) return false;
             LabeledStatementNoShortIf other = (LabeledStatementNoShortIf) o;
             if (! _identifier.equals(other._identifier)) return false;
             if (! _COLON.equals(other._COLON)) return false;
@@ -13635,7 +14168,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_identifier.hashCode());
             hash = hash * 31 + (_COLON.hashCode());
             hash = hash * 31 + (_StatementNoShortIf.hashCode());
@@ -13702,8 +14235,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ExpressionStatement)) return false;
-            if (! super.equals(o)) return false;
             ExpressionStatement other = (ExpressionStatement) o;
             if (! _StatementExpression.equals(other._StatementExpression)) return false;
             if (! _SEMICOLON.equals(other._SEMICOLON)) return false;
@@ -13712,7 +14251,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_StatementExpression.hashCode());
             hash = hash * 31 + (_SEMICOLON.hashCode());
             return hash;
@@ -13795,8 +14334,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof SwitchStatement)) return false;
-            if (! super.equals(o)) return false;
             SwitchStatement other = (SwitchStatement) o;
             if (! _switch.equals(other._switch)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -13808,7 +14353,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_switch.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -13897,8 +14442,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof SwitchBlock)) return false;
-            if (! super.equals(o)) return false;
             SwitchBlock other = (SwitchBlock) o;
             if (! _LBRACE.equals(other._LBRACE)) return false;
             if (_SwitchBlockStatementGroupsopt == null)
@@ -13915,7 +14466,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_LBRACE.hashCode());
             hash = hash * 31 + (_SwitchBlockStatementGroupsopt == null ? 0 : _SwitchBlockStatementGroupsopt.hashCode());
             hash = hash * 31 + (_SwitchLabelsopt == null ? 0 : _SwitchLabelsopt.hashCode());
@@ -13988,8 +14539,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof SwitchBlockStatementGroups)) return false;
-            if (! super.equals(o)) return false;
             SwitchBlockStatementGroups other = (SwitchBlockStatementGroups) o;
             if (! _SwitchBlockStatementGroups.equals(other._SwitchBlockStatementGroups)) return false;
             if (! _SwitchBlockStatementGroup.equals(other._SwitchBlockStatementGroup)) return false;
@@ -13998,7 +14555,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_SwitchBlockStatementGroups.hashCode());
             hash = hash * 31 + (_SwitchBlockStatementGroup.hashCode());
             return hash;
@@ -14063,8 +14620,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof SwitchBlockStatementGroup)) return false;
-            if (! super.equals(o)) return false;
             SwitchBlockStatementGroup other = (SwitchBlockStatementGroup) o;
             if (! _SwitchLabels.equals(other._SwitchLabels)) return false;
             if (! _BlockStatements.equals(other._BlockStatements)) return false;
@@ -14073,7 +14636,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_SwitchLabels.hashCode());
             hash = hash * 31 + (_BlockStatements.hashCode());
             return hash;
@@ -14142,8 +14705,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof SwitchLabels)) return false;
-            if (! super.equals(o)) return false;
             SwitchLabels other = (SwitchLabels) o;
             if (! _SwitchLabels.equals(other._SwitchLabels)) return false;
             if (! _SwitchLabel.equals(other._SwitchLabel)) return false;
@@ -14152,7 +14721,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_SwitchLabels.hashCode());
             hash = hash * 31 + (_SwitchLabel.hashCode());
             return hash;
@@ -14235,8 +14804,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof WhileStatement)) return false;
-            if (! super.equals(o)) return false;
             WhileStatement other = (WhileStatement) o;
             if (! _while.equals(other._while)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -14248,7 +14823,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_while.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -14337,8 +14912,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof WhileStatementNoShortIf)) return false;
-            if (! super.equals(o)) return false;
             WhileStatementNoShortIf other = (WhileStatementNoShortIf) o;
             if (! _while.equals(other._while)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -14350,7 +14931,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_while.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -14451,8 +15032,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof DoStatement)) return false;
-            if (! super.equals(o)) return false;
             DoStatement other = (DoStatement) o;
             if (! _do.equals(other._do)) return false;
             if (! _Statement.equals(other._Statement)) return false;
@@ -14466,7 +15053,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_do.hashCode());
             hash = hash * 31 + (_Statement.hashCode());
             hash = hash * 31 + (_while.hashCode());
@@ -14592,8 +15179,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof BasicForStatement)) return false;
-            if (! super.equals(o)) return false;
             BasicForStatement other = (BasicForStatement) o;
             if (! _for.equals(other._for)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -14618,7 +15211,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_for.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_ForInitopt == null ? 0 : _ForInitopt.hashCode());
@@ -14748,8 +15341,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ForStatementNoShortIf)) return false;
-            if (! super.equals(o)) return false;
             ForStatementNoShortIf other = (ForStatementNoShortIf) o;
             if (! _for.equals(other._for)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -14774,7 +15373,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_for.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_ForInitopt == null ? 0 : _ForInitopt.hashCode());
@@ -14863,8 +15462,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof StatementExpressionList)) return false;
-            if (! super.equals(o)) return false;
             StatementExpressionList other = (StatementExpressionList) o;
             if (! _StatementExpressionList.equals(other._StatementExpressionList)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -14874,7 +15479,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_StatementExpressionList.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_StatementExpression.hashCode());
@@ -14971,8 +15576,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof EnhancedForStatement)) return false;
-            if (! super.equals(o)) return false;
             EnhancedForStatement other = (EnhancedForStatement) o;
             if (! _for.equals(other._for)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -14986,7 +15597,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_for.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_FormalParameter.hashCode());
@@ -15070,8 +15681,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof BreakStatement)) return false;
-            if (! super.equals(o)) return false;
             BreakStatement other = (BreakStatement) o;
             if (! _break.equals(other._break)) return false;
             if (_identifieropt == null)
@@ -15084,7 +15701,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_break.hashCode());
             hash = hash * 31 + (_identifieropt == null ? 0 : _identifieropt.hashCode());
             hash = hash * 31 + (_SEMICOLON.hashCode());
@@ -15160,8 +15777,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ContinueStatement)) return false;
-            if (! super.equals(o)) return false;
             ContinueStatement other = (ContinueStatement) o;
             if (! _continue.equals(other._continue)) return false;
             if (_identifieropt == null)
@@ -15174,7 +15797,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_continue.hashCode());
             hash = hash * 31 + (_identifieropt == null ? 0 : _identifieropt.hashCode());
             hash = hash * 31 + (_SEMICOLON.hashCode());
@@ -15250,8 +15873,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ReturnStatement)) return false;
-            if (! super.equals(o)) return false;
             ReturnStatement other = (ReturnStatement) o;
             if (! _return.equals(other._return)) return false;
             if (_Expressionopt == null)
@@ -15264,7 +15893,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_return.hashCode());
             hash = hash * 31 + (_Expressionopt == null ? 0 : _Expressionopt.hashCode());
             hash = hash * 31 + (_SEMICOLON.hashCode());
@@ -15337,8 +15966,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ThrowStatement)) return false;
-            if (! super.equals(o)) return false;
             ThrowStatement other = (ThrowStatement) o;
             if (! _throw.equals(other._throw)) return false;
             if (! _Expression.equals(other._Expression)) return false;
@@ -15348,7 +15983,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_throw.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
             hash = hash * 31 + (_SEMICOLON.hashCode());
@@ -15433,8 +16068,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof SynchronizedStatement)) return false;
-            if (! super.equals(o)) return false;
             SynchronizedStatement other = (SynchronizedStatement) o;
             if (! _synchronized.equals(other._synchronized)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -15446,7 +16087,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_synchronized.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -15521,8 +16162,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof Catches)) return false;
-            if (! super.equals(o)) return false;
             Catches other = (Catches) o;
             if (! _Catches.equals(other._Catches)) return false;
             if (! _CatchClause.equals(other._CatchClause)) return false;
@@ -15531,7 +16178,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_Catches.hashCode());
             hash = hash * 31 + (_CatchClause.hashCode());
             return hash;
@@ -15614,8 +16261,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof CatchClause)) return false;
-            if (! super.equals(o)) return false;
             CatchClause other = (CatchClause) o;
             if (! _catch.equals(other._catch)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -15627,7 +16280,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_catch.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_FormalParameter.hashCode());
@@ -15698,8 +16351,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof Finally)) return false;
-            if (! super.equals(o)) return false;
             Finally other = (Finally) o;
             if (! _finally.equals(other._finally)) return false;
             if (! _Block.equals(other._Block)) return false;
@@ -15708,7 +16367,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_finally.hashCode());
             hash = hash * 31 + (_Block.hashCode());
             return hash;
@@ -15783,8 +16442,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ArgumentList)) return false;
-            if (! super.equals(o)) return false;
             ArgumentList other = (ArgumentList) o;
             if (! _ArgumentList.equals(other._ArgumentList)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -15794,7 +16459,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ArgumentList.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -15865,8 +16530,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof DimExprs)) return false;
-            if (! super.equals(o)) return false;
             DimExprs other = (DimExprs) o;
             if (! _DimExprs.equals(other._DimExprs)) return false;
             if (! _DimExpr.equals(other._DimExpr)) return false;
@@ -15875,7 +16546,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_DimExprs.hashCode());
             hash = hash * 31 + (_DimExpr.hashCode());
             return hash;
@@ -15946,8 +16617,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof DimExpr)) return false;
-            if (! super.equals(o)) return false;
             DimExpr other = (DimExpr) o;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
             if (! _Expression.equals(other._Expression)) return false;
@@ -15957,7 +16634,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_LBRACKET.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
             hash = hash * 31 + (_RBRACKET.hashCode());
@@ -16024,8 +16701,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof PostIncrementExpression)) return false;
-            if (! super.equals(o)) return false;
             PostIncrementExpression other = (PostIncrementExpression) o;
             if (! _PostfixExpression.equals(other._PostfixExpression)) return false;
             if (! _PLUS_PLUS.equals(other._PLUS_PLUS)) return false;
@@ -16034,7 +16717,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_PostfixExpression.hashCode());
             hash = hash * 31 + (_PLUS_PLUS.hashCode());
             return hash;
@@ -16099,8 +16782,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof PostDecrementExpression)) return false;
-            if (! super.equals(o)) return false;
             PostDecrementExpression other = (PostDecrementExpression) o;
             if (! _PostfixExpression.equals(other._PostfixExpression)) return false;
             if (! _MINUS_MINUS.equals(other._MINUS_MINUS)) return false;
@@ -16109,7 +16798,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_PostfixExpression.hashCode());
             hash = hash * 31 + (_MINUS_MINUS.hashCode());
             return hash;
@@ -16174,8 +16863,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof PreIncrementExpression)) return false;
-            if (! super.equals(o)) return false;
             PreIncrementExpression other = (PreIncrementExpression) o;
             if (! _PLUS_PLUS.equals(other._PLUS_PLUS)) return false;
             if (! _UnaryExpression.equals(other._UnaryExpression)) return false;
@@ -16184,7 +16879,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_PLUS_PLUS.hashCode());
             hash = hash * 31 + (_UnaryExpression.hashCode());
             return hash;
@@ -16249,8 +16944,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof PreDecrementExpression)) return false;
-            if (! super.equals(o)) return false;
             PreDecrementExpression other = (PreDecrementExpression) o;
             if (! _MINUS_MINUS.equals(other._MINUS_MINUS)) return false;
             if (! _UnaryExpression.equals(other._UnaryExpression)) return false;
@@ -16259,7 +16960,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_MINUS_MINUS.hashCode());
             hash = hash * 31 + (_UnaryExpression.hashCode());
             return hash;
@@ -16334,8 +17035,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof AndExpression)) return false;
-            if (! super.equals(o)) return false;
             AndExpression other = (AndExpression) o;
             if (! _AndExpression.equals(other._AndExpression)) return false;
             if (! _AND.equals(other._AND)) return false;
@@ -16345,7 +17052,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_AndExpression.hashCode());
             hash = hash * 31 + (_AND.hashCode());
             hash = hash * 31 + (_EqualityExpression.hashCode());
@@ -16422,8 +17129,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ExclusiveOrExpression)) return false;
-            if (! super.equals(o)) return false;
             ExclusiveOrExpression other = (ExclusiveOrExpression) o;
             if (! _ExclusiveOrExpression.equals(other._ExclusiveOrExpression)) return false;
             if (! _XOR.equals(other._XOR)) return false;
@@ -16433,7 +17146,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ExclusiveOrExpression.hashCode());
             hash = hash * 31 + (_XOR.hashCode());
             hash = hash * 31 + (_AndExpression.hashCode());
@@ -16510,8 +17223,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof InclusiveOrExpression)) return false;
-            if (! super.equals(o)) return false;
             InclusiveOrExpression other = (InclusiveOrExpression) o;
             if (! _InclusiveOrExpression.equals(other._InclusiveOrExpression)) return false;
             if (! _OR.equals(other._OR)) return false;
@@ -16521,7 +17240,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_InclusiveOrExpression.hashCode());
             hash = hash * 31 + (_OR.hashCode());
             hash = hash * 31 + (_ExclusiveOrExpression.hashCode());
@@ -16598,8 +17317,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ConditionalAndExpression)) return false;
-            if (! super.equals(o)) return false;
             ConditionalAndExpression other = (ConditionalAndExpression) o;
             if (! _ConditionalAndExpression.equals(other._ConditionalAndExpression)) return false;
             if (! _AND_AND.equals(other._AND_AND)) return false;
@@ -16609,7 +17334,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ConditionalAndExpression.hashCode());
             hash = hash * 31 + (_AND_AND.hashCode());
             hash = hash * 31 + (_InclusiveOrExpression.hashCode());
@@ -16686,8 +17411,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ConditionalOrExpression)) return false;
-            if (! super.equals(o)) return false;
             ConditionalOrExpression other = (ConditionalOrExpression) o;
             if (! _ConditionalOrExpression.equals(other._ConditionalOrExpression)) return false;
             if (! _OR_OR.equals(other._OR_OR)) return false;
@@ -16697,7 +17428,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ConditionalOrExpression.hashCode());
             hash = hash * 31 + (_OR_OR.hashCode());
             hash = hash * 31 + (_ConditionalAndExpression.hashCode());
@@ -16786,8 +17517,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ConditionalExpression)) return false;
-            if (! super.equals(o)) return false;
             ConditionalExpression other = (ConditionalExpression) o;
             if (! _ConditionalOrExpression.equals(other._ConditionalOrExpression)) return false;
             if (! _QUESTION.equals(other._QUESTION)) return false;
@@ -16799,7 +17536,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ConditionalOrExpression.hashCode());
             hash = hash * 31 + (_QUESTION.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -16876,8 +17613,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof Assignment)) return false;
-            if (! super.equals(o)) return false;
             Assignment other = (Assignment) o;
             if (! _LeftHandSide.equals(other._LeftHandSide)) return false;
             if (! _AssignmentOperator.equals(other._AssignmentOperator)) return false;
@@ -16887,7 +17630,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_LeftHandSide.hashCode());
             hash = hash * 31 + (_AssignmentOperator.hashCode());
             hash = hash * 31 + (_AssignmentExpression.hashCode());
@@ -17021,8 +17764,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof LPGUserAction0)) return false;
-            if (! super.equals(o)) return false;
             LPGUserAction0 other = (LPGUserAction0) o;
             if (! _BeginAction.equals(other._BeginAction)) return false;
             if (_BlockStatementsopt == null)
@@ -17035,7 +17784,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_BeginAction.hashCode());
             hash = hash * 31 + (_BlockStatementsopt == null ? 0 : _BlockStatementsopt.hashCode());
             hash = hash * 31 + (_EndAction.hashCode());
@@ -17111,8 +17860,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof LPGUserAction1)) return false;
-            if (! super.equals(o)) return false;
             LPGUserAction1 other = (LPGUserAction1) o;
             if (! _BeginJava.equals(other._BeginJava)) return false;
             if (_BlockStatementsopt == null)
@@ -17125,7 +17880,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_BeginJava.hashCode());
             hash = hash * 31 + (_BlockStatementsopt == null ? 0 : _BlockStatementsopt.hashCode());
             hash = hash * 31 + (_EndJava.hashCode());
@@ -17442,8 +18197,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof WildcardBounds0)) return false;
-            if (! super.equals(o)) return false;
             WildcardBounds0 other = (WildcardBounds0) o;
             if (! _extends.equals(other._extends)) return false;
             if (! _ReferenceType.equals(other._ReferenceType)) return false;
@@ -17452,7 +18213,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_extends.hashCode());
             hash = hash * 31 + (_ReferenceType.hashCode());
             return hash;
@@ -17517,8 +18278,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof WildcardBounds1)) return false;
-            if (! super.equals(o)) return false;
             WildcardBounds1 other = (WildcardBounds1) o;
             if (! _super.equals(other._super)) return false;
             if (! _ReferenceType.equals(other._ReferenceType)) return false;
@@ -17527,7 +18294,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_super.hashCode());
             hash = hash * 31 + (_ReferenceType.hashCode());
             return hash;
@@ -17957,8 +18724,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof MethodDeclarator0)) return false;
-            if (! super.equals(o)) return false;
             MethodDeclarator0 other = (MethodDeclarator0) o;
             if (! _identifier.equals(other._identifier)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -17972,7 +18745,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_identifier.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_FormalParameterListopt == null ? 0 : _FormalParameterListopt.hashCode());
@@ -18047,8 +18820,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof MethodDeclarator1)) return false;
-            if (! super.equals(o)) return false;
             MethodDeclarator1 other = (MethodDeclarator1) o;
             if (! _MethodDeclarator.equals(other._MethodDeclarator)) return false;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
@@ -18058,7 +18837,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_MethodDeclarator.hashCode());
             hash = hash * 31 + (_LBRACKET.hashCode());
             hash = hash * 31 + (_RBRACKET.hashCode());
@@ -18455,8 +19234,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ExplicitConstructorInvocation0)) return false;
-            if (! super.equals(o)) return false;
             ExplicitConstructorInvocation0 other = (ExplicitConstructorInvocation0) o;
             if (_TypeArgumentsopt == null)
                 if (other._TypeArgumentsopt != null) return false;
@@ -18475,7 +19260,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_TypeArgumentsopt == null ? 0 : _TypeArgumentsopt.hashCode());
             hash = hash * 31 + (_this.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
@@ -18578,8 +19363,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ExplicitConstructorInvocation1)) return false;
-            if (! super.equals(o)) return false;
             ExplicitConstructorInvocation1 other = (ExplicitConstructorInvocation1) o;
             if (_TypeArgumentsopt == null)
                 if (other._TypeArgumentsopt != null) return false;
@@ -18598,7 +19389,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_TypeArgumentsopt == null ? 0 : _TypeArgumentsopt.hashCode());
             hash = hash * 31 + (_super.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
@@ -18713,8 +19504,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ExplicitConstructorInvocation2)) return false;
-            if (! super.equals(o)) return false;
             ExplicitConstructorInvocation2 other = (ExplicitConstructorInvocation2) o;
             if (! _Primary.equals(other._Primary)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -18735,7 +19532,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_Primary.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_TypeArgumentsopt == null ? 0 : _TypeArgumentsopt.hashCode());
@@ -18962,8 +19759,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ExtendsInterfaces0)) return false;
-            if (! super.equals(o)) return false;
             ExtendsInterfaces0 other = (ExtendsInterfaces0) o;
             if (! _extends.equals(other._extends)) return false;
             if (! _InterfaceType.equals(other._InterfaceType)) return false;
@@ -18972,7 +19775,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_extends.hashCode());
             hash = hash * 31 + (_InterfaceType.hashCode());
             return hash;
@@ -19043,8 +19846,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ExtendsInterfaces1)) return false;
-            if (! super.equals(o)) return false;
             ExtendsInterfaces1 other = (ExtendsInterfaces1) o;
             if (! _ExtendsInterfaces.equals(other._ExtendsInterfaces)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -19054,7 +19863,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ExtendsInterfaces.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_InterfaceType.hashCode());
@@ -19282,8 +20091,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof AnnotationTypeElementDeclaration0)) return false;
-            if (! super.equals(o)) return false;
             AnnotationTypeElementDeclaration0 other = (AnnotationTypeElementDeclaration0) o;
             if (_AbstractMethodModifiersopt == null)
                 if (other._AbstractMethodModifiersopt != null) return false;
@@ -19303,7 +20118,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_AbstractMethodModifiersopt == null ? 0 : _AbstractMethodModifiersopt.hashCode());
             hash = hash * 31 + (_Type.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -19409,8 +20224,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof AssertStatement0)) return false;
-            if (! super.equals(o)) return false;
             AssertStatement0 other = (AssertStatement0) o;
             if (! _assert.equals(other._assert)) return false;
             if (! _Expression.equals(other._Expression)) return false;
@@ -19420,7 +20241,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_assert.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
             hash = hash * 31 + (_SEMICOLON.hashCode());
@@ -19505,8 +20326,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof AssertStatement1)) return false;
-            if (! super.equals(o)) return false;
             AssertStatement1 other = (AssertStatement1) o;
             if (! _assert.equals(other._assert)) return false;
             if (! _Expression.equals(other._Expression)) return false;
@@ -19518,7 +20345,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_assert.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
             hash = hash * 31 + (_COLON.hashCode());
@@ -19595,8 +20422,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof SwitchLabel0)) return false;
-            if (! super.equals(o)) return false;
             SwitchLabel0 other = (SwitchLabel0) o;
             if (! _case.equals(other._case)) return false;
             if (! _ConstantExpression.equals(other._ConstantExpression)) return false;
@@ -19606,7 +20439,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_case.hashCode());
             hash = hash * 31 + (_ConstantExpression.hashCode());
             hash = hash * 31 + (_COLON.hashCode());
@@ -19679,8 +20512,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof SwitchLabel1)) return false;
-            if (! super.equals(o)) return false;
             SwitchLabel1 other = (SwitchLabel1) o;
             if (! _case.equals(other._case)) return false;
             if (! _EnumConstant.equals(other._EnumConstant)) return false;
@@ -19690,7 +20529,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_case.hashCode());
             hash = hash * 31 + (_EnumConstant.hashCode());
             hash = hash * 31 + (_COLON.hashCode());
@@ -19757,8 +20596,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof SwitchLabel2)) return false;
-            if (! super.equals(o)) return false;
             SwitchLabel2 other = (SwitchLabel2) o;
             if (! _default.equals(other._default)) return false;
             if (! _COLON.equals(other._COLON)) return false;
@@ -19767,7 +20612,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_default.hashCode());
             hash = hash * 31 + (_COLON.hashCode());
             return hash;
@@ -19838,8 +20683,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof TryStatement0)) return false;
-            if (! super.equals(o)) return false;
             TryStatement0 other = (TryStatement0) o;
             if (! _try.equals(other._try)) return false;
             if (! _Block.equals(other._Block)) return false;
@@ -19849,7 +20700,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_try.hashCode());
             hash = hash * 31 + (_Block.hashCode());
             hash = hash * 31 + (_Catches.hashCode());
@@ -19931,8 +20782,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof TryStatement1)) return false;
-            if (! super.equals(o)) return false;
             TryStatement1 other = (TryStatement1) o;
             if (! _try.equals(other._try)) return false;
             if (! _Block.equals(other._Block)) return false;
@@ -19946,7 +20803,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_try.hashCode());
             hash = hash * 31 + (_Block.hashCode());
             hash = hash * 31 + (_Catchesopt == null ? 0 : _Catchesopt.hashCode());
@@ -20021,8 +20878,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof PrimaryNoNewArray0)) return false;
-            if (! super.equals(o)) return false;
             PrimaryNoNewArray0 other = (PrimaryNoNewArray0) o;
             if (! _Type.equals(other._Type)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -20032,7 +20895,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_Type.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_class.hashCode());
@@ -20105,8 +20968,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof PrimaryNoNewArray1)) return false;
-            if (! super.equals(o)) return false;
             PrimaryNoNewArray1 other = (PrimaryNoNewArray1) o;
             if (! _void.equals(other._void)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -20116,7 +20985,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_void.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_class.hashCode());
@@ -20214,8 +21083,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof PrimaryNoNewArray3)) return false;
-            if (! super.equals(o)) return false;
             PrimaryNoNewArray3 other = (PrimaryNoNewArray3) o;
             if (! _ClassName.equals(other._ClassName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -20225,7 +21100,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ClassName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_this.hashCode());
@@ -20298,8 +21173,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof PrimaryNoNewArray4)) return false;
-            if (! super.equals(o)) return false;
             PrimaryNoNewArray4 other = (PrimaryNoNewArray4) o;
             if (! _LPAREN.equals(other._LPAREN)) return false;
             if (! _Expression.equals(other._Expression)) return false;
@@ -20309,7 +21190,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
             hash = hash * 31 + (_RPAREN.hashCode());
@@ -20649,8 +21530,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ClassInstanceCreationExpression0)) return false;
-            if (! super.equals(o)) return false;
             ClassInstanceCreationExpression0 other = (ClassInstanceCreationExpression0) o;
             if (! _new.equals(other._new)) return false;
             if (_TypeArgumentsopt == null)
@@ -20677,7 +21564,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_new.hashCode());
             hash = hash * 31 + (_TypeArgumentsopt == null ? 0 : _TypeArgumentsopt.hashCode());
             hash = hash * 31 + (_ClassOrInterfaceType.hashCode());
@@ -20814,8 +21701,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ClassInstanceCreationExpression1)) return false;
-            if (! super.equals(o)) return false;
             ClassInstanceCreationExpression1 other = (ClassInstanceCreationExpression1) o;
             if (! _Primary.equals(other._Primary)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -20844,7 +21737,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_Primary.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_new.hashCode());
@@ -20940,8 +21833,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ArrayCreationExpression0)) return false;
-            if (! super.equals(o)) return false;
             ArrayCreationExpression0 other = (ArrayCreationExpression0) o;
             if (! _new.equals(other._new)) return false;
             if (! _PrimitiveType.equals(other._PrimitiveType)) return false;
@@ -20955,7 +21854,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_new.hashCode());
             hash = hash * 31 + (_PrimitiveType.hashCode());
             hash = hash * 31 + (_DimExprs.hashCode());
@@ -21039,8 +21938,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ArrayCreationExpression1)) return false;
-            if (! super.equals(o)) return false;
             ArrayCreationExpression1 other = (ArrayCreationExpression1) o;
             if (! _new.equals(other._new)) return false;
             if (! _ClassOrInterfaceType.equals(other._ClassOrInterfaceType)) return false;
@@ -21054,7 +21959,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_new.hashCode());
             hash = hash * 31 + (_ClassOrInterfaceType.hashCode());
             hash = hash * 31 + (_DimExprs.hashCode());
@@ -21135,8 +22040,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ArrayCreationExpression2)) return false;
-            if (! super.equals(o)) return false;
             ArrayCreationExpression2 other = (ArrayCreationExpression2) o;
             if (! _new.equals(other._new)) return false;
             if (! _PrimitiveType.equals(other._PrimitiveType)) return false;
@@ -21147,7 +22058,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_new.hashCode());
             hash = hash * 31 + (_PrimitiveType.hashCode());
             hash = hash * 31 + (_Dims.hashCode());
@@ -21228,8 +22139,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ArrayCreationExpression3)) return false;
-            if (! super.equals(o)) return false;
             ArrayCreationExpression3 other = (ArrayCreationExpression3) o;
             if (! _new.equals(other._new)) return false;
             if (! _ClassOrInterfaceType.equals(other._ClassOrInterfaceType)) return false;
@@ -21240,7 +22157,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_new.hashCode());
             hash = hash * 31 + (_ClassOrInterfaceType.hashCode());
             hash = hash * 31 + (_Dims.hashCode());
@@ -21309,8 +22226,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof Dims0)) return false;
-            if (! super.equals(o)) return false;
             Dims0 other = (Dims0) o;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
             if (! _RBRACKET.equals(other._RBRACKET)) return false;
@@ -21319,7 +22242,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_LBRACKET.hashCode());
             hash = hash * 31 + (_RBRACKET.hashCode());
             return hash;
@@ -21390,8 +22313,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof Dims1)) return false;
-            if (! super.equals(o)) return false;
             Dims1 other = (Dims1) o;
             if (! _Dims.equals(other._Dims)) return false;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
@@ -21401,7 +22330,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_Dims.hashCode());
             hash = hash * 31 + (_LBRACKET.hashCode());
             hash = hash * 31 + (_RBRACKET.hashCode());
@@ -21474,8 +22403,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof FieldAccess0)) return false;
-            if (! super.equals(o)) return false;
             FieldAccess0 other = (FieldAccess0) o;
             if (! _Primary.equals(other._Primary)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -21485,7 +22420,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_Primary.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -21558,8 +22493,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof FieldAccess1)) return false;
-            if (! super.equals(o)) return false;
             FieldAccess1 other = (FieldAccess1) o;
             if (! _super.equals(other._super)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -21569,7 +22510,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_super.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -21654,8 +22595,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof FieldAccess2)) return false;
-            if (! super.equals(o)) return false;
             FieldAccess2 other = (FieldAccess2) o;
             if (! _ClassName.equals(other._ClassName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -21667,7 +22614,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ClassName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_super.hashCode());
@@ -21753,8 +22700,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof MethodInvocation0)) return false;
-            if (! super.equals(o)) return false;
             MethodInvocation0 other = (MethodInvocation0) o;
             if (! _MethodName.equals(other._MethodName)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -21768,7 +22721,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_MethodName.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_ArgumentListopt == null ? 0 : _ArgumentListopt.hashCode());
@@ -21873,8 +22826,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof MethodInvocation1)) return false;
-            if (! super.equals(o)) return false;
             MethodInvocation1 other = (MethodInvocation1) o;
             if (! _Primary.equals(other._Primary)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -21894,7 +22853,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_Primary.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_TypeArgumentsopt == null ? 0 : _TypeArgumentsopt.hashCode());
@@ -22005,8 +22964,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof MethodInvocation2)) return false;
-            if (! super.equals(o)) return false;
             MethodInvocation2 other = (MethodInvocation2) o;
             if (! _super.equals(other._super)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -22026,7 +22991,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_super.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_TypeArgumentsopt == null ? 0 : _TypeArgumentsopt.hashCode());
@@ -22149,8 +23114,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof MethodInvocation3)) return false;
-            if (! super.equals(o)) return false;
             MethodInvocation3 other = (MethodInvocation3) o;
             if (! _ClassName.equals(other._ClassName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -22172,7 +23143,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ClassName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_super.hashCode());
@@ -22284,8 +23255,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof MethodInvocation4)) return false;
-            if (! super.equals(o)) return false;
             MethodInvocation4 other = (MethodInvocation4) o;
             if (! _TypeName.equals(other._TypeName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -22302,7 +23279,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_TypeName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_TypeArguments.hashCode());
@@ -22389,8 +23366,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ArrayAccess0)) return false;
-            if (! super.equals(o)) return false;
             ArrayAccess0 other = (ArrayAccess0) o;
             if (! _ExpressionName.equals(other._ExpressionName)) return false;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
@@ -22401,7 +23384,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ExpressionName.hashCode());
             hash = hash * 31 + (_LBRACKET.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -22482,8 +23465,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ArrayAccess1)) return false;
-            if (! super.equals(o)) return false;
             ArrayAccess1 other = (ArrayAccess1) o;
             if (! _PrimaryNoNewArray.equals(other._PrimaryNoNewArray)) return false;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
@@ -22494,7 +23483,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_PrimaryNoNewArray.hashCode());
             hash = hash * 31 + (_LBRACKET.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -22563,8 +23552,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof UnaryExpression0)) return false;
-            if (! super.equals(o)) return false;
             UnaryExpression0 other = (UnaryExpression0) o;
             if (! _PLUS.equals(other._PLUS)) return false;
             if (! _UnaryExpression.equals(other._UnaryExpression)) return false;
@@ -22573,7 +23568,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_PLUS.hashCode());
             hash = hash * 31 + (_UnaryExpression.hashCode());
             return hash;
@@ -22638,8 +23633,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof UnaryExpression1)) return false;
-            if (! super.equals(o)) return false;
             UnaryExpression1 other = (UnaryExpression1) o;
             if (! _MINUS.equals(other._MINUS)) return false;
             if (! _UnaryExpression.equals(other._UnaryExpression)) return false;
@@ -22648,7 +23649,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_MINUS.hashCode());
             hash = hash * 31 + (_UnaryExpression.hashCode());
             return hash;
@@ -22713,8 +23714,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof UnaryExpressionNotPlusMinus0)) return false;
-            if (! super.equals(o)) return false;
             UnaryExpressionNotPlusMinus0 other = (UnaryExpressionNotPlusMinus0) o;
             if (! _TWIDDLE.equals(other._TWIDDLE)) return false;
             if (! _UnaryExpression.equals(other._UnaryExpression)) return false;
@@ -22723,7 +23730,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_TWIDDLE.hashCode());
             hash = hash * 31 + (_UnaryExpression.hashCode());
             return hash;
@@ -22788,8 +23795,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof UnaryExpressionNotPlusMinus1)) return false;
-            if (! super.equals(o)) return false;
             UnaryExpressionNotPlusMinus1 other = (UnaryExpressionNotPlusMinus1) o;
             if (! _NOT.equals(other._NOT)) return false;
             if (! _UnaryExpression.equals(other._UnaryExpression)) return false;
@@ -22798,7 +23811,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_NOT.hashCode());
             hash = hash * 31 + (_UnaryExpression.hashCode());
             return hash;
@@ -22884,8 +23897,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof CastExpression0)) return false;
-            if (! super.equals(o)) return false;
             CastExpression0 other = (CastExpression0) o;
             if (! _LPAREN.equals(other._LPAREN)) return false;
             if (! _PrimitiveType.equals(other._PrimitiveType)) return false;
@@ -22900,7 +23919,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_PrimitiveType.hashCode());
             hash = hash * 31 + (_Dimsopt == null ? 0 : _Dimsopt.hashCode());
@@ -22983,8 +24002,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof CastExpression1)) return false;
-            if (! super.equals(o)) return false;
             CastExpression1 other = (CastExpression1) o;
             if (! _LPAREN.equals(other._LPAREN)) return false;
             if (! _ReferenceType.equals(other._ReferenceType)) return false;
@@ -22995,7 +24020,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_ReferenceType.hashCode());
             hash = hash * 31 + (_RPAREN.hashCode());
@@ -23070,8 +24095,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof MultiplicativeExpression0)) return false;
-            if (! super.equals(o)) return false;
             MultiplicativeExpression0 other = (MultiplicativeExpression0) o;
             if (! _MultiplicativeExpression.equals(other._MultiplicativeExpression)) return false;
             if (! _MULTIPLY.equals(other._MULTIPLY)) return false;
@@ -23081,7 +24112,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_MultiplicativeExpression.hashCode());
             hash = hash * 31 + (_MULTIPLY.hashCode());
             hash = hash * 31 + (_UnaryExpression.hashCode());
@@ -23154,8 +24185,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof MultiplicativeExpression1)) return false;
-            if (! super.equals(o)) return false;
             MultiplicativeExpression1 other = (MultiplicativeExpression1) o;
             if (! _MultiplicativeExpression.equals(other._MultiplicativeExpression)) return false;
             if (! _DIVIDE.equals(other._DIVIDE)) return false;
@@ -23165,7 +24202,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_MultiplicativeExpression.hashCode());
             hash = hash * 31 + (_DIVIDE.hashCode());
             hash = hash * 31 + (_UnaryExpression.hashCode());
@@ -23238,8 +24275,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof MultiplicativeExpression2)) return false;
-            if (! super.equals(o)) return false;
             MultiplicativeExpression2 other = (MultiplicativeExpression2) o;
             if (! _MultiplicativeExpression.equals(other._MultiplicativeExpression)) return false;
             if (! _REMAINDER.equals(other._REMAINDER)) return false;
@@ -23249,7 +24292,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_MultiplicativeExpression.hashCode());
             hash = hash * 31 + (_REMAINDER.hashCode());
             hash = hash * 31 + (_UnaryExpression.hashCode());
@@ -23322,8 +24365,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof AdditiveExpression0)) return false;
-            if (! super.equals(o)) return false;
             AdditiveExpression0 other = (AdditiveExpression0) o;
             if (! _AdditiveExpression.equals(other._AdditiveExpression)) return false;
             if (! _PLUS.equals(other._PLUS)) return false;
@@ -23333,7 +24382,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_AdditiveExpression.hashCode());
             hash = hash * 31 + (_PLUS.hashCode());
             hash = hash * 31 + (_MultiplicativeExpression.hashCode());
@@ -23406,8 +24455,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof AdditiveExpression1)) return false;
-            if (! super.equals(o)) return false;
             AdditiveExpression1 other = (AdditiveExpression1) o;
             if (! _AdditiveExpression.equals(other._AdditiveExpression)) return false;
             if (! _MINUS.equals(other._MINUS)) return false;
@@ -23417,7 +24472,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_AdditiveExpression.hashCode());
             hash = hash * 31 + (_MINUS.hashCode());
             hash = hash * 31 + (_MultiplicativeExpression.hashCode());
@@ -23490,8 +24545,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ShiftExpression0)) return false;
-            if (! super.equals(o)) return false;
             ShiftExpression0 other = (ShiftExpression0) o;
             if (! _ShiftExpression.equals(other._ShiftExpression)) return false;
             if (! _LEFT_SHIFT.equals(other._LEFT_SHIFT)) return false;
@@ -23501,7 +24562,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ShiftExpression.hashCode());
             hash = hash * 31 + (_LEFT_SHIFT.hashCode());
             hash = hash * 31 + (_AdditiveExpression.hashCode());
@@ -23580,8 +24641,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ShiftExpression1)) return false;
-            if (! super.equals(o)) return false;
             ShiftExpression1 other = (ShiftExpression1) o;
             if (! _ShiftExpression.equals(other._ShiftExpression)) return false;
             if (! _GREATER.equals(other._GREATER)) return false;
@@ -23592,7 +24659,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ShiftExpression.hashCode());
             hash = hash * 31 + (_GREATER.hashCode());
             hash = hash * 31 + (_GREATER3.hashCode());
@@ -23679,8 +24746,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof ShiftExpression2)) return false;
-            if (! super.equals(o)) return false;
             ShiftExpression2 other = (ShiftExpression2) o;
             if (! _ShiftExpression.equals(other._ShiftExpression)) return false;
             if (! _GREATER.equals(other._GREATER)) return false;
@@ -23692,7 +24765,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_ShiftExpression.hashCode());
             hash = hash * 31 + (_GREATER.hashCode());
             hash = hash * 31 + (_GREATER3.hashCode());
@@ -23769,8 +24842,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof RelationalExpression0)) return false;
-            if (! super.equals(o)) return false;
             RelationalExpression0 other = (RelationalExpression0) o;
             if (! _RelationalExpression.equals(other._RelationalExpression)) return false;
             if (! _LESS.equals(other._LESS)) return false;
@@ -23780,7 +24859,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_RelationalExpression.hashCode());
             hash = hash * 31 + (_LESS.hashCode());
             hash = hash * 31 + (_ShiftExpression.hashCode());
@@ -23853,8 +24932,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof RelationalExpression1)) return false;
-            if (! super.equals(o)) return false;
             RelationalExpression1 other = (RelationalExpression1) o;
             if (! _RelationalExpression.equals(other._RelationalExpression)) return false;
             if (! _GREATER.equals(other._GREATER)) return false;
@@ -23864,7 +24949,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_RelationalExpression.hashCode());
             hash = hash * 31 + (_GREATER.hashCode());
             hash = hash * 31 + (_ShiftExpression.hashCode());
@@ -23937,8 +25022,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof RelationalExpression2)) return false;
-            if (! super.equals(o)) return false;
             RelationalExpression2 other = (RelationalExpression2) o;
             if (! _RelationalExpression.equals(other._RelationalExpression)) return false;
             if (! _LESS_EQUAL.equals(other._LESS_EQUAL)) return false;
@@ -23948,7 +25039,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_RelationalExpression.hashCode());
             hash = hash * 31 + (_LESS_EQUAL.hashCode());
             hash = hash * 31 + (_ShiftExpression.hashCode());
@@ -24027,8 +25118,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof RelationalExpression3)) return false;
-            if (! super.equals(o)) return false;
             RelationalExpression3 other = (RelationalExpression3) o;
             if (! _RelationalExpression.equals(other._RelationalExpression)) return false;
             if (! _GREATER.equals(other._GREATER)) return false;
@@ -24039,7 +25136,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_RelationalExpression.hashCode());
             hash = hash * 31 + (_GREATER.hashCode());
             hash = hash * 31 + (_EQUAL.hashCode());
@@ -24114,8 +25211,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof RelationalExpression4)) return false;
-            if (! super.equals(o)) return false;
             RelationalExpression4 other = (RelationalExpression4) o;
             if (! _RelationalExpression.equals(other._RelationalExpression)) return false;
             if (! _instanceof.equals(other._instanceof)) return false;
@@ -24125,7 +25228,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_RelationalExpression.hashCode());
             hash = hash * 31 + (_instanceof.hashCode());
             hash = hash * 31 + (_ReferenceType.hashCode());
@@ -24198,8 +25301,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof EqualityExpression0)) return false;
-            if (! super.equals(o)) return false;
             EqualityExpression0 other = (EqualityExpression0) o;
             if (! _EqualityExpression.equals(other._EqualityExpression)) return false;
             if (! _EQUAL_EQUAL.equals(other._EQUAL_EQUAL)) return false;
@@ -24209,7 +25318,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_EqualityExpression.hashCode());
             hash = hash * 31 + (_EQUAL_EQUAL.hashCode());
             hash = hash * 31 + (_RelationalExpression.hashCode());
@@ -24282,8 +25391,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof EqualityExpression1)) return false;
-            if (! super.equals(o)) return false;
             EqualityExpression1 other = (EqualityExpression1) o;
             if (! _EqualityExpression.equals(other._EqualityExpression)) return false;
             if (! _NOT_EQUAL.equals(other._NOT_EQUAL)) return false;
@@ -24293,7 +25408,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_EqualityExpression.hashCode());
             hash = hash * 31 + (_NOT_EQUAL.hashCode());
             hash = hash * 31 + (_RelationalExpression.hashCode());
@@ -24541,8 +25656,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof AssignmentOperator7)) return false;
-            if (! super.equals(o)) return false;
             AssignmentOperator7 other = (AssignmentOperator7) o;
             if (! _GREATER.equals(other._GREATER)) return false;
             if (! _GREATER2.equals(other._GREATER2)) return false;
@@ -24552,7 +25673,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_GREATER.hashCode());
             hash = hash * 31 + (_GREATER2.hashCode());
             hash = hash * 31 + (_EQUAL.hashCode());
@@ -24631,8 +25752,14 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
+            //
+            // The super call test is not required for now because an Ast node
+            // can only extend the root Ast, AstToken and AstList and none of
+            // these nodes contain additional children.
+            //
+            // if (! super.equals(o)) return false;
+            //
             if (! (o instanceof AssignmentOperator8)) return false;
-            if (! super.equals(o)) return false;
             AssignmentOperator8 other = (AssignmentOperator8) o;
             if (! _GREATER.equals(other._GREATER)) return false;
             if (! _GREATER2.equals(other._GREATER2)) return false;
@@ -24643,7 +25770,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = super.hashCode();
+            int hash = 7;
             hash = hash * 31 + (_GREATER.hashCode());
             hash = hash * 31 + (_GREATER2.hashCode());
             hash = hash * 31 + (_GREATER3.hashCode());

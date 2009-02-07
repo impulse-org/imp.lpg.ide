@@ -53,6 +53,8 @@ public class JavaKWLexer extends JavaKWLexerprs
     static
     {
         tokenKind['$'] = JavaKWLexersym.Char_DollarSign;
+        tokenKind['%'] = JavaKWLexersym.Char_Percent;
+        tokenKind['_'] = JavaKWLexersym.Char__;
 
         tokenKind['a'] = JavaKWLexersym.Char_a;
         tokenKind['b'] = JavaKWLexersym.Char_b;
