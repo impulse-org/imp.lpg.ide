@@ -209,9 +209,9 @@ public class LPGBuilder extends BuilderBase {
         } catch (IOException e) {
         	
         }
-        LPGParser parser= new LPGParser(lexer.getLexStream()); // Create the parser
+        LPGParser parser= new LPGParser(lexer.getILexStream()); // Create the parser
 
-        lexer.lexer(null, parser.getParseStream());
+        lexer.lexer(null, parser.getIPrsStream());
         ASTNode ast= (ASTNode) parser.parser();
 
         if (ast != null)
