@@ -39,11 +39,11 @@ public class LPGPreferencesDialogInitializer extends AbstractPreferenceInitializ
 	
 			
 	public String getExecutableToUse() {
-		return "${pluginResource:lpg.runtime/lpgexe/lpg-${os}_${arch}}";
+		return "${pluginResource:lpg.generator/lpgexe/lpg-${os}_${arch}}";
 	}
 	
 	
     public static String getDefaultIncludePath() {
-        return "${pluginResource:lpg.runtime/templates}";
+        return ".;${pluginResource:lpg.generator/templates/java};${pluginResource:lpg.generator/include/java}";
     }
 }
