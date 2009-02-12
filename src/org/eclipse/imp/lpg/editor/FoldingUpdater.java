@@ -38,7 +38,7 @@ public class FoldingUpdater extends FolderBase {
             if (len <= 0)
                 return;
 
-            ILexStream ls= n.getLeftIToken().getPrsStream().getLexStream();
+            ILexStream ls= n.getLeftIToken().getIPrsStream().getILexStream();
 
             while (start + len < ls.getStreamLength() && (ls.getCharValue(start+len) == ' ' || ls.getCharValue(start+len) == '\t')) {
                 len++;
@@ -124,7 +124,7 @@ public class FoldingUpdater extends FolderBase {
 
             if (optAction != null) {
                 // Make the action block and any surrounding whitespace foldable.
-                final ILexStream lexStream= optAction.getIToken().getPrsStream().getLexStream();
+                final ILexStream lexStream= optAction.getIToken().getIPrsStream().getILexStream();
                 int start= optAction.getLeftIToken().getStartOffset();
                 int len= optAction.getRightIToken().getEndOffset() - start + 3;
 
@@ -141,6 +141,12 @@ public class FoldingUpdater extends FolderBase {
         }
 
         public boolean visit(TerminalsSeg n) {
+            makeAnnotation(n);
+            return false;
+        }
+
+        @Override
+        public boolean visit(TrailersSeg n) {
             makeAnnotation(n);
             return false;
         }
