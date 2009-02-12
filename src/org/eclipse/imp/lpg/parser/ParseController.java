@@ -19,7 +19,6 @@ import java.util.List;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.imp.lpg.LPGRuntimePlugin;
-import org.eclipse.imp.lpg.builder.LPGBuilder;
 import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
 import org.eclipse.imp.lpg.parser.LPGParser.IASTNodeToken;
 import org.eclipse.imp.lpg.parser.LPGParser.Ioption_value;
@@ -29,6 +28,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.optionList;
 import org.eclipse.imp.lpg.parser.LPGParser.option_spec;
 import org.eclipse.imp.lpg.parser.LPGParser.option_specList;
 import org.eclipse.imp.lpg.parser.LPGParser.option_value0;
+import org.eclipse.imp.lpg.preferences.LPGConstants;
 import org.eclipse.imp.model.ISourceProject;
 import org.eclipse.imp.parser.ILexer;
 import org.eclipse.imp.parser.IMessageHandler;
@@ -37,6 +37,8 @@ import org.eclipse.imp.parser.IParser;
 import org.eclipse.imp.parser.ISourcePositionLocator;
 import org.eclipse.imp.parser.MessageHandlerAdapter;
 import org.eclipse.imp.parser.SimpleLPGParseController;
+import org.eclipse.imp.preferences.IPreferencesService;
+import org.eclipse.imp.preferences.PreferencesService;
 import org.eclipse.imp.services.ILanguageSyntaxProperties;
 
 public class ParseController extends SimpleLPGParseController implements IParseController {
@@ -72,7 +74,7 @@ public class ParseController extends SimpleLPGParseController implements IParseC
         return new LPGSyntaxProperties();
     }
 
-    public static List<option> getOptions(JikesPG root) {
+    public List<option> getOptions(JikesPG root) {
         List<option> result= new ArrayList<option>();
         String template_file= null;
         option_specList optSeg= root.getoptions_segment();
@@ -93,7 +95,8 @@ public class ParseController extends SimpleLPGParseController implements IParseC
         }
 
         if (template_file != null) {
-            String include_str= LPGBuilder.getDefaultIncludePath();
+            IPreferencesService prefSvc= new PreferencesService(fProject.getRawProject(), LPGRuntimePlugin.getInstance().getLanguageID());
+            String include_str= prefSvc.getBooleanPreference(LPGConstants.P_USEDEFAULTINCLUDEPATH) ? prefSvc.getStringPreference(IPreferencesService.DEFAULT_LEVEL, LPGConstants.P_INCLUDEPATHTOUSE) : prefSvc.getStringPreference(LPGConstants.P_INCLUDEPATHTOUSE);
             int offset, i= -1;
             do {
                 offset= i + 1;
@@ -103,20 +106,9 @@ public class ParseController extends SimpleLPGParseController implements IParseC
                 if (f.exists()) {
                     try {
                         LPGLexer lex= new LPGLexer(filename);
-                        LPGParser prs= new LPGParser(lex.getLexStream()); // Create
-                                                                            // the
-                                                                            // parser
-                        lex.lexer(prs.getParseStream()); // Lex the stream to
-                                                            // produce the token
-                                                            // stream
-                        JikesPG template_root= (JikesPG) prs.parser(); // Parse
-                                                                        // the
-                                                                        // token
-                                                                        // stream
-                                                                        // to
-                                                                        // produce
-                                                                        // an
-                                                                        // AST
+                        LPGParser prs= new LPGParser(lex.getILexStream()); // Create the parser
+                        lex.lexer(prs.getIPrsStream()); // Lex the stream to produce the token stream
+                        JikesPG template_root= (JikesPG) prs.parser(); // Parse the token stream to produce an AST
                         if (template_root != null) {
                             result.addAll(getOptions(template_root));
                             break;
@@ -136,21 +128,21 @@ public class ParseController extends SimpleLPGParseController implements IParseC
         char[] contentsArray= contents.toCharArray();
 
         fLexer.reset(contentsArray, fFilePath.toOSString());
-        fParser.reset(fLexer.getLexStream());
-        fParser.getParseStream().setMessageHandler(new MessageHandlerAdapter(handler));
+        fParser.reset(fLexer.getILexStream());
+        fParser.getIPrsStream().setMessageHandler(new MessageHandlerAdapter(handler));
 
         // RMF 1/31/2009 - Call cacheKeywordsOnce() at the earliest possible moment, which is just
         // after the lexer and parser are initialized, but before they're called on the source text.
         cacheKeywordsOnce();
 
-        fLexer.lexer(my_monitor, fParser.getParseStream()); // Lex the stream to produce the token stream
+        fLexer.lexer(my_monitor, fParser.getIPrsStream()); // Lex the stream to produce the token stream
 
         if (my_monitor.isCancelled())
             return fCurrentAst; // TODO fCurrentAst might (probably will) be
                                 // inconsistent wrt the lex stream now
         fCurrentAst= (ASTNode) fParser.parser(my_monitor, 0);
         if (fCurrentAst == null)
-            fParser.getParseStream().dumpTokens();
+            fParser.getIPrsStream().dumpTokens();
         else {
             boolean is_java= false, automatic_ast= false;
             for(option opt : getOptions((JikesPG) fCurrentAst)) {
