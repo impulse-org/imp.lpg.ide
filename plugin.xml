@@ -230,14 +230,6 @@
             language="LPG">
       </occurrenceIdentifier>
    </extension>
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            name="LPG"
-            class="org.eclipse.imp.lpg.preferences.LPGPreferencesDialog"
-            id="org.eclipse.imp.lpg.preferencesDialog">
-      </page>
-   </extension>
 <!--  <extension
          point="org.eclipse.imp.runtime.indexContributor">
       <indexContributor
@@ -265,4 +257,13 @@
       </analyzerFactory>
    </extension>
   -->
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="LPG"
+            class="org.eclipse.imp.lpg.preferences.LPGPreferencePage"
+            id="org.eclipse.imp.lpg.preferences.LPG">
+      </page>
+   </extension>
+
 </plugin>

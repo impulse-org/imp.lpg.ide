@@ -71,7 +71,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.terminal;
 import org.eclipse.imp.lpg.parser.LPGParser.terminalList;
 import org.eclipse.imp.lpg.parser.LPGParser.type_declarations;
 import org.eclipse.imp.lpg.parser.LPGParser.type_declarationsList;
-import org.eclipse.imp.lpg.preferences.LPGPreferencesDialogConstants;
+import org.eclipse.imp.lpg.preferences.LPGConstants;
 import org.eclipse.imp.model.ISourceEntity;
 import org.eclipse.imp.preferences.PreferencesService;
 import org.eclipse.imp.services.ILabelProvider;
@@ -113,8 +113,8 @@ public class LPGLabelProvider implements ILabelProvider {
         if (res instanceof IFile) {
             IFile file= (IFile) res;
             final PreferencesService preferencesService= LPGRuntimePlugin.getInstance().getPreferencesService();
-            if (!preferencesService.getStringPreference(LPGPreferencesDialogConstants.P_SOURCEFILEEXTENSIONS).contains(file.getLocation().getFileExtension()) &&
-                !preferencesService.getStringPreference(LPGPreferencesDialogConstants.P_INCLUDEFILEEXTENSIONS).contains(file.getLocation().getFileExtension()))
+            if (!preferencesService.getStringPreference(LPGConstants.P_SOURCEFILEEXTENSIONS).contains(file.getLocation().getFileExtension()) &&
+                !preferencesService.getStringPreference(LPGConstants.P_INCLUDEFILEEXTENSIONS).contains(file.getLocation().getFileExtension()))
                 return null;
             int sev= MarkerUtils.getMaxProblemMarkerSeverity(file, IResource.DEPTH_ONE);
             switch (sev) {

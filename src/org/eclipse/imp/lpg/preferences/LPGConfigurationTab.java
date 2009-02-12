@@ -1,15 +1,3 @@
-/*******************************************************************************
-* Copyright (c) 2007 IBM Corporation.
-* All rights reserved. This program and the accompanying materials
-* are made available under the terms of the Eclipse Public License v1.0
-* which accompanies this distribution, and is available at
-* http://www.eclipse.org/legal/epl-v10.html
-*
-* Contributors:
-*    Robert Fuhrer (rfuhrer@watson.ibm.com) - initial API and implementation
-
-*******************************************************************************/
-
 package org.eclipse.imp.lpg.preferences;
 
 import java.util.List;
@@ -22,61 +10,61 @@ import org.eclipse.imp.preferences.*;
 import org.eclipse.imp.preferences.fields.*;
 import org.osgi.service.prefs.Preferences;
 
-/**
- * The default level preferences tab.
- */
-public class LPGPreferencesDialogDefaultTab extends DefaultPreferencesTab {
 
-	public LPGPreferencesDialogDefaultTab(IPreferencesService prefService) {
+/**
+ * The configuration level preferences tab.
+ */
+public class LPGConfigurationTab extends ConfigurationPreferencesTab {
+
+	public LPGConfigurationTab(IPreferencesService prefService) {
 		super(prefService, false);
 	}
 
 	/**
-	 * Creates a language-specific preferences initializer.
-	 *
-	 * @return    The preference initializer to be used to initialize
-	 *            preferences in this tab
-	 */
-	public AbstractPreferenceInitializer getPreferenceInitializer() {
-		LPGPreferencesDialogInitializer preferencesInitializer = new LPGPreferencesDialogInitializer();
-		return preferencesInitializer;
-	}
-
-	/**
 	 * Creates specific preference fields with settings appropriate to
-	 * the default preferences level.
+	 * the configuration preferences level.
+	 *
+	 * Overrides an unimplemented method in PreferencesTab.
 	 *
 	 * @return    An array that contains the created preference fields
+	 *
 	 */
-	@Override
 	protected FieldEditor[] createFields(TabbedPreferencesPage page, Composite parent)
 	{
-		List fields = new ArrayList();
+		List<FieldEditor> fields = new ArrayList<FieldEditor>();
 
 		BooleanFieldEditor UseDefaultExecutable = fPrefUtils.makeNewBooleanField(
 			page, this, fPrefService,
-			"default", "UseDefaultExecutable", "UseDefaultExecutable", "",
+			"configuration", "UseDefaultExecutable", "Use default executable",
+			"",
 			parent,
-			false, false,
 			true, true,
 			false, false,
-			false);
+			false, false,
+			true);
+		fields.add(UseDefaultExecutable);
+
 		Link UseDefaultExecutableDetailsLink = fPrefUtils.createDetailsLink(parent, UseDefaultExecutable, UseDefaultExecutable.getChangeControl().getParent(), "Details ...");
 
-		fields.add(UseDefaultExecutable);
+		UseDefaultExecutableDetailsLink.setEnabled(true);
+		fDetailsLinks.add(UseDefaultExecutableDetailsLink);
 
 
 		FileFieldEditor ExecutableToUse = fPrefUtils.makeNewFileField(
 			page, this, fPrefService,
-			"default", "ExecutableToUse", "ExecutableToUse", "",
+			"configuration", "ExecutableToUse", "Executable to use",
+			"The full path to the LPG generator executable",
 			parent,
-			false, false,
+			true, true,
 			false, "Unspecified",
 			true, "",
-			false);
+			true);
+		fields.add(ExecutableToUse);
+
 		Link ExecutableToUseDetailsLink = fPrefUtils.createDetailsLink(parent, ExecutableToUse, ExecutableToUse.getTextControl().getParent(), "Details ...");
 
-		fields.add(ExecutableToUse);
+		ExecutableToUseDetailsLink.setEnabled(true);
+		fDetailsLinks.add(ExecutableToUseDetailsLink);
 
 
 		fPrefUtils.createToggleFieldListener(UseDefaultExecutable, ExecutableToUse, false);
@@ -88,28 +76,36 @@ public class LPGPreferencesDialogDefaultTab extends DefaultPreferencesTab {
 
 		BooleanFieldEditor UseDefaultIncludePath = fPrefUtils.makeNewBooleanField(
 			page, this, fPrefService,
-			"default", "UseDefaultIncludePath", "UseDefaultIncludePath", "",
+			"configuration", "UseDefaultIncludePath", "Use default include path",
+			"",
 			parent,
+			true, true,
 			false, false,
-			true, false,
 			false, false,
-			false);
+			true);
+		fields.add(UseDefaultIncludePath);
+
 		Link UseDefaultIncludePathDetailsLink = fPrefUtils.createDetailsLink(parent, UseDefaultIncludePath, UseDefaultIncludePath.getChangeControl().getParent(), "Details ...");
 
-		fields.add(UseDefaultIncludePath);
+		UseDefaultIncludePathDetailsLink.setEnabled(true);
+		fDetailsLinks.add(UseDefaultIncludePathDetailsLink);
 
 
 		DirectoryListFieldEditor IncludePathToUse = fPrefUtils.makeNewDirectoryListField(
 			page, this, fPrefService,
-			"default", "IncludePathToUse", "IncludePathToUse", "",
+			"configuration", "IncludePathToUse", "Include path to use",
+			"A semicolon-separated list of folders to search for template and include files",
 			parent,
-			false, false,
-			true, ".",
+			true, true,
+			false, "Unspecified",
 			true, "",
-			false);
+			true);
+		fields.add(IncludePathToUse);
+
 		Link IncludePathToUseDetailsLink = fPrefUtils.createDetailsLink(parent, IncludePathToUse, IncludePathToUse.getTextControl().getParent(), "Details ...");
 
-		fields.add(IncludePathToUse);
+		IncludePathToUseDetailsLink.setEnabled(true);
+		fDetailsLinks.add(IncludePathToUseDetailsLink);
 
 
 		fPrefUtils.createToggleFieldListener(UseDefaultIncludePath, IncludePathToUse, false);
@@ -121,59 +117,88 @@ public class LPGPreferencesDialogDefaultTab extends DefaultPreferencesTab {
 
 		StringFieldEditor SourceFileExtensions = fPrefUtils.makeNewStringField(
 			page, this, fPrefService,
-			"default", "SourceFileExtensions", "SourceFileExtensions", "",
+			"configuration", "SourceFileExtensions", "Source file extensions",
+			"A comma-separated list of file name extensions identifying top-level LPG grammar files",
 			parent,
-			false, false,
-			true, "g,lpg,gra",
+			true, true,
+			false, "Unspecified",
 			true, "",
-			false);
+			true);
+		fields.add(SourceFileExtensions);
+
 		Link SourceFileExtensionsDetailsLink = fPrefUtils.createDetailsLink(parent, SourceFileExtensions, SourceFileExtensions.getTextControl().getParent(), "Details ...");
 
-		fields.add(SourceFileExtensions);
+		SourceFileExtensionsDetailsLink.setEnabled(true);
+		fDetailsLinks.add(SourceFileExtensionsDetailsLink);
 
 
 		StringFieldEditor IncludeFileExtensions = fPrefUtils.makeNewStringField(
 			page, this, fPrefService,
-			"default", "IncludeFileExtensions", "IncludeFileExtensions", "",
+			"configuration", "IncludeFileExtensions", "Include file extensions",
+			"A comma-separated list of file name extensions identifying included LPG grammar files",
 			parent,
-			false, false,
+			true, true,
 			false, "Unspecified",
 			true, "",
-			false);
+			true);
+		fields.add(IncludeFileExtensions);
+
 		Link IncludeFileExtensionsDetailsLink = fPrefUtils.createDetailsLink(parent, IncludeFileExtensions, IncludeFileExtensions.getTextControl().getParent(), "Details ...");
 
-		fields.add(IncludeFileExtensions);
+		IncludeFileExtensionsDetailsLink.setEnabled(true);
+		fDetailsLinks.add(IncludeFileExtensionsDetailsLink);
 
 
 		BooleanFieldEditor EmitDiagnostics = fPrefUtils.makeNewBooleanField(
 			page, this, fPrefService,
-			"default", "EmitDiagnostics", "EmitDiagnostics", "",
+			"configuration", "EmitDiagnostics", "Emit diagnostics",
+			"If true, emit messages to the LPG plugin log as the build proceeds",
 			parent,
+			true, true,
 			false, false,
-			true, false,
 			false, false,
-			false);
+			true);
+		fields.add(EmitDiagnostics);
+
 		Link EmitDiagnosticsDetailsLink = fPrefUtils.createDetailsLink(parent, EmitDiagnostics, EmitDiagnostics.getChangeControl().getParent(), "Details ...");
 
-		fields.add(EmitDiagnostics);
+		EmitDiagnosticsDetailsLink.setEnabled(true);
+		fDetailsLinks.add(EmitDiagnosticsDetailsLink);
 
 
 		BooleanFieldEditor GenerateListings = fPrefUtils.makeNewBooleanField(
 			page, this, fPrefService,
-			"default", "GenerateListings", "GenerateListings", "",
+			"configuration", "GenerateListings", "Generate listings",
+			"If true, place detailed information about each grammar file in a corresponding listing file",
 			parent,
+			true, true,
 			false, false,
-			true, false,
 			false, false,
-			false);
-		Link GenerateListingsDetailsLink = fPrefUtils.createDetailsLink(parent, GenerateListings, GenerateListings.getChangeControl().getParent(), "Details ...");
-
+			true);
 		fields.add(GenerateListings);
 
-		FieldEditor[] fieldsArray = new FieldEditor[fields.size()];
-		for (int i = 0; i < fields.size(); i++) {
-			fieldsArray[i] = (FieldEditor) fields.get(i);
-		}
-		return fieldsArray;
+		Link GenerateListingsDetailsLink = fPrefUtils.createDetailsLink(parent, GenerateListings, GenerateListings.getChangeControl().getParent(), "Details ...");
+
+		GenerateListingsDetailsLink.setEnabled(true);
+		fDetailsLinks.add(GenerateListingsDetailsLink);
+
+
+		BooleanFieldEditor QuietOutput = fPrefUtils.makeNewBooleanField(
+			page, this, fPrefService,
+			"configuration", "QuietOutput", "Quiet output",
+			"If true, suppress the output of various facts like the number of terminals, lookahead, etc.",
+			parent,
+			true, true,
+			false, false,
+			false, false,
+			true);
+		fields.add(QuietOutput);
+
+		Link QuietOutputDetailsLink = fPrefUtils.createDetailsLink(parent, QuietOutput, QuietOutput.getChangeControl().getParent(), "Details ...");
+
+		QuietOutputDetailsLink.setEnabled(true);
+		fDetailsLinks.add(QuietOutputDetailsLink);
+
+		return fields.toArray(new FieldEditor[fields.size()]);
 	}
 }

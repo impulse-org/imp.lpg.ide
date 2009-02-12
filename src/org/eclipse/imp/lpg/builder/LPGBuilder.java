@@ -38,7 +38,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.import_segment;
 import org.eclipse.imp.lpg.parser.LPGParser.include_segment;
 import org.eclipse.imp.lpg.parser.LPGParser.option;
 import org.eclipse.imp.lpg.parser.LPGParser.option_value0;
-import org.eclipse.imp.lpg.preferences.LPGPreferencesDialogConstants;
+import org.eclipse.imp.lpg.preferences.LPGConstants;
 import org.eclipse.imp.preferences.IPreferencesService;
 import org.eclipse.imp.preferences.PreferencesService;
 import org.eclipse.imp.runtime.PluginBase;
@@ -105,7 +105,7 @@ public class LPGBuilder extends BuilderBase {
     	// SMS 8 Sep 2006
     	//return !file.isDerived() && LPGPreferenceCache.rootExtensionList.contains(file.getFileExtension());
 
-	    String extensListed = prefService.getStringPreference(getProject(), LPGPreferencesDialogConstants.P_SOURCEFILEEXTENSIONS);
+	    String extensListed = prefService.getStringPreference(getProject(), LPGConstants.P_SOURCEFILEEXTENSIONS);
 	    String[] extens = extensListed.split(",");
 	    HashSet<String> rootExtensionsSet = new HashSet<String>();
 	    for(int i= 0; i < extens.length; i++) { rootExtensionsSet.add(extens[i]); }
@@ -115,7 +115,7 @@ public class LPGBuilder extends BuilderBase {
     protected boolean isNonRootSourceFile(IFile file) {
     	// SMS 8 Sep 2006
         //return !file.isDerived() && LPGPreferenceCache.nonRootExtensionList.contains(file.getFileExtension());
-        String extensListed = prefService.getStringPreference(getProject(), LPGPreferencesDialogConstants.P_INCLUDEFILEEXTENSIONS);
+        String extensListed = prefService.getStringPreference(getProject(), LPGConstants.P_INCLUDEFILEEXTENSIONS);
         String[] extens = extensListed.split(",");
         HashSet<String> nonrootExtensionsSet = new HashSet<String>();
         for(int i= 0; i < extens.length; i++) {
@@ -136,7 +136,7 @@ public class LPGBuilder extends BuilderBase {
         if (prefService.getProject() == null) {
             prefService.setProject(getProject());
         }
-        fEmitDiagnostics= prefService.getBooleanPreference(getProject(), LPGPreferencesDialogConstants.P_EMITDIAGNOSTICS);
+        fEmitDiagnostics= prefService.getBooleanPreference(getProject(), LPGConstants.P_EMITDIAGNOSTICS);
 
         String fileName= file.getLocation().toOSString();
         try {
@@ -172,7 +172,7 @@ public class LPGBuilder extends BuilderBase {
         String cmd[]= new String[] {
                 executablePath,
                 "-quiet",
-                (prefService.getBooleanPreference(getProject(), LPGPreferencesDialogConstants.P_GENERATELISTINGS) ? "-list" : "-nolist"),
+                (prefService.getBooleanPreference(getProject(), LPGConstants.P_GENERATELISTINGS) ? "-list" : "-nolist"),
                 // In order for Windows to treat the following template path argument as
                 // a single argument, despite any embedded spaces, it has to be completely
                 // enclosed in double quotes. It does not suffice to quote only the path
@@ -383,9 +383,9 @@ public class LPGBuilder extends BuilderBase {
     }
 
     public String getIncludePath() {
-        if (prefService.getBooleanPreference(LPGPreferencesDialogConstants.P_USEDEFAULTINCLUDEPATH))
+        if (prefService.getBooleanPreference(LPGConstants.P_USEDEFAULTINCLUDEPATH))
             return getDefaultIncludePath();
-        String projSpecIncPath= prefService.getStringPreference(LPGPreferencesDialogConstants.P_INCLUDEPATHTOUSE);
+        String projSpecIncPath= prefService.getStringPreference(LPGConstants.P_INCLUDEPATHTOUSE);
         return projSpecIncPath; //+ ";" + getDefaultIncludePath();
     }
 
@@ -410,10 +410,10 @@ public class LPGBuilder extends BuilderBase {
 
     private String getLPGExecutable() throws IOException {
         String result;
-        if (prefService.getBooleanPreference(LPGPreferencesDialogConstants.P_USEDEFAULTEXECUTABLE))
+        if (prefService.getBooleanPreference(LPGConstants.P_USEDEFAULTEXECUTABLE))
             result= getDefaultExecutablePath();
         else
-        	result= prefService.getStringPreference(getProject(), LPGPreferencesDialogConstants.P_EXECUTABLETOUSE);
+        	result= prefService.getStringPreference(getProject(), LPGConstants.P_EXECUTABLETOUSE);
     	if (!(new File(result)).exists()) {
     	    postMsgDialog("No LPG Executable", "The LPG executable cannot be found at the location you specified. Please change the setting in the LPG preferences page.");
             return "";

@@ -42,7 +42,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.option_specList;
 import org.eclipse.imp.lpg.parser.LPGParser.option_value0;
 import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs1;
 import org.eclipse.imp.lpg.parser.LPGParser.terminal;
-import org.eclipse.imp.lpg.preferences.LPGPreferencesDialogConstants;
+import org.eclipse.imp.lpg.preferences.LPGConstants;
 import org.eclipse.imp.model.ICompilationUnit;
 import org.eclipse.imp.model.IPathEntry;
 import org.eclipse.imp.model.ISourceProject;
@@ -191,7 +191,7 @@ public class ASTUtils {
 	    }
 	}
 	IPreferencesService prefService= new PreferencesService(project, LPGRuntimePlugin.getInstance().getLanguageID());
-	String includeSearchPath= prefService.getStringPreference(LPGPreferencesDialogConstants.P_INCLUDEPATHTOUSE);
+	String includeSearchPath= prefService.getStringPreference(LPGConstants.P_INCLUDEPATHTOUSE);
 	String[] includeDirs= includeSearchPath.split(";");
 
 	for(int i= 0; i < includeDirs.length; i++) {

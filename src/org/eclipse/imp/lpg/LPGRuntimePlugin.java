@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.imp.language.LanguageRegistry;
-import org.eclipse.imp.lpg.preferences.LPGPreferencesDialogConstants;
+import org.eclipse.imp.lpg.preferences.LPGConstants;
 import org.eclipse.imp.model.ICompilationUnit;
 import org.eclipse.imp.model.IPathEntry;
 import org.eclipse.imp.model.ISourceProject;
@@ -74,7 +74,7 @@ public class LPGRuntimePlugin extends PluginBase {
         	new IFactoryExtender() {
 			    public void extend(ISourceProject project) {
 				IPreferenceStore store= LPGRuntimePlugin.getInstance().getPreferenceStore();
-				IPath includeDir = new Path(store.getString(LPGPreferencesDialogConstants.P_INCLUDEPATHTOUSE));
+				IPath includeDir = new Path(store.getString(LPGConstants.P_INCLUDEPATHTOUSE));
 		
 				project.getBuildPath().add(ModelFactory.createPathEntry(IPathEntry.PathEntryType.SOURCE_FOLDER, includeDir));
 			    }
@@ -82,7 +82,7 @@ public class LPGRuntimePlugin extends PluginBase {
 			},
 		    LanguageRegistry.findLanguage(kLanguageID));
 
-        fEmitInfoMessages = preferencesService.getBooleanPreference(LPGPreferencesDialogConstants.P_EMITDIAGNOSTICS);
+        fEmitInfoMessages = preferencesService.getBooleanPreference(LPGConstants.P_EMITDIAGNOSTICS);
     }
 
     
@@ -146,7 +146,7 @@ public class LPGRuntimePlugin extends PluginBase {
     // a preferences service to query dynamically, only a field set from this level
     // at the time of preference initialization
     public void maybeWriteInfoMsg(String msg) {
-        if (!preferencesService.getBooleanPreference(LPGPreferencesDialogConstants.P_EMITDIAGNOSTICS))
+        if (!preferencesService.getBooleanPreference(LPGConstants.P_EMITDIAGNOSTICS))
             return;
         writeInfoMsg(msg);
     }
