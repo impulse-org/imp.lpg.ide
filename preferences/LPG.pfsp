@@ -1,3 +1,5 @@
+package org.eclipse.imp.lpg.preferences2;
+
 page LPG {
     tabs {
     	default in { iseditable false; }
@@ -8,13 +10,34 @@ page LPG {
 
     fields {
     	boolean UseDefaultExecutable  { defvalue true; }
-    	file    ExecutableToUse       { defvalue "${pluginResource:lpg.runtime/lpgexe/lpg-${os}_${arch}}"; } unless UseDefaultExecutable
+    	file    ExecutableToUse       {
+            tooltip "The full path to the LPG generator executable";
+    	    defvalue "${pluginResource:lpg.generator/lpgexe/lpg-${os}_${arch}}";
+    	} unless UseDefaultExecutable
     	boolean UseDefaultIncludePath { defvalue true; }
-    	dirlist IncludePathToUse      { defvalue ".;..;${pluginResource:lpg.runtime/templates}"; } unless UseDefaultIncludePath
-    	string  SourceFileExtensions  { defvalue "g"; }
-    	string  IncludeFileExtensions { defvalue "gi"; }
-    	boolean EmitDiagnostics       { defvalue true; }
-        boolean GenerateListings      { defvalue true; }
-        boolean QuietOutput           { defvalue true; }
+    	dirlist IncludePathToUse      {
+    	    tooltip "A semicolon-separated list of folders to search for template and include files";
+    	    defvalue ".;..;${pluginResource:lpg.generator/templates/java};${pluginResource:lpg.generator/include/java}";
+    	} unless UseDefaultIncludePath
+    	string  SourceFileExtensions  {
+    	    tooltip "A comma-separated list of file name extensions identifying top-level LPG grammar files";
+    	    defvalue "g";
+    	}
+    	string  IncludeFileExtensions {
+    	    tooltip "A comma-separated list of file name extensions identifying included LPG grammar files";
+    	    defvalue "gi";
+    	}
+    	boolean EmitDiagnostics       {
+    	    tooltip "If true, emit messages to the LPG plugin log as the build proceeds";
+    	    defvalue true;
+    	}
+        boolean GenerateListings      {
+            tooltip "If true, place detailed information about each grammar file in a corresponding listing file";
+            defvalue true;
+        }
+        boolean QuietOutput           {
+            tooltip "If true, suppress the output of various facts like the number of terminals, lookahead, etc.";
+            defvalue true;
+        }
     }
 }
