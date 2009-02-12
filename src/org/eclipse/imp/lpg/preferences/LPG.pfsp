@@ -1,4 +1,4 @@
-package org.eclipse.imp.lpg.preferences2;
+package org.eclipse.imp.lpg.preferences;
 
 page LPG {
     tabs {
