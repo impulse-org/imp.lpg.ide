@@ -17,7 +17,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,7 +26,6 @@ import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.imp.builder.BuilderBase;
 import org.eclipse.imp.lpg.LPGRuntimePlugin;
@@ -384,7 +382,7 @@ public class LPGBuilder extends BuilderBase {
 
     public String getIncludePath() {
         if (prefService.getBooleanPreference(LPGConstants.P_USEDEFAULTINCLUDEPATH))
-            return getDefaultIncludePath();
+            return prefService.getStringPreference(IPreferencesService.DEFAULT_LEVEL, LPGConstants.P_INCLUDEPATHTOUSE);
         String projSpecIncPath= prefService.getStringPreference(LPGConstants.P_INCLUDEPATHTOUSE);
         return projSpecIncPath; //+ ";" + getDefaultIncludePath();
     }
@@ -410,49 +408,15 @@ public class LPGBuilder extends BuilderBase {
 
     private String getLPGExecutable() throws IOException {
         String result;
-        if (prefService.getBooleanPreference(LPGConstants.P_USEDEFAULTEXECUTABLE))
-            result= getDefaultExecutablePath();
-        else
+        if (prefService.getBooleanPreference(LPGConstants.P_USEDEFAULTEXECUTABLE)) {
+            result= prefService.getStringPreference(IPreferencesService.DEFAULT_LEVEL, LPGConstants.P_EXECUTABLETOUSE);
+        } else {
         	result= prefService.getStringPreference(getProject(), LPGConstants.P_EXECUTABLETOUSE);
+        }
     	if (!(new File(result)).exists()) {
     	    postMsgDialog("No LPG Executable", "The LPG executable cannot be found at the location you specified. Please change the setting in the LPG preferences page.");
             return "";
     	}
     	return result;
-    }
-
-    public static String getDefaultExecutablePath() {
-        Bundle bundle= Platform.getBundle(LPG_GENERATOR_PLUGIN_ID);
-        String os= Platform.getOS();
-        String arch= Platform.getOSArch();
-        // SMS 	22 Feb 2007  "bin... -> "lpgexe...
-        Path path= new Path("lpgexe/lpg-" + os + "_" + arch + (fIsWin32 ? ".exe" : ""));
-        URL execURL= FileLocator.find(bundle, path, null);
-
-        if (execURL == null) {
-            String errMsg= "Unable to find LPG executable at " + path + " in bundle " + bundle.getSymbolicName();
-
-            LPGRuntimePlugin.getInstance().writeErrorMsg(errMsg);
-            return "";
-        } else {
-            // N.B.: The lpg executable will normally be inside a jar file,
-            //       so use asLocalURL() to extract to a local file if needed.
-            URL url;
-
-            try {
-                url= FileLocator.toFileURL(execURL);
-            } catch (IOException e) {
-                LPGRuntimePlugin.getInstance().writeErrorMsg("Unable to locate default LPG executable." + e.getMessage());
-                return "???";
-            }
-
-            String LPGExecPath= url.getFile();
-
-            if (os.equals(Platform.OS_WIN32)) // remove leading slash from URL that shows up on Win32(?)
-                LPGExecPath= LPGExecPath.substring(1);
-
-            LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("LPG executable apparently at '" + LPGExecPath + "'.");
-            return LPGExecPath;
-        }
     }
 }
