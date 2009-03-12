@@ -121,7 +121,7 @@ public class NodeLocator implements ISourcePositionLocator {
 	// something reasonable with them.
 	if (node instanceof ASTNode) {
 	    ASTNode n = (ASTNode) node;
-	    return new Path(fParseController.getProject().getRawProject().getName() + "/" + n.leftIToken.getPrsStream().getFileName());
+	    return new Path(fParseController.getProject().getRawProject().getName() + "/" + n.leftIToken.getIPrsStream().getFileName());
 	} else if (node instanceof ICompilationUnit) {
             // TODO RMF 5 June 2007 - Perhaps this logic belongs elsewhere, on a base class?
 	    ICompilationUnit icu= (ICompilationUnit) node;
