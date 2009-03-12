@@ -265,5 +265,14 @@
             id="org.eclipse.imp.lpg.preferences.LPG">
       </page>
    </extension>
-
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.imp.editor.UniversalEditor"
+            extensions="g,gi"
+            icon="icons/grammarfile.gif"
+            id="lpg.editor"
+            name="LPG Grammar Editor">
+      </editor>
+   </extension>
 </plugin>
