@@ -212,7 +212,7 @@ public class LPGParser implements RuleAction, IParser
 
         public String toString()
         {
-            return leftIToken.getPrsStream().toString(leftIToken, rightIToken);
+            return leftIToken.getILexStream().toString(leftIToken.getStartOffset(), rightIToken.getEndOffset());
         }
 
         public ASTNode(IToken token) { this.leftIToken = this.rightIToken = token; }
@@ -250,11 +250,26 @@ public class LPGParser implements RuleAction, IParser
          */
         public abstract java.util.ArrayList getAllChildren();
 
-        /**
-         * Since the Ast type has no children, any two instances of it are equal.
-         */
-        public boolean equals(Object o) { return o instanceof ASTNode; }
-        public abstract int hashCode();
+        public boolean equals(Object o)
+        {
+            if (o == this) return true;
+            if (! (o instanceof ASTNode)) return false;
+            ASTNode other = (ASTNode) o;
+            return getLeftIToken().getILexStream() == other.getLeftIToken().getILexStream() &&
+                   getLeftIToken().getTokenIndex() == other.getLeftIToken().getTokenIndex() &&
+                   getRightIToken().getILexStream() == other.getRightIToken().getILexStream() &&
+                   getRightIToken().getTokenIndex() == other.getRightIToken().getTokenIndex();
+        }
+
+        public int hashCode()
+        {
+            int hash = 7;
+            if (getLeftIToken().getILexStream() != null) hash = hash * 31 + getLeftIToken().getILexStream().hashCode();
+            hash = hash * 31 + getLeftIToken().getTokenIndex();
+            if (getRightIToken().getILexStream() != null) hash = hash * 31 + getRightIToken().getILexStream().hashCode();
+            hash = hash * 31 + getRightIToken().getTokenIndex();
+            return hash;
+        }
         public abstract void accept(IAstVisitor v);
     }
 
@@ -309,18 +324,6 @@ public class LPGParser implements RuleAction, IParser
             return (java.util.ArrayList) getArrayList().clone();
         }
 
-        public abstract boolean equals(Object o);
-
-        public int hashCode()
-        {
-            int hash = 7;
-            for (int i = 0; i < size(); i++)
-            {
-                ASTNode element = getElementAt(i);
-                hash = hash * 31 + (element == null ? 0 : element.hashCode());
-            }
-            return hash;
-        }
     }
 
     static public class ASTNodeToken extends ASTNode implements IASTNodeToken
@@ -339,12 +342,16 @@ public class LPGParser implements RuleAction, IParser
             if (o == this) return true;
             if (! (o instanceof ASTNodeToken)) return false;
             ASTNodeToken other = (ASTNodeToken) o;
-            return toString().equals(other.toString());
+            return getIToken().getILexStream() == other.getIToken().getILexStream() &&
+                   getIToken().getTokenIndex() == other.getIToken().getTokenIndex();
         }
 
         public int hashCode()
         {
-            return toString().hashCode();
+            int hash = 7;
+            if (getIToken().getILexStream() != null) hash = hash * 31 + getIToken().getILexStream().hashCode();
+            hash = hash * 31 + getIToken().getTokenIndex();
+            return hash;
         }
 
         public void accept(IAstVisitor v)
@@ -1221,14 +1228,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof JikesPG)) return false;
+            if (! super.equals(o)) return false;
             JikesPG other = (JikesPG) o;
             if (! _options_segment.equals(other._options_segment)) return false;
             if (! _JikesPG_INPUT.equals(other._JikesPG_INPUT)) return false;
@@ -1237,7 +1238,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_options_segment.hashCode());
             hash = hash * 31 + (_JikesPG_INPUT.hashCode());
             return hash;
@@ -1296,6 +1297,7 @@ public class LPGParser implements RuleAction, IParser
         {
             if (o == this) return true;
             if (! (o instanceof JikesPG_itemList)) return false;
+            if (! super.equals(o)) return false;
             JikesPG_itemList other = (JikesPG_itemList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
@@ -1308,7 +1310,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
                 hash = hash * 31 + (getJikesPG_itemAt(i).hashCode());
             return hash;
@@ -1369,14 +1371,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof AliasSeg)) return false;
+            if (! super.equals(o)) return false;
             AliasSeg other = (AliasSeg) o;
             if (! _alias_segment.equals(other._alias_segment)) return false;
             return true;
@@ -1384,7 +1380,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_alias_segment.hashCode());
             return hash;
         }
@@ -1439,14 +1435,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof AstSeg)) return false;
+            if (! super.equals(o)) return false;
             AstSeg other = (AstSeg) o;
             if (! _ast_segment.equals(other._ast_segment)) return false;
             return true;
@@ -1454,7 +1444,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ast_segment.hashCode());
             return hash;
         }
@@ -1509,14 +1499,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof DefineSeg)) return false;
+            if (! super.equals(o)) return false;
             DefineSeg other = (DefineSeg) o;
             if (! _define_segment.equals(other._define_segment)) return false;
             return true;
@@ -1524,7 +1508,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_define_segment.hashCode());
             return hash;
         }
@@ -1579,14 +1563,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof EofSeg)) return false;
+            if (! super.equals(o)) return false;
             EofSeg other = (EofSeg) o;
             if (! _eof_segment.equals(other._eof_segment)) return false;
             return true;
@@ -1594,7 +1572,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_eof_segment.hashCode());
             return hash;
         }
@@ -1649,14 +1627,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof EolSeg)) return false;
+            if (! super.equals(o)) return false;
             EolSeg other = (EolSeg) o;
             if (! _eol_segment.equals(other._eol_segment)) return false;
             return true;
@@ -1664,7 +1636,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_eol_segment.hashCode());
             return hash;
         }
@@ -1719,14 +1691,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ErrorSeg)) return false;
+            if (! super.equals(o)) return false;
             ErrorSeg other = (ErrorSeg) o;
             if (! _error_segment.equals(other._error_segment)) return false;
             return true;
@@ -1734,7 +1700,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_error_segment.hashCode());
             return hash;
         }
@@ -1789,14 +1755,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ExportSeg)) return false;
+            if (! super.equals(o)) return false;
             ExportSeg other = (ExportSeg) o;
             if (! _export_segment.equals(other._export_segment)) return false;
             return true;
@@ -1804,7 +1764,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_export_segment.hashCode());
             return hash;
         }
@@ -1859,14 +1819,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof GlobalsSeg)) return false;
+            if (! super.equals(o)) return false;
             GlobalsSeg other = (GlobalsSeg) o;
             if (! _globals_segment.equals(other._globals_segment)) return false;
             return true;
@@ -1874,7 +1828,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_globals_segment.hashCode());
             return hash;
         }
@@ -1929,14 +1883,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof HeadersSeg)) return false;
+            if (! super.equals(o)) return false;
             HeadersSeg other = (HeadersSeg) o;
             if (! _headers_segment.equals(other._headers_segment)) return false;
             return true;
@@ -1944,7 +1892,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_headers_segment.hashCode());
             return hash;
         }
@@ -1999,14 +1947,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof IdentifierSeg)) return false;
+            if (! super.equals(o)) return false;
             IdentifierSeg other = (IdentifierSeg) o;
             if (! _identifier_segment.equals(other._identifier_segment)) return false;
             return true;
@@ -2014,7 +1956,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_identifier_segment.hashCode());
             return hash;
         }
@@ -2069,14 +2011,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ImportSeg)) return false;
+            if (! super.equals(o)) return false;
             ImportSeg other = (ImportSeg) o;
             if (! _import_segment.equals(other._import_segment)) return false;
             return true;
@@ -2084,7 +2020,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_import_segment.hashCode());
             return hash;
         }
@@ -2139,14 +2075,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof IncludeSeg)) return false;
+            if (! super.equals(o)) return false;
             IncludeSeg other = (IncludeSeg) o;
             if (! _include_segment.equals(other._include_segment)) return false;
             return true;
@@ -2154,7 +2084,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_include_segment.hashCode());
             return hash;
         }
@@ -2209,14 +2139,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof KeywordsSeg)) return false;
+            if (! super.equals(o)) return false;
             KeywordsSeg other = (KeywordsSeg) o;
             if (! _keywords_segment.equals(other._keywords_segment)) return false;
             return true;
@@ -2224,7 +2148,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_keywords_segment.hashCode());
             return hash;
         }
@@ -2279,14 +2203,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof NamesSeg)) return false;
+            if (! super.equals(o)) return false;
             NamesSeg other = (NamesSeg) o;
             if (! _names_segment.equals(other._names_segment)) return false;
             return true;
@@ -2294,7 +2212,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_names_segment.hashCode());
             return hash;
         }
@@ -2349,14 +2267,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof NoticeSeg)) return false;
+            if (! super.equals(o)) return false;
             NoticeSeg other = (NoticeSeg) o;
             if (! _notice_segment.equals(other._notice_segment)) return false;
             return true;
@@ -2364,7 +2276,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_notice_segment.hashCode());
             return hash;
         }
@@ -2419,14 +2331,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof RulesSeg)) return false;
+            if (! super.equals(o)) return false;
             RulesSeg other = (RulesSeg) o;
             if (! _rules_segment.equals(other._rules_segment)) return false;
             return true;
@@ -2434,7 +2340,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_rules_segment.hashCode());
             return hash;
         }
@@ -2489,14 +2395,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof StartSeg)) return false;
+            if (! super.equals(o)) return false;
             StartSeg other = (StartSeg) o;
             if (! _start_segment.equals(other._start_segment)) return false;
             return true;
@@ -2504,7 +2404,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_start_segment.hashCode());
             return hash;
         }
@@ -2559,14 +2459,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof TerminalsSeg)) return false;
+            if (! super.equals(o)) return false;
             TerminalsSeg other = (TerminalsSeg) o;
             if (! _terminals_segment.equals(other._terminals_segment)) return false;
             return true;
@@ -2574,7 +2468,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_terminals_segment.hashCode());
             return hash;
         }
@@ -2629,14 +2523,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof TrailersSeg)) return false;
+            if (! super.equals(o)) return false;
             TrailersSeg other = (TrailersSeg) o;
             if (! _trailers_segment.equals(other._trailers_segment)) return false;
             return true;
@@ -2644,7 +2532,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_trailers_segment.hashCode());
             return hash;
         }
@@ -2699,14 +2587,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof TypesSeg)) return false;
+            if (! super.equals(o)) return false;
             TypesSeg other = (TypesSeg) o;
             if (! _types_segment.equals(other._types_segment)) return false;
             return true;
@@ -2714,7 +2596,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_types_segment.hashCode());
             return hash;
         }
@@ -2769,14 +2651,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof RecoverSeg)) return false;
+            if (! super.equals(o)) return false;
             RecoverSeg other = (RecoverSeg) o;
             if (! _recover_segment.equals(other._recover_segment)) return false;
             return true;
@@ -2784,7 +2660,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_recover_segment.hashCode());
             return hash;
         }
@@ -2839,14 +2715,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof PredecessorSeg)) return false;
+            if (! super.equals(o)) return false;
             PredecessorSeg other = (PredecessorSeg) o;
             if (! _predecessor_segment.equals(other._predecessor_segment)) return false;
             return true;
@@ -2854,7 +2724,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_predecessor_segment.hashCode());
             return hash;
         }
@@ -2906,6 +2776,7 @@ public class LPGParser implements RuleAction, IParser
         {
             if (o == this) return true;
             if (! (o instanceof option_specList)) return false;
+            if (! super.equals(o)) return false;
             option_specList other = (option_specList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
@@ -2918,7 +2789,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
                 hash = hash * 31 + (getoption_specAt(i).hashCode());
             return hash;
@@ -2981,14 +2852,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof option_spec)) return false;
+            if (! super.equals(o)) return false;
             option_spec other = (option_spec) o;
             if (! _option_list.equals(other._option_list)) return false;
             return true;
@@ -2996,7 +2861,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_option_list.hashCode());
             return hash;
         }
@@ -3048,6 +2913,7 @@ public class LPGParser implements RuleAction, IParser
         {
             if (o == this) return true;
             if (! (o instanceof optionList)) return false;
+            if (! super.equals(o)) return false;
             optionList other = (optionList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
@@ -3060,7 +2926,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
                 hash = hash * 31 + (getoptionAt(i).hashCode());
             return hash;
@@ -3132,14 +2998,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof option)) return false;
+            if (! super.equals(o)) return false;
             option other = (option) o;
             if (! _SYMBOL.equals(other._SYMBOL)) return false;
             if (_option_value == null)
@@ -3151,7 +3011,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_SYMBOL.hashCode());
             hash = hash * 31 + (_option_value == null ? 0 : _option_value.hashCode());
             return hash;
@@ -3213,6 +3073,7 @@ public class LPGParser implements RuleAction, IParser
         {
             if (o == this) return true;
             if (! (o instanceof SYMBOLList)) return false;
+            if (! super.equals(o)) return false;
             SYMBOLList other = (SYMBOLList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
@@ -3225,7 +3086,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
                 hash = hash * 31 + (getSYMBOLAt(i).hashCode());
             return hash;
@@ -3285,6 +3146,7 @@ public class LPGParser implements RuleAction, IParser
         {
             if (o == this) return true;
             if (! (o instanceof aliasSpecList)) return false;
+            if (! super.equals(o)) return false;
             aliasSpecList other = (aliasSpecList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
@@ -3297,7 +3159,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
                 hash = hash * 31 + (getaliasSpecAt(i).hashCode());
             return hash;
@@ -3380,6 +3242,7 @@ public class LPGParser implements RuleAction, IParser
         {
             if (o == this) return true;
             if (! (o instanceof defineSpecList)) return false;
+            if (! super.equals(o)) return false;
             defineSpecList other = (defineSpecList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
@@ -3392,7 +3255,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
                 hash = hash * 31 + (getdefineSpecAt(i).hashCode());
             return hash;
@@ -3465,14 +3328,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof defineSpec)) return false;
+            if (! super.equals(o)) return false;
             defineSpec other = (defineSpec) o;
             if (! _macro_name_symbol.equals(other._macro_name_symbol)) return false;
             if (! _macro_segment.equals(other._macro_segment)) return false;
@@ -3481,7 +3338,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_macro_name_symbol.hashCode());
             hash = hash * 31 + (_macro_segment.hashCode());
             return hash;
@@ -3564,6 +3421,7 @@ public class LPGParser implements RuleAction, IParser
         {
             if (o == this) return true;
             if (! (o instanceof terminal_symbolList)) return false;
+            if (! super.equals(o)) return false;
             terminal_symbolList other = (terminal_symbolList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
@@ -3576,7 +3434,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
                 hash = hash * 31 + (getterminal_symbolAt(i).hashCode());
             return hash;
@@ -3638,6 +3496,7 @@ public class LPGParser implements RuleAction, IParser
         {
             if (o == this) return true;
             if (! (o instanceof action_segmentList)) return false;
+            if (! super.equals(o)) return false;
             action_segmentList other = (action_segmentList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
@@ -3650,7 +3509,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
                 hash = hash * 31 + (getaction_segmentAt(i).hashCode());
             return hash;
@@ -3719,14 +3578,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof import_segment)) return false;
+            if (! super.equals(o)) return false;
             import_segment other = (import_segment) o;
             if (! _SYMBOL.equals(other._SYMBOL)) return false;
             if (! _drop_command_list.equals(other._drop_command_list)) return false;
@@ -3735,7 +3588,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_SYMBOL.hashCode());
             hash = hash * 31 + (_drop_command_list.hashCode());
             return hash;
@@ -3791,6 +3644,7 @@ public class LPGParser implements RuleAction, IParser
         {
             if (o == this) return true;
             if (! (o instanceof drop_commandList)) return false;
+            if (! super.equals(o)) return false;
             drop_commandList other = (drop_commandList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
@@ -3803,7 +3657,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
                 hash = hash * 31 + (getdrop_commandAt(i).hashCode());
             return hash;
@@ -3861,6 +3715,7 @@ public class LPGParser implements RuleAction, IParser
         {
             if (o == this) return true;
             if (! (o instanceof drop_ruleList)) return false;
+            if (! super.equals(o)) return false;
             drop_ruleList other = (drop_ruleList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
@@ -3873,7 +3728,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
                 hash = hash * 31 + (getdrop_ruleAt(i).hashCode());
             return hash;
@@ -3957,14 +3812,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof drop_rule)) return false;
+            if (! super.equals(o)) return false;
             drop_rule other = (drop_rule) o;
             if (! _SYMBOL.equals(other._SYMBOL)) return false;
             if (_optMacroName == null)
@@ -3978,7 +3827,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_SYMBOL.hashCode());
             hash = hash * 31 + (_optMacroName == null ? 0 : _optMacroName.hashCode());
             hash = hash * 31 + (_produces.hashCode());
@@ -4092,6 +3941,7 @@ public class LPGParser implements RuleAction, IParser
         {
             if (o == this) return true;
             if (! (o instanceof keywordSpecList)) return false;
+            if (! super.equals(o)) return false;
             keywordSpecList other = (keywordSpecList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
@@ -4104,7 +3954,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
                 hash = hash * 31 + (getkeywordSpecAt(i).hashCode());
             return hash;
@@ -4181,14 +4031,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof keywordSpec)) return false;
+            if (! super.equals(o)) return false;
             keywordSpec other = (keywordSpec) o;
             if (! _terminal_symbol.equals(other._terminal_symbol)) return false;
             if (! _produces.equals(other._produces)) return false;
@@ -4198,7 +4042,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_terminal_symbol.hashCode());
             hash = hash * 31 + (_produces.hashCode());
             hash = hash * 31 + (_name.hashCode());
@@ -4256,6 +4100,7 @@ public class LPGParser implements RuleAction, IParser
         {
             if (o == this) return true;
             if (! (o instanceof nameSpecList)) return false;
+            if (! super.equals(o)) return false;
             nameSpecList other = (nameSpecList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
@@ -4268,7 +4113,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
                 hash = hash * 31 + (getnameSpecAt(i).hashCode());
             return hash;
@@ -4343,14 +4188,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof nameSpec)) return false;
+            if (! super.equals(o)) return false;
             nameSpec other = (nameSpec) o;
             if (! _name.equals(other._name)) return false;
             if (! _produces.equals(other._produces)) return false;
@@ -4360,7 +4199,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_name.hashCode());
             hash = hash * 31 + (_produces.hashCode());
             hash = hash * 31 + (_name3.hashCode());
@@ -4427,14 +4266,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof rules_segment)) return false;
+            if (! super.equals(o)) return false;
             rules_segment other = (rules_segment) o;
             if (! _action_segment_list.equals(other._action_segment_list)) return false;
             if (! _nonTermList.equals(other._nonTermList)) return false;
@@ -4443,7 +4276,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_action_segment_list.hashCode());
             hash = hash * 31 + (_nonTermList.hashCode());
             return hash;
@@ -4499,6 +4332,7 @@ public class LPGParser implements RuleAction, IParser
         {
             if (o == this) return true;
             if (! (o instanceof nonTermList)) return false;
+            if (! super.equals(o)) return false;
             nonTermList other = (nonTermList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
@@ -4511,7 +4345,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
                 hash = hash * 31 + (getnonTermAt(i).hashCode());
             return hash;
@@ -4590,14 +4424,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof nonTerm)) return false;
+            if (! super.equals(o)) return false;
             nonTerm other = (nonTerm) o;
             if (! _ruleNameWithAttributes.equals(other._ruleNameWithAttributes)) return false;
             if (! _produces.equals(other._produces)) return false;
@@ -4607,7 +4435,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ruleNameWithAttributes.hashCode());
             hash = hash * 31 + (_produces.hashCode());
             hash = hash * 31 + (_ruleList.hashCode());
@@ -4690,14 +4518,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof RuleName)) return false;
+            if (! super.equals(o)) return false;
             RuleName other = (RuleName) o;
             if (! _SYMBOL.equals(other._SYMBOL)) return false;
             if (_className == null)
@@ -4713,7 +4535,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_SYMBOL.hashCode());
             hash = hash * 31 + (_className == null ? 0 : _className.hashCode());
             hash = hash * 31 + (_arrayElement == null ? 0 : _arrayElement.hashCode());
@@ -4771,6 +4593,7 @@ public class LPGParser implements RuleAction, IParser
         {
             if (o == this) return true;
             if (! (o instanceof ruleList)) return false;
+            if (! super.equals(o)) return false;
             ruleList other = (ruleList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
@@ -4783,7 +4606,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
                 hash = hash * 31 + (getruleAt(i).hashCode());
             return hash;
@@ -4855,14 +4678,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof rule)) return false;
+            if (! super.equals(o)) return false;
             rule other = (rule) o;
             if (! _symWithAttrsList.equals(other._symWithAttrsList)) return false;
             if (_opt_action_segment == null)
@@ -4874,7 +4691,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_symWithAttrsList.hashCode());
             hash = hash * 31 + (_opt_action_segment == null ? 0 : _opt_action_segment.hashCode());
             return hash;
@@ -4930,6 +4747,7 @@ public class LPGParser implements RuleAction, IParser
         {
             if (o == this) return true;
             if (! (o instanceof symWithAttrsList)) return false;
+            if (! super.equals(o)) return false;
             symWithAttrsList other = (symWithAttrsList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
@@ -4942,7 +4760,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
                 hash = hash * 31 + (getsymWithAttrsAt(i).hashCode());
             return hash;
@@ -5007,14 +4825,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof symAttrs)) return false;
+            if (! super.equals(o)) return false;
             symAttrs other = (symAttrs) o;
             if (_MACRO_NAME == null)
                 if (other._MACRO_NAME != null) return false;
@@ -5025,7 +4837,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_MACRO_NAME == null ? 0 : _MACRO_NAME.hashCode());
             return hash;
         }
@@ -5113,6 +4925,7 @@ public class LPGParser implements RuleAction, IParser
         {
             if (o == this) return true;
             if (! (o instanceof start_symbolList)) return false;
+            if (! super.equals(o)) return false;
             start_symbolList other = (start_symbolList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
@@ -5125,7 +4938,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
                 hash = hash * 31 + (getstart_symbolAt(i).hashCode());
             return hash;
@@ -5183,6 +4996,7 @@ public class LPGParser implements RuleAction, IParser
         {
             if (o == this) return true;
             if (! (o instanceof terminalList)) return false;
+            if (! super.equals(o)) return false;
             terminalList other = (terminalList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
@@ -5195,7 +5009,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
                 hash = hash * 31 + (getterminalAt(i).hashCode());
             return hash;
@@ -5271,14 +5085,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof terminal)) return false;
+            if (! super.equals(o)) return false;
             terminal other = (terminal) o;
             if (! _terminal_symbol.equals(other._terminal_symbol)) return false;
             if (_optTerminalAlias == null)
@@ -5290,7 +5098,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_terminal_symbol.hashCode());
             hash = hash * 31 + (_optTerminalAlias == null ? 0 : _optTerminalAlias.hashCode());
             return hash;
@@ -5361,14 +5169,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof optTerminalAlias)) return false;
+            if (! super.equals(o)) return false;
             optTerminalAlias other = (optTerminalAlias) o;
             if (! _produces.equals(other._produces)) return false;
             if (! _name.equals(other._name)) return false;
@@ -5377,7 +5179,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_produces.hashCode());
             hash = hash * 31 + (_name.hashCode());
             return hash;
@@ -5433,6 +5235,7 @@ public class LPGParser implements RuleAction, IParser
         {
             if (o == this) return true;
             if (! (o instanceof type_declarationsList)) return false;
+            if (! super.equals(o)) return false;
             type_declarationsList other = (type_declarationsList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
@@ -5445,7 +5248,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
                 hash = hash * 31 + (gettype_declarationsAt(i).hashCode());
             return hash;
@@ -5520,14 +5323,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof type_declarations)) return false;
+            if (! super.equals(o)) return false;
             type_declarations other = (type_declarations) o;
             if (! _SYMBOL.equals(other._SYMBOL)) return false;
             if (! _produces.equals(other._produces)) return false;
@@ -5537,7 +5334,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_SYMBOL.hashCode());
             hash = hash * 31 + (_produces.hashCode());
             hash = hash * 31 + (_barSymbolList.hashCode());
@@ -5595,6 +5392,7 @@ public class LPGParser implements RuleAction, IParser
         {
             if (o == this) return true;
             if (! (o instanceof symbol_pairList)) return false;
+            if (! super.equals(o)) return false;
             symbol_pairList other = (symbol_pairList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
@@ -5607,7 +5405,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
                 hash = hash * 31 + (getsymbol_pairAt(i).hashCode());
             return hash;
@@ -5676,14 +5474,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof symbol_pair)) return false;
+            if (! super.equals(o)) return false;
             symbol_pair other = (symbol_pair) o;
             if (! _SYMBOL.equals(other._SYMBOL)) return false;
             if (! _SYMBOL2.equals(other._SYMBOL2)) return false;
@@ -5692,7 +5484,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_SYMBOL.hashCode());
             hash = hash * 31 + (_SYMBOL2.hashCode());
             return hash;
@@ -5816,14 +5608,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof option_value0)) return false;
+            if (! super.equals(o)) return false;
             option_value0 other = (option_value0) o;
             if (! _SYMBOL.equals(other._SYMBOL)) return false;
             return true;
@@ -5831,7 +5617,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_SYMBOL.hashCode());
             return hash;
         }
@@ -5886,14 +5672,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof option_value1)) return false;
+            if (! super.equals(o)) return false;
             option_value1 other = (option_value1) o;
             if (! _symbol_list.equals(other._symbol_list)) return false;
             return true;
@@ -5901,7 +5681,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_symbol_list.hashCode());
             return hash;
         }
@@ -5968,14 +5748,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof aliasSpec0)) return false;
+            if (! super.equals(o)) return false;
             aliasSpec0 other = (aliasSpec0) o;
             if (! _ERROR_KEY.equals(other._ERROR_KEY)) return false;
             if (! _produces.equals(other._produces)) return false;
@@ -5985,7 +5759,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ERROR_KEY.hashCode());
             hash = hash * 31 + (_produces.hashCode());
             hash = hash * 31 + (_alias_rhs.hashCode());
@@ -6058,14 +5832,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof aliasSpec1)) return false;
+            if (! super.equals(o)) return false;
             aliasSpec1 other = (aliasSpec1) o;
             if (! _EOL_KEY.equals(other._EOL_KEY)) return false;
             if (! _produces.equals(other._produces)) return false;
@@ -6075,7 +5843,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_EOL_KEY.hashCode());
             hash = hash * 31 + (_produces.hashCode());
             hash = hash * 31 + (_alias_rhs.hashCode());
@@ -6148,14 +5916,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof aliasSpec2)) return false;
+            if (! super.equals(o)) return false;
             aliasSpec2 other = (aliasSpec2) o;
             if (! _EOF_KEY.equals(other._EOF_KEY)) return false;
             if (! _produces.equals(other._produces)) return false;
@@ -6165,7 +5927,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_EOF_KEY.hashCode());
             hash = hash * 31 + (_produces.hashCode());
             hash = hash * 31 + (_alias_rhs.hashCode());
@@ -6238,14 +6000,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof aliasSpec3)) return false;
+            if (! super.equals(o)) return false;
             aliasSpec3 other = (aliasSpec3) o;
             if (! _IDENTIFIER_KEY.equals(other._IDENTIFIER_KEY)) return false;
             if (! _produces.equals(other._produces)) return false;
@@ -6255,7 +6011,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_IDENTIFIER_KEY.hashCode());
             hash = hash * 31 + (_produces.hashCode());
             hash = hash * 31 + (_alias_rhs.hashCode());
@@ -6328,14 +6084,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof aliasSpec4)) return false;
+            if (! super.equals(o)) return false;
             aliasSpec4 other = (aliasSpec4) o;
             if (! _SYMBOL.equals(other._SYMBOL)) return false;
             if (! _produces.equals(other._produces)) return false;
@@ -6345,7 +6095,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_SYMBOL.hashCode());
             hash = hash * 31 + (_produces.hashCode());
             hash = hash * 31 + (_alias_rhs.hashCode());
@@ -6418,14 +6168,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof aliasSpec5)) return false;
+            if (! super.equals(o)) return false;
             aliasSpec5 other = (aliasSpec5) o;
             if (! _alias_lhs_macro_name.equals(other._alias_lhs_macro_name)) return false;
             if (! _produces.equals(other._produces)) return false;
@@ -6435,7 +6179,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_alias_lhs_macro_name.hashCode());
             hash = hash * 31 + (_produces.hashCode());
             hash = hash * 31 + (_alias_rhs.hashCode());
@@ -6727,14 +6471,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof drop_command0)) return false;
+            if (! super.equals(o)) return false;
             drop_command0 other = (drop_command0) o;
             if (! _DROPSYMBOLS_KEY.equals(other._DROPSYMBOLS_KEY)) return false;
             if (! _drop_symbols.equals(other._drop_symbols)) return false;
@@ -6743,7 +6481,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_DROPSYMBOLS_KEY.hashCode());
             hash = hash * 31 + (_drop_symbols.hashCode());
             return hash;
@@ -6808,14 +6546,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof drop_command1)) return false;
+            if (! super.equals(o)) return false;
             drop_command1 other = (drop_command1) o;
             if (! _DROPRULES_KEY.equals(other._DROPRULES_KEY)) return false;
             if (! _drop_rules.equals(other._drop_rules)) return false;
@@ -6824,7 +6556,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_DROPRULES_KEY.hashCode());
             hash = hash * 31 + (_drop_rules.hashCode());
             return hash;
@@ -7167,14 +6899,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof symWithAttrs1)) return false;
+            if (! super.equals(o)) return false;
             symWithAttrs1 other = (symWithAttrs1) o;
             if (! _SYMBOL.equals(other._SYMBOL)) return false;
             if (_optAttrList == null)
@@ -7186,7 +6912,7 @@ public class LPGParser implements RuleAction, IParser
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_SYMBOL.hashCode());
             hash = hash * 31 + (_optAttrList == null ? 0 : _optAttrList.hashCode());
             return hash;
@@ -9428,8 +9154,10 @@ public class LPGParser implements RuleAction, IParser
             //
             // Rule 141:  recover_segment ::= recover_segment recover_symbol
             //
-            case 141:
+            case 141: {
+                setResult((SYMBOLList)getRhsSym(1));
                 break;
+            }
             //
             // Rule 142:  recover_symbol ::= SYMBOL
             //
