@@ -227,6 +227,12 @@ public class LPGBuilder extends BuilderBase {
                 if (n.getSYMBOL().toString().equals("import_terminals")) {
                     String referent= ((option_value0) n.getoption_value()).getSYMBOL().toString();
                     String referentPath= filePath.substring(0, filePath.lastIndexOf("/")+1) + referent;
+
+                    fDependencyInfo.addDependency(filePath, referentPath);
+                } else if (n.getSYMBOL().toString().equals("filter")) {
+                    String referent= ((option_value0) n.getoption_value()).getSYMBOL().toString();
+                    String referentPath= filePath.substring(0, filePath.lastIndexOf("/")+1) + referent;
+
                     fDependencyInfo.addDependency(filePath, referentPath);
                 }
                 return false;
