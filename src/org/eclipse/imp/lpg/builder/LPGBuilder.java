@@ -78,8 +78,6 @@ public class LPGBuilder extends BuilderBase {
 
     private static final String MISSING_MSG_REGEXP= " file \"([^\"]+)\" could not be read";
     private static final Pattern MISSING_MSG_PATTERN= Pattern.compile(MISSING_MSG_REGEXP);
-    
-    private IPreferencesService prefService= new PreferencesService(null, LPGRuntimePlugin.getInstance().getLanguageID());
 
     private boolean fEmitDiagnostics; // Set by compile() to current pref value
 
@@ -131,9 +129,6 @@ public class LPGBuilder extends BuilderBase {
     }
 
     protected void compile(final IFile file, IProgressMonitor monitor) {
-        if (prefService.getProject() == null) {
-            prefService.setProject(getProject());
-        }
         fEmitDiagnostics= prefService.getBooleanPreference(getProject(), LPGConstants.P_EMITDIAGNOSTICS);
 
         String fileName= file.getLocation().toOSString();
