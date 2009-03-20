@@ -7,7 +7,6 @@
 *
 * Contributors:
 *    Robert Fuhrer (rfuhrer@watson.ibm.com) - initial API and implementation
-
 *******************************************************************************/
 
 package org.eclipse.imp.lpg.builder;
@@ -38,7 +37,6 @@ import org.eclipse.imp.lpg.parser.LPGParser.option;
 import org.eclipse.imp.lpg.parser.LPGParser.option_value0;
 import org.eclipse.imp.lpg.preferences.LPGConstants;
 import org.eclipse.imp.preferences.IPreferencesService;
-import org.eclipse.imp.preferences.PreferencesService;
 import org.eclipse.imp.runtime.PluginBase;
 import org.eclipse.ui.console.MessageConsoleStream;
 import org.osgi.framework.Bundle;
@@ -101,7 +99,7 @@ public class LPGBuilder extends BuilderBase {
     	// SMS 8 Sep 2006
     	//return !file.isDerived() && LPGPreferenceCache.rootExtensionList.contains(file.getFileExtension());
 
-	    String extensListed = prefService.getStringPreference(getProject(), LPGConstants.P_SOURCEFILEEXTENSIONS);
+	    String extensListed = fPrefService.getStringPreference(LPGConstants.P_SOURCEFILEEXTENSIONS);
 	    String[] extens = extensListed.split(",");
 	    HashSet<String> rootExtensionsSet = new HashSet<String>();
 	    for(int i= 0; i < extens.length; i++) { rootExtensionsSet.add(extens[i]); }
@@ -111,7 +109,7 @@ public class LPGBuilder extends BuilderBase {
     protected boolean isNonRootSourceFile(IFile file) {
     	// SMS 8 Sep 2006
         //return !file.isDerived() && LPGPreferenceCache.nonRootExtensionList.contains(file.getFileExtension());
-        String extensListed = prefService.getStringPreference(getProject(), LPGConstants.P_INCLUDEFILEEXTENSIONS);
+        String extensListed = fPrefService.getStringPreference(LPGConstants.P_INCLUDEFILEEXTENSIONS);
         String[] extens = extensListed.split(",");
         HashSet<String> nonrootExtensionsSet = new HashSet<String>();
         for(int i= 0; i < extens.length; i++) {
@@ -124,12 +122,13 @@ public class LPGBuilder extends BuilderBase {
         return resource.getFullPath().lastSegment().equals("bin");
     }
 
-    protected MessageConsoleStream getConsoleStream() {
-        return fEmitDiagnostics ? findConsole(LPG_BUILDER_CONSOLE).newMessageStream() : null;
+    @Override
+    protected String getConsoleName() {
+        return LPG_BUILDER_CONSOLE;
     }
 
     protected void compile(final IFile file, IProgressMonitor monitor) {
-        fEmitDiagnostics= prefService.getBooleanPreference(getProject(), LPGConstants.P_EMITDIAGNOSTICS);
+        fEmitDiagnostics= fPrefService.getBooleanPreference(LPGConstants.P_EMITDIAGNOSTICS);
 
         String fileName= file.getLocation().toOSString();
         try {
@@ -141,19 +140,21 @@ public class LPGBuilder extends BuilderBase {
             File parentDir= new File(fileName).getParentFile();
             String includePath= getIncludePath();
             String[] cmd= buildCmdlineArgs(fileName, executablePath, includePath);
+            MessageConsoleStream diag= getConsoleStream();
 
-            LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Running generator on grammar file '" + fileName + "'.");
-            LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Using executable at '" + executablePath + "'.");
-            LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Using template path '" + includePath + "'.");
+            if (fEmitDiagnostics) {
+                diag.println("Running generator on grammar file '" + fileName + "'.");
+                diag.println("Using executable at '" + executablePath + "'.");
+                diag.println("Using template path '" + includePath + "'.");
+            }
 
             Process process= Runtime.getRuntime().exec(cmd, new String[0], parentDir);
-            MessageConsoleStream msgStream= getConsoleStream();
 
-            processLPGOutput(file, process, msgStream);
-            processLPGErrors(file, process, msgStream);
+            processLPGOutput(file, process, diag);
+            processLPGErrors(file, process, diag);
             doRefresh(file);
             collectDependencies(file);
-            LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Generator exit code == " + process.waitFor());
+            diag.println("Generator exit code == " + process.waitFor());
         } catch (Exception e) {
             LPGRuntimePlugin.getInstance().logException(e.getMessage() == null ? "<no information>" : e.getMessage(), e);
         }
@@ -165,7 +166,7 @@ public class LPGBuilder extends BuilderBase {
         String cmd[]= new String[] {
                 executablePath,
                 "-quiet",
-                (prefService.getBooleanPreference(getProject(), LPGConstants.P_GENERATELISTINGS) ? "-list" : "-nolist"),
+                (fPrefService.getBooleanPreference(LPGConstants.P_GENERATELISTINGS) ? "-list" : "-nolist"),
                 // In order for Windows to treat the following template path argument as
                 // a single argument, despite any embedded spaces, it has to be completely
                 // enclosed in double quotes. It does not suffice to quote only the path
@@ -189,7 +190,9 @@ public class LPGBuilder extends BuilderBase {
     }
 
     protected void collectDependencies(IFile file) {
-        LPGRuntimePlugin.getInstance().maybeWriteInfoMsg("Collecting dependencies from file '" + file.getLocation().toOSString() + "'.");
+        if (fEmitDiagnostics) {
+            getConsoleStream().println("Collecting dependencies from file '" + file.getLocation().toOSString() + "'.");
+        }
 
         LPGLexer lexer= new LPGLexer(); // Create the lexer        
         // SMS 12 Feb 2008
@@ -382,9 +385,9 @@ public class LPGBuilder extends BuilderBase {
     }
 
     public String getIncludePath() {
-        if (prefService.getBooleanPreference(LPGConstants.P_USEDEFAULTINCLUDEPATH))
-            return prefService.getStringPreference(IPreferencesService.DEFAULT_LEVEL, LPGConstants.P_INCLUDEPATHTOUSE);
-        String projSpecIncPath= prefService.getStringPreference(LPGConstants.P_INCLUDEPATHTOUSE);
+        if (fPrefService.getBooleanPreference(LPGConstants.P_USEDEFAULTINCLUDEPATH))
+            return fPrefService.getStringPreference(IPreferencesService.DEFAULT_LEVEL, LPGConstants.P_INCLUDEPATHTOUSE);
+        String projSpecIncPath= fPrefService.getStringPreference(LPGConstants.P_INCLUDEPATHTOUSE);
         return projSpecIncPath; //+ ";" + getDefaultIncludePath();
     }
 
@@ -409,10 +412,10 @@ public class LPGBuilder extends BuilderBase {
 
     private String getLPGExecutable() throws IOException {
         String result;
-        if (prefService.getBooleanPreference(LPGConstants.P_USEDEFAULTEXECUTABLE)) {
-            result= prefService.getStringPreference(IPreferencesService.DEFAULT_LEVEL, LPGConstants.P_EXECUTABLETOUSE);
+        if (fPrefService.getBooleanPreference(LPGConstants.P_USEDEFAULTEXECUTABLE)) {
+            result= fPrefService.getStringPreference(IPreferencesService.DEFAULT_LEVEL, LPGConstants.P_EXECUTABLETOUSE);
         } else {
-        	result= prefService.getStringPreference(getProject(), LPGConstants.P_EXECUTABLETOUSE);
+        	result= fPrefService.getStringPreference(LPGConstants.P_EXECUTABLETOUSE);
         }
     	if (!(new File(result)).exists()) {
     	    postMsgDialog("No LPG Executable", "The LPG executable cannot be found at the location you specified. Please change the setting in the LPG preferences page.");
