@@ -122,23 +122,6 @@
             class="org.eclipse.imp.lpg.preferences.LPGInitializer">
       </initializer>
    </extension>
-<!-- <extension
-         point="org.eclipse.compare.structureCreators">
-      <structureCreator
-            extensions="g,gi"
-            class="org.eclipse.imp.lpg.compare.LPGStructureNode"
-            id="org.eclipse.imp.lpg.structureCreator">
-      </structureCreator>
-   </extension>
-   <extension
-         point="org.eclipse.compare.structureMergeViewers">
-      <viewer
-            extensions="g,gi"
-            class="org.eclipse.imp.lpg.compare.StructureMergeViewerCreator"
-            id="org.eclipse.imp.viewer">
-      </viewer>
-   </extension>
- -->
    <extension
          point="org.eclipse.imp.runtime.foldingUpdater">
       <foldingUpdater
@@ -230,49 +213,15 @@
             language="LPG">
       </occurrenceIdentifier>
    </extension>
-<!--  <extension
-         point="org.eclipse.imp.runtime.indexContributor">
-      <indexContributor
-            class="org.eclipse.imp.lpg.runtime.LPGIndexContributor"
-            language="lpg"/>
-   </extension>
-   <extension
-         point="org.eclipse.imp.runtime.identityMapper">
-      <identityMapper
-            class="org.eclipse.imp.lpg.compare.LPGIdentityMapper"
-            language="LPG"/>
-   </extension>
-   <extension
-         point="org.eclipse.imp.pdb.analyzerFactory">
-      <analyzerFactory
-            class="org.eclipse.imp.lpg.analysis.LPGFactGeneratorFactory"
-            name="LPG Fact Generator">
-            <signatureDescriptor>
-                <inputs>
-                </inputs>
-                <outputs>
-                    <typeDescriptor type="org.lpg.callGraphType"/>
-                </outputs>
-            </signatureDescriptor>
-      </analyzerFactory>
-   </extension>
-  -->
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            name="LPG"
-            class="org.eclipse.imp.lpg.preferences.LPGPreferencePage"
-            id="org.eclipse.imp.lpg.preferences.LPG">
-      </page>
-   </extension>
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="org.eclipse.imp.editor.UniversalEditor"
-            extensions="g,gi"
+            name="LPG Grammar Editor"
             icon="icons/grammarfile.gif"
-            id="lpg.editor"
-            name="LPG Grammar Editor">
+            extensions="g,gi"
+            class="org.eclipse.imp.editor.UniversalEditor"
+            id="lpg.editor">
       </editor>
    </extension>
+
 </plugin>
