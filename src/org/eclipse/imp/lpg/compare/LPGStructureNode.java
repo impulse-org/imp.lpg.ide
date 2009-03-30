@@ -26,7 +26,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.GlobalsSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.HeadersSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.ImportSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.IncludeSeg;
-import org.eclipse.imp.lpg.parser.LPGParser.JikesPG;
+import org.eclipse.imp.lpg.parser.LPGParser.LPG;
 import org.eclipse.imp.lpg.parser.LPGParser.RulesSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.TerminalsSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.defineSpec;
@@ -148,7 +148,7 @@ public class LPGStructureNode extends DocumentRangeNode implements ITypedElement
 }
 
 class ASTLabelProvider implements ILabelProvider {
-    private Set fListeners= new HashSet();
+    private Set<ILabelProviderListener> fListeners= new HashSet<ILabelProviderListener>();
 
     private static ImageRegistry sImageRegistry= LPGRuntimePlugin.getInstance().getImageRegistry();
 
@@ -172,7 +172,7 @@ class ASTLabelProvider implements ILabelProvider {
 
     public static String getLabelFor(ASTNode n) {
 	if (n == null) return "<grammar file>"; // seems this only happens when the entire grammar can't be parsed
-        if (n instanceof JikesPG) return "grammar";
+        if (n instanceof LPG) return "grammar";
         if (n instanceof option_specList) return "options";
         if (n instanceof AliasSeg) return "aliases";
         if (n instanceof DefineSeg) return "defines";

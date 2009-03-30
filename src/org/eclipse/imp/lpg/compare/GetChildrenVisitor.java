@@ -16,9 +16,9 @@ import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
 import org.eclipse.imp.lpg.parser.LPGParser.AbstractVisitor;
 import org.eclipse.imp.lpg.parser.LPGParser.DefineSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.GlobalsSeg;
-import org.eclipse.imp.lpg.parser.LPGParser.IJikesPG_item;
-import org.eclipse.imp.lpg.parser.LPGParser.JikesPG;
-import org.eclipse.imp.lpg.parser.LPGParser.JikesPG_itemList;
+import org.eclipse.imp.lpg.parser.LPGParser.ILPG_item;
+import org.eclipse.imp.lpg.parser.LPGParser.LPG;
+import org.eclipse.imp.lpg.parser.LPGParser.LPG_itemList;
 import org.eclipse.imp.lpg.parser.LPGParser.RulesSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.TerminalsSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.Visitor;
@@ -52,16 +52,16 @@ public class GetChildrenVisitor extends AbstractVisitor implements Visitor {
 
     public void unimplementedVisitor(String s) { }
 
-    public boolean visit(JikesPG n) {
+    public boolean visit(LPG n) {
 	option_specList options= n.getoptions_segment();
-        JikesPG_itemList itemList= n.getJikesPG_INPUT();
+        LPG_itemList itemList= n.getLPG_INPUT();
         int count= 1 + itemList.size();
 
         fChildren= new Object[count];
         fChildren[0]= new LPGStructureNode(options, fStructureNode, LPGStructureNode.OPTION, "options");
 
         for(int i= 0; i < itemList.size(); i++) {
-            IJikesPG_item item= itemList.getJikesPG_itemAt(i);
+            ILPG_item item= itemList.getLPG_itemAt(i);
 
             fChildren[i+1]= new LPGStructureNode((ASTNode) item, fStructureNode, LPGStructureNode.BODY, item.getLeftIToken().toString());
         }

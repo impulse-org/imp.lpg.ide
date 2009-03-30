@@ -96,7 +96,7 @@ public class StructureMergeViewerCreator implements IViewerCreator {
 
         private ASTNode parseContents(String contents, IPath path) {
         	IParseController parser = new ParseController();
-            return (ASTNode) parser.parse(contents, false, new NullProgressMonitor());
+            return (ASTNode) parser.parse(contents, new NullProgressMonitor());
         }
 
         public IStructureComparator locate(Object path, Object input) {
