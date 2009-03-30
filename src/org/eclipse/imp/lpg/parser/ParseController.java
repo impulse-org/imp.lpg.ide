@@ -16,25 +16,21 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.imp.lpg.LPGRuntimePlugin;
 import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
 import org.eclipse.imp.lpg.parser.LPGParser.IASTNodeToken;
 import org.eclipse.imp.lpg.parser.LPGParser.Ioption_value;
-import org.eclipse.imp.lpg.parser.LPGParser.JikesPG;
+import org.eclipse.imp.lpg.parser.LPGParser.LPG;
 import org.eclipse.imp.lpg.parser.LPGParser.option;
 import org.eclipse.imp.lpg.parser.LPGParser.optionList;
 import org.eclipse.imp.lpg.parser.LPGParser.option_spec;
 import org.eclipse.imp.lpg.parser.LPGParser.option_specList;
 import org.eclipse.imp.lpg.parser.LPGParser.option_value0;
 import org.eclipse.imp.lpg.preferences.LPGConstants;
-import org.eclipse.imp.model.ISourceProject;
-import org.eclipse.imp.parser.ILexer;
-import org.eclipse.imp.parser.IMessageHandler;
 import org.eclipse.imp.parser.IParseController;
-import org.eclipse.imp.parser.IParser;
 import org.eclipse.imp.parser.ISourcePositionLocator;
+import org.eclipse.imp.parser.LPGSourcePositionLocator;
 import org.eclipse.imp.parser.MessageHandlerAdapter;
 import org.eclipse.imp.parser.SimpleLPGParseController;
 import org.eclipse.imp.preferences.IPreferencesService;
@@ -42,10 +38,6 @@ import org.eclipse.imp.preferences.PreferencesService;
 import org.eclipse.imp.services.ILanguageSyntaxProperties;
 
 public class ParseController extends SimpleLPGParseController implements IParseController {
-    private LPGParser fParser;
-
-    private LPGLexer fLexer;
-
     private JavaActionBlockVisitor actionVisitor;
 
     public ParseController() {
@@ -54,27 +46,15 @@ public class ParseController extends SimpleLPGParseController implements IParseC
         fParser= new LPGParser();
     }
 
-    public void initialize(IPath filePath, ISourceProject project, IMessageHandler handler) {
-        super.initialize(filePath, project, handler);
-    }
-
-    public IParser getParser() {
-        return fParser;
-    }
-
-    public ILexer getLexer() {
-        return fLexer;
-    }
-
-    public ISourcePositionLocator getNodeLocator() {
-        return new NodeLocator(this);
+    public ISourcePositionLocator getSourcePositionLocator() {
+        return new LPGSourcePositionLocator(this);
     }
 
     public ILanguageSyntaxProperties getSyntaxProperties() {
         return new LPGSyntaxProperties();
     }
 
-    public List<option> getOptions(JikesPG root) {
+    public List<option> getOptions(LPG root) {
         List<option> result= new ArrayList<option>();
         String template_file= null;
         option_specList optSeg= root.getoptions_segment();
@@ -108,7 +88,7 @@ public class ParseController extends SimpleLPGParseController implements IParseC
                         LPGLexer lex= new LPGLexer(filename);
                         LPGParser prs= new LPGParser(lex.getILexStream()); // Create the parser
                         lex.lexer(prs.getIPrsStream()); // Lex the stream to produce the token stream
-                        JikesPG template_root= (JikesPG) prs.parser(); // Parse the token stream to produce an AST
+                        LPG template_root= (LPG) prs.parser(); // Parse the token stream to produce an AST
                         if (template_root != null) {
                             result.addAll(getOptions(template_root));
                             break;
@@ -123,7 +103,7 @@ public class ParseController extends SimpleLPGParseController implements IParseC
         return result;
     }
 
-    public Object parse(String contents, boolean scanOnly, IProgressMonitor monitor) {
+    public Object parse(String contents, IProgressMonitor monitor) {
         PMMonitor my_monitor= new PMMonitor(monitor);
         char[] contentsArray= contents.toCharArray();
 
@@ -145,7 +125,7 @@ public class ParseController extends SimpleLPGParseController implements IParseC
             fParser.getIPrsStream().dumpTokens();
         else {
             boolean is_java= false, automatic_ast= false;
-            for(option opt : getOptions((JikesPG) fCurrentAst)) {
+            for(option opt : getOptions((LPG) fCurrentAst)) {
                 IASTNodeToken sym= opt.getSYMBOL();
                 String optName= sym.toString();
                 if (optName.equalsIgnoreCase("programming-language") || optName.equalsIgnoreCase("programming_language")
