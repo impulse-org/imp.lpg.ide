@@ -26,7 +26,7 @@ import org.eclipse.imp.editor.SourceProposal;
 import org.eclipse.imp.lpg.parser.ASTUtils;
 import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
 import org.eclipse.imp.lpg.parser.LPGParser.Imacro_name_symbol;
-import org.eclipse.imp.lpg.parser.LPGParser.JikesPG;
+import org.eclipse.imp.lpg.parser.LPGParser.LPG;
 import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
 import org.eclipse.imp.lpg.parser.LPGParser.option;
 import org.eclipse.imp.lpg.parser.LPGParser.terminal;
@@ -41,12 +41,12 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 public class ContentProposer implements IContentProposer {
 
     public ICompletionProposal[] getContentProposals(IParseController controller, final int offset, ITextViewer textViewer) {
-	JikesPG root= (JikesPG) controller.getCurrentAst();
+	LPG root= (LPG) controller.getCurrentAst();
 
         if (root == null)
             return new ICompletionProposal[0];
 
-        ISourcePositionLocator locator= controller.getNodeLocator();
+        ISourcePositionLocator locator= controller.getSourcePositionLocator();
 	ASTNode thisNode= (ASTNode) locator.findNode(root, offset);
         IToken thisLeftToken= thisNode.getLeftIToken();
         final String prefixToken= (offset >= thisLeftToken.getStartOffset() && offset < thisLeftToken.getEndOffset()) ? thisLeftToken.toString() : null;
@@ -60,7 +60,7 @@ public class ContentProposer implements IContentProposer {
 	    if (thisNode == opt.getSYMBOL()) {
 		proposals.addAll(computeOptionKeyProposals(prefix, offset));
 	    }
-        } else if (thisNode.getParent() instanceof JikesPG || prefix.startsWith("%")) {
+        } else if (thisNode.getParent() instanceof LPG || prefix.startsWith("%")) {
             proposals.addAll(computeSegmentCompletions(prefix, offset, root));
         } else if (prefix.startsWith("$")) {
             proposals.addAll(computeMacroCompletions(prefix, offset, root));
@@ -76,7 +76,7 @@ public class ContentProposer implements IContentProposer {
         "Keywords", "Notice", "Recover", "Rules", "Start", "Terminals", "Types"
     };
 
-    private Collection<? extends ICompletionProposal> computeSegmentCompletions(String prefix, int offset, JikesPG root) {
+    private Collection<? extends ICompletionProposal> computeSegmentCompletions(String prefix, int offset, LPG root) {
         Collection<SourceProposal> result= new ArrayList<SourceProposal>();
         for(int i= 0; i < SEGMENT_KEYS.length; i++) {
             String key= SEGMENT_KEYS[i];
@@ -153,7 +153,7 @@ public class ContentProposer implements IContentProposer {
 	return result;
     }
 
-    private List<ICompletionProposal> computeMacroCompletions(String prefix, int offset, JikesPG root) {
+    private List<ICompletionProposal> computeMacroCompletions(String prefix, int offset, LPG root) {
         List<ICompletionProposal> result= new ArrayList<ICompletionProposal>();
         List<Imacro_name_symbol> macros= ASTUtils.getMacros(root);
 
@@ -168,7 +168,7 @@ public class ContentProposer implements IContentProposer {
         return result;
     }
 
-    private List<ICompletionProposal> computeNonTerminalCompletions(final String prefix, final int offset, JikesPG root) {
+    private List<ICompletionProposal> computeNonTerminalCompletions(final String prefix, final int offset, LPG root) {
         List<ICompletionProposal> result= new ArrayList<ICompletionProposal>();
         List<nonTerm> nonTerms= ASTUtils.getNonTerminals(root);
 
@@ -188,7 +188,7 @@ public class ContentProposer implements IContentProposer {
         return result;
     }
 
-    private List<ICompletionProposal> computeTerminalCompletions(final String prefix, final int offset, JikesPG root) {
+    private List<ICompletionProposal> computeTerminalCompletions(final String prefix, final int offset, LPG root) {
         List<ICompletionProposal> result= new ArrayList<ICompletionProposal>();
         List<terminal> terms= ASTUtils.getTerminals(root);
 
