@@ -2,6 +2,7 @@ package org.eclipse.imp.lpg.parser;
 
 import lpg.runtime.*;
 import org.eclipse.imp.parser.IParser;
+import org.eclipse.imp.parser.SymbolTable;
     import java.util.ArrayList;
     import java.util.List;
     import java.util.Map;
@@ -165,37 +166,7 @@ public class LPGParser implements RuleAction, IParser
     //
     
 
-    public static class SymbolTable {
-        private Map<String,ASTNode> table = new HashMap<String,ASTNode>();
-
-        public void addDefinition(String name, ASTNode def) { table.put(name, def); }
-        public ASTNode lookup(String name) { return table.get(name); }
-        public List<String> allSymbolsOfType(Class type) {
-            List<String> result= new ArrayList<String>();
-
-            for(String sym: table.keySet()) {
-                ASTNode def= table.get(sym);
-
-                if (type.isInstance(def))
-                    result.add(sym);
-            }
-            return result;
-        }
-        public <T> List<T> allDefsOfType(Class<T> type) {
-            List<T> result = new ArrayList<T>();
-            
-            for(String sym: table.keySet()) {
-                ASTNode def= table.get(sym);
-
-                if (type.isInstance(def))
-                    result.add((T) def);
-            }
-            return result;
-        }
-        public Set<String> allSymbols() { return table.keySet(); }
-    }
-    protected static SymbolTable symtab;
-    { symtab = new SymbolTable(); }
+    protected static SymbolTable<ASTNode> symtab= new SymbolTable<ASTNode>();
      static public abstract class ASTNode implements IAst
     {
         public IAst getNextAst() { return null; }
@@ -418,9 +389,9 @@ public class LPGParser implements RuleAction, IParser
     }
 
     /**
-     * is implemented by <b>JikesPG</b>
+     * is implemented by <b>LPG</b>
      */
-    public interface IJikesPG
+    public interface ILPG
     {
         public IToken getLeftIToken();
         public IToken getRightIToken();
@@ -440,9 +411,9 @@ public class LPGParser implements RuleAction, IParser
     }
 
     /**
-     * is implemented by <b>JikesPG_itemList</b>
+     * is implemented by <b>LPG_itemList</b>
      */
-    public interface IJikesPG_INPUT
+    public interface ILPG_INPUT
     {
         public IToken getLeftIToken();
         public IToken getRightIToken();
@@ -479,7 +450,7 @@ public class LPGParser implements RuleAction, IParser
      *</ul>
      *</b>
      */
-    public interface IJikesPG_item
+    public interface ILPG_item
     {
         public IToken getLeftIToken();
         public IToken getRightIToken();
@@ -1186,31 +1157,31 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 1:  JikesPG ::= options_segment JikesPG_INPUT
+     *<li>Rule 1:  LPG ::= options_segment LPG_INPUT
      *</b>
      */
-    static public class JikesPG extends ASTNode implements IJikesPG
+    static public class LPG extends ASTNode implements ILPG
     {
         private LPGParser environment;
         public LPGParser getEnvironment() { return environment; }
 
         private option_specList _options_segment;
-        private JikesPG_itemList _JikesPG_INPUT;
+        private LPG_itemList _LPG_INPUT;
 
         public option_specList getoptions_segment() { return _options_segment; }
-        public JikesPG_itemList getJikesPG_INPUT() { return _JikesPG_INPUT; }
+        public LPG_itemList getLPG_INPUT() { return _LPG_INPUT; }
 
-        public JikesPG(LPGParser environment, IToken leftIToken, IToken rightIToken,
-                       option_specList _options_segment,
-                       JikesPG_itemList _JikesPG_INPUT)
+        public LPG(LPGParser environment, IToken leftIToken, IToken rightIToken,
+                   option_specList _options_segment,
+                   LPG_itemList _LPG_INPUT)
         {
             super(leftIToken, rightIToken);
 
             this.environment = environment;
             this._options_segment = _options_segment;
             ((ASTNode) _options_segment).setParent(this);
-            this._JikesPG_INPUT = _JikesPG_INPUT;
-            ((ASTNode) _JikesPG_INPUT).setParent(this);
+            this._LPG_INPUT = _LPG_INPUT;
+            ((ASTNode) _LPG_INPUT).setParent(this);
             initialize();
         }
 
@@ -1221,18 +1192,18 @@ public class LPGParser implements RuleAction, IParser
         {
             java.util.ArrayList list = new java.util.ArrayList();
             list.add(_options_segment);
-            list.add(_JikesPG_INPUT);
+            list.add(_LPG_INPUT);
             return list;
         }
 
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof JikesPG)) return false;
+            if (! (o instanceof LPG)) return false;
             if (! super.equals(o)) return false;
-            JikesPG other = (JikesPG) o;
+            LPG other = (LPG) o;
             if (! _options_segment.equals(other._options_segment)) return false;
-            if (! _JikesPG_INPUT.equals(other._JikesPG_INPUT)) return false;
+            if (! _LPG_INPUT.equals(other._LPG_INPUT)) return false;
             return true;
         }
 
@@ -1240,7 +1211,7 @@ public class LPGParser implements RuleAction, IParser
         {
             int hash = super.hashCode();
             hash = hash * 31 + (_options_segment.hashCode());
-            hash = hash * 31 + (_JikesPG_INPUT.hashCode());
+            hash = hash * 31 + (_LPG_INPUT.hashCode());
             return hash;
         }
 
@@ -1257,53 +1228,53 @@ public class LPGParser implements RuleAction, IParser
             if (checkChildren)
             {
                 _options_segment.accept(v);
-                _JikesPG_INPUT.accept(v);
+                _LPG_INPUT.accept(v);
             }
             v.endVisit(this);
         }
 
-    public SymbolTable symbolTable;
+    public SymbolTable<ASTNode> symbolTable;
     void initialize() { symbolTable = symtab; }
      }
 
     /**
      *<b>
-     *<li>Rule 2:  JikesPG_INPUT ::= $Empty
-     *<li>Rule 3:  JikesPG_INPUT ::= JikesPG_INPUT JikesPG_item
+     *<li>Rule 2:  LPG_INPUT ::= $Empty
+     *<li>Rule 3:  LPG_INPUT ::= LPG_INPUT LPG_item
      *</b>
      */
-    static public class JikesPG_itemList extends AbstractASTNodeList implements IJikesPG_INPUT
+    static public class LPG_itemList extends AbstractASTNodeList implements ILPG_INPUT
     {
-        public IJikesPG_item getJikesPG_itemAt(int i) { return (IJikesPG_item) getElementAt(i); }
+        public ILPG_item getLPG_itemAt(int i) { return (ILPG_item) getElementAt(i); }
 
-        public JikesPG_itemList(IToken leftIToken, IToken rightIToken, boolean leftRecursive)
+        public LPG_itemList(IToken leftIToken, IToken rightIToken, boolean leftRecursive)
         {
             super(leftIToken, rightIToken, leftRecursive);
         }
 
-        public JikesPG_itemList(IJikesPG_item _JikesPG_item, boolean leftRecursive)
+        public LPG_itemList(ILPG_item _LPG_item, boolean leftRecursive)
         {
-            super((ASTNode) _JikesPG_item, leftRecursive);
-            ((ASTNode) _JikesPG_item).setParent(this);
+            super((ASTNode) _LPG_item, leftRecursive);
+            ((ASTNode) _LPG_item).setParent(this);
         }
 
-        public void add(IJikesPG_item _JikesPG_item)
+        public void add(ILPG_item _LPG_item)
         {
-            super.add((ASTNode) _JikesPG_item);
-            ((ASTNode) _JikesPG_item).setParent(this);
+            super.add((ASTNode) _LPG_item);
+            ((ASTNode) _LPG_item).setParent(this);
         }
 
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof JikesPG_itemList)) return false;
+            if (! (o instanceof LPG_itemList)) return false;
             if (! super.equals(o)) return false;
-            JikesPG_itemList other = (JikesPG_itemList    ) o;
+            LPG_itemList other = (LPG_itemList    ) o;
             if (size() != other.size()) return false;
             for (int i = 0; i < size(); i++)
             {
-                IJikesPG_item element = getJikesPG_itemAt(i);
-                    if (! element.equals(other.getJikesPG_itemAt(i))) return false;
+                ILPG_item element = getLPG_itemAt(i);
+                    if (! element.equals(other.getLPG_itemAt(i))) return false;
             }
             return true;
         }
@@ -1312,7 +1283,7 @@ public class LPGParser implements RuleAction, IParser
         {
             int hash = super.hashCode();
             for (int i = 0; i < size(); i++)
-                hash = hash * 31 + (getJikesPG_itemAt(i).hashCode());
+                hash = hash * 31 + (getLPG_itemAt(i).hashCode());
             return hash;
         }
 
@@ -1329,7 +1300,7 @@ public class LPGParser implements RuleAction, IParser
             {
                 for (int i = 0; i < size(); i++)
                 {
-                    IJikesPG_item element = getJikesPG_itemAt(i);
+                    ILPG_item element = getLPG_itemAt(i);
                     element.accept(v);
                 }
             }
@@ -1339,10 +1310,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 4:  JikesPG_item ::= ALIAS_KEY$ alias_segment END_KEY_OPT$
+     *<li>Rule 4:  LPG_item ::= ALIAS_KEY$ alias_segment END_KEY_OPT$
      *</b>
      */
-    static public class AliasSeg extends ASTNode implements IJikesPG_item
+    static public class AliasSeg extends ASTNode implements ILPG_item
     {
         private aliasSpecList _alias_segment;
 
@@ -1403,10 +1374,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 5:  JikesPG_item ::= AST_KEY$ ast_segment END_KEY_OPT$
+     *<li>Rule 5:  LPG_item ::= AST_KEY$ ast_segment END_KEY_OPT$
      *</b>
      */
-    static public class AstSeg extends ASTNode implements IJikesPG_item
+    static public class AstSeg extends ASTNode implements ILPG_item
     {
         private action_segmentList _ast_segment;
 
@@ -1467,10 +1438,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 6:  JikesPG_item ::= DEFINE_KEY$ define_segment END_KEY_OPT$
+     *<li>Rule 6:  LPG_item ::= DEFINE_KEY$ define_segment END_KEY_OPT$
      *</b>
      */
-    static public class DefineSeg extends ASTNode implements IJikesPG_item
+    static public class DefineSeg extends ASTNode implements ILPG_item
     {
         private defineSpecList _define_segment;
 
@@ -1531,10 +1502,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 7:  JikesPG_item ::= EOF_KEY$ eof_segment END_KEY_OPT$
+     *<li>Rule 7:  LPG_item ::= EOF_KEY$ eof_segment END_KEY_OPT$
      *</b>
      */
-    static public class EofSeg extends ASTNode implements IJikesPG_item
+    static public class EofSeg extends ASTNode implements ILPG_item
     {
         private Ieof_segment _eof_segment;
 
@@ -1595,10 +1566,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 8:  JikesPG_item ::= EOL_KEY$ eol_segment END_KEY_OPT$
+     *<li>Rule 8:  LPG_item ::= EOL_KEY$ eol_segment END_KEY_OPT$
      *</b>
      */
-    static public class EolSeg extends ASTNode implements IJikesPG_item
+    static public class EolSeg extends ASTNode implements ILPG_item
     {
         private Ieol_segment _eol_segment;
 
@@ -1659,10 +1630,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 9:  JikesPG_item ::= ERROR_KEY$ error_segment END_KEY_OPT$
+     *<li>Rule 9:  LPG_item ::= ERROR_KEY$ error_segment END_KEY_OPT$
      *</b>
      */
-    static public class ErrorSeg extends ASTNode implements IJikesPG_item
+    static public class ErrorSeg extends ASTNode implements ILPG_item
     {
         private Ierror_segment _error_segment;
 
@@ -1723,10 +1694,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 10:  JikesPG_item ::= EXPORT_KEY$ export_segment END_KEY_OPT$
+     *<li>Rule 10:  LPG_item ::= EXPORT_KEY$ export_segment END_KEY_OPT$
      *</b>
      */
-    static public class ExportSeg extends ASTNode implements IJikesPG_item
+    static public class ExportSeg extends ASTNode implements ILPG_item
     {
         private terminal_symbolList _export_segment;
 
@@ -1787,10 +1758,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 11:  JikesPG_item ::= GLOBALS_KEY$ globals_segment END_KEY_OPT$
+     *<li>Rule 11:  LPG_item ::= GLOBALS_KEY$ globals_segment END_KEY_OPT$
      *</b>
      */
-    static public class GlobalsSeg extends ASTNode implements IJikesPG_item
+    static public class GlobalsSeg extends ASTNode implements ILPG_item
     {
         private action_segmentList _globals_segment;
 
@@ -1851,10 +1822,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 12:  JikesPG_item ::= HEADERS_KEY$ headers_segment END_KEY_OPT$
+     *<li>Rule 12:  LPG_item ::= HEADERS_KEY$ headers_segment END_KEY_OPT$
      *</b>
      */
-    static public class HeadersSeg extends ASTNode implements IJikesPG_item
+    static public class HeadersSeg extends ASTNode implements ILPG_item
     {
         private action_segmentList _headers_segment;
 
@@ -1915,10 +1886,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 13:  JikesPG_item ::= IDENTIFIER_KEY$ identifier_segment END_KEY_OPT$
+     *<li>Rule 13:  LPG_item ::= IDENTIFIER_KEY$ identifier_segment END_KEY_OPT$
      *</b>
      */
-    static public class IdentifierSeg extends ASTNode implements IJikesPG_item
+    static public class IdentifierSeg extends ASTNode implements ILPG_item
     {
         private Iidentifier_segment _identifier_segment;
 
@@ -1979,10 +1950,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 14:  JikesPG_item ::= IMPORT_KEY$ import_segment END_KEY_OPT$
+     *<li>Rule 14:  LPG_item ::= IMPORT_KEY$ import_segment END_KEY_OPT$
      *</b>
      */
-    static public class ImportSeg extends ASTNode implements IJikesPG_item
+    static public class ImportSeg extends ASTNode implements ILPG_item
     {
         private import_segment _import_segment;
 
@@ -2043,10 +2014,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 15:  JikesPG_item ::= INCLUDE_KEY$ include_segment END_KEY_OPT$
+     *<li>Rule 15:  LPG_item ::= INCLUDE_KEY$ include_segment END_KEY_OPT$
      *</b>
      */
-    static public class IncludeSeg extends ASTNode implements IJikesPG_item
+    static public class IncludeSeg extends ASTNode implements ILPG_item
     {
         private include_segment _include_segment;
 
@@ -2107,10 +2078,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 16:  JikesPG_item ::= KEYWORDS_KEY$ keywords_segment END_KEY_OPT$
+     *<li>Rule 16:  LPG_item ::= KEYWORDS_KEY$ keywords_segment END_KEY_OPT$
      *</b>
      */
-    static public class KeywordsSeg extends ASTNode implements IJikesPG_item
+    static public class KeywordsSeg extends ASTNode implements ILPG_item
     {
         private keywordSpecList _keywords_segment;
 
@@ -2171,10 +2142,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 17:  JikesPG_item ::= NAMES_KEY$ names_segment END_KEY_OPT$
+     *<li>Rule 17:  LPG_item ::= NAMES_KEY$ names_segment END_KEY_OPT$
      *</b>
      */
-    static public class NamesSeg extends ASTNode implements IJikesPG_item
+    static public class NamesSeg extends ASTNode implements ILPG_item
     {
         private nameSpecList _names_segment;
 
@@ -2235,10 +2206,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 18:  JikesPG_item ::= NOTICE_KEY$ notice_segment END_KEY_OPT$
+     *<li>Rule 18:  LPG_item ::= NOTICE_KEY$ notice_segment END_KEY_OPT$
      *</b>
      */
-    static public class NoticeSeg extends ASTNode implements IJikesPG_item
+    static public class NoticeSeg extends ASTNode implements ILPG_item
     {
         private action_segmentList _notice_segment;
 
@@ -2299,10 +2270,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 19:  JikesPG_item ::= RULES_KEY$ rules_segment END_KEY_OPT$
+     *<li>Rule 19:  LPG_item ::= RULES_KEY$ rules_segment END_KEY_OPT$
      *</b>
      */
-    static public class RulesSeg extends ASTNode implements IJikesPG_item
+    static public class RulesSeg extends ASTNode implements ILPG_item
     {
         private rules_segment _rules_segment;
 
@@ -2363,10 +2334,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 20:  JikesPG_item ::= START_KEY$ start_segment END_KEY_OPT$
+     *<li>Rule 20:  LPG_item ::= START_KEY$ start_segment END_KEY_OPT$
      *</b>
      */
-    static public class StartSeg extends ASTNode implements IJikesPG_item
+    static public class StartSeg extends ASTNode implements ILPG_item
     {
         private start_symbolList _start_segment;
 
@@ -2427,10 +2398,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 21:  JikesPG_item ::= TERMINALS_KEY$ terminals_segment END_KEY_OPT$
+     *<li>Rule 21:  LPG_item ::= TERMINALS_KEY$ terminals_segment END_KEY_OPT$
      *</b>
      */
-    static public class TerminalsSeg extends ASTNode implements IJikesPG_item
+    static public class TerminalsSeg extends ASTNode implements ILPG_item
     {
         private terminalList _terminals_segment;
 
@@ -2491,10 +2462,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 22:  JikesPG_item ::= TRAILERS_KEY$ trailers_segment END_KEY_OPT$
+     *<li>Rule 22:  LPG_item ::= TRAILERS_KEY$ trailers_segment END_KEY_OPT$
      *</b>
      */
-    static public class TrailersSeg extends ASTNode implements IJikesPG_item
+    static public class TrailersSeg extends ASTNode implements ILPG_item
     {
         private action_segmentList _trailers_segment;
 
@@ -2555,10 +2526,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 23:  JikesPG_item ::= TYPES_KEY$ types_segment END_KEY_OPT$
+     *<li>Rule 23:  LPG_item ::= TYPES_KEY$ types_segment END_KEY_OPT$
      *</b>
      */
-    static public class TypesSeg extends ASTNode implements IJikesPG_item
+    static public class TypesSeg extends ASTNode implements ILPG_item
     {
         private type_declarationsList _types_segment;
 
@@ -2619,10 +2590,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 24:  JikesPG_item ::= RECOVER_KEY$ recover_segment END_KEY_OPT$
+     *<li>Rule 24:  LPG_item ::= RECOVER_KEY$ recover_segment END_KEY_OPT$
      *</b>
      */
-    static public class RecoverSeg extends ASTNode implements IJikesPG_item
+    static public class RecoverSeg extends ASTNode implements ILPG_item
     {
         private SYMBOLList _recover_segment;
 
@@ -2683,10 +2654,10 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 25:  JikesPG_item ::= DISJOINTPREDECESSORSETS_KEY$ predecessor_segment END_KEY_OPT$
+     *<li>Rule 25:  LPG_item ::= DISJOINTPREDECESSORSETS_KEY$ predecessor_segment END_KEY_OPT$
      *</b>
      */
-    static public class PredecessorSeg extends ASTNode implements IJikesPG_item
+    static public class PredecessorSeg extends ASTNode implements ILPG_item
     {
         private symbol_pairList _predecessor_segment;
 
@@ -3362,7 +3333,7 @@ public class LPGParser implements RuleAction, IParser
             v.endVisit(this);
         }
 
-    void initialize() { symtab.addDefinition(_macro_name_symbol.toString(), this); }
+    void initialize() { symtab.put(_macro_name_symbol.toString(), this); }
      }
 
     /**
@@ -4461,7 +4432,7 @@ public class LPGParser implements RuleAction, IParser
             v.endVisit(this);
         }
 
-    void initialize() { symtab.addDefinition(_ruleNameWithAttributes.getSYMBOL().toString(), this); }
+    void initialize() { symtab.put(_ruleNameWithAttributes.getSYMBOL().toString(), this); }
      }
 
     /**
@@ -5122,7 +5093,7 @@ public class LPGParser implements RuleAction, IParser
             v.endVisit(this);
         }
 
-    void initialize() { symtab.addDefinition(_terminal_symbol.toString(), this); }
+    void initialize() { symtab.put(_terminal_symbol.toString(), this); }
      }
 
     /**
@@ -5541,7 +5512,7 @@ public class LPGParser implements RuleAction, IParser
         }
 
     void initialize() {
-       symtab.addDefinition(getSYMBOL().toString(), this);
+       symtab.put(getSYMBOL().toString(), this);
     }
      }
 
@@ -7018,7 +6989,7 @@ public class LPGParser implements RuleAction, IParser
             v.endVisit(this);
         }
 
-    void initialize() { symtab.addDefinition(getSYMBOL().toString(), this); }
+    void initialize() { symtab.put(getSYMBOL().toString(), this); }
      }
 
     /**
@@ -7054,11 +7025,11 @@ public class LPGParser implements RuleAction, IParser
         boolean visit(ASTNodeToken n);
         void endVisit(ASTNodeToken n);
 
-        boolean visit(JikesPG n);
-        void endVisit(JikesPG n);
+        boolean visit(LPG n);
+        void endVisit(LPG n);
 
-        boolean visit(JikesPG_itemList n);
-        void endVisit(JikesPG_itemList n);
+        boolean visit(LPG_itemList n);
+        void endVisit(LPG_itemList n);
 
         boolean visit(AliasSeg n);
         void endVisit(AliasSeg n);
@@ -7367,11 +7338,11 @@ public class LPGParser implements RuleAction, IParser
         public boolean visit(ASTNodeToken n) { unimplementedVisitor("visit(ASTNodeToken)"); return true; }
         public void endVisit(ASTNodeToken n) { unimplementedVisitor("endVisit(ASTNodeToken)"); }
 
-        public boolean visit(JikesPG n) { unimplementedVisitor("visit(JikesPG)"); return true; }
-        public void endVisit(JikesPG n) { unimplementedVisitor("endVisit(JikesPG)"); }
+        public boolean visit(LPG n) { unimplementedVisitor("visit(LPG)"); return true; }
+        public void endVisit(LPG n) { unimplementedVisitor("endVisit(LPG)"); }
 
-        public boolean visit(JikesPG_itemList n) { unimplementedVisitor("visit(JikesPG_itemList)"); return true; }
-        public void endVisit(JikesPG_itemList n) { unimplementedVisitor("endVisit(JikesPG_itemList)"); }
+        public boolean visit(LPG_itemList n) { unimplementedVisitor("visit(LPG_itemList)"); return true; }
+        public void endVisit(LPG_itemList n) { unimplementedVisitor("endVisit(LPG_itemList)"); }
 
         public boolean visit(AliasSeg n) { unimplementedVisitor("visit(AliasSeg)"); return true; }
         public void endVisit(AliasSeg n) { unimplementedVisitor("endVisit(AliasSeg)"); }
@@ -7671,8 +7642,8 @@ public class LPGParser implements RuleAction, IParser
         public boolean visit(ASTNode n)
         {
             if (n instanceof ASTNodeToken) return visit((ASTNodeToken) n);
-            else if (n instanceof JikesPG) return visit((JikesPG) n);
-            else if (n instanceof JikesPG_itemList) return visit((JikesPG_itemList) n);
+            else if (n instanceof LPG) return visit((LPG) n);
+            else if (n instanceof LPG_itemList) return visit((LPG_itemList) n);
             else if (n instanceof AliasSeg) return visit((AliasSeg) n);
             else if (n instanceof AstSeg) return visit((AstSeg) n);
             else if (n instanceof DefineSeg) return visit((DefineSeg) n);
@@ -7776,8 +7747,8 @@ public class LPGParser implements RuleAction, IParser
         public void endVisit(ASTNode n)
         {
             if (n instanceof ASTNodeToken) endVisit((ASTNodeToken) n);
-            else if (n instanceof JikesPG) endVisit((JikesPG) n);
-            else if (n instanceof JikesPG_itemList) endVisit((JikesPG_itemList) n);
+            else if (n instanceof LPG) endVisit((LPG) n);
+            else if (n instanceof LPG_itemList) endVisit((LPG_itemList) n);
             else if (n instanceof AliasSeg) endVisit((AliasSeg) n);
             else if (n instanceof AstSeg) endVisit((AstSeg) n);
             else if (n instanceof DefineSeg) endVisit((DefineSeg) n);
@@ -7886,34 +7857,34 @@ public class LPGParser implements RuleAction, IParser
         {
 
             //
-            // Rule 1:  JikesPG ::= options_segment JikesPG_INPUT
+            // Rule 1:  LPG ::= options_segment LPG_INPUT
             //
             case 1: {
                 setResult(
-                    new JikesPG(LPGParser.this, getLeftIToken(), getRightIToken(),
-                                (option_specList)getRhsSym(1),
-                                (JikesPG_itemList)getRhsSym(2))
+                    new LPG(LPGParser.this, getLeftIToken(), getRightIToken(),
+                            (option_specList)getRhsSym(1),
+                            (LPG_itemList)getRhsSym(2))
                 );
                 break;
             }
             //
-            // Rule 2:  JikesPG_INPUT ::= $Empty
+            // Rule 2:  LPG_INPUT ::= $Empty
             //
             case 2: {
                 setResult(
-                    new JikesPG_itemList(getLeftIToken(), getRightIToken(), true /* left recursive */)
+                    new LPG_itemList(getLeftIToken(), getRightIToken(), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 3:  JikesPG_INPUT ::= JikesPG_INPUT JikesPG_item
+            // Rule 3:  LPG_INPUT ::= LPG_INPUT LPG_item
             //
             case 3: {
-                ((JikesPG_itemList)getRhsSym(1)).add((IJikesPG_item)getRhsSym(2));
+                ((LPG_itemList)getRhsSym(1)).add((ILPG_item)getRhsSym(2));
                 break;
             }
             //
-            // Rule 4:  JikesPG_item ::= ALIAS_KEY$ alias_segment END_KEY_OPT$
+            // Rule 4:  LPG_item ::= ALIAS_KEY$ alias_segment END_KEY_OPT$
             //
             case 4: {
                 setResult(
@@ -7923,7 +7894,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 5:  JikesPG_item ::= AST_KEY$ ast_segment END_KEY_OPT$
+            // Rule 5:  LPG_item ::= AST_KEY$ ast_segment END_KEY_OPT$
             //
             case 5: {
                 setResult(
@@ -7933,7 +7904,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 6:  JikesPG_item ::= DEFINE_KEY$ define_segment END_KEY_OPT$
+            // Rule 6:  LPG_item ::= DEFINE_KEY$ define_segment END_KEY_OPT$
             //
             case 6: {
                 setResult(
@@ -7943,7 +7914,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 7:  JikesPG_item ::= EOF_KEY$ eof_segment END_KEY_OPT$
+            // Rule 7:  LPG_item ::= EOF_KEY$ eof_segment END_KEY_OPT$
             //
             case 7: {
                 setResult(
@@ -7953,7 +7924,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 8:  JikesPG_item ::= EOL_KEY$ eol_segment END_KEY_OPT$
+            // Rule 8:  LPG_item ::= EOL_KEY$ eol_segment END_KEY_OPT$
             //
             case 8: {
                 setResult(
@@ -7963,7 +7934,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 9:  JikesPG_item ::= ERROR_KEY$ error_segment END_KEY_OPT$
+            // Rule 9:  LPG_item ::= ERROR_KEY$ error_segment END_KEY_OPT$
             //
             case 9: {
                 setResult(
@@ -7973,7 +7944,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 10:  JikesPG_item ::= EXPORT_KEY$ export_segment END_KEY_OPT$
+            // Rule 10:  LPG_item ::= EXPORT_KEY$ export_segment END_KEY_OPT$
             //
             case 10: {
                 setResult(
@@ -7983,7 +7954,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 11:  JikesPG_item ::= GLOBALS_KEY$ globals_segment END_KEY_OPT$
+            // Rule 11:  LPG_item ::= GLOBALS_KEY$ globals_segment END_KEY_OPT$
             //
             case 11: {
                 setResult(
@@ -7993,7 +7964,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 12:  JikesPG_item ::= HEADERS_KEY$ headers_segment END_KEY_OPT$
+            // Rule 12:  LPG_item ::= HEADERS_KEY$ headers_segment END_KEY_OPT$
             //
             case 12: {
                 setResult(
@@ -8003,7 +7974,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 13:  JikesPG_item ::= IDENTIFIER_KEY$ identifier_segment END_KEY_OPT$
+            // Rule 13:  LPG_item ::= IDENTIFIER_KEY$ identifier_segment END_KEY_OPT$
             //
             case 13: {
                 setResult(
@@ -8013,7 +7984,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 14:  JikesPG_item ::= IMPORT_KEY$ import_segment END_KEY_OPT$
+            // Rule 14:  LPG_item ::= IMPORT_KEY$ import_segment END_KEY_OPT$
             //
             case 14: {
                 setResult(
@@ -8023,7 +7994,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 15:  JikesPG_item ::= INCLUDE_KEY$ include_segment END_KEY_OPT$
+            // Rule 15:  LPG_item ::= INCLUDE_KEY$ include_segment END_KEY_OPT$
             //
             case 15: {
                 setResult(
@@ -8033,7 +8004,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 16:  JikesPG_item ::= KEYWORDS_KEY$ keywords_segment END_KEY_OPT$
+            // Rule 16:  LPG_item ::= KEYWORDS_KEY$ keywords_segment END_KEY_OPT$
             //
             case 16: {
                 setResult(
@@ -8043,7 +8014,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 17:  JikesPG_item ::= NAMES_KEY$ names_segment END_KEY_OPT$
+            // Rule 17:  LPG_item ::= NAMES_KEY$ names_segment END_KEY_OPT$
             //
             case 17: {
                 setResult(
@@ -8053,7 +8024,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 18:  JikesPG_item ::= NOTICE_KEY$ notice_segment END_KEY_OPT$
+            // Rule 18:  LPG_item ::= NOTICE_KEY$ notice_segment END_KEY_OPT$
             //
             case 18: {
                 setResult(
@@ -8063,7 +8034,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 19:  JikesPG_item ::= RULES_KEY$ rules_segment END_KEY_OPT$
+            // Rule 19:  LPG_item ::= RULES_KEY$ rules_segment END_KEY_OPT$
             //
             case 19: {
                 setResult(
@@ -8073,7 +8044,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 20:  JikesPG_item ::= START_KEY$ start_segment END_KEY_OPT$
+            // Rule 20:  LPG_item ::= START_KEY$ start_segment END_KEY_OPT$
             //
             case 20: {
                 setResult(
@@ -8083,7 +8054,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 21:  JikesPG_item ::= TERMINALS_KEY$ terminals_segment END_KEY_OPT$
+            // Rule 21:  LPG_item ::= TERMINALS_KEY$ terminals_segment END_KEY_OPT$
             //
             case 21: {
                 setResult(
@@ -8093,7 +8064,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 22:  JikesPG_item ::= TRAILERS_KEY$ trailers_segment END_KEY_OPT$
+            // Rule 22:  LPG_item ::= TRAILERS_KEY$ trailers_segment END_KEY_OPT$
             //
             case 22: {
                 setResult(
@@ -8103,7 +8074,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 23:  JikesPG_item ::= TYPES_KEY$ types_segment END_KEY_OPT$
+            // Rule 23:  LPG_item ::= TYPES_KEY$ types_segment END_KEY_OPT$
             //
             case 23: {
                 setResult(
@@ -8113,7 +8084,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 24:  JikesPG_item ::= RECOVER_KEY$ recover_segment END_KEY_OPT$
+            // Rule 24:  LPG_item ::= RECOVER_KEY$ recover_segment END_KEY_OPT$
             //
             case 24: {
                 setResult(
@@ -8123,7 +8094,7 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 25:  JikesPG_item ::= DISJOINTPREDECESSORSETS_KEY$ predecessor_segment END_KEY_OPT$
+            // Rule 25:  LPG_item ::= DISJOINTPREDECESSORSETS_KEY$ predecessor_segment END_KEY_OPT$
             //
             case 25: {
                 setResult(

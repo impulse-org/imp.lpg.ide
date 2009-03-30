@@ -473,7 +473,7 @@ public class LPGParserprs implements lpg.runtime.ParseTable, LPGParsersym {
             "BLOCK",
             "VBAR",
             "ERROR_TOKEN",
-            "JikesPG_item",
+            "LPG_item",
             "alias_segment",
             "define_segment",
             "eof_segment",
