@@ -60,8 +60,8 @@ public class TokenColorer implements ITokenColorer {
         if (((SimpleLPGParseController) controller).isKeyword(token.getKind()))
             return KEYWORD;
         if (token.getKind() == LPGParsersym.TK_SYMBOL) {
-            char ch= ((SimpleLPGParseController) controller).getParser()
-                    .getParseStream().getInputChars()[token.getStartOffset()];
+            int tokStartOffset= token.getStartOffset();
+            char ch= ((SimpleLPGParseController) controller).getParser().getIPrsStream().getInputChars()[tokStartOffset];
             if (ch == '\'' || ch == '"')
                 return LITERAL;
             return SYMBOL;
