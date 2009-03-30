@@ -1,14 +1,13 @@
 /*******************************************************************************
-* Copyright (c) 2007 IBM Corporation.
-* All rights reserved. This program and the accompanying materials
-* are made available under the terms of the Eclipse Public License v1.0
-* which accompanies this distribution, and is available at
-* http://www.eclipse.org/legal/epl-v10.html
-*
-* Contributors:
-*    Robert Fuhrer (rfuhrer@watson.ibm.com) - initial API and implementation
-
-*******************************************************************************/
+ * Copyright (c) 2007 IBM Corporation.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Robert Fuhrer (rfuhrer@watson.ibm.com) - initial API and implementation
+ *******************************************************************************/
 
 package org.eclipse.imp.lpg.actions;
 
@@ -21,7 +20,7 @@ import org.eclipse.imp.lpg.parser.ASTUtils;
 import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
 import org.eclipse.imp.lpg.parser.LPGParser.IASTNodeToken;
 import org.eclipse.imp.lpg.parser.LPGParser.IsymWithAttrs;
-import org.eclipse.imp.lpg.parser.LPGParser.JikesPG;
+import org.eclipse.imp.lpg.parser.LPGParser.LPG;
 import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
 import org.eclipse.imp.lpg.parser.LPGParser.rule;
 import org.eclipse.imp.lpg.parser.LPGParser.ruleList;
@@ -40,189 +39,191 @@ public class GenerateSentenceAction extends TextEditorAction {
     private final IFile fGrammarFile;
     private final ASTNode fNode;
     private final ASTNode fRoot;
-    private final Set fRecursiveSet= new HashSet();
+    private final Set<nonTerm> fRecursiveSet= new HashSet<nonTerm>();
     private IParseController parseController;
 
     public GenerateSentenceAction(UniversalEditor editor) {
-	super(LanguageActionContributor.ResBundle, "generateSentence.", editor);
+        super(LanguageActionContributor.ResBundle, "generateSentence.", editor);
 
-	IEditorInput input= editor.getEditorInput();
+        IEditorInput input= editor.getEditorInput();
 
-	if (input instanceof IFileEditorInput) {
-	    IFileEditorInput fileInput= (IFileEditorInput) input;
+        if (input instanceof IFileEditorInput) {
+            IFileEditorInput fileInput= (IFileEditorInput) input;
 
-	    fGrammarFile= fileInput.getFile();
-	    fRoot= getAST(editor);
-	    fNode= findNode(editor);
-	} else {
-	    fGrammarFile= null;
-	    fRoot= null;
-	    fNode= null;
-	}
+            fGrammarFile= fileInput.getFile();
+            fRoot= getAST(editor);
+            fNode= findNode(editor);
+        } else {
+            fGrammarFile= null;
+            fRoot= null;
+            fNode= null;
+        }
     }
 
     public void run() {
-	UniversalEditor editor= (UniversalEditor) this.getTextEditor();
-	Object nt;
+        UniversalEditor editor= (UniversalEditor) this.getTextEditor();
+        Object nt;
 
-	parseController= editor.getParseController();
-	if (fNode instanceof symWithAttrs1) {
-	    symWithAttrs1 sym= (symWithAttrs1) fNode;
-	    nt= ASTUtils.findDefOf((IASTNodeToken) sym, (JikesPG) fRoot, parseController);
-	} else if (fNode instanceof IASTNodeToken) {
-	    IASTNodeToken tok= (IASTNodeToken) fNode;
-	    nt= ASTUtils.findDefOf(tok, (JikesPG) fRoot, parseController);
-	} else
-	    nt= fNode;
-	if (!(nt instanceof nonTerm)) {
-	    MessageDialog.openError(editor.getSite().getShell(), "Error", "Can only generate sentence for a non-terminal.");
-	    return;
-	}
-	nonTerm fNonTerm= (nonTerm) nt;
+        parseController= editor.getParseController();
+        if (fNode instanceof symWithAttrs1) {
+            symWithAttrs1 sym= (symWithAttrs1) fNode;
+            nt= ASTUtils.findDefOf((IASTNodeToken) sym, (LPG) fRoot, parseController);
+        } else if (fNode instanceof IASTNodeToken) {
+            IASTNodeToken tok= (IASTNodeToken) fNode;
+            nt= ASTUtils.findDefOf(tok, (LPG) fRoot, parseController);
+        } else
+            nt= fNode;
+        if (!(nt instanceof nonTerm)) {
+            MessageDialog.openError(editor.getSite().getShell(), "Error", "Can only generate sentence for a non-terminal.");
+            return;
+        }
+        nonTerm fNonTerm= (nonTerm) nt;
 
-	String result= generateSentenceFor(fNonTerm);
+        String result= generateSentenceFor(fNonTerm);
 
-	MessageDialog.openInformation(editor.getSite().getShell(), "Sentence", result);
+        MessageDialog.openInformation(editor.getSite().getShell(), "Sentence", result);
     }
 
     private String generateSentenceFor(ASTNode node) {
-	if (node instanceof nonTerm) {
-	    return generateSentenceFor((nonTerm) node);
-	} else if (node instanceof terminal) {
-	    terminal term= (terminal) node;
-	    return term.getLeftIToken().toString();
-	} else if (node instanceof IASTNodeToken) {
-	    final String tokStr= ((IASTNodeToken) node).toString();
-	    if (!tokStr.equals("$empty"))
-		return tokStr;
-	    return "";
-	} else if (node instanceof rule)
-	    return generateSentenceFor((rule) node);
-	return "??";
+        if (node instanceof nonTerm) {
+            return generateSentenceFor((nonTerm) node);
+        } else if (node instanceof terminal) {
+            terminal term= (terminal) node;
+            return term.getLeftIToken().toString();
+        } else if (node instanceof IASTNodeToken) {
+            final String tokStr= ((IASTNodeToken) node).toString();
+            if (!tokStr.equals("$empty"))
+                return tokStr;
+            return "";
+        } else if (node instanceof rule)
+            return generateSentenceFor((rule) node);
+        return "??";
     }
 
     private String generateSentenceFor(nonTerm nonTerm) {
-	ruleList rhSides= nonTerm.getruleList();
-	StringBuffer buff= new StringBuffer();
+        ruleList rhSides= nonTerm.getruleList();
+        StringBuffer buff= new StringBuffer();
 
-	if (isRecursive(nonTerm)) {
-	    if (!fRecursiveSet.contains(nonTerm)) {
-		fRecursiveSet.add(nonTerm);
-		buff.append(generateSentenceFor(findARecursiveCase(nonTerm)));
-	    } else
-		buff.append(generateSentenceFor(findRootCase(nonTerm)));
-	} else {
-	    // Arbitrarily pick the first production rule
-	    buff.append(generateSentenceFor(rhSides.getElementAt(0)));
-	}
-	return buff.toString();
+        if (isRecursive(nonTerm)) {
+            if (!fRecursiveSet.contains(nonTerm)) {
+                fRecursiveSet.add(nonTerm);
+                buff.append(generateSentenceFor(findARecursiveCase(nonTerm)));
+            } else
+                buff.append(generateSentenceFor(findRootCase(nonTerm)));
+        } else {
+            // Arbitrarily pick the first production rule
+            buff.append(generateSentenceFor(rhSides.getElementAt(0)));
+        }
+        return buff.toString();
     }
 
     private String generateSentenceFor(rule rhsElem) {
-	StringBuffer buff= new StringBuffer();
-	symWithAttrsList symList= rhsElem.getsymWithAttrsList();
+        StringBuffer buff= new StringBuffer();
+        symWithAttrsList symList= rhsElem.getsymWithAttrsList();
 
-	for(int symIdx= 0; symIdx < symList.size(); symIdx++) {
-	    final IsymWithAttrs sym= symList.getsymWithAttrsAt(symIdx);
-	    Object def= ASTUtils.findDefOf((IASTNodeToken) sym, (JikesPG) fRoot, parseController);
+        for(int symIdx= 0; symIdx < symList.size(); symIdx++) {
+            final IsymWithAttrs sym= symList.getsymWithAttrsAt(symIdx);
+            Object def= ASTUtils.findDefOf((IASTNodeToken) sym, (LPG) fRoot, parseController);
 
-	    if (def != null)
-		buff.append(generateSentenceFor((ASTNode) def));
-	    else
-		buff.append(generateSentenceFor((ASTNode) sym));
-	    if (symIdx < symList.size() - 1)
-		buff.append(' ');
-	}
-	return buff.toString();
+            if (def != null)
+                buff.append(generateSentenceFor((ASTNode) def));
+            else
+                buff.append(generateSentenceFor((ASTNode) sym));
+            if (symIdx < symList.size() - 1)
+                buff.append(' ');
+        }
+        return buff.toString();
     }
 
     /**
-     * @return The "root case," i.e., a production rule for the given non-terminal that is non-recursive
+     * @return The "root case," i.e., a production rule for the given
+     *         non-terminal that is non-recursive
      */
     private rule findRootCase(nonTerm nonTerm) {
-	String nonTermName= stripAnnotations(nonTerm.getruleNameWithAttributes().getSYMBOL().toString());
-	ruleList rhSides= nonTerm.getruleList();
-	for(int i=0; i < rhSides.size(); i++) {
-	    rule rhsElem= (rule) rhSides.getElementAt(i);
-	    symWithAttrsList symList= rhsElem.getsymWithAttrsList();
-	    boolean recursive= false;
+        String nonTermName= stripAnnotations(nonTerm.getruleNameWithAttributes().getSYMBOL().toString());
+        ruleList rhSides= nonTerm.getruleList();
+        for(int i= 0; i < rhSides.size(); i++) {
+            rule rhsElem= (rule) rhSides.getElementAt(i);
+            symWithAttrsList symList= rhsElem.getsymWithAttrsList();
+            boolean recursive= false;
 
-	    for(int j= 0; j < symList.size(); j++) {
-		IsymWithAttrs sym= symList.getsymWithAttrsAt(j);
-		String symName= stripAnnotations(sym.getLeftIToken().toString());
+            for(int j= 0; j < symList.size(); j++) {
+                IsymWithAttrs sym= symList.getsymWithAttrsAt(j);
+                String symName= stripAnnotations(sym.getLeftIToken().toString());
 
-		if (symName.equals(nonTermName)) {
-		    recursive= true;
-		    break;
-		}
-	    }
-	    if (!recursive)
-		return rhsElem;
-	}
-	return null;
+                if (symName.equals(nonTermName)) {
+                    recursive= true;
+                    break;
+                }
+            }
+            if (!recursive)
+                return rhsElem;
+        }
+        return null;
     }
 
     private rule findARecursiveCase(nonTerm nonTerm) {
-	String nonTermName= stripAnnotations(nonTerm.getruleNameWithAttributes().getSYMBOL().toString());
-	ruleList rhSides= nonTerm.getruleList();
-	for(int i=0; i < rhSides.size(); i++) {
-	    rule rhsElem= (rule) rhSides.getElementAt(i);
-	    symWithAttrsList symList= rhsElem.getsymWithAttrsList();
+        String nonTermName= stripAnnotations(nonTerm.getruleNameWithAttributes().getSYMBOL().toString());
+        ruleList rhSides= nonTerm.getruleList();
+        for(int i= 0; i < rhSides.size(); i++) {
+            rule rhsElem= (rule) rhSides.getElementAt(i);
+            symWithAttrsList symList= rhsElem.getsymWithAttrsList();
 
-	    for(int j= 0; j < symList.size(); j++) {
-		IsymWithAttrs sym= symList.getsymWithAttrsAt(j);
-		String symName= stripAnnotations(sym.getLeftIToken().toString());
+            for(int j= 0; j < symList.size(); j++) {
+                IsymWithAttrs sym= symList.getsymWithAttrsAt(j);
+                String symName= stripAnnotations(sym.getLeftIToken().toString());
 
-		if (symName.equals(nonTermName))
-		    return rhsElem;
-	    }
-	}
-	return null;
+                if (symName.equals(nonTermName))
+                    return rhsElem;
+            }
+        }
+        return null;
     }
 
     private String stripAnnotations(String symbol) {
-	String result= symbol;
-	while (result.lastIndexOf('$') >= 0)
-	    result= result.substring(0, result.lastIndexOf('$'));
-	return result;
+        String result= symbol;
+        while (result.lastIndexOf('$') >= 0)
+            result= result.substring(0, result.lastIndexOf('$'));
+        return result;
     }
 
     private boolean isRecursive(nonTerm nonTerm) {
-	String nonTermName= stripAnnotations(nonTerm.getruleNameWithAttributes().getSYMBOL().toString());
-	ruleList rhSides= nonTerm.getruleList();
-	for(int i=0; i < rhSides.size(); i++) {
-	    rule rule= (rule) rhSides.getElementAt(i);
-	    symWithAttrsList symList= rule.getsymWithAttrsList();
+        String nonTermName= stripAnnotations(nonTerm.getruleNameWithAttributes().getSYMBOL().toString());
+        ruleList rhSides= nonTerm.getruleList();
+        for(int i= 0; i < rhSides.size(); i++) {
+            rule rule= (rule) rhSides.getElementAt(i);
+            symWithAttrsList symList= rule.getsymWithAttrsList();
 
-	    for(int j= 0; j < symList.size(); j++) {
-		IsymWithAttrs sym= symList.getsymWithAttrsAt(j);
-		String symName= stripAnnotations(sym.getLeftIToken().toString());
+            for(int j= 0; j < symList.size(); j++) {
+                IsymWithAttrs sym= symList.getsymWithAttrsAt(j);
+                String symName= stripAnnotations(sym.getLeftIToken().toString());
 
-		if (symName.equals(nonTermName))
-		    return true;
-	    }
-	}
-	return false;
+                if (symName.equals(nonTermName))
+                    return true;
+            }
+        }
+        return false;
     }
 
-    // SMS 27 Apr 2008:  unused
-//  private boolean isEmpty(rule rhsElem) {
-//	symWithAttrsList symList= rhsElem.getsymWithAttrsList();
-//
-//	return (symList.size() == 1 && symList.getsymWithAttrsAt(0).getLeftIToken().toString().equals("$empty"));
-//    }
+    // SMS 27 Apr 2008: unused
+    // private boolean isEmpty(rule rhsElem) {
+    // symWithAttrsList symList= rhsElem.getsymWithAttrsList();
+    //
+    // return (symList.size() == 1 &&
+    // symList.getsymWithAttrsAt(0).getLeftIToken().toString().equals("$empty"));
+    // }
 
     private ASTNode getAST(UniversalEditor editor) {
-	IParseController parseController= editor.getParseController();
+        IParseController parseController= editor.getParseController();
 
-	return (ASTNode) parseController.getCurrentAst();
+        return (ASTNode) parseController.getCurrentAst();
     }
 
     private ASTNode findNode(UniversalEditor editor) {
-	Point sel= editor.getSelection();
-	IParseController parseController= editor.getParseController();
-	ISourcePositionLocator locator= parseController.getNodeLocator();
+        Point sel= editor.getSelection();
+        IParseController parseController= editor.getParseController();
+        ISourcePositionLocator locator= parseController.getSourcePositionLocator();
 
-	return (ASTNode) locator.findNode(fRoot, sel.x);
+        return (ASTNode) locator.findNode(fRoot, sel.x);
     }
 }
