@@ -13,18 +13,20 @@
 package org.eclipse.imp.lpg.parser;
 
 import lpg.runtime.*;
+
 import org.eclipse.imp.lpg.parser.LPGParser.*;
+import org.eclipse.imp.parser.IParser;
 
 public abstract class JavaActionBlockVisitor extends AbstractVisitor
 {
     private JavaLexer javaLexer = new JavaLexer(); // lexer can be shared.
     private JavaParser javaParser = new JavaParser();
 
-    public void reset(LPGParser env)
+    public void reset(IParser env)
     {
-    	PrsStream prs_stream = env.getParseStream();
+    	PrsStream prs_stream = (PrsStream) env.getIPrsStream();
     	javaLexer.reset(prs_stream.getInputChars(), prs_stream.getFileName());
-    	javaLexer.getLexStream().setMessageHandler(prs_stream.getMessageHandler());
+    	javaLexer.getILexStream().setMessageHandler(prs_stream.getMessageHandler());
    	}
          
     protected void parseClassBodyDeclarationsopt(action_segmentList list) {
@@ -35,8 +37,8 @@ public abstract class JavaActionBlockVisitor extends AbstractVisitor
     protected void parseClassBodyDeclarationsopt(action_segment n) {
         int start_offset = n.getBLOCK().getStartOffset() + 2,
             end_offset   = n.getBLOCK().getEndOffset() - 2;
-        javaParser.reset(javaLexer.getLexStream()); // allocate a new parse stream.
-        javaLexer.lexer(javaParser.getParseStream(), start_offset, end_offset);
+        javaParser.reset(javaLexer.getILexStream()); // allocate a new parse stream.
+        javaLexer.lexer(javaParser.getIPrsStream(), start_offset, end_offset);
         n.setAst(javaParser.parseClassBodyDeclarationsopt());
     }
 
@@ -48,16 +50,16 @@ public abstract class JavaActionBlockVisitor extends AbstractVisitor
     protected void parseLPGUserAction(action_segment n) {
         int start_offset = n.getBLOCK().getStartOffset() + 2,
             end_offset   = n.getBLOCK().getEndOffset() - 2;
-        javaParser.reset(javaLexer.getLexStream()); // allocate a new parse stream.
-        javaLexer.lexer(javaParser.getParseStream(), start_offset, end_offset);
+        javaParser.reset(javaLexer.getILexStream()); // allocate a new parse stream.
+        javaLexer.lexer(javaParser.getIPrsStream(), start_offset, end_offset);
         n.setAst(javaParser.parseLPGUserAction());
     }
 
     protected void parse(action_segment n) {
         int start_offset = n.getBLOCK().getStartOffset() + 2,
             end_offset   = n.getBLOCK().getEndOffset() - 2;
-        javaParser.reset(javaLexer.getLexStream()); // allocate a new parse stream.
-        javaLexer.lexer(javaParser.getParseStream(), start_offset, end_offset);
+        javaParser.reset(javaLexer.getILexStream()); // allocate a new parse stream.
+        javaLexer.lexer(javaParser.getIPrsStream(), start_offset, end_offset);
         n.setAst(javaParser.parser());
     }
 
