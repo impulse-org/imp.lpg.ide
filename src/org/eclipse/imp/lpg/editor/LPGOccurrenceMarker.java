@@ -20,7 +20,7 @@ import lpg.runtime.IToken;
 import org.eclipse.imp.lpg.parser.ASTUtils;
 import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
 import org.eclipse.imp.lpg.parser.LPGParser.IASTNodeToken;
-import org.eclipse.imp.lpg.parser.LPGParser.JikesPG;
+import org.eclipse.imp.lpg.parser.LPGParser.LPG;
 import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
 import org.eclipse.imp.lpg.parser.LPGParser.terminal;
 import org.eclipse.imp.lpg.parser.LPGParser.terminal_symbol0;
@@ -40,7 +40,7 @@ public class LPGOccurrenceMarker implements IOccurrenceMarker {
     public List<Object> getOccurrencesOf(IParseController parseController,
             Object entity) {
         ASTNode node= (ASTNode) entity;
-        JikesPG root= (JikesPG) parseController.getCurrentAst();
+        LPG root= (LPG) parseController.getCurrentAst();
         List<Object> result;
 
         System.out.println();
@@ -53,7 +53,7 @@ public class LPGOccurrenceMarker implements IOccurrenceMarker {
             String nodeString= node.toString();
             if (parseController instanceof SimpleLPGParseController) {
                 SimpleLPGParseController lpgParseController= (SimpleLPGParseController) parseController;
-                ArrayList<IToken> tokens= lpgParseController.getParser().getParseStream().getTokens();
+                ArrayList<IToken> tokens= lpgParseController.getParser().getIPrsStream().getTokens();
                 for(IToken t : tokens) {
                     if (t.toString().equals(nodeString)) {
                         result.add(t);

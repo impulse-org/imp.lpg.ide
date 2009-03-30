@@ -50,7 +50,7 @@ public class LPGFormatter implements ILanguageService, ISourceFormatter {
         final Set fAdjunctTokens= new HashSet();
         final ASTNode[] fAdjunctNode= new ASTNode[1];
         final List/*<IToken>*/ fFollowingAdjuncts= new ArrayList();
-        JikesPG root= (JikesPG) parseController.getCurrentAst();
+        LPG root= (LPG) parseController.getCurrentAst();
 
         root.accept(new LPGParser.AbstractVisitor() {
             private int prodCount;

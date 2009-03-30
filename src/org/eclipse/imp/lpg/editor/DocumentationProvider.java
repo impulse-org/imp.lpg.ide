@@ -17,7 +17,7 @@ import org.eclipse.imp.lpg.parser.ASTUtils;
 import org.eclipse.imp.lpg.parser.ParseController;
 import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
 import org.eclipse.imp.lpg.parser.LPGParser.IASTNodeToken;
-import org.eclipse.imp.lpg.parser.LPGParser.JikesPG;
+import org.eclipse.imp.lpg.parser.LPGParser.LPG;
 import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
 import org.eclipse.imp.lpg.parser.LPGParser.terminal;
 import org.eclipse.imp.model.ICompilationUnit;
@@ -33,7 +33,7 @@ public class DocumentationProvider implements IDocumentationProvider, ILanguageS
         if (ast == null) return null;
 
         if (target instanceof IASTNodeToken) {
-            ASTNode def= (ASTNode) ASTUtils.findDefOf((IASTNodeToken) target, (JikesPG) ast, parseController);
+            ASTNode def= (ASTNode) ASTUtils.findDefOf((IASTNodeToken) target, (LPG) ast, parseController);
 
             if (def != null)
                 return getSubstring(parseController, def.getLeftIToken().getStartOffset(), def.getRightIToken().getEndOffset());
@@ -55,6 +55,6 @@ public class DocumentationProvider implements IDocumentationProvider, ILanguageS
     }
 
     public static String getSubstring(IParseController parseController, int start, int end) {
-        return new String(((ParseController) parseController).getParser().getParseStream().getInputChars(), start, end-start+1);
+        return new String(((ParseController) parseController).getParser().getIPrsStream().getInputChars(), start, end-start+1);
     }
 }

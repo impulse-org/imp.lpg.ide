@@ -34,9 +34,9 @@ import org.eclipse.imp.lpg.parser.LPGParser.HeadersSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.IdentifierSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.ImportSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.IncludeSeg;
-import org.eclipse.imp.lpg.parser.LPGParser.JikesPG;
-import org.eclipse.imp.lpg.parser.LPGParser.JikesPG_itemList;
 import org.eclipse.imp.lpg.parser.LPGParser.KeywordsSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.LPG;
+import org.eclipse.imp.lpg.parser.LPGParser.LPG_itemList;
 import org.eclipse.imp.lpg.parser.LPGParser.NoticeSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.RulesSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.SYMBOLList;
@@ -142,7 +142,7 @@ public class LPGLabelProvider implements ILabelProvider {
     }
 
     public static String getLabelFor(ASTNode n) {
-        if (n instanceof JikesPG)
+        if (n instanceof LPG)
             return "grammar";
         if (n instanceof option_specList)
             return "options";
@@ -162,7 +162,7 @@ public class LPGLabelProvider implements ILabelProvider {
             return "imports";
         if (n instanceof IncludeSeg)
             return "includes";
-        if (n instanceof JikesPG_itemList)
+        if (n instanceof LPG_itemList)
             return "item list";
         if (n instanceof KeywordsSeg)
             return "keywords";
