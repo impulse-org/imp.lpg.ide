@@ -7,7 +7,6 @@
 *
 * Contributors:
 *    Robert Fuhrer (rfuhrer@watson.ibm.com) - initial API and implementation
-
 *******************************************************************************/
 
 package org.eclipse.imp.lpg.editor;
@@ -18,104 +17,82 @@ import java.util.List;
 import lpg.runtime.ILexStream;
 
 import org.eclipse.imp.lpg.parser.LPGParser.*;
-import org.eclipse.imp.services.base.FolderBase;
+import org.eclipse.imp.services.base.LPGFolderBase;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 
-public class FoldingUpdater extends FolderBase {
+public class FoldingUpdater extends LPGFolderBase {
 
     private class FoldingVisitor extends AbstractVisitor {
         public void unimplementedVisitor(String s) { }
 
-        // TODO Make an LPG-specific extension of FolderBase that knows about IAst's and IToken's, and hoist this code up there.
-        private void makeAnnotation(ASTNode n) {
-            int start= n.getLeftIToken().getStartOffset();
-            int len= n.getRightIToken().getEndOffset() - start + 1;
-
-            // Following is necessary if one edits an empty grammar file; there's an
-            // options segment with an empty textual extent, which causes Position()
-            // a heartache.
-            if (len <= 0)
-                return;
-
-            ILexStream ls= n.getLeftIToken().getIPrsStream().getILexStream();
-
-            while (start + len < ls.getStreamLength() && (ls.getCharValue(start+len) == ' ' || ls.getCharValue(start+len) == '\t')) {
-                len++;
-            }
-            // For some reason, simply testing against Character.LINE_SEPARATOR here doesn't work.
-            if (start + len < ls.getStreamLength() && (ls.getCharValue(start+len) == '\n' || ls.getCharValue(start+len) == '\r'))
-                len++;
-            FoldingUpdater.this.makeAnnotation(start, len);
-        }
-
         public boolean visit(option_specList n) {
-            makeAnnotation(n);
+            makeFoldable(n);
             return false;
         }
 
         public boolean visit(AliasSeg n) {
-            makeAnnotation(n);
+            makeFoldable(n);
             return false;
         }
 
         public boolean visit(DefineSeg n) {
-            makeAnnotation(n);
+            makeFoldable(n);
             return false;
         }
 
         public boolean visit(ExportSeg n) {
-            makeAnnotation(n);
+            makeFoldable(n);
             return false;
         }
 
         public boolean visit(GlobalsSeg n) {
-            makeAnnotation(n);
+            makeFoldable(n);
             return false;
         }
 
         public boolean visit(HeadersSeg n) {
-            makeAnnotation(n);
+            makeFoldable(n);
             return false;
         }
 
         public boolean visit(IdentifierSeg n) {
-            makeAnnotation(n);
+            makeFoldable(n);
             return false;
         }
 
         public boolean visit(ImportSeg n) {
-            makeAnnotation(n);
+            makeFoldable(n);
             return true;
         }
 
         public boolean visit(drop_command0 n) {
-            makeAnnotation(n);
+            makeFoldable(n);
             return false;
         }
 
         public boolean visit(drop_command1 n) {
-            makeAnnotation(n);
+            makeFoldable(n);
             return false;
         }
 
         public boolean visit(IncludeSeg n) {
-            makeAnnotation(n);
+            makeFoldable(n);
             return false;
         }
 
         public boolean visit(KeywordsSeg n) {
-            makeAnnotation(n);
+            makeFoldable(n);
             return false;
         }
 
         public boolean visit(NoticeSeg n) {
-            makeAnnotation(n);
+            makeFoldable(n);
             return false;
         }
 
         public boolean visit(RulesSeg n) {
-            makeAnnotation(n);
+            makeFoldable(n);
             return true;
         }
 
@@ -141,24 +118,25 @@ public class FoldingUpdater extends FolderBase {
         }
 
         public boolean visit(TerminalsSeg n) {
-            makeAnnotation(n);
+            makeFoldable(n);
             return false;
         }
 
         @Override
         public boolean visit(TrailersSeg n) {
-            makeAnnotation(n);
+            makeFoldable(n);
             return false;
         }
 
         public boolean visit(TypesSeg n) {
-            makeAnnotation(n);
+            makeFoldable(n);
             return false;
         }
     };
 
     public void sendVisitorToAST(HashMap<Annotation,Position> newAnnotations, List<Annotation> annotations, Object ast) {
         ASTNode theAST= (ASTNode) ast;
+        prsStream= theAST.getLeftIToken().getIPrsStream();
         FoldingVisitor foldingVisitor= new FoldingVisitor();
         theAST.accept(foldingVisitor);
     }
