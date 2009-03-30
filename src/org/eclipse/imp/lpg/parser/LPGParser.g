@@ -6,6 +6,7 @@
 
 %Globals
     /.import org.eclipse.imp.parser.IParser;
+    import org.eclipse.imp.parser.SymbolTable;
         import java.util.ArrayList;
         import java.util.List;
         import java.util.Map;
@@ -35,78 +36,48 @@
 %End
 
 %Start
-    JikesPG
+    LPG
 %End
 
 %Headers
     /.
-        public static class SymbolTable {
-            private Map<String,ASTNode> table = new HashMap<String,ASTNode>();
-
-            public void addDefinition(String name, ASTNode def) { table.put(name, def); }
-            public ASTNode lookup(String name) { return table.get(name); }
-            public List<String> allSymbolsOfType(Class type) {
-                List<String> result= new ArrayList<String>();
-
-                for(String sym: table.keySet()) {
-                    ASTNode def= table.get(sym);
-
-                    if (type.isInstance(def))
-                        result.add(sym);
-                }
-                return result;
-            }
-            public <T> List<T> allDefsOfType(Class<T> type) {
-                List<T> result = new ArrayList<T>();
-                
-                for(String sym: table.keySet()) {
-                    ASTNode def= table.get(sym);
-
-                    if (type.isInstance(def))
-                        result.add((T) def);
-                }
-                return result;
-            }
-            public Set<String> allSymbols() { return table.keySet(); }
-        }
-        protected static SymbolTable symtab;
-        { symtab = new SymbolTable(); }
+        protected static SymbolTable<ASTNode> symtab= new SymbolTable<ASTNode>();
      ./
 %End
 
 %Rules
-    JikesPG ::= options_segment JikesPG_INPUT
+    LPG ::= options_segment LPG_INPUT
     /.
-        public SymbolTable symbolTable;
+        public SymbolTable<ASTNode> symbolTable;
         void initialize() { symbolTable = symtab; }
      ./
 
-    JikesPG_INPUT$$JikesPG_item ::= %empty
-                                |   JikesPG_INPUT JikesPG_item
+    LPG_INPUT$$LPG_item ::= %empty
+                                |   LPG_INPUT LPG_item
 
     -- RMF 11/15/2006 - The following non-terminals should be renamed alias_segment_body, etc.
-    JikesPG_item$AliasSeg       ::= ALIAS_KEY$                   alias_segment       END_KEY_OPT$
-    JikesPG_item$AstSeg         ::= AST_KEY$                     ast_segment         END_KEY_OPT$
-    JikesPG_item$DefineSeg      ::= DEFINE_KEY$                  define_segment      END_KEY_OPT$
-    JikesPG_item$EofSeg         ::= EOF_KEY$                     eof_segment         END_KEY_OPT$
-    JikesPG_item$EolSeg         ::= EOL_KEY$                     eol_segment         END_KEY_OPT$
-    JikesPG_item$ErrorSeg       ::= ERROR_KEY$                   error_segment       END_KEY_OPT$
-    JikesPG_item$ExportSeg      ::= EXPORT_KEY$                  export_segment      END_KEY_OPT$
-    JikesPG_item$GlobalsSeg     ::= GLOBALS_KEY$                 globals_segment     END_KEY_OPT$
-    JikesPG_item$HeadersSeg     ::= HEADERS_KEY$                 headers_segment     END_KEY_OPT$
-    JikesPG_item$IdentifierSeg  ::= IDENTIFIER_KEY$              identifier_segment  END_KEY_OPT$
-    JikesPG_item$ImportSeg      ::= IMPORT_KEY$                  import_segment      END_KEY_OPT$
-    JikesPG_item$IncludeSeg     ::= INCLUDE_KEY$                 include_segment     END_KEY_OPT$
-    JikesPG_item$KeywordsSeg    ::= KEYWORDS_KEY$                keywords_segment    END_KEY_OPT$
-    JikesPG_item$NamesSeg       ::= NAMES_KEY$                   names_segment       END_KEY_OPT$
-    JikesPG_item$NoticeSeg      ::= NOTICE_KEY$                  notice_segment      END_KEY_OPT$
-    JikesPG_item$RulesSeg       ::= RULES_KEY$                   rules_segment       END_KEY_OPT$
-    JikesPG_item$StartSeg       ::= START_KEY$                   start_segment       END_KEY_OPT$
-    JikesPG_item$TerminalsSeg   ::= TERMINALS_KEY$               terminals_segment   END_KEY_OPT$
-    JikesPG_item$TrailersSeg    ::= TRAILERS_KEY$                trailers_segment    END_KEY_OPT$
-    JikesPG_item$TypesSeg       ::= TYPES_KEY$                   types_segment       END_KEY_OPT$
-    JikesPG_item$RecoverSeg     ::= RECOVER_KEY$                 recover_segment     END_KEY_OPT$
-    JikesPG_item$PredecessorSeg ::= DISJOINTPREDECESSORSETS_KEY$ predecessor_segment END_KEY_OPT$
+    LPG_item$AliasSeg       ::= ALIAS_KEY$                   alias_segment       END_KEY_OPT$
+    LPG_item$AstSeg         ::= AST_KEY$                     ast_segment         END_KEY_OPT$
+    LPG_item$DefineSeg      ::= DEFINE_KEY$                  define_segment      END_KEY_OPT$
+    LPG_item$EofSeg         ::= EOF_KEY$                     eof_segment         END_KEY_OPT$
+    LPG_item$EolSeg         ::= EOL_KEY$                     eol_segment         END_KEY_OPT$
+    LPG_item$ErrorSeg       ::= ERROR_KEY$                   error_segment       END_KEY_OPT$
+    LPG_item$ExportSeg      ::= EXPORT_KEY$                  export_segment      END_KEY_OPT$
+    LPG_item$GlobalsSeg     ::= GLOBALS_KEY$                 globals_segment     END_KEY_OPT$
+    LPG_item$HeadersSeg     ::= HEADERS_KEY$                 headers_segment     END_KEY_OPT$
+    LPG_item$IdentifierSeg  ::= IDENTIFIER_KEY$              identifier_segment  END_KEY_OPT$
+    LPG_item$ImportSeg      ::= IMPORT_KEY$                  import_segment      END_KEY_OPT$
+    LPG_item$IncludeSeg     ::= INCLUDE_KEY$                 include_segment     END_KEY_OPT$
+    LPG_item$KeywordsSeg    ::= KEYWORDS_KEY$                keywords_segment    END_KEY_OPT$
+    LPG_item$NamesSeg       ::= NAMES_KEY$                   names_segment       END_KEY_OPT$
+    LPG_item$NoticeSeg      ::= NOTICE_KEY$                  notice_segment      END_KEY_OPT$
+    LPG_item$RulesSeg       ::= RULES_KEY$                   rules_segment       END_KEY_OPT$
+    LPG_item$StartSeg       ::= START_KEY$                   start_segment       END_KEY_OPT$
+    LPG_item$TerminalsSeg   ::= TERMINALS_KEY$               terminals_segment   END_KEY_OPT$
+    LPG_item$TrailersSeg    ::= TRAILERS_KEY$                trailers_segment    END_KEY_OPT$
+    LPG_item$TypesSeg       ::= TYPES_KEY$                   types_segment       END_KEY_OPT$
+    LPG_item$RecoverSeg     ::= RECOVER_KEY$                 recover_segment     END_KEY_OPT$
+    LPG_item$PredecessorSeg ::= DISJOINTPREDECESSORSETS_KEY$ predecessor_segment END_KEY_OPT$
 
     -- %options
     options_segment$$option_spec ::= %empty | options_segment option_spec
@@ -145,7 +116,7 @@
     define_segment$$defineSpec ::= defineSpec | define_segment defineSpec
     defineSpec ::= macro_name_symbol macro_segment
     /.
-        void initialize() { symtab.addDefinition(_macro_name_symbol.toString(), this); }
+        void initialize() { symtab.put(_macro_name_symbol.toString(), this); }
      ./
 
     macro_name_symbol ::= MACRO_NAME
@@ -217,7 +188,7 @@
 
     nonTerm ::= ruleNameWithAttributes produces ruleList
     /.
-        void initialize() { symtab.addDefinition(_ruleNameWithAttributes.getSYMBOL().toString(), this); }
+        void initialize() { symtab.put(_ruleNameWithAttributes.getSYMBOL().toString(), this); }
      ./
 
     -- TODO Rename to nonTermNameWithAttributes
@@ -275,13 +246,13 @@
 
     terminal ::= terminal_symbol optTerminalAlias
     /.
-        void initialize() { symtab.addDefinition(_terminal_symbol.toString(), this); }
+        void initialize() { symtab.put(_terminal_symbol.toString(), this); }
      ./
     optTerminalAlias ::= %empty | produces name
 
     terminal_symbol ::= SYMBOL
     /.
-        void initialize() { symtab.addDefinition(getSYMBOL().toString(), this); }
+        void initialize() { symtab.put(getSYMBOL().toString(), this); }
      ./
     terminal_symbol ::= MACRO_NAME -- warning: escape prefix used in symbol
 
@@ -305,7 +276,7 @@
     recover_symbol ::= SYMBOL
     /.
         void initialize() {
-           symtab.addDefinition(getSYMBOL().toString(), this);
+           symtab.put(getSYMBOL().toString(), this);
         }
      ./
 
