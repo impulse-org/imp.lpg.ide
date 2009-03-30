@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import lpg.runtime.IPrsStream;
 import lpg.runtime.IToken;
 import lpg.runtime.PrsStream;
 
@@ -37,8 +38,7 @@ import org.eclipse.imp.lpg.parser.ASTUtils;
 import org.eclipse.imp.lpg.parser.ParseController;
 import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
 import org.eclipse.imp.lpg.parser.LPGParser.IsymWithAttrs;
-import org.eclipse.imp.lpg.parser.LPGParser.JikesPG;
-import org.eclipse.imp.lpg.parser.LPGParser.JikesPG_itemList;
+import org.eclipse.imp.lpg.parser.LPGParser.LPG;
 import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
 import org.eclipse.imp.lpg.parser.LPGParser.ruleList;
 import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs0;
@@ -66,7 +66,7 @@ public class LPGDocBuilder extends BuilderBase {
 
     public static final Language LANGUAGE= LanguageRegistry.findLanguage(LANGUAGE_NAME);
 
-    private JikesPG fASTRoot;
+    private LPG fASTRoot;
 
     protected PluginBase getPlugin() {
         return LPGRuntimePlugin.getInstance();
@@ -153,7 +153,7 @@ public class LPGDocBuilder extends BuilderBase {
             // visit AST and generate the HTML doc file...
             List<nonTerm> nonTerms= ASTUtils.getNonTerminals(fASTRoot);
             StringBuilder sb= new StringBuilder();
-            PrsStream parseStream= fASTRoot.getEnvironment().getParseStream();
+            IPrsStream parseStream= fASTRoot.getEnvironment().getIPrsStream();
 
             Map<String,nonTerm> nonTermMap= new HashMap<String, nonTerm>();
             for(nonTerm nt : nonTerms) {
@@ -232,7 +232,7 @@ public class LPGDocBuilder extends BuilderBase {
         sb.append("</html>"); sb.append(NL);
     }
 
-    private void generateNonTermDoc(nonTerm nonTerm, StringBuilder sb, Map<String, nonTerm> nonTermMap, PrsStream parseStream) {
+    private void generateNonTermDoc(nonTerm nonTerm, StringBuilder sb, Map<String, nonTerm> nonTermMap, IPrsStream parseStream) {
         String ntName= nonTerm.getruleNameWithAttributes().getSYMBOL().toString();
         String ntDoc= findNonTermDocComment(nonTerm, parseStream);
 
@@ -299,7 +299,7 @@ public class LPGDocBuilder extends BuilderBase {
         sb.append("</a>");
     }
 
-    private String findNonTermDocComment(nonTerm nonTerm, PrsStream parseStream) {
+    private String findNonTermDocComment(nonTerm nonTerm, IPrsStream parseStream) {
         IToken[] precAdjuncts= parseStream.getPrecedingAdjuncts(nonTerm.getLeftIToken().getTokenIndex());
         for(int i= 0; i < precAdjuncts.length; i++) {
             String adjStr= precAdjuncts[i].toString();
@@ -325,7 +325,7 @@ public class LPGDocBuilder extends BuilderBase {
             parseController.initialize(file.getProjectRelativePath(), sourceProject, markerCreator);
 
             String contents= BuilderUtils.getFileContents(file);
-            fASTRoot= (JikesPG) parseController.parse(contents, false, monitor);
+            fASTRoot= (LPG) parseController.parse(contents, monitor);
         } catch (ModelException e) {
             getPlugin().logException("Example builder returns without parsing due to a ModelException", e);
         }
