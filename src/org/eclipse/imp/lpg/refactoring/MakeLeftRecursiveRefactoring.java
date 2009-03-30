@@ -59,7 +59,7 @@ public class MakeLeftRecursiveRefactoring extends Refactoring {
 	Point sel= editor.getSelection();
 	IParseController parseController= editor.getParseController();
 	ASTNode root= (ASTNode) parseController.getCurrentAst();
-	ISourcePositionLocator locator= parseController.getNodeLocator();
+	ISourcePositionLocator locator= parseController.getSourcePositionLocator();
 
 	return (ASTNode) locator.findNode(root, sel.x);
     }
