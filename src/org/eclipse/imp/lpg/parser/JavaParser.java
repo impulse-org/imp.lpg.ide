@@ -258,7 +258,7 @@ public class JavaParser implements RuleAction
 
         public String toString()
         {
-            return leftIToken.getPrsStream().toString(leftIToken, rightIToken);
+            return leftIToken.getILexStream().toString(leftIToken.getStartOffset(), rightIToken.getEndOffset());
         }
 
         public Ast(IToken token) { this.leftIToken = this.rightIToken = token; }
@@ -296,11 +296,26 @@ public class JavaParser implements RuleAction
          */
         public abstract java.util.ArrayList getAllChildren();
 
-        /**
-         * Since the Ast type has no children, any two instances of it are equal.
-         */
-        public boolean equals(Object o) { return o instanceof Ast; }
-        public abstract int hashCode();
+        public boolean equals(Object o)
+        {
+            if (o == this) return true;
+            if (! (o instanceof Ast)) return false;
+            Ast other = (Ast) o;
+            return getLeftIToken().getILexStream() == other.getLeftIToken().getILexStream() &&
+                   getLeftIToken().getTokenIndex() == other.getLeftIToken().getTokenIndex() &&
+                   getRightIToken().getILexStream() == other.getRightIToken().getILexStream() &&
+                   getRightIToken().getTokenIndex() == other.getRightIToken().getTokenIndex();
+        }
+
+        public int hashCode()
+        {
+            int hash = 7;
+            if (getLeftIToken().getILexStream() != null) hash = hash * 31 + getLeftIToken().getILexStream().hashCode();
+            hash = hash * 31 + getLeftIToken().getTokenIndex();
+            if (getRightIToken().getILexStream() != null) hash = hash * 31 + getRightIToken().getILexStream().hashCode();
+            hash = hash * 31 + getRightIToken().getTokenIndex();
+            return hash;
+        }
         public abstract void accept(IAstVisitor v);
     }
 
@@ -355,18 +370,6 @@ public class JavaParser implements RuleAction
             return (java.util.ArrayList) getArrayList().clone();
         }
 
-        public abstract boolean equals(Object o);
-
-        public int hashCode()
-        {
-            int hash = 7;
-            for (int i = 0; i < size(); i++)
-            {
-                Ast element = getElementAt(i);
-                hash = hash * 31 + (element == null ? 0 : element.hashCode());
-            }
-            return hash;
-        }
     }
 
     static public class AstToken extends Ast implements IAstToken
@@ -385,12 +388,16 @@ public class JavaParser implements RuleAction
             if (o == this) return true;
             if (! (o instanceof AstToken)) return false;
             AstToken other = (AstToken) o;
-            return toString().equals(other.toString());
+            return getIToken().getILexStream() == other.getIToken().getILexStream() &&
+                   getIToken().getTokenIndex() == other.getIToken().getTokenIndex();
         }
 
         public int hashCode()
         {
-            return toString().hashCode();
+            int hash = 7;
+            if (getIToken().getILexStream() != null) hash = hash * 31 + getIToken().getILexStream().hashCode();
+            hash = hash * 31 + getIToken().getTokenIndex();
+            return hash;
         }
 
         public void accept(IAstVisitor v)
@@ -5284,14 +5291,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ClassType)) return false;
+            if (! super.equals(o)) return false;
             ClassType other = (ClassType) o;
             if (! _TypeName.equals(other._TypeName)) return false;
             if (_TypeArgumentsopt == null)
@@ -5303,7 +5304,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_TypeName.hashCode());
             hash = hash * 31 + (_TypeArgumentsopt == null ? 0 : _TypeArgumentsopt.hashCode());
             return hash;
@@ -5371,14 +5372,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof InterfaceType)) return false;
+            if (! super.equals(o)) return false;
             InterfaceType other = (InterfaceType) o;
             if (! _TypeName.equals(other._TypeName)) return false;
             if (_TypeArgumentsopt == null)
@@ -5390,7 +5385,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_TypeName.hashCode());
             hash = hash * 31 + (_TypeArgumentsopt == null ? 0 : _TypeArgumentsopt.hashCode());
             return hash;
@@ -5465,14 +5460,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof TypeName)) return false;
+            if (! super.equals(o)) return false;
             TypeName other = (TypeName) o;
             if (! _TypeName.equals(other._TypeName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -5482,7 +5471,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_TypeName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -5555,14 +5544,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ArrayType)) return false;
+            if (! super.equals(o)) return false;
             ArrayType other = (ArrayType) o;
             if (! _Type.equals(other._Type)) return false;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
@@ -5572,7 +5555,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_Type.hashCode());
             hash = hash * 31 + (_LBRACKET.hashCode());
             hash = hash * 31 + (_RBRACKET.hashCode());
@@ -5642,14 +5625,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof TypeParameter)) return false;
+            if (! super.equals(o)) return false;
             TypeParameter other = (TypeParameter) o;
             if (! _TypeVariable.equals(other._TypeVariable)) return false;
             if (_TypeBoundopt == null)
@@ -5661,7 +5638,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_TypeVariable.hashCode());
             hash = hash * 31 + (_TypeBoundopt == null ? 0 : _TypeBoundopt.hashCode());
             return hash;
@@ -5735,14 +5712,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof TypeBound)) return false;
+            if (! super.equals(o)) return false;
             TypeBound other = (TypeBound) o;
             if (! _extends.equals(other._extends)) return false;
             if (! _ClassOrInterfaceType.equals(other._ClassOrInterfaceType)) return false;
@@ -5755,7 +5726,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_extends.hashCode());
             hash = hash * 31 + (_ClassOrInterfaceType.hashCode());
             hash = hash * 31 + (_AdditionalBoundListopt == null ? 0 : _AdditionalBoundListopt.hashCode());
@@ -5826,14 +5797,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof AdditionalBoundList)) return false;
+            if (! super.equals(o)) return false;
             AdditionalBoundList other = (AdditionalBoundList) o;
             if (! _AdditionalBoundList.equals(other._AdditionalBoundList)) return false;
             if (! _AdditionalBound.equals(other._AdditionalBound)) return false;
@@ -5842,7 +5807,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_AdditionalBoundList.hashCode());
             hash = hash * 31 + (_AdditionalBound.hashCode());
             return hash;
@@ -5907,14 +5872,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof AdditionalBound)) return false;
+            if (! super.equals(o)) return false;
             AdditionalBound other = (AdditionalBound) o;
             if (! _AND.equals(other._AND)) return false;
             if (! _InterfaceType.equals(other._InterfaceType)) return false;
@@ -5923,7 +5882,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_AND.hashCode());
             hash = hash * 31 + (_InterfaceType.hashCode());
             return hash;
@@ -5994,14 +5953,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof TypeArguments)) return false;
+            if (! super.equals(o)) return false;
             TypeArguments other = (TypeArguments) o;
             if (! _LESS.equals(other._LESS)) return false;
             if (! _ActualTypeArgumentList.equals(other._ActualTypeArgumentList)) return false;
@@ -6011,7 +5964,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_LESS.hashCode());
             hash = hash * 31 + (_ActualTypeArgumentList.hashCode());
             hash = hash * 31 + (_GREATER.hashCode());
@@ -6088,14 +6041,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ActualTypeArgumentList)) return false;
+            if (! super.equals(o)) return false;
             ActualTypeArgumentList other = (ActualTypeArgumentList) o;
             if (! _ActualTypeArgumentList.equals(other._ActualTypeArgumentList)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -6105,7 +6052,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ActualTypeArgumentList.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_ActualTypeArgument.hashCode());
@@ -6175,14 +6122,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof Wildcard)) return false;
+            if (! super.equals(o)) return false;
             Wildcard other = (Wildcard) o;
             if (! _QUESTION.equals(other._QUESTION)) return false;
             if (_WildcardBoundsOpt == null)
@@ -6194,7 +6135,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_QUESTION.hashCode());
             hash = hash * 31 + (_WildcardBoundsOpt == null ? 0 : _WildcardBoundsOpt.hashCode());
             return hash;
@@ -6269,14 +6210,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof PackageName)) return false;
+            if (! super.equals(o)) return false;
             PackageName other = (PackageName) o;
             if (! _PackageName.equals(other._PackageName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -6286,7 +6221,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_PackageName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -6363,14 +6298,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ExpressionName)) return false;
+            if (! super.equals(o)) return false;
             ExpressionName other = (ExpressionName) o;
             if (! _AmbiguousName.equals(other._AmbiguousName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -6380,7 +6309,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_AmbiguousName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -6457,14 +6386,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof MethodName)) return false;
+            if (! super.equals(o)) return false;
             MethodName other = (MethodName) o;
             if (! _AmbiguousName.equals(other._AmbiguousName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -6474,7 +6397,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_AmbiguousName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -6551,14 +6474,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof PackageOrTypeName)) return false;
+            if (! super.equals(o)) return false;
             PackageOrTypeName other = (PackageOrTypeName) o;
             if (! _PackageOrTypeName.equals(other._PackageOrTypeName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -6568,7 +6485,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_PackageOrTypeName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -6645,14 +6562,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof AmbiguousName)) return false;
+            if (! super.equals(o)) return false;
             AmbiguousName other = (AmbiguousName) o;
             if (! _AmbiguousName.equals(other._AmbiguousName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -6662,7 +6573,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_AmbiguousName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -6744,14 +6655,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof CompilationUnit)) return false;
+            if (! super.equals(o)) return false;
             CompilationUnit other = (CompilationUnit) o;
             if (_PackageDeclarationopt == null)
                 if (other._PackageDeclarationopt != null) return false;
@@ -6770,7 +6675,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_PackageDeclarationopt == null ? 0 : _PackageDeclarationopt.hashCode());
             hash = hash * 31 + (_ImportDeclarationsopt == null ? 0 : _ImportDeclarationsopt.hashCode());
             hash = hash * 31 + (_TypeDeclarationsopt == null ? 0 : _TypeDeclarationsopt.hashCode());
@@ -6841,14 +6746,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ImportDeclarations)) return false;
+            if (! super.equals(o)) return false;
             ImportDeclarations other = (ImportDeclarations) o;
             if (! _ImportDeclarations.equals(other._ImportDeclarations)) return false;
             if (! _ImportDeclaration.equals(other._ImportDeclaration)) return false;
@@ -6857,7 +6756,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ImportDeclarations.hashCode());
             hash = hash * 31 + (_ImportDeclaration.hashCode());
             return hash;
@@ -6926,14 +6825,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof TypeDeclarations)) return false;
+            if (! super.equals(o)) return false;
             TypeDeclarations other = (TypeDeclarations) o;
             if (! _TypeDeclarations.equals(other._TypeDeclarations)) return false;
             if (! _TypeDeclaration.equals(other._TypeDeclaration)) return false;
@@ -6942,7 +6835,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_TypeDeclarations.hashCode());
             hash = hash * 31 + (_TypeDeclaration.hashCode());
             return hash;
@@ -7022,14 +6915,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof PackageDeclaration)) return false;
+            if (! super.equals(o)) return false;
             PackageDeclaration other = (PackageDeclaration) o;
             if (_Annotationsopt == null)
                 if (other._Annotationsopt != null) return false;
@@ -7043,7 +6930,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_Annotationsopt == null ? 0 : _Annotationsopt.hashCode());
             hash = hash * 31 + (_package.hashCode());
             hash = hash * 31 + (_PackageName.hashCode());
@@ -7118,14 +7005,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof SingleTypeImportDeclaration)) return false;
+            if (! super.equals(o)) return false;
             SingleTypeImportDeclaration other = (SingleTypeImportDeclaration) o;
             if (! _import.equals(other._import)) return false;
             if (! _TypeName.equals(other._TypeName)) return false;
@@ -7135,7 +7016,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_import.hashCode());
             hash = hash * 31 + (_TypeName.hashCode());
             hash = hash * 31 + (_SEMICOLON.hashCode());
@@ -7220,14 +7101,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof TypeImportOnDemandDeclaration)) return false;
+            if (! super.equals(o)) return false;
             TypeImportOnDemandDeclaration other = (TypeImportOnDemandDeclaration) o;
             if (! _import.equals(other._import)) return false;
             if (! _PackageOrTypeName.equals(other._PackageOrTypeName)) return false;
@@ -7239,7 +7114,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_import.hashCode());
             hash = hash * 31 + (_PackageOrTypeName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
@@ -7334,14 +7209,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof SingleStaticImportDeclaration)) return false;
+            if (! super.equals(o)) return false;
             SingleStaticImportDeclaration other = (SingleStaticImportDeclaration) o;
             if (! _import.equals(other._import)) return false;
             if (! _static.equals(other._static)) return false;
@@ -7354,7 +7223,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_import.hashCode());
             hash = hash * 31 + (_static.hashCode());
             hash = hash * 31 + (_TypeName.hashCode());
@@ -7451,14 +7320,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof StaticImportOnDemandDeclaration)) return false;
+            if (! super.equals(o)) return false;
             StaticImportOnDemandDeclaration other = (StaticImportOnDemandDeclaration) o;
             if (! _import.equals(other._import)) return false;
             if (! _static.equals(other._static)) return false;
@@ -7471,7 +7334,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_import.hashCode());
             hash = hash * 31 + (_static.hashCode());
             hash = hash * 31 + (_TypeName.hashCode());
@@ -7616,14 +7479,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof NormalClassDeclaration)) return false;
+            if (! super.equals(o)) return false;
             NormalClassDeclaration other = (NormalClassDeclaration) o;
             if (_ClassModifiersopt == null)
                 if (other._ClassModifiersopt != null) return false;
@@ -7649,7 +7506,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ClassModifiersopt == null ? 0 : _ClassModifiersopt.hashCode());
             hash = hash * 31 + (_class.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -7728,14 +7585,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ClassModifiers)) return false;
+            if (! super.equals(o)) return false;
             ClassModifiers other = (ClassModifiers) o;
             if (! _ClassModifiers.equals(other._ClassModifiers)) return false;
             if (! _ClassModifier.equals(other._ClassModifier)) return false;
@@ -7744,7 +7595,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ClassModifiers.hashCode());
             hash = hash * 31 + (_ClassModifier.hashCode());
             return hash;
@@ -7815,14 +7666,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof TypeParameters)) return false;
+            if (! super.equals(o)) return false;
             TypeParameters other = (TypeParameters) o;
             if (! _LESS.equals(other._LESS)) return false;
             if (! _TypeParameterList.equals(other._TypeParameterList)) return false;
@@ -7832,7 +7677,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_LESS.hashCode());
             hash = hash * 31 + (_TypeParameterList.hashCode());
             hash = hash * 31 + (_GREATER.hashCode());
@@ -7909,14 +7754,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof TypeParameterList)) return false;
+            if (! super.equals(o)) return false;
             TypeParameterList other = (TypeParameterList) o;
             if (! _TypeParameterList.equals(other._TypeParameterList)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -7926,7 +7765,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_TypeParameterList.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_TypeParameter.hashCode());
@@ -7993,14 +7832,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof Super)) return false;
+            if (! super.equals(o)) return false;
             Super other = (Super) o;
             if (! _extends.equals(other._extends)) return false;
             if (! _ClassType.equals(other._ClassType)) return false;
@@ -8009,7 +7842,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_extends.hashCode());
             hash = hash * 31 + (_ClassType.hashCode());
             return hash;
@@ -8074,14 +7907,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof Interfaces)) return false;
+            if (! super.equals(o)) return false;
             Interfaces other = (Interfaces) o;
             if (! _implements.equals(other._implements)) return false;
             if (! _InterfaceTypeList.equals(other._InterfaceTypeList)) return false;
@@ -8090,7 +7917,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_implements.hashCode());
             hash = hash * 31 + (_InterfaceTypeList.hashCode());
             return hash;
@@ -8165,14 +7992,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof InterfaceTypeList)) return false;
+            if (! super.equals(o)) return false;
             InterfaceTypeList other = (InterfaceTypeList) o;
             if (! _InterfaceTypeList.equals(other._InterfaceTypeList)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -8182,7 +8003,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_InterfaceTypeList.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_InterfaceType.hashCode());
@@ -8258,14 +8079,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ClassBody)) return false;
+            if (! super.equals(o)) return false;
             ClassBody other = (ClassBody) o;
             if (! _LBRACE.equals(other._LBRACE)) return false;
             if (_ClassBodyDeclarationsopt == null)
@@ -8278,7 +8093,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_LBRACE.hashCode());
             hash = hash * 31 + (_ClassBodyDeclarationsopt == null ? 0 : _ClassBodyDeclarationsopt.hashCode());
             hash = hash * 31 + (_RBRACE.hashCode());
@@ -8349,14 +8164,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ClassBodyDeclarations)) return false;
+            if (! super.equals(o)) return false;
             ClassBodyDeclarations other = (ClassBodyDeclarations) o;
             if (! _ClassBodyDeclarations.equals(other._ClassBodyDeclarations)) return false;
             if (! _ClassBodyDeclaration.equals(other._ClassBodyDeclaration)) return false;
@@ -8365,7 +8174,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ClassBodyDeclarations.hashCode());
             hash = hash * 31 + (_ClassBodyDeclaration.hashCode());
             return hash;
@@ -8477,14 +8286,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof FieldDeclaration)) return false;
+            if (! super.equals(o)) return false;
             FieldDeclaration other = (FieldDeclaration) o;
             if (_FieldModifiersopt == null)
                 if (other._FieldModifiersopt != null) return false;
@@ -8498,7 +8301,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_FieldModifiersopt == null ? 0 : _FieldModifiersopt.hashCode());
             hash = hash * 31 + (_Type.hashCode());
             hash = hash * 31 + (_VariableDeclarators.hashCode());
@@ -8577,14 +8380,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof VariableDeclarators)) return false;
+            if (! super.equals(o)) return false;
             VariableDeclarators other = (VariableDeclarators) o;
             if (! _VariableDeclarators.equals(other._VariableDeclarators)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -8594,7 +8391,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_VariableDeclarators.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_VariableDeclarator.hashCode());
@@ -8671,14 +8468,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof VariableDeclarator)) return false;
+            if (! super.equals(o)) return false;
             VariableDeclarator other = (VariableDeclarator) o;
             if (! _VariableDeclaratorId.equals(other._VariableDeclaratorId)) return false;
             if (! _EQUAL.equals(other._EQUAL)) return false;
@@ -8688,7 +8479,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_VariableDeclaratorId.hashCode());
             hash = hash * 31 + (_EQUAL.hashCode());
             hash = hash * 31 + (_VariableInitializer.hashCode());
@@ -8765,14 +8556,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof VariableDeclaratorId)) return false;
+            if (! super.equals(o)) return false;
             VariableDeclaratorId other = (VariableDeclaratorId) o;
             if (! _VariableDeclaratorId.equals(other._VariableDeclaratorId)) return false;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
@@ -8782,7 +8567,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_VariableDeclaratorId.hashCode());
             hash = hash * 31 + (_LBRACKET.hashCode());
             hash = hash * 31 + (_RBRACKET.hashCode());
@@ -8853,14 +8638,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof FieldModifiers)) return false;
+            if (! super.equals(o)) return false;
             FieldModifiers other = (FieldModifiers) o;
             if (! _FieldModifiers.equals(other._FieldModifiers)) return false;
             if (! _FieldModifier.equals(other._FieldModifier)) return false;
@@ -8869,7 +8648,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_FieldModifiers.hashCode());
             hash = hash * 31 + (_FieldModifier.hashCode());
             return hash;
@@ -8934,14 +8713,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof MethodDeclaration)) return false;
+            if (! super.equals(o)) return false;
             MethodDeclaration other = (MethodDeclaration) o;
             if (! _MethodHeader.equals(other._MethodHeader)) return false;
             if (! _MethodBody.equals(other._MethodBody)) return false;
@@ -8950,7 +8723,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_MethodHeader.hashCode());
             hash = hash * 31 + (_MethodBody.hashCode());
             return hash;
@@ -9042,14 +8815,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof MethodHeader)) return false;
+            if (! super.equals(o)) return false;
             MethodHeader other = (MethodHeader) o;
             if (_MethodModifiersopt == null)
                 if (other._MethodModifiersopt != null) return false;
@@ -9070,7 +8837,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_MethodModifiersopt == null ? 0 : _MethodModifiersopt.hashCode());
             hash = hash * 31 + (_TypeParametersopt == null ? 0 : _TypeParametersopt.hashCode());
             hash = hash * 31 + (_ResultType.hashCode());
@@ -9180,14 +8947,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof FormalParameterList)) return false;
+            if (! super.equals(o)) return false;
             FormalParameterList other = (FormalParameterList) o;
             if (! _FormalParameters.equals(other._FormalParameters)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -9197,7 +8958,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_FormalParameters.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_LastFormalParameter.hashCode());
@@ -9274,14 +9035,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof FormalParameters)) return false;
+            if (! super.equals(o)) return false;
             FormalParameters other = (FormalParameters) o;
             if (! _FormalParameters.equals(other._FormalParameters)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -9291,7 +9046,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_FormalParameters.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_FormalParameter.hashCode());
@@ -9367,14 +9122,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof FormalParameter)) return false;
+            if (! super.equals(o)) return false;
             FormalParameter other = (FormalParameter) o;
             if (_VariableModifiersopt == null)
                 if (other._VariableModifiersopt != null) return false;
@@ -9387,7 +9136,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_VariableModifiersopt == null ? 0 : _VariableModifiersopt.hashCode());
             hash = hash * 31 + (_Type.hashCode());
             hash = hash * 31 + (_VariableDeclaratorId.hashCode());
@@ -9458,14 +9207,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof VariableModifiers)) return false;
+            if (! super.equals(o)) return false;
             VariableModifiers other = (VariableModifiers) o;
             if (! _VariableModifiers.equals(other._VariableModifiers)) return false;
             if (! _VariableModifier.equals(other._VariableModifier)) return false;
@@ -9474,7 +9217,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_VariableModifiers.hashCode());
             hash = hash * 31 + (_VariableModifier.hashCode());
             return hash;
@@ -9586,14 +9329,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof LastFormalParameter)) return false;
+            if (! super.equals(o)) return false;
             LastFormalParameter other = (LastFormalParameter) o;
             if (_VariableModifiersopt == null)
                 if (other._VariableModifiersopt != null) return false;
@@ -9610,7 +9347,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_VariableModifiersopt == null ? 0 : _VariableModifiersopt.hashCode());
             hash = hash * 31 + (_Type.hashCode());
             hash = hash * 31 + (_Ellipsisopt == null ? 0 : _Ellipsisopt.hashCode());
@@ -9683,14 +9420,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof MethodModifiers)) return false;
+            if (! super.equals(o)) return false;
             MethodModifiers other = (MethodModifiers) o;
             if (! _MethodModifiers.equals(other._MethodModifiers)) return false;
             if (! _MethodModifier.equals(other._MethodModifier)) return false;
@@ -9699,7 +9430,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_MethodModifiers.hashCode());
             hash = hash * 31 + (_MethodModifier.hashCode());
             return hash;
@@ -9764,14 +9495,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof Throws)) return false;
+            if (! super.equals(o)) return false;
             Throws other = (Throws) o;
             if (! _throws.equals(other._throws)) return false;
             if (! _ExceptionTypeList.equals(other._ExceptionTypeList)) return false;
@@ -9780,7 +9505,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_throws.hashCode());
             hash = hash * 31 + (_ExceptionTypeList.hashCode());
             return hash;
@@ -9855,14 +9580,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ExceptionTypeList)) return false;
+            if (! super.equals(o)) return false;
             ExceptionTypeList other = (ExceptionTypeList) o;
             if (! _ExceptionTypeList.equals(other._ExceptionTypeList)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -9872,7 +9591,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ExceptionTypeList.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_ExceptionType.hashCode());
@@ -9968,14 +9687,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof StaticInitializer)) return false;
+            if (! super.equals(o)) return false;
             StaticInitializer other = (StaticInitializer) o;
             if (! _static.equals(other._static)) return false;
             if (! _Block.equals(other._Block)) return false;
@@ -9984,7 +9697,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_static.hashCode());
             hash = hash * 31 + (_Block.hashCode());
             return hash;
@@ -10067,14 +9780,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ConstructorDeclaration)) return false;
+            if (! super.equals(o)) return false;
             ConstructorDeclaration other = (ConstructorDeclaration) o;
             if (_ConstructorModifiersopt == null)
                 if (other._ConstructorModifiersopt != null) return false;
@@ -10091,7 +9798,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ConstructorModifiersopt == null ? 0 : _ConstructorModifiersopt.hashCode());
             hash = hash * 31 + (_ConstructorDeclarator.hashCode());
             hash = hash * 31 + (_Throwsopt == null ? 0 : _Throwsopt.hashCode());
@@ -10184,14 +9891,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ConstructorDeclarator)) return false;
+            if (! super.equals(o)) return false;
             ConstructorDeclarator other = (ConstructorDeclarator) o;
             if (_TypeParametersopt == null)
                 if (other._TypeParametersopt != null) return false;
@@ -10209,7 +9910,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_TypeParametersopt == null ? 0 : _TypeParametersopt.hashCode());
             hash = hash * 31 + (_SimpleTypeName.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
@@ -10284,14 +9985,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ConstructorModifiers)) return false;
+            if (! super.equals(o)) return false;
             ConstructorModifiers other = (ConstructorModifiers) o;
             if (! _ConstructorModifiers.equals(other._ConstructorModifiers)) return false;
             if (! _ConstructorModifier.equals(other._ConstructorModifier)) return false;
@@ -10300,7 +9995,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ConstructorModifiers.hashCode());
             hash = hash * 31 + (_ConstructorModifier.hashCode());
             return hash;
@@ -10383,14 +10078,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ConstructorBody)) return false;
+            if (! super.equals(o)) return false;
             ConstructorBody other = (ConstructorBody) o;
             if (! _LBRACE.equals(other._LBRACE)) return false;
             if (_ExplicitConstructorInvocationopt == null)
@@ -10407,7 +10096,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_LBRACE.hashCode());
             hash = hash * 31 + (_ExplicitConstructorInvocationopt == null ? 0 : _ExplicitConstructorInvocationopt.hashCode());
             hash = hash * 31 + (_BlockStatementsopt == null ? 0 : _BlockStatementsopt.hashCode());
@@ -10500,14 +10189,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof EnumDeclaration)) return false;
+            if (! super.equals(o)) return false;
             EnumDeclaration other = (EnumDeclaration) o;
             if (_ClassModifiersopt == null)
                 if (other._ClassModifiersopt != null) return false;
@@ -10525,7 +10208,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ClassModifiersopt == null ? 0 : _ClassModifiersopt.hashCode());
             hash = hash * 31 + (_enum.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -10623,14 +10306,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof EnumBody)) return false;
+            if (! super.equals(o)) return false;
             EnumBody other = (EnumBody) o;
             if (! _LBRACE.equals(other._LBRACE)) return false;
             if (_EnumConstantsopt == null)
@@ -10651,7 +10328,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_LBRACE.hashCode());
             hash = hash * 31 + (_EnumConstantsopt == null ? 0 : _EnumConstantsopt.hashCode());
             hash = hash * 31 + (_Commaopt == null ? 0 : _Commaopt.hashCode());
@@ -10732,14 +10409,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof EnumConstants)) return false;
+            if (! super.equals(o)) return false;
             EnumConstants other = (EnumConstants) o;
             if (! _EnumConstants.equals(other._EnumConstants)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -10749,7 +10420,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_EnumConstants.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_EnumConstant.hashCode());
@@ -10841,14 +10512,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof EnumConstant)) return false;
+            if (! super.equals(o)) return false;
             EnumConstant other = (EnumConstant) o;
             if (_Annotationsopt == null)
                 if (other._Annotationsopt != null) return false;
@@ -10868,7 +10533,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_Annotationsopt == null ? 0 : _Annotationsopt.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
             hash = hash * 31 + (_Argumentsopt == null ? 0 : _Argumentsopt.hashCode());
@@ -10946,14 +10611,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof Arguments)) return false;
+            if (! super.equals(o)) return false;
             Arguments other = (Arguments) o;
             if (! _LPAREN.equals(other._LPAREN)) return false;
             if (_ArgumentListopt == null)
@@ -10966,7 +10625,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_ArgumentListopt == null ? 0 : _ArgumentListopt.hashCode());
             hash = hash * 31 + (_RPAREN.hashCode());
@@ -11036,14 +10695,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof EnumBodyDeclarations)) return false;
+            if (! super.equals(o)) return false;
             EnumBodyDeclarations other = (EnumBodyDeclarations) o;
             if (! _SEMICOLON.equals(other._SEMICOLON)) return false;
             if (_ClassBodyDeclarationsopt == null)
@@ -11055,7 +10708,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_SEMICOLON.hashCode());
             hash = hash * 31 + (_ClassBodyDeclarationsopt == null ? 0 : _ClassBodyDeclarationsopt.hashCode());
             return hash;
@@ -11153,14 +10806,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof NormalInterfaceDeclaration)) return false;
+            if (! super.equals(o)) return false;
             NormalInterfaceDeclaration other = (NormalInterfaceDeclaration) o;
             if (_InterfaceModifiersopt == null)
                 if (other._InterfaceModifiersopt != null) return false;
@@ -11182,7 +10829,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_InterfaceModifiersopt == null ? 0 : _InterfaceModifiersopt.hashCode());
             hash = hash * 31 + (_interface.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -11259,14 +10906,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof InterfaceModifiers)) return false;
+            if (! super.equals(o)) return false;
             InterfaceModifiers other = (InterfaceModifiers) o;
             if (! _InterfaceModifiers.equals(other._InterfaceModifiers)) return false;
             if (! _InterfaceModifier.equals(other._InterfaceModifier)) return false;
@@ -11275,7 +10916,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_InterfaceModifiers.hashCode());
             hash = hash * 31 + (_InterfaceModifier.hashCode());
             return hash;
@@ -11349,14 +10990,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof InterfaceBody)) return false;
+            if (! super.equals(o)) return false;
             InterfaceBody other = (InterfaceBody) o;
             if (! _LBRACE.equals(other._LBRACE)) return false;
             if (_InterfaceMemberDeclarationsopt == null)
@@ -11369,7 +11004,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_LBRACE.hashCode());
             hash = hash * 31 + (_InterfaceMemberDeclarationsopt == null ? 0 : _InterfaceMemberDeclarationsopt.hashCode());
             hash = hash * 31 + (_RBRACE.hashCode());
@@ -11440,14 +11075,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof InterfaceMemberDeclarations)) return false;
+            if (! super.equals(o)) return false;
             InterfaceMemberDeclarations other = (InterfaceMemberDeclarations) o;
             if (! _InterfaceMemberDeclarations.equals(other._InterfaceMemberDeclarations)) return false;
             if (! _InterfaceMemberDeclaration.equals(other._InterfaceMemberDeclaration)) return false;
@@ -11456,7 +11085,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_InterfaceMemberDeclarations.hashCode());
             hash = hash * 31 + (_InterfaceMemberDeclaration.hashCode());
             return hash;
@@ -11562,14 +11191,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ConstantDeclaration)) return false;
+            if (! super.equals(o)) return false;
             ConstantDeclaration other = (ConstantDeclaration) o;
             if (_ConstantModifiersopt == null)
                 if (other._ConstantModifiersopt != null) return false;
@@ -11582,7 +11205,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ConstantModifiersopt == null ? 0 : _ConstantModifiersopt.hashCode());
             hash = hash * 31 + (_Type.hashCode());
             hash = hash * 31 + (_VariableDeclarators.hashCode());
@@ -11653,14 +11276,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ConstantModifiers)) return false;
+            if (! super.equals(o)) return false;
             ConstantModifiers other = (ConstantModifiers) o;
             if (! _ConstantModifiers.equals(other._ConstantModifiers)) return false;
             if (! _ConstantModifier.equals(other._ConstantModifier)) return false;
@@ -11669,7 +11286,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ConstantModifiers.hashCode());
             hash = hash * 31 + (_ConstantModifier.hashCode());
             return hash;
@@ -11767,14 +11384,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof AbstractMethodDeclaration)) return false;
+            if (! super.equals(o)) return false;
             AbstractMethodDeclaration other = (AbstractMethodDeclaration) o;
             if (_AbstractMethodModifiersopt == null)
                 if (other._AbstractMethodModifiersopt != null) return false;
@@ -11796,7 +11407,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_AbstractMethodModifiersopt == null ? 0 : _AbstractMethodModifiersopt.hashCode());
             hash = hash * 31 + (_TypeParametersopt == null ? 0 : _TypeParametersopt.hashCode());
             hash = hash * 31 + (_ResultType.hashCode());
@@ -11873,14 +11484,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof AbstractMethodModifiers)) return false;
+            if (! super.equals(o)) return false;
             AbstractMethodModifiers other = (AbstractMethodModifiers) o;
             if (! _AbstractMethodModifiers.equals(other._AbstractMethodModifiers)) return false;
             if (! _AbstractMethodModifier.equals(other._AbstractMethodModifier)) return false;
@@ -11889,7 +11494,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_AbstractMethodModifiers.hashCode());
             hash = hash * 31 + (_AbstractMethodModifier.hashCode());
             return hash;
@@ -11975,14 +11580,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof AnnotationTypeDeclaration)) return false;
+            if (! super.equals(o)) return false;
             AnnotationTypeDeclaration other = (AnnotationTypeDeclaration) o;
             if (_InterfaceModifiersopt == null)
                 if (other._InterfaceModifiersopt != null) return false;
@@ -11997,7 +11596,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_InterfaceModifiersopt == null ? 0 : _InterfaceModifiersopt.hashCode());
             hash = hash * 31 + (_AT.hashCode());
             hash = hash * 31 + (_interface.hashCode());
@@ -12077,14 +11676,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof AnnotationTypeBody)) return false;
+            if (! super.equals(o)) return false;
             AnnotationTypeBody other = (AnnotationTypeBody) o;
             if (! _LBRACE.equals(other._LBRACE)) return false;
             if (_AnnotationTypeElementDeclarationsopt == null)
@@ -12097,7 +11690,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_LBRACE.hashCode());
             hash = hash * 31 + (_AnnotationTypeElementDeclarationsopt == null ? 0 : _AnnotationTypeElementDeclarationsopt.hashCode());
             hash = hash * 31 + (_RBRACE.hashCode());
@@ -12168,14 +11761,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof AnnotationTypeElementDeclarations)) return false;
+            if (! super.equals(o)) return false;
             AnnotationTypeElementDeclarations other = (AnnotationTypeElementDeclarations) o;
             if (! _AnnotationTypeElementDeclarations.equals(other._AnnotationTypeElementDeclarations)) return false;
             if (! _AnnotationTypeElementDeclaration.equals(other._AnnotationTypeElementDeclaration)) return false;
@@ -12184,7 +11771,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_AnnotationTypeElementDeclarations.hashCode());
             hash = hash * 31 + (_AnnotationTypeElementDeclaration.hashCode());
             return hash;
@@ -12249,14 +11836,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof DefaultValue)) return false;
+            if (! super.equals(o)) return false;
             DefaultValue other = (DefaultValue) o;
             if (! _default.equals(other._default)) return false;
             if (! _ElementValue.equals(other._ElementValue)) return false;
@@ -12265,7 +11846,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_default.hashCode());
             hash = hash * 31 + (_ElementValue.hashCode());
             return hash;
@@ -12334,14 +11915,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof Annotations)) return false;
+            if (! super.equals(o)) return false;
             Annotations other = (Annotations) o;
             if (! _Annotations.equals(other._Annotations)) return false;
             if (! _Annotation.equals(other._Annotation)) return false;
@@ -12350,7 +11925,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_Annotations.hashCode());
             hash = hash * 31 + (_Annotation.hashCode());
             return hash;
@@ -12436,14 +12011,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof NormalAnnotation)) return false;
+            if (! super.equals(o)) return false;
             NormalAnnotation other = (NormalAnnotation) o;
             if (! _AT.equals(other._AT)) return false;
             if (! _TypeName.equals(other._TypeName)) return false;
@@ -12458,7 +12027,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_AT.hashCode());
             hash = hash * 31 + (_TypeName.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
@@ -12539,14 +12108,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ElementValuePairs)) return false;
+            if (! super.equals(o)) return false;
             ElementValuePairs other = (ElementValuePairs) o;
             if (! _ElementValuePairs.equals(other._ElementValuePairs)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -12556,7 +12119,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ElementValuePairs.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_ElementValuePair.hashCode());
@@ -12629,14 +12192,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ElementValuePair)) return false;
+            if (! super.equals(o)) return false;
             ElementValuePair other = (ElementValuePair) o;
             if (! _SimpleName.equals(other._SimpleName)) return false;
             if (! _EQUAL.equals(other._EQUAL)) return false;
@@ -12646,7 +12203,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_SimpleName.hashCode());
             hash = hash * 31 + (_EQUAL.hashCode());
             hash = hash * 31 + (_ElementValue.hashCode());
@@ -12731,14 +12288,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ElementValueArrayInitializer)) return false;
+            if (! super.equals(o)) return false;
             ElementValueArrayInitializer other = (ElementValueArrayInitializer) o;
             if (! _LBRACE.equals(other._LBRACE)) return false;
             if (_ElementValuesopt == null)
@@ -12755,7 +12306,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_LBRACE.hashCode());
             hash = hash * 31 + (_ElementValuesopt == null ? 0 : _ElementValuesopt.hashCode());
             hash = hash * 31 + (_Commaopt == null ? 0 : _Commaopt.hashCode());
@@ -12834,14 +12385,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ElementValues)) return false;
+            if (! super.equals(o)) return false;
             ElementValues other = (ElementValues) o;
             if (! _ElementValues.equals(other._ElementValues)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -12851,7 +12396,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ElementValues.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_ElementValue.hashCode());
@@ -12918,14 +12463,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof MarkerAnnotation)) return false;
+            if (! super.equals(o)) return false;
             MarkerAnnotation other = (MarkerAnnotation) o;
             if (! _AT.equals(other._AT)) return false;
             if (! _TypeName.equals(other._TypeName)) return false;
@@ -12934,7 +12473,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_AT.hashCode());
             hash = hash * 31 + (_TypeName.hashCode());
             return hash;
@@ -13017,14 +12556,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof SingleElementAnnotation)) return false;
+            if (! super.equals(o)) return false;
             SingleElementAnnotation other = (SingleElementAnnotation) o;
             if (! _AT.equals(other._AT)) return false;
             if (! _TypeName.equals(other._TypeName)) return false;
@@ -13036,7 +12569,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_AT.hashCode());
             hash = hash * 31 + (_TypeName.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
@@ -13125,14 +12658,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ArrayInitializer)) return false;
+            if (! super.equals(o)) return false;
             ArrayInitializer other = (ArrayInitializer) o;
             if (! _LBRACE.equals(other._LBRACE)) return false;
             if (_VariableInitializersopt == null)
@@ -13149,7 +12676,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_LBRACE.hashCode());
             hash = hash * 31 + (_VariableInitializersopt == null ? 0 : _VariableInitializersopt.hashCode());
             hash = hash * 31 + (_Commaopt == null ? 0 : _Commaopt.hashCode());
@@ -13228,14 +12755,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof VariableInitializers)) return false;
+            if (! super.equals(o)) return false;
             VariableInitializers other = (VariableInitializers) o;
             if (! _VariableInitializers.equals(other._VariableInitializers)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -13245,7 +12766,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_VariableInitializers.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_VariableInitializer.hashCode());
@@ -13321,14 +12842,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof Block)) return false;
+            if (! super.equals(o)) return false;
             Block other = (Block) o;
             if (! _LBRACE.equals(other._LBRACE)) return false;
             if (_BlockStatementsopt == null)
@@ -13341,7 +12856,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_LBRACE.hashCode());
             hash = hash * 31 + (_BlockStatementsopt == null ? 0 : _BlockStatementsopt.hashCode());
             hash = hash * 31 + (_RBRACE.hashCode());
@@ -13412,14 +12927,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof BlockStatements)) return false;
+            if (! super.equals(o)) return false;
             BlockStatements other = (BlockStatements) o;
             if (! _BlockStatements.equals(other._BlockStatements)) return false;
             if (! _BlockStatement.equals(other._BlockStatement)) return false;
@@ -13428,7 +12937,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_BlockStatements.hashCode());
             hash = hash * 31 + (_BlockStatement.hashCode());
             return hash;
@@ -13493,14 +13002,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof LocalVariableDeclarationStatement)) return false;
+            if (! super.equals(o)) return false;
             LocalVariableDeclarationStatement other = (LocalVariableDeclarationStatement) o;
             if (! _LocalVariableDeclaration.equals(other._LocalVariableDeclaration)) return false;
             if (! _SEMICOLON.equals(other._SEMICOLON)) return false;
@@ -13509,7 +13012,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_LocalVariableDeclaration.hashCode());
             hash = hash * 31 + (_SEMICOLON.hashCode());
             return hash;
@@ -13583,14 +13086,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof LocalVariableDeclaration)) return false;
+            if (! super.equals(o)) return false;
             LocalVariableDeclaration other = (LocalVariableDeclaration) o;
             if (_VariableModifiersopt == null)
                 if (other._VariableModifiersopt != null) return false;
@@ -13603,7 +13100,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_VariableModifiersopt == null ? 0 : _VariableModifiersopt.hashCode());
             hash = hash * 31 + (_Type.hashCode());
             hash = hash * 31 + (_VariableDeclarators.hashCode());
@@ -13688,14 +13185,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof IfThenStatement)) return false;
+            if (! super.equals(o)) return false;
             IfThenStatement other = (IfThenStatement) o;
             if (! _if.equals(other._if)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -13707,7 +13198,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_if.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -13808,14 +13299,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof IfThenElseStatement)) return false;
+            if (! super.equals(o)) return false;
             IfThenElseStatement other = (IfThenElseStatement) o;
             if (! _if.equals(other._if)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -13829,7 +13314,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_if.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -13934,14 +13419,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof IfThenElseStatementNoShortIf)) return false;
+            if (! super.equals(o)) return false;
             IfThenElseStatementNoShortIf other = (IfThenElseStatementNoShortIf) o;
             if (! _if.equals(other._if)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -13955,7 +13434,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_if.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -14061,14 +13540,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof LabeledStatement)) return false;
+            if (! super.equals(o)) return false;
             LabeledStatement other = (LabeledStatement) o;
             if (! _identifier.equals(other._identifier)) return false;
             if (! _COLON.equals(other._COLON)) return false;
@@ -14078,7 +13551,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_identifier.hashCode());
             hash = hash * 31 + (_COLON.hashCode());
             hash = hash * 31 + (_Statement.hashCode());
@@ -14151,14 +13624,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof LabeledStatementNoShortIf)) return false;
+            if (! super.equals(o)) return false;
             LabeledStatementNoShortIf other = (LabeledStatementNoShortIf) o;
             if (! _identifier.equals(other._identifier)) return false;
             if (! _COLON.equals(other._COLON)) return false;
@@ -14168,7 +13635,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_identifier.hashCode());
             hash = hash * 31 + (_COLON.hashCode());
             hash = hash * 31 + (_StatementNoShortIf.hashCode());
@@ -14235,14 +13702,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ExpressionStatement)) return false;
+            if (! super.equals(o)) return false;
             ExpressionStatement other = (ExpressionStatement) o;
             if (! _StatementExpression.equals(other._StatementExpression)) return false;
             if (! _SEMICOLON.equals(other._SEMICOLON)) return false;
@@ -14251,7 +13712,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_StatementExpression.hashCode());
             hash = hash * 31 + (_SEMICOLON.hashCode());
             return hash;
@@ -14334,14 +13795,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof SwitchStatement)) return false;
+            if (! super.equals(o)) return false;
             SwitchStatement other = (SwitchStatement) o;
             if (! _switch.equals(other._switch)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -14353,7 +13808,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_switch.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -14442,14 +13897,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof SwitchBlock)) return false;
+            if (! super.equals(o)) return false;
             SwitchBlock other = (SwitchBlock) o;
             if (! _LBRACE.equals(other._LBRACE)) return false;
             if (_SwitchBlockStatementGroupsopt == null)
@@ -14466,7 +13915,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_LBRACE.hashCode());
             hash = hash * 31 + (_SwitchBlockStatementGroupsopt == null ? 0 : _SwitchBlockStatementGroupsopt.hashCode());
             hash = hash * 31 + (_SwitchLabelsopt == null ? 0 : _SwitchLabelsopt.hashCode());
@@ -14539,14 +13988,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof SwitchBlockStatementGroups)) return false;
+            if (! super.equals(o)) return false;
             SwitchBlockStatementGroups other = (SwitchBlockStatementGroups) o;
             if (! _SwitchBlockStatementGroups.equals(other._SwitchBlockStatementGroups)) return false;
             if (! _SwitchBlockStatementGroup.equals(other._SwitchBlockStatementGroup)) return false;
@@ -14555,7 +13998,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_SwitchBlockStatementGroups.hashCode());
             hash = hash * 31 + (_SwitchBlockStatementGroup.hashCode());
             return hash;
@@ -14620,14 +14063,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof SwitchBlockStatementGroup)) return false;
+            if (! super.equals(o)) return false;
             SwitchBlockStatementGroup other = (SwitchBlockStatementGroup) o;
             if (! _SwitchLabels.equals(other._SwitchLabels)) return false;
             if (! _BlockStatements.equals(other._BlockStatements)) return false;
@@ -14636,7 +14073,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_SwitchLabels.hashCode());
             hash = hash * 31 + (_BlockStatements.hashCode());
             return hash;
@@ -14705,14 +14142,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof SwitchLabels)) return false;
+            if (! super.equals(o)) return false;
             SwitchLabels other = (SwitchLabels) o;
             if (! _SwitchLabels.equals(other._SwitchLabels)) return false;
             if (! _SwitchLabel.equals(other._SwitchLabel)) return false;
@@ -14721,7 +14152,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_SwitchLabels.hashCode());
             hash = hash * 31 + (_SwitchLabel.hashCode());
             return hash;
@@ -14804,14 +14235,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof WhileStatement)) return false;
+            if (! super.equals(o)) return false;
             WhileStatement other = (WhileStatement) o;
             if (! _while.equals(other._while)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -14823,7 +14248,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_while.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -14912,14 +14337,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof WhileStatementNoShortIf)) return false;
+            if (! super.equals(o)) return false;
             WhileStatementNoShortIf other = (WhileStatementNoShortIf) o;
             if (! _while.equals(other._while)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -14931,7 +14350,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_while.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -15032,14 +14451,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof DoStatement)) return false;
+            if (! super.equals(o)) return false;
             DoStatement other = (DoStatement) o;
             if (! _do.equals(other._do)) return false;
             if (! _Statement.equals(other._Statement)) return false;
@@ -15053,7 +14466,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_do.hashCode());
             hash = hash * 31 + (_Statement.hashCode());
             hash = hash * 31 + (_while.hashCode());
@@ -15179,14 +14592,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof BasicForStatement)) return false;
+            if (! super.equals(o)) return false;
             BasicForStatement other = (BasicForStatement) o;
             if (! _for.equals(other._for)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -15211,7 +14618,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_for.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_ForInitopt == null ? 0 : _ForInitopt.hashCode());
@@ -15341,14 +14748,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ForStatementNoShortIf)) return false;
+            if (! super.equals(o)) return false;
             ForStatementNoShortIf other = (ForStatementNoShortIf) o;
             if (! _for.equals(other._for)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -15373,7 +14774,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_for.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_ForInitopt == null ? 0 : _ForInitopt.hashCode());
@@ -15462,14 +14863,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof StatementExpressionList)) return false;
+            if (! super.equals(o)) return false;
             StatementExpressionList other = (StatementExpressionList) o;
             if (! _StatementExpressionList.equals(other._StatementExpressionList)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -15479,7 +14874,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_StatementExpressionList.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_StatementExpression.hashCode());
@@ -15576,14 +14971,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof EnhancedForStatement)) return false;
+            if (! super.equals(o)) return false;
             EnhancedForStatement other = (EnhancedForStatement) o;
             if (! _for.equals(other._for)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -15597,7 +14986,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_for.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_FormalParameter.hashCode());
@@ -15681,14 +15070,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof BreakStatement)) return false;
+            if (! super.equals(o)) return false;
             BreakStatement other = (BreakStatement) o;
             if (! _break.equals(other._break)) return false;
             if (_identifieropt == null)
@@ -15701,7 +15084,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_break.hashCode());
             hash = hash * 31 + (_identifieropt == null ? 0 : _identifieropt.hashCode());
             hash = hash * 31 + (_SEMICOLON.hashCode());
@@ -15777,14 +15160,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ContinueStatement)) return false;
+            if (! super.equals(o)) return false;
             ContinueStatement other = (ContinueStatement) o;
             if (! _continue.equals(other._continue)) return false;
             if (_identifieropt == null)
@@ -15797,7 +15174,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_continue.hashCode());
             hash = hash * 31 + (_identifieropt == null ? 0 : _identifieropt.hashCode());
             hash = hash * 31 + (_SEMICOLON.hashCode());
@@ -15873,14 +15250,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ReturnStatement)) return false;
+            if (! super.equals(o)) return false;
             ReturnStatement other = (ReturnStatement) o;
             if (! _return.equals(other._return)) return false;
             if (_Expressionopt == null)
@@ -15893,7 +15264,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_return.hashCode());
             hash = hash * 31 + (_Expressionopt == null ? 0 : _Expressionopt.hashCode());
             hash = hash * 31 + (_SEMICOLON.hashCode());
@@ -15966,14 +15337,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ThrowStatement)) return false;
+            if (! super.equals(o)) return false;
             ThrowStatement other = (ThrowStatement) o;
             if (! _throw.equals(other._throw)) return false;
             if (! _Expression.equals(other._Expression)) return false;
@@ -15983,7 +15348,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_throw.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
             hash = hash * 31 + (_SEMICOLON.hashCode());
@@ -16068,14 +15433,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof SynchronizedStatement)) return false;
+            if (! super.equals(o)) return false;
             SynchronizedStatement other = (SynchronizedStatement) o;
             if (! _synchronized.equals(other._synchronized)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -16087,7 +15446,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_synchronized.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -16162,14 +15521,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof Catches)) return false;
+            if (! super.equals(o)) return false;
             Catches other = (Catches) o;
             if (! _Catches.equals(other._Catches)) return false;
             if (! _CatchClause.equals(other._CatchClause)) return false;
@@ -16178,7 +15531,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_Catches.hashCode());
             hash = hash * 31 + (_CatchClause.hashCode());
             return hash;
@@ -16261,14 +15614,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof CatchClause)) return false;
+            if (! super.equals(o)) return false;
             CatchClause other = (CatchClause) o;
             if (! _catch.equals(other._catch)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -16280,7 +15627,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_catch.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_FormalParameter.hashCode());
@@ -16351,14 +15698,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof Finally)) return false;
+            if (! super.equals(o)) return false;
             Finally other = (Finally) o;
             if (! _finally.equals(other._finally)) return false;
             if (! _Block.equals(other._Block)) return false;
@@ -16367,7 +15708,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_finally.hashCode());
             hash = hash * 31 + (_Block.hashCode());
             return hash;
@@ -16442,14 +15783,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ArgumentList)) return false;
+            if (! super.equals(o)) return false;
             ArgumentList other = (ArgumentList) o;
             if (! _ArgumentList.equals(other._ArgumentList)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -16459,7 +15794,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ArgumentList.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -16530,14 +15865,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof DimExprs)) return false;
+            if (! super.equals(o)) return false;
             DimExprs other = (DimExprs) o;
             if (! _DimExprs.equals(other._DimExprs)) return false;
             if (! _DimExpr.equals(other._DimExpr)) return false;
@@ -16546,7 +15875,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_DimExprs.hashCode());
             hash = hash * 31 + (_DimExpr.hashCode());
             return hash;
@@ -16617,14 +15946,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof DimExpr)) return false;
+            if (! super.equals(o)) return false;
             DimExpr other = (DimExpr) o;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
             if (! _Expression.equals(other._Expression)) return false;
@@ -16634,7 +15957,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_LBRACKET.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
             hash = hash * 31 + (_RBRACKET.hashCode());
@@ -16701,14 +16024,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof PostIncrementExpression)) return false;
+            if (! super.equals(o)) return false;
             PostIncrementExpression other = (PostIncrementExpression) o;
             if (! _PostfixExpression.equals(other._PostfixExpression)) return false;
             if (! _PLUS_PLUS.equals(other._PLUS_PLUS)) return false;
@@ -16717,7 +16034,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_PostfixExpression.hashCode());
             hash = hash * 31 + (_PLUS_PLUS.hashCode());
             return hash;
@@ -16782,14 +16099,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof PostDecrementExpression)) return false;
+            if (! super.equals(o)) return false;
             PostDecrementExpression other = (PostDecrementExpression) o;
             if (! _PostfixExpression.equals(other._PostfixExpression)) return false;
             if (! _MINUS_MINUS.equals(other._MINUS_MINUS)) return false;
@@ -16798,7 +16109,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_PostfixExpression.hashCode());
             hash = hash * 31 + (_MINUS_MINUS.hashCode());
             return hash;
@@ -16863,14 +16174,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof PreIncrementExpression)) return false;
+            if (! super.equals(o)) return false;
             PreIncrementExpression other = (PreIncrementExpression) o;
             if (! _PLUS_PLUS.equals(other._PLUS_PLUS)) return false;
             if (! _UnaryExpression.equals(other._UnaryExpression)) return false;
@@ -16879,7 +16184,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_PLUS_PLUS.hashCode());
             hash = hash * 31 + (_UnaryExpression.hashCode());
             return hash;
@@ -16944,14 +16249,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof PreDecrementExpression)) return false;
+            if (! super.equals(o)) return false;
             PreDecrementExpression other = (PreDecrementExpression) o;
             if (! _MINUS_MINUS.equals(other._MINUS_MINUS)) return false;
             if (! _UnaryExpression.equals(other._UnaryExpression)) return false;
@@ -16960,7 +16259,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_MINUS_MINUS.hashCode());
             hash = hash * 31 + (_UnaryExpression.hashCode());
             return hash;
@@ -17035,14 +16334,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof AndExpression)) return false;
+            if (! super.equals(o)) return false;
             AndExpression other = (AndExpression) o;
             if (! _AndExpression.equals(other._AndExpression)) return false;
             if (! _AND.equals(other._AND)) return false;
@@ -17052,7 +16345,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_AndExpression.hashCode());
             hash = hash * 31 + (_AND.hashCode());
             hash = hash * 31 + (_EqualityExpression.hashCode());
@@ -17129,14 +16422,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ExclusiveOrExpression)) return false;
+            if (! super.equals(o)) return false;
             ExclusiveOrExpression other = (ExclusiveOrExpression) o;
             if (! _ExclusiveOrExpression.equals(other._ExclusiveOrExpression)) return false;
             if (! _XOR.equals(other._XOR)) return false;
@@ -17146,7 +16433,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ExclusiveOrExpression.hashCode());
             hash = hash * 31 + (_XOR.hashCode());
             hash = hash * 31 + (_AndExpression.hashCode());
@@ -17223,14 +16510,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof InclusiveOrExpression)) return false;
+            if (! super.equals(o)) return false;
             InclusiveOrExpression other = (InclusiveOrExpression) o;
             if (! _InclusiveOrExpression.equals(other._InclusiveOrExpression)) return false;
             if (! _OR.equals(other._OR)) return false;
@@ -17240,7 +16521,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_InclusiveOrExpression.hashCode());
             hash = hash * 31 + (_OR.hashCode());
             hash = hash * 31 + (_ExclusiveOrExpression.hashCode());
@@ -17317,14 +16598,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ConditionalAndExpression)) return false;
+            if (! super.equals(o)) return false;
             ConditionalAndExpression other = (ConditionalAndExpression) o;
             if (! _ConditionalAndExpression.equals(other._ConditionalAndExpression)) return false;
             if (! _AND_AND.equals(other._AND_AND)) return false;
@@ -17334,7 +16609,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ConditionalAndExpression.hashCode());
             hash = hash * 31 + (_AND_AND.hashCode());
             hash = hash * 31 + (_InclusiveOrExpression.hashCode());
@@ -17411,14 +16686,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ConditionalOrExpression)) return false;
+            if (! super.equals(o)) return false;
             ConditionalOrExpression other = (ConditionalOrExpression) o;
             if (! _ConditionalOrExpression.equals(other._ConditionalOrExpression)) return false;
             if (! _OR_OR.equals(other._OR_OR)) return false;
@@ -17428,7 +16697,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ConditionalOrExpression.hashCode());
             hash = hash * 31 + (_OR_OR.hashCode());
             hash = hash * 31 + (_ConditionalAndExpression.hashCode());
@@ -17517,14 +16786,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ConditionalExpression)) return false;
+            if (! super.equals(o)) return false;
             ConditionalExpression other = (ConditionalExpression) o;
             if (! _ConditionalOrExpression.equals(other._ConditionalOrExpression)) return false;
             if (! _QUESTION.equals(other._QUESTION)) return false;
@@ -17536,7 +16799,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ConditionalOrExpression.hashCode());
             hash = hash * 31 + (_QUESTION.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -17613,14 +16876,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof Assignment)) return false;
+            if (! super.equals(o)) return false;
             Assignment other = (Assignment) o;
             if (! _LeftHandSide.equals(other._LeftHandSide)) return false;
             if (! _AssignmentOperator.equals(other._AssignmentOperator)) return false;
@@ -17630,7 +16887,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_LeftHandSide.hashCode());
             hash = hash * 31 + (_AssignmentOperator.hashCode());
             hash = hash * 31 + (_AssignmentExpression.hashCode());
@@ -17764,14 +17021,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof LPGUserAction0)) return false;
+            if (! super.equals(o)) return false;
             LPGUserAction0 other = (LPGUserAction0) o;
             if (! _BeginAction.equals(other._BeginAction)) return false;
             if (_BlockStatementsopt == null)
@@ -17784,7 +17035,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_BeginAction.hashCode());
             hash = hash * 31 + (_BlockStatementsopt == null ? 0 : _BlockStatementsopt.hashCode());
             hash = hash * 31 + (_EndAction.hashCode());
@@ -17860,14 +17111,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof LPGUserAction1)) return false;
+            if (! super.equals(o)) return false;
             LPGUserAction1 other = (LPGUserAction1) o;
             if (! _BeginJava.equals(other._BeginJava)) return false;
             if (_BlockStatementsopt == null)
@@ -17880,7 +17125,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_BeginJava.hashCode());
             hash = hash * 31 + (_BlockStatementsopt == null ? 0 : _BlockStatementsopt.hashCode());
             hash = hash * 31 + (_EndJava.hashCode());
@@ -18197,14 +17442,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof WildcardBounds0)) return false;
+            if (! super.equals(o)) return false;
             WildcardBounds0 other = (WildcardBounds0) o;
             if (! _extends.equals(other._extends)) return false;
             if (! _ReferenceType.equals(other._ReferenceType)) return false;
@@ -18213,7 +17452,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_extends.hashCode());
             hash = hash * 31 + (_ReferenceType.hashCode());
             return hash;
@@ -18278,14 +17517,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof WildcardBounds1)) return false;
+            if (! super.equals(o)) return false;
             WildcardBounds1 other = (WildcardBounds1) o;
             if (! _super.equals(other._super)) return false;
             if (! _ReferenceType.equals(other._ReferenceType)) return false;
@@ -18294,7 +17527,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_super.hashCode());
             hash = hash * 31 + (_ReferenceType.hashCode());
             return hash;
@@ -18724,14 +17957,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof MethodDeclarator0)) return false;
+            if (! super.equals(o)) return false;
             MethodDeclarator0 other = (MethodDeclarator0) o;
             if (! _identifier.equals(other._identifier)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -18745,7 +17972,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_identifier.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_FormalParameterListopt == null ? 0 : _FormalParameterListopt.hashCode());
@@ -18820,14 +18047,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof MethodDeclarator1)) return false;
+            if (! super.equals(o)) return false;
             MethodDeclarator1 other = (MethodDeclarator1) o;
             if (! _MethodDeclarator.equals(other._MethodDeclarator)) return false;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
@@ -18837,7 +18058,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_MethodDeclarator.hashCode());
             hash = hash * 31 + (_LBRACKET.hashCode());
             hash = hash * 31 + (_RBRACKET.hashCode());
@@ -19234,14 +18455,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ExplicitConstructorInvocation0)) return false;
+            if (! super.equals(o)) return false;
             ExplicitConstructorInvocation0 other = (ExplicitConstructorInvocation0) o;
             if (_TypeArgumentsopt == null)
                 if (other._TypeArgumentsopt != null) return false;
@@ -19260,7 +18475,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_TypeArgumentsopt == null ? 0 : _TypeArgumentsopt.hashCode());
             hash = hash * 31 + (_this.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
@@ -19363,14 +18578,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ExplicitConstructorInvocation1)) return false;
+            if (! super.equals(o)) return false;
             ExplicitConstructorInvocation1 other = (ExplicitConstructorInvocation1) o;
             if (_TypeArgumentsopt == null)
                 if (other._TypeArgumentsopt != null) return false;
@@ -19389,7 +18598,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_TypeArgumentsopt == null ? 0 : _TypeArgumentsopt.hashCode());
             hash = hash * 31 + (_super.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
@@ -19504,14 +18713,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ExplicitConstructorInvocation2)) return false;
+            if (! super.equals(o)) return false;
             ExplicitConstructorInvocation2 other = (ExplicitConstructorInvocation2) o;
             if (! _Primary.equals(other._Primary)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -19532,7 +18735,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_Primary.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_TypeArgumentsopt == null ? 0 : _TypeArgumentsopt.hashCode());
@@ -19759,14 +18962,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ExtendsInterfaces0)) return false;
+            if (! super.equals(o)) return false;
             ExtendsInterfaces0 other = (ExtendsInterfaces0) o;
             if (! _extends.equals(other._extends)) return false;
             if (! _InterfaceType.equals(other._InterfaceType)) return false;
@@ -19775,7 +18972,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_extends.hashCode());
             hash = hash * 31 + (_InterfaceType.hashCode());
             return hash;
@@ -19846,14 +19043,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ExtendsInterfaces1)) return false;
+            if (! super.equals(o)) return false;
             ExtendsInterfaces1 other = (ExtendsInterfaces1) o;
             if (! _ExtendsInterfaces.equals(other._ExtendsInterfaces)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
@@ -19863,7 +19054,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ExtendsInterfaces.hashCode());
             hash = hash * 31 + (_COMMA.hashCode());
             hash = hash * 31 + (_InterfaceType.hashCode());
@@ -20091,14 +19282,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof AnnotationTypeElementDeclaration0)) return false;
+            if (! super.equals(o)) return false;
             AnnotationTypeElementDeclaration0 other = (AnnotationTypeElementDeclaration0) o;
             if (_AbstractMethodModifiersopt == null)
                 if (other._AbstractMethodModifiersopt != null) return false;
@@ -20118,7 +19303,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_AbstractMethodModifiersopt == null ? 0 : _AbstractMethodModifiersopt.hashCode());
             hash = hash * 31 + (_Type.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -20224,14 +19409,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof AssertStatement0)) return false;
+            if (! super.equals(o)) return false;
             AssertStatement0 other = (AssertStatement0) o;
             if (! _assert.equals(other._assert)) return false;
             if (! _Expression.equals(other._Expression)) return false;
@@ -20241,7 +19420,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_assert.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
             hash = hash * 31 + (_SEMICOLON.hashCode());
@@ -20326,14 +19505,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof AssertStatement1)) return false;
+            if (! super.equals(o)) return false;
             AssertStatement1 other = (AssertStatement1) o;
             if (! _assert.equals(other._assert)) return false;
             if (! _Expression.equals(other._Expression)) return false;
@@ -20345,7 +19518,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_assert.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
             hash = hash * 31 + (_COLON.hashCode());
@@ -20422,14 +19595,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof SwitchLabel0)) return false;
+            if (! super.equals(o)) return false;
             SwitchLabel0 other = (SwitchLabel0) o;
             if (! _case.equals(other._case)) return false;
             if (! _ConstantExpression.equals(other._ConstantExpression)) return false;
@@ -20439,7 +19606,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_case.hashCode());
             hash = hash * 31 + (_ConstantExpression.hashCode());
             hash = hash * 31 + (_COLON.hashCode());
@@ -20512,14 +19679,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof SwitchLabel1)) return false;
+            if (! super.equals(o)) return false;
             SwitchLabel1 other = (SwitchLabel1) o;
             if (! _case.equals(other._case)) return false;
             if (! _EnumConstant.equals(other._EnumConstant)) return false;
@@ -20529,7 +19690,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_case.hashCode());
             hash = hash * 31 + (_EnumConstant.hashCode());
             hash = hash * 31 + (_COLON.hashCode());
@@ -20596,14 +19757,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof SwitchLabel2)) return false;
+            if (! super.equals(o)) return false;
             SwitchLabel2 other = (SwitchLabel2) o;
             if (! _default.equals(other._default)) return false;
             if (! _COLON.equals(other._COLON)) return false;
@@ -20612,7 +19767,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_default.hashCode());
             hash = hash * 31 + (_COLON.hashCode());
             return hash;
@@ -20683,14 +19838,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof TryStatement0)) return false;
+            if (! super.equals(o)) return false;
             TryStatement0 other = (TryStatement0) o;
             if (! _try.equals(other._try)) return false;
             if (! _Block.equals(other._Block)) return false;
@@ -20700,7 +19849,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_try.hashCode());
             hash = hash * 31 + (_Block.hashCode());
             hash = hash * 31 + (_Catches.hashCode());
@@ -20782,14 +19931,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof TryStatement1)) return false;
+            if (! super.equals(o)) return false;
             TryStatement1 other = (TryStatement1) o;
             if (! _try.equals(other._try)) return false;
             if (! _Block.equals(other._Block)) return false;
@@ -20803,7 +19946,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_try.hashCode());
             hash = hash * 31 + (_Block.hashCode());
             hash = hash * 31 + (_Catchesopt == null ? 0 : _Catchesopt.hashCode());
@@ -20878,14 +20021,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof PrimaryNoNewArray0)) return false;
+            if (! super.equals(o)) return false;
             PrimaryNoNewArray0 other = (PrimaryNoNewArray0) o;
             if (! _Type.equals(other._Type)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -20895,7 +20032,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_Type.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_class.hashCode());
@@ -20968,14 +20105,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof PrimaryNoNewArray1)) return false;
+            if (! super.equals(o)) return false;
             PrimaryNoNewArray1 other = (PrimaryNoNewArray1) o;
             if (! _void.equals(other._void)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -20985,7 +20116,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_void.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_class.hashCode());
@@ -21083,14 +20214,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof PrimaryNoNewArray3)) return false;
+            if (! super.equals(o)) return false;
             PrimaryNoNewArray3 other = (PrimaryNoNewArray3) o;
             if (! _ClassName.equals(other._ClassName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -21100,7 +20225,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ClassName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_this.hashCode());
@@ -21173,14 +20298,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof PrimaryNoNewArray4)) return false;
+            if (! super.equals(o)) return false;
             PrimaryNoNewArray4 other = (PrimaryNoNewArray4) o;
             if (! _LPAREN.equals(other._LPAREN)) return false;
             if (! _Expression.equals(other._Expression)) return false;
@@ -21190,7 +20309,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
             hash = hash * 31 + (_RPAREN.hashCode());
@@ -21530,14 +20649,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ClassInstanceCreationExpression0)) return false;
+            if (! super.equals(o)) return false;
             ClassInstanceCreationExpression0 other = (ClassInstanceCreationExpression0) o;
             if (! _new.equals(other._new)) return false;
             if (_TypeArgumentsopt == null)
@@ -21564,7 +20677,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_new.hashCode());
             hash = hash * 31 + (_TypeArgumentsopt == null ? 0 : _TypeArgumentsopt.hashCode());
             hash = hash * 31 + (_ClassOrInterfaceType.hashCode());
@@ -21701,14 +20814,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ClassInstanceCreationExpression1)) return false;
+            if (! super.equals(o)) return false;
             ClassInstanceCreationExpression1 other = (ClassInstanceCreationExpression1) o;
             if (! _Primary.equals(other._Primary)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -21737,7 +20844,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_Primary.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_new.hashCode());
@@ -21833,14 +20940,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ArrayCreationExpression0)) return false;
+            if (! super.equals(o)) return false;
             ArrayCreationExpression0 other = (ArrayCreationExpression0) o;
             if (! _new.equals(other._new)) return false;
             if (! _PrimitiveType.equals(other._PrimitiveType)) return false;
@@ -21854,7 +20955,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_new.hashCode());
             hash = hash * 31 + (_PrimitiveType.hashCode());
             hash = hash * 31 + (_DimExprs.hashCode());
@@ -21938,14 +21039,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ArrayCreationExpression1)) return false;
+            if (! super.equals(o)) return false;
             ArrayCreationExpression1 other = (ArrayCreationExpression1) o;
             if (! _new.equals(other._new)) return false;
             if (! _ClassOrInterfaceType.equals(other._ClassOrInterfaceType)) return false;
@@ -21959,7 +21054,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_new.hashCode());
             hash = hash * 31 + (_ClassOrInterfaceType.hashCode());
             hash = hash * 31 + (_DimExprs.hashCode());
@@ -22040,14 +21135,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ArrayCreationExpression2)) return false;
+            if (! super.equals(o)) return false;
             ArrayCreationExpression2 other = (ArrayCreationExpression2) o;
             if (! _new.equals(other._new)) return false;
             if (! _PrimitiveType.equals(other._PrimitiveType)) return false;
@@ -22058,7 +21147,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_new.hashCode());
             hash = hash * 31 + (_PrimitiveType.hashCode());
             hash = hash * 31 + (_Dims.hashCode());
@@ -22139,14 +21228,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ArrayCreationExpression3)) return false;
+            if (! super.equals(o)) return false;
             ArrayCreationExpression3 other = (ArrayCreationExpression3) o;
             if (! _new.equals(other._new)) return false;
             if (! _ClassOrInterfaceType.equals(other._ClassOrInterfaceType)) return false;
@@ -22157,7 +21240,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_new.hashCode());
             hash = hash * 31 + (_ClassOrInterfaceType.hashCode());
             hash = hash * 31 + (_Dims.hashCode());
@@ -22226,14 +21309,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof Dims0)) return false;
+            if (! super.equals(o)) return false;
             Dims0 other = (Dims0) o;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
             if (! _RBRACKET.equals(other._RBRACKET)) return false;
@@ -22242,7 +21319,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_LBRACKET.hashCode());
             hash = hash * 31 + (_RBRACKET.hashCode());
             return hash;
@@ -22313,14 +21390,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof Dims1)) return false;
+            if (! super.equals(o)) return false;
             Dims1 other = (Dims1) o;
             if (! _Dims.equals(other._Dims)) return false;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
@@ -22330,7 +21401,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_Dims.hashCode());
             hash = hash * 31 + (_LBRACKET.hashCode());
             hash = hash * 31 + (_RBRACKET.hashCode());
@@ -22403,14 +21474,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof FieldAccess0)) return false;
+            if (! super.equals(o)) return false;
             FieldAccess0 other = (FieldAccess0) o;
             if (! _Primary.equals(other._Primary)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -22420,7 +21485,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_Primary.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -22493,14 +21558,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof FieldAccess1)) return false;
+            if (! super.equals(o)) return false;
             FieldAccess1 other = (FieldAccess1) o;
             if (! _super.equals(other._super)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -22510,7 +21569,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_super.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_identifier.hashCode());
@@ -22595,14 +21654,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof FieldAccess2)) return false;
+            if (! super.equals(o)) return false;
             FieldAccess2 other = (FieldAccess2) o;
             if (! _ClassName.equals(other._ClassName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -22614,7 +21667,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ClassName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_super.hashCode());
@@ -22700,14 +21753,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof MethodInvocation0)) return false;
+            if (! super.equals(o)) return false;
             MethodInvocation0 other = (MethodInvocation0) o;
             if (! _MethodName.equals(other._MethodName)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
@@ -22721,7 +21768,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_MethodName.hashCode());
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_ArgumentListopt == null ? 0 : _ArgumentListopt.hashCode());
@@ -22826,14 +21873,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof MethodInvocation1)) return false;
+            if (! super.equals(o)) return false;
             MethodInvocation1 other = (MethodInvocation1) o;
             if (! _Primary.equals(other._Primary)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -22853,7 +21894,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_Primary.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_TypeArgumentsopt == null ? 0 : _TypeArgumentsopt.hashCode());
@@ -22964,14 +22005,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof MethodInvocation2)) return false;
+            if (! super.equals(o)) return false;
             MethodInvocation2 other = (MethodInvocation2) o;
             if (! _super.equals(other._super)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -22991,7 +22026,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_super.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_TypeArgumentsopt == null ? 0 : _TypeArgumentsopt.hashCode());
@@ -23114,14 +22149,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof MethodInvocation3)) return false;
+            if (! super.equals(o)) return false;
             MethodInvocation3 other = (MethodInvocation3) o;
             if (! _ClassName.equals(other._ClassName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -23143,7 +22172,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ClassName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_super.hashCode());
@@ -23255,14 +22284,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof MethodInvocation4)) return false;
+            if (! super.equals(o)) return false;
             MethodInvocation4 other = (MethodInvocation4) o;
             if (! _TypeName.equals(other._TypeName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
@@ -23279,7 +22302,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_TypeName.hashCode());
             hash = hash * 31 + (_DOT.hashCode());
             hash = hash * 31 + (_TypeArguments.hashCode());
@@ -23366,14 +22389,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ArrayAccess0)) return false;
+            if (! super.equals(o)) return false;
             ArrayAccess0 other = (ArrayAccess0) o;
             if (! _ExpressionName.equals(other._ExpressionName)) return false;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
@@ -23384,7 +22401,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ExpressionName.hashCode());
             hash = hash * 31 + (_LBRACKET.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -23465,14 +22482,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ArrayAccess1)) return false;
+            if (! super.equals(o)) return false;
             ArrayAccess1 other = (ArrayAccess1) o;
             if (! _PrimaryNoNewArray.equals(other._PrimaryNoNewArray)) return false;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
@@ -23483,7 +22494,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_PrimaryNoNewArray.hashCode());
             hash = hash * 31 + (_LBRACKET.hashCode());
             hash = hash * 31 + (_Expression.hashCode());
@@ -23552,14 +22563,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof UnaryExpression0)) return false;
+            if (! super.equals(o)) return false;
             UnaryExpression0 other = (UnaryExpression0) o;
             if (! _PLUS.equals(other._PLUS)) return false;
             if (! _UnaryExpression.equals(other._UnaryExpression)) return false;
@@ -23568,7 +22573,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_PLUS.hashCode());
             hash = hash * 31 + (_UnaryExpression.hashCode());
             return hash;
@@ -23633,14 +22638,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof UnaryExpression1)) return false;
+            if (! super.equals(o)) return false;
             UnaryExpression1 other = (UnaryExpression1) o;
             if (! _MINUS.equals(other._MINUS)) return false;
             if (! _UnaryExpression.equals(other._UnaryExpression)) return false;
@@ -23649,7 +22648,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_MINUS.hashCode());
             hash = hash * 31 + (_UnaryExpression.hashCode());
             return hash;
@@ -23714,14 +22713,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof UnaryExpressionNotPlusMinus0)) return false;
+            if (! super.equals(o)) return false;
             UnaryExpressionNotPlusMinus0 other = (UnaryExpressionNotPlusMinus0) o;
             if (! _TWIDDLE.equals(other._TWIDDLE)) return false;
             if (! _UnaryExpression.equals(other._UnaryExpression)) return false;
@@ -23730,7 +22723,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_TWIDDLE.hashCode());
             hash = hash * 31 + (_UnaryExpression.hashCode());
             return hash;
@@ -23795,14 +22788,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof UnaryExpressionNotPlusMinus1)) return false;
+            if (! super.equals(o)) return false;
             UnaryExpressionNotPlusMinus1 other = (UnaryExpressionNotPlusMinus1) o;
             if (! _NOT.equals(other._NOT)) return false;
             if (! _UnaryExpression.equals(other._UnaryExpression)) return false;
@@ -23811,7 +22798,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_NOT.hashCode());
             hash = hash * 31 + (_UnaryExpression.hashCode());
             return hash;
@@ -23897,14 +22884,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof CastExpression0)) return false;
+            if (! super.equals(o)) return false;
             CastExpression0 other = (CastExpression0) o;
             if (! _LPAREN.equals(other._LPAREN)) return false;
             if (! _PrimitiveType.equals(other._PrimitiveType)) return false;
@@ -23919,7 +22900,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_PrimitiveType.hashCode());
             hash = hash * 31 + (_Dimsopt == null ? 0 : _Dimsopt.hashCode());
@@ -24002,14 +22983,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof CastExpression1)) return false;
+            if (! super.equals(o)) return false;
             CastExpression1 other = (CastExpression1) o;
             if (! _LPAREN.equals(other._LPAREN)) return false;
             if (! _ReferenceType.equals(other._ReferenceType)) return false;
@@ -24020,7 +22995,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_LPAREN.hashCode());
             hash = hash * 31 + (_ReferenceType.hashCode());
             hash = hash * 31 + (_RPAREN.hashCode());
@@ -24095,14 +23070,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof MultiplicativeExpression0)) return false;
+            if (! super.equals(o)) return false;
             MultiplicativeExpression0 other = (MultiplicativeExpression0) o;
             if (! _MultiplicativeExpression.equals(other._MultiplicativeExpression)) return false;
             if (! _MULTIPLY.equals(other._MULTIPLY)) return false;
@@ -24112,7 +23081,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_MultiplicativeExpression.hashCode());
             hash = hash * 31 + (_MULTIPLY.hashCode());
             hash = hash * 31 + (_UnaryExpression.hashCode());
@@ -24185,14 +23154,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof MultiplicativeExpression1)) return false;
+            if (! super.equals(o)) return false;
             MultiplicativeExpression1 other = (MultiplicativeExpression1) o;
             if (! _MultiplicativeExpression.equals(other._MultiplicativeExpression)) return false;
             if (! _DIVIDE.equals(other._DIVIDE)) return false;
@@ -24202,7 +23165,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_MultiplicativeExpression.hashCode());
             hash = hash * 31 + (_DIVIDE.hashCode());
             hash = hash * 31 + (_UnaryExpression.hashCode());
@@ -24275,14 +23238,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof MultiplicativeExpression2)) return false;
+            if (! super.equals(o)) return false;
             MultiplicativeExpression2 other = (MultiplicativeExpression2) o;
             if (! _MultiplicativeExpression.equals(other._MultiplicativeExpression)) return false;
             if (! _REMAINDER.equals(other._REMAINDER)) return false;
@@ -24292,7 +23249,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_MultiplicativeExpression.hashCode());
             hash = hash * 31 + (_REMAINDER.hashCode());
             hash = hash * 31 + (_UnaryExpression.hashCode());
@@ -24365,14 +23322,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof AdditiveExpression0)) return false;
+            if (! super.equals(o)) return false;
             AdditiveExpression0 other = (AdditiveExpression0) o;
             if (! _AdditiveExpression.equals(other._AdditiveExpression)) return false;
             if (! _PLUS.equals(other._PLUS)) return false;
@@ -24382,7 +23333,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_AdditiveExpression.hashCode());
             hash = hash * 31 + (_PLUS.hashCode());
             hash = hash * 31 + (_MultiplicativeExpression.hashCode());
@@ -24455,14 +23406,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof AdditiveExpression1)) return false;
+            if (! super.equals(o)) return false;
             AdditiveExpression1 other = (AdditiveExpression1) o;
             if (! _AdditiveExpression.equals(other._AdditiveExpression)) return false;
             if (! _MINUS.equals(other._MINUS)) return false;
@@ -24472,7 +23417,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_AdditiveExpression.hashCode());
             hash = hash * 31 + (_MINUS.hashCode());
             hash = hash * 31 + (_MultiplicativeExpression.hashCode());
@@ -24545,14 +23490,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ShiftExpression0)) return false;
+            if (! super.equals(o)) return false;
             ShiftExpression0 other = (ShiftExpression0) o;
             if (! _ShiftExpression.equals(other._ShiftExpression)) return false;
             if (! _LEFT_SHIFT.equals(other._LEFT_SHIFT)) return false;
@@ -24562,7 +23501,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ShiftExpression.hashCode());
             hash = hash * 31 + (_LEFT_SHIFT.hashCode());
             hash = hash * 31 + (_AdditiveExpression.hashCode());
@@ -24641,14 +23580,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ShiftExpression1)) return false;
+            if (! super.equals(o)) return false;
             ShiftExpression1 other = (ShiftExpression1) o;
             if (! _ShiftExpression.equals(other._ShiftExpression)) return false;
             if (! _GREATER.equals(other._GREATER)) return false;
@@ -24659,7 +23592,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ShiftExpression.hashCode());
             hash = hash * 31 + (_GREATER.hashCode());
             hash = hash * 31 + (_GREATER3.hashCode());
@@ -24746,14 +23679,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof ShiftExpression2)) return false;
+            if (! super.equals(o)) return false;
             ShiftExpression2 other = (ShiftExpression2) o;
             if (! _ShiftExpression.equals(other._ShiftExpression)) return false;
             if (! _GREATER.equals(other._GREATER)) return false;
@@ -24765,7 +23692,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_ShiftExpression.hashCode());
             hash = hash * 31 + (_GREATER.hashCode());
             hash = hash * 31 + (_GREATER3.hashCode());
@@ -24842,14 +23769,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof RelationalExpression0)) return false;
+            if (! super.equals(o)) return false;
             RelationalExpression0 other = (RelationalExpression0) o;
             if (! _RelationalExpression.equals(other._RelationalExpression)) return false;
             if (! _LESS.equals(other._LESS)) return false;
@@ -24859,7 +23780,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_RelationalExpression.hashCode());
             hash = hash * 31 + (_LESS.hashCode());
             hash = hash * 31 + (_ShiftExpression.hashCode());
@@ -24932,14 +23853,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof RelationalExpression1)) return false;
+            if (! super.equals(o)) return false;
             RelationalExpression1 other = (RelationalExpression1) o;
             if (! _RelationalExpression.equals(other._RelationalExpression)) return false;
             if (! _GREATER.equals(other._GREATER)) return false;
@@ -24949,7 +23864,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_RelationalExpression.hashCode());
             hash = hash * 31 + (_GREATER.hashCode());
             hash = hash * 31 + (_ShiftExpression.hashCode());
@@ -25022,14 +23937,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof RelationalExpression2)) return false;
+            if (! super.equals(o)) return false;
             RelationalExpression2 other = (RelationalExpression2) o;
             if (! _RelationalExpression.equals(other._RelationalExpression)) return false;
             if (! _LESS_EQUAL.equals(other._LESS_EQUAL)) return false;
@@ -25039,7 +23948,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_RelationalExpression.hashCode());
             hash = hash * 31 + (_LESS_EQUAL.hashCode());
             hash = hash * 31 + (_ShiftExpression.hashCode());
@@ -25118,14 +24027,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof RelationalExpression3)) return false;
+            if (! super.equals(o)) return false;
             RelationalExpression3 other = (RelationalExpression3) o;
             if (! _RelationalExpression.equals(other._RelationalExpression)) return false;
             if (! _GREATER.equals(other._GREATER)) return false;
@@ -25136,7 +24039,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_RelationalExpression.hashCode());
             hash = hash * 31 + (_GREATER.hashCode());
             hash = hash * 31 + (_EQUAL.hashCode());
@@ -25211,14 +24114,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof RelationalExpression4)) return false;
+            if (! super.equals(o)) return false;
             RelationalExpression4 other = (RelationalExpression4) o;
             if (! _RelationalExpression.equals(other._RelationalExpression)) return false;
             if (! _instanceof.equals(other._instanceof)) return false;
@@ -25228,7 +24125,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_RelationalExpression.hashCode());
             hash = hash * 31 + (_instanceof.hashCode());
             hash = hash * 31 + (_ReferenceType.hashCode());
@@ -25301,14 +24198,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof EqualityExpression0)) return false;
+            if (! super.equals(o)) return false;
             EqualityExpression0 other = (EqualityExpression0) o;
             if (! _EqualityExpression.equals(other._EqualityExpression)) return false;
             if (! _EQUAL_EQUAL.equals(other._EQUAL_EQUAL)) return false;
@@ -25318,7 +24209,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_EqualityExpression.hashCode());
             hash = hash * 31 + (_EQUAL_EQUAL.hashCode());
             hash = hash * 31 + (_RelationalExpression.hashCode());
@@ -25391,14 +24282,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof EqualityExpression1)) return false;
+            if (! super.equals(o)) return false;
             EqualityExpression1 other = (EqualityExpression1) o;
             if (! _EqualityExpression.equals(other._EqualityExpression)) return false;
             if (! _NOT_EQUAL.equals(other._NOT_EQUAL)) return false;
@@ -25408,7 +24293,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_EqualityExpression.hashCode());
             hash = hash * 31 + (_NOT_EQUAL.hashCode());
             hash = hash * 31 + (_RelationalExpression.hashCode());
@@ -25656,14 +24541,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof AssignmentOperator7)) return false;
+            if (! super.equals(o)) return false;
             AssignmentOperator7 other = (AssignmentOperator7) o;
             if (! _GREATER.equals(other._GREATER)) return false;
             if (! _GREATER2.equals(other._GREATER2)) return false;
@@ -25673,7 +24552,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_GREATER.hashCode());
             hash = hash * 31 + (_GREATER2.hashCode());
             hash = hash * 31 + (_EQUAL.hashCode());
@@ -25752,14 +24631,8 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            //
-            // The super call test is not required for now because an Ast node
-            // can only extend the root Ast, AstToken and AstList and none of
-            // these nodes contain additional children.
-            //
-            // if (! super.equals(o)) return false;
-            //
             if (! (o instanceof AssignmentOperator8)) return false;
+            if (! super.equals(o)) return false;
             AssignmentOperator8 other = (AssignmentOperator8) o;
             if (! _GREATER.equals(other._GREATER)) return false;
             if (! _GREATER2.equals(other._GREATER2)) return false;
@@ -25770,7 +24643,7 @@ public class JavaParser implements RuleAction
 
         public int hashCode()
         {
-            int hash = 7;
+            int hash = super.hashCode();
             hash = hash * 31 + (_GREATER.hashCode());
             hash = hash * 31 + (_GREATER2.hashCode());
             hash = hash * 31 + (_GREATER3.hashCode());
@@ -28061,7 +26934,7 @@ public class JavaParser implements RuleAction
             // Rule 3:  identifier ::= IDENTIFIER
             //
             case 3: {
-               //#line 184 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 184 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new identifier(JavaParser.this, getRhsIToken(1))
                 );
@@ -28076,7 +26949,7 @@ public class JavaParser implements RuleAction
             // Rule 5:  LPGUserAction ::= $BeginAction BlockStatementsopt $EndAction
             //
             case 5: {
-               //#line 194 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 194 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LPGUserAction0(getLeftIToken(), getRightIToken(),
                                        new AstToken(getRhsIToken(1)),
@@ -28089,7 +26962,7 @@ public class JavaParser implements RuleAction
             // Rule 6:  LPGUserAction ::= $BeginJava BlockStatementsopt $EndJava
             //
             case 6: {
-               //#line 195 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 195 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LPGUserAction1(getLeftIToken(), getRightIToken(),
                                        new AstToken(getRhsIToken(1)),
@@ -28102,7 +26975,7 @@ public class JavaParser implements RuleAction
             // Rule 7:  LPGUserAction ::= $NoAction
             //
             case 7: {
-               //#line 196 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 196 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LPGUserAction2(getRhsIToken(1))
                 );
@@ -28112,7 +26985,7 @@ public class JavaParser implements RuleAction
             // Rule 8:  LPGUserAction ::= $NullAction
             //
             case 8: {
-               //#line 197 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 197 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LPGUserAction3(getRhsIToken(1))
                 );
@@ -28122,7 +26995,7 @@ public class JavaParser implements RuleAction
             // Rule 9:  LPGUserAction ::= $BadAction
             //
             case 9: {
-               //#line 198 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 198 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LPGUserAction4(getRhsIToken(1))
                 );
@@ -28147,7 +27020,7 @@ public class JavaParser implements RuleAction
             // Rule 13:  PrimitiveType ::= boolean
             //
             case 13: {
-               //#line 207 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 207 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PrimitiveType(getRhsIToken(1))
                 );
@@ -28167,7 +27040,7 @@ public class JavaParser implements RuleAction
             // Rule 16:  IntegralType ::= byte
             //
             case 16: {
-               //#line 212 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 212 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new IntegralType0(getRhsIToken(1))
                 );
@@ -28177,7 +27050,7 @@ public class JavaParser implements RuleAction
             // Rule 17:  IntegralType ::= short
             //
             case 17: {
-               //#line 213 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 213 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new IntegralType1(getRhsIToken(1))
                 );
@@ -28187,7 +27060,7 @@ public class JavaParser implements RuleAction
             // Rule 18:  IntegralType ::= int
             //
             case 18: {
-               //#line 214 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 214 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new IntegralType2(getRhsIToken(1))
                 );
@@ -28197,7 +27070,7 @@ public class JavaParser implements RuleAction
             // Rule 19:  IntegralType ::= long
             //
             case 19: {
-               //#line 215 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 215 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new IntegralType3(getRhsIToken(1))
                 );
@@ -28207,7 +27080,7 @@ public class JavaParser implements RuleAction
             // Rule 20:  IntegralType ::= char
             //
             case 20: {
-               //#line 216 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 216 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new IntegralType4(getRhsIToken(1))
                 );
@@ -28217,7 +27090,7 @@ public class JavaParser implements RuleAction
             // Rule 21:  FloatingPointType ::= float
             //
             case 21: {
-               //#line 218 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 218 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FloatingPointType0(getRhsIToken(1))
                 );
@@ -28227,7 +27100,7 @@ public class JavaParser implements RuleAction
             // Rule 22:  FloatingPointType ::= double
             //
             case 22: {
-               //#line 219 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 219 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FloatingPointType1(getRhsIToken(1))
                 );
@@ -28257,7 +27130,7 @@ public class JavaParser implements RuleAction
             // Rule 27:  ClassType ::= TypeName TypeArgumentsopt
             //
             case 27: {
-               //#line 231 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 231 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassType(getLeftIToken(), getRightIToken(),
                                   (ITypeName)getRhsSym(1),
@@ -28269,7 +27142,7 @@ public class JavaParser implements RuleAction
             // Rule 28:  InterfaceType ::= TypeName TypeArgumentsopt
             //
             case 28: {
-               //#line 233 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 233 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceType(getLeftIToken(), getRightIToken(),
                                       (ITypeName)getRhsSym(1),
@@ -28286,7 +27159,7 @@ public class JavaParser implements RuleAction
             // Rule 30:  TypeName ::= TypeName . identifier
             //
             case 30: {
-               //#line 236 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 236 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeName(getLeftIToken(), getRightIToken(),
                                  (ITypeName)getRhsSym(1),
@@ -28309,7 +27182,7 @@ public class JavaParser implements RuleAction
             // Rule 33:  ArrayType ::= Type [ ]
             //
             case 33: {
-               //#line 242 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 242 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArrayType(getLeftIToken(), getRightIToken(),
                                   (IType)getRhsSym(1),
@@ -28322,7 +27195,7 @@ public class JavaParser implements RuleAction
             // Rule 34:  TypeParameter ::= TypeVariable TypeBoundopt
             //
             case 34: {
-               //#line 244 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 244 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeParameter(getLeftIToken(), getRightIToken(),
                                       (identifier)getRhsSym(1),
@@ -28334,7 +27207,7 @@ public class JavaParser implements RuleAction
             // Rule 35:  TypeBound ::= extends ClassOrInterfaceType AdditionalBoundListopt
             //
             case 35: {
-               //#line 246 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 246 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeBound(getLeftIToken(), getRightIToken(),
                                   new AstToken(getRhsIToken(1)),
@@ -28352,7 +27225,7 @@ public class JavaParser implements RuleAction
             // Rule 37:  AdditionalBoundList ::= AdditionalBoundList AdditionalBound
             //
             case 37: {
-               //#line 249 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 249 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AdditionalBoundList(getLeftIToken(), getRightIToken(),
                                             (IAdditionalBoundList)getRhsSym(1),
@@ -28364,7 +27237,7 @@ public class JavaParser implements RuleAction
             // Rule 38:  AdditionalBound ::= & InterfaceType
             //
             case 38: {
-               //#line 251 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 251 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AdditionalBound(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -28376,7 +27249,7 @@ public class JavaParser implements RuleAction
             // Rule 39:  TypeArguments ::= < ActualTypeArgumentList >
             //
             case 39: {
-               //#line 253 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 253 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeArguments(getLeftIToken(), getRightIToken(),
                                       new AstToken(getRhsIToken(1)),
@@ -28394,7 +27267,7 @@ public class JavaParser implements RuleAction
             // Rule 41:  ActualTypeArgumentList ::= ActualTypeArgumentList , ActualTypeArgument
             //
             case 41: {
-               //#line 256 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 256 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ActualTypeArgumentList(getLeftIToken(), getRightIToken(),
                                                (IActualTypeArgumentList)getRhsSym(1),
@@ -28417,7 +27290,7 @@ public class JavaParser implements RuleAction
             // Rule 44:  Wildcard ::= ? WildcardBoundsOpt
             //
             case 44: {
-               //#line 261 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 261 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Wildcard(getLeftIToken(), getRightIToken(),
                                  new AstToken(getRhsIToken(1)),
@@ -28429,7 +27302,7 @@ public class JavaParser implements RuleAction
             // Rule 45:  WildcardBounds ::= extends ReferenceType
             //
             case 45: {
-               //#line 263 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 263 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new WildcardBounds0(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -28441,7 +27314,7 @@ public class JavaParser implements RuleAction
             // Rule 46:  WildcardBounds ::= super ReferenceType
             //
             case 46: {
-               //#line 264 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 264 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new WildcardBounds1(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -28458,7 +27331,7 @@ public class JavaParser implements RuleAction
             // Rule 48:  PackageName ::= PackageName . identifier
             //
             case 48: {
-               //#line 271 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 271 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PackageName(getLeftIToken(), getRightIToken(),
                                     (IPackageName)getRhsSym(1),
@@ -28476,7 +27349,7 @@ public class JavaParser implements RuleAction
             // Rule 50:  ExpressionName ::= AmbiguousName . identifier
             //
             case 50: {
-               //#line 280 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 280 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExpressionName(getLeftIToken(), getRightIToken(),
                                        (IAmbiguousName)getRhsSym(1),
@@ -28494,7 +27367,7 @@ public class JavaParser implements RuleAction
             // Rule 52:  MethodName ::= AmbiguousName . identifier
             //
             case 52: {
-               //#line 283 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 283 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodName(getLeftIToken(), getRightIToken(),
                                    (IAmbiguousName)getRhsSym(1),
@@ -28512,7 +27385,7 @@ public class JavaParser implements RuleAction
             // Rule 54:  PackageOrTypeName ::= PackageOrTypeName . identifier
             //
             case 54: {
-               //#line 286 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 286 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PackageOrTypeName(getLeftIToken(), getRightIToken(),
                                           (IPackageOrTypeName)getRhsSym(1),
@@ -28530,7 +27403,7 @@ public class JavaParser implements RuleAction
             // Rule 56:  AmbiguousName ::= AmbiguousName . identifier
             //
             case 56: {
-               //#line 289 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 289 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AmbiguousName(getLeftIToken(), getRightIToken(),
                                       (IAmbiguousName)getRhsSym(1),
@@ -28543,7 +27416,7 @@ public class JavaParser implements RuleAction
             // Rule 57:  CompilationUnit ::= PackageDeclarationopt ImportDeclarationsopt TypeDeclarationsopt
             //
             case 57: {
-               //#line 293 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 293 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new CompilationUnit(getLeftIToken(), getRightIToken(),
                                         (PackageDeclaration)getRhsSym(1),
@@ -28561,7 +27434,7 @@ public class JavaParser implements RuleAction
             // Rule 59:  ImportDeclarations ::= ImportDeclarations ImportDeclaration
             //
             case 59: {
-               //#line 296 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 296 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ImportDeclarations(getLeftIToken(), getRightIToken(),
                                            (IImportDeclarations)getRhsSym(1),
@@ -28578,7 +27451,7 @@ public class JavaParser implements RuleAction
             // Rule 61:  TypeDeclarations ::= TypeDeclarations TypeDeclaration
             //
             case 61: {
-               //#line 299 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 299 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeDeclarations(getLeftIToken(), getRightIToken(),
                                          (ITypeDeclarations)getRhsSym(1),
@@ -28590,7 +27463,7 @@ public class JavaParser implements RuleAction
             // Rule 62:  PackageDeclaration ::= Annotationsopt package PackageName ;
             //
             case 62: {
-               //#line 301 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 301 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PackageDeclaration(getLeftIToken(), getRightIToken(),
                                            (IAnnotationsopt)getRhsSym(1),
@@ -28624,7 +27497,7 @@ public class JavaParser implements RuleAction
             // Rule 67:  SingleTypeImportDeclaration ::= import TypeName ;
             //
             case 67: {
-               //#line 308 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 308 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SingleTypeImportDeclaration(getLeftIToken(), getRightIToken(),
                                                     new AstToken(getRhsIToken(1)),
@@ -28637,7 +27510,7 @@ public class JavaParser implements RuleAction
             // Rule 68:  TypeImportOnDemandDeclaration ::= import PackageOrTypeName . * ;
             //
             case 68: {
-               //#line 310 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 310 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeImportOnDemandDeclaration(getLeftIToken(), getRightIToken(),
                                                       new AstToken(getRhsIToken(1)),
@@ -28652,7 +27525,7 @@ public class JavaParser implements RuleAction
             // Rule 69:  SingleStaticImportDeclaration ::= import static TypeName . identifier ;
             //
             case 69: {
-               //#line 312 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 312 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SingleStaticImportDeclaration(getLeftIToken(), getRightIToken(),
                                                       new AstToken(getRhsIToken(1)),
@@ -28668,7 +27541,7 @@ public class JavaParser implements RuleAction
             // Rule 70:  StaticImportOnDemandDeclaration ::= import static TypeName . * ;
             //
             case 70: {
-               //#line 314 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 314 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new StaticImportOnDemandDeclaration(getLeftIToken(), getRightIToken(),
                                                         new AstToken(getRhsIToken(1)),
@@ -28694,7 +27567,7 @@ public class JavaParser implements RuleAction
             // Rule 73:  TypeDeclaration ::= ;
             //
             case 73: {
-               //#line 318 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 318 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeDeclaration(getRhsIToken(1))
                 );
@@ -28714,7 +27587,7 @@ public class JavaParser implements RuleAction
             // Rule 76:  NormalClassDeclaration ::= ClassModifiersopt class identifier TypeParametersopt Superopt Interfacesopt ClassBody
             //
             case 76: {
-               //#line 325 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 325 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new NormalClassDeclaration(getLeftIToken(), getRightIToken(),
                                                (IClassModifiersopt)getRhsSym(1),
@@ -28736,7 +27609,7 @@ public class JavaParser implements RuleAction
             // Rule 78:  ClassModifiers ::= ClassModifiers ClassModifier
             //
             case 78: {
-               //#line 328 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 328 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassModifiers(getLeftIToken(), getRightIToken(),
                                        (IClassModifiers)getRhsSym(1),
@@ -28753,7 +27626,7 @@ public class JavaParser implements RuleAction
             // Rule 80:  ClassModifier ::= public
             //
             case 80: {
-               //#line 331 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 331 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassModifier0(getRhsIToken(1))
                 );
@@ -28763,7 +27636,7 @@ public class JavaParser implements RuleAction
             // Rule 81:  ClassModifier ::= protected
             //
             case 81: {
-               //#line 332 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 332 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassModifier1(getRhsIToken(1))
                 );
@@ -28773,7 +27646,7 @@ public class JavaParser implements RuleAction
             // Rule 82:  ClassModifier ::= private
             //
             case 82: {
-               //#line 333 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 333 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassModifier2(getRhsIToken(1))
                 );
@@ -28783,7 +27656,7 @@ public class JavaParser implements RuleAction
             // Rule 83:  ClassModifier ::= abstract
             //
             case 83: {
-               //#line 334 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 334 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassModifier3(getRhsIToken(1))
                 );
@@ -28793,7 +27666,7 @@ public class JavaParser implements RuleAction
             // Rule 84:  ClassModifier ::= static
             //
             case 84: {
-               //#line 335 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 335 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassModifier4(getRhsIToken(1))
                 );
@@ -28803,7 +27676,7 @@ public class JavaParser implements RuleAction
             // Rule 85:  ClassModifier ::= final
             //
             case 85: {
-               //#line 336 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 336 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassModifier5(getRhsIToken(1))
                 );
@@ -28813,7 +27686,7 @@ public class JavaParser implements RuleAction
             // Rule 86:  ClassModifier ::= strictfp
             //
             case 86: {
-               //#line 337 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 337 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassModifier6(getRhsIToken(1))
                 );
@@ -28823,7 +27696,7 @@ public class JavaParser implements RuleAction
             // Rule 87:  TypeParameters ::= < TypeParameterList >
             //
             case 87: {
-               //#line 339 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 339 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeParameters(getLeftIToken(), getRightIToken(),
                                        new AstToken(getRhsIToken(1)),
@@ -28841,7 +27714,7 @@ public class JavaParser implements RuleAction
             // Rule 89:  TypeParameterList ::= TypeParameterList , TypeParameter
             //
             case 89: {
-               //#line 342 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 342 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeParameterList(getLeftIToken(), getRightIToken(),
                                           (ITypeParameterList)getRhsSym(1),
@@ -28854,7 +27727,7 @@ public class JavaParser implements RuleAction
             // Rule 90:  Super ::= extends ClassType
             //
             case 90: {
-               //#line 344 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 344 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Super(getLeftIToken(), getRightIToken(),
                               new AstToken(getRhsIToken(1)),
@@ -28866,7 +27739,7 @@ public class JavaParser implements RuleAction
             // Rule 91:  Interfaces ::= implements InterfaceTypeList
             //
             case 91: {
-               //#line 351 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 351 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Interfaces(getLeftIToken(), getRightIToken(),
                                    new AstToken(getRhsIToken(1)),
@@ -28883,7 +27756,7 @@ public class JavaParser implements RuleAction
             // Rule 93:  InterfaceTypeList ::= InterfaceTypeList , InterfaceType
             //
             case 93: {
-               //#line 354 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 354 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceTypeList(getLeftIToken(), getRightIToken(),
                                           (IInterfaceTypeList)getRhsSym(1),
@@ -28896,7 +27769,7 @@ public class JavaParser implements RuleAction
             // Rule 94:  ClassBody ::= { ClassBodyDeclarationsopt }
             //
             case 94: {
-               //#line 361 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 361 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassBody(getLeftIToken(), getRightIToken(),
                                   new AstToken(getRhsIToken(1)),
@@ -28914,7 +27787,7 @@ public class JavaParser implements RuleAction
             // Rule 96:  ClassBodyDeclarations ::= ClassBodyDeclarations ClassBodyDeclaration
             //
             case 96: {
-               //#line 364 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 364 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassBodyDeclarations(getLeftIToken(), getRightIToken(),
                                               (IClassBodyDeclarations)getRhsSym(1),
@@ -28966,7 +27839,7 @@ public class JavaParser implements RuleAction
             // Rule 105:  ClassMemberDeclaration ::= ;
             //
             case 105: {
-               //#line 375 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 375 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassMemberDeclaration(getRhsIToken(1))
                 );
@@ -28976,7 +27849,7 @@ public class JavaParser implements RuleAction
             // Rule 106:  FieldDeclaration ::= FieldModifiersopt Type VariableDeclarators ;
             //
             case 106: {
-               //#line 377 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 377 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldDeclaration(getLeftIToken(), getRightIToken(),
                                          (IFieldModifiersopt)getRhsSym(1),
@@ -28995,7 +27868,7 @@ public class JavaParser implements RuleAction
             // Rule 108:  VariableDeclarators ::= VariableDeclarators , VariableDeclarator
             //
             case 108: {
-               //#line 380 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 380 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new VariableDeclarators(getLeftIToken(), getRightIToken(),
                                             (IVariableDeclarators)getRhsSym(1),
@@ -29013,7 +27886,7 @@ public class JavaParser implements RuleAction
             // Rule 110:  VariableDeclarator ::= VariableDeclaratorId = VariableInitializer
             //
             case 110: {
-               //#line 383 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 383 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new VariableDeclarator(getLeftIToken(), getRightIToken(),
                                            (IVariableDeclaratorId)getRhsSym(1),
@@ -29031,7 +27904,7 @@ public class JavaParser implements RuleAction
             // Rule 112:  VariableDeclaratorId ::= VariableDeclaratorId [ ]
             //
             case 112: {
-               //#line 386 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 386 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new VariableDeclaratorId(getLeftIToken(), getRightIToken(),
                                              (IVariableDeclaratorId)getRhsSym(1),
@@ -29059,7 +27932,7 @@ public class JavaParser implements RuleAction
             // Rule 116:  FieldModifiers ::= FieldModifiers FieldModifier
             //
             case 116: {
-               //#line 392 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 392 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldModifiers(getLeftIToken(), getRightIToken(),
                                        (IFieldModifiers)getRhsSym(1),
@@ -29076,7 +27949,7 @@ public class JavaParser implements RuleAction
             // Rule 118:  FieldModifier ::= public
             //
             case 118: {
-               //#line 395 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 395 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldModifier0(getRhsIToken(1))
                 );
@@ -29086,7 +27959,7 @@ public class JavaParser implements RuleAction
             // Rule 119:  FieldModifier ::= protected
             //
             case 119: {
-               //#line 396 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 396 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldModifier1(getRhsIToken(1))
                 );
@@ -29096,7 +27969,7 @@ public class JavaParser implements RuleAction
             // Rule 120:  FieldModifier ::= private
             //
             case 120: {
-               //#line 397 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 397 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldModifier2(getRhsIToken(1))
                 );
@@ -29106,7 +27979,7 @@ public class JavaParser implements RuleAction
             // Rule 121:  FieldModifier ::= static
             //
             case 121: {
-               //#line 398 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 398 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldModifier3(getRhsIToken(1))
                 );
@@ -29116,7 +27989,7 @@ public class JavaParser implements RuleAction
             // Rule 122:  FieldModifier ::= final
             //
             case 122: {
-               //#line 399 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 399 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldModifier4(getRhsIToken(1))
                 );
@@ -29126,7 +27999,7 @@ public class JavaParser implements RuleAction
             // Rule 123:  FieldModifier ::= transient
             //
             case 123: {
-               //#line 400 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 400 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldModifier5(getRhsIToken(1))
                 );
@@ -29136,7 +28009,7 @@ public class JavaParser implements RuleAction
             // Rule 124:  FieldModifier ::= volatile
             //
             case 124: {
-               //#line 401 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 401 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldModifier6(getRhsIToken(1))
                 );
@@ -29146,7 +28019,7 @@ public class JavaParser implements RuleAction
             // Rule 125:  MethodDeclaration ::= MethodHeader MethodBody
             //
             case 125: {
-               //#line 403 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 403 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodDeclaration(getLeftIToken(), getRightIToken(),
                                           (MethodHeader)getRhsSym(1),
@@ -29158,7 +28031,7 @@ public class JavaParser implements RuleAction
             // Rule 126:  MethodHeader ::= MethodModifiersopt TypeParametersopt ResultType MethodDeclarator Throwsopt
             //
             case 126: {
-               //#line 405 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 405 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodHeader(getLeftIToken(), getRightIToken(),
                                      (IMethodModifiersopt)getRhsSym(1),
@@ -29178,7 +28051,7 @@ public class JavaParser implements RuleAction
             // Rule 128:  ResultType ::= void
             //
             case 128: {
-               //#line 408 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 408 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ResultType(getRhsIToken(1))
                 );
@@ -29188,7 +28061,7 @@ public class JavaParser implements RuleAction
             // Rule 129:  MethodDeclarator ::= identifier ( FormalParameterListopt )
             //
             case 129: {
-               //#line 410 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 410 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodDeclarator0(getLeftIToken(), getRightIToken(),
                                           (identifier)getRhsSym(1),
@@ -29202,7 +28075,7 @@ public class JavaParser implements RuleAction
             // Rule 130:  MethodDeclarator ::= MethodDeclarator [ ]
             //
             case 130: {
-               //#line 412 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 412 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodDeclarator1(getLeftIToken(), getRightIToken(),
                                           (IMethodDeclarator)getRhsSym(1),
@@ -29220,7 +28093,7 @@ public class JavaParser implements RuleAction
             // Rule 132:  FormalParameterList ::= FormalParameters , LastFormalParameter
             //
             case 132: {
-               //#line 415 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 415 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FormalParameterList(getLeftIToken(), getRightIToken(),
                                             (IFormalParameters)getRhsSym(1),
@@ -29238,7 +28111,7 @@ public class JavaParser implements RuleAction
             // Rule 134:  FormalParameters ::= FormalParameters , FormalParameter
             //
             case 134: {
-               //#line 418 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 418 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FormalParameters(getLeftIToken(), getRightIToken(),
                                          (IFormalParameters)getRhsSym(1),
@@ -29251,7 +28124,7 @@ public class JavaParser implements RuleAction
             // Rule 135:  FormalParameter ::= VariableModifiersopt Type VariableDeclaratorId
             //
             case 135: {
-               //#line 420 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 420 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FormalParameter(getLeftIToken(), getRightIToken(),
                                         (IVariableModifiersopt)getRhsSym(1),
@@ -29269,7 +28142,7 @@ public class JavaParser implements RuleAction
             // Rule 137:  VariableModifiers ::= VariableModifiers VariableModifier
             //
             case 137: {
-               //#line 423 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 423 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new VariableModifiers(getLeftIToken(), getRightIToken(),
                                           (IVariableModifiers)getRhsSym(1),
@@ -29281,7 +28154,7 @@ public class JavaParser implements RuleAction
             // Rule 138:  VariableModifier ::= final
             //
             case 138: {
-               //#line 425 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 425 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new VariableModifier(getRhsIToken(1))
                 );
@@ -29296,7 +28169,7 @@ public class JavaParser implements RuleAction
             // Rule 140:  LastFormalParameter ::= VariableModifiersopt Type ...opt VariableDeclaratorId
             //
             case 140: {
-               //#line 428 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 428 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LastFormalParameter(getLeftIToken(), getRightIToken(),
                                             (IVariableModifiersopt)getRhsSym(1),
@@ -29315,7 +28188,7 @@ public class JavaParser implements RuleAction
             // Rule 142:  MethodModifiers ::= MethodModifiers MethodModifier
             //
             case 142: {
-               //#line 437 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 437 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifiers(getLeftIToken(), getRightIToken(),
                                         (IMethodModifiers)getRhsSym(1),
@@ -29332,7 +28205,7 @@ public class JavaParser implements RuleAction
             // Rule 144:  MethodModifier ::= public
             //
             case 144: {
-               //#line 440 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 440 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifier0(getRhsIToken(1))
                 );
@@ -29342,7 +28215,7 @@ public class JavaParser implements RuleAction
             // Rule 145:  MethodModifier ::= protected
             //
             case 145: {
-               //#line 441 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 441 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifier1(getRhsIToken(1))
                 );
@@ -29352,7 +28225,7 @@ public class JavaParser implements RuleAction
             // Rule 146:  MethodModifier ::= private
             //
             case 146: {
-               //#line 442 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 442 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifier2(getRhsIToken(1))
                 );
@@ -29362,7 +28235,7 @@ public class JavaParser implements RuleAction
             // Rule 147:  MethodModifier ::= abstract
             //
             case 147: {
-               //#line 443 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 443 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifier3(getRhsIToken(1))
                 );
@@ -29372,7 +28245,7 @@ public class JavaParser implements RuleAction
             // Rule 148:  MethodModifier ::= static
             //
             case 148: {
-               //#line 444 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 444 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifier4(getRhsIToken(1))
                 );
@@ -29382,7 +28255,7 @@ public class JavaParser implements RuleAction
             // Rule 149:  MethodModifier ::= final
             //
             case 149: {
-               //#line 445 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 445 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifier5(getRhsIToken(1))
                 );
@@ -29392,7 +28265,7 @@ public class JavaParser implements RuleAction
             // Rule 150:  MethodModifier ::= synchronized
             //
             case 150: {
-               //#line 446 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 446 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifier6(getRhsIToken(1))
                 );
@@ -29402,7 +28275,7 @@ public class JavaParser implements RuleAction
             // Rule 151:  MethodModifier ::= native
             //
             case 151: {
-               //#line 447 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 447 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifier7(getRhsIToken(1))
                 );
@@ -29412,7 +28285,7 @@ public class JavaParser implements RuleAction
             // Rule 152:  MethodModifier ::= strictfp
             //
             case 152: {
-               //#line 448 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 448 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifier8(getRhsIToken(1))
                 );
@@ -29422,7 +28295,7 @@ public class JavaParser implements RuleAction
             // Rule 153:  Throws ::= throws ExceptionTypeList
             //
             case 153: {
-               //#line 450 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 450 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Throws(getLeftIToken(), getRightIToken(),
                                new AstToken(getRhsIToken(1)),
@@ -29439,7 +28312,7 @@ public class JavaParser implements RuleAction
             // Rule 155:  ExceptionTypeList ::= ExceptionTypeList , ExceptionType
             //
             case 155: {
-               //#line 453 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 453 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExceptionTypeList(getLeftIToken(), getRightIToken(),
                                           (IExceptionTypeList)getRhsSym(1),
@@ -29467,7 +28340,7 @@ public class JavaParser implements RuleAction
             // Rule 159:  MethodBody ::= ;
             //
             case 159: {
-               //#line 459 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 459 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodBody(getRhsIToken(1))
                 );
@@ -29482,7 +28355,7 @@ public class JavaParser implements RuleAction
             // Rule 161:  StaticInitializer ::= static Block
             //
             case 161: {
-               //#line 463 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 463 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new StaticInitializer(getLeftIToken(), getRightIToken(),
                                           new AstToken(getRhsIToken(1)),
@@ -29494,7 +28367,7 @@ public class JavaParser implements RuleAction
             // Rule 162:  ConstructorDeclaration ::= ConstructorModifiersopt ConstructorDeclarator Throwsopt ConstructorBody
             //
             case 162: {
-               //#line 465 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 465 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstructorDeclaration(getLeftIToken(), getRightIToken(),
                                                (IConstructorModifiersopt)getRhsSym(1),
@@ -29508,7 +28381,7 @@ public class JavaParser implements RuleAction
             // Rule 163:  ConstructorDeclarator ::= TypeParametersopt SimpleTypeName ( FormalParameterListopt )
             //
             case 163: {
-               //#line 467 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 467 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstructorDeclarator(getLeftIToken(), getRightIToken(),
                                               (TypeParameters)getRhsSym(1),
@@ -29533,7 +28406,7 @@ public class JavaParser implements RuleAction
             // Rule 166:  ConstructorModifiers ::= ConstructorModifiers ConstructorModifier
             //
             case 166: {
-               //#line 472 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 472 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstructorModifiers(getLeftIToken(), getRightIToken(),
                                              (IConstructorModifiers)getRhsSym(1),
@@ -29550,7 +28423,7 @@ public class JavaParser implements RuleAction
             // Rule 168:  ConstructorModifier ::= public
             //
             case 168: {
-               //#line 475 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 475 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstructorModifier0(getRhsIToken(1))
                 );
@@ -29560,7 +28433,7 @@ public class JavaParser implements RuleAction
             // Rule 169:  ConstructorModifier ::= protected
             //
             case 169: {
-               //#line 476 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 476 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstructorModifier1(getRhsIToken(1))
                 );
@@ -29570,7 +28443,7 @@ public class JavaParser implements RuleAction
             // Rule 170:  ConstructorModifier ::= private
             //
             case 170: {
-               //#line 477 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 477 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstructorModifier2(getRhsIToken(1))
                 );
@@ -29580,7 +28453,7 @@ public class JavaParser implements RuleAction
             // Rule 171:  ConstructorBody ::= { ExplicitConstructorInvocationopt BlockStatementsopt }
             //
             case 171: {
-               //#line 479 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 479 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstructorBody(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -29594,7 +28467,7 @@ public class JavaParser implements RuleAction
             // Rule 172:  ExplicitConstructorInvocation ::= TypeArgumentsopt this ( ArgumentListopt ) ;
             //
             case 172: {
-               //#line 481 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 481 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExplicitConstructorInvocation0(getLeftIToken(), getRightIToken(),
                                                        (TypeArguments)getRhsSym(1),
@@ -29610,7 +28483,7 @@ public class JavaParser implements RuleAction
             // Rule 173:  ExplicitConstructorInvocation ::= TypeArgumentsopt super ( ArgumentListopt ) ;
             //
             case 173: {
-               //#line 482 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 482 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExplicitConstructorInvocation1(getLeftIToken(), getRightIToken(),
                                                        (TypeArguments)getRhsSym(1),
@@ -29626,7 +28499,7 @@ public class JavaParser implements RuleAction
             // Rule 174:  ExplicitConstructorInvocation ::= Primary . TypeArgumentsopt super ( ArgumentListopt ) ;
             //
             case 174: {
-               //#line 483 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 483 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExplicitConstructorInvocation2(getLeftIToken(), getRightIToken(),
                                                        (IPrimary)getRhsSym(1),
@@ -29644,7 +28517,7 @@ public class JavaParser implements RuleAction
             // Rule 175:  EnumDeclaration ::= ClassModifiersopt enum identifier Interfacesopt EnumBody
             //
             case 175: {
-               //#line 485 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 485 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EnumDeclaration(getLeftIToken(), getRightIToken(),
                                         (IClassModifiersopt)getRhsSym(1),
@@ -29659,7 +28532,7 @@ public class JavaParser implements RuleAction
             // Rule 176:  EnumBody ::= { EnumConstantsopt ,opt EnumBodyDeclarationsopt }
             //
             case 176: {
-               //#line 487 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 487 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EnumBody(getLeftIToken(), getRightIToken(),
                                  new AstToken(getRhsIToken(1)),
@@ -29679,7 +28552,7 @@ public class JavaParser implements RuleAction
             // Rule 178:  EnumConstants ::= EnumConstants , EnumConstant
             //
             case 178: {
-               //#line 490 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 490 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EnumConstants(getLeftIToken(), getRightIToken(),
                                       (IEnumConstants)getRhsSym(1),
@@ -29692,7 +28565,7 @@ public class JavaParser implements RuleAction
             // Rule 179:  EnumConstant ::= Annotationsopt identifier Argumentsopt ClassBodyopt
             //
             case 179: {
-               //#line 492 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 492 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EnumConstant(getLeftIToken(), getRightIToken(),
                                      (IAnnotationsopt)getRhsSym(1),
@@ -29706,7 +28579,7 @@ public class JavaParser implements RuleAction
             // Rule 180:  Arguments ::= ( ArgumentListopt )
             //
             case 180: {
-               //#line 494 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 494 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Arguments(getLeftIToken(), getRightIToken(),
                                   new AstToken(getRhsIToken(1)),
@@ -29719,7 +28592,7 @@ public class JavaParser implements RuleAction
             // Rule 181:  EnumBodyDeclarations ::= ; ClassBodyDeclarationsopt
             //
             case 181: {
-               //#line 496 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 496 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EnumBodyDeclarations(getLeftIToken(), getRightIToken(),
                                              new AstToken(getRhsIToken(1)),
@@ -29741,7 +28614,7 @@ public class JavaParser implements RuleAction
             // Rule 184:  NormalInterfaceDeclaration ::= InterfaceModifiersopt interface identifier TypeParametersopt ExtendsInterfacesopt InterfaceBody
             //
             case 184: {
-               //#line 503 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 503 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new NormalInterfaceDeclaration(getLeftIToken(), getRightIToken(),
                                                    (IInterfaceModifiersopt)getRhsSym(1),
@@ -29762,7 +28635,7 @@ public class JavaParser implements RuleAction
             // Rule 186:  InterfaceModifiers ::= InterfaceModifiers InterfaceModifier
             //
             case 186: {
-               //#line 506 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 506 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceModifiers(getLeftIToken(), getRightIToken(),
                                            (IInterfaceModifiers)getRhsSym(1),
@@ -29779,7 +28652,7 @@ public class JavaParser implements RuleAction
             // Rule 188:  InterfaceModifier ::= public
             //
             case 188: {
-               //#line 509 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 509 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceModifier0(getRhsIToken(1))
                 );
@@ -29789,7 +28662,7 @@ public class JavaParser implements RuleAction
             // Rule 189:  InterfaceModifier ::= protected
             //
             case 189: {
-               //#line 510 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 510 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceModifier1(getRhsIToken(1))
                 );
@@ -29799,7 +28672,7 @@ public class JavaParser implements RuleAction
             // Rule 190:  InterfaceModifier ::= private
             //
             case 190: {
-               //#line 511 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 511 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceModifier2(getRhsIToken(1))
                 );
@@ -29809,7 +28682,7 @@ public class JavaParser implements RuleAction
             // Rule 191:  InterfaceModifier ::= abstract
             //
             case 191: {
-               //#line 512 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 512 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceModifier3(getRhsIToken(1))
                 );
@@ -29819,7 +28692,7 @@ public class JavaParser implements RuleAction
             // Rule 192:  InterfaceModifier ::= static
             //
             case 192: {
-               //#line 513 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 513 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceModifier4(getRhsIToken(1))
                 );
@@ -29829,7 +28702,7 @@ public class JavaParser implements RuleAction
             // Rule 193:  InterfaceModifier ::= strictfp
             //
             case 193: {
-               //#line 514 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 514 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceModifier5(getRhsIToken(1))
                 );
@@ -29839,7 +28712,7 @@ public class JavaParser implements RuleAction
             // Rule 194:  ExtendsInterfaces ::= extends InterfaceType
             //
             case 194: {
-               //#line 516 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 516 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExtendsInterfaces0(getLeftIToken(), getRightIToken(),
                                            new AstToken(getRhsIToken(1)),
@@ -29851,7 +28724,7 @@ public class JavaParser implements RuleAction
             // Rule 195:  ExtendsInterfaces ::= ExtendsInterfaces , InterfaceType
             //
             case 195: {
-               //#line 517 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 517 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExtendsInterfaces1(getLeftIToken(), getRightIToken(),
                                            (IExtendsInterfaces)getRhsSym(1),
@@ -29864,7 +28737,7 @@ public class JavaParser implements RuleAction
             // Rule 196:  InterfaceBody ::= { InterfaceMemberDeclarationsopt }
             //
             case 196: {
-               //#line 524 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 524 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceBody(getLeftIToken(), getRightIToken(),
                                       new AstToken(getRhsIToken(1)),
@@ -29882,7 +28755,7 @@ public class JavaParser implements RuleAction
             // Rule 198:  InterfaceMemberDeclarations ::= InterfaceMemberDeclarations InterfaceMemberDeclaration
             //
             case 198: {
-               //#line 527 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 527 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceMemberDeclarations(getLeftIToken(), getRightIToken(),
                                                     (IInterfaceMemberDeclarations)getRhsSym(1),
@@ -29914,7 +28787,7 @@ public class JavaParser implements RuleAction
             // Rule 203:  InterfaceMemberDeclaration ::= ;
             //
             case 203: {
-               //#line 533 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 533 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceMemberDeclaration(getRhsIToken(1))
                 );
@@ -29924,7 +28797,7 @@ public class JavaParser implements RuleAction
             // Rule 204:  ConstantDeclaration ::= ConstantModifiersopt Type VariableDeclarators
             //
             case 204: {
-               //#line 535 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 535 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstantDeclaration(getLeftIToken(), getRightIToken(),
                                             (IConstantModifiersopt)getRhsSym(1),
@@ -29942,7 +28815,7 @@ public class JavaParser implements RuleAction
             // Rule 206:  ConstantModifiers ::= ConstantModifiers ConstantModifier
             //
             case 206: {
-               //#line 538 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 538 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstantModifiers(getLeftIToken(), getRightIToken(),
                                           (IConstantModifiers)getRhsSym(1),
@@ -29959,7 +28832,7 @@ public class JavaParser implements RuleAction
             // Rule 208:  ConstantModifier ::= public
             //
             case 208: {
-               //#line 541 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 541 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstantModifier0(getRhsIToken(1))
                 );
@@ -29969,7 +28842,7 @@ public class JavaParser implements RuleAction
             // Rule 209:  ConstantModifier ::= static
             //
             case 209: {
-               //#line 542 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 542 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstantModifier1(getRhsIToken(1))
                 );
@@ -29979,7 +28852,7 @@ public class JavaParser implements RuleAction
             // Rule 210:  ConstantModifier ::= final
             //
             case 210: {
-               //#line 543 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 543 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstantModifier2(getRhsIToken(1))
                 );
@@ -29989,7 +28862,7 @@ public class JavaParser implements RuleAction
             // Rule 211:  AbstractMethodDeclaration ::= AbstractMethodModifiersopt TypeParametersopt ResultType MethodDeclarator Throwsopt ;
             //
             case 211: {
-               //#line 545 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 545 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AbstractMethodDeclaration(getLeftIToken(), getRightIToken(),
                                                   (IAbstractMethodModifiersopt)getRhsSym(1),
@@ -30010,7 +28883,7 @@ public class JavaParser implements RuleAction
             // Rule 213:  AbstractMethodModifiers ::= AbstractMethodModifiers AbstractMethodModifier
             //
             case 213: {
-               //#line 548 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 548 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AbstractMethodModifiers(getLeftIToken(), getRightIToken(),
                                                 (IAbstractMethodModifiers)getRhsSym(1),
@@ -30027,7 +28900,7 @@ public class JavaParser implements RuleAction
             // Rule 215:  AbstractMethodModifier ::= public
             //
             case 215: {
-               //#line 551 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 551 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AbstractMethodModifier0(getRhsIToken(1))
                 );
@@ -30037,7 +28910,7 @@ public class JavaParser implements RuleAction
             // Rule 216:  AbstractMethodModifier ::= abstract
             //
             case 216: {
-               //#line 552 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 552 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AbstractMethodModifier1(getRhsIToken(1))
                 );
@@ -30047,7 +28920,7 @@ public class JavaParser implements RuleAction
             // Rule 217:  AnnotationTypeDeclaration ::= InterfaceModifiersopt @ interface identifier AnnotationTypeBody
             //
             case 217: {
-               //#line 554 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 554 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AnnotationTypeDeclaration(getLeftIToken(), getRightIToken(),
                                                   (IInterfaceModifiersopt)getRhsSym(1),
@@ -30062,7 +28935,7 @@ public class JavaParser implements RuleAction
             // Rule 218:  AnnotationTypeBody ::= { AnnotationTypeElementDeclarationsopt }
             //
             case 218: {
-               //#line 556 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 556 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AnnotationTypeBody(getLeftIToken(), getRightIToken(),
                                            new AstToken(getRhsIToken(1)),
@@ -30080,7 +28953,7 @@ public class JavaParser implements RuleAction
             // Rule 220:  AnnotationTypeElementDeclarations ::= AnnotationTypeElementDeclarations AnnotationTypeElementDeclaration
             //
             case 220: {
-               //#line 559 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 559 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AnnotationTypeElementDeclarations(getLeftIToken(), getRightIToken(),
                                                           (IAnnotationTypeElementDeclarations)getRhsSym(1),
@@ -30092,7 +28965,7 @@ public class JavaParser implements RuleAction
             // Rule 221:  AnnotationTypeElementDeclaration ::= AbstractMethodModifiersopt Type identifier ( ) DefaultValueopt ;
             //
             case 221: {
-               //#line 561 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 561 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AnnotationTypeElementDeclaration0(getLeftIToken(), getRightIToken(),
                                                           (IAbstractMethodModifiersopt)getRhsSym(1),
@@ -30134,7 +29007,7 @@ public class JavaParser implements RuleAction
             // Rule 227:  AnnotationTypeElementDeclaration ::= ;
             //
             case 227: {
-               //#line 567 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 567 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AnnotationTypeElementDeclaration1(getRhsIToken(1))
                 );
@@ -30144,7 +29017,7 @@ public class JavaParser implements RuleAction
             // Rule 228:  DefaultValue ::= default ElementValue
             //
             case 228: {
-               //#line 569 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 569 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new DefaultValue(getLeftIToken(), getRightIToken(),
                                      new AstToken(getRhsIToken(1)),
@@ -30161,7 +29034,7 @@ public class JavaParser implements RuleAction
             // Rule 230:  Annotations ::= Annotations Annotation
             //
             case 230: {
-               //#line 572 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 572 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Annotations(getLeftIToken(), getRightIToken(),
                                     (IAnnotations)getRhsSym(1),
@@ -30188,7 +29061,7 @@ public class JavaParser implements RuleAction
             // Rule 234:  NormalAnnotation ::= @ TypeName ( ElementValuePairsopt )
             //
             case 234: {
-               //#line 578 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 578 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new NormalAnnotation(getLeftIToken(), getRightIToken(),
                                          new AstToken(getRhsIToken(1)),
@@ -30208,7 +29081,7 @@ public class JavaParser implements RuleAction
             // Rule 236:  ElementValuePairs ::= ElementValuePairs , ElementValuePair
             //
             case 236: {
-               //#line 581 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 581 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ElementValuePairs(getLeftIToken(), getRightIToken(),
                                           (IElementValuePairs)getRhsSym(1),
@@ -30221,7 +29094,7 @@ public class JavaParser implements RuleAction
             // Rule 237:  ElementValuePair ::= SimpleName = ElementValue
             //
             case 237: {
-               //#line 583 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 583 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ElementValuePair(getLeftIToken(), getRightIToken(),
                                          (identifier)getRhsSym(1),
@@ -30254,7 +29127,7 @@ public class JavaParser implements RuleAction
             // Rule 242:  ElementValueArrayInitializer ::= { ElementValuesopt ,opt }
             //
             case 242: {
-               //#line 591 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 591 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ElementValueArrayInitializer(getLeftIToken(), getRightIToken(),
                                                      new AstToken(getRhsIToken(1)),
@@ -30273,7 +29146,7 @@ public class JavaParser implements RuleAction
             // Rule 244:  ElementValues ::= ElementValues , ElementValue
             //
             case 244: {
-               //#line 594 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 594 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ElementValues(getLeftIToken(), getRightIToken(),
                                       (IElementValues)getRhsSym(1),
@@ -30286,7 +29159,7 @@ public class JavaParser implements RuleAction
             // Rule 245:  MarkerAnnotation ::= @ TypeName
             //
             case 245: {
-               //#line 596 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 596 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MarkerAnnotation(getLeftIToken(), getRightIToken(),
                                          new AstToken(getRhsIToken(1)),
@@ -30298,7 +29171,7 @@ public class JavaParser implements RuleAction
             // Rule 246:  SingleElementAnnotation ::= @ TypeName ( ElementValue )
             //
             case 246: {
-               //#line 598 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 598 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SingleElementAnnotation(getLeftIToken(), getRightIToken(),
                                                 new AstToken(getRhsIToken(1)),
@@ -30313,7 +29186,7 @@ public class JavaParser implements RuleAction
             // Rule 247:  ArrayInitializer ::= { VariableInitializersopt ,opt }
             //
             case 247: {
-               //#line 602 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 602 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArrayInitializer(getLeftIToken(), getRightIToken(),
                                          new AstToken(getRhsIToken(1)),
@@ -30332,7 +29205,7 @@ public class JavaParser implements RuleAction
             // Rule 249:  VariableInitializers ::= VariableInitializers , VariableInitializer
             //
             case 249: {
-               //#line 605 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 605 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new VariableInitializers(getLeftIToken(), getRightIToken(),
                                              (IVariableInitializers)getRhsSym(1),
@@ -30345,7 +29218,7 @@ public class JavaParser implements RuleAction
             // Rule 250:  Block ::= { BlockStatementsopt }
             //
             case 250: {
-               //#line 621 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 621 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Block(getLeftIToken(), getRightIToken(),
                               new AstToken(getRhsIToken(1)),
@@ -30363,7 +29236,7 @@ public class JavaParser implements RuleAction
             // Rule 252:  BlockStatements ::= BlockStatements BlockStatement
             //
             case 252: {
-               //#line 624 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 624 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new BlockStatements(getLeftIToken(), getRightIToken(),
                                         (IBlockStatements)getRhsSym(1),
@@ -30390,7 +29263,7 @@ public class JavaParser implements RuleAction
             // Rule 256:  LocalVariableDeclarationStatement ::= LocalVariableDeclaration ;
             //
             case 256: {
-               //#line 630 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 630 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LocalVariableDeclarationStatement(getLeftIToken(), getRightIToken(),
                                                           (LocalVariableDeclaration)getRhsSym(1),
@@ -30402,7 +29275,7 @@ public class JavaParser implements RuleAction
             // Rule 257:  LocalVariableDeclaration ::= VariableModifiersopt Type VariableDeclarators
             //
             case 257: {
-               //#line 632 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 632 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LocalVariableDeclaration(getLeftIToken(), getRightIToken(),
                                                  (IVariableModifiersopt)getRhsSym(1),
@@ -30530,7 +29403,7 @@ public class JavaParser implements RuleAction
             // Rule 281:  IfThenStatement ::= if ( Expression ) Statement
             //
             case 281: {
-               //#line 675 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 675 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new IfThenStatement(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -30545,7 +29418,7 @@ public class JavaParser implements RuleAction
             // Rule 282:  IfThenElseStatement ::= if ( Expression ) StatementNoShortIf else Statement
             //
             case 282: {
-               //#line 677 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 677 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new IfThenElseStatement(getLeftIToken(), getRightIToken(),
                                             new AstToken(getRhsIToken(1)),
@@ -30562,7 +29435,7 @@ public class JavaParser implements RuleAction
             // Rule 283:  IfThenElseStatementNoShortIf ::= if ( Expression ) StatementNoShortIf else StatementNoShortIf
             //
             case 283: {
-               //#line 679 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 679 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new IfThenElseStatementNoShortIf(getLeftIToken(), getRightIToken(),
                                                      new AstToken(getRhsIToken(1)),
@@ -30579,7 +29452,7 @@ public class JavaParser implements RuleAction
             // Rule 284:  EmptyStatement ::= ;
             //
             case 284: {
-               //#line 681 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 681 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EmptyStatement(getRhsIToken(1))
                 );
@@ -30589,7 +29462,7 @@ public class JavaParser implements RuleAction
             // Rule 285:  LabeledStatement ::= identifier : Statement
             //
             case 285: {
-               //#line 683 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 683 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LabeledStatement(getLeftIToken(), getRightIToken(),
                                          (identifier)getRhsSym(1),
@@ -30602,7 +29475,7 @@ public class JavaParser implements RuleAction
             // Rule 286:  LabeledStatementNoShortIf ::= identifier : StatementNoShortIf
             //
             case 286: {
-               //#line 685 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 685 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LabeledStatementNoShortIf(getLeftIToken(), getRightIToken(),
                                                   (identifier)getRhsSym(1),
@@ -30615,7 +29488,7 @@ public class JavaParser implements RuleAction
             // Rule 287:  ExpressionStatement ::= StatementExpression ;
             //
             case 287: {
-               //#line 687 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 687 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExpressionStatement(getLeftIToken(), getRightIToken(),
                                             (IStatementExpression)getRhsSym(1),
@@ -30662,7 +29535,7 @@ public class JavaParser implements RuleAction
             // Rule 295:  AssertStatement ::= assert Expression ;
             //
             case 295: {
-               //#line 706 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 706 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssertStatement0(getLeftIToken(), getRightIToken(),
                                          new AstToken(getRhsIToken(1)),
@@ -30675,7 +29548,7 @@ public class JavaParser implements RuleAction
             // Rule 296:  AssertStatement ::= assert Expression : Expression ;
             //
             case 296: {
-               //#line 707 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 707 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssertStatement1(getLeftIToken(), getRightIToken(),
                                          new AstToken(getRhsIToken(1)),
@@ -30690,7 +29563,7 @@ public class JavaParser implements RuleAction
             // Rule 297:  SwitchStatement ::= switch ( Expression ) SwitchBlock
             //
             case 297: {
-               //#line 709 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 709 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchStatement(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -30705,7 +29578,7 @@ public class JavaParser implements RuleAction
             // Rule 298:  SwitchBlock ::= { SwitchBlockStatementGroupsopt SwitchLabelsopt }
             //
             case 298: {
-               //#line 711 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 711 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchBlock(getLeftIToken(), getRightIToken(),
                                     new AstToken(getRhsIToken(1)),
@@ -30724,7 +29597,7 @@ public class JavaParser implements RuleAction
             // Rule 300:  SwitchBlockStatementGroups ::= SwitchBlockStatementGroups SwitchBlockStatementGroup
             //
             case 300: {
-               //#line 714 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 714 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchBlockStatementGroups(getLeftIToken(), getRightIToken(),
                                                    (ISwitchBlockStatementGroups)getRhsSym(1),
@@ -30736,7 +29609,7 @@ public class JavaParser implements RuleAction
             // Rule 301:  SwitchBlockStatementGroup ::= SwitchLabels BlockStatements
             //
             case 301: {
-               //#line 716 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 716 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchBlockStatementGroup(getLeftIToken(), getRightIToken(),
                                                   (ISwitchLabels)getRhsSym(1),
@@ -30753,7 +29626,7 @@ public class JavaParser implements RuleAction
             // Rule 303:  SwitchLabels ::= SwitchLabels SwitchLabel
             //
             case 303: {
-               //#line 719 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 719 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchLabels(getLeftIToken(), getRightIToken(),
                                      (ISwitchLabels)getRhsSym(1),
@@ -30765,7 +29638,7 @@ public class JavaParser implements RuleAction
             // Rule 304:  SwitchLabel ::= case ConstantExpression :
             //
             case 304: {
-               //#line 721 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 721 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchLabel0(getLeftIToken(), getRightIToken(),
                                      new AstToken(getRhsIToken(1)),
@@ -30778,7 +29651,7 @@ public class JavaParser implements RuleAction
             // Rule 305:  SwitchLabel ::= case EnumConstant :
             //
             case 305: {
-               //#line 722 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 722 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchLabel1(getLeftIToken(), getRightIToken(),
                                      new AstToken(getRhsIToken(1)),
@@ -30791,7 +29664,7 @@ public class JavaParser implements RuleAction
             // Rule 306:  SwitchLabel ::= default :
             //
             case 306: {
-               //#line 723 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 723 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchLabel2(getLeftIToken(), getRightIToken(),
                                      new AstToken(getRhsIToken(1)),
@@ -30808,7 +29681,7 @@ public class JavaParser implements RuleAction
             // Rule 308:  WhileStatement ::= while ( Expression ) Statement
             //
             case 308: {
-               //#line 727 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 727 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new WhileStatement(getLeftIToken(), getRightIToken(),
                                        new AstToken(getRhsIToken(1)),
@@ -30823,7 +29696,7 @@ public class JavaParser implements RuleAction
             // Rule 309:  WhileStatementNoShortIf ::= while ( Expression ) StatementNoShortIf
             //
             case 309: {
-               //#line 729 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 729 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new WhileStatementNoShortIf(getLeftIToken(), getRightIToken(),
                                                 new AstToken(getRhsIToken(1)),
@@ -30838,7 +29711,7 @@ public class JavaParser implements RuleAction
             // Rule 310:  DoStatement ::= do Statement while ( Expression ) ;
             //
             case 310: {
-               //#line 731 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 731 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new DoStatement(getLeftIToken(), getRightIToken(),
                                     new AstToken(getRhsIToken(1)),
@@ -30865,7 +29738,7 @@ public class JavaParser implements RuleAction
             // Rule 313:  BasicForStatement ::= for ( ForInitopt ; Expressionopt ; ForUpdateopt ) Statement
             //
             case 313: {
-               //#line 736 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 736 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new BasicForStatement(getLeftIToken(), getRightIToken(),
                                           new AstToken(getRhsIToken(1)),
@@ -30884,7 +29757,7 @@ public class JavaParser implements RuleAction
             // Rule 314:  ForStatementNoShortIf ::= for ( ForInitopt ; Expressionopt ; ForUpdateopt ) StatementNoShortIf
             //
             case 314: {
-               //#line 738 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 738 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ForStatementNoShortIf(getLeftIToken(), getRightIToken(),
                                               new AstToken(getRhsIToken(1)),
@@ -30923,7 +29796,7 @@ public class JavaParser implements RuleAction
             // Rule 319:  StatementExpressionList ::= StatementExpressionList , StatementExpression
             //
             case 319: {
-               //#line 746 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 746 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new StatementExpressionList(getLeftIToken(), getRightIToken(),
                                                 (IStatementExpressionList)getRhsSym(1),
@@ -30936,7 +29809,7 @@ public class JavaParser implements RuleAction
             // Rule 320:  EnhancedForStatement ::= for ( FormalParameter : Expression ) Statement
             //
             case 320: {
-               //#line 748 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 748 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EnhancedForStatement(getLeftIToken(), getRightIToken(),
                                              new AstToken(getRhsIToken(1)),
@@ -30953,7 +29826,7 @@ public class JavaParser implements RuleAction
             // Rule 321:  BreakStatement ::= break identifieropt ;
             //
             case 321: {
-               //#line 750 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 750 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new BreakStatement(getLeftIToken(), getRightIToken(),
                                        new AstToken(getRhsIToken(1)),
@@ -30966,7 +29839,7 @@ public class JavaParser implements RuleAction
             // Rule 322:  ContinueStatement ::= continue identifieropt ;
             //
             case 322: {
-               //#line 752 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 752 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ContinueStatement(getLeftIToken(), getRightIToken(),
                                           new AstToken(getRhsIToken(1)),
@@ -30979,7 +29852,7 @@ public class JavaParser implements RuleAction
             // Rule 323:  ReturnStatement ::= return Expressionopt ;
             //
             case 323: {
-               //#line 754 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 754 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ReturnStatement(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -30992,7 +29865,7 @@ public class JavaParser implements RuleAction
             // Rule 324:  ThrowStatement ::= throw Expression ;
             //
             case 324: {
-               //#line 756 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 756 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ThrowStatement(getLeftIToken(), getRightIToken(),
                                        new AstToken(getRhsIToken(1)),
@@ -31005,7 +29878,7 @@ public class JavaParser implements RuleAction
             // Rule 325:  SynchronizedStatement ::= synchronized ( Expression ) Block
             //
             case 325: {
-               //#line 758 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 758 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SynchronizedStatement(getLeftIToken(), getRightIToken(),
                                               new AstToken(getRhsIToken(1)),
@@ -31020,7 +29893,7 @@ public class JavaParser implements RuleAction
             // Rule 326:  TryStatement ::= try Block Catches
             //
             case 326: {
-               //#line 760 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 760 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TryStatement0(getLeftIToken(), getRightIToken(),
                                       new AstToken(getRhsIToken(1)),
@@ -31033,7 +29906,7 @@ public class JavaParser implements RuleAction
             // Rule 327:  TryStatement ::= try Block Catchesopt Finally
             //
             case 327: {
-               //#line 761 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 761 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TryStatement1(getLeftIToken(), getRightIToken(),
                                       new AstToken(getRhsIToken(1)),
@@ -31052,7 +29925,7 @@ public class JavaParser implements RuleAction
             // Rule 329:  Catches ::= Catches CatchClause
             //
             case 329: {
-               //#line 764 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 764 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Catches(getLeftIToken(), getRightIToken(),
                                 (ICatches)getRhsSym(1),
@@ -31064,7 +29937,7 @@ public class JavaParser implements RuleAction
             // Rule 330:  CatchClause ::= catch ( FormalParameter ) Block
             //
             case 330: {
-               //#line 766 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 766 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new CatchClause(getLeftIToken(), getRightIToken(),
                                     new AstToken(getRhsIToken(1)),
@@ -31079,7 +29952,7 @@ public class JavaParser implements RuleAction
             // Rule 331:  Finally ::= finally Block
             //
             case 331: {
-               //#line 768 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 768 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Finally(getLeftIToken(), getRightIToken(),
                                 new AstToken(getRhsIToken(1)),
@@ -31106,7 +29979,7 @@ public class JavaParser implements RuleAction
             // Rule 335:  PrimaryNoNewArray ::= Type . class
             //
             case 335: {
-               //#line 784 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 784 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PrimaryNoNewArray0(getLeftIToken(), getRightIToken(),
                                            (IType)getRhsSym(1),
@@ -31119,7 +29992,7 @@ public class JavaParser implements RuleAction
             // Rule 336:  PrimaryNoNewArray ::= void . class
             //
             case 336: {
-               //#line 785 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 785 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PrimaryNoNewArray1(getLeftIToken(), getRightIToken(),
                                            new AstToken(getRhsIToken(1)),
@@ -31132,7 +30005,7 @@ public class JavaParser implements RuleAction
             // Rule 337:  PrimaryNoNewArray ::= this
             //
             case 337: {
-               //#line 786 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 786 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PrimaryNoNewArray2(getRhsIToken(1))
                 );
@@ -31142,7 +30015,7 @@ public class JavaParser implements RuleAction
             // Rule 338:  PrimaryNoNewArray ::= ClassName . this
             //
             case 338: {
-               //#line 787 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 787 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PrimaryNoNewArray3(getLeftIToken(), getRightIToken(),
                                            (IClassName)getRhsSym(1),
@@ -31155,7 +30028,7 @@ public class JavaParser implements RuleAction
             // Rule 339:  PrimaryNoNewArray ::= ( Expression )
             //
             case 339: {
-               //#line 788 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 788 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PrimaryNoNewArray4(getLeftIToken(), getRightIToken(),
                                            new AstToken(getRhsIToken(1)),
@@ -31188,7 +30061,7 @@ public class JavaParser implements RuleAction
             // Rule 344:  Literal ::= IntegerLiteral
             //
             case 344: {
-               //#line 794 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 794 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Literal0(getRhsIToken(1))
                 );
@@ -31198,7 +30071,7 @@ public class JavaParser implements RuleAction
             // Rule 345:  Literal ::= LongLiteral
             //
             case 345: {
-               //#line 795 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 795 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Literal1(getRhsIToken(1))
                 );
@@ -31208,7 +30081,7 @@ public class JavaParser implements RuleAction
             // Rule 346:  Literal ::= FloatingPointLiteral
             //
             case 346: {
-               //#line 796 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 796 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Literal2(getRhsIToken(1))
                 );
@@ -31218,7 +30091,7 @@ public class JavaParser implements RuleAction
             // Rule 347:  Literal ::= DoubleLiteral
             //
             case 347: {
-               //#line 797 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 797 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Literal3(getRhsIToken(1))
                 );
@@ -31233,7 +30106,7 @@ public class JavaParser implements RuleAction
             // Rule 349:  Literal ::= CharacterLiteral
             //
             case 349: {
-               //#line 799 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 799 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Literal4(getRhsIToken(1))
                 );
@@ -31243,7 +30116,7 @@ public class JavaParser implements RuleAction
             // Rule 350:  Literal ::= StringLiteral
             //
             case 350: {
-               //#line 800 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 800 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Literal5(getRhsIToken(1))
                 );
@@ -31253,7 +30126,7 @@ public class JavaParser implements RuleAction
             // Rule 351:  Literal ::= null
             //
             case 351: {
-               //#line 801 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 801 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Literal6(getRhsIToken(1))
                 );
@@ -31263,7 +30136,7 @@ public class JavaParser implements RuleAction
             // Rule 352:  BooleanLiteral ::= true
             //
             case 352: {
-               //#line 803 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 803 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new BooleanLiteral0(getRhsIToken(1))
                 );
@@ -31273,7 +30146,7 @@ public class JavaParser implements RuleAction
             // Rule 353:  BooleanLiteral ::= false
             //
             case 353: {
-               //#line 804 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 804 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new BooleanLiteral1(getRhsIToken(1))
                 );
@@ -31283,7 +30156,7 @@ public class JavaParser implements RuleAction
             // Rule 354:  ClassInstanceCreationExpression ::= new TypeArgumentsopt ClassOrInterfaceType TypeArgumentsopt ( ArgumentListopt ) ClassBodyopt
             //
             case 354: {
-               //#line 811 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 811 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassInstanceCreationExpression0(getLeftIToken(), getRightIToken(),
                                                          new AstToken(getRhsIToken(1)),
@@ -31301,7 +30174,7 @@ public class JavaParser implements RuleAction
             // Rule 355:  ClassInstanceCreationExpression ::= Primary . new TypeArgumentsopt identifier TypeArgumentsopt ( ArgumentListopt ) ClassBodyopt
             //
             case 355: {
-               //#line 812 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 812 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassInstanceCreationExpression1(getLeftIToken(), getRightIToken(),
                                                          (IPrimary)getRhsSym(1),
@@ -31326,7 +30199,7 @@ public class JavaParser implements RuleAction
             // Rule 357:  ArgumentList ::= ArgumentList , Expression
             //
             case 357: {
-               //#line 816 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 816 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArgumentList(getLeftIToken(), getRightIToken(),
                                      (IArgumentList)getRhsSym(1),
@@ -31339,7 +30212,7 @@ public class JavaParser implements RuleAction
             // Rule 358:  ArrayCreationExpression ::= new PrimitiveType DimExprs Dimsopt
             //
             case 358: {
-               //#line 826 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 826 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArrayCreationExpression0(getLeftIToken(), getRightIToken(),
                                                  new AstToken(getRhsIToken(1)),
@@ -31353,7 +30226,7 @@ public class JavaParser implements RuleAction
             // Rule 359:  ArrayCreationExpression ::= new ClassOrInterfaceType DimExprs Dimsopt
             //
             case 359: {
-               //#line 827 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 827 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArrayCreationExpression1(getLeftIToken(), getRightIToken(),
                                                  new AstToken(getRhsIToken(1)),
@@ -31367,7 +30240,7 @@ public class JavaParser implements RuleAction
             // Rule 360:  ArrayCreationExpression ::= new PrimitiveType Dims ArrayInitializer
             //
             case 360: {
-               //#line 828 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 828 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArrayCreationExpression2(getLeftIToken(), getRightIToken(),
                                                  new AstToken(getRhsIToken(1)),
@@ -31381,7 +30254,7 @@ public class JavaParser implements RuleAction
             // Rule 361:  ArrayCreationExpression ::= new ClassOrInterfaceType Dims ArrayInitializer
             //
             case 361: {
-               //#line 829 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 829 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArrayCreationExpression3(getLeftIToken(), getRightIToken(),
                                                  new AstToken(getRhsIToken(1)),
@@ -31400,7 +30273,7 @@ public class JavaParser implements RuleAction
             // Rule 363:  DimExprs ::= DimExprs DimExpr
             //
             case 363: {
-               //#line 832 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 832 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new DimExprs(getLeftIToken(), getRightIToken(),
                                  (IDimExprs)getRhsSym(1),
@@ -31412,7 +30285,7 @@ public class JavaParser implements RuleAction
             // Rule 364:  DimExpr ::= [ Expression ]
             //
             case 364: {
-               //#line 834 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 834 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new DimExpr(getLeftIToken(), getRightIToken(),
                                 new AstToken(getRhsIToken(1)),
@@ -31425,7 +30298,7 @@ public class JavaParser implements RuleAction
             // Rule 365:  Dims ::= [ ]
             //
             case 365: {
-               //#line 836 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 836 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Dims0(getLeftIToken(), getRightIToken(),
                               new AstToken(getRhsIToken(1)),
@@ -31437,7 +30310,7 @@ public class JavaParser implements RuleAction
             // Rule 366:  Dims ::= Dims [ ]
             //
             case 366: {
-               //#line 837 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 837 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Dims1(getLeftIToken(), getRightIToken(),
                               (IDims)getRhsSym(1),
@@ -31450,7 +30323,7 @@ public class JavaParser implements RuleAction
             // Rule 367:  FieldAccess ::= Primary . identifier
             //
             case 367: {
-               //#line 839 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 839 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldAccess0(getLeftIToken(), getRightIToken(),
                                      (IPrimary)getRhsSym(1),
@@ -31463,7 +30336,7 @@ public class JavaParser implements RuleAction
             // Rule 368:  FieldAccess ::= super . identifier
             //
             case 368: {
-               //#line 840 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 840 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldAccess1(getLeftIToken(), getRightIToken(),
                                      new AstToken(getRhsIToken(1)),
@@ -31476,7 +30349,7 @@ public class JavaParser implements RuleAction
             // Rule 369:  FieldAccess ::= ClassName . super . identifier
             //
             case 369: {
-               //#line 841 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 841 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldAccess2(getLeftIToken(), getRightIToken(),
                                      (IClassName)getRhsSym(1),
@@ -31491,7 +30364,7 @@ public class JavaParser implements RuleAction
             // Rule 370:  MethodInvocation ::= MethodName ( ArgumentListopt )
             //
             case 370: {
-               //#line 843 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 843 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodInvocation0(getLeftIToken(), getRightIToken(),
                                           (IMethodName)getRhsSym(1),
@@ -31505,7 +30378,7 @@ public class JavaParser implements RuleAction
             // Rule 371:  MethodInvocation ::= Primary . TypeArgumentsopt identifier ( ArgumentListopt )
             //
             case 371: {
-               //#line 844 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 844 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodInvocation1(getLeftIToken(), getRightIToken(),
                                           (IPrimary)getRhsSym(1),
@@ -31522,7 +30395,7 @@ public class JavaParser implements RuleAction
             // Rule 372:  MethodInvocation ::= super . TypeArgumentsopt identifier ( ArgumentListopt )
             //
             case 372: {
-               //#line 845 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 845 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodInvocation2(getLeftIToken(), getRightIToken(),
                                           new AstToken(getRhsIToken(1)),
@@ -31539,7 +30412,7 @@ public class JavaParser implements RuleAction
             // Rule 373:  MethodInvocation ::= ClassName . super . TypeArgumentsopt identifier ( ArgumentListopt )
             //
             case 373: {
-               //#line 846 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 846 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodInvocation3(getLeftIToken(), getRightIToken(),
                                           (IClassName)getRhsSym(1),
@@ -31558,7 +30431,7 @@ public class JavaParser implements RuleAction
             // Rule 374:  MethodInvocation ::= TypeName . TypeArguments identifier ( ArgumentListopt )
             //
             case 374: {
-               //#line 847 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 847 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodInvocation4(getLeftIToken(), getRightIToken(),
                                           (ITypeName)getRhsSym(1),
@@ -31575,7 +30448,7 @@ public class JavaParser implements RuleAction
             // Rule 375:  ArrayAccess ::= ExpressionName [ Expression ]
             //
             case 375: {
-               //#line 855 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 855 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArrayAccess0(getLeftIToken(), getRightIToken(),
                                      (IExpressionName)getRhsSym(1),
@@ -31589,7 +30462,7 @@ public class JavaParser implements RuleAction
             // Rule 376:  ArrayAccess ::= PrimaryNoNewArray [ Expression ]
             //
             case 376: {
-               //#line 856 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 856 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArrayAccess1(getLeftIToken(), getRightIToken(),
                                      (IPrimaryNoNewArray)getRhsSym(1),
@@ -31623,7 +30496,7 @@ public class JavaParser implements RuleAction
             // Rule 381:  PostIncrementExpression ::= PostfixExpression ++
             //
             case 381: {
-               //#line 863 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 863 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PostIncrementExpression(getLeftIToken(), getRightIToken(),
                                                 (IPostfixExpression)getRhsSym(1),
@@ -31635,7 +30508,7 @@ public class JavaParser implements RuleAction
             // Rule 382:  PostDecrementExpression ::= PostfixExpression --
             //
             case 382: {
-               //#line 865 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 865 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PostDecrementExpression(getLeftIToken(), getRightIToken(),
                                                 (IPostfixExpression)getRhsSym(1),
@@ -31657,7 +30530,7 @@ public class JavaParser implements RuleAction
             // Rule 385:  UnaryExpression ::= + UnaryExpression
             //
             case 385: {
-               //#line 869 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 869 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new UnaryExpression0(getLeftIToken(), getRightIToken(),
                                          new AstToken(getRhsIToken(1)),
@@ -31669,7 +30542,7 @@ public class JavaParser implements RuleAction
             // Rule 386:  UnaryExpression ::= - UnaryExpression
             //
             case 386: {
-               //#line 870 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 870 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new UnaryExpression1(getLeftIToken(), getRightIToken(),
                                          new AstToken(getRhsIToken(1)),
@@ -31686,7 +30559,7 @@ public class JavaParser implements RuleAction
             // Rule 388:  PreIncrementExpression ::= ++ UnaryExpression
             //
             case 388: {
-               //#line 873 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 873 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PreIncrementExpression(getLeftIToken(), getRightIToken(),
                                                new AstToken(getRhsIToken(1)),
@@ -31698,7 +30571,7 @@ public class JavaParser implements RuleAction
             // Rule 389:  PreDecrementExpression ::= -- UnaryExpression
             //
             case 389: {
-               //#line 875 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 875 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PreDecrementExpression(getLeftIToken(), getRightIToken(),
                                                new AstToken(getRhsIToken(1)),
@@ -31715,7 +30588,7 @@ public class JavaParser implements RuleAction
             // Rule 391:  UnaryExpressionNotPlusMinus ::= ~ UnaryExpression
             //
             case 391: {
-               //#line 878 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 878 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new UnaryExpressionNotPlusMinus0(getLeftIToken(), getRightIToken(),
                                                      new AstToken(getRhsIToken(1)),
@@ -31727,7 +30600,7 @@ public class JavaParser implements RuleAction
             // Rule 392:  UnaryExpressionNotPlusMinus ::= ! UnaryExpression
             //
             case 392: {
-               //#line 879 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 879 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new UnaryExpressionNotPlusMinus1(getLeftIToken(), getRightIToken(),
                                                      new AstToken(getRhsIToken(1)),
@@ -31744,7 +30617,7 @@ public class JavaParser implements RuleAction
             // Rule 394:  CastExpression ::= ( PrimitiveType Dimsopt ) UnaryExpression
             //
             case 394: {
-               //#line 882 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 882 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new CastExpression0(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -31759,7 +30632,7 @@ public class JavaParser implements RuleAction
             // Rule 395:  CastExpression ::= ( ReferenceType ) UnaryExpressionNotPlusMinus
             //
             case 395: {
-               //#line 883 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 883 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new CastExpression1(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -31778,7 +30651,7 @@ public class JavaParser implements RuleAction
             // Rule 397:  MultiplicativeExpression ::= MultiplicativeExpression * UnaryExpression
             //
             case 397: {
-               //#line 886 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 886 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MultiplicativeExpression0(getLeftIToken(), getRightIToken(),
                                                   (IMultiplicativeExpression)getRhsSym(1),
@@ -31791,7 +30664,7 @@ public class JavaParser implements RuleAction
             // Rule 398:  MultiplicativeExpression ::= MultiplicativeExpression / UnaryExpression
             //
             case 398: {
-               //#line 887 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 887 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MultiplicativeExpression1(getLeftIToken(), getRightIToken(),
                                                   (IMultiplicativeExpression)getRhsSym(1),
@@ -31804,7 +30677,7 @@ public class JavaParser implements RuleAction
             // Rule 399:  MultiplicativeExpression ::= MultiplicativeExpression % UnaryExpression
             //
             case 399: {
-               //#line 888 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 888 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MultiplicativeExpression2(getLeftIToken(), getRightIToken(),
                                                   (IMultiplicativeExpression)getRhsSym(1),
@@ -31822,7 +30695,7 @@ public class JavaParser implements RuleAction
             // Rule 401:  AdditiveExpression ::= AdditiveExpression + MultiplicativeExpression
             //
             case 401: {
-               //#line 891 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 891 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AdditiveExpression0(getLeftIToken(), getRightIToken(),
                                             (IAdditiveExpression)getRhsSym(1),
@@ -31835,7 +30708,7 @@ public class JavaParser implements RuleAction
             // Rule 402:  AdditiveExpression ::= AdditiveExpression - MultiplicativeExpression
             //
             case 402: {
-               //#line 892 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 892 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AdditiveExpression1(getLeftIToken(), getRightIToken(),
                                             (IAdditiveExpression)getRhsSym(1),
@@ -31853,7 +30726,7 @@ public class JavaParser implements RuleAction
             // Rule 404:  ShiftExpression ::= ShiftExpression << AdditiveExpression
             //
             case 404: {
-               //#line 895 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 895 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ShiftExpression0(getLeftIToken(), getRightIToken(),
                                          (IShiftExpression)getRhsSym(1),
@@ -31866,7 +30739,7 @@ public class JavaParser implements RuleAction
             // Rule 405:  ShiftExpression ::= ShiftExpression > > AdditiveExpression
             //
             case 405: {
-               //#line 896 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 896 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ShiftExpression1(getLeftIToken(), getRightIToken(),
                                          (IShiftExpression)getRhsSym(1),
@@ -31880,7 +30753,7 @@ public class JavaParser implements RuleAction
             // Rule 406:  ShiftExpression ::= ShiftExpression > > > AdditiveExpression
             //
             case 406: {
-               //#line 897 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 897 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ShiftExpression2(getLeftIToken(), getRightIToken(),
                                          (IShiftExpression)getRhsSym(1),
@@ -31900,7 +30773,7 @@ public class JavaParser implements RuleAction
             // Rule 408:  RelationalExpression ::= RelationalExpression < ShiftExpression
             //
             case 408: {
-               //#line 900 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 900 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new RelationalExpression0(getLeftIToken(), getRightIToken(),
                                               (IRelationalExpression)getRhsSym(1),
@@ -31913,7 +30786,7 @@ public class JavaParser implements RuleAction
             // Rule 409:  RelationalExpression ::= RelationalExpression > ShiftExpression
             //
             case 409: {
-               //#line 901 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 901 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new RelationalExpression1(getLeftIToken(), getRightIToken(),
                                               (IRelationalExpression)getRhsSym(1),
@@ -31926,7 +30799,7 @@ public class JavaParser implements RuleAction
             // Rule 410:  RelationalExpression ::= RelationalExpression <= ShiftExpression
             //
             case 410: {
-               //#line 902 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 902 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new RelationalExpression2(getLeftIToken(), getRightIToken(),
                                               (IRelationalExpression)getRhsSym(1),
@@ -31939,7 +30812,7 @@ public class JavaParser implements RuleAction
             // Rule 411:  RelationalExpression ::= RelationalExpression > = ShiftExpression
             //
             case 411: {
-               //#line 903 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 903 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new RelationalExpression3(getLeftIToken(), getRightIToken(),
                                               (IRelationalExpression)getRhsSym(1),
@@ -31953,7 +30826,7 @@ public class JavaParser implements RuleAction
             // Rule 412:  RelationalExpression ::= RelationalExpression instanceof ReferenceType
             //
             case 412: {
-               //#line 904 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 904 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new RelationalExpression4(getLeftIToken(), getRightIToken(),
                                               (IRelationalExpression)getRhsSym(1),
@@ -31971,7 +30844,7 @@ public class JavaParser implements RuleAction
             // Rule 414:  EqualityExpression ::= EqualityExpression == RelationalExpression
             //
             case 414: {
-               //#line 907 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 907 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EqualityExpression0(getLeftIToken(), getRightIToken(),
                                             (IEqualityExpression)getRhsSym(1),
@@ -31984,7 +30857,7 @@ public class JavaParser implements RuleAction
             // Rule 415:  EqualityExpression ::= EqualityExpression != RelationalExpression
             //
             case 415: {
-               //#line 908 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 908 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EqualityExpression1(getLeftIToken(), getRightIToken(),
                                             (IEqualityExpression)getRhsSym(1),
@@ -32002,7 +30875,7 @@ public class JavaParser implements RuleAction
             // Rule 417:  AndExpression ::= AndExpression & EqualityExpression
             //
             case 417: {
-               //#line 911 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 911 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AndExpression(getLeftIToken(), getRightIToken(),
                                       (IAndExpression)getRhsSym(1),
@@ -32020,7 +30893,7 @@ public class JavaParser implements RuleAction
             // Rule 419:  ExclusiveOrExpression ::= ExclusiveOrExpression ^ AndExpression
             //
             case 419: {
-               //#line 914 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 914 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExclusiveOrExpression(getLeftIToken(), getRightIToken(),
                                               (IExclusiveOrExpression)getRhsSym(1),
@@ -32038,7 +30911,7 @@ public class JavaParser implements RuleAction
             // Rule 421:  InclusiveOrExpression ::= InclusiveOrExpression | ExclusiveOrExpression
             //
             case 421: {
-               //#line 917 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 917 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InclusiveOrExpression(getLeftIToken(), getRightIToken(),
                                               (IInclusiveOrExpression)getRhsSym(1),
@@ -32056,7 +30929,7 @@ public class JavaParser implements RuleAction
             // Rule 423:  ConditionalAndExpression ::= ConditionalAndExpression && InclusiveOrExpression
             //
             case 423: {
-               //#line 920 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 920 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConditionalAndExpression(getLeftIToken(), getRightIToken(),
                                                  (IConditionalAndExpression)getRhsSym(1),
@@ -32074,7 +30947,7 @@ public class JavaParser implements RuleAction
             // Rule 425:  ConditionalOrExpression ::= ConditionalOrExpression || ConditionalAndExpression
             //
             case 425: {
-               //#line 923 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 923 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConditionalOrExpression(getLeftIToken(), getRightIToken(),
                                                 (IConditionalOrExpression)getRhsSym(1),
@@ -32092,7 +30965,7 @@ public class JavaParser implements RuleAction
             // Rule 427:  ConditionalExpression ::= ConditionalOrExpression ? Expression : ConditionalExpression
             //
             case 427: {
-               //#line 926 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 926 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConditionalExpression(getLeftIToken(), getRightIToken(),
                                               (IConditionalOrExpression)getRhsSym(1),
@@ -32117,7 +30990,7 @@ public class JavaParser implements RuleAction
             // Rule 430:  Assignment ::= LeftHandSide AssignmentOperator AssignmentExpression
             //
             case 430: {
-               //#line 931 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 931 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Assignment(getLeftIToken(), getRightIToken(),
                                    (ILeftHandSide)getRhsSym(1),
@@ -32145,7 +31018,7 @@ public class JavaParser implements RuleAction
             // Rule 434:  AssignmentOperator ::= =
             //
             case 434: {
-               //#line 937 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 937 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator0(getRhsIToken(1))
                 );
@@ -32155,7 +31028,7 @@ public class JavaParser implements RuleAction
             // Rule 435:  AssignmentOperator ::= *=
             //
             case 435: {
-               //#line 938 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 938 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator1(getRhsIToken(1))
                 );
@@ -32165,7 +31038,7 @@ public class JavaParser implements RuleAction
             // Rule 436:  AssignmentOperator ::= /=
             //
             case 436: {
-               //#line 939 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 939 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator2(getRhsIToken(1))
                 );
@@ -32175,7 +31048,7 @@ public class JavaParser implements RuleAction
             // Rule 437:  AssignmentOperator ::= %=
             //
             case 437: {
-               //#line 940 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 940 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator3(getRhsIToken(1))
                 );
@@ -32185,7 +31058,7 @@ public class JavaParser implements RuleAction
             // Rule 438:  AssignmentOperator ::= +=
             //
             case 438: {
-               //#line 941 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 941 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator4(getRhsIToken(1))
                 );
@@ -32195,7 +31068,7 @@ public class JavaParser implements RuleAction
             // Rule 439:  AssignmentOperator ::= -=
             //
             case 439: {
-               //#line 942 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 942 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator5(getRhsIToken(1))
                 );
@@ -32205,7 +31078,7 @@ public class JavaParser implements RuleAction
             // Rule 440:  AssignmentOperator ::= <<=
             //
             case 440: {
-               //#line 943 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 943 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator6(getRhsIToken(1))
                 );
@@ -32215,7 +31088,7 @@ public class JavaParser implements RuleAction
             // Rule 441:  AssignmentOperator ::= > > =
             //
             case 441: {
-               //#line 944 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 944 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator7(getLeftIToken(), getRightIToken(),
                                             new AstToken(getRhsIToken(1)),
@@ -32228,7 +31101,7 @@ public class JavaParser implements RuleAction
             // Rule 442:  AssignmentOperator ::= > > > =
             //
             case 442: {
-               //#line 945 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 945 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator8(getLeftIToken(), getRightIToken(),
                                             new AstToken(getRhsIToken(1)),
@@ -32242,7 +31115,7 @@ public class JavaParser implements RuleAction
             // Rule 443:  AssignmentOperator ::= &=
             //
             case 443: {
-               //#line 946 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 946 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator9(getRhsIToken(1))
                 );
@@ -32252,7 +31125,7 @@ public class JavaParser implements RuleAction
             // Rule 444:  AssignmentOperator ::= ^=
             //
             case 444: {
-               //#line 947 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 947 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator10(getRhsIToken(1))
                 );
@@ -32262,7 +31135,7 @@ public class JavaParser implements RuleAction
             // Rule 445:  AssignmentOperator ::= |=
             //
             case 445: {
-               //#line 948 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 948 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator11(getRhsIToken(1))
                 );
@@ -32282,7 +31155,7 @@ public class JavaParser implements RuleAction
             // Rule 448:  Dimsopt ::= $Empty
             //
             case 448: {
-               //#line 957 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 957 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32295,7 +31168,7 @@ public class JavaParser implements RuleAction
             // Rule 450:  Catchesopt ::= $Empty
             //
             case 450: {
-               //#line 960 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 960 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32308,7 +31181,7 @@ public class JavaParser implements RuleAction
             // Rule 452:  identifieropt ::= $Empty
             //
             case 452: {
-               //#line 963 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 963 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32321,7 +31194,7 @@ public class JavaParser implements RuleAction
             // Rule 454:  ForUpdateopt ::= $Empty
             //
             case 454: {
-               //#line 966 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 966 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32334,7 +31207,7 @@ public class JavaParser implements RuleAction
             // Rule 456:  Expressionopt ::= $Empty
             //
             case 456: {
-               //#line 969 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 969 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32347,7 +31220,7 @@ public class JavaParser implements RuleAction
             // Rule 458:  ForInitopt ::= $Empty
             //
             case 458: {
-               //#line 972 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 972 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32360,7 +31233,7 @@ public class JavaParser implements RuleAction
             // Rule 460:  SwitchLabelsopt ::= $Empty
             //
             case 460: {
-               //#line 975 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 975 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32373,7 +31246,7 @@ public class JavaParser implements RuleAction
             // Rule 462:  SwitchBlockStatementGroupsopt ::= $Empty
             //
             case 462: {
-               //#line 978 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 978 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32386,7 +31259,7 @@ public class JavaParser implements RuleAction
             // Rule 464:  VariableModifiersopt ::= $Empty
             //
             case 464: {
-               //#line 981 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 981 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32399,7 +31272,7 @@ public class JavaParser implements RuleAction
             // Rule 466:  VariableInitializersopt ::= $Empty
             //
             case 466: {
-               //#line 984 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 984 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32412,7 +31285,7 @@ public class JavaParser implements RuleAction
             // Rule 468:  ElementValuesopt ::= $Empty
             //
             case 468: {
-               //#line 987 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 987 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32425,7 +31298,7 @@ public class JavaParser implements RuleAction
             // Rule 470:  ElementValuePairsopt ::= $Empty
             //
             case 470: {
-               //#line 990 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 990 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32438,7 +31311,7 @@ public class JavaParser implements RuleAction
             // Rule 472:  DefaultValueopt ::= $Empty
             //
             case 472: {
-               //#line 993 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 993 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32451,7 +31324,7 @@ public class JavaParser implements RuleAction
             // Rule 474:  AnnotationTypeElementDeclarationsopt ::= $Empty
             //
             case 474: {
-               //#line 996 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 996 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32464,7 +31337,7 @@ public class JavaParser implements RuleAction
             // Rule 476:  AbstractMethodModifiersopt ::= $Empty
             //
             case 476: {
-               //#line 999 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 999 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32477,7 +31350,7 @@ public class JavaParser implements RuleAction
             // Rule 478:  ConstantModifiersopt ::= $Empty
             //
             case 478: {
-               //#line 1002 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1002 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32490,7 +31363,7 @@ public class JavaParser implements RuleAction
             // Rule 480:  InterfaceMemberDeclarationsopt ::= $Empty
             //
             case 480: {
-               //#line 1005 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1005 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32503,7 +31376,7 @@ public class JavaParser implements RuleAction
             // Rule 482:  ExtendsInterfacesopt ::= $Empty
             //
             case 482: {
-               //#line 1008 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1008 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32516,7 +31389,7 @@ public class JavaParser implements RuleAction
             // Rule 484:  InterfaceModifiersopt ::= $Empty
             //
             case 484: {
-               //#line 1011 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1011 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32529,7 +31402,7 @@ public class JavaParser implements RuleAction
             // Rule 486:  ClassBodyopt ::= $Empty
             //
             case 486: {
-               //#line 1014 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1014 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32542,7 +31415,7 @@ public class JavaParser implements RuleAction
             // Rule 488:  Argumentsopt ::= $Empty
             //
             case 488: {
-               //#line 1017 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1017 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32555,7 +31428,7 @@ public class JavaParser implements RuleAction
             // Rule 490:  EnumBodyDeclarationsopt ::= $Empty
             //
             case 490: {
-               //#line 1020 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1020 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32568,7 +31441,7 @@ public class JavaParser implements RuleAction
             // Rule 492:  ,opt ::= $Empty
             //
             case 492: {
-               //#line 1023 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1023 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32576,7 +31449,7 @@ public class JavaParser implements RuleAction
             // Rule 493:  ,opt ::= ,
             //
             case 493: {
-               //#line 1024 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1024 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Commaopt(getRhsIToken(1))
                 );
@@ -32586,7 +31459,7 @@ public class JavaParser implements RuleAction
             // Rule 494:  EnumConstantsopt ::= $Empty
             //
             case 494: {
-               //#line 1026 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1026 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32599,7 +31472,7 @@ public class JavaParser implements RuleAction
             // Rule 496:  ArgumentListopt ::= $Empty
             //
             case 496: {
-               //#line 1029 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1029 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32612,7 +31485,7 @@ public class JavaParser implements RuleAction
             // Rule 498:  BlockStatementsopt ::= $Empty
             //
             case 498: {
-               //#line 1032 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1032 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32625,7 +31498,7 @@ public class JavaParser implements RuleAction
             // Rule 500:  ExplicitConstructorInvocationopt ::= $Empty
             //
             case 500: {
-               //#line 1035 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1035 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32638,7 +31511,7 @@ public class JavaParser implements RuleAction
             // Rule 502:  ConstructorModifiersopt ::= $Empty
             //
             case 502: {
-               //#line 1038 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1038 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32651,7 +31524,7 @@ public class JavaParser implements RuleAction
             // Rule 504:  ...opt ::= $Empty
             //
             case 504: {
-               //#line 1041 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1041 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32659,7 +31532,7 @@ public class JavaParser implements RuleAction
             // Rule 505:  ...opt ::= ...
             //
             case 505: {
-               //#line 1042 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1042 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Ellipsisopt(getRhsIToken(1))
                 );
@@ -32669,7 +31542,7 @@ public class JavaParser implements RuleAction
             // Rule 506:  FormalParameterListopt ::= $Empty
             //
             case 506: {
-               //#line 1044 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1044 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32682,7 +31555,7 @@ public class JavaParser implements RuleAction
             // Rule 508:  Throwsopt ::= $Empty
             //
             case 508: {
-               //#line 1047 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1047 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32695,7 +31568,7 @@ public class JavaParser implements RuleAction
             // Rule 510:  MethodModifiersopt ::= $Empty
             //
             case 510: {
-               //#line 1050 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1050 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32708,7 +31581,7 @@ public class JavaParser implements RuleAction
             // Rule 512:  FieldModifiersopt ::= $Empty
             //
             case 512: {
-               //#line 1053 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1053 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32721,7 +31594,7 @@ public class JavaParser implements RuleAction
             // Rule 514:  ClassBodyDeclarationsopt ::= $Empty
             //
             case 514: {
-               //#line 1056 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1056 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32734,7 +31607,7 @@ public class JavaParser implements RuleAction
             // Rule 516:  Interfacesopt ::= $Empty
             //
             case 516: {
-               //#line 1059 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1059 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32747,7 +31620,7 @@ public class JavaParser implements RuleAction
             // Rule 518:  Superopt ::= $Empty
             //
             case 518: {
-               //#line 1062 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1062 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32760,7 +31633,7 @@ public class JavaParser implements RuleAction
             // Rule 520:  TypeParametersopt ::= $Empty
             //
             case 520: {
-               //#line 1065 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1065 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32773,7 +31646,7 @@ public class JavaParser implements RuleAction
             // Rule 522:  ClassModifiersopt ::= $Empty
             //
             case 522: {
-               //#line 1068 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1068 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32786,7 +31659,7 @@ public class JavaParser implements RuleAction
             // Rule 524:  Annotationsopt ::= $Empty
             //
             case 524: {
-               //#line 1071 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1071 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32799,7 +31672,7 @@ public class JavaParser implements RuleAction
             // Rule 526:  TypeDeclarationsopt ::= $Empty
             //
             case 526: {
-               //#line 1074 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1074 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32812,7 +31685,7 @@ public class JavaParser implements RuleAction
             // Rule 528:  ImportDeclarationsopt ::= $Empty
             //
             case 528: {
-               //#line 1077 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1077 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32825,7 +31698,7 @@ public class JavaParser implements RuleAction
             // Rule 530:  PackageDeclarationopt ::= $Empty
             //
             case 530: {
-               //#line 1080 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1080 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32838,7 +31711,7 @@ public class JavaParser implements RuleAction
             // Rule 532:  WildcardBoundsOpt ::= $Empty
             //
             case 532: {
-               //#line 1083 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1083 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32851,7 +31724,7 @@ public class JavaParser implements RuleAction
             // Rule 534:  AdditionalBoundListopt ::= $Empty
             //
             case 534: {
-               //#line 1086 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1086 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32864,7 +31737,7 @@ public class JavaParser implements RuleAction
             // Rule 536:  TypeBoundopt ::= $Empty
             //
             case 536: {
-               //#line 1089 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1089 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -32877,7 +31750,7 @@ public class JavaParser implements RuleAction
             // Rule 538:  TypeArgumentsopt ::= $Empty
             //
             case 538: {
-               //#line 1092 "/Users/rmfuhrer/eclipse/workspaces/imp-3.3-release/lpg.generator/templates/java/btParserTemplateF.gi"
+               //#line 1092 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
