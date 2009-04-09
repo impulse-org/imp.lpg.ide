@@ -7,7 +7,6 @@
 *
 * Contributors:
 *    Robert Fuhrer (rfuhrer@watson.ibm.com) - initial API and implementation
-
 *******************************************************************************/
 
 package org.eclipse.imp.lpg;
@@ -37,7 +36,7 @@ import org.osgi.framework.BundleContext;
  * The main plugin class to be used in the desktop.
  */
 public class LPGRuntimePlugin extends PluginBase {
-    public static final String kPluginID= "org.eclipse.imp.lpg.runtime";
+    public static final String kPluginID= "org.eclipse.imp.lpg.ide";
 
     /**
      * The unique instance of this plugin class
