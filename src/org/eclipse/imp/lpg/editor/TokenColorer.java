@@ -74,7 +74,7 @@ public class TokenColorer implements ITokenColorer {
         return null;
     }
 
-    public IRegion calculateDamageExtent(IRegion seed) {
+    public IRegion calculateDamageExtent(IRegion seed, IParseController ctlr) {
         return seed; // TODO naive, doesn't work in general
     }
 }
