@@ -200,12 +200,14 @@ public class ASTUtils {
     }
 
     public static ICompilationUnit lookupImportedFile(
-            ISourceProject srcProject, IPath refFile, String fileName) {
-        IPath refPath= refFile.removeLastSegments(1);
+            ISourceProject srcProject, IPath referencingFile, String fileName) {
+        IPath refPath= referencingFile.removeLastSegments(1);
         IProject project= srcProject.getRawProject();
 
+        // First look for the referenced file in the same folder
         if (project.getFile(refPath.append(fileName)).exists())
             return ModelFactory.open(refPath.append(fileName), srcProject);
+        // Next see whether 'fileName' is actually a project-relative path
         if (project.getFile(fileName).exists())
             return ModelFactory.open(new Path(fileName), srcProject);
 
@@ -228,6 +230,7 @@ public class ASTUtils {
             IPath includeDirPath= new Path(includeDirs[i]);
             IPath includeFile= includeDirPath.append(fileName);
 
+            // TODO Let the ModelFactory try to open the file (encapsulating the EFS-based code and the check for existence)
             if (new File(includeFile.toOSString()).exists())
                 return ModelFactory.open(includeFile, srcProject);
         }
