@@ -244,22 +244,11 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 		BooleanFieldEditor QuietOutput = (BooleanFieldEditor) fFields[8];
 		Link QuietOutputDetailsLink = (Link) fDetailsLinks.get(8);
 
-		// Declare a 'holder' for each preference field; not strictly necessary
-		// but helpful in various manipulations of fields and controls to follow
-		Composite UseDefaultExecutableHolder = null;
-		Composite ExecutableToUseHolder = null;
-		Composite UseDefaultIncludePathHolder = null;
-		Composite IncludePathToUseHolder = null;
-		Composite SourceFileExtensionsHolder = null;
-		Composite IncludeFileExtensionsHolder = null;
-		Composite EmitDiagnosticsHolder = null;
-		Composite GenerateListingsHolder = null;
-		Composite QuietOutputHolder = null;
 		// If we have a new project preferences node, then do various things
 		// to set up the project's preferences
 		if (newNode != null && newNode instanceof IEclipsePreferences) {
 			// Set project name in the selected-project field
-			selectedProjectName.setStringValue(newNode.name());
+//			selectedProjectName.setStringValue(newNode.name());
 
 			// If the containing composite is not disposed, then set field values
 			// and make them enabled and editable (as appropriate to the type of field)
@@ -277,72 +266,63 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 				// overwritten by values set here--so the values set here should be consistent
 				// with what the listener would set.
 
-				UseDefaultExecutableHolder = UseDefaultExecutable.getChangeControl().getParent();
-				fPrefUtils.setField(UseDefaultExecutable, UseDefaultExecutableHolder);
+				fPrefUtils.setField(UseDefaultExecutable, UseDefaultExecutable.getHolder());
 				UseDefaultExecutable.getChangeControl().setEnabled(true);
-				UseDefaultExecutableDetailsLink.setEnabled(selectedProjectName != null);
+				UseDefaultExecutableDetailsLink.setEnabled(true);
 
-				ExecutableToUseHolder = ExecutableToUse.getTextControl().getParent();
-				fPrefUtils.setField(ExecutableToUse, ExecutableToUseHolder);
+				fPrefUtils.setField(ExecutableToUse, ExecutableToUse.getHolder());
 				ExecutableToUse.getTextControl().setEditable(!UseDefaultExecutable.getBooleanValue());
 				ExecutableToUse.getTextControl().setEnabled(!UseDefaultExecutable.getBooleanValue());
 				ExecutableToUse.setEnabled(!UseDefaultExecutable.getBooleanValue(), ExecutableToUse.getParent());
-				ExecutableToUseDetailsLink.setEnabled(selectedProjectName != null);
+				ExecutableToUseDetailsLink.setEnabled(true);
 
-				UseDefaultIncludePathHolder = UseDefaultIncludePath.getChangeControl().getParent();
-				fPrefUtils.setField(UseDefaultIncludePath, UseDefaultIncludePathHolder);
+				fPrefUtils.setField(UseDefaultIncludePath, UseDefaultIncludePath.getHolder());
 				UseDefaultIncludePath.getChangeControl().setEnabled(true);
-				UseDefaultIncludePathDetailsLink.setEnabled(selectedProjectName != null);
+				UseDefaultIncludePathDetailsLink.setEnabled(true);
 
-				IncludePathToUseHolder = IncludePathToUse.getTextControl().getParent();
-				fPrefUtils.setField(IncludePathToUse, IncludePathToUseHolder);
+				fPrefUtils.setField(IncludePathToUse, IncludePathToUse.getHolder());
 				IncludePathToUse.getTextControl().setEditable(!UseDefaultIncludePath.getBooleanValue());
 				IncludePathToUse.getTextControl().setEnabled(!UseDefaultIncludePath.getBooleanValue());
 				IncludePathToUse.setEnabled(!UseDefaultIncludePath.getBooleanValue(), IncludePathToUse.getParent());
-				IncludePathToUseDetailsLink.setEnabled(selectedProjectName != null);
+				IncludePathToUseDetailsLink.setEnabled(true);
 
-				SourceFileExtensionsHolder = SourceFileExtensions.getTextControl().getParent();
-				fPrefUtils.setField(SourceFileExtensions, SourceFileExtensionsHolder);
+				fPrefUtils.setField(SourceFileExtensions, SourceFileExtensions.getHolder());
 				SourceFileExtensions.getTextControl().setEditable(true);
 				SourceFileExtensions.getTextControl().setEnabled(true);
 				SourceFileExtensions.setEnabled(true, SourceFileExtensions.getParent());
-				SourceFileExtensionsDetailsLink.setEnabled(selectedProjectName != null);
+				SourceFileExtensionsDetailsLink.setEnabled(true);
 
-				IncludeFileExtensionsHolder = IncludeFileExtensions.getTextControl().getParent();
-				fPrefUtils.setField(IncludeFileExtensions, IncludeFileExtensionsHolder);
+				fPrefUtils.setField(IncludeFileExtensions, IncludeFileExtensions.getHolder());
 				IncludeFileExtensions.getTextControl().setEditable(true);
 				IncludeFileExtensions.getTextControl().setEnabled(true);
 				IncludeFileExtensions.setEnabled(true, IncludeFileExtensions.getParent());
-				IncludeFileExtensionsDetailsLink.setEnabled(selectedProjectName != null);
+				IncludeFileExtensionsDetailsLink.setEnabled(true);
 
-				EmitDiagnosticsHolder = EmitDiagnostics.getChangeControl().getParent();
-				fPrefUtils.setField(EmitDiagnostics, EmitDiagnosticsHolder);
+				fPrefUtils.setField(EmitDiagnostics, EmitDiagnostics.getHolder());
 				EmitDiagnostics.getChangeControl().setEnabled(true);
-				EmitDiagnosticsDetailsLink.setEnabled(selectedProjectName != null);
+				EmitDiagnosticsDetailsLink.setEnabled(true);
 
-				GenerateListingsHolder = GenerateListings.getChangeControl().getParent();
-				fPrefUtils.setField(GenerateListings, GenerateListingsHolder);
+				fPrefUtils.setField(GenerateListings, GenerateListings.getHolder());
 				GenerateListings.getChangeControl().setEnabled(true);
-				GenerateListingsDetailsLink.setEnabled(selectedProjectName != null);
+				GenerateListingsDetailsLink.setEnabled(true);
 
-				QuietOutputHolder = QuietOutput.getChangeControl().getParent();
-				fPrefUtils.setField(QuietOutput, QuietOutputHolder);
+				fPrefUtils.setField(QuietOutput, QuietOutput.getHolder());
 				QuietOutput.getChangeControl().setEnabled(true);
-				QuietOutputDetailsLink.setEnabled(selectedProjectName != null);
+				QuietOutputDetailsLink.setEnabled(true);
 
 				clearModifiedMarksOnLabels();
 			}
 
 			// Add property change listeners
-			if (UseDefaultExecutableHolder != null) addProjectPreferenceChangeListeners(UseDefaultExecutable, "UseDefaultExecutable", UseDefaultExecutableHolder);
-			if (ExecutableToUseHolder != null) addProjectPreferenceChangeListeners(ExecutableToUse, "ExecutableToUse", ExecutableToUseHolder);
-			if (UseDefaultIncludePathHolder != null) addProjectPreferenceChangeListeners(UseDefaultIncludePath, "UseDefaultIncludePath", UseDefaultIncludePathHolder);
-			if (IncludePathToUseHolder != null) addProjectPreferenceChangeListeners(IncludePathToUse, "IncludePathToUse", IncludePathToUseHolder);
-			if (SourceFileExtensionsHolder != null) addProjectPreferenceChangeListeners(SourceFileExtensions, "SourceFileExtensions", SourceFileExtensionsHolder);
-			if (IncludeFileExtensionsHolder != null) addProjectPreferenceChangeListeners(IncludeFileExtensions, "IncludeFileExtensions", IncludeFileExtensionsHolder);
-			if (EmitDiagnosticsHolder != null) addProjectPreferenceChangeListeners(EmitDiagnostics, "EmitDiagnostics", EmitDiagnosticsHolder);
-			if (GenerateListingsHolder != null) addProjectPreferenceChangeListeners(GenerateListings, "GenerateListings", GenerateListingsHolder);
-			if (QuietOutputHolder != null) addProjectPreferenceChangeListeners(QuietOutput, "QuietOutput", QuietOutputHolder);
+			if (UseDefaultExecutable.getHolder() != null) addProjectPreferenceChangeListeners(UseDefaultExecutable, "UseDefaultExecutable", UseDefaultExecutable.getHolder());
+			if (ExecutableToUse.getHolder() != null) addProjectPreferenceChangeListeners(ExecutableToUse, "ExecutableToUse", ExecutableToUse.getHolder());
+			if (UseDefaultIncludePath.getHolder() != null) addProjectPreferenceChangeListeners(UseDefaultIncludePath, "UseDefaultIncludePath", UseDefaultIncludePath.getHolder());
+			if (IncludePathToUse.getHolder() != null) addProjectPreferenceChangeListeners(IncludePathToUse, "IncludePathToUse", IncludePathToUse.getHolder());
+			if (SourceFileExtensions.getHolder() != null) addProjectPreferenceChangeListeners(SourceFileExtensions, "SourceFileExtensions", SourceFileExtensions.getHolder());
+			if (IncludeFileExtensions.getHolder() != null) addProjectPreferenceChangeListeners(IncludeFileExtensions, "IncludeFileExtensions", IncludeFileExtensions.getHolder());
+			if (EmitDiagnostics.getHolder() != null) addProjectPreferenceChangeListeners(EmitDiagnostics, "EmitDiagnostics", EmitDiagnostics.getHolder());
+			if (GenerateListings.getHolder() != null) addProjectPreferenceChangeListeners(GenerateListings, "GenerateListings", GenerateListings.getHolder());
+			if (QuietOutput.getHolder() != null) addProjectPreferenceChangeListeners(QuietOutput, "QuietOutput", QuietOutput.getHolder());
 
 			haveCurrentListeners = true;
 		}
@@ -350,8 +330,9 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 		// Or if we don't have a new project preferences node ...
 		if (newNode == null || !(newNode instanceof IEclipsePreferences)) {
 			// May happen when the preferences page is first brought up, or
-			// if we allow the project to be deselected\nn			// Unset project name in the tab
-			selectedProjectName.setStringValue("none selected");
+			// if we allow the project to be deselected
+		    // Unset project name in the tab
+//			selectedProjectName.setStringValue("none selected");
 
 			// Clear the preferences from the store
 			fPrefService.clearPreferencesAtLevel(IPreferencesService.PROJECT_LEVEL);
@@ -393,6 +374,4 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 			performApply();
 		}
 	}
-
-
 }
