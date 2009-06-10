@@ -72,10 +72,10 @@ public class LPGRuntimePlugin extends PluginBase {
         ModelFactory.getInstance().installExtender(
         	new IFactoryExtender() {
 			    public void extend(ISourceProject project) {
-				IPreferenceStore store= LPGRuntimePlugin.getInstance().getPreferenceStore();
-				IPath includeDir = new Path(store.getString(LPGConstants.P_INCLUDEPATHTOUSE));
-		
-				project.getBuildPath().add(ModelFactory.createPathEntry(IPathEntry.PathEntryType.SOURCE_FOLDER, includeDir));
+			        IPreferenceStore store= LPGRuntimePlugin.getInstance().getPreferenceStore();
+			        IPath includeDir = new Path(store.getString(LPGConstants.P_INCLUDEPATHTOUSE));
+
+			        project.getBuildPath().add(ModelFactory.createPathEntry(IPathEntry.PathEntryType.SOURCE_FOLDER, includeDir));
 			    }
 			    public void extend(ICompilationUnit unit) { }
 			},
