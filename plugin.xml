@@ -107,7 +107,9 @@
             adaptable="false"
             nameFilter="*"
             id="org.eclipse.imp.lpg.projectContextMenu">
-         <separator name="LPG"/>
+         <separator
+               name="LPG">
+         </separator>
          <menu
                label="LPG"
                path="additions"
@@ -119,17 +121,17 @@
          <action
                label="Enable &amp;LPG Builder"
                icon="icons/builderEnable.gif"
-               menubarPath="org.eclipse.imp.lpg.contextMenu/group1"
                tooltip="Enable the LPG builder for this project"
                class="org.eclipse.imp.lpg.actions.EnableBuilder"
+               menubarPath="org.eclipse.imp.lpg.contextMenu/group1"
                id="org.eclipse.imp.lpg.enableBuilderAction">
          </action>
          <action
                label="Enable &amp;LPG Doc Builder"
                icon="icons/builderEnable.gif"
-               menubarPath="org.eclipse.imp.lpg.contextMenu/group1"
                tooltip="Enable the LPG documentation builder for this project"
                class="org.eclipse.imp.lpg.actions.EnableDocBuilder"
+               menubarPath="org.eclipse.imp.lpg.contextMenu/group1"
                id="org.eclipse.imp.lpg.enableDocBuilderAction">
          </action>
       </objectContribution>
@@ -232,6 +234,16 @@
       </occurrenceIdentifier>
    </extension>
    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="LPG Grammar Editor"
+            icon="icons/grammarfile.gif"
+            extensions="g,gi"
+            class="org.eclipse.imp.editor.UniversalEditor"
+            id="lpg.editor">
+      </editor>
+   </extension>
+   <extension
          point="org.eclipse.ui.preferencePages">
       <page
             name="LPG"
@@ -239,14 +251,10 @@
             id="org.eclipse.imp.lpg.preferences.LPG">
       </page>
    </extension>
-   <extension
-         point="org.eclipse.ui.editors">
-      <editor
-            class="org.eclipse.imp.editor.UniversalEditor"
-            extensions="g,gi"
-            icon="icons/grammarfile.gif"
-            id="lpg.editor"
-            name="LPG Grammar Editor">
-      </editor>
+
+   <extension point="org.eclipse.imp.runtime.entityNameLocator">
+       <entityNameLocator
+           language="LPG"
+           class="org.eclipse.imp.lpg.editor.LPGEntityNameLocator"/>
    </extension>
 </plugin>
