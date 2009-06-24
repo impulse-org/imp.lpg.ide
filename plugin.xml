@@ -87,13 +87,6 @@
       </tokenColorer>
    </extension>
    <extension
-         point="org.eclipse.imp.runtime.outliner">
-      <outliner
-            class="org.eclipse.imp.lpg.editor.Outliner"
-            language="LPG">
-      </outliner>
-   </extension>
-   <extension
          point="org.eclipse.imp.runtime.contentProposer">
       <proposer
             class="org.eclipse.imp.lpg.editor.ContentProposer"
