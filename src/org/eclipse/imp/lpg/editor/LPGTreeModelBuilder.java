@@ -19,6 +19,8 @@ import org.eclipse.imp.lpg.parser.LPGParser.AliasSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.AstSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.DefineSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.EofSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.EolSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.ErrorSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.ExportSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.GlobalsSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.HeadersSeg;
@@ -30,7 +32,10 @@ import org.eclipse.imp.lpg.parser.LPGParser.Iproduces;
 import org.eclipse.imp.lpg.parser.LPGParser.Isymbol_list;
 import org.eclipse.imp.lpg.parser.LPGParser.Iterminal_symbol;
 import org.eclipse.imp.lpg.parser.LPGParser.KeywordsSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.NamesSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.NoticeSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.PredecessorSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.RecoverSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.RulesSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.SYMBOLList;
 import org.eclipse.imp.lpg.parser.LPGParser.StartSeg;
@@ -106,30 +111,21 @@ public class LPGTreeModelBuilder extends TreeModelBuilderBase {
             return true;
         }
 
-        public boolean visit(import_segment n) {
-            pushSubItem(n);
-            return false;
-        }
-
-        public void endVisit(import_segment n) {
-            popSubItem();
-        }
-
-        public boolean visit(NoticeSeg n) {
-            pushSubItem(n);
-            return false;
-        }
-
-        public void endVisit(NoticeSeg n) {
-            popSubItem();
-        }
-
         public boolean visit(AliasSeg n) {
             pushSubItem(n);
             return true;
         }
 
         public void endVisit(AliasSeg n) {
+            popSubItem();
+        }
+
+        public boolean visit(AstSeg n) {
+            pushSubItem(n);
+            return true;
+        }
+
+        public void endVisit(AstSeg n) {
             popSubItem();
         }
 
@@ -142,17 +138,30 @@ public class LPGTreeModelBuilder extends TreeModelBuilderBase {
             popSubItem();
         }
 
-        public boolean visit(defineSpec n) {
-            createSubItem((ASTNode) n.getmacro_name_symbol());
-            return true;
-        }
-
         public boolean visit(EofSeg n) {
             pushSubItem(n);
             return true;
         }
 
         public void endVisit(EofSeg n) {
+            popSubItem();
+        }
+
+        public boolean visit(EolSeg n) {
+            pushSubItem(n);
+            return true;
+        }
+
+        public void endVisit(EolSeg n) {
+            popSubItem();
+        }
+
+        public boolean visit(ErrorSeg n) {
+            pushSubItem(n);
+            return true;
+        }
+
+        public void endVisit(ErrorSeg n) {
             popSubItem();
         }
 
@@ -163,11 +172,6 @@ public class LPGTreeModelBuilder extends TreeModelBuilderBase {
 
         public void endVisit(ExportSeg n) {
             popSubItem();
-        }
-
-        public boolean visit(terminal_symbol1 n) {
-            createSubItem((ASTNode) n.getMACRO_NAME());
-            return false;
         }
 
         public boolean visit(GlobalsSeg n) {
@@ -188,14 +192,21 @@ public class LPGTreeModelBuilder extends TreeModelBuilderBase {
             popSubItem();
         }
 
-        // SMS 27 Jun 2006
-        // Trailers were omitted originally but they can occur
-        public boolean visit(TrailersSeg n) {
+        public boolean visit(IdentifierSeg n) {
             pushSubItem(n);
             return true;
         }
 
-        public void endVisit(TrailersSeg n) {
+        public void endVisit(IdentifierSeg n) {
+            popSubItem();
+        }
+
+        public boolean visit(import_segment n) {
+            pushSubItem(n);
+            return false;
+        }
+
+        public void endVisit(import_segment n) {
             popSubItem();
         }
 
@@ -208,21 +219,57 @@ public class LPGTreeModelBuilder extends TreeModelBuilderBase {
             popSubItem();
         }
 
-        public boolean visit(IdentifierSeg n) {
-            pushSubItem(n);
-            return true;
-        }
-
-        public void endVisit(IdentifierSeg n) {
-            popSubItem();
-        }
-
         public boolean visit(KeywordsSeg n) {
             pushSubItem(n);
             return true;
         }
 
         public void endVisit(KeywordsSeg n) {
+            popSubItem();
+        }
+
+        public boolean visit(NamesSeg n) {
+            pushSubItem(n);
+            return true;
+        }
+
+        public void endVisit(NamesSeg n) {
+            popSubItem();
+        }
+
+        public boolean visit(NoticeSeg n) {
+            pushSubItem(n);
+            return false;
+        }
+
+        public void endVisit(NoticeSeg n) {
+            popSubItem();
+        }
+
+        public boolean visit(PredecessorSeg n) {
+            pushSubItem(n);
+            return true;
+        }
+
+        public void endVisit(PredecessorSeg n) {
+            popSubItem();
+        }
+
+        public boolean visit(RecoverSeg n) {
+            pushSubItem(n);
+            return true;
+        }
+
+        public void endVisit(RecoverSeg n) {
+            popSubItem();
+        }
+
+        public boolean visit(RulesSeg n) {
+            pushSubItem(n);
+            return true;
+        }
+
+        public void endVisit(RulesSeg n) {
             popSubItem();
         }
 
@@ -235,14 +282,6 @@ public class LPGTreeModelBuilder extends TreeModelBuilderBase {
             popSubItem();
         }
 
-        public void endVisit(start_symbol0 n) {
-            createSubItem(n);
-        }
-
-        public void endVisit(start_symbol1 n) {
-            createSubItem(n);
-        }
-
         public boolean visit(TerminalsSeg n) {
             pushSubItem(n);
             return true;
@@ -250,6 +289,42 @@ public class LPGTreeModelBuilder extends TreeModelBuilderBase {
 
         public void endVisit(TerminalsSeg n) {
             popSubItem();
+        }
+
+        public boolean visit(TrailersSeg n) {
+            pushSubItem(n);
+            return true;
+        }
+
+        public void endVisit(TrailersSeg n) {
+            popSubItem();
+        }
+
+        public boolean visit(TypesSeg n) {
+            pushSubItem(n);
+            return true;
+        }
+
+        public void endVisit(TypesSeg n) {
+            popSubItem();
+        }
+
+        public boolean visit(defineSpec n) {
+            createSubItem((ASTNode) n.getmacro_name_symbol());
+            return true;
+        }
+
+        public boolean visit(terminal_symbol1 n) {
+            createSubItem((ASTNode) n.getMACRO_NAME());
+            return false;
+        }
+
+        public void endVisit(start_symbol0 n) {
+            createSubItem(n);
+        }
+
+        public void endVisit(start_symbol1 n) {
+            createSubItem(n);
         }
 
         public void endVisit(terminal n) {
@@ -263,24 +338,6 @@ public class LPGTreeModelBuilder extends TreeModelBuilderBase {
             } else
                 label= symbolImage(symbol);
             createSubItem(symbol);
-        }
-
-        public boolean visit(AstSeg n) {
-            pushSubItem(n);
-            return true;
-        }
-
-        public void endVisit(AstSeg n) {
-            popSubItem();
-        }
-
-        public boolean visit(RulesSeg n) {
-            pushSubItem(n);
-            return true;
-        }
-
-        public void endVisit(RulesSeg n) {
-            popSubItem();
         }
 
         public boolean visit(nonTerm n) {
@@ -316,15 +373,6 @@ public class LPGTreeModelBuilder extends TreeModelBuilderBase {
         public void endVisit(symWithAttrs1 n) {
             fRHSLabel.append(' ');
             fRHSLabel.append(n.getSYMBOL().toString());
-        }
-
-        public boolean visit(TypesSeg n) {
-            pushSubItem(n);
-            return true;
-        }
-
-        public void endVisit(TypesSeg n) {
-            popSubItem();
         }
 
         // public boolean visit(types_segment1 n) {
