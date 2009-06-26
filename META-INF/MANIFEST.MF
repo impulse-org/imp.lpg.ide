@@ -4,6 +4,8 @@ Bundle-Name: LPG IDE Runtime (Incubation)
 Bundle-SymbolicName: org.eclipse.imp.lpg.ide;singleton:=true
 Bundle-Version: 0.1.86
 Bundle-Activator: org.eclipse.imp.lpg.LPGRuntimePlugin
+Bundle-ActivationPolicy: lazy
+Eclipse-LazyStart: true
 Bundle-Vendor: rfuhrer@watson.ibm.com
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -24,7 +26,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.variables,
  org.eclipse.ui.console,
  org.eclipse.imp.smapifier
-Eclipse-LazyStart: true
 Export-Package: org.eclipse.imp.lpg,
  org.eclipse.imp.lpg.actions,
  org.eclipse.imp.lpg.builder,
