@@ -16,7 +16,7 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.imp.lpg.runtime.LPGBuilder</name>
+			<name>org.eclipse.imp.lpg.ide.LPGBuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
