@@ -247,9 +247,6 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 		// If we have a new project preferences node, then do various things
 		// to set up the project's preferences
 		if (newNode != null && newNode instanceof IEclipsePreferences) {
-			// Set project name in the selected-project field
-//			selectedProjectName.setStringValue(newNode.name());
-
 			// If the containing composite is not disposed, then set field values
 			// and make them enabled and editable (as appropriate to the type of field)
 
@@ -268,47 +265,47 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 
 				fPrefUtils.setField(UseDefaultExecutable, UseDefaultExecutable.getHolder());
 				UseDefaultExecutable.getChangeControl().setEnabled(true);
-				UseDefaultExecutableDetailsLink.setEnabled(true);
+				UseDefaultExecutableDetailsLink.setEnabled(selectedProjectCombo.getText().length() > 0);
 
 				fPrefUtils.setField(ExecutableToUse, ExecutableToUse.getHolder());
 				ExecutableToUse.getTextControl().setEditable(!UseDefaultExecutable.getBooleanValue());
 				ExecutableToUse.getTextControl().setEnabled(!UseDefaultExecutable.getBooleanValue());
 				ExecutableToUse.setEnabled(!UseDefaultExecutable.getBooleanValue(), ExecutableToUse.getParent());
-				ExecutableToUseDetailsLink.setEnabled(true);
+				ExecutableToUseDetailsLink.setEnabled(selectedProjectCombo.getText().length() > 0);
 
 				fPrefUtils.setField(UseDefaultIncludePath, UseDefaultIncludePath.getHolder());
 				UseDefaultIncludePath.getChangeControl().setEnabled(true);
-				UseDefaultIncludePathDetailsLink.setEnabled(true);
+				UseDefaultIncludePathDetailsLink.setEnabled(selectedProjectCombo.getText().length() > 0);
 
 				fPrefUtils.setField(IncludePathToUse, IncludePathToUse.getHolder());
 				IncludePathToUse.getTextControl().setEditable(!UseDefaultIncludePath.getBooleanValue());
 				IncludePathToUse.getTextControl().setEnabled(!UseDefaultIncludePath.getBooleanValue());
 				IncludePathToUse.setEnabled(!UseDefaultIncludePath.getBooleanValue(), IncludePathToUse.getParent());
-				IncludePathToUseDetailsLink.setEnabled(true);
+				IncludePathToUseDetailsLink.setEnabled(selectedProjectCombo.getText().length() > 0);
 
 				fPrefUtils.setField(SourceFileExtensions, SourceFileExtensions.getHolder());
 				SourceFileExtensions.getTextControl().setEditable(true);
 				SourceFileExtensions.getTextControl().setEnabled(true);
 				SourceFileExtensions.setEnabled(true, SourceFileExtensions.getParent());
-				SourceFileExtensionsDetailsLink.setEnabled(true);
+				SourceFileExtensionsDetailsLink.setEnabled(selectedProjectCombo.getText().length() > 0);
 
 				fPrefUtils.setField(IncludeFileExtensions, IncludeFileExtensions.getHolder());
 				IncludeFileExtensions.getTextControl().setEditable(true);
 				IncludeFileExtensions.getTextControl().setEnabled(true);
 				IncludeFileExtensions.setEnabled(true, IncludeFileExtensions.getParent());
-				IncludeFileExtensionsDetailsLink.setEnabled(true);
+				IncludeFileExtensionsDetailsLink.setEnabled(selectedProjectCombo.getText().length() > 0);
 
 				fPrefUtils.setField(EmitDiagnostics, EmitDiagnostics.getHolder());
 				EmitDiagnostics.getChangeControl().setEnabled(true);
-				EmitDiagnosticsDetailsLink.setEnabled(true);
+				EmitDiagnosticsDetailsLink.setEnabled(selectedProjectCombo.getText().length() > 0);
 
 				fPrefUtils.setField(GenerateListings, GenerateListings.getHolder());
 				GenerateListings.getChangeControl().setEnabled(true);
-				GenerateListingsDetailsLink.setEnabled(true);
+				GenerateListingsDetailsLink.setEnabled(selectedProjectCombo.getText().length() > 0);
 
 				fPrefUtils.setField(QuietOutput, QuietOutput.getHolder());
 				QuietOutput.getChangeControl().setEnabled(true);
-				QuietOutputDetailsLink.setEnabled(true);
+				QuietOutputDetailsLink.setEnabled(selectedProjectCombo.getText().length() > 0);
 
 				clearModifiedMarksOnLabels();
 			}
@@ -330,11 +327,7 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 		// Or if we don't have a new project preferences node ...
 		if (newNode == null || !(newNode instanceof IEclipsePreferences)) {
 			// May happen when the preferences page is first brought up, or
-			// if we allow the project to be deselected
-		    // Unset project name in the tab
-//			selectedProjectName.setStringValue("none selected");
-
-			// Clear the preferences from the store
+			// if we allow the project to be deselected\nn			// Clear the preferences from the store
 			fPrefService.clearPreferencesAtLevel(IPreferencesService.PROJECT_LEVEL);
 
 			// Disable fields and make them non-editable
@@ -374,4 +367,6 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 			performApply();
 		}
 	}
+
+
 }
