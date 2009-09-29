@@ -237,6 +237,13 @@
       </editor>
    </extension>
    <extension
+         point="org.eclipse.imp.runtime.entityNameLocator">
+      <entityNameLocator
+            class="org.eclipse.imp.lpg.editor.LPGEntityNameLocator"
+            language="LPG">
+      </entityNameLocator>
+   </extension>
+   <extension
          point="org.eclipse.ui.preferencePages">
       <page
             name="LPG"
@@ -245,9 +252,22 @@
       </page>
    </extension>
 
-   <extension point="org.eclipse.imp.runtime.entityNameLocator">
-       <entityNameLocator
-           language="LPG"
-           class="org.eclipse.imp.lpg.editor.LPGEntityNameLocator"/>
+   <extension
+         id="docBuilder"
+         name="LPG Grammar Documentation Builder"
+         point="org.eclipse.core.resources.builders">
+      <builder>
+         <run
+               class="org.eclipse.imp.lpg.docBuilder.LPGDocBuilder">
+         </run>
+      </builder>
+   </extension>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            category="IMP"
+            file="doc/toc.xml"
+            primary="true">
+      </toc>
    </extension>
 </plugin>
