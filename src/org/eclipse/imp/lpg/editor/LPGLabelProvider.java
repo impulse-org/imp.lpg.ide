@@ -28,6 +28,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
 import org.eclipse.imp.lpg.parser.LPGParser.ASTNodeToken;
 import org.eclipse.imp.lpg.parser.LPGParser.AliasSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.DefineSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.EofSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.ExportSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.GlobalsSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.HeadersSeg;
@@ -150,6 +151,8 @@ public class LPGLabelProvider implements ILabelProvider {
             return "aliases";
         if (n instanceof DefineSeg)
             return "defines";
+        if (n instanceof EofSeg)
+            return "eof";
         if (n instanceof ExportSeg)
             return "export";
         if (n instanceof GlobalsSeg)
