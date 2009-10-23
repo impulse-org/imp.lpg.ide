@@ -99,7 +99,7 @@ public class LPGBuilder extends BuilderBase {
     	// SMS 8 Sep 2006
     	//return !file.isDerived() && LPGPreferenceCache.rootExtensionList.contains(file.getFileExtension());
 
-	    String extensListed = fPrefService.getStringPreference(LPGConstants.P_SOURCEFILEEXTENSIONS);
+	    String extensListed = getPreferencesService().getStringPreference(LPGConstants.P_SOURCEFILEEXTENSIONS);
 	    String[] extens = extensListed.split(",");
 	    HashSet<String> rootExtensionsSet = new HashSet<String>();
 	    for(int i= 0; i < extens.length; i++) { rootExtensionsSet.add(extens[i]); }
@@ -109,7 +109,7 @@ public class LPGBuilder extends BuilderBase {
     protected boolean isNonRootSourceFile(IFile file) {
     	// SMS 8 Sep 2006
         //return !file.isDerived() && LPGPreferenceCache.nonRootExtensionList.contains(file.getFileExtension());
-        String extensListed = fPrefService.getStringPreference(LPGConstants.P_INCLUDEFILEEXTENSIONS);
+        String extensListed = getPreferencesService().getStringPreference(LPGConstants.P_INCLUDEFILEEXTENSIONS);
         String[] extens = extensListed.split(",");
         HashSet<String> nonrootExtensionsSet = new HashSet<String>();
         for(int i= 0; i < extens.length; i++) {
@@ -128,7 +128,7 @@ public class LPGBuilder extends BuilderBase {
     }
 
     protected void compile(final IFile file, IProgressMonitor monitor) {
-        fEmitDiagnostics= fPrefService.getBooleanPreference(LPGConstants.P_EMITDIAGNOSTICS);
+        fEmitDiagnostics= getPreferencesService().getBooleanPreference(LPGConstants.P_EMITDIAGNOSTICS);
 
         String fileName= file.getLocation().toOSString();
         try {
@@ -166,7 +166,7 @@ public class LPGBuilder extends BuilderBase {
         String cmd[]= new String[] {
                 executablePath,
                 "-quiet",
-                (fPrefService.getBooleanPreference(LPGConstants.P_GENERATELISTINGS) ? "-list" : "-nolist"),
+                (getPreferencesService().getBooleanPreference(LPGConstants.P_GENERATELISTINGS) ? "-list" : "-nolist"),
                 // In order for Windows to treat the following template path argument as
                 // a single argument, despite any embedded spaces, it has to be completely
                 // enclosed in double quotes. It does not suffice to quote only the path
@@ -385,9 +385,9 @@ public class LPGBuilder extends BuilderBase {
     }
 
     public String getIncludePath() {
-        if (fPrefService.getBooleanPreference(LPGConstants.P_USEDEFAULTINCLUDEPATH))
-            return fPrefService.getStringPreference(IPreferencesService.DEFAULT_LEVEL, LPGConstants.P_INCLUDEPATHTOUSE);
-        String projSpecIncPath= fPrefService.getStringPreference(LPGConstants.P_INCLUDEPATHTOUSE);
+        if (getPreferencesService().getBooleanPreference(LPGConstants.P_USEDEFAULTINCLUDEPATH))
+            return getPreferencesService().getStringPreference(IPreferencesService.DEFAULT_LEVEL, LPGConstants.P_INCLUDEPATHTOUSE);
+        String projSpecIncPath= getPreferencesService().getStringPreference(LPGConstants.P_INCLUDEPATHTOUSE);
         return projSpecIncPath; //+ ";" + getDefaultIncludePath();
     }
 
@@ -412,10 +412,10 @@ public class LPGBuilder extends BuilderBase {
 
     private String getLPGExecutable() throws IOException {
         String result;
-        if (fPrefService.getBooleanPreference(LPGConstants.P_USEDEFAULTEXECUTABLE)) {
-            result= fPrefService.getStringPreference(IPreferencesService.DEFAULT_LEVEL, LPGConstants.P_EXECUTABLETOUSE);
+        if (getPreferencesService().getBooleanPreference(LPGConstants.P_USEDEFAULTEXECUTABLE)) {
+            result= getPreferencesService().getStringPreference(IPreferencesService.DEFAULT_LEVEL, LPGConstants.P_EXECUTABLETOUSE);
         } else {
-        	result= fPrefService.getStringPreference(LPGConstants.P_EXECUTABLETOUSE);
+        	result= getPreferencesService().getStringPreference(LPGConstants.P_EXECUTABLETOUSE);
         }
     	if (!(new File(result)).exists()) {
     	    postMsgDialog("No LPG Executable", "The LPG executable cannot be found at the location you specified. Please change the setting in the LPG preferences page.");
