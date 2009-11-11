@@ -96,6 +96,12 @@ public class FoldingUpdater extends LPGFolderBase {
             return true;
         }
 
+        @Override
+        public boolean visit(StartSeg n) {
+            makeFoldable(n);
+            return true;
+        }
+
         public boolean visit(rule n) {
             final action_segment optAction= n.getopt_action_segment();
 
