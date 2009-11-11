@@ -236,6 +236,10 @@ public class LPGDocBuilder extends BuilderBase {
         String ntName= nonTerm.getruleNameWithAttributes().getSYMBOL().toString();
         String ntDoc= findNonTermDocComment(nonTerm, parseStream);
 
+        if (ntDoc == SUPPRESS_DOC) {
+        	return;
+        }
+
         sb.append("  <tr>"); sb.append(NL);
         sb.append("    <td width=\"10%\">");
         emitAnchor(ntName, "<b>" + ntName + "</b>", sb); sb.append(NL);
@@ -299,10 +303,15 @@ public class LPGDocBuilder extends BuilderBase {
         sb.append("</a>");
     }
 
+    private static final String SUPPRESS_DOC= "!!SUPPRESS!!";
+
     private String findNonTermDocComment(nonTerm nonTerm, IPrsStream parseStream) {
         IToken[] precAdjuncts= parseStream.getPrecedingAdjuncts(nonTerm.getLeftIToken().getTokenIndex());
         for(int i= 0; i < precAdjuncts.length; i++) {
             String adjStr= precAdjuncts[i].toString();
+            if (adjStr.startsWith("--*!")) {
+            	return SUPPRESS_DOC;
+            }
             if (adjStr.startsWith("--**")) {
                 return adjStr.substring(4);
             }
