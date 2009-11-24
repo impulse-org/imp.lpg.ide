@@ -167,8 +167,8 @@ public class LPGLabelProvider implements ILabelProvider {
             return "includes";
         if (n instanceof LPG_itemList)
             return "item list";
-        if (n instanceof KeywordsSeg)
-            return "keywords";
+        if (n instanceof KeywordsSeg) // this is really the "%softkeywords" segment
+            return "soft-keywords";
         if (n instanceof NoticeSeg)
             return "notice";
         if (n instanceof StartSeg)
