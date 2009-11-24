@@ -35,9 +35,10 @@
    NOTICE_KEY
    OPTIONS_KEY
    RECOVER_KEY
-   TERMINALS_KEY
    RULES_KEY
+   SOFT_KEYWORDS_KEY
    START_KEY
+   TERMINALS_KEY
    TRAILERS_KEY
    TYPES_KEY
 %End
@@ -155,7 +156,7 @@
         ./
     Keyword ::= KeyPrefix s o f t k e y w o r d s
         /.$BeginJava
-            $setResult($_KEYWORDS_KEY);
+            $setResult($_SOFT_KEYWORDS_KEY);
           $EndJava
         ./
     Keyword ::= KeyPrefix n a m e s

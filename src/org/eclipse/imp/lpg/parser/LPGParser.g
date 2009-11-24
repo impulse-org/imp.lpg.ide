@@ -72,6 +72,7 @@
     LPG_item$NamesSeg       ::= NAMES_KEY$                   names_segment       END_KEY_OPT$
     LPG_item$NoticeSeg      ::= NOTICE_KEY$                  notice_segment      END_KEY_OPT$
     LPG_item$RulesSeg       ::= RULES_KEY$                   rules_segment       END_KEY_OPT$
+    LPG_item$SoftKeywordsSeg::= SOFT_KEYWORDS_KEY$           keywords_segment    END_KEY_OPT$
     LPG_item$StartSeg       ::= START_KEY$                   start_segment       END_KEY_OPT$
     LPG_item$TerminalsSeg   ::= TERMINALS_KEY$               terminals_segment   END_KEY_OPT$
     LPG_item$TrailersSeg    ::= TRAILERS_KEY$                trailers_segment    END_KEY_OPT$

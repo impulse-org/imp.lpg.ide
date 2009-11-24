@@ -244,11 +244,12 @@ public class LPGParser implements RuleAction, IParser
         public abstract void accept(IAstVisitor v);
     }
 
-    static public abstract class AbstractASTNodeList extends ASTNode
+    static public abstract class AbstractASTNodeList extends ASTNode implements IAbstractArrayList<ASTNode>
     {
         private boolean leftRecursive;
         private java.util.ArrayList list;
         public int size() { return list.size(); }
+        public java.util.List getList() { return list; }
         public ASTNode getElementAt(int i) { return (ASTNode) list.get(leftRecursive ? i : list.size() - 1 - i); }
         public java.util.ArrayList getArrayList()
         {
@@ -441,6 +442,7 @@ public class LPGParser implements RuleAction, IParser
      *<li>NamesSeg
      *<li>NoticeSeg
      *<li>RulesSeg
+     *<li>SoftKeywordsSeg
      *<li>StartSeg
      *<li>TerminalsSeg
      *<li>TrailersSeg
@@ -2334,7 +2336,71 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 20:  LPG_item ::= START_KEY$ start_segment END_KEY_OPT$
+     *<li>Rule 20:  LPG_item ::= SOFT_KEYWORDS_KEY$ keywords_segment END_KEY_OPT$
+     *</b>
+     */
+    static public class SoftKeywordsSeg extends ASTNode implements ILPG_item
+    {
+        private keywordSpecList _keywords_segment;
+
+        public keywordSpecList getkeywords_segment() { return _keywords_segment; }
+
+        public SoftKeywordsSeg(IToken leftIToken, IToken rightIToken,
+                               keywordSpecList _keywords_segment)
+        {
+            super(leftIToken, rightIToken);
+
+            this._keywords_segment = _keywords_segment;
+            ((ASTNode) _keywords_segment).setParent(this);
+            initialize();
+        }
+
+        /**
+         * A list of all children of this node, including the null ones.
+         */
+        public java.util.ArrayList getAllChildren()
+        {
+            java.util.ArrayList list = new java.util.ArrayList();
+            list.add(_keywords_segment);
+            return list;
+        }
+
+        public boolean equals(Object o)
+        {
+            if (o == this) return true;
+            if (! (o instanceof SoftKeywordsSeg)) return false;
+            if (! super.equals(o)) return false;
+            SoftKeywordsSeg other = (SoftKeywordsSeg) o;
+            if (! _keywords_segment.equals(other._keywords_segment)) return false;
+            return true;
+        }
+
+        public int hashCode()
+        {
+            int hash = super.hashCode();
+            hash = hash * 31 + (_keywords_segment.hashCode());
+            return hash;
+        }
+
+        public void accept(IAstVisitor v)
+        {
+            if (! v.preVisit(this)) return;
+            enter((Visitor) v);
+            v.postVisit(this);
+        }
+
+        public void enter(Visitor v)
+        {
+            boolean checkChildren = v.visit(this);
+            if (checkChildren)
+                _keywords_segment.accept(v);
+            v.endVisit(this);
+        }
+    }
+
+    /**
+     *<b>
+     *<li>Rule 21:  LPG_item ::= START_KEY$ start_segment END_KEY_OPT$
      *</b>
      */
     static public class StartSeg extends ASTNode implements ILPG_item
@@ -2398,7 +2464,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 21:  LPG_item ::= TERMINALS_KEY$ terminals_segment END_KEY_OPT$
+     *<li>Rule 22:  LPG_item ::= TERMINALS_KEY$ terminals_segment END_KEY_OPT$
      *</b>
      */
     static public class TerminalsSeg extends ASTNode implements ILPG_item
@@ -2462,7 +2528,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 22:  LPG_item ::= TRAILERS_KEY$ trailers_segment END_KEY_OPT$
+     *<li>Rule 23:  LPG_item ::= TRAILERS_KEY$ trailers_segment END_KEY_OPT$
      *</b>
      */
     static public class TrailersSeg extends ASTNode implements ILPG_item
@@ -2526,7 +2592,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 23:  LPG_item ::= TYPES_KEY$ types_segment END_KEY_OPT$
+     *<li>Rule 24:  LPG_item ::= TYPES_KEY$ types_segment END_KEY_OPT$
      *</b>
      */
     static public class TypesSeg extends ASTNode implements ILPG_item
@@ -2590,7 +2656,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 24:  LPG_item ::= RECOVER_KEY$ recover_segment END_KEY_OPT$
+     *<li>Rule 25:  LPG_item ::= RECOVER_KEY$ recover_segment END_KEY_OPT$
      *</b>
      */
     static public class RecoverSeg extends ASTNode implements ILPG_item
@@ -2654,7 +2720,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 25:  LPG_item ::= DISJOINTPREDECESSORSETS_KEY$ predecessor_segment END_KEY_OPT$
+     *<li>Rule 26:  LPG_item ::= DISJOINTPREDECESSORSETS_KEY$ predecessor_segment END_KEY_OPT$
      *</b>
      */
     static public class PredecessorSeg extends ASTNode implements ILPG_item
@@ -2718,8 +2784,8 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 26:  options_segment ::= $Empty
-     *<li>Rule 27:  options_segment ::= options_segment option_spec
+     *<li>Rule 27:  options_segment ::= $Empty
+     *<li>Rule 28:  options_segment ::= options_segment option_spec
      *</b>
      */
     static public class option_specList extends AbstractASTNodeList implements Ioptions_segment
@@ -2791,7 +2857,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 28:  option_spec ::= OPTIONS_KEY$ option_list
+     *<li>Rule 29:  option_spec ::= OPTIONS_KEY$ option_list
      *</b>
      */
     static public class option_spec extends ASTNode implements Ioption_spec
@@ -2855,8 +2921,8 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 29:  option_list ::= option
-     *<li>Rule 30:  option_list ::= option_list ,$ option
+     *<li>Rule 30:  option_list ::= option
+     *<li>Rule 31:  option_list ::= option_list ,$ option
      *</b>
      */
     static public class optionList extends AbstractASTNodeList implements Ioption_list
@@ -2928,7 +2994,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 31:  option ::= SYMBOL option_value
+     *<li>Rule 32:  option ::= SYMBOL option_value
      *</b>
      */
     static public class option extends ASTNode implements Ioption
@@ -3009,14 +3075,14 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 35:  symbol_list ::= SYMBOL
-     *<li>Rule 36:  symbol_list ::= symbol_list ,$ SYMBOL
-     *<li>Rule 74:  drop_symbols ::= SYMBOL
-     *<li>Rule 75:  drop_symbols ::= drop_symbols SYMBOL
-     *<li>Rule 135:  barSymbolList ::= SYMBOL
-     *<li>Rule 136:  barSymbolList ::= barSymbolList |$ SYMBOL
-     *<li>Rule 140:  recover_segment ::= $Empty
-     *<li>Rule 141:  recover_segment ::= recover_segment recover_symbol
+     *<li>Rule 36:  symbol_list ::= SYMBOL
+     *<li>Rule 37:  symbol_list ::= symbol_list ,$ SYMBOL
+     *<li>Rule 75:  drop_symbols ::= SYMBOL
+     *<li>Rule 76:  drop_symbols ::= drop_symbols SYMBOL
+     *<li>Rule 136:  barSymbolList ::= SYMBOL
+     *<li>Rule 137:  barSymbolList ::= barSymbolList |$ SYMBOL
+     *<li>Rule 141:  recover_segment ::= $Empty
+     *<li>Rule 142:  recover_segment ::= recover_segment recover_symbol
      *</b>
      */
     static public class SYMBOLList extends AbstractASTNodeList implements Isymbol_list, Idrop_symbols, IbarSymbolList, Irecover_segment
@@ -3088,8 +3154,8 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 37:  alias_segment ::= aliasSpec
-     *<li>Rule 38:  alias_segment ::= alias_segment aliasSpec
+     *<li>Rule 38:  alias_segment ::= aliasSpec
+     *<li>Rule 39:  alias_segment ::= alias_segment aliasSpec
      *</b>
      */
     static public class aliasSpecList extends AbstractASTNodeList implements Ialias_segment
@@ -3159,7 +3225,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 45:  alias_lhs_macro_name ::= MACRO_NAME
+     *<li>Rule 46:  alias_lhs_macro_name ::= MACRO_NAME
      *</b>
      */
     static public class alias_lhs_macro_name extends ASTNodeToken implements Ialias_lhs_macro_name
@@ -3184,8 +3250,8 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 54:  define_segment ::= defineSpec
-     *<li>Rule 55:  define_segment ::= define_segment defineSpec
+     *<li>Rule 55:  define_segment ::= defineSpec
+     *<li>Rule 56:  define_segment ::= define_segment defineSpec
      *</b>
      */
     static public class defineSpecList extends AbstractASTNodeList implements Idefine_segment
@@ -3257,7 +3323,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 56:  defineSpec ::= macro_name_symbol macro_segment
+     *<li>Rule 57:  defineSpec ::= macro_name_symbol macro_segment
      *</b>
      */
     static public class defineSpec extends ASTNode implements IdefineSpec
@@ -3338,7 +3404,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 59:  macro_segment ::= BLOCK
+     *<li>Rule 60:  macro_segment ::= BLOCK
      *</b>
      */
     static public class macro_segment extends ASTNodeToken implements Imacro_segment
@@ -3363,8 +3429,8 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 63:  export_segment ::= terminal_symbol
-     *<li>Rule 64:  export_segment ::= export_segment terminal_symbol
+     *<li>Rule 64:  export_segment ::= terminal_symbol
+     *<li>Rule 65:  export_segment ::= export_segment terminal_symbol
      *</b>
      */
     static public class terminal_symbolList extends AbstractASTNodeList implements Iexport_segment
@@ -3434,12 +3500,12 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 65:  globals_segment ::= action_segment
-     *<li>Rule 66:  globals_segment ::= globals_segment action_segment
-     *<li>Rule 95:  notice_segment ::= action_segment
-     *<li>Rule 96:  notice_segment ::= notice_segment action_segment
-     *<li>Rule 145:  action_segment_list ::= $Empty
-     *<li>Rule 146:  action_segment_list ::= action_segment_list action_segment
+     *<li>Rule 66:  globals_segment ::= action_segment
+     *<li>Rule 67:  globals_segment ::= globals_segment action_segment
+     *<li>Rule 96:  notice_segment ::= action_segment
+     *<li>Rule 97:  notice_segment ::= notice_segment action_segment
+     *<li>Rule 146:  action_segment_list ::= $Empty
+     *<li>Rule 147:  action_segment_list ::= action_segment_list action_segment
      *</b>
      */
     static public class action_segmentList extends AbstractASTNodeList implements Iglobals_segment, Inotice_segment, Iaction_segment_list
@@ -3511,7 +3577,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 69:  import_segment ::= SYMBOL drop_command_list
+     *<li>Rule 70:  import_segment ::= SYMBOL drop_command_list
      *</b>
      */
     static public class import_segment extends ASTNode implements Iimport_segment
@@ -3586,8 +3652,8 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 70:  drop_command_list ::= $Empty
-     *<li>Rule 71:  drop_command_list ::= drop_command_list drop_command
+     *<li>Rule 71:  drop_command_list ::= $Empty
+     *<li>Rule 72:  drop_command_list ::= drop_command_list drop_command
      *</b>
      */
     static public class drop_commandList extends AbstractASTNodeList implements Idrop_command_list
@@ -3657,8 +3723,8 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 76:  drop_rules ::= drop_rule
-     *<li>Rule 77:  drop_rules ::= drop_rules drop_rule
+     *<li>Rule 77:  drop_rules ::= drop_rule
+     *<li>Rule 78:  drop_rules ::= drop_rules drop_rule
      *</b>
      */
     static public class drop_ruleList extends AbstractASTNodeList implements Idrop_rules
@@ -3730,7 +3796,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 78:  drop_rule ::= SYMBOL optMacroName produces ruleList
+     *<li>Rule 79:  drop_rule ::= SYMBOL optMacroName produces ruleList
      *</b>
      */
     static public class drop_rule extends ASTNode implements Idrop_rule
@@ -3829,11 +3895,11 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<em>
-     *<li>Rule 79:  optMacroName ::= $Empty
+     *<li>Rule 80:  optMacroName ::= $Empty
      *</em>
      *<p>
      *<b>
-     *<li>Rule 80:  optMacroName ::= MACRO_NAME
+     *<li>Rule 81:  optMacroName ::= MACRO_NAME
      *</b>
      */
     static public class optMacroName extends ASTNodeToken implements IoptMacroName
@@ -3858,7 +3924,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 81:  include_segment ::= SYMBOL
+     *<li>Rule 82:  include_segment ::= SYMBOL
      *</b>
      */
     static public class include_segment extends ASTNodeToken implements Iinclude_segment
@@ -3883,8 +3949,8 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 82:  keywords_segment ::= keywordSpec
-     *<li>Rule 83:  keywords_segment ::= keywords_segment keywordSpec
+     *<li>Rule 83:  keywords_segment ::= keywordSpec
+     *<li>Rule 84:  keywords_segment ::= keywords_segment keywordSpec
      *</b>
      */
     static public class keywordSpecList extends AbstractASTNodeList implements Ikeywords_segment
@@ -3954,11 +4020,11 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<em>
-     *<li>Rule 84:  keywordSpec ::= terminal_symbol
+     *<li>Rule 85:  keywordSpec ::= terminal_symbol
      *</em>
      *<p>
      *<b>
-     *<li>Rule 85:  keywordSpec ::= terminal_symbol produces name
+     *<li>Rule 86:  keywordSpec ::= terminal_symbol produces name
      *</b>
      */
     static public class keywordSpec extends ASTNode implements IkeywordSpec
@@ -4042,8 +4108,8 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 86:  names_segment ::= nameSpec
-     *<li>Rule 87:  names_segment ::= names_segment nameSpec
+     *<li>Rule 87:  names_segment ::= nameSpec
+     *<li>Rule 88:  names_segment ::= names_segment nameSpec
      *</b>
      */
     static public class nameSpecList extends AbstractASTNodeList implements Inames_segment
@@ -4115,7 +4181,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 88:  nameSpec ::= name produces name
+     *<li>Rule 89:  nameSpec ::= name produces name
      *</b>
      */
     static public class nameSpec extends ASTNode implements InameSpec
@@ -4199,7 +4265,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 97:  rules_segment ::= action_segment_list nonTermList
+     *<li>Rule 98:  rules_segment ::= action_segment_list nonTermList
      *</b>
      */
     static public class rules_segment extends ASTNode implements Irules_segment
@@ -4274,8 +4340,8 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 98:  nonTermList ::= $Empty
-     *<li>Rule 99:  nonTermList ::= nonTermList nonTerm
+     *<li>Rule 99:  nonTermList ::= $Empty
+     *<li>Rule 100:  nonTermList ::= nonTermList nonTerm
      *</b>
      */
     static public class nonTermList extends AbstractASTNodeList implements InonTermList
@@ -4347,7 +4413,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 100:  nonTerm ::= ruleNameWithAttributes produces ruleList
+     *<li>Rule 101:  nonTerm ::= ruleNameWithAttributes produces ruleList
      *</b>
      */
     static public class nonTerm extends ASTNode implements InonTerm
@@ -4437,9 +4503,9 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 101:  ruleNameWithAttributes ::= SYMBOL
-     *<li>Rule 102:  ruleNameWithAttributes ::= SYMBOL MACRO_NAME$className
-     *<li>Rule 103:  ruleNameWithAttributes ::= SYMBOL MACRO_NAME$className MACRO_NAME$arrayElement
+     *<li>Rule 102:  ruleNameWithAttributes ::= SYMBOL
+     *<li>Rule 103:  ruleNameWithAttributes ::= SYMBOL MACRO_NAME$className
+     *<li>Rule 104:  ruleNameWithAttributes ::= SYMBOL MACRO_NAME$className MACRO_NAME$arrayElement
      *</b>
      */
     static public class RuleName extends ASTNode implements IruleNameWithAttributes
@@ -4535,8 +4601,8 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 104:  ruleList ::= rule
-     *<li>Rule 105:  ruleList ::= ruleList |$ rule
+     *<li>Rule 105:  ruleList ::= rule
+     *<li>Rule 106:  ruleList ::= ruleList |$ rule
      *</b>
      */
     static public class ruleList extends AbstractASTNodeList implements IruleList
@@ -4608,7 +4674,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 110:  rule ::= symWithAttrsList opt_action_segment
+     *<li>Rule 111:  rule ::= symWithAttrsList opt_action_segment
      *</b>
      */
     static public class rule extends ASTNode implements Irule
@@ -4689,8 +4755,8 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 111:  symWithAttrsList ::= $Empty
-     *<li>Rule 112:  symWithAttrsList ::= symWithAttrsList symWithAttrs
+     *<li>Rule 112:  symWithAttrsList ::= $Empty
+     *<li>Rule 113:  symWithAttrsList ::= symWithAttrsList symWithAttrs
      *</b>
      */
     static public class symWithAttrsList extends AbstractASTNodeList implements IsymWithAttrsList
@@ -4760,8 +4826,8 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 115:  optAttrList ::= $Empty
-     *<li>Rule 116:  optAttrList ::= MACRO_NAME
+     *<li>Rule 116:  optAttrList ::= $Empty
+     *<li>Rule 117:  optAttrList ::= MACRO_NAME
      *</b>
      */
     static public class symAttrs extends ASTNode implements IoptAttrList
@@ -4831,7 +4897,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 119:  action_segment ::= BLOCK
+     *<li>Rule 120:  action_segment ::= BLOCK
      *</b>
      */
     static public class action_segment extends ASTNodeToken implements Iaction_segment
@@ -4867,8 +4933,8 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 120:  start_segment ::= start_symbol
-     *<li>Rule 121:  start_segment ::= start_segment start_symbol
+     *<li>Rule 121:  start_segment ::= start_symbol
+     *<li>Rule 122:  start_segment ::= start_segment start_symbol
      *</b>
      */
     static public class start_symbolList extends AbstractASTNodeList implements Istart_segment
@@ -4938,8 +5004,8 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 124:  terminals_segment ::= terminal
-     *<li>Rule 125:  terminals_segment ::= terminals_segment terminal
+     *<li>Rule 125:  terminals_segment ::= terminal
+     *<li>Rule 126:  terminals_segment ::= terminals_segment terminal
      *</b>
      */
     static public class terminalList extends AbstractASTNodeList implements Iterminals_segment
@@ -5011,7 +5077,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 126:  terminal ::= terminal_symbol optTerminalAlias
+     *<li>Rule 127:  terminal ::= terminal_symbol optTerminalAlias
      *</b>
      */
     static public class terminal extends ASTNode implements Iterminal
@@ -5098,11 +5164,11 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<em>
-     *<li>Rule 127:  optTerminalAlias ::= $Empty
+     *<li>Rule 128:  optTerminalAlias ::= $Empty
      *</em>
      *<p>
      *<b>
-     *<li>Rule 128:  optTerminalAlias ::= produces name
+     *<li>Rule 129:  optTerminalAlias ::= produces name
      *</b>
      */
     static public class optTerminalAlias extends ASTNode implements IoptTerminalAlias
@@ -5177,8 +5243,8 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 132:  types_segment ::= type_declarations
-     *<li>Rule 133:  types_segment ::= types_segment type_declarations
+     *<li>Rule 133:  types_segment ::= type_declarations
+     *<li>Rule 134:  types_segment ::= types_segment type_declarations
      *</b>
      */
     static public class type_declarationsList extends AbstractASTNodeList implements Itypes_segment
@@ -5250,7 +5316,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 134:  type_declarations ::= SYMBOL produces barSymbolList
+     *<li>Rule 135:  type_declarations ::= SYMBOL produces barSymbolList
      *</b>
      */
     static public class type_declarations extends ASTNode implements Itype_declarations
@@ -5334,8 +5400,8 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 137:  predecessor_segment ::= $Empty
-     *<li>Rule 138:  predecessor_segment ::= predecessor_segment symbol_pair
+     *<li>Rule 138:  predecessor_segment ::= $Empty
+     *<li>Rule 139:  predecessor_segment ::= predecessor_segment symbol_pair
      *</b>
      */
     static public class symbol_pairList extends AbstractASTNodeList implements Ipredecessor_segment
@@ -5407,7 +5473,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 139:  symbol_pair ::= SYMBOL SYMBOL
+     *<li>Rule 140:  symbol_pair ::= SYMBOL SYMBOL
      *</b>
      */
     static public class symbol_pair extends ASTNode implements Isymbol_pair
@@ -5482,7 +5548,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 142:  recover_symbol ::= SYMBOL
+     *<li>Rule 143:  recover_symbol ::= SYMBOL
      *</b>
      */
     static public class recover_symbol extends ASTNodeToken implements Irecover_symbol
@@ -5518,11 +5584,11 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<em>
-     *<li>Rule 143:  END_KEY_OPT ::= $Empty
+     *<li>Rule 144:  END_KEY_OPT ::= $Empty
      *</em>
      *<p>
      *<b>
-     *<li>Rule 144:  END_KEY_OPT ::= END_KEY
+     *<li>Rule 145:  END_KEY_OPT ::= END_KEY
      *</b>
      */
     static public class END_KEY_OPT extends ASTNodeToken implements IEND_KEY_OPT
@@ -5547,7 +5613,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 33:  option_value ::= =$ SYMBOL
+     *<li>Rule 34:  option_value ::= =$ SYMBOL
      *</b>
      */
     static public class option_value0 extends ASTNode implements Ioption_value
@@ -5611,7 +5677,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 34:  option_value ::= =$ ($ symbol_list )$
+     *<li>Rule 35:  option_value ::= =$ ($ symbol_list )$
      *</b>
      */
     static public class option_value1 extends ASTNode implements Ioption_value
@@ -5675,7 +5741,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 39:  aliasSpec ::= ERROR_KEY produces alias_rhs
+     *<li>Rule 40:  aliasSpec ::= ERROR_KEY produces alias_rhs
      *</b>
      */
     static public class aliasSpec0 extends ASTNode implements IaliasSpec
@@ -5759,7 +5825,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 40:  aliasSpec ::= EOL_KEY produces alias_rhs
+     *<li>Rule 41:  aliasSpec ::= EOL_KEY produces alias_rhs
      *</b>
      */
     static public class aliasSpec1 extends ASTNode implements IaliasSpec
@@ -5843,7 +5909,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 41:  aliasSpec ::= EOF_KEY produces alias_rhs
+     *<li>Rule 42:  aliasSpec ::= EOF_KEY produces alias_rhs
      *</b>
      */
     static public class aliasSpec2 extends ASTNode implements IaliasSpec
@@ -5927,7 +5993,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 42:  aliasSpec ::= IDENTIFIER_KEY produces alias_rhs
+     *<li>Rule 43:  aliasSpec ::= IDENTIFIER_KEY produces alias_rhs
      *</b>
      */
     static public class aliasSpec3 extends ASTNode implements IaliasSpec
@@ -6011,7 +6077,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 43:  aliasSpec ::= SYMBOL produces alias_rhs
+     *<li>Rule 44:  aliasSpec ::= SYMBOL produces alias_rhs
      *</b>
      */
     static public class aliasSpec4 extends ASTNode implements IaliasSpec
@@ -6095,7 +6161,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 44:  aliasSpec ::= alias_lhs_macro_name produces alias_rhs
+     *<li>Rule 45:  aliasSpec ::= alias_lhs_macro_name produces alias_rhs
      *</b>
      */
     static public class aliasSpec5 extends ASTNode implements IaliasSpec
@@ -6179,7 +6245,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 46:  alias_rhs ::= SYMBOL
+     *<li>Rule 47:  alias_rhs ::= SYMBOL
      *</b>
      */
     static public class alias_rhs0 extends ASTNodeToken implements Ialias_rhs
@@ -6204,7 +6270,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 47:  alias_rhs ::= MACRO_NAME
+     *<li>Rule 48:  alias_rhs ::= MACRO_NAME
      *</b>
      */
     static public class alias_rhs1 extends ASTNodeToken implements Ialias_rhs
@@ -6229,7 +6295,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 48:  alias_rhs ::= ERROR_KEY
+     *<li>Rule 49:  alias_rhs ::= ERROR_KEY
      *</b>
      */
     static public class alias_rhs2 extends ASTNodeToken implements Ialias_rhs
@@ -6254,7 +6320,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 49:  alias_rhs ::= EOL_KEY
+     *<li>Rule 50:  alias_rhs ::= EOL_KEY
      *</b>
      */
     static public class alias_rhs3 extends ASTNodeToken implements Ialias_rhs
@@ -6279,7 +6345,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 50:  alias_rhs ::= EOF_KEY
+     *<li>Rule 51:  alias_rhs ::= EOF_KEY
      *</b>
      */
     static public class alias_rhs4 extends ASTNodeToken implements Ialias_rhs
@@ -6304,7 +6370,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 51:  alias_rhs ::= EMPTY_KEY
+     *<li>Rule 52:  alias_rhs ::= EMPTY_KEY
      *</b>
      */
     static public class alias_rhs5 extends ASTNodeToken implements Ialias_rhs
@@ -6329,7 +6395,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 52:  alias_rhs ::= IDENTIFIER_KEY
+     *<li>Rule 53:  alias_rhs ::= IDENTIFIER_KEY
      *</b>
      */
     static public class alias_rhs6 extends ASTNodeToken implements Ialias_rhs
@@ -6354,7 +6420,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 57:  macro_name_symbol ::= MACRO_NAME
+     *<li>Rule 58:  macro_name_symbol ::= MACRO_NAME
      *</b>
      */
     static public class macro_name_symbol0 extends ASTNodeToken implements Imacro_name_symbol
@@ -6379,7 +6445,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 58:  macro_name_symbol ::= SYMBOL
+     *<li>Rule 59:  macro_name_symbol ::= SYMBOL
      *</b>
      */
     static public class macro_name_symbol1 extends ASTNodeToken implements Imacro_name_symbol
@@ -6404,7 +6470,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 72:  drop_command ::= DROPSYMBOLS_KEY drop_symbols
+     *<li>Rule 73:  drop_command ::= DROPSYMBOLS_KEY drop_symbols
      *</b>
      */
     static public class drop_command0 extends ASTNode implements Idrop_command
@@ -6479,7 +6545,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 73:  drop_command ::= DROPRULES_KEY drop_rules
+     *<li>Rule 74:  drop_command ::= DROPRULES_KEY drop_rules
      *</b>
      */
     static public class drop_command1 extends ASTNode implements Idrop_command
@@ -6554,7 +6620,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 89:  name ::= SYMBOL
+     *<li>Rule 90:  name ::= SYMBOL
      *</b>
      */
     static public class name0 extends ASTNodeToken implements Iname
@@ -6579,7 +6645,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 90:  name ::= MACRO_NAME
+     *<li>Rule 91:  name ::= MACRO_NAME
      *</b>
      */
     static public class name1 extends ASTNodeToken implements Iname
@@ -6604,7 +6670,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 91:  name ::= EMPTY_KEY
+     *<li>Rule 92:  name ::= EMPTY_KEY
      *</b>
      */
     static public class name2 extends ASTNodeToken implements Iname
@@ -6629,7 +6695,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 92:  name ::= ERROR_KEY
+     *<li>Rule 93:  name ::= ERROR_KEY
      *</b>
      */
     static public class name3 extends ASTNodeToken implements Iname
@@ -6654,7 +6720,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 93:  name ::= EOL_KEY
+     *<li>Rule 94:  name ::= EOL_KEY
      *</b>
      */
     static public class name4 extends ASTNodeToken implements Iname
@@ -6679,7 +6745,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 94:  name ::= IDENTIFIER_KEY
+     *<li>Rule 95:  name ::= IDENTIFIER_KEY
      *</b>
      */
     static public class name5 extends ASTNodeToken implements Iname
@@ -6704,7 +6770,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 106:  produces ::= ::=
+     *<li>Rule 107:  produces ::= ::=
      *</b>
      */
     static public class produces0 extends ASTNodeToken implements Iproduces
@@ -6729,7 +6795,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 107:  produces ::= ::=?
+     *<li>Rule 108:  produces ::= ::=?
      *</b>
      */
     static public class produces1 extends ASTNodeToken implements Iproduces
@@ -6754,7 +6820,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 108:  produces ::= ->
+     *<li>Rule 109:  produces ::= ->
      *</b>
      */
     static public class produces2 extends ASTNodeToken implements Iproduces
@@ -6779,7 +6845,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 109:  produces ::= ->?
+     *<li>Rule 110:  produces ::= ->?
      *</b>
      */
     static public class produces3 extends ASTNodeToken implements Iproduces
@@ -6804,7 +6870,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 113:  symWithAttrs ::= EMPTY_KEY
+     *<li>Rule 114:  symWithAttrs ::= EMPTY_KEY
      *</b>
      */
     static public class symWithAttrs0 extends ASTNodeToken implements IsymWithAttrs
@@ -6829,7 +6895,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 114:  symWithAttrs ::= SYMBOL optAttrList
+     *<li>Rule 115:  symWithAttrs ::= SYMBOL optAttrList
      *</b>
      */
     static public class symWithAttrs1 extends ASTNode implements IsymWithAttrs
@@ -6910,7 +6976,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 122:  start_symbol ::= SYMBOL
+     *<li>Rule 123:  start_symbol ::= SYMBOL
      *</b>
      */
     static public class start_symbol0 extends ASTNodeToken implements Istart_symbol
@@ -6935,7 +7001,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 123:  start_symbol ::= MACRO_NAME
+     *<li>Rule 124:  start_symbol ::= MACRO_NAME
      *</b>
      */
     static public class start_symbol1 extends ASTNodeToken implements Istart_symbol
@@ -6960,7 +7026,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 129:  terminal_symbol ::= SYMBOL
+     *<li>Rule 130:  terminal_symbol ::= SYMBOL
      *</b>
      */
     static public class terminal_symbol0 extends ASTNodeToken implements Iterminal_symbol
@@ -6994,7 +7060,7 @@ public class LPGParser implements RuleAction, IParser
 
     /**
      *<b>
-     *<li>Rule 130:  terminal_symbol ::= MACRO_NAME
+     *<li>Rule 131:  terminal_symbol ::= MACRO_NAME
      *</b>
      */
     static public class terminal_symbol1 extends ASTNodeToken implements Iterminal_symbol
@@ -7078,6 +7144,9 @@ public class LPGParser implements RuleAction, IParser
 
         boolean visit(RulesSeg n);
         void endVisit(RulesSeg n);
+
+        boolean visit(SoftKeywordsSeg n);
+        void endVisit(SoftKeywordsSeg n);
 
         boolean visit(StartSeg n);
         void endVisit(StartSeg n);
@@ -7392,6 +7461,9 @@ public class LPGParser implements RuleAction, IParser
         public boolean visit(RulesSeg n) { unimplementedVisitor("visit(RulesSeg)"); return true; }
         public void endVisit(RulesSeg n) { unimplementedVisitor("endVisit(RulesSeg)"); }
 
+        public boolean visit(SoftKeywordsSeg n) { unimplementedVisitor("visit(SoftKeywordsSeg)"); return true; }
+        public void endVisit(SoftKeywordsSeg n) { unimplementedVisitor("endVisit(SoftKeywordsSeg)"); }
+
         public boolean visit(StartSeg n) { unimplementedVisitor("visit(StartSeg)"); return true; }
         public void endVisit(StartSeg n) { unimplementedVisitor("endVisit(StartSeg)"); }
 
@@ -7660,6 +7732,7 @@ public class LPGParser implements RuleAction, IParser
             else if (n instanceof NamesSeg) return visit((NamesSeg) n);
             else if (n instanceof NoticeSeg) return visit((NoticeSeg) n);
             else if (n instanceof RulesSeg) return visit((RulesSeg) n);
+            else if (n instanceof SoftKeywordsSeg) return visit((SoftKeywordsSeg) n);
             else if (n instanceof StartSeg) return visit((StartSeg) n);
             else if (n instanceof TerminalsSeg) return visit((TerminalsSeg) n);
             else if (n instanceof TrailersSeg) return visit((TrailersSeg) n);
@@ -7765,6 +7838,7 @@ public class LPGParser implements RuleAction, IParser
             else if (n instanceof NamesSeg) endVisit((NamesSeg) n);
             else if (n instanceof NoticeSeg) endVisit((NoticeSeg) n);
             else if (n instanceof RulesSeg) endVisit((RulesSeg) n);
+            else if (n instanceof SoftKeywordsSeg) endVisit((SoftKeywordsSeg) n);
             else if (n instanceof StartSeg) endVisit((StartSeg) n);
             else if (n instanceof TerminalsSeg) endVisit((TerminalsSeg) n);
             else if (n instanceof TrailersSeg) endVisit((TrailersSeg) n);
@@ -8044,9 +8118,19 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 20:  LPG_item ::= START_KEY$ start_segment END_KEY_OPT$
+            // Rule 20:  LPG_item ::= SOFT_KEYWORDS_KEY$ keywords_segment END_KEY_OPT$
             //
             case 20: {
+                setResult(
+                    new SoftKeywordsSeg(getLeftIToken(), getRightIToken(),
+                                        (keywordSpecList)getRhsSym(2))
+                );
+                break;
+            }
+            //
+            // Rule 21:  LPG_item ::= START_KEY$ start_segment END_KEY_OPT$
+            //
+            case 21: {
                 setResult(
                     new StartSeg(getLeftIToken(), getRightIToken(),
                                  (start_symbolList)getRhsSym(2))
@@ -8054,9 +8138,9 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 21:  LPG_item ::= TERMINALS_KEY$ terminals_segment END_KEY_OPT$
+            // Rule 22:  LPG_item ::= TERMINALS_KEY$ terminals_segment END_KEY_OPT$
             //
-            case 21: {
+            case 22: {
                 setResult(
                     new TerminalsSeg(getLeftIToken(), getRightIToken(),
                                      (terminalList)getRhsSym(2))
@@ -8064,9 +8148,9 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 22:  LPG_item ::= TRAILERS_KEY$ trailers_segment END_KEY_OPT$
+            // Rule 23:  LPG_item ::= TRAILERS_KEY$ trailers_segment END_KEY_OPT$
             //
-            case 22: {
+            case 23: {
                 setResult(
                     new TrailersSeg(getLeftIToken(), getRightIToken(),
                                     (action_segmentList)getRhsSym(2))
@@ -8074,9 +8158,9 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 23:  LPG_item ::= TYPES_KEY$ types_segment END_KEY_OPT$
+            // Rule 24:  LPG_item ::= TYPES_KEY$ types_segment END_KEY_OPT$
             //
-            case 23: {
+            case 24: {
                 setResult(
                     new TypesSeg(getLeftIToken(), getRightIToken(),
                                  (type_declarationsList)getRhsSym(2))
@@ -8084,9 +8168,9 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 24:  LPG_item ::= RECOVER_KEY$ recover_segment END_KEY_OPT$
+            // Rule 25:  LPG_item ::= RECOVER_KEY$ recover_segment END_KEY_OPT$
             //
-            case 24: {
+            case 25: {
                 setResult(
                     new RecoverSeg(getLeftIToken(), getRightIToken(),
                                    (SYMBOLList)getRhsSym(2))
@@ -8094,9 +8178,9 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 25:  LPG_item ::= DISJOINTPREDECESSORSETS_KEY$ predecessor_segment END_KEY_OPT$
+            // Rule 26:  LPG_item ::= DISJOINTPREDECESSORSETS_KEY$ predecessor_segment END_KEY_OPT$
             //
-            case 25: {
+            case 26: {
                 setResult(
                     new PredecessorSeg(getLeftIToken(), getRightIToken(),
                                        (symbol_pairList)getRhsSym(2))
@@ -8104,25 +8188,25 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 26:  options_segment ::= $Empty
+            // Rule 27:  options_segment ::= $Empty
             //
-            case 26: {
+            case 27: {
                 setResult(
                     new option_specList(getLeftIToken(), getRightIToken(), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 27:  options_segment ::= options_segment option_spec
+            // Rule 28:  options_segment ::= options_segment option_spec
             //
-            case 27: {
+            case 28: {
                 ((option_specList)getRhsSym(1)).add((option_spec)getRhsSym(2));
                 break;
             }
             //
-            // Rule 28:  option_spec ::= OPTIONS_KEY$ option_list
+            // Rule 29:  option_spec ::= OPTIONS_KEY$ option_list
             //
-            case 28: {
+            case 29: {
                 setResult(
                     new option_spec(getLeftIToken(), getRightIToken(),
                                     (optionList)getRhsSym(2))
@@ -8130,25 +8214,25 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 29:  option_list ::= option
+            // Rule 30:  option_list ::= option
             //
-            case 29: {
+            case 30: {
                 setResult(
                     new optionList((option)getRhsSym(1), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 30:  option_list ::= option_list ,$ option
+            // Rule 31:  option_list ::= option_list ,$ option
             //
-            case 30: {
+            case 31: {
                 ((optionList)getRhsSym(1)).add((option)getRhsSym(3));
                 break;
             }
             //
-            // Rule 31:  option ::= SYMBOL option_value
+            // Rule 32:  option ::= SYMBOL option_value
             //
-            case 31: {
+            case 32: {
                 setResult(
                     new option(getLeftIToken(), getRightIToken(),
                                new ASTNodeToken(getRhsIToken(1)),
@@ -8157,16 +8241,16 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 32:  option_value ::= $Empty
+            // Rule 33:  option_value ::= $Empty
             //
-            case 32: {
+            case 33: {
                 setResult(null);
                 break;
             }
             //
-            // Rule 33:  option_value ::= =$ SYMBOL
+            // Rule 34:  option_value ::= =$ SYMBOL
             //
-            case 33: {
+            case 34: {
                 setResult(
                     new option_value0(getLeftIToken(), getRightIToken(),
                                       new ASTNodeToken(getRhsIToken(2)))
@@ -8174,9 +8258,9 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 34:  option_value ::= =$ ($ symbol_list )$
+            // Rule 35:  option_value ::= =$ ($ symbol_list )$
             //
-            case 34: {
+            case 35: {
                 setResult(
                     new option_value1(getLeftIToken(), getRightIToken(),
                                       (SYMBOLList)getRhsSym(3))
@@ -8184,41 +8268,41 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 35:  symbol_list ::= SYMBOL
+            // Rule 36:  symbol_list ::= SYMBOL
             //
-            case 35: {
+            case 36: {
                 setResult(
                     new SYMBOLList(new ASTNodeToken(getRhsIToken(1)), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 36:  symbol_list ::= symbol_list ,$ SYMBOL
+            // Rule 37:  symbol_list ::= symbol_list ,$ SYMBOL
             //
-            case 36: {
+            case 37: {
                 ((SYMBOLList)getRhsSym(1)).add(new ASTNodeToken(getRhsIToken(3)));
                 break;
             }
             //
-            // Rule 37:  alias_segment ::= aliasSpec
+            // Rule 38:  alias_segment ::= aliasSpec
             //
-            case 37: {
+            case 38: {
                 setResult(
                     new aliasSpecList((IaliasSpec)getRhsSym(1), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 38:  alias_segment ::= alias_segment aliasSpec
+            // Rule 39:  alias_segment ::= alias_segment aliasSpec
             //
-            case 38: {
+            case 39: {
                 ((aliasSpecList)getRhsSym(1)).add((IaliasSpec)getRhsSym(2));
                 break;
             }
             //
-            // Rule 39:  aliasSpec ::= ERROR_KEY produces alias_rhs
+            // Rule 40:  aliasSpec ::= ERROR_KEY produces alias_rhs
             //
-            case 39: {
+            case 40: {
                 setResult(
                     new aliasSpec0(getLeftIToken(), getRightIToken(),
                                    new ASTNodeToken(getRhsIToken(1)),
@@ -8228,9 +8312,9 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 40:  aliasSpec ::= EOL_KEY produces alias_rhs
+            // Rule 41:  aliasSpec ::= EOL_KEY produces alias_rhs
             //
-            case 40: {
+            case 41: {
                 setResult(
                     new aliasSpec1(getLeftIToken(), getRightIToken(),
                                    new ASTNodeToken(getRhsIToken(1)),
@@ -8240,9 +8324,9 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 41:  aliasSpec ::= EOF_KEY produces alias_rhs
+            // Rule 42:  aliasSpec ::= EOF_KEY produces alias_rhs
             //
-            case 41: {
+            case 42: {
                 setResult(
                     new aliasSpec2(getLeftIToken(), getRightIToken(),
                                    new ASTNodeToken(getRhsIToken(1)),
@@ -8252,9 +8336,9 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 42:  aliasSpec ::= IDENTIFIER_KEY produces alias_rhs
+            // Rule 43:  aliasSpec ::= IDENTIFIER_KEY produces alias_rhs
             //
-            case 42: {
+            case 43: {
                 setResult(
                     new aliasSpec3(getLeftIToken(), getRightIToken(),
                                    new ASTNodeToken(getRhsIToken(1)),
@@ -8264,9 +8348,9 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 43:  aliasSpec ::= SYMBOL produces alias_rhs
+            // Rule 44:  aliasSpec ::= SYMBOL produces alias_rhs
             //
-            case 43: {
+            case 44: {
                 setResult(
                     new aliasSpec4(getLeftIToken(), getRightIToken(),
                                    new ASTNodeToken(getRhsIToken(1)),
@@ -8276,9 +8360,9 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 44:  aliasSpec ::= alias_lhs_macro_name produces alias_rhs
+            // Rule 45:  aliasSpec ::= alias_lhs_macro_name produces alias_rhs
             //
-            case 44: {
+            case 45: {
                 setResult(
                     new aliasSpec5(getLeftIToken(), getRightIToken(),
                                    (alias_lhs_macro_name)getRhsSym(1),
@@ -8288,102 +8372,102 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 45:  alias_lhs_macro_name ::= MACRO_NAME
+            // Rule 46:  alias_lhs_macro_name ::= MACRO_NAME
             //
-            case 45: {
+            case 46: {
                 setResult(
                     new alias_lhs_macro_name(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 46:  alias_rhs ::= SYMBOL
+            // Rule 47:  alias_rhs ::= SYMBOL
             //
-            case 46: {
+            case 47: {
                 setResult(
                     new alias_rhs0(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 47:  alias_rhs ::= MACRO_NAME
+            // Rule 48:  alias_rhs ::= MACRO_NAME
             //
-            case 47: {
+            case 48: {
                 setResult(
                     new alias_rhs1(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 48:  alias_rhs ::= ERROR_KEY
+            // Rule 49:  alias_rhs ::= ERROR_KEY
             //
-            case 48: {
+            case 49: {
                 setResult(
                     new alias_rhs2(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 49:  alias_rhs ::= EOL_KEY
+            // Rule 50:  alias_rhs ::= EOL_KEY
             //
-            case 49: {
+            case 50: {
                 setResult(
                     new alias_rhs3(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 50:  alias_rhs ::= EOF_KEY
+            // Rule 51:  alias_rhs ::= EOF_KEY
             //
-            case 50: {
+            case 51: {
                 setResult(
                     new alias_rhs4(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 51:  alias_rhs ::= EMPTY_KEY
+            // Rule 52:  alias_rhs ::= EMPTY_KEY
             //
-            case 51: {
+            case 52: {
                 setResult(
                     new alias_rhs5(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 52:  alias_rhs ::= IDENTIFIER_KEY
+            // Rule 53:  alias_rhs ::= IDENTIFIER_KEY
             //
-            case 52: {
+            case 53: {
                 setResult(
                     new alias_rhs6(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 53:  ast_segment ::= action_segment_list
+            // Rule 54:  ast_segment ::= action_segment_list
             //
-            case 53:
+            case 54:
                 break;
             //
-            // Rule 54:  define_segment ::= defineSpec
+            // Rule 55:  define_segment ::= defineSpec
             //
-            case 54: {
+            case 55: {
                 setResult(
                     new defineSpecList((defineSpec)getRhsSym(1), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 55:  define_segment ::= define_segment defineSpec
+            // Rule 56:  define_segment ::= define_segment defineSpec
             //
-            case 55: {
+            case 56: {
                 ((defineSpecList)getRhsSym(1)).add((defineSpec)getRhsSym(2));
                 break;
             }
             //
-            // Rule 56:  defineSpec ::= macro_name_symbol macro_segment
+            // Rule 57:  defineSpec ::= macro_name_symbol macro_segment
             //
-            case 56: {
+            case 57: {
                 setResult(
                     new defineSpec(LPGParser.this, getLeftIToken(), getRightIToken(),
                                    (Imacro_name_symbol)getRhsSym(1),
@@ -8392,93 +8476,93 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 57:  macro_name_symbol ::= MACRO_NAME
+            // Rule 58:  macro_name_symbol ::= MACRO_NAME
             //
-            case 57: {
+            case 58: {
                 setResult(
                     new macro_name_symbol0(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 58:  macro_name_symbol ::= SYMBOL
+            // Rule 59:  macro_name_symbol ::= SYMBOL
             //
-            case 58: {
+            case 59: {
                 setResult(
                     new macro_name_symbol1(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 59:  macro_segment ::= BLOCK
+            // Rule 60:  macro_segment ::= BLOCK
             //
-            case 59: {
+            case 60: {
                 setResult(
                     new macro_segment(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 60:  eol_segment ::= terminal_symbol
-            //
-            case 60:
-                break;
-            //
-            // Rule 61:  eof_segment ::= terminal_symbol
+            // Rule 61:  eol_segment ::= terminal_symbol
             //
             case 61:
                 break;
             //
-            // Rule 62:  error_segment ::= terminal_symbol
+            // Rule 62:  eof_segment ::= terminal_symbol
             //
             case 62:
                 break;
             //
-            // Rule 63:  export_segment ::= terminal_symbol
+            // Rule 63:  error_segment ::= terminal_symbol
             //
-            case 63: {
+            case 63:
+                break;
+            //
+            // Rule 64:  export_segment ::= terminal_symbol
+            //
+            case 64: {
                 setResult(
                     new terminal_symbolList((Iterminal_symbol)getRhsSym(1), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 64:  export_segment ::= export_segment terminal_symbol
+            // Rule 65:  export_segment ::= export_segment terminal_symbol
             //
-            case 64: {
+            case 65: {
                 ((terminal_symbolList)getRhsSym(1)).add((Iterminal_symbol)getRhsSym(2));
                 break;
             }
             //
-            // Rule 65:  globals_segment ::= action_segment
+            // Rule 66:  globals_segment ::= action_segment
             //
-            case 65: {
+            case 66: {
                 setResult(
                     new action_segmentList((action_segment)getRhsSym(1), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 66:  globals_segment ::= globals_segment action_segment
+            // Rule 67:  globals_segment ::= globals_segment action_segment
             //
-            case 66: {
+            case 67: {
                 ((action_segmentList)getRhsSym(1)).add((action_segment)getRhsSym(2));
                 break;
             }
             //
-            // Rule 67:  headers_segment ::= action_segment_list
-            //
-            case 67:
-                break;
-            //
-            // Rule 68:  identifier_segment ::= terminal_symbol
+            // Rule 68:  headers_segment ::= action_segment_list
             //
             case 68:
                 break;
             //
-            // Rule 69:  import_segment ::= SYMBOL drop_command_list
+            // Rule 69:  identifier_segment ::= terminal_symbol
             //
-            case 69: {
+            case 69:
+                break;
+            //
+            // Rule 70:  import_segment ::= SYMBOL drop_command_list
+            //
+            case 70: {
                 setResult(
                     new import_segment(getLeftIToken(), getRightIToken(),
                                        new ASTNodeToken(getRhsIToken(1)),
@@ -8487,25 +8571,25 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 70:  drop_command_list ::= $Empty
+            // Rule 71:  drop_command_list ::= $Empty
             //
-            case 70: {
+            case 71: {
                 setResult(
                     new drop_commandList(getLeftIToken(), getRightIToken(), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 71:  drop_command_list ::= drop_command_list drop_command
+            // Rule 72:  drop_command_list ::= drop_command_list drop_command
             //
-            case 71: {
+            case 72: {
                 ((drop_commandList)getRhsSym(1)).add((Idrop_command)getRhsSym(2));
                 break;
             }
             //
-            // Rule 72:  drop_command ::= DROPSYMBOLS_KEY drop_symbols
+            // Rule 73:  drop_command ::= DROPSYMBOLS_KEY drop_symbols
             //
-            case 72: {
+            case 73: {
                 setResult(
                     new drop_command0(getLeftIToken(), getRightIToken(),
                                       new ASTNodeToken(getRhsIToken(1)),
@@ -8514,9 +8598,9 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 73:  drop_command ::= DROPRULES_KEY drop_rules
+            // Rule 74:  drop_command ::= DROPRULES_KEY drop_rules
             //
-            case 73: {
+            case 74: {
                 setResult(
                     new drop_command1(getLeftIToken(), getRightIToken(),
                                       new ASTNodeToken(getRhsIToken(1)),
@@ -8525,41 +8609,41 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 74:  drop_symbols ::= SYMBOL
+            // Rule 75:  drop_symbols ::= SYMBOL
             //
-            case 74: {
+            case 75: {
                 setResult(
                     new SYMBOLList(new ASTNodeToken(getRhsIToken(1)), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 75:  drop_symbols ::= drop_symbols SYMBOL
+            // Rule 76:  drop_symbols ::= drop_symbols SYMBOL
             //
-            case 75: {
+            case 76: {
                 ((SYMBOLList)getRhsSym(1)).add(new ASTNodeToken(getRhsIToken(2)));
                 break;
             }
             //
-            // Rule 76:  drop_rules ::= drop_rule
+            // Rule 77:  drop_rules ::= drop_rule
             //
-            case 76: {
+            case 77: {
                 setResult(
                     new drop_ruleList((drop_rule)getRhsSym(1), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 77:  drop_rules ::= drop_rules drop_rule
+            // Rule 78:  drop_rules ::= drop_rules drop_rule
             //
-            case 77: {
+            case 78: {
                 ((drop_ruleList)getRhsSym(1)).add((drop_rule)getRhsSym(2));
                 break;
             }
             //
-            // Rule 78:  drop_rule ::= SYMBOL optMacroName produces ruleList
+            // Rule 79:  drop_rule ::= SYMBOL optMacroName produces ruleList
             //
-            case 78: {
+            case 79: {
                 setResult(
                     new drop_rule(getLeftIToken(), getRightIToken(),
                                   new ASTNodeToken(getRhsIToken(1)),
@@ -8570,55 +8654,55 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 79:  optMacroName ::= $Empty
+            // Rule 80:  optMacroName ::= $Empty
             //
-            case 79: {
+            case 80: {
                 setResult(null);
                 break;
             }
             //
-            // Rule 80:  optMacroName ::= MACRO_NAME
+            // Rule 81:  optMacroName ::= MACRO_NAME
             //
-            case 80: {
+            case 81: {
                 setResult(
                     new optMacroName(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 81:  include_segment ::= SYMBOL
+            // Rule 82:  include_segment ::= SYMBOL
             //
-            case 81: {
+            case 82: {
                 setResult(
                     new include_segment(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 82:  keywords_segment ::= keywordSpec
+            // Rule 83:  keywords_segment ::= keywordSpec
             //
-            case 82: {
+            case 83: {
                 setResult(
                     new keywordSpecList((IkeywordSpec)getRhsSym(1), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 83:  keywords_segment ::= keywords_segment keywordSpec
+            // Rule 84:  keywords_segment ::= keywords_segment keywordSpec
             //
-            case 83: {
+            case 84: {
                 ((keywordSpecList)getRhsSym(1)).add((IkeywordSpec)getRhsSym(2));
                 break;
             }
             //
-            // Rule 84:  keywordSpec ::= terminal_symbol
+            // Rule 85:  keywordSpec ::= terminal_symbol
             //
-            case 84:
+            case 85:
                 break;
             //
-            // Rule 85:  keywordSpec ::= terminal_symbol produces name
+            // Rule 86:  keywordSpec ::= terminal_symbol produces name
             //
-            case 85: {
+            case 86: {
                 setResult(
                     new keywordSpec(getLeftIToken(), getRightIToken(),
                                     (Iterminal_symbol)getRhsSym(1),
@@ -8628,25 +8712,25 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 86:  names_segment ::= nameSpec
+            // Rule 87:  names_segment ::= nameSpec
             //
-            case 86: {
+            case 87: {
                 setResult(
                     new nameSpecList((nameSpec)getRhsSym(1), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 87:  names_segment ::= names_segment nameSpec
+            // Rule 88:  names_segment ::= names_segment nameSpec
             //
-            case 87: {
+            case 88: {
                 ((nameSpecList)getRhsSym(1)).add((nameSpec)getRhsSym(2));
                 break;
             }
             //
-            // Rule 88:  nameSpec ::= name produces name
+            // Rule 89:  nameSpec ::= name produces name
             //
-            case 88: {
+            case 89: {
                 setResult(
                     new nameSpec(getLeftIToken(), getRightIToken(),
                                  (Iname)getRhsSym(1),
@@ -8656,79 +8740,79 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 89:  name ::= SYMBOL
+            // Rule 90:  name ::= SYMBOL
             //
-            case 89: {
+            case 90: {
                 setResult(
                     new name0(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 90:  name ::= MACRO_NAME
+            // Rule 91:  name ::= MACRO_NAME
             //
-            case 90: {
+            case 91: {
                 setResult(
                     new name1(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 91:  name ::= EMPTY_KEY
+            // Rule 92:  name ::= EMPTY_KEY
             //
-            case 91: {
+            case 92: {
                 setResult(
                     new name2(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 92:  name ::= ERROR_KEY
+            // Rule 93:  name ::= ERROR_KEY
             //
-            case 92: {
+            case 93: {
                 setResult(
                     new name3(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 93:  name ::= EOL_KEY
+            // Rule 94:  name ::= EOL_KEY
             //
-            case 93: {
+            case 94: {
                 setResult(
                     new name4(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 94:  name ::= IDENTIFIER_KEY
+            // Rule 95:  name ::= IDENTIFIER_KEY
             //
-            case 94: {
+            case 95: {
                 setResult(
                     new name5(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 95:  notice_segment ::= action_segment
+            // Rule 96:  notice_segment ::= action_segment
             //
-            case 95: {
+            case 96: {
                 setResult(
                     new action_segmentList((action_segment)getRhsSym(1), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 96:  notice_segment ::= notice_segment action_segment
+            // Rule 97:  notice_segment ::= notice_segment action_segment
             //
-            case 96: {
+            case 97: {
                 ((action_segmentList)getRhsSym(1)).add((action_segment)getRhsSym(2));
                 break;
             }
             //
-            // Rule 97:  rules_segment ::= action_segment_list nonTermList
+            // Rule 98:  rules_segment ::= action_segment_list nonTermList
             //
-            case 97: {
+            case 98: {
                 setResult(
                     new rules_segment(getLeftIToken(), getRightIToken(),
                                       (action_segmentList)getRhsSym(1),
@@ -8737,25 +8821,25 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 98:  nonTermList ::= $Empty
+            // Rule 99:  nonTermList ::= $Empty
             //
-            case 98: {
+            case 99: {
                 setResult(
                     new nonTermList(getLeftIToken(), getRightIToken(), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 99:  nonTermList ::= nonTermList nonTerm
+            // Rule 100:  nonTermList ::= nonTermList nonTerm
             //
-            case 99: {
+            case 100: {
                 ((nonTermList)getRhsSym(1)).add((nonTerm)getRhsSym(2));
                 break;
             }
             //
-            // Rule 100:  nonTerm ::= ruleNameWithAttributes produces ruleList
+            // Rule 101:  nonTerm ::= ruleNameWithAttributes produces ruleList
             //
-            case 100: {
+            case 101: {
                 setResult(
                     new nonTerm(LPGParser.this, getLeftIToken(), getRightIToken(),
                                 (RuleName)getRhsSym(1),
@@ -8765,9 +8849,9 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 101:  ruleNameWithAttributes ::= SYMBOL
+            // Rule 102:  ruleNameWithAttributes ::= SYMBOL
             //
-            case 101: {
+            case 102: {
                 setResult(
                     new RuleName(getLeftIToken(), getRightIToken(),
                                  new ASTNodeToken(getRhsIToken(1)),
@@ -8777,9 +8861,9 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 102:  ruleNameWithAttributes ::= SYMBOL MACRO_NAME$className
+            // Rule 103:  ruleNameWithAttributes ::= SYMBOL MACRO_NAME$className
             //
-            case 102: {
+            case 103: {
                 setResult(
                     new RuleName(getLeftIToken(), getRightIToken(),
                                  new ASTNodeToken(getRhsIToken(1)),
@@ -8789,9 +8873,9 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 103:  ruleNameWithAttributes ::= SYMBOL MACRO_NAME$className MACRO_NAME$arrayElement
+            // Rule 104:  ruleNameWithAttributes ::= SYMBOL MACRO_NAME$className MACRO_NAME$arrayElement
             //
-            case 103: {
+            case 104: {
                 setResult(
                     new RuleName(getLeftIToken(), getRightIToken(),
                                  new ASTNodeToken(getRhsIToken(1)),
@@ -8801,61 +8885,61 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 104:  ruleList ::= rule
+            // Rule 105:  ruleList ::= rule
             //
-            case 104: {
+            case 105: {
                 setResult(
                     new ruleList((rule)getRhsSym(1), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 105:  ruleList ::= ruleList |$ rule
+            // Rule 106:  ruleList ::= ruleList |$ rule
             //
-            case 105: {
+            case 106: {
                 ((ruleList)getRhsSym(1)).add((rule)getRhsSym(3));
                 break;
             }
             //
-            // Rule 106:  produces ::= ::=
+            // Rule 107:  produces ::= ::=
             //
-            case 106: {
+            case 107: {
                 setResult(
                     new produces0(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 107:  produces ::= ::=?
+            // Rule 108:  produces ::= ::=?
             //
-            case 107: {
+            case 108: {
                 setResult(
                     new produces1(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 108:  produces ::= ->
+            // Rule 109:  produces ::= ->
             //
-            case 108: {
+            case 109: {
                 setResult(
                     new produces2(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 109:  produces ::= ->?
+            // Rule 110:  produces ::= ->?
             //
-            case 109: {
+            case 110: {
                 setResult(
                     new produces3(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 110:  rule ::= symWithAttrsList opt_action_segment
+            // Rule 111:  rule ::= symWithAttrsList opt_action_segment
             //
-            case 110: {
+            case 111: {
                 setResult(
                     new rule(getLeftIToken(), getRightIToken(),
                              (symWithAttrsList)getRhsSym(1),
@@ -8864,34 +8948,34 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 111:  symWithAttrsList ::= $Empty
+            // Rule 112:  symWithAttrsList ::= $Empty
             //
-            case 111: {
+            case 112: {
                 setResult(
                     new symWithAttrsList(getLeftIToken(), getRightIToken(), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 112:  symWithAttrsList ::= symWithAttrsList symWithAttrs
+            // Rule 113:  symWithAttrsList ::= symWithAttrsList symWithAttrs
             //
-            case 112: {
+            case 113: {
                 ((symWithAttrsList)getRhsSym(1)).add((IsymWithAttrs)getRhsSym(2));
                 break;
             }
             //
-            // Rule 113:  symWithAttrs ::= EMPTY_KEY
+            // Rule 114:  symWithAttrs ::= EMPTY_KEY
             //
-            case 113: {
+            case 114: {
                 setResult(
                     new symWithAttrs0(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 114:  symWithAttrs ::= SYMBOL optAttrList
+            // Rule 115:  symWithAttrs ::= SYMBOL optAttrList
             //
-            case 114: {
+            case 115: {
                 setResult(
                     new symWithAttrs1(getLeftIToken(), getRightIToken(),
                                       new ASTNodeToken(getRhsIToken(1)),
@@ -8900,9 +8984,9 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 115:  optAttrList ::= $Empty
+            // Rule 116:  optAttrList ::= $Empty
             //
-            case 115: {
+            case 116: {
                 setResult(
                     new symAttrs(getLeftIToken(), getRightIToken(),
                                  (ASTNodeToken)null)
@@ -8910,9 +8994,9 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 116:  optAttrList ::= MACRO_NAME
+            // Rule 117:  optAttrList ::= MACRO_NAME
             //
-            case 116: {
+            case 117: {
                 setResult(
                     new symAttrs(getLeftIToken(), getRightIToken(),
                                  new ASTNodeToken(getRhsIToken(1)))
@@ -8920,80 +9004,80 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 117:  opt_action_segment ::= $Empty
+            // Rule 118:  opt_action_segment ::= $Empty
             //
-            case 117: {
+            case 118: {
                 setResult(null);
                 break;
             }
             //
-            // Rule 118:  opt_action_segment ::= action_segment
+            // Rule 119:  opt_action_segment ::= action_segment
             //
-            case 118:
+            case 119:
                 break;
             //
-            // Rule 119:  action_segment ::= BLOCK
+            // Rule 120:  action_segment ::= BLOCK
             //
-            case 119: {
+            case 120: {
                 setResult(
                     new action_segment(LPGParser.this, getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 120:  start_segment ::= start_symbol
+            // Rule 121:  start_segment ::= start_symbol
             //
-            case 120: {
+            case 121: {
                 setResult(
                     new start_symbolList((Istart_symbol)getRhsSym(1), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 121:  start_segment ::= start_segment start_symbol
+            // Rule 122:  start_segment ::= start_segment start_symbol
             //
-            case 121: {
+            case 122: {
                 ((start_symbolList)getRhsSym(1)).add((Istart_symbol)getRhsSym(2));
                 break;
             }
             //
-            // Rule 122:  start_symbol ::= SYMBOL
+            // Rule 123:  start_symbol ::= SYMBOL
             //
-            case 122: {
+            case 123: {
                 setResult(
                     new start_symbol0(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 123:  start_symbol ::= MACRO_NAME
+            // Rule 124:  start_symbol ::= MACRO_NAME
             //
-            case 123: {
+            case 124: {
                 setResult(
                     new start_symbol1(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 124:  terminals_segment ::= terminal
+            // Rule 125:  terminals_segment ::= terminal
             //
-            case 124: {
+            case 125: {
                 setResult(
                     new terminalList((terminal)getRhsSym(1), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 125:  terminals_segment ::= terminals_segment terminal
+            // Rule 126:  terminals_segment ::= terminals_segment terminal
             //
-            case 125: {
+            case 126: {
                 ((terminalList)getRhsSym(1)).add((terminal)getRhsSym(2));
                 break;
             }
             //
-            // Rule 126:  terminal ::= terminal_symbol optTerminalAlias
+            // Rule 127:  terminal ::= terminal_symbol optTerminalAlias
             //
-            case 126: {
+            case 127: {
                 setResult(
                     new terminal(LPGParser.this, getLeftIToken(), getRightIToken(),
                                  (Iterminal_symbol)getRhsSym(1),
@@ -9002,16 +9086,16 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 127:  optTerminalAlias ::= $Empty
+            // Rule 128:  optTerminalAlias ::= $Empty
             //
-            case 127: {
+            case 128: {
                 setResult(null);
                 break;
             }
             //
-            // Rule 128:  optTerminalAlias ::= produces name
+            // Rule 129:  optTerminalAlias ::= produces name
             //
-            case 128: {
+            case 129: {
                 setResult(
                     new optTerminalAlias(getLeftIToken(), getRightIToken(),
                                          (Iproduces)getRhsSym(1),
@@ -9020,48 +9104,48 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 129:  terminal_symbol ::= SYMBOL
+            // Rule 130:  terminal_symbol ::= SYMBOL
             //
-            case 129: {
+            case 130: {
                 setResult(
                     new terminal_symbol0(LPGParser.this, getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 130:  terminal_symbol ::= MACRO_NAME
+            // Rule 131:  terminal_symbol ::= MACRO_NAME
             //
-            case 130: {
+            case 131: {
                 setResult(
                     new terminal_symbol1(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 131:  trailers_segment ::= action_segment_list
+            // Rule 132:  trailers_segment ::= action_segment_list
             //
-            case 131:
+            case 132:
                 break;
             //
-            // Rule 132:  types_segment ::= type_declarations
+            // Rule 133:  types_segment ::= type_declarations
             //
-            case 132: {
+            case 133: {
                 setResult(
                     new type_declarationsList((type_declarations)getRhsSym(1), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 133:  types_segment ::= types_segment type_declarations
+            // Rule 134:  types_segment ::= types_segment type_declarations
             //
-            case 133: {
+            case 134: {
                 ((type_declarationsList)getRhsSym(1)).add((type_declarations)getRhsSym(2));
                 break;
             }
             //
-            // Rule 134:  type_declarations ::= SYMBOL produces barSymbolList
+            // Rule 135:  type_declarations ::= SYMBOL produces barSymbolList
             //
-            case 134: {
+            case 135: {
                 setResult(
                     new type_declarations(getLeftIToken(), getRightIToken(),
                                           new ASTNodeToken(getRhsIToken(1)),
@@ -9071,41 +9155,41 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 135:  barSymbolList ::= SYMBOL
+            // Rule 136:  barSymbolList ::= SYMBOL
             //
-            case 135: {
+            case 136: {
                 setResult(
                     new SYMBOLList(new ASTNodeToken(getRhsIToken(1)), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 136:  barSymbolList ::= barSymbolList |$ SYMBOL
+            // Rule 137:  barSymbolList ::= barSymbolList |$ SYMBOL
             //
-            case 136: {
+            case 137: {
                 ((SYMBOLList)getRhsSym(1)).add(new ASTNodeToken(getRhsIToken(3)));
                 break;
             }
             //
-            // Rule 137:  predecessor_segment ::= $Empty
+            // Rule 138:  predecessor_segment ::= $Empty
             //
-            case 137: {
+            case 138: {
                 setResult(
                     new symbol_pairList(getLeftIToken(), getRightIToken(), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 138:  predecessor_segment ::= predecessor_segment symbol_pair
+            // Rule 139:  predecessor_segment ::= predecessor_segment symbol_pair
             //
-            case 138: {
+            case 139: {
                 ((symbol_pairList)getRhsSym(1)).add((symbol_pair)getRhsSym(2));
                 break;
             }
             //
-            // Rule 139:  symbol_pair ::= SYMBOL SYMBOL
+            // Rule 140:  symbol_pair ::= SYMBOL SYMBOL
             //
-            case 139: {
+            case 140: {
                 setResult(
                     new symbol_pair(getLeftIToken(), getRightIToken(),
                                     new ASTNodeToken(getRhsIToken(1)),
@@ -9114,59 +9198,59 @@ public class LPGParser implements RuleAction, IParser
                 break;
             }
             //
-            // Rule 140:  recover_segment ::= $Empty
+            // Rule 141:  recover_segment ::= $Empty
             //
-            case 140: {
+            case 141: {
                 setResult(
                     new SYMBOLList(getLeftIToken(), getRightIToken(), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 141:  recover_segment ::= recover_segment recover_symbol
+            // Rule 142:  recover_segment ::= recover_segment recover_symbol
             //
-            case 141: {
+            case 142: {
                 setResult((SYMBOLList)getRhsSym(1));
                 break;
             }
             //
-            // Rule 142:  recover_symbol ::= SYMBOL
+            // Rule 143:  recover_symbol ::= SYMBOL
             //
-            case 142: {
+            case 143: {
                 setResult(
                     new recover_symbol(LPGParser.this, getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 143:  END_KEY_OPT ::= $Empty
+            // Rule 144:  END_KEY_OPT ::= $Empty
             //
-            case 143: {
+            case 144: {
                 setResult(null);
                 break;
             }
             //
-            // Rule 144:  END_KEY_OPT ::= END_KEY
+            // Rule 145:  END_KEY_OPT ::= END_KEY
             //
-            case 144: {
+            case 145: {
                 setResult(
                     new END_KEY_OPT(getRhsIToken(1))
                 );
                 break;
             }
             //
-            // Rule 145:  action_segment_list ::= $Empty
+            // Rule 146:  action_segment_list ::= $Empty
             //
-            case 145: {
+            case 146: {
                 setResult(
                     new action_segmentList(getLeftIToken(), getRightIToken(), true /* left recursive */)
                 );
                 break;
             }
             //
-            // Rule 146:  action_segment_list ::= action_segment_list action_segment
+            // Rule 147:  action_segment_list ::= action_segment_list action_segment
             //
-            case 146: {
+            case 147: {
                 ((action_segmentList)getRhsSym(1)).add((action_segment)getRhsSym(2));
                 break;
             }

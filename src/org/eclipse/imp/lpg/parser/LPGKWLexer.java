@@ -258,7 +258,7 @@ public class LPGKWLexer extends LPGKWLexerprs
         // Rule 19:  Keyword ::= KeyPrefix s o f t k e y w o r d s
         //
         
-        keywordKind[19] = (LPGParsersym.TK_KEYWORDS_KEY);
+        keywordKind[19] = (LPGParsersym.TK_SOFT_KEYWORDS_KEY);
       
     
         //
