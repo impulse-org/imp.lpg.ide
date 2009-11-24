@@ -39,8 +39,10 @@ import org.eclipse.imp.lpg.parser.LPGParser.KeywordsSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.LPG;
 import org.eclipse.imp.lpg.parser.LPGParser.LPG_itemList;
 import org.eclipse.imp.lpg.parser.LPGParser.NoticeSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.RecoverSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.RulesSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.SYMBOLList;
+import org.eclipse.imp.lpg.parser.LPGParser.SoftKeywordsSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.StartSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.TerminalsSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.TrailersSeg;
@@ -167,14 +169,18 @@ public class LPGLabelProvider implements ILabelProvider {
             return "includes";
         if (n instanceof LPG_itemList)
             return "item list";
-        if (n instanceof KeywordsSeg) // this is really the "%softkeywords" segment
-            return "soft-keywords";
+        if (n instanceof KeywordsSeg)
+            return "keywords";
         if (n instanceof NoticeSeg)
             return "notice";
-        if (n instanceof StartSeg)
-            return "start symbol";
+        if (n instanceof RecoverSeg)
+            return "recover";
         if (n instanceof RulesSeg)
             return "rules";
+        if (n instanceof SoftKeywordsSeg)
+            return "soft-keywords";
+        if (n instanceof StartSeg)
+            return "start symbol";
         if (n instanceof TerminalsSeg)
             return "terminals";
         if (n instanceof TrailersSeg)

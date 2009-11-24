@@ -26,72 +26,98 @@ public class FoldingUpdater extends LPGFolderBase {
     private class FoldingVisitor extends AbstractVisitor {
         public void unimplementedVisitor(String s) { }
 
+        @Override
         public boolean visit(option_specList n) {
             makeFoldable(n);
             return false;
         }
 
+        @Override
         public boolean visit(AliasSeg n) {
             makeFoldable(n);
             return false;
         }
 
+        @Override
         public boolean visit(DefineSeg n) {
             makeFoldable(n);
             return false;
         }
 
+        @Override
         public boolean visit(ExportSeg n) {
             makeFoldable(n);
             return false;
         }
 
+        @Override
         public boolean visit(GlobalsSeg n) {
             makeFoldable(n);
             return false;
         }
 
+        @Override
         public boolean visit(HeadersSeg n) {
             makeFoldable(n);
             return false;
         }
 
+        @Override
         public boolean visit(IdentifierSeg n) {
             makeFoldable(n);
             return false;
         }
 
+        @Override
         public boolean visit(ImportSeg n) {
             makeFoldable(n);
             return true;
         }
 
+        @Override
         public boolean visit(drop_command0 n) {
             makeFoldable(n);
             return false;
         }
 
+        @Override
         public boolean visit(drop_command1 n) {
             makeFoldable(n);
             return false;
         }
 
+        @Override
         public boolean visit(IncludeSeg n) {
             makeFoldable(n);
             return false;
         }
 
+        @Override
         public boolean visit(KeywordsSeg n) {
             makeFoldable(n);
             return false;
         }
 
+        @Override
         public boolean visit(NoticeSeg n) {
             makeFoldable(n);
             return false;
         }
 
+        @Override
+        public boolean visit(RecoverSeg n) {
+            makeFoldable(n);
+            return true;
+        }
+
+        @Override
         public boolean visit(RulesSeg n) {
+            makeFoldable(n);
+            return true;
+        }
+
+        @Override
+        public boolean visit(SoftKeywordsSeg n) {
             makeFoldable(n);
             return true;
         }

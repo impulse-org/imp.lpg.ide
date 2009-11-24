@@ -38,6 +38,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.PredecessorSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.RecoverSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.RulesSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.SYMBOLList;
+import org.eclipse.imp.lpg.parser.LPGParser.SoftKeywordsSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.StartSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.TerminalsSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.TrailersSeg;
@@ -270,6 +271,15 @@ public class LPGTreeModelBuilder extends TreeModelBuilderBase {
         }
 
         public void endVisit(RulesSeg n) {
+            popSubItem();
+        }
+
+        public boolean visit(SoftKeywordsSeg n) {
+            pushSubItem(n);
+            return true;
+        }
+
+        public void endVisit(SoftKeywordsSeg n) {
             popSubItem();
         }
 
