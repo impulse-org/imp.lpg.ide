@@ -319,11 +319,12 @@ public class JavaParser implements RuleAction
         public abstract void accept(IAstVisitor v);
     }
 
-    static public abstract class AbstractAstList extends Ast
+    static public abstract class AbstractAstList extends Ast implements IAbstractArrayList<Ast>
     {
         private boolean leftRecursive;
         private java.util.ArrayList list;
         public int size() { return list.size(); }
+        public java.util.List getList() { return list; }
         public Ast getElementAt(int i) { return (Ast) list.get(leftRecursive ? i : list.size() - 1 - i); }
         public java.util.ArrayList getArrayList()
         {
@@ -26934,7 +26935,7 @@ public class JavaParser implements RuleAction
             // Rule 3:  identifier ::= IDENTIFIER
             //
             case 3: {
-               //#line 184 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 184 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new identifier(JavaParser.this, getRhsIToken(1))
                 );
@@ -26949,7 +26950,7 @@ public class JavaParser implements RuleAction
             // Rule 5:  LPGUserAction ::= $BeginAction BlockStatementsopt $EndAction
             //
             case 5: {
-               //#line 194 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 194 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LPGUserAction0(getLeftIToken(), getRightIToken(),
                                        new AstToken(getRhsIToken(1)),
@@ -26962,7 +26963,7 @@ public class JavaParser implements RuleAction
             // Rule 6:  LPGUserAction ::= $BeginJava BlockStatementsopt $EndJava
             //
             case 6: {
-               //#line 195 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 195 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LPGUserAction1(getLeftIToken(), getRightIToken(),
                                        new AstToken(getRhsIToken(1)),
@@ -26975,7 +26976,7 @@ public class JavaParser implements RuleAction
             // Rule 7:  LPGUserAction ::= $NoAction
             //
             case 7: {
-               //#line 196 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 196 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LPGUserAction2(getRhsIToken(1))
                 );
@@ -26985,7 +26986,7 @@ public class JavaParser implements RuleAction
             // Rule 8:  LPGUserAction ::= $NullAction
             //
             case 8: {
-               //#line 197 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 197 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LPGUserAction3(getRhsIToken(1))
                 );
@@ -26995,7 +26996,7 @@ public class JavaParser implements RuleAction
             // Rule 9:  LPGUserAction ::= $BadAction
             //
             case 9: {
-               //#line 198 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 198 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LPGUserAction4(getRhsIToken(1))
                 );
@@ -27020,7 +27021,7 @@ public class JavaParser implements RuleAction
             // Rule 13:  PrimitiveType ::= boolean
             //
             case 13: {
-               //#line 207 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 207 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PrimitiveType(getRhsIToken(1))
                 );
@@ -27040,7 +27041,7 @@ public class JavaParser implements RuleAction
             // Rule 16:  IntegralType ::= byte
             //
             case 16: {
-               //#line 212 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 212 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new IntegralType0(getRhsIToken(1))
                 );
@@ -27050,7 +27051,7 @@ public class JavaParser implements RuleAction
             // Rule 17:  IntegralType ::= short
             //
             case 17: {
-               //#line 213 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 213 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new IntegralType1(getRhsIToken(1))
                 );
@@ -27060,7 +27061,7 @@ public class JavaParser implements RuleAction
             // Rule 18:  IntegralType ::= int
             //
             case 18: {
-               //#line 214 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 214 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new IntegralType2(getRhsIToken(1))
                 );
@@ -27070,7 +27071,7 @@ public class JavaParser implements RuleAction
             // Rule 19:  IntegralType ::= long
             //
             case 19: {
-               //#line 215 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 215 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new IntegralType3(getRhsIToken(1))
                 );
@@ -27080,7 +27081,7 @@ public class JavaParser implements RuleAction
             // Rule 20:  IntegralType ::= char
             //
             case 20: {
-               //#line 216 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 216 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new IntegralType4(getRhsIToken(1))
                 );
@@ -27090,7 +27091,7 @@ public class JavaParser implements RuleAction
             // Rule 21:  FloatingPointType ::= float
             //
             case 21: {
-               //#line 218 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 218 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FloatingPointType0(getRhsIToken(1))
                 );
@@ -27100,7 +27101,7 @@ public class JavaParser implements RuleAction
             // Rule 22:  FloatingPointType ::= double
             //
             case 22: {
-               //#line 219 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 219 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FloatingPointType1(getRhsIToken(1))
                 );
@@ -27130,7 +27131,7 @@ public class JavaParser implements RuleAction
             // Rule 27:  ClassType ::= TypeName TypeArgumentsopt
             //
             case 27: {
-               //#line 231 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 231 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassType(getLeftIToken(), getRightIToken(),
                                   (ITypeName)getRhsSym(1),
@@ -27142,7 +27143,7 @@ public class JavaParser implements RuleAction
             // Rule 28:  InterfaceType ::= TypeName TypeArgumentsopt
             //
             case 28: {
-               //#line 233 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 233 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceType(getLeftIToken(), getRightIToken(),
                                       (ITypeName)getRhsSym(1),
@@ -27159,7 +27160,7 @@ public class JavaParser implements RuleAction
             // Rule 30:  TypeName ::= TypeName . identifier
             //
             case 30: {
-               //#line 236 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 236 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeName(getLeftIToken(), getRightIToken(),
                                  (ITypeName)getRhsSym(1),
@@ -27182,7 +27183,7 @@ public class JavaParser implements RuleAction
             // Rule 33:  ArrayType ::= Type [ ]
             //
             case 33: {
-               //#line 242 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 242 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArrayType(getLeftIToken(), getRightIToken(),
                                   (IType)getRhsSym(1),
@@ -27195,7 +27196,7 @@ public class JavaParser implements RuleAction
             // Rule 34:  TypeParameter ::= TypeVariable TypeBoundopt
             //
             case 34: {
-               //#line 244 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 244 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeParameter(getLeftIToken(), getRightIToken(),
                                       (identifier)getRhsSym(1),
@@ -27207,7 +27208,7 @@ public class JavaParser implements RuleAction
             // Rule 35:  TypeBound ::= extends ClassOrInterfaceType AdditionalBoundListopt
             //
             case 35: {
-               //#line 246 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 246 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeBound(getLeftIToken(), getRightIToken(),
                                   new AstToken(getRhsIToken(1)),
@@ -27225,7 +27226,7 @@ public class JavaParser implements RuleAction
             // Rule 37:  AdditionalBoundList ::= AdditionalBoundList AdditionalBound
             //
             case 37: {
-               //#line 249 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 249 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AdditionalBoundList(getLeftIToken(), getRightIToken(),
                                             (IAdditionalBoundList)getRhsSym(1),
@@ -27237,7 +27238,7 @@ public class JavaParser implements RuleAction
             // Rule 38:  AdditionalBound ::= & InterfaceType
             //
             case 38: {
-               //#line 251 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 251 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AdditionalBound(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -27249,7 +27250,7 @@ public class JavaParser implements RuleAction
             // Rule 39:  TypeArguments ::= < ActualTypeArgumentList >
             //
             case 39: {
-               //#line 253 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 253 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeArguments(getLeftIToken(), getRightIToken(),
                                       new AstToken(getRhsIToken(1)),
@@ -27267,7 +27268,7 @@ public class JavaParser implements RuleAction
             // Rule 41:  ActualTypeArgumentList ::= ActualTypeArgumentList , ActualTypeArgument
             //
             case 41: {
-               //#line 256 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 256 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ActualTypeArgumentList(getLeftIToken(), getRightIToken(),
                                                (IActualTypeArgumentList)getRhsSym(1),
@@ -27290,7 +27291,7 @@ public class JavaParser implements RuleAction
             // Rule 44:  Wildcard ::= ? WildcardBoundsOpt
             //
             case 44: {
-               //#line 261 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 261 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Wildcard(getLeftIToken(), getRightIToken(),
                                  new AstToken(getRhsIToken(1)),
@@ -27302,7 +27303,7 @@ public class JavaParser implements RuleAction
             // Rule 45:  WildcardBounds ::= extends ReferenceType
             //
             case 45: {
-               //#line 263 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 263 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new WildcardBounds0(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -27314,7 +27315,7 @@ public class JavaParser implements RuleAction
             // Rule 46:  WildcardBounds ::= super ReferenceType
             //
             case 46: {
-               //#line 264 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 264 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new WildcardBounds1(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -27331,7 +27332,7 @@ public class JavaParser implements RuleAction
             // Rule 48:  PackageName ::= PackageName . identifier
             //
             case 48: {
-               //#line 271 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 271 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PackageName(getLeftIToken(), getRightIToken(),
                                     (IPackageName)getRhsSym(1),
@@ -27349,7 +27350,7 @@ public class JavaParser implements RuleAction
             // Rule 50:  ExpressionName ::= AmbiguousName . identifier
             //
             case 50: {
-               //#line 280 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 280 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExpressionName(getLeftIToken(), getRightIToken(),
                                        (IAmbiguousName)getRhsSym(1),
@@ -27367,7 +27368,7 @@ public class JavaParser implements RuleAction
             // Rule 52:  MethodName ::= AmbiguousName . identifier
             //
             case 52: {
-               //#line 283 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 283 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodName(getLeftIToken(), getRightIToken(),
                                    (IAmbiguousName)getRhsSym(1),
@@ -27385,7 +27386,7 @@ public class JavaParser implements RuleAction
             // Rule 54:  PackageOrTypeName ::= PackageOrTypeName . identifier
             //
             case 54: {
-               //#line 286 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 286 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PackageOrTypeName(getLeftIToken(), getRightIToken(),
                                           (IPackageOrTypeName)getRhsSym(1),
@@ -27403,7 +27404,7 @@ public class JavaParser implements RuleAction
             // Rule 56:  AmbiguousName ::= AmbiguousName . identifier
             //
             case 56: {
-               //#line 289 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 289 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AmbiguousName(getLeftIToken(), getRightIToken(),
                                       (IAmbiguousName)getRhsSym(1),
@@ -27416,7 +27417,7 @@ public class JavaParser implements RuleAction
             // Rule 57:  CompilationUnit ::= PackageDeclarationopt ImportDeclarationsopt TypeDeclarationsopt
             //
             case 57: {
-               //#line 293 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 293 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new CompilationUnit(getLeftIToken(), getRightIToken(),
                                         (PackageDeclaration)getRhsSym(1),
@@ -27434,7 +27435,7 @@ public class JavaParser implements RuleAction
             // Rule 59:  ImportDeclarations ::= ImportDeclarations ImportDeclaration
             //
             case 59: {
-               //#line 296 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 296 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ImportDeclarations(getLeftIToken(), getRightIToken(),
                                            (IImportDeclarations)getRhsSym(1),
@@ -27451,7 +27452,7 @@ public class JavaParser implements RuleAction
             // Rule 61:  TypeDeclarations ::= TypeDeclarations TypeDeclaration
             //
             case 61: {
-               //#line 299 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 299 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeDeclarations(getLeftIToken(), getRightIToken(),
                                          (ITypeDeclarations)getRhsSym(1),
@@ -27463,7 +27464,7 @@ public class JavaParser implements RuleAction
             // Rule 62:  PackageDeclaration ::= Annotationsopt package PackageName ;
             //
             case 62: {
-               //#line 301 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 301 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PackageDeclaration(getLeftIToken(), getRightIToken(),
                                            (IAnnotationsopt)getRhsSym(1),
@@ -27497,7 +27498,7 @@ public class JavaParser implements RuleAction
             // Rule 67:  SingleTypeImportDeclaration ::= import TypeName ;
             //
             case 67: {
-               //#line 308 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 308 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SingleTypeImportDeclaration(getLeftIToken(), getRightIToken(),
                                                     new AstToken(getRhsIToken(1)),
@@ -27510,7 +27511,7 @@ public class JavaParser implements RuleAction
             // Rule 68:  TypeImportOnDemandDeclaration ::= import PackageOrTypeName . * ;
             //
             case 68: {
-               //#line 310 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 310 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeImportOnDemandDeclaration(getLeftIToken(), getRightIToken(),
                                                       new AstToken(getRhsIToken(1)),
@@ -27525,7 +27526,7 @@ public class JavaParser implements RuleAction
             // Rule 69:  SingleStaticImportDeclaration ::= import static TypeName . identifier ;
             //
             case 69: {
-               //#line 312 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 312 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SingleStaticImportDeclaration(getLeftIToken(), getRightIToken(),
                                                       new AstToken(getRhsIToken(1)),
@@ -27541,7 +27542,7 @@ public class JavaParser implements RuleAction
             // Rule 70:  StaticImportOnDemandDeclaration ::= import static TypeName . * ;
             //
             case 70: {
-               //#line 314 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 314 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new StaticImportOnDemandDeclaration(getLeftIToken(), getRightIToken(),
                                                         new AstToken(getRhsIToken(1)),
@@ -27567,7 +27568,7 @@ public class JavaParser implements RuleAction
             // Rule 73:  TypeDeclaration ::= ;
             //
             case 73: {
-               //#line 318 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 318 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeDeclaration(getRhsIToken(1))
                 );
@@ -27587,7 +27588,7 @@ public class JavaParser implements RuleAction
             // Rule 76:  NormalClassDeclaration ::= ClassModifiersopt class identifier TypeParametersopt Superopt Interfacesopt ClassBody
             //
             case 76: {
-               //#line 325 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 325 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new NormalClassDeclaration(getLeftIToken(), getRightIToken(),
                                                (IClassModifiersopt)getRhsSym(1),
@@ -27609,7 +27610,7 @@ public class JavaParser implements RuleAction
             // Rule 78:  ClassModifiers ::= ClassModifiers ClassModifier
             //
             case 78: {
-               //#line 328 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 328 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassModifiers(getLeftIToken(), getRightIToken(),
                                        (IClassModifiers)getRhsSym(1),
@@ -27626,7 +27627,7 @@ public class JavaParser implements RuleAction
             // Rule 80:  ClassModifier ::= public
             //
             case 80: {
-               //#line 331 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 331 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassModifier0(getRhsIToken(1))
                 );
@@ -27636,7 +27637,7 @@ public class JavaParser implements RuleAction
             // Rule 81:  ClassModifier ::= protected
             //
             case 81: {
-               //#line 332 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 332 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassModifier1(getRhsIToken(1))
                 );
@@ -27646,7 +27647,7 @@ public class JavaParser implements RuleAction
             // Rule 82:  ClassModifier ::= private
             //
             case 82: {
-               //#line 333 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 333 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassModifier2(getRhsIToken(1))
                 );
@@ -27656,7 +27657,7 @@ public class JavaParser implements RuleAction
             // Rule 83:  ClassModifier ::= abstract
             //
             case 83: {
-               //#line 334 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 334 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassModifier3(getRhsIToken(1))
                 );
@@ -27666,7 +27667,7 @@ public class JavaParser implements RuleAction
             // Rule 84:  ClassModifier ::= static
             //
             case 84: {
-               //#line 335 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 335 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassModifier4(getRhsIToken(1))
                 );
@@ -27676,7 +27677,7 @@ public class JavaParser implements RuleAction
             // Rule 85:  ClassModifier ::= final
             //
             case 85: {
-               //#line 336 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 336 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassModifier5(getRhsIToken(1))
                 );
@@ -27686,7 +27687,7 @@ public class JavaParser implements RuleAction
             // Rule 86:  ClassModifier ::= strictfp
             //
             case 86: {
-               //#line 337 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 337 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassModifier6(getRhsIToken(1))
                 );
@@ -27696,7 +27697,7 @@ public class JavaParser implements RuleAction
             // Rule 87:  TypeParameters ::= < TypeParameterList >
             //
             case 87: {
-               //#line 339 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 339 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeParameters(getLeftIToken(), getRightIToken(),
                                        new AstToken(getRhsIToken(1)),
@@ -27714,7 +27715,7 @@ public class JavaParser implements RuleAction
             // Rule 89:  TypeParameterList ::= TypeParameterList , TypeParameter
             //
             case 89: {
-               //#line 342 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 342 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeParameterList(getLeftIToken(), getRightIToken(),
                                           (ITypeParameterList)getRhsSym(1),
@@ -27727,7 +27728,7 @@ public class JavaParser implements RuleAction
             // Rule 90:  Super ::= extends ClassType
             //
             case 90: {
-               //#line 344 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 344 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Super(getLeftIToken(), getRightIToken(),
                               new AstToken(getRhsIToken(1)),
@@ -27739,7 +27740,7 @@ public class JavaParser implements RuleAction
             // Rule 91:  Interfaces ::= implements InterfaceTypeList
             //
             case 91: {
-               //#line 351 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 351 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Interfaces(getLeftIToken(), getRightIToken(),
                                    new AstToken(getRhsIToken(1)),
@@ -27756,7 +27757,7 @@ public class JavaParser implements RuleAction
             // Rule 93:  InterfaceTypeList ::= InterfaceTypeList , InterfaceType
             //
             case 93: {
-               //#line 354 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 354 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceTypeList(getLeftIToken(), getRightIToken(),
                                           (IInterfaceTypeList)getRhsSym(1),
@@ -27769,7 +27770,7 @@ public class JavaParser implements RuleAction
             // Rule 94:  ClassBody ::= { ClassBodyDeclarationsopt }
             //
             case 94: {
-               //#line 361 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 361 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassBody(getLeftIToken(), getRightIToken(),
                                   new AstToken(getRhsIToken(1)),
@@ -27787,7 +27788,7 @@ public class JavaParser implements RuleAction
             // Rule 96:  ClassBodyDeclarations ::= ClassBodyDeclarations ClassBodyDeclaration
             //
             case 96: {
-               //#line 364 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 364 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassBodyDeclarations(getLeftIToken(), getRightIToken(),
                                               (IClassBodyDeclarations)getRhsSym(1),
@@ -27839,7 +27840,7 @@ public class JavaParser implements RuleAction
             // Rule 105:  ClassMemberDeclaration ::= ;
             //
             case 105: {
-               //#line 375 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 375 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassMemberDeclaration(getRhsIToken(1))
                 );
@@ -27849,7 +27850,7 @@ public class JavaParser implements RuleAction
             // Rule 106:  FieldDeclaration ::= FieldModifiersopt Type VariableDeclarators ;
             //
             case 106: {
-               //#line 377 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 377 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldDeclaration(getLeftIToken(), getRightIToken(),
                                          (IFieldModifiersopt)getRhsSym(1),
@@ -27868,7 +27869,7 @@ public class JavaParser implements RuleAction
             // Rule 108:  VariableDeclarators ::= VariableDeclarators , VariableDeclarator
             //
             case 108: {
-               //#line 380 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 380 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new VariableDeclarators(getLeftIToken(), getRightIToken(),
                                             (IVariableDeclarators)getRhsSym(1),
@@ -27886,7 +27887,7 @@ public class JavaParser implements RuleAction
             // Rule 110:  VariableDeclarator ::= VariableDeclaratorId = VariableInitializer
             //
             case 110: {
-               //#line 383 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 383 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new VariableDeclarator(getLeftIToken(), getRightIToken(),
                                            (IVariableDeclaratorId)getRhsSym(1),
@@ -27904,7 +27905,7 @@ public class JavaParser implements RuleAction
             // Rule 112:  VariableDeclaratorId ::= VariableDeclaratorId [ ]
             //
             case 112: {
-               //#line 386 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 386 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new VariableDeclaratorId(getLeftIToken(), getRightIToken(),
                                              (IVariableDeclaratorId)getRhsSym(1),
@@ -27932,7 +27933,7 @@ public class JavaParser implements RuleAction
             // Rule 116:  FieldModifiers ::= FieldModifiers FieldModifier
             //
             case 116: {
-               //#line 392 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 392 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldModifiers(getLeftIToken(), getRightIToken(),
                                        (IFieldModifiers)getRhsSym(1),
@@ -27949,7 +27950,7 @@ public class JavaParser implements RuleAction
             // Rule 118:  FieldModifier ::= public
             //
             case 118: {
-               //#line 395 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 395 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldModifier0(getRhsIToken(1))
                 );
@@ -27959,7 +27960,7 @@ public class JavaParser implements RuleAction
             // Rule 119:  FieldModifier ::= protected
             //
             case 119: {
-               //#line 396 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 396 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldModifier1(getRhsIToken(1))
                 );
@@ -27969,7 +27970,7 @@ public class JavaParser implements RuleAction
             // Rule 120:  FieldModifier ::= private
             //
             case 120: {
-               //#line 397 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 397 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldModifier2(getRhsIToken(1))
                 );
@@ -27979,7 +27980,7 @@ public class JavaParser implements RuleAction
             // Rule 121:  FieldModifier ::= static
             //
             case 121: {
-               //#line 398 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 398 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldModifier3(getRhsIToken(1))
                 );
@@ -27989,7 +27990,7 @@ public class JavaParser implements RuleAction
             // Rule 122:  FieldModifier ::= final
             //
             case 122: {
-               //#line 399 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 399 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldModifier4(getRhsIToken(1))
                 );
@@ -27999,7 +28000,7 @@ public class JavaParser implements RuleAction
             // Rule 123:  FieldModifier ::= transient
             //
             case 123: {
-               //#line 400 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 400 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldModifier5(getRhsIToken(1))
                 );
@@ -28009,7 +28010,7 @@ public class JavaParser implements RuleAction
             // Rule 124:  FieldModifier ::= volatile
             //
             case 124: {
-               //#line 401 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 401 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldModifier6(getRhsIToken(1))
                 );
@@ -28019,7 +28020,7 @@ public class JavaParser implements RuleAction
             // Rule 125:  MethodDeclaration ::= MethodHeader MethodBody
             //
             case 125: {
-               //#line 403 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 403 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodDeclaration(getLeftIToken(), getRightIToken(),
                                           (MethodHeader)getRhsSym(1),
@@ -28031,7 +28032,7 @@ public class JavaParser implements RuleAction
             // Rule 126:  MethodHeader ::= MethodModifiersopt TypeParametersopt ResultType MethodDeclarator Throwsopt
             //
             case 126: {
-               //#line 405 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 405 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodHeader(getLeftIToken(), getRightIToken(),
                                      (IMethodModifiersopt)getRhsSym(1),
@@ -28051,7 +28052,7 @@ public class JavaParser implements RuleAction
             // Rule 128:  ResultType ::= void
             //
             case 128: {
-               //#line 408 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 408 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ResultType(getRhsIToken(1))
                 );
@@ -28061,7 +28062,7 @@ public class JavaParser implements RuleAction
             // Rule 129:  MethodDeclarator ::= identifier ( FormalParameterListopt )
             //
             case 129: {
-               //#line 410 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 410 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodDeclarator0(getLeftIToken(), getRightIToken(),
                                           (identifier)getRhsSym(1),
@@ -28075,7 +28076,7 @@ public class JavaParser implements RuleAction
             // Rule 130:  MethodDeclarator ::= MethodDeclarator [ ]
             //
             case 130: {
-               //#line 412 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 412 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodDeclarator1(getLeftIToken(), getRightIToken(),
                                           (IMethodDeclarator)getRhsSym(1),
@@ -28093,7 +28094,7 @@ public class JavaParser implements RuleAction
             // Rule 132:  FormalParameterList ::= FormalParameters , LastFormalParameter
             //
             case 132: {
-               //#line 415 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 415 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FormalParameterList(getLeftIToken(), getRightIToken(),
                                             (IFormalParameters)getRhsSym(1),
@@ -28111,7 +28112,7 @@ public class JavaParser implements RuleAction
             // Rule 134:  FormalParameters ::= FormalParameters , FormalParameter
             //
             case 134: {
-               //#line 418 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 418 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FormalParameters(getLeftIToken(), getRightIToken(),
                                          (IFormalParameters)getRhsSym(1),
@@ -28124,7 +28125,7 @@ public class JavaParser implements RuleAction
             // Rule 135:  FormalParameter ::= VariableModifiersopt Type VariableDeclaratorId
             //
             case 135: {
-               //#line 420 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 420 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FormalParameter(getLeftIToken(), getRightIToken(),
                                         (IVariableModifiersopt)getRhsSym(1),
@@ -28142,7 +28143,7 @@ public class JavaParser implements RuleAction
             // Rule 137:  VariableModifiers ::= VariableModifiers VariableModifier
             //
             case 137: {
-               //#line 423 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 423 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new VariableModifiers(getLeftIToken(), getRightIToken(),
                                           (IVariableModifiers)getRhsSym(1),
@@ -28154,7 +28155,7 @@ public class JavaParser implements RuleAction
             // Rule 138:  VariableModifier ::= final
             //
             case 138: {
-               //#line 425 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 425 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new VariableModifier(getRhsIToken(1))
                 );
@@ -28169,7 +28170,7 @@ public class JavaParser implements RuleAction
             // Rule 140:  LastFormalParameter ::= VariableModifiersopt Type ...opt VariableDeclaratorId
             //
             case 140: {
-               //#line 428 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 428 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LastFormalParameter(getLeftIToken(), getRightIToken(),
                                             (IVariableModifiersopt)getRhsSym(1),
@@ -28188,7 +28189,7 @@ public class JavaParser implements RuleAction
             // Rule 142:  MethodModifiers ::= MethodModifiers MethodModifier
             //
             case 142: {
-               //#line 437 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 437 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifiers(getLeftIToken(), getRightIToken(),
                                         (IMethodModifiers)getRhsSym(1),
@@ -28205,7 +28206,7 @@ public class JavaParser implements RuleAction
             // Rule 144:  MethodModifier ::= public
             //
             case 144: {
-               //#line 440 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 440 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifier0(getRhsIToken(1))
                 );
@@ -28215,7 +28216,7 @@ public class JavaParser implements RuleAction
             // Rule 145:  MethodModifier ::= protected
             //
             case 145: {
-               //#line 441 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 441 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifier1(getRhsIToken(1))
                 );
@@ -28225,7 +28226,7 @@ public class JavaParser implements RuleAction
             // Rule 146:  MethodModifier ::= private
             //
             case 146: {
-               //#line 442 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 442 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifier2(getRhsIToken(1))
                 );
@@ -28235,7 +28236,7 @@ public class JavaParser implements RuleAction
             // Rule 147:  MethodModifier ::= abstract
             //
             case 147: {
-               //#line 443 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 443 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifier3(getRhsIToken(1))
                 );
@@ -28245,7 +28246,7 @@ public class JavaParser implements RuleAction
             // Rule 148:  MethodModifier ::= static
             //
             case 148: {
-               //#line 444 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 444 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifier4(getRhsIToken(1))
                 );
@@ -28255,7 +28256,7 @@ public class JavaParser implements RuleAction
             // Rule 149:  MethodModifier ::= final
             //
             case 149: {
-               //#line 445 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 445 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifier5(getRhsIToken(1))
                 );
@@ -28265,7 +28266,7 @@ public class JavaParser implements RuleAction
             // Rule 150:  MethodModifier ::= synchronized
             //
             case 150: {
-               //#line 446 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 446 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifier6(getRhsIToken(1))
                 );
@@ -28275,7 +28276,7 @@ public class JavaParser implements RuleAction
             // Rule 151:  MethodModifier ::= native
             //
             case 151: {
-               //#line 447 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 447 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifier7(getRhsIToken(1))
                 );
@@ -28285,7 +28286,7 @@ public class JavaParser implements RuleAction
             // Rule 152:  MethodModifier ::= strictfp
             //
             case 152: {
-               //#line 448 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 448 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifier8(getRhsIToken(1))
                 );
@@ -28295,7 +28296,7 @@ public class JavaParser implements RuleAction
             // Rule 153:  Throws ::= throws ExceptionTypeList
             //
             case 153: {
-               //#line 450 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 450 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Throws(getLeftIToken(), getRightIToken(),
                                new AstToken(getRhsIToken(1)),
@@ -28312,7 +28313,7 @@ public class JavaParser implements RuleAction
             // Rule 155:  ExceptionTypeList ::= ExceptionTypeList , ExceptionType
             //
             case 155: {
-               //#line 453 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 453 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExceptionTypeList(getLeftIToken(), getRightIToken(),
                                           (IExceptionTypeList)getRhsSym(1),
@@ -28340,7 +28341,7 @@ public class JavaParser implements RuleAction
             // Rule 159:  MethodBody ::= ;
             //
             case 159: {
-               //#line 459 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 459 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodBody(getRhsIToken(1))
                 );
@@ -28355,7 +28356,7 @@ public class JavaParser implements RuleAction
             // Rule 161:  StaticInitializer ::= static Block
             //
             case 161: {
-               //#line 463 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 463 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new StaticInitializer(getLeftIToken(), getRightIToken(),
                                           new AstToken(getRhsIToken(1)),
@@ -28367,7 +28368,7 @@ public class JavaParser implements RuleAction
             // Rule 162:  ConstructorDeclaration ::= ConstructorModifiersopt ConstructorDeclarator Throwsopt ConstructorBody
             //
             case 162: {
-               //#line 465 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 465 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstructorDeclaration(getLeftIToken(), getRightIToken(),
                                                (IConstructorModifiersopt)getRhsSym(1),
@@ -28381,7 +28382,7 @@ public class JavaParser implements RuleAction
             // Rule 163:  ConstructorDeclarator ::= TypeParametersopt SimpleTypeName ( FormalParameterListopt )
             //
             case 163: {
-               //#line 467 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 467 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstructorDeclarator(getLeftIToken(), getRightIToken(),
                                               (TypeParameters)getRhsSym(1),
@@ -28406,7 +28407,7 @@ public class JavaParser implements RuleAction
             // Rule 166:  ConstructorModifiers ::= ConstructorModifiers ConstructorModifier
             //
             case 166: {
-               //#line 472 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 472 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstructorModifiers(getLeftIToken(), getRightIToken(),
                                              (IConstructorModifiers)getRhsSym(1),
@@ -28423,7 +28424,7 @@ public class JavaParser implements RuleAction
             // Rule 168:  ConstructorModifier ::= public
             //
             case 168: {
-               //#line 475 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 475 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstructorModifier0(getRhsIToken(1))
                 );
@@ -28433,7 +28434,7 @@ public class JavaParser implements RuleAction
             // Rule 169:  ConstructorModifier ::= protected
             //
             case 169: {
-               //#line 476 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 476 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstructorModifier1(getRhsIToken(1))
                 );
@@ -28443,7 +28444,7 @@ public class JavaParser implements RuleAction
             // Rule 170:  ConstructorModifier ::= private
             //
             case 170: {
-               //#line 477 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 477 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstructorModifier2(getRhsIToken(1))
                 );
@@ -28453,7 +28454,7 @@ public class JavaParser implements RuleAction
             // Rule 171:  ConstructorBody ::= { ExplicitConstructorInvocationopt BlockStatementsopt }
             //
             case 171: {
-               //#line 479 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 479 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstructorBody(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -28467,7 +28468,7 @@ public class JavaParser implements RuleAction
             // Rule 172:  ExplicitConstructorInvocation ::= TypeArgumentsopt this ( ArgumentListopt ) ;
             //
             case 172: {
-               //#line 481 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 481 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExplicitConstructorInvocation0(getLeftIToken(), getRightIToken(),
                                                        (TypeArguments)getRhsSym(1),
@@ -28483,7 +28484,7 @@ public class JavaParser implements RuleAction
             // Rule 173:  ExplicitConstructorInvocation ::= TypeArgumentsopt super ( ArgumentListopt ) ;
             //
             case 173: {
-               //#line 482 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 482 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExplicitConstructorInvocation1(getLeftIToken(), getRightIToken(),
                                                        (TypeArguments)getRhsSym(1),
@@ -28499,7 +28500,7 @@ public class JavaParser implements RuleAction
             // Rule 174:  ExplicitConstructorInvocation ::= Primary . TypeArgumentsopt super ( ArgumentListopt ) ;
             //
             case 174: {
-               //#line 483 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 483 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExplicitConstructorInvocation2(getLeftIToken(), getRightIToken(),
                                                        (IPrimary)getRhsSym(1),
@@ -28517,7 +28518,7 @@ public class JavaParser implements RuleAction
             // Rule 175:  EnumDeclaration ::= ClassModifiersopt enum identifier Interfacesopt EnumBody
             //
             case 175: {
-               //#line 485 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 485 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EnumDeclaration(getLeftIToken(), getRightIToken(),
                                         (IClassModifiersopt)getRhsSym(1),
@@ -28532,7 +28533,7 @@ public class JavaParser implements RuleAction
             // Rule 176:  EnumBody ::= { EnumConstantsopt ,opt EnumBodyDeclarationsopt }
             //
             case 176: {
-               //#line 487 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 487 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EnumBody(getLeftIToken(), getRightIToken(),
                                  new AstToken(getRhsIToken(1)),
@@ -28552,7 +28553,7 @@ public class JavaParser implements RuleAction
             // Rule 178:  EnumConstants ::= EnumConstants , EnumConstant
             //
             case 178: {
-               //#line 490 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 490 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EnumConstants(getLeftIToken(), getRightIToken(),
                                       (IEnumConstants)getRhsSym(1),
@@ -28565,7 +28566,7 @@ public class JavaParser implements RuleAction
             // Rule 179:  EnumConstant ::= Annotationsopt identifier Argumentsopt ClassBodyopt
             //
             case 179: {
-               //#line 492 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 492 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EnumConstant(getLeftIToken(), getRightIToken(),
                                      (IAnnotationsopt)getRhsSym(1),
@@ -28579,7 +28580,7 @@ public class JavaParser implements RuleAction
             // Rule 180:  Arguments ::= ( ArgumentListopt )
             //
             case 180: {
-               //#line 494 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 494 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Arguments(getLeftIToken(), getRightIToken(),
                                   new AstToken(getRhsIToken(1)),
@@ -28592,7 +28593,7 @@ public class JavaParser implements RuleAction
             // Rule 181:  EnumBodyDeclarations ::= ; ClassBodyDeclarationsopt
             //
             case 181: {
-               //#line 496 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 496 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EnumBodyDeclarations(getLeftIToken(), getRightIToken(),
                                              new AstToken(getRhsIToken(1)),
@@ -28614,7 +28615,7 @@ public class JavaParser implements RuleAction
             // Rule 184:  NormalInterfaceDeclaration ::= InterfaceModifiersopt interface identifier TypeParametersopt ExtendsInterfacesopt InterfaceBody
             //
             case 184: {
-               //#line 503 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 503 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new NormalInterfaceDeclaration(getLeftIToken(), getRightIToken(),
                                                    (IInterfaceModifiersopt)getRhsSym(1),
@@ -28635,7 +28636,7 @@ public class JavaParser implements RuleAction
             // Rule 186:  InterfaceModifiers ::= InterfaceModifiers InterfaceModifier
             //
             case 186: {
-               //#line 506 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 506 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceModifiers(getLeftIToken(), getRightIToken(),
                                            (IInterfaceModifiers)getRhsSym(1),
@@ -28652,7 +28653,7 @@ public class JavaParser implements RuleAction
             // Rule 188:  InterfaceModifier ::= public
             //
             case 188: {
-               //#line 509 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 509 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceModifier0(getRhsIToken(1))
                 );
@@ -28662,7 +28663,7 @@ public class JavaParser implements RuleAction
             // Rule 189:  InterfaceModifier ::= protected
             //
             case 189: {
-               //#line 510 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 510 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceModifier1(getRhsIToken(1))
                 );
@@ -28672,7 +28673,7 @@ public class JavaParser implements RuleAction
             // Rule 190:  InterfaceModifier ::= private
             //
             case 190: {
-               //#line 511 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 511 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceModifier2(getRhsIToken(1))
                 );
@@ -28682,7 +28683,7 @@ public class JavaParser implements RuleAction
             // Rule 191:  InterfaceModifier ::= abstract
             //
             case 191: {
-               //#line 512 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 512 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceModifier3(getRhsIToken(1))
                 );
@@ -28692,7 +28693,7 @@ public class JavaParser implements RuleAction
             // Rule 192:  InterfaceModifier ::= static
             //
             case 192: {
-               //#line 513 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 513 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceModifier4(getRhsIToken(1))
                 );
@@ -28702,7 +28703,7 @@ public class JavaParser implements RuleAction
             // Rule 193:  InterfaceModifier ::= strictfp
             //
             case 193: {
-               //#line 514 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 514 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceModifier5(getRhsIToken(1))
                 );
@@ -28712,7 +28713,7 @@ public class JavaParser implements RuleAction
             // Rule 194:  ExtendsInterfaces ::= extends InterfaceType
             //
             case 194: {
-               //#line 516 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 516 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExtendsInterfaces0(getLeftIToken(), getRightIToken(),
                                            new AstToken(getRhsIToken(1)),
@@ -28724,7 +28725,7 @@ public class JavaParser implements RuleAction
             // Rule 195:  ExtendsInterfaces ::= ExtendsInterfaces , InterfaceType
             //
             case 195: {
-               //#line 517 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 517 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExtendsInterfaces1(getLeftIToken(), getRightIToken(),
                                            (IExtendsInterfaces)getRhsSym(1),
@@ -28737,7 +28738,7 @@ public class JavaParser implements RuleAction
             // Rule 196:  InterfaceBody ::= { InterfaceMemberDeclarationsopt }
             //
             case 196: {
-               //#line 524 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 524 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceBody(getLeftIToken(), getRightIToken(),
                                       new AstToken(getRhsIToken(1)),
@@ -28755,7 +28756,7 @@ public class JavaParser implements RuleAction
             // Rule 198:  InterfaceMemberDeclarations ::= InterfaceMemberDeclarations InterfaceMemberDeclaration
             //
             case 198: {
-               //#line 527 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 527 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceMemberDeclarations(getLeftIToken(), getRightIToken(),
                                                     (IInterfaceMemberDeclarations)getRhsSym(1),
@@ -28787,7 +28788,7 @@ public class JavaParser implements RuleAction
             // Rule 203:  InterfaceMemberDeclaration ::= ;
             //
             case 203: {
-               //#line 533 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 533 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceMemberDeclaration(getRhsIToken(1))
                 );
@@ -28797,7 +28798,7 @@ public class JavaParser implements RuleAction
             // Rule 204:  ConstantDeclaration ::= ConstantModifiersopt Type VariableDeclarators
             //
             case 204: {
-               //#line 535 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 535 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstantDeclaration(getLeftIToken(), getRightIToken(),
                                             (IConstantModifiersopt)getRhsSym(1),
@@ -28815,7 +28816,7 @@ public class JavaParser implements RuleAction
             // Rule 206:  ConstantModifiers ::= ConstantModifiers ConstantModifier
             //
             case 206: {
-               //#line 538 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 538 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstantModifiers(getLeftIToken(), getRightIToken(),
                                           (IConstantModifiers)getRhsSym(1),
@@ -28832,7 +28833,7 @@ public class JavaParser implements RuleAction
             // Rule 208:  ConstantModifier ::= public
             //
             case 208: {
-               //#line 541 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 541 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstantModifier0(getRhsIToken(1))
                 );
@@ -28842,7 +28843,7 @@ public class JavaParser implements RuleAction
             // Rule 209:  ConstantModifier ::= static
             //
             case 209: {
-               //#line 542 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 542 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstantModifier1(getRhsIToken(1))
                 );
@@ -28852,7 +28853,7 @@ public class JavaParser implements RuleAction
             // Rule 210:  ConstantModifier ::= final
             //
             case 210: {
-               //#line 543 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 543 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstantModifier2(getRhsIToken(1))
                 );
@@ -28862,7 +28863,7 @@ public class JavaParser implements RuleAction
             // Rule 211:  AbstractMethodDeclaration ::= AbstractMethodModifiersopt TypeParametersopt ResultType MethodDeclarator Throwsopt ;
             //
             case 211: {
-               //#line 545 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 545 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AbstractMethodDeclaration(getLeftIToken(), getRightIToken(),
                                                   (IAbstractMethodModifiersopt)getRhsSym(1),
@@ -28883,7 +28884,7 @@ public class JavaParser implements RuleAction
             // Rule 213:  AbstractMethodModifiers ::= AbstractMethodModifiers AbstractMethodModifier
             //
             case 213: {
-               //#line 548 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 548 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AbstractMethodModifiers(getLeftIToken(), getRightIToken(),
                                                 (IAbstractMethodModifiers)getRhsSym(1),
@@ -28900,7 +28901,7 @@ public class JavaParser implements RuleAction
             // Rule 215:  AbstractMethodModifier ::= public
             //
             case 215: {
-               //#line 551 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 551 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AbstractMethodModifier0(getRhsIToken(1))
                 );
@@ -28910,7 +28911,7 @@ public class JavaParser implements RuleAction
             // Rule 216:  AbstractMethodModifier ::= abstract
             //
             case 216: {
-               //#line 552 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 552 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AbstractMethodModifier1(getRhsIToken(1))
                 );
@@ -28920,7 +28921,7 @@ public class JavaParser implements RuleAction
             // Rule 217:  AnnotationTypeDeclaration ::= InterfaceModifiersopt @ interface identifier AnnotationTypeBody
             //
             case 217: {
-               //#line 554 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 554 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AnnotationTypeDeclaration(getLeftIToken(), getRightIToken(),
                                                   (IInterfaceModifiersopt)getRhsSym(1),
@@ -28935,7 +28936,7 @@ public class JavaParser implements RuleAction
             // Rule 218:  AnnotationTypeBody ::= { AnnotationTypeElementDeclarationsopt }
             //
             case 218: {
-               //#line 556 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 556 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AnnotationTypeBody(getLeftIToken(), getRightIToken(),
                                            new AstToken(getRhsIToken(1)),
@@ -28953,7 +28954,7 @@ public class JavaParser implements RuleAction
             // Rule 220:  AnnotationTypeElementDeclarations ::= AnnotationTypeElementDeclarations AnnotationTypeElementDeclaration
             //
             case 220: {
-               //#line 559 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 559 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AnnotationTypeElementDeclarations(getLeftIToken(), getRightIToken(),
                                                           (IAnnotationTypeElementDeclarations)getRhsSym(1),
@@ -28965,7 +28966,7 @@ public class JavaParser implements RuleAction
             // Rule 221:  AnnotationTypeElementDeclaration ::= AbstractMethodModifiersopt Type identifier ( ) DefaultValueopt ;
             //
             case 221: {
-               //#line 561 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 561 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AnnotationTypeElementDeclaration0(getLeftIToken(), getRightIToken(),
                                                           (IAbstractMethodModifiersopt)getRhsSym(1),
@@ -29007,7 +29008,7 @@ public class JavaParser implements RuleAction
             // Rule 227:  AnnotationTypeElementDeclaration ::= ;
             //
             case 227: {
-               //#line 567 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 567 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AnnotationTypeElementDeclaration1(getRhsIToken(1))
                 );
@@ -29017,7 +29018,7 @@ public class JavaParser implements RuleAction
             // Rule 228:  DefaultValue ::= default ElementValue
             //
             case 228: {
-               //#line 569 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 569 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new DefaultValue(getLeftIToken(), getRightIToken(),
                                      new AstToken(getRhsIToken(1)),
@@ -29034,7 +29035,7 @@ public class JavaParser implements RuleAction
             // Rule 230:  Annotations ::= Annotations Annotation
             //
             case 230: {
-               //#line 572 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 572 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Annotations(getLeftIToken(), getRightIToken(),
                                     (IAnnotations)getRhsSym(1),
@@ -29061,7 +29062,7 @@ public class JavaParser implements RuleAction
             // Rule 234:  NormalAnnotation ::= @ TypeName ( ElementValuePairsopt )
             //
             case 234: {
-               //#line 578 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 578 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new NormalAnnotation(getLeftIToken(), getRightIToken(),
                                          new AstToken(getRhsIToken(1)),
@@ -29081,7 +29082,7 @@ public class JavaParser implements RuleAction
             // Rule 236:  ElementValuePairs ::= ElementValuePairs , ElementValuePair
             //
             case 236: {
-               //#line 581 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 581 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ElementValuePairs(getLeftIToken(), getRightIToken(),
                                           (IElementValuePairs)getRhsSym(1),
@@ -29094,7 +29095,7 @@ public class JavaParser implements RuleAction
             // Rule 237:  ElementValuePair ::= SimpleName = ElementValue
             //
             case 237: {
-               //#line 583 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 583 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ElementValuePair(getLeftIToken(), getRightIToken(),
                                          (identifier)getRhsSym(1),
@@ -29127,7 +29128,7 @@ public class JavaParser implements RuleAction
             // Rule 242:  ElementValueArrayInitializer ::= { ElementValuesopt ,opt }
             //
             case 242: {
-               //#line 591 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 591 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ElementValueArrayInitializer(getLeftIToken(), getRightIToken(),
                                                      new AstToken(getRhsIToken(1)),
@@ -29146,7 +29147,7 @@ public class JavaParser implements RuleAction
             // Rule 244:  ElementValues ::= ElementValues , ElementValue
             //
             case 244: {
-               //#line 594 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 594 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ElementValues(getLeftIToken(), getRightIToken(),
                                       (IElementValues)getRhsSym(1),
@@ -29159,7 +29160,7 @@ public class JavaParser implements RuleAction
             // Rule 245:  MarkerAnnotation ::= @ TypeName
             //
             case 245: {
-               //#line 596 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 596 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MarkerAnnotation(getLeftIToken(), getRightIToken(),
                                          new AstToken(getRhsIToken(1)),
@@ -29171,7 +29172,7 @@ public class JavaParser implements RuleAction
             // Rule 246:  SingleElementAnnotation ::= @ TypeName ( ElementValue )
             //
             case 246: {
-               //#line 598 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 598 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SingleElementAnnotation(getLeftIToken(), getRightIToken(),
                                                 new AstToken(getRhsIToken(1)),
@@ -29186,7 +29187,7 @@ public class JavaParser implements RuleAction
             // Rule 247:  ArrayInitializer ::= { VariableInitializersopt ,opt }
             //
             case 247: {
-               //#line 602 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 602 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArrayInitializer(getLeftIToken(), getRightIToken(),
                                          new AstToken(getRhsIToken(1)),
@@ -29205,7 +29206,7 @@ public class JavaParser implements RuleAction
             // Rule 249:  VariableInitializers ::= VariableInitializers , VariableInitializer
             //
             case 249: {
-               //#line 605 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 605 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new VariableInitializers(getLeftIToken(), getRightIToken(),
                                              (IVariableInitializers)getRhsSym(1),
@@ -29218,7 +29219,7 @@ public class JavaParser implements RuleAction
             // Rule 250:  Block ::= { BlockStatementsopt }
             //
             case 250: {
-               //#line 621 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 621 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Block(getLeftIToken(), getRightIToken(),
                               new AstToken(getRhsIToken(1)),
@@ -29236,7 +29237,7 @@ public class JavaParser implements RuleAction
             // Rule 252:  BlockStatements ::= BlockStatements BlockStatement
             //
             case 252: {
-               //#line 624 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 624 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new BlockStatements(getLeftIToken(), getRightIToken(),
                                         (IBlockStatements)getRhsSym(1),
@@ -29263,7 +29264,7 @@ public class JavaParser implements RuleAction
             // Rule 256:  LocalVariableDeclarationStatement ::= LocalVariableDeclaration ;
             //
             case 256: {
-               //#line 630 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 630 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LocalVariableDeclarationStatement(getLeftIToken(), getRightIToken(),
                                                           (LocalVariableDeclaration)getRhsSym(1),
@@ -29275,7 +29276,7 @@ public class JavaParser implements RuleAction
             // Rule 257:  LocalVariableDeclaration ::= VariableModifiersopt Type VariableDeclarators
             //
             case 257: {
-               //#line 632 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 632 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LocalVariableDeclaration(getLeftIToken(), getRightIToken(),
                                                  (IVariableModifiersopt)getRhsSym(1),
@@ -29403,7 +29404,7 @@ public class JavaParser implements RuleAction
             // Rule 281:  IfThenStatement ::= if ( Expression ) Statement
             //
             case 281: {
-               //#line 675 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 675 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new IfThenStatement(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -29418,7 +29419,7 @@ public class JavaParser implements RuleAction
             // Rule 282:  IfThenElseStatement ::= if ( Expression ) StatementNoShortIf else Statement
             //
             case 282: {
-               //#line 677 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 677 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new IfThenElseStatement(getLeftIToken(), getRightIToken(),
                                             new AstToken(getRhsIToken(1)),
@@ -29435,7 +29436,7 @@ public class JavaParser implements RuleAction
             // Rule 283:  IfThenElseStatementNoShortIf ::= if ( Expression ) StatementNoShortIf else StatementNoShortIf
             //
             case 283: {
-               //#line 679 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 679 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new IfThenElseStatementNoShortIf(getLeftIToken(), getRightIToken(),
                                                      new AstToken(getRhsIToken(1)),
@@ -29452,7 +29453,7 @@ public class JavaParser implements RuleAction
             // Rule 284:  EmptyStatement ::= ;
             //
             case 284: {
-               //#line 681 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 681 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EmptyStatement(getRhsIToken(1))
                 );
@@ -29462,7 +29463,7 @@ public class JavaParser implements RuleAction
             // Rule 285:  LabeledStatement ::= identifier : Statement
             //
             case 285: {
-               //#line 683 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 683 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LabeledStatement(getLeftIToken(), getRightIToken(),
                                          (identifier)getRhsSym(1),
@@ -29475,7 +29476,7 @@ public class JavaParser implements RuleAction
             // Rule 286:  LabeledStatementNoShortIf ::= identifier : StatementNoShortIf
             //
             case 286: {
-               //#line 685 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 685 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LabeledStatementNoShortIf(getLeftIToken(), getRightIToken(),
                                                   (identifier)getRhsSym(1),
@@ -29488,7 +29489,7 @@ public class JavaParser implements RuleAction
             // Rule 287:  ExpressionStatement ::= StatementExpression ;
             //
             case 287: {
-               //#line 687 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 687 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExpressionStatement(getLeftIToken(), getRightIToken(),
                                             (IStatementExpression)getRhsSym(1),
@@ -29535,7 +29536,7 @@ public class JavaParser implements RuleAction
             // Rule 295:  AssertStatement ::= assert Expression ;
             //
             case 295: {
-               //#line 706 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 706 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssertStatement0(getLeftIToken(), getRightIToken(),
                                          new AstToken(getRhsIToken(1)),
@@ -29548,7 +29549,7 @@ public class JavaParser implements RuleAction
             // Rule 296:  AssertStatement ::= assert Expression : Expression ;
             //
             case 296: {
-               //#line 707 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 707 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssertStatement1(getLeftIToken(), getRightIToken(),
                                          new AstToken(getRhsIToken(1)),
@@ -29563,7 +29564,7 @@ public class JavaParser implements RuleAction
             // Rule 297:  SwitchStatement ::= switch ( Expression ) SwitchBlock
             //
             case 297: {
-               //#line 709 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 709 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchStatement(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -29578,7 +29579,7 @@ public class JavaParser implements RuleAction
             // Rule 298:  SwitchBlock ::= { SwitchBlockStatementGroupsopt SwitchLabelsopt }
             //
             case 298: {
-               //#line 711 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 711 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchBlock(getLeftIToken(), getRightIToken(),
                                     new AstToken(getRhsIToken(1)),
@@ -29597,7 +29598,7 @@ public class JavaParser implements RuleAction
             // Rule 300:  SwitchBlockStatementGroups ::= SwitchBlockStatementGroups SwitchBlockStatementGroup
             //
             case 300: {
-               //#line 714 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 714 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchBlockStatementGroups(getLeftIToken(), getRightIToken(),
                                                    (ISwitchBlockStatementGroups)getRhsSym(1),
@@ -29609,7 +29610,7 @@ public class JavaParser implements RuleAction
             // Rule 301:  SwitchBlockStatementGroup ::= SwitchLabels BlockStatements
             //
             case 301: {
-               //#line 716 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 716 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchBlockStatementGroup(getLeftIToken(), getRightIToken(),
                                                   (ISwitchLabels)getRhsSym(1),
@@ -29626,7 +29627,7 @@ public class JavaParser implements RuleAction
             // Rule 303:  SwitchLabels ::= SwitchLabels SwitchLabel
             //
             case 303: {
-               //#line 719 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 719 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchLabels(getLeftIToken(), getRightIToken(),
                                      (ISwitchLabels)getRhsSym(1),
@@ -29638,7 +29639,7 @@ public class JavaParser implements RuleAction
             // Rule 304:  SwitchLabel ::= case ConstantExpression :
             //
             case 304: {
-               //#line 721 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 721 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchLabel0(getLeftIToken(), getRightIToken(),
                                      new AstToken(getRhsIToken(1)),
@@ -29651,7 +29652,7 @@ public class JavaParser implements RuleAction
             // Rule 305:  SwitchLabel ::= case EnumConstant :
             //
             case 305: {
-               //#line 722 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 722 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchLabel1(getLeftIToken(), getRightIToken(),
                                      new AstToken(getRhsIToken(1)),
@@ -29664,7 +29665,7 @@ public class JavaParser implements RuleAction
             // Rule 306:  SwitchLabel ::= default :
             //
             case 306: {
-               //#line 723 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 723 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchLabel2(getLeftIToken(), getRightIToken(),
                                      new AstToken(getRhsIToken(1)),
@@ -29681,7 +29682,7 @@ public class JavaParser implements RuleAction
             // Rule 308:  WhileStatement ::= while ( Expression ) Statement
             //
             case 308: {
-               //#line 727 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 727 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new WhileStatement(getLeftIToken(), getRightIToken(),
                                        new AstToken(getRhsIToken(1)),
@@ -29696,7 +29697,7 @@ public class JavaParser implements RuleAction
             // Rule 309:  WhileStatementNoShortIf ::= while ( Expression ) StatementNoShortIf
             //
             case 309: {
-               //#line 729 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 729 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new WhileStatementNoShortIf(getLeftIToken(), getRightIToken(),
                                                 new AstToken(getRhsIToken(1)),
@@ -29711,7 +29712,7 @@ public class JavaParser implements RuleAction
             // Rule 310:  DoStatement ::= do Statement while ( Expression ) ;
             //
             case 310: {
-               //#line 731 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 731 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new DoStatement(getLeftIToken(), getRightIToken(),
                                     new AstToken(getRhsIToken(1)),
@@ -29738,7 +29739,7 @@ public class JavaParser implements RuleAction
             // Rule 313:  BasicForStatement ::= for ( ForInitopt ; Expressionopt ; ForUpdateopt ) Statement
             //
             case 313: {
-               //#line 736 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 736 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new BasicForStatement(getLeftIToken(), getRightIToken(),
                                           new AstToken(getRhsIToken(1)),
@@ -29757,7 +29758,7 @@ public class JavaParser implements RuleAction
             // Rule 314:  ForStatementNoShortIf ::= for ( ForInitopt ; Expressionopt ; ForUpdateopt ) StatementNoShortIf
             //
             case 314: {
-               //#line 738 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 738 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ForStatementNoShortIf(getLeftIToken(), getRightIToken(),
                                               new AstToken(getRhsIToken(1)),
@@ -29796,7 +29797,7 @@ public class JavaParser implements RuleAction
             // Rule 319:  StatementExpressionList ::= StatementExpressionList , StatementExpression
             //
             case 319: {
-               //#line 746 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 746 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new StatementExpressionList(getLeftIToken(), getRightIToken(),
                                                 (IStatementExpressionList)getRhsSym(1),
@@ -29809,7 +29810,7 @@ public class JavaParser implements RuleAction
             // Rule 320:  EnhancedForStatement ::= for ( FormalParameter : Expression ) Statement
             //
             case 320: {
-               //#line 748 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 748 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EnhancedForStatement(getLeftIToken(), getRightIToken(),
                                              new AstToken(getRhsIToken(1)),
@@ -29826,7 +29827,7 @@ public class JavaParser implements RuleAction
             // Rule 321:  BreakStatement ::= break identifieropt ;
             //
             case 321: {
-               //#line 750 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 750 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new BreakStatement(getLeftIToken(), getRightIToken(),
                                        new AstToken(getRhsIToken(1)),
@@ -29839,7 +29840,7 @@ public class JavaParser implements RuleAction
             // Rule 322:  ContinueStatement ::= continue identifieropt ;
             //
             case 322: {
-               //#line 752 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 752 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ContinueStatement(getLeftIToken(), getRightIToken(),
                                           new AstToken(getRhsIToken(1)),
@@ -29852,7 +29853,7 @@ public class JavaParser implements RuleAction
             // Rule 323:  ReturnStatement ::= return Expressionopt ;
             //
             case 323: {
-               //#line 754 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 754 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ReturnStatement(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -29865,7 +29866,7 @@ public class JavaParser implements RuleAction
             // Rule 324:  ThrowStatement ::= throw Expression ;
             //
             case 324: {
-               //#line 756 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 756 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ThrowStatement(getLeftIToken(), getRightIToken(),
                                        new AstToken(getRhsIToken(1)),
@@ -29878,7 +29879,7 @@ public class JavaParser implements RuleAction
             // Rule 325:  SynchronizedStatement ::= synchronized ( Expression ) Block
             //
             case 325: {
-               //#line 758 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 758 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SynchronizedStatement(getLeftIToken(), getRightIToken(),
                                               new AstToken(getRhsIToken(1)),
@@ -29893,7 +29894,7 @@ public class JavaParser implements RuleAction
             // Rule 326:  TryStatement ::= try Block Catches
             //
             case 326: {
-               //#line 760 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 760 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TryStatement0(getLeftIToken(), getRightIToken(),
                                       new AstToken(getRhsIToken(1)),
@@ -29906,7 +29907,7 @@ public class JavaParser implements RuleAction
             // Rule 327:  TryStatement ::= try Block Catchesopt Finally
             //
             case 327: {
-               //#line 761 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 761 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TryStatement1(getLeftIToken(), getRightIToken(),
                                       new AstToken(getRhsIToken(1)),
@@ -29925,7 +29926,7 @@ public class JavaParser implements RuleAction
             // Rule 329:  Catches ::= Catches CatchClause
             //
             case 329: {
-               //#line 764 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 764 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Catches(getLeftIToken(), getRightIToken(),
                                 (ICatches)getRhsSym(1),
@@ -29937,7 +29938,7 @@ public class JavaParser implements RuleAction
             // Rule 330:  CatchClause ::= catch ( FormalParameter ) Block
             //
             case 330: {
-               //#line 766 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 766 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new CatchClause(getLeftIToken(), getRightIToken(),
                                     new AstToken(getRhsIToken(1)),
@@ -29952,7 +29953,7 @@ public class JavaParser implements RuleAction
             // Rule 331:  Finally ::= finally Block
             //
             case 331: {
-               //#line 768 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 768 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Finally(getLeftIToken(), getRightIToken(),
                                 new AstToken(getRhsIToken(1)),
@@ -29979,7 +29980,7 @@ public class JavaParser implements RuleAction
             // Rule 335:  PrimaryNoNewArray ::= Type . class
             //
             case 335: {
-               //#line 784 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 784 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PrimaryNoNewArray0(getLeftIToken(), getRightIToken(),
                                            (IType)getRhsSym(1),
@@ -29992,7 +29993,7 @@ public class JavaParser implements RuleAction
             // Rule 336:  PrimaryNoNewArray ::= void . class
             //
             case 336: {
-               //#line 785 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 785 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PrimaryNoNewArray1(getLeftIToken(), getRightIToken(),
                                            new AstToken(getRhsIToken(1)),
@@ -30005,7 +30006,7 @@ public class JavaParser implements RuleAction
             // Rule 337:  PrimaryNoNewArray ::= this
             //
             case 337: {
-               //#line 786 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 786 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PrimaryNoNewArray2(getRhsIToken(1))
                 );
@@ -30015,7 +30016,7 @@ public class JavaParser implements RuleAction
             // Rule 338:  PrimaryNoNewArray ::= ClassName . this
             //
             case 338: {
-               //#line 787 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 787 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PrimaryNoNewArray3(getLeftIToken(), getRightIToken(),
                                            (IClassName)getRhsSym(1),
@@ -30028,7 +30029,7 @@ public class JavaParser implements RuleAction
             // Rule 339:  PrimaryNoNewArray ::= ( Expression )
             //
             case 339: {
-               //#line 788 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 788 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PrimaryNoNewArray4(getLeftIToken(), getRightIToken(),
                                            new AstToken(getRhsIToken(1)),
@@ -30061,7 +30062,7 @@ public class JavaParser implements RuleAction
             // Rule 344:  Literal ::= IntegerLiteral
             //
             case 344: {
-               //#line 794 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 794 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Literal0(getRhsIToken(1))
                 );
@@ -30071,7 +30072,7 @@ public class JavaParser implements RuleAction
             // Rule 345:  Literal ::= LongLiteral
             //
             case 345: {
-               //#line 795 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 795 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Literal1(getRhsIToken(1))
                 );
@@ -30081,7 +30082,7 @@ public class JavaParser implements RuleAction
             // Rule 346:  Literal ::= FloatingPointLiteral
             //
             case 346: {
-               //#line 796 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 796 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Literal2(getRhsIToken(1))
                 );
@@ -30091,7 +30092,7 @@ public class JavaParser implements RuleAction
             // Rule 347:  Literal ::= DoubleLiteral
             //
             case 347: {
-               //#line 797 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 797 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Literal3(getRhsIToken(1))
                 );
@@ -30106,7 +30107,7 @@ public class JavaParser implements RuleAction
             // Rule 349:  Literal ::= CharacterLiteral
             //
             case 349: {
-               //#line 799 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 799 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Literal4(getRhsIToken(1))
                 );
@@ -30116,7 +30117,7 @@ public class JavaParser implements RuleAction
             // Rule 350:  Literal ::= StringLiteral
             //
             case 350: {
-               //#line 800 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 800 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Literal5(getRhsIToken(1))
                 );
@@ -30126,7 +30127,7 @@ public class JavaParser implements RuleAction
             // Rule 351:  Literal ::= null
             //
             case 351: {
-               //#line 801 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 801 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Literal6(getRhsIToken(1))
                 );
@@ -30136,7 +30137,7 @@ public class JavaParser implements RuleAction
             // Rule 352:  BooleanLiteral ::= true
             //
             case 352: {
-               //#line 803 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 803 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new BooleanLiteral0(getRhsIToken(1))
                 );
@@ -30146,7 +30147,7 @@ public class JavaParser implements RuleAction
             // Rule 353:  BooleanLiteral ::= false
             //
             case 353: {
-               //#line 804 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 804 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new BooleanLiteral1(getRhsIToken(1))
                 );
@@ -30156,7 +30157,7 @@ public class JavaParser implements RuleAction
             // Rule 354:  ClassInstanceCreationExpression ::= new TypeArgumentsopt ClassOrInterfaceType TypeArgumentsopt ( ArgumentListopt ) ClassBodyopt
             //
             case 354: {
-               //#line 811 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 811 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassInstanceCreationExpression0(getLeftIToken(), getRightIToken(),
                                                          new AstToken(getRhsIToken(1)),
@@ -30174,7 +30175,7 @@ public class JavaParser implements RuleAction
             // Rule 355:  ClassInstanceCreationExpression ::= Primary . new TypeArgumentsopt identifier TypeArgumentsopt ( ArgumentListopt ) ClassBodyopt
             //
             case 355: {
-               //#line 812 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 812 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassInstanceCreationExpression1(getLeftIToken(), getRightIToken(),
                                                          (IPrimary)getRhsSym(1),
@@ -30199,7 +30200,7 @@ public class JavaParser implements RuleAction
             // Rule 357:  ArgumentList ::= ArgumentList , Expression
             //
             case 357: {
-               //#line 816 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 816 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArgumentList(getLeftIToken(), getRightIToken(),
                                      (IArgumentList)getRhsSym(1),
@@ -30212,7 +30213,7 @@ public class JavaParser implements RuleAction
             // Rule 358:  ArrayCreationExpression ::= new PrimitiveType DimExprs Dimsopt
             //
             case 358: {
-               //#line 826 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 826 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArrayCreationExpression0(getLeftIToken(), getRightIToken(),
                                                  new AstToken(getRhsIToken(1)),
@@ -30226,7 +30227,7 @@ public class JavaParser implements RuleAction
             // Rule 359:  ArrayCreationExpression ::= new ClassOrInterfaceType DimExprs Dimsopt
             //
             case 359: {
-               //#line 827 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 827 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArrayCreationExpression1(getLeftIToken(), getRightIToken(),
                                                  new AstToken(getRhsIToken(1)),
@@ -30240,7 +30241,7 @@ public class JavaParser implements RuleAction
             // Rule 360:  ArrayCreationExpression ::= new PrimitiveType Dims ArrayInitializer
             //
             case 360: {
-               //#line 828 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 828 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArrayCreationExpression2(getLeftIToken(), getRightIToken(),
                                                  new AstToken(getRhsIToken(1)),
@@ -30254,7 +30255,7 @@ public class JavaParser implements RuleAction
             // Rule 361:  ArrayCreationExpression ::= new ClassOrInterfaceType Dims ArrayInitializer
             //
             case 361: {
-               //#line 829 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 829 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArrayCreationExpression3(getLeftIToken(), getRightIToken(),
                                                  new AstToken(getRhsIToken(1)),
@@ -30273,7 +30274,7 @@ public class JavaParser implements RuleAction
             // Rule 363:  DimExprs ::= DimExprs DimExpr
             //
             case 363: {
-               //#line 832 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 832 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new DimExprs(getLeftIToken(), getRightIToken(),
                                  (IDimExprs)getRhsSym(1),
@@ -30285,7 +30286,7 @@ public class JavaParser implements RuleAction
             // Rule 364:  DimExpr ::= [ Expression ]
             //
             case 364: {
-               //#line 834 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 834 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new DimExpr(getLeftIToken(), getRightIToken(),
                                 new AstToken(getRhsIToken(1)),
@@ -30298,7 +30299,7 @@ public class JavaParser implements RuleAction
             // Rule 365:  Dims ::= [ ]
             //
             case 365: {
-               //#line 836 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 836 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Dims0(getLeftIToken(), getRightIToken(),
                               new AstToken(getRhsIToken(1)),
@@ -30310,7 +30311,7 @@ public class JavaParser implements RuleAction
             // Rule 366:  Dims ::= Dims [ ]
             //
             case 366: {
-               //#line 837 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 837 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Dims1(getLeftIToken(), getRightIToken(),
                               (IDims)getRhsSym(1),
@@ -30323,7 +30324,7 @@ public class JavaParser implements RuleAction
             // Rule 367:  FieldAccess ::= Primary . identifier
             //
             case 367: {
-               //#line 839 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 839 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldAccess0(getLeftIToken(), getRightIToken(),
                                      (IPrimary)getRhsSym(1),
@@ -30336,7 +30337,7 @@ public class JavaParser implements RuleAction
             // Rule 368:  FieldAccess ::= super . identifier
             //
             case 368: {
-               //#line 840 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 840 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldAccess1(getLeftIToken(), getRightIToken(),
                                      new AstToken(getRhsIToken(1)),
@@ -30349,7 +30350,7 @@ public class JavaParser implements RuleAction
             // Rule 369:  FieldAccess ::= ClassName . super . identifier
             //
             case 369: {
-               //#line 841 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 841 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldAccess2(getLeftIToken(), getRightIToken(),
                                      (IClassName)getRhsSym(1),
@@ -30364,7 +30365,7 @@ public class JavaParser implements RuleAction
             // Rule 370:  MethodInvocation ::= MethodName ( ArgumentListopt )
             //
             case 370: {
-               //#line 843 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 843 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodInvocation0(getLeftIToken(), getRightIToken(),
                                           (IMethodName)getRhsSym(1),
@@ -30378,7 +30379,7 @@ public class JavaParser implements RuleAction
             // Rule 371:  MethodInvocation ::= Primary . TypeArgumentsopt identifier ( ArgumentListopt )
             //
             case 371: {
-               //#line 844 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 844 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodInvocation1(getLeftIToken(), getRightIToken(),
                                           (IPrimary)getRhsSym(1),
@@ -30395,7 +30396,7 @@ public class JavaParser implements RuleAction
             // Rule 372:  MethodInvocation ::= super . TypeArgumentsopt identifier ( ArgumentListopt )
             //
             case 372: {
-               //#line 845 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 845 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodInvocation2(getLeftIToken(), getRightIToken(),
                                           new AstToken(getRhsIToken(1)),
@@ -30412,7 +30413,7 @@ public class JavaParser implements RuleAction
             // Rule 373:  MethodInvocation ::= ClassName . super . TypeArgumentsopt identifier ( ArgumentListopt )
             //
             case 373: {
-               //#line 846 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 846 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodInvocation3(getLeftIToken(), getRightIToken(),
                                           (IClassName)getRhsSym(1),
@@ -30431,7 +30432,7 @@ public class JavaParser implements RuleAction
             // Rule 374:  MethodInvocation ::= TypeName . TypeArguments identifier ( ArgumentListopt )
             //
             case 374: {
-               //#line 847 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 847 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodInvocation4(getLeftIToken(), getRightIToken(),
                                           (ITypeName)getRhsSym(1),
@@ -30448,7 +30449,7 @@ public class JavaParser implements RuleAction
             // Rule 375:  ArrayAccess ::= ExpressionName [ Expression ]
             //
             case 375: {
-               //#line 855 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 855 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArrayAccess0(getLeftIToken(), getRightIToken(),
                                      (IExpressionName)getRhsSym(1),
@@ -30462,7 +30463,7 @@ public class JavaParser implements RuleAction
             // Rule 376:  ArrayAccess ::= PrimaryNoNewArray [ Expression ]
             //
             case 376: {
-               //#line 856 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 856 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArrayAccess1(getLeftIToken(), getRightIToken(),
                                      (IPrimaryNoNewArray)getRhsSym(1),
@@ -30496,7 +30497,7 @@ public class JavaParser implements RuleAction
             // Rule 381:  PostIncrementExpression ::= PostfixExpression ++
             //
             case 381: {
-               //#line 863 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 863 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PostIncrementExpression(getLeftIToken(), getRightIToken(),
                                                 (IPostfixExpression)getRhsSym(1),
@@ -30508,7 +30509,7 @@ public class JavaParser implements RuleAction
             // Rule 382:  PostDecrementExpression ::= PostfixExpression --
             //
             case 382: {
-               //#line 865 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 865 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PostDecrementExpression(getLeftIToken(), getRightIToken(),
                                                 (IPostfixExpression)getRhsSym(1),
@@ -30530,7 +30531,7 @@ public class JavaParser implements RuleAction
             // Rule 385:  UnaryExpression ::= + UnaryExpression
             //
             case 385: {
-               //#line 869 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 869 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new UnaryExpression0(getLeftIToken(), getRightIToken(),
                                          new AstToken(getRhsIToken(1)),
@@ -30542,7 +30543,7 @@ public class JavaParser implements RuleAction
             // Rule 386:  UnaryExpression ::= - UnaryExpression
             //
             case 386: {
-               //#line 870 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 870 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new UnaryExpression1(getLeftIToken(), getRightIToken(),
                                          new AstToken(getRhsIToken(1)),
@@ -30559,7 +30560,7 @@ public class JavaParser implements RuleAction
             // Rule 388:  PreIncrementExpression ::= ++ UnaryExpression
             //
             case 388: {
-               //#line 873 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 873 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PreIncrementExpression(getLeftIToken(), getRightIToken(),
                                                new AstToken(getRhsIToken(1)),
@@ -30571,7 +30572,7 @@ public class JavaParser implements RuleAction
             // Rule 389:  PreDecrementExpression ::= -- UnaryExpression
             //
             case 389: {
-               //#line 875 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 875 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PreDecrementExpression(getLeftIToken(), getRightIToken(),
                                                new AstToken(getRhsIToken(1)),
@@ -30588,7 +30589,7 @@ public class JavaParser implements RuleAction
             // Rule 391:  UnaryExpressionNotPlusMinus ::= ~ UnaryExpression
             //
             case 391: {
-               //#line 878 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 878 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new UnaryExpressionNotPlusMinus0(getLeftIToken(), getRightIToken(),
                                                      new AstToken(getRhsIToken(1)),
@@ -30600,7 +30601,7 @@ public class JavaParser implements RuleAction
             // Rule 392:  UnaryExpressionNotPlusMinus ::= ! UnaryExpression
             //
             case 392: {
-               //#line 879 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 879 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new UnaryExpressionNotPlusMinus1(getLeftIToken(), getRightIToken(),
                                                      new AstToken(getRhsIToken(1)),
@@ -30617,7 +30618,7 @@ public class JavaParser implements RuleAction
             // Rule 394:  CastExpression ::= ( PrimitiveType Dimsopt ) UnaryExpression
             //
             case 394: {
-               //#line 882 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 882 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new CastExpression0(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -30632,7 +30633,7 @@ public class JavaParser implements RuleAction
             // Rule 395:  CastExpression ::= ( ReferenceType ) UnaryExpressionNotPlusMinus
             //
             case 395: {
-               //#line 883 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 883 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new CastExpression1(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -30651,7 +30652,7 @@ public class JavaParser implements RuleAction
             // Rule 397:  MultiplicativeExpression ::= MultiplicativeExpression * UnaryExpression
             //
             case 397: {
-               //#line 886 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 886 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MultiplicativeExpression0(getLeftIToken(), getRightIToken(),
                                                   (IMultiplicativeExpression)getRhsSym(1),
@@ -30664,7 +30665,7 @@ public class JavaParser implements RuleAction
             // Rule 398:  MultiplicativeExpression ::= MultiplicativeExpression / UnaryExpression
             //
             case 398: {
-               //#line 887 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 887 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MultiplicativeExpression1(getLeftIToken(), getRightIToken(),
                                                   (IMultiplicativeExpression)getRhsSym(1),
@@ -30677,7 +30678,7 @@ public class JavaParser implements RuleAction
             // Rule 399:  MultiplicativeExpression ::= MultiplicativeExpression % UnaryExpression
             //
             case 399: {
-               //#line 888 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 888 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MultiplicativeExpression2(getLeftIToken(), getRightIToken(),
                                                   (IMultiplicativeExpression)getRhsSym(1),
@@ -30695,7 +30696,7 @@ public class JavaParser implements RuleAction
             // Rule 401:  AdditiveExpression ::= AdditiveExpression + MultiplicativeExpression
             //
             case 401: {
-               //#line 891 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 891 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AdditiveExpression0(getLeftIToken(), getRightIToken(),
                                             (IAdditiveExpression)getRhsSym(1),
@@ -30708,7 +30709,7 @@ public class JavaParser implements RuleAction
             // Rule 402:  AdditiveExpression ::= AdditiveExpression - MultiplicativeExpression
             //
             case 402: {
-               //#line 892 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 892 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AdditiveExpression1(getLeftIToken(), getRightIToken(),
                                             (IAdditiveExpression)getRhsSym(1),
@@ -30726,7 +30727,7 @@ public class JavaParser implements RuleAction
             // Rule 404:  ShiftExpression ::= ShiftExpression << AdditiveExpression
             //
             case 404: {
-               //#line 895 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 895 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ShiftExpression0(getLeftIToken(), getRightIToken(),
                                          (IShiftExpression)getRhsSym(1),
@@ -30739,7 +30740,7 @@ public class JavaParser implements RuleAction
             // Rule 405:  ShiftExpression ::= ShiftExpression > > AdditiveExpression
             //
             case 405: {
-               //#line 896 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 896 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ShiftExpression1(getLeftIToken(), getRightIToken(),
                                          (IShiftExpression)getRhsSym(1),
@@ -30753,7 +30754,7 @@ public class JavaParser implements RuleAction
             // Rule 406:  ShiftExpression ::= ShiftExpression > > > AdditiveExpression
             //
             case 406: {
-               //#line 897 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 897 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ShiftExpression2(getLeftIToken(), getRightIToken(),
                                          (IShiftExpression)getRhsSym(1),
@@ -30773,7 +30774,7 @@ public class JavaParser implements RuleAction
             // Rule 408:  RelationalExpression ::= RelationalExpression < ShiftExpression
             //
             case 408: {
-               //#line 900 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 900 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new RelationalExpression0(getLeftIToken(), getRightIToken(),
                                               (IRelationalExpression)getRhsSym(1),
@@ -30786,7 +30787,7 @@ public class JavaParser implements RuleAction
             // Rule 409:  RelationalExpression ::= RelationalExpression > ShiftExpression
             //
             case 409: {
-               //#line 901 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 901 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new RelationalExpression1(getLeftIToken(), getRightIToken(),
                                               (IRelationalExpression)getRhsSym(1),
@@ -30799,7 +30800,7 @@ public class JavaParser implements RuleAction
             // Rule 410:  RelationalExpression ::= RelationalExpression <= ShiftExpression
             //
             case 410: {
-               //#line 902 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 902 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new RelationalExpression2(getLeftIToken(), getRightIToken(),
                                               (IRelationalExpression)getRhsSym(1),
@@ -30812,7 +30813,7 @@ public class JavaParser implements RuleAction
             // Rule 411:  RelationalExpression ::= RelationalExpression > = ShiftExpression
             //
             case 411: {
-               //#line 903 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 903 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new RelationalExpression3(getLeftIToken(), getRightIToken(),
                                               (IRelationalExpression)getRhsSym(1),
@@ -30826,7 +30827,7 @@ public class JavaParser implements RuleAction
             // Rule 412:  RelationalExpression ::= RelationalExpression instanceof ReferenceType
             //
             case 412: {
-               //#line 904 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 904 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new RelationalExpression4(getLeftIToken(), getRightIToken(),
                                               (IRelationalExpression)getRhsSym(1),
@@ -30844,7 +30845,7 @@ public class JavaParser implements RuleAction
             // Rule 414:  EqualityExpression ::= EqualityExpression == RelationalExpression
             //
             case 414: {
-               //#line 907 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 907 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EqualityExpression0(getLeftIToken(), getRightIToken(),
                                             (IEqualityExpression)getRhsSym(1),
@@ -30857,7 +30858,7 @@ public class JavaParser implements RuleAction
             // Rule 415:  EqualityExpression ::= EqualityExpression != RelationalExpression
             //
             case 415: {
-               //#line 908 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 908 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EqualityExpression1(getLeftIToken(), getRightIToken(),
                                             (IEqualityExpression)getRhsSym(1),
@@ -30875,7 +30876,7 @@ public class JavaParser implements RuleAction
             // Rule 417:  AndExpression ::= AndExpression & EqualityExpression
             //
             case 417: {
-               //#line 911 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 911 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AndExpression(getLeftIToken(), getRightIToken(),
                                       (IAndExpression)getRhsSym(1),
@@ -30893,7 +30894,7 @@ public class JavaParser implements RuleAction
             // Rule 419:  ExclusiveOrExpression ::= ExclusiveOrExpression ^ AndExpression
             //
             case 419: {
-               //#line 914 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 914 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExclusiveOrExpression(getLeftIToken(), getRightIToken(),
                                               (IExclusiveOrExpression)getRhsSym(1),
@@ -30911,7 +30912,7 @@ public class JavaParser implements RuleAction
             // Rule 421:  InclusiveOrExpression ::= InclusiveOrExpression | ExclusiveOrExpression
             //
             case 421: {
-               //#line 917 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 917 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InclusiveOrExpression(getLeftIToken(), getRightIToken(),
                                               (IInclusiveOrExpression)getRhsSym(1),
@@ -30929,7 +30930,7 @@ public class JavaParser implements RuleAction
             // Rule 423:  ConditionalAndExpression ::= ConditionalAndExpression && InclusiveOrExpression
             //
             case 423: {
-               //#line 920 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 920 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConditionalAndExpression(getLeftIToken(), getRightIToken(),
                                                  (IConditionalAndExpression)getRhsSym(1),
@@ -30947,7 +30948,7 @@ public class JavaParser implements RuleAction
             // Rule 425:  ConditionalOrExpression ::= ConditionalOrExpression || ConditionalAndExpression
             //
             case 425: {
-               //#line 923 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 923 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConditionalOrExpression(getLeftIToken(), getRightIToken(),
                                                 (IConditionalOrExpression)getRhsSym(1),
@@ -30965,7 +30966,7 @@ public class JavaParser implements RuleAction
             // Rule 427:  ConditionalExpression ::= ConditionalOrExpression ? Expression : ConditionalExpression
             //
             case 427: {
-               //#line 926 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 926 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConditionalExpression(getLeftIToken(), getRightIToken(),
                                               (IConditionalOrExpression)getRhsSym(1),
@@ -30990,7 +30991,7 @@ public class JavaParser implements RuleAction
             // Rule 430:  Assignment ::= LeftHandSide AssignmentOperator AssignmentExpression
             //
             case 430: {
-               //#line 931 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 931 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Assignment(getLeftIToken(), getRightIToken(),
                                    (ILeftHandSide)getRhsSym(1),
@@ -31018,7 +31019,7 @@ public class JavaParser implements RuleAction
             // Rule 434:  AssignmentOperator ::= =
             //
             case 434: {
-               //#line 937 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 937 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator0(getRhsIToken(1))
                 );
@@ -31028,7 +31029,7 @@ public class JavaParser implements RuleAction
             // Rule 435:  AssignmentOperator ::= *=
             //
             case 435: {
-               //#line 938 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 938 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator1(getRhsIToken(1))
                 );
@@ -31038,7 +31039,7 @@ public class JavaParser implements RuleAction
             // Rule 436:  AssignmentOperator ::= /=
             //
             case 436: {
-               //#line 939 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 939 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator2(getRhsIToken(1))
                 );
@@ -31048,7 +31049,7 @@ public class JavaParser implements RuleAction
             // Rule 437:  AssignmentOperator ::= %=
             //
             case 437: {
-               //#line 940 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 940 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator3(getRhsIToken(1))
                 );
@@ -31058,7 +31059,7 @@ public class JavaParser implements RuleAction
             // Rule 438:  AssignmentOperator ::= +=
             //
             case 438: {
-               //#line 941 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 941 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator4(getRhsIToken(1))
                 );
@@ -31068,7 +31069,7 @@ public class JavaParser implements RuleAction
             // Rule 439:  AssignmentOperator ::= -=
             //
             case 439: {
-               //#line 942 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 942 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator5(getRhsIToken(1))
                 );
@@ -31078,7 +31079,7 @@ public class JavaParser implements RuleAction
             // Rule 440:  AssignmentOperator ::= <<=
             //
             case 440: {
-               //#line 943 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 943 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator6(getRhsIToken(1))
                 );
@@ -31088,7 +31089,7 @@ public class JavaParser implements RuleAction
             // Rule 441:  AssignmentOperator ::= > > =
             //
             case 441: {
-               //#line 944 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 944 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator7(getLeftIToken(), getRightIToken(),
                                             new AstToken(getRhsIToken(1)),
@@ -31101,7 +31102,7 @@ public class JavaParser implements RuleAction
             // Rule 442:  AssignmentOperator ::= > > > =
             //
             case 442: {
-               //#line 945 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 945 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator8(getLeftIToken(), getRightIToken(),
                                             new AstToken(getRhsIToken(1)),
@@ -31115,7 +31116,7 @@ public class JavaParser implements RuleAction
             // Rule 443:  AssignmentOperator ::= &=
             //
             case 443: {
-               //#line 946 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 946 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator9(getRhsIToken(1))
                 );
@@ -31125,7 +31126,7 @@ public class JavaParser implements RuleAction
             // Rule 444:  AssignmentOperator ::= ^=
             //
             case 444: {
-               //#line 947 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 947 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator10(getRhsIToken(1))
                 );
@@ -31135,7 +31136,7 @@ public class JavaParser implements RuleAction
             // Rule 445:  AssignmentOperator ::= |=
             //
             case 445: {
-               //#line 948 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 948 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AssignmentOperator11(getRhsIToken(1))
                 );
@@ -31155,7 +31156,7 @@ public class JavaParser implements RuleAction
             // Rule 448:  Dimsopt ::= $Empty
             //
             case 448: {
-               //#line 957 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 957 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31168,7 +31169,7 @@ public class JavaParser implements RuleAction
             // Rule 450:  Catchesopt ::= $Empty
             //
             case 450: {
-               //#line 960 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 960 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31181,7 +31182,7 @@ public class JavaParser implements RuleAction
             // Rule 452:  identifieropt ::= $Empty
             //
             case 452: {
-               //#line 963 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 963 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31194,7 +31195,7 @@ public class JavaParser implements RuleAction
             // Rule 454:  ForUpdateopt ::= $Empty
             //
             case 454: {
-               //#line 966 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 966 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31207,7 +31208,7 @@ public class JavaParser implements RuleAction
             // Rule 456:  Expressionopt ::= $Empty
             //
             case 456: {
-               //#line 969 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 969 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31220,7 +31221,7 @@ public class JavaParser implements RuleAction
             // Rule 458:  ForInitopt ::= $Empty
             //
             case 458: {
-               //#line 972 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 972 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31233,7 +31234,7 @@ public class JavaParser implements RuleAction
             // Rule 460:  SwitchLabelsopt ::= $Empty
             //
             case 460: {
-               //#line 975 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 975 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31246,7 +31247,7 @@ public class JavaParser implements RuleAction
             // Rule 462:  SwitchBlockStatementGroupsopt ::= $Empty
             //
             case 462: {
-               //#line 978 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 978 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31259,7 +31260,7 @@ public class JavaParser implements RuleAction
             // Rule 464:  VariableModifiersopt ::= $Empty
             //
             case 464: {
-               //#line 981 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 981 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31272,7 +31273,7 @@ public class JavaParser implements RuleAction
             // Rule 466:  VariableInitializersopt ::= $Empty
             //
             case 466: {
-               //#line 984 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 984 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31285,7 +31286,7 @@ public class JavaParser implements RuleAction
             // Rule 468:  ElementValuesopt ::= $Empty
             //
             case 468: {
-               //#line 987 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 987 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31298,7 +31299,7 @@ public class JavaParser implements RuleAction
             // Rule 470:  ElementValuePairsopt ::= $Empty
             //
             case 470: {
-               //#line 990 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 990 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31311,7 +31312,7 @@ public class JavaParser implements RuleAction
             // Rule 472:  DefaultValueopt ::= $Empty
             //
             case 472: {
-               //#line 993 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 993 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31324,7 +31325,7 @@ public class JavaParser implements RuleAction
             // Rule 474:  AnnotationTypeElementDeclarationsopt ::= $Empty
             //
             case 474: {
-               //#line 996 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 996 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31337,7 +31338,7 @@ public class JavaParser implements RuleAction
             // Rule 476:  AbstractMethodModifiersopt ::= $Empty
             //
             case 476: {
-               //#line 999 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 999 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31350,7 +31351,7 @@ public class JavaParser implements RuleAction
             // Rule 478:  ConstantModifiersopt ::= $Empty
             //
             case 478: {
-               //#line 1002 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1002 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31363,7 +31364,7 @@ public class JavaParser implements RuleAction
             // Rule 480:  InterfaceMemberDeclarationsopt ::= $Empty
             //
             case 480: {
-               //#line 1005 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1005 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31376,7 +31377,7 @@ public class JavaParser implements RuleAction
             // Rule 482:  ExtendsInterfacesopt ::= $Empty
             //
             case 482: {
-               //#line 1008 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1008 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31389,7 +31390,7 @@ public class JavaParser implements RuleAction
             // Rule 484:  InterfaceModifiersopt ::= $Empty
             //
             case 484: {
-               //#line 1011 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1011 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31402,7 +31403,7 @@ public class JavaParser implements RuleAction
             // Rule 486:  ClassBodyopt ::= $Empty
             //
             case 486: {
-               //#line 1014 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1014 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31415,7 +31416,7 @@ public class JavaParser implements RuleAction
             // Rule 488:  Argumentsopt ::= $Empty
             //
             case 488: {
-               //#line 1017 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1017 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31428,7 +31429,7 @@ public class JavaParser implements RuleAction
             // Rule 490:  EnumBodyDeclarationsopt ::= $Empty
             //
             case 490: {
-               //#line 1020 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1020 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31441,7 +31442,7 @@ public class JavaParser implements RuleAction
             // Rule 492:  ,opt ::= $Empty
             //
             case 492: {
-               //#line 1023 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1023 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31449,7 +31450,7 @@ public class JavaParser implements RuleAction
             // Rule 493:  ,opt ::= ,
             //
             case 493: {
-               //#line 1024 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1024 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Commaopt(getRhsIToken(1))
                 );
@@ -31459,7 +31460,7 @@ public class JavaParser implements RuleAction
             // Rule 494:  EnumConstantsopt ::= $Empty
             //
             case 494: {
-               //#line 1026 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1026 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31472,7 +31473,7 @@ public class JavaParser implements RuleAction
             // Rule 496:  ArgumentListopt ::= $Empty
             //
             case 496: {
-               //#line 1029 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1029 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31485,7 +31486,7 @@ public class JavaParser implements RuleAction
             // Rule 498:  BlockStatementsopt ::= $Empty
             //
             case 498: {
-               //#line 1032 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1032 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31498,7 +31499,7 @@ public class JavaParser implements RuleAction
             // Rule 500:  ExplicitConstructorInvocationopt ::= $Empty
             //
             case 500: {
-               //#line 1035 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1035 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31511,7 +31512,7 @@ public class JavaParser implements RuleAction
             // Rule 502:  ConstructorModifiersopt ::= $Empty
             //
             case 502: {
-               //#line 1038 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1038 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31524,7 +31525,7 @@ public class JavaParser implements RuleAction
             // Rule 504:  ...opt ::= $Empty
             //
             case 504: {
-               //#line 1041 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1041 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31532,7 +31533,7 @@ public class JavaParser implements RuleAction
             // Rule 505:  ...opt ::= ...
             //
             case 505: {
-               //#line 1042 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1042 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Ellipsisopt(getRhsIToken(1))
                 );
@@ -31542,7 +31543,7 @@ public class JavaParser implements RuleAction
             // Rule 506:  FormalParameterListopt ::= $Empty
             //
             case 506: {
-               //#line 1044 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1044 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31555,7 +31556,7 @@ public class JavaParser implements RuleAction
             // Rule 508:  Throwsopt ::= $Empty
             //
             case 508: {
-               //#line 1047 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1047 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31568,7 +31569,7 @@ public class JavaParser implements RuleAction
             // Rule 510:  MethodModifiersopt ::= $Empty
             //
             case 510: {
-               //#line 1050 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1050 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31581,7 +31582,7 @@ public class JavaParser implements RuleAction
             // Rule 512:  FieldModifiersopt ::= $Empty
             //
             case 512: {
-               //#line 1053 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1053 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31594,7 +31595,7 @@ public class JavaParser implements RuleAction
             // Rule 514:  ClassBodyDeclarationsopt ::= $Empty
             //
             case 514: {
-               //#line 1056 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1056 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31607,7 +31608,7 @@ public class JavaParser implements RuleAction
             // Rule 516:  Interfacesopt ::= $Empty
             //
             case 516: {
-               //#line 1059 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1059 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31620,7 +31621,7 @@ public class JavaParser implements RuleAction
             // Rule 518:  Superopt ::= $Empty
             //
             case 518: {
-               //#line 1062 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1062 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31633,7 +31634,7 @@ public class JavaParser implements RuleAction
             // Rule 520:  TypeParametersopt ::= $Empty
             //
             case 520: {
-               //#line 1065 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1065 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31646,7 +31647,7 @@ public class JavaParser implements RuleAction
             // Rule 522:  ClassModifiersopt ::= $Empty
             //
             case 522: {
-               //#line 1068 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1068 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31659,7 +31660,7 @@ public class JavaParser implements RuleAction
             // Rule 524:  Annotationsopt ::= $Empty
             //
             case 524: {
-               //#line 1071 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1071 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31672,7 +31673,7 @@ public class JavaParser implements RuleAction
             // Rule 526:  TypeDeclarationsopt ::= $Empty
             //
             case 526: {
-               //#line 1074 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1074 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31685,7 +31686,7 @@ public class JavaParser implements RuleAction
             // Rule 528:  ImportDeclarationsopt ::= $Empty
             //
             case 528: {
-               //#line 1077 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1077 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31698,7 +31699,7 @@ public class JavaParser implements RuleAction
             // Rule 530:  PackageDeclarationopt ::= $Empty
             //
             case 530: {
-               //#line 1080 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1080 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31711,7 +31712,7 @@ public class JavaParser implements RuleAction
             // Rule 532:  WildcardBoundsOpt ::= $Empty
             //
             case 532: {
-               //#line 1083 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1083 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31724,7 +31725,7 @@ public class JavaParser implements RuleAction
             // Rule 534:  AdditionalBoundListopt ::= $Empty
             //
             case 534: {
-               //#line 1086 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1086 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31737,7 +31738,7 @@ public class JavaParser implements RuleAction
             // Rule 536:  TypeBoundopt ::= $Empty
             //
             case 536: {
-               //#line 1089 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1089 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31750,7 +31751,7 @@ public class JavaParser implements RuleAction
             // Rule 538:  TypeArgumentsopt ::= $Empty
             //
             case 538: {
-               //#line 1092 "/Developer/eclipse-3.3.2/plugins/lpg.generator_2.0.16/templates/java/btParserTemplateF.gi"
+               //#line 1092 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }

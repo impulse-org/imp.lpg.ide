@@ -38,8 +38,8 @@ import org.eclipse.imp.lpg.parser.LPGParser.option;
 import org.eclipse.imp.lpg.parser.LPGParser.optionList;
 import org.eclipse.imp.lpg.parser.LPGParser.option_spec;
 import org.eclipse.imp.lpg.parser.LPGParser.option_specList;
-import org.eclipse.imp.lpg.parser.LPGParser.option_value0;
-import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs1;
+import org.eclipse.imp.lpg.parser.LPGParser.option_value__EQUAL_SYMBOL;
+import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs__SYMBOL_optAttrList;
 import org.eclipse.imp.lpg.parser.LPGParser.terminal;
 import org.eclipse.imp.lpg.preferences.LPGConstants;
 import org.eclipse.imp.model.ICompilationUnit;
@@ -117,8 +117,8 @@ public class ASTUtils {
                         || optName.equals("template")
                         || optName.equals("filter")) {
                     Ioption_value optValue= opt.getoption_value();
-                    if (optValue instanceof option_value0) {
-                        String fileName= ((option_value0) optValue).getSYMBOL().toString();
+                    if (optValue instanceof option_value__EQUAL_SYMBOL) {
+                        String fileName= ((option_value__EQUAL_SYMBOL) optValue).getSYMBOL().toString();
                         result.add(fileName);
                         if (optName.equals("import_terminals")) {
                             // pick up defs from the filter
@@ -277,7 +277,7 @@ public class ASTUtils {
             nt.accept(new AbstractVisitor() {
                 public void unimplementedVisitor(String s) {}
 
-                public boolean visit(symWithAttrs1 n) {
+                public boolean visit(symWithAttrs__SYMBOL_optAttrList n) {
                     if (n.getSYMBOL().toString().equals(nonTermName))
                         result.add(n);
                     return super.visit(n);
@@ -314,7 +314,7 @@ public class ASTUtils {
             nt.accept(new AbstractVisitor() {
                 public void unimplementedVisitor(String s) {}
 
-                public boolean visit(symWithAttrs1 n) {
+                public boolean visit(symWithAttrs__SYMBOL_optAttrList n) {
                     if (n.getSYMBOL().toString().equals(symbolName))
                         result.add(n);
                     return super.visit(n);

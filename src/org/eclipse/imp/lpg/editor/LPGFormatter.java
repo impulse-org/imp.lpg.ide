@@ -21,11 +21,42 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import lpg.runtime.IAst;
 import lpg.runtime.IToken;
 
 import org.eclipse.imp.language.ILanguageService;
 import org.eclipse.imp.lpg.parser.LPGParser;
-import org.eclipse.imp.lpg.parser.LPGParser.*;
+import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
+import org.eclipse.imp.lpg.parser.LPGParser.DefineSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.EofSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.GlobalsSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.HeadersSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.IdentifierSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.LPG;
+import org.eclipse.imp.lpg.parser.LPGParser.NoticeSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.RuleName;
+import org.eclipse.imp.lpg.parser.LPGParser.RulesSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.SYMBOLList;
+import org.eclipse.imp.lpg.parser.LPGParser.StartSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.TerminalsSeg;
+import org.eclipse.imp.lpg.parser.LPGParser.action_segment;
+import org.eclipse.imp.lpg.parser.LPGParser.defineSpec;
+import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
+import org.eclipse.imp.lpg.parser.LPGParser.nonTermList;
+import org.eclipse.imp.lpg.parser.LPGParser.option;
+import org.eclipse.imp.lpg.parser.LPGParser.optionList;
+import org.eclipse.imp.lpg.parser.LPGParser.option_spec;
+import org.eclipse.imp.lpg.parser.LPGParser.option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN;
+import org.eclipse.imp.lpg.parser.LPGParser.option_value__EQUAL_SYMBOL;
+import org.eclipse.imp.lpg.parser.LPGParser.rule;
+import org.eclipse.imp.lpg.parser.LPGParser.rules_segment;
+import org.eclipse.imp.lpg.parser.LPGParser.start_symbol__MACRO_NAME;
+import org.eclipse.imp.lpg.parser.LPGParser.start_symbol__SYMBOL;
+import org.eclipse.imp.lpg.parser.LPGParser.symAttrs;
+import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs__EMPTY_KEY;
+import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs__SYMBOL_optAttrList;
+import org.eclipse.imp.lpg.parser.LPGParser.terminal;
+import org.eclipse.imp.lpg.parser.LPGParser.terminal_symbol__SYMBOL;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.services.ISourceFormatter;
 
@@ -48,7 +79,7 @@ public class LPGFormatter implements ILanguageService, ISourceFormatter {
     public String format(IParseController parseController, String content, boolean isLineStart, String indentation, int[] positions) {
         final StringBuffer fBuff= new StringBuffer();
         final Set fAdjunctTokens= new HashSet();
-        final ASTNode[] fAdjunctNode= new ASTNode[1];
+        final IAst[] adjunctNode= new ASTNode[1];
         final List/*<IToken>*/ fFollowingAdjuncts= new ArrayList();
         LPG root= (LPG) parseController.getCurrentAst();
 
@@ -58,7 +89,7 @@ public class LPGFormatter implements ILanguageService, ISourceFormatter {
             public void unimplementedVisitor(String s) {
                 System.out.println("Unhandled node type: " + s);
             }
-            public boolean preVisit(ASTNode n) {
+            public boolean preVisit(IAst n) {
                 IToken left= n.getLeftIToken();
                 IToken[] precAdjuncts= left.getPrecedingAdjuncts();
 
@@ -83,12 +114,12 @@ public class LPGFormatter implements ILanguageService, ISourceFormatter {
                 	    fAdjunctTokens.add(adjunct);
                 	}
                     }
-                    fAdjunctNode[0]= n;
+                    adjunctNode[0]= n;
                 }
                 return true;
             }
-            public void postVisit(ASTNode n) {
-        	if (n == fAdjunctNode[0]) {
+            public void postVisit(IAst n) {
+        	if (n == adjunctNode[0]) {
         	    for(Iterator iter= fFollowingAdjuncts.iterator(); iter.hasNext(); ) {
         		IToken adjunct= (IToken) iter.next();
 		    
@@ -117,11 +148,11 @@ public class LPGFormatter implements ILanguageService, ISourceFormatter {
                 fBuff.append(n.getSYMBOL());
                 return true;
             }
-            public boolean visit(option_value0 n) {
+            public boolean visit(option_value__EQUAL_SYMBOL n) {
                 fBuff.append("=" + n.getSYMBOL());
                 return false;
             }
-            public boolean visit(option_value1 n) {
+            public boolean visit(option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN n) {
                 fBuff.append('(');
                 SYMBOLList symList= n.getsymbol_list();
                 for(int i=0; i < symList.size(); i++) {
@@ -166,7 +197,7 @@ public class LPGFormatter implements ILanguageService, ISourceFormatter {
             public void endVisit(EofSeg n) {
                 fBuff.append("$End\n\n");
             }
-            public boolean visit(terminal_symbol0 n) {
+            public boolean visit(terminal_symbol__SYMBOL n) {
                 fBuff.append(fIndentString);
                 fBuff.append(n.getSYMBOL());
                 fBuff.append('\n');
@@ -207,13 +238,13 @@ public class LPGFormatter implements ILanguageService, ISourceFormatter {
             public void endVisit(StartSeg n) {
                 fBuff.append("$End\n\n");
             }
-            public boolean visit(start_symbol0 n) {
+            public boolean visit(start_symbol__SYMBOL n) {
                 fBuff.append(fIndentString);
                 fBuff.append(n.getSYMBOL());
                 fBuff.append('\n');
                 return false;
             }
-            public boolean visit(start_symbol1 n) {
+            public boolean visit(start_symbol__MACRO_NAME n) {
                 fBuff.append(n.getMACRO_NAME());
                 return false;
             }
@@ -288,12 +319,12 @@ public class LPGFormatter implements ILanguageService, ISourceFormatter {
                 fBuff.append('\n');
                 return false;
             }
-            public boolean visit(symWithAttrs0 n) {
+            public boolean visit(symWithAttrs__EMPTY_KEY n) {
                 fBuff.append(' ');
                 fBuff.append(n.getEMPTY_KEY());
                 return false;
             }
-            public boolean visit(symWithAttrs1 n) {
+            public boolean visit(symWithAttrs__SYMBOL_optAttrList n) {
                 fBuff.append(' ');
                 fBuff.append(n.getSYMBOL());
                 return false;

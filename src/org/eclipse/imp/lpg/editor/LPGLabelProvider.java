@@ -51,9 +51,9 @@ import org.eclipse.imp.lpg.parser.LPGParser.action_segment;
 import org.eclipse.imp.lpg.parser.LPGParser.action_segmentList;
 import org.eclipse.imp.lpg.parser.LPGParser.defineSpec;
 import org.eclipse.imp.lpg.parser.LPGParser.defineSpecList;
-import org.eclipse.imp.lpg.parser.LPGParser.drop_command0;
-import org.eclipse.imp.lpg.parser.LPGParser.drop_command1;
 import org.eclipse.imp.lpg.parser.LPGParser.drop_commandList;
+import org.eclipse.imp.lpg.parser.LPGParser.drop_command__DROPRULES_KEY_drop_rules;
+import org.eclipse.imp.lpg.parser.LPGParser.drop_command__DROPSYMBOLS_KEY_drop_symbols;
 import org.eclipse.imp.lpg.parser.LPGParser.drop_rule;
 import org.eclipse.imp.lpg.parser.LPGParser.drop_ruleList;
 import org.eclipse.imp.lpg.parser.LPGParser.import_segment;
@@ -68,7 +68,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.option_spec;
 import org.eclipse.imp.lpg.parser.LPGParser.option_specList;
 import org.eclipse.imp.lpg.parser.LPGParser.rule;
 import org.eclipse.imp.lpg.parser.LPGParser.rules_segment;
-import org.eclipse.imp.lpg.parser.LPGParser.start_symbol0;
+import org.eclipse.imp.lpg.parser.LPGParser.start_symbol__SYMBOL;
 import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrsList;
 import org.eclipse.imp.lpg.parser.LPGParser.terminal;
 import org.eclipse.imp.lpg.parser.LPGParser.terminalList;
@@ -180,7 +180,7 @@ public class LPGLabelProvider implements ILabelProvider {
         if (n instanceof SoftKeywordsSeg)
             return "soft-keywords";
         if (n instanceof StartSeg)
-            return "start symbol";
+            return "start symbols";
         if (n instanceof TerminalsSeg)
             return "terminals";
         if (n instanceof TrailersSeg)
@@ -214,13 +214,13 @@ public class LPGLabelProvider implements ILabelProvider {
             return ((action_segment) n).getBLOCK().toString();
         if (n instanceof terminalList)
             return "terminals";
-        if (n instanceof start_symbol0)
-            return ((start_symbol0) n).getSYMBOL().toString();
+        if (n instanceof start_symbol__SYMBOL)
+            return ((start_symbol__SYMBOL) n).getSYMBOL().toString();
         if (n instanceof drop_commandList)
             return "drop";
-        if (n instanceof drop_command0)
+        if (n instanceof drop_command__DROPSYMBOLS_KEY_drop_symbols)
             return "drop symbols";
-        if (n instanceof drop_command1)
+        if (n instanceof drop_command__DROPRULES_KEY_drop_rules)
             return "drop rules";
         if (n instanceof drop_rule)
             return ((drop_rule) n).getSYMBOL().toString();

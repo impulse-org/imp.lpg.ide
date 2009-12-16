@@ -23,7 +23,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.IASTNodeToken;
 import org.eclipse.imp.lpg.parser.LPGParser.LPG;
 import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
 import org.eclipse.imp.lpg.parser.LPGParser.terminal;
-import org.eclipse.imp.lpg.parser.LPGParser.terminal_symbol0;
+import org.eclipse.imp.lpg.parser.LPGParser.terminal_symbol__SYMBOL;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.parser.SimpleLPGParseController;
 import org.eclipse.imp.services.IOccurrenceMarker;
@@ -47,7 +47,7 @@ public class LPGOccurrenceMarker implements IOccurrenceMarker {
 
         // Handles (I think) symbols in the terminals section
         // (but not in the rules)
-        if (node instanceof terminal_symbol0) {
+        if (node instanceof terminal_symbol__SYMBOL) {
             result= new ArrayList<Object>();
             result.add(node);
             String nodeString= node.toString();

@@ -46,29 +46,29 @@ import org.eclipse.imp.lpg.parser.LPGParser.TypesSeg;
 import org.eclipse.imp.lpg.parser.LPGParser.defineSpec;
 import org.eclipse.imp.lpg.parser.LPGParser.import_segment;
 import org.eclipse.imp.lpg.parser.LPGParser.include_segment;
-import org.eclipse.imp.lpg.parser.LPGParser.name0;
-import org.eclipse.imp.lpg.parser.LPGParser.name1;
-import org.eclipse.imp.lpg.parser.LPGParser.name2;
-import org.eclipse.imp.lpg.parser.LPGParser.name3;
-import org.eclipse.imp.lpg.parser.LPGParser.name4;
-import org.eclipse.imp.lpg.parser.LPGParser.name5;
+import org.eclipse.imp.lpg.parser.LPGParser.name__EMPTY_KEY;
+import org.eclipse.imp.lpg.parser.LPGParser.name__EOL_KEY;
+import org.eclipse.imp.lpg.parser.LPGParser.name__ERROR_KEY;
+import org.eclipse.imp.lpg.parser.LPGParser.name__IDENTIFIER_KEY;
+import org.eclipse.imp.lpg.parser.LPGParser.name__MACRO_NAME;
+import org.eclipse.imp.lpg.parser.LPGParser.name__SYMBOL;
 import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
 import org.eclipse.imp.lpg.parser.LPGParser.optTerminalAlias;
 import org.eclipse.imp.lpg.parser.LPGParser.option;
 import org.eclipse.imp.lpg.parser.LPGParser.option_specList;
-import org.eclipse.imp.lpg.parser.LPGParser.option_value0;
-import org.eclipse.imp.lpg.parser.LPGParser.option_value1;
-import org.eclipse.imp.lpg.parser.LPGParser.produces0;
-import org.eclipse.imp.lpg.parser.LPGParser.produces1;
-import org.eclipse.imp.lpg.parser.LPGParser.produces2;
-import org.eclipse.imp.lpg.parser.LPGParser.produces3;
+import org.eclipse.imp.lpg.parser.LPGParser.option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN;
+import org.eclipse.imp.lpg.parser.LPGParser.option_value__EQUAL_SYMBOL;
+import org.eclipse.imp.lpg.parser.LPGParser.produces__ARROW;
+import org.eclipse.imp.lpg.parser.LPGParser.produces__EQUIVALENCE;
+import org.eclipse.imp.lpg.parser.LPGParser.produces__PRIORITY_ARROW;
+import org.eclipse.imp.lpg.parser.LPGParser.produces__PRIORITY_EQUIVALENCE;
 import org.eclipse.imp.lpg.parser.LPGParser.rule;
-import org.eclipse.imp.lpg.parser.LPGParser.start_symbol0;
-import org.eclipse.imp.lpg.parser.LPGParser.start_symbol1;
-import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs0;
-import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs1;
+import org.eclipse.imp.lpg.parser.LPGParser.start_symbol__MACRO_NAME;
+import org.eclipse.imp.lpg.parser.LPGParser.start_symbol__SYMBOL;
+import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs__EMPTY_KEY;
+import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs__SYMBOL_optAttrList;
 import org.eclipse.imp.lpg.parser.LPGParser.terminal;
-import org.eclipse.imp.lpg.parser.LPGParser.terminal_symbol1;
+import org.eclipse.imp.lpg.parser.LPGParser.terminal_symbol__MACRO_NAME;
 import org.eclipse.imp.lpg.parser.LPGParser.type_declarations;
 import org.eclipse.imp.services.base.TreeModelBuilderBase;
 
@@ -103,9 +103,9 @@ public class LPGTreeModelBuilder extends TreeModelBuilderBase {
             Ioption_value value= n.getoption_value();
 
             if (value != null) {
-                if (value instanceof option_value0)
+                if (value instanceof option_value__EQUAL_SYMBOL)
                     createSubItem(n);
-                else if (value instanceof option_value1)
+                else if (value instanceof option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN)
                     createSubItem(n);
             } else
                 createSubItem(n);
@@ -324,16 +324,16 @@ public class LPGTreeModelBuilder extends TreeModelBuilderBase {
             return true;
         }
 
-        public boolean visit(terminal_symbol1 n) {
+        public boolean visit(terminal_symbol__MACRO_NAME n) {
             createSubItem((ASTNode) n.getMACRO_NAME());
             return false;
         }
 
-        public void endVisit(start_symbol0 n) {
+        public void endVisit(start_symbol__SYMBOL n) {
             createSubItem(n);
         }
 
-        public void endVisit(start_symbol1 n) {
+        public void endVisit(start_symbol__MACRO_NAME n) {
             createSubItem(n);
         }
 
@@ -375,12 +375,12 @@ public class LPGTreeModelBuilder extends TreeModelBuilderBase {
             createSubItem(n);
         }
 
-        public void endVisit(symWithAttrs0 n) {
+        public void endVisit(symWithAttrs__EMPTY_KEY n) {
             fRHSLabel.append(' ');
             fRHSLabel.append(n.getIToken().toString());
         }
 
-        public void endVisit(symWithAttrs1 n) {
+        public void endVisit(symWithAttrs__SYMBOL_optAttrList n) {
             fRHSLabel.append(' ');
             fRHSLabel.append(n.getSYMBOL().toString());
         }
@@ -398,31 +398,31 @@ public class LPGTreeModelBuilder extends TreeModelBuilderBase {
         }
 
         public String producesImage(Iproduces produces) {
-            if (produces instanceof produces0)
-                return ((produces0) produces).getLeftIToken().toString();
-            else if (produces instanceof produces1)
-                return ((produces1) produces).getLeftIToken().toString();
-            else if (produces instanceof produces2)
-                return ((produces2) produces).getLeftIToken().toString();
-            else if (produces instanceof produces3)
-                return ((produces3) produces).getLeftIToken().toString();
+            if (produces instanceof produces__EQUIVALENCE)
+                return ((produces__EQUIVALENCE) produces).getLeftIToken().toString();
+            else if (produces instanceof produces__PRIORITY_EQUIVALENCE)
+                return ((produces__PRIORITY_EQUIVALENCE) produces).getLeftIToken().toString();
+            else if (produces instanceof produces__ARROW)
+                return ((produces__ARROW) produces).getLeftIToken().toString();
+            else if (produces instanceof produces__PRIORITY_ARROW)
+                return ((produces__PRIORITY_ARROW) produces).getLeftIToken().toString();
             else
                 return "<???>";
         }
 
         public String nameImage(Iname name) {
-            if (name instanceof name0)
-                return ((name0) name).getLeftIToken().toString();
-            else if (name instanceof name1)
-                return ((name1) name).getLeftIToken().toString();
-            else if (name instanceof name2)
+            if (name instanceof name__SYMBOL)
+                return ((name__SYMBOL) name).getLeftIToken().toString();
+            else if (name instanceof name__MACRO_NAME)
+                return ((name__MACRO_NAME) name).getLeftIToken().toString();
+            else if (name instanceof name__EMPTY_KEY)
                 return "$empty";
-            else if (name instanceof name3)
+            else if (name instanceof name__ERROR_KEY)
                 return "$error";
-            else if (name instanceof name4)
+            else if (name instanceof name__EOL_KEY)
                 return "$eol";
-            else if (name instanceof name5)
-                return ((name5) name).getLeftIToken().toString();
+            else if (name instanceof name__IDENTIFIER_KEY)
+                return ((name__IDENTIFIER_KEY) name).getLeftIToken().toString();
             else
                 return "<???>";
         }

@@ -34,7 +34,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
 import org.eclipse.imp.lpg.parser.LPGParser.import_segment;
 import org.eclipse.imp.lpg.parser.LPGParser.include_segment;
 import org.eclipse.imp.lpg.parser.LPGParser.option;
-import org.eclipse.imp.lpg.parser.LPGParser.option_value0;
+import org.eclipse.imp.lpg.parser.LPGParser.option_value__EQUAL_SYMBOL;
 import org.eclipse.imp.lpg.preferences.LPGConstants;
 import org.eclipse.imp.preferences.IPreferencesService;
 import org.eclipse.imp.runtime.PluginBase;
@@ -223,12 +223,12 @@ public class LPGBuilder extends BuilderBase {
             public void unimplementedVisitor(String s) { }
             public boolean visit(option n) {
                 if (n.getSYMBOL().toString().equals("import_terminals")) {
-                    String referent= ((option_value0) n.getoption_value()).getSYMBOL().toString();
+                    String referent= ((option_value__EQUAL_SYMBOL) n.getoption_value()).getSYMBOL().toString();
                     String referentPath= filePath.substring(0, filePath.lastIndexOf("/")+1) + referent;
 
                     fDependencyInfo.addDependency(filePath, referentPath);
                 } else if (n.getSYMBOL().toString().equals("filter")) {
-                    String referent= ((option_value0) n.getoption_value()).getSYMBOL().toString();
+                    String referent= ((option_value__EQUAL_SYMBOL) n.getoption_value()).getSYMBOL().toString();
                     String referentPath= filePath.substring(0, filePath.lastIndexOf("/")+1) + referent;
 
                     fDependencyInfo.addDependency(filePath, referentPath);

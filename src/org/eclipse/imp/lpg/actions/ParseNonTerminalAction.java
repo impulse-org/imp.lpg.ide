@@ -28,8 +28,8 @@ import org.eclipse.imp.lpg.parser.LPGParser.defineSpec;
 import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
 import org.eclipse.imp.lpg.parser.LPGParser.rule;
 import org.eclipse.imp.lpg.parser.LPGParser.ruleList;
-import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs1;
 import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrsList;
+import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs__SYMBOL_optAttrList;
 import org.eclipse.imp.lpg.parser.LPGParser.terminal;
 import org.eclipse.imp.lpg.views.GrammarInteractionView;
 import org.eclipse.imp.lpg.views.GrammarInteractionView.InputHandler;
@@ -74,8 +74,8 @@ public class ParseNonTerminalAction extends TextEditorAction implements InputHan
 
         dumpSymbolTable();
 
-        if (fNode instanceof symWithAttrs1) {
-            symWithAttrs1 sym= (symWithAttrs1) fNode;
+        if (fNode instanceof symWithAttrs__SYMBOL_optAttrList) {
+            symWithAttrs__SYMBOL_optAttrList sym= (symWithAttrs__SYMBOL_optAttrList) fNode;
             nt= ASTUtils.findDefOf((IASTNodeToken) sym, (LPG) fRoot, parseController);
         } else if (fNode instanceof IASTNodeToken) {
             IASTNodeToken tok= (IASTNodeToken) fNode;

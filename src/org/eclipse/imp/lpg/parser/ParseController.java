@@ -26,7 +26,7 @@ import org.eclipse.imp.lpg.parser.LPGParser.option;
 import org.eclipse.imp.lpg.parser.LPGParser.optionList;
 import org.eclipse.imp.lpg.parser.LPGParser.option_spec;
 import org.eclipse.imp.lpg.parser.LPGParser.option_specList;
-import org.eclipse.imp.lpg.parser.LPGParser.option_value0;
+import org.eclipse.imp.lpg.parser.LPGParser.option_value__EQUAL_SYMBOL;
 import org.eclipse.imp.lpg.preferences.LPGConstants;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.parser.ISourcePositionLocator;
@@ -68,8 +68,8 @@ public class ParseController extends SimpleLPGParseController implements IParseC
                 String optName= sym.toString();
                 if (optName.equals("template")) {
                     Ioption_value optValue= opt.getoption_value();
-                    if (optValue instanceof option_value0)
-                        template_file= ((option_value0) optValue).getSYMBOL().toString();
+                    if (optValue instanceof option_value__EQUAL_SYMBOL)
+                        template_file= ((option_value__EQUAL_SYMBOL) optValue).getSYMBOL().toString();
                 }
             }
         }
@@ -131,8 +131,8 @@ public class ParseController extends SimpleLPGParseController implements IParseC
                 if (optName.equalsIgnoreCase("programming-language") || optName.equalsIgnoreCase("programming_language")
                         || optName.equalsIgnoreCase("programminglanguage") || optName.equalsIgnoreCase("table")) {
                     Ioption_value optValue= opt.getoption_value();
-                    if (optValue instanceof option_value0)
-                        is_java= ((option_value0) optValue).getSYMBOL().toString().equalsIgnoreCase("java");
+                    if (optValue instanceof option_value__EQUAL_SYMBOL)
+                        is_java= ((option_value__EQUAL_SYMBOL) optValue).getSYMBOL().toString().equalsIgnoreCase("java");
                 } else if (optName.equalsIgnoreCase("automatic-ast") || optName.equalsIgnoreCase("automatic_ast") || optName.equalsIgnoreCase("automaticast"))
                     automatic_ast= true;
                 else if (optName.equalsIgnoreCase("noautomatic-ast") || optName.equalsIgnoreCase("noautomatic_ast")

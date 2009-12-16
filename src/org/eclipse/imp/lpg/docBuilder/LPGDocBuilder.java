@@ -41,9 +41,9 @@ import org.eclipse.imp.lpg.parser.LPGParser.IsymWithAttrs;
 import org.eclipse.imp.lpg.parser.LPGParser.LPG;
 import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
 import org.eclipse.imp.lpg.parser.LPGParser.ruleList;
-import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs0;
-import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs1;
 import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrsList;
+import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs__EMPTY_KEY;
+import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs__SYMBOL_optAttrList;
 
 /**
  * A builder may be activated on a file containing LPG code every time it
@@ -263,10 +263,10 @@ public class LPGDocBuilder extends BuilderBase {
             for(int j=0; j < rhsSyms.size(); j++) {
                 IsymWithAttrs sym= rhsSyms.getsymWithAttrsAt(j);
                 if (j > 0) { sb.append(' '); }
-                if (sym instanceof symWithAttrs0) {
+                if (sym instanceof symWithAttrs__EMPTY_KEY) {
                     sb.append("%empty");
                 } else {
-                    String symName= ((symWithAttrs1) sym).getSYMBOL().toString();
+                    String symName= ((symWithAttrs__SYMBOL_optAttrList) sym).getSYMBOL().toString();
                     if (nonTermMap.containsKey(symName)) {
                         emitRef(symName, symName, sb); // assumes no HTML-inappropriate chars in non terminal/terminal names
                     } else {

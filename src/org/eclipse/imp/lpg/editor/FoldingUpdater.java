@@ -75,13 +75,13 @@ public class FoldingUpdater extends LPGFolderBase {
         }
 
         @Override
-        public boolean visit(drop_command0 n) {
+        public boolean visit(drop_command__DROPRULES_KEY_drop_rules n) {
             makeFoldable(n);
             return false;
         }
 
         @Override
-        public boolean visit(drop_command1 n) {
+        public boolean visit(drop_command__DROPSYMBOLS_KEY_drop_symbols n) {
             makeFoldable(n);
             return false;
         }

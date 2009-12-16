@@ -353,31 +353,31 @@ public class LPGParser implements RuleAction, IParser
      *<li>action_segment
      *<li>recover_symbol
      *<li>END_KEY_OPT
-     *<li>alias_rhs0
-     *<li>alias_rhs1
-     *<li>alias_rhs2
-     *<li>alias_rhs3
-     *<li>alias_rhs4
-     *<li>alias_rhs5
-     *<li>alias_rhs6
-     *<li>macro_name_symbol0
-     *<li>macro_name_symbol1
-     *<li>name0
-     *<li>name1
-     *<li>name2
-     *<li>name3
-     *<li>name4
-     *<li>name5
-     *<li>produces0
-     *<li>produces1
-     *<li>produces2
-     *<li>produces3
-     *<li>symWithAttrs0
-     *<li>symWithAttrs1
-     *<li>start_symbol0
-     *<li>start_symbol1
-     *<li>terminal_symbol0
-     *<li>terminal_symbol1
+     *<li>alias_rhs__SYMBOL
+     *<li>alias_rhs__MACRO_NAME
+     *<li>alias_rhs__ERROR_KEY
+     *<li>alias_rhs__EOL_KEY
+     *<li>alias_rhs__EOF_KEY
+     *<li>alias_rhs__EMPTY_KEY
+     *<li>alias_rhs__IDENTIFIER_KEY
+     *<li>macro_name_symbol__MACRO_NAME
+     *<li>macro_name_symbol__SYMBOL
+     *<li>name__SYMBOL
+     *<li>name__MACRO_NAME
+     *<li>name__EMPTY_KEY
+     *<li>name__ERROR_KEY
+     *<li>name__EOL_KEY
+     *<li>name__IDENTIFIER_KEY
+     *<li>produces__EQUIVALENCE
+     *<li>produces__PRIORITY_EQUIVALENCE
+     *<li>produces__ARROW
+     *<li>produces__PRIORITY_ARROW
+     *<li>symWithAttrs__EMPTY_KEY
+     *<li>symWithAttrs__SYMBOL_optAttrList
+     *<li>start_symbol__SYMBOL
+     *<li>start_symbol__MACRO_NAME
+     *<li>terminal_symbol__SYMBOL
+     *<li>terminal_symbol__MACRO_NAME
      *</ul>
      *</b>
      */
@@ -502,8 +502,8 @@ public class LPGParser implements RuleAction, IParser
      * is always implemented by <b>ASTNodeToken</b>. It is also implemented by:
      *<b>
      *<ul>
-     *<li>terminal_symbol0
-     *<li>terminal_symbol1
+     *<li>terminal_symbol__SYMBOL
+     *<li>terminal_symbol__MACRO_NAME
      *</ul>
      *</b>
      */
@@ -519,8 +519,8 @@ public class LPGParser implements RuleAction, IParser
      * is always implemented by <b>ASTNodeToken</b>. It is also implemented by:
      *<b>
      *<ul>
-     *<li>terminal_symbol0
-     *<li>terminal_symbol1
+     *<li>terminal_symbol__SYMBOL
+     *<li>terminal_symbol__MACRO_NAME
      *</ul>
      *</b>
      */
@@ -536,8 +536,8 @@ public class LPGParser implements RuleAction, IParser
      * is always implemented by <b>ASTNodeToken</b>. It is also implemented by:
      *<b>
      *<ul>
-     *<li>terminal_symbol0
-     *<li>terminal_symbol1
+     *<li>terminal_symbol__SYMBOL
+     *<li>terminal_symbol__MACRO_NAME
      *</ul>
      *</b>
      */
@@ -586,8 +586,8 @@ public class LPGParser implements RuleAction, IParser
      * is always implemented by <b>ASTNodeToken</b>. It is also implemented by:
      *<b>
      *<ul>
-     *<li>terminal_symbol0
-     *<li>terminal_symbol1
+     *<li>terminal_symbol__SYMBOL
+     *<li>terminal_symbol__MACRO_NAME
      *</ul>
      *</b>
      */
@@ -762,8 +762,8 @@ public class LPGParser implements RuleAction, IParser
      * is implemented by:
      *<b>
      *<ul>
-     *<li>option_value0
-     *<li>option_value1
+     *<li>option_value__EQUAL_SYMBOL
+     *<li>option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN
      *</ul>
      *</b>
      */
@@ -790,12 +790,12 @@ public class LPGParser implements RuleAction, IParser
      * is implemented by:
      *<b>
      *<ul>
-     *<li>aliasSpec0
-     *<li>aliasSpec1
-     *<li>aliasSpec2
-     *<li>aliasSpec3
-     *<li>aliasSpec4
-     *<li>aliasSpec5
+     *<li>aliasSpec__ERROR_KEY_produces_alias_rhs
+     *<li>aliasSpec__EOL_KEY_produces_alias_rhs
+     *<li>aliasSpec__EOF_KEY_produces_alias_rhs
+     *<li>aliasSpec__IDENTIFIER_KEY_produces_alias_rhs
+     *<li>aliasSpec__SYMBOL_produces_alias_rhs
+     *<li>aliasSpec__alias_lhs_macro_name_produces_alias_rhs
      *</ul>
      *</b>
      */
@@ -811,10 +811,10 @@ public class LPGParser implements RuleAction, IParser
      * is always implemented by <b>ASTNodeToken</b>. It is also implemented by:
      *<b>
      *<ul>
-     *<li>produces0
-     *<li>produces1
-     *<li>produces2
-     *<li>produces3
+     *<li>produces__EQUIVALENCE
+     *<li>produces__PRIORITY_EQUIVALENCE
+     *<li>produces__ARROW
+     *<li>produces__PRIORITY_ARROW
      *</ul>
      *</b>
      */
@@ -824,13 +824,13 @@ public class LPGParser implements RuleAction, IParser
      * is always implemented by <b>ASTNodeToken</b>. It is also implemented by:
      *<b>
      *<ul>
-     *<li>alias_rhs0
-     *<li>alias_rhs1
-     *<li>alias_rhs2
-     *<li>alias_rhs3
-     *<li>alias_rhs4
-     *<li>alias_rhs5
-     *<li>alias_rhs6
+     *<li>alias_rhs__SYMBOL
+     *<li>alias_rhs__MACRO_NAME
+     *<li>alias_rhs__ERROR_KEY
+     *<li>alias_rhs__EOL_KEY
+     *<li>alias_rhs__EOF_KEY
+     *<li>alias_rhs__EMPTY_KEY
+     *<li>alias_rhs__IDENTIFIER_KEY
      *</ul>
      *</b>
      */
@@ -861,8 +861,8 @@ public class LPGParser implements RuleAction, IParser
      * is always implemented by <b>ASTNodeToken</b>. It is also implemented by:
      *<b>
      *<ul>
-     *<li>macro_name_symbol0
-     *<li>macro_name_symbol1
+     *<li>macro_name_symbol__MACRO_NAME
+     *<li>macro_name_symbol__SYMBOL
      *</ul>
      *</b>
      */
@@ -877,8 +877,8 @@ public class LPGParser implements RuleAction, IParser
      * is always implemented by <b>ASTNodeToken</b>. It is also implemented by:
      *<b>
      *<ul>
-     *<li>terminal_symbol0
-     *<li>terminal_symbol1
+     *<li>terminal_symbol__SYMBOL
+     *<li>terminal_symbol__MACRO_NAME
      *</ul>
      *</b>
      */
@@ -904,8 +904,8 @@ public class LPGParser implements RuleAction, IParser
      * is implemented by:
      *<b>
      *<ul>
-     *<li>drop_command0
-     *<li>drop_command1
+     *<li>drop_command__DROPSYMBOLS_KEY_drop_symbols
+     *<li>drop_command__DROPRULES_KEY_drop_rules
      *</ul>
      *</b>
      */
@@ -971,8 +971,8 @@ public class LPGParser implements RuleAction, IParser
      *<b>
      *<ul>
      *<li>keywordSpec
-     *<li>terminal_symbol0
-     *<li>terminal_symbol1
+     *<li>terminal_symbol__SYMBOL
+     *<li>terminal_symbol__MACRO_NAME
      *</ul>
      *</b>
      */
@@ -988,12 +988,12 @@ public class LPGParser implements RuleAction, IParser
      * is always implemented by <b>ASTNodeToken</b>. It is also implemented by:
      *<b>
      *<ul>
-     *<li>name0
-     *<li>name1
-     *<li>name2
-     *<li>name3
-     *<li>name4
-     *<li>name5
+     *<li>name__SYMBOL
+     *<li>name__MACRO_NAME
+     *<li>name__EMPTY_KEY
+     *<li>name__ERROR_KEY
+     *<li>name__EOL_KEY
+     *<li>name__IDENTIFIER_KEY
      *</ul>
      *</b>
      */
@@ -1074,8 +1074,8 @@ public class LPGParser implements RuleAction, IParser
      * is implemented by:
      *<b>
      *<ul>
-     *<li>symWithAttrs0
-     *<li>symWithAttrs1
+     *<li>symWithAttrs__EMPTY_KEY
+     *<li>symWithAttrs__SYMBOL_optAttrList
      *</ul>
      *</b>
      */
@@ -1090,8 +1090,8 @@ public class LPGParser implements RuleAction, IParser
      * is always implemented by <b>ASTNodeToken</b>. It is also implemented by:
      *<b>
      *<ul>
-     *<li>start_symbol0
-     *<li>start_symbol1
+     *<li>start_symbol__SYMBOL
+     *<li>start_symbol__MACRO_NAME
      *</ul>
      *</b>
      */
@@ -5616,14 +5616,14 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 34:  option_value ::= =$ SYMBOL
      *</b>
      */
-    static public class option_value0 extends ASTNode implements Ioption_value
+    static public class option_value__EQUAL_SYMBOL extends ASTNode implements Ioption_value
     {
         private ASTNodeToken _SYMBOL;
 
         public ASTNodeToken getSYMBOL() { return _SYMBOL; }
 
-        public option_value0(IToken leftIToken, IToken rightIToken,
-                             ASTNodeToken _SYMBOL)
+        public option_value__EQUAL_SYMBOL(IToken leftIToken, IToken rightIToken,
+                                          ASTNodeToken _SYMBOL)
         {
             super(leftIToken, rightIToken);
 
@@ -5645,9 +5645,9 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof option_value0)) return false;
+            if (! (o instanceof option_value__EQUAL_SYMBOL)) return false;
             if (! super.equals(o)) return false;
-            option_value0 other = (option_value0) o;
+            option_value__EQUAL_SYMBOL other = (option_value__EQUAL_SYMBOL) o;
             if (! _SYMBOL.equals(other._SYMBOL)) return false;
             return true;
         }
@@ -5680,14 +5680,14 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 35:  option_value ::= =$ ($ symbol_list )$
      *</b>
      */
-    static public class option_value1 extends ASTNode implements Ioption_value
+    static public class option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN extends ASTNode implements Ioption_value
     {
         private SYMBOLList _symbol_list;
 
         public SYMBOLList getsymbol_list() { return _symbol_list; }
 
-        public option_value1(IToken leftIToken, IToken rightIToken,
-                             SYMBOLList _symbol_list)
+        public option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN(IToken leftIToken, IToken rightIToken,
+                                                                      SYMBOLList _symbol_list)
         {
             super(leftIToken, rightIToken);
 
@@ -5709,9 +5709,9 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof option_value1)) return false;
+            if (! (o instanceof option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN)) return false;
             if (! super.equals(o)) return false;
-            option_value1 other = (option_value1) o;
+            option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN other = (option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN) o;
             if (! _symbol_list.equals(other._symbol_list)) return false;
             return true;
         }
@@ -5744,7 +5744,7 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 40:  aliasSpec ::= ERROR_KEY produces alias_rhs
      *</b>
      */
-    static public class aliasSpec0 extends ASTNode implements IaliasSpec
+    static public class aliasSpec__ERROR_KEY_produces_alias_rhs extends ASTNode implements IaliasSpec
     {
         private ASTNodeToken _ERROR_KEY;
         private Iproduces _produces;
@@ -5754,10 +5754,10 @@ public class LPGParser implements RuleAction, IParser
         public Iproduces getproduces() { return _produces; }
         public Ialias_rhs getalias_rhs() { return _alias_rhs; }
 
-        public aliasSpec0(IToken leftIToken, IToken rightIToken,
-                          ASTNodeToken _ERROR_KEY,
-                          Iproduces _produces,
-                          Ialias_rhs _alias_rhs)
+        public aliasSpec__ERROR_KEY_produces_alias_rhs(IToken leftIToken, IToken rightIToken,
+                                                       ASTNodeToken _ERROR_KEY,
+                                                       Iproduces _produces,
+                                                       Ialias_rhs _alias_rhs)
         {
             super(leftIToken, rightIToken);
 
@@ -5785,9 +5785,9 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof aliasSpec0)) return false;
+            if (! (o instanceof aliasSpec__ERROR_KEY_produces_alias_rhs)) return false;
             if (! super.equals(o)) return false;
-            aliasSpec0 other = (aliasSpec0) o;
+            aliasSpec__ERROR_KEY_produces_alias_rhs other = (aliasSpec__ERROR_KEY_produces_alias_rhs) o;
             if (! _ERROR_KEY.equals(other._ERROR_KEY)) return false;
             if (! _produces.equals(other._produces)) return false;
             if (! _alias_rhs.equals(other._alias_rhs)) return false;
@@ -5828,7 +5828,7 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 41:  aliasSpec ::= EOL_KEY produces alias_rhs
      *</b>
      */
-    static public class aliasSpec1 extends ASTNode implements IaliasSpec
+    static public class aliasSpec__EOL_KEY_produces_alias_rhs extends ASTNode implements IaliasSpec
     {
         private ASTNodeToken _EOL_KEY;
         private Iproduces _produces;
@@ -5838,10 +5838,10 @@ public class LPGParser implements RuleAction, IParser
         public Iproduces getproduces() { return _produces; }
         public Ialias_rhs getalias_rhs() { return _alias_rhs; }
 
-        public aliasSpec1(IToken leftIToken, IToken rightIToken,
-                          ASTNodeToken _EOL_KEY,
-                          Iproduces _produces,
-                          Ialias_rhs _alias_rhs)
+        public aliasSpec__EOL_KEY_produces_alias_rhs(IToken leftIToken, IToken rightIToken,
+                                                     ASTNodeToken _EOL_KEY,
+                                                     Iproduces _produces,
+                                                     Ialias_rhs _alias_rhs)
         {
             super(leftIToken, rightIToken);
 
@@ -5869,9 +5869,9 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof aliasSpec1)) return false;
+            if (! (o instanceof aliasSpec__EOL_KEY_produces_alias_rhs)) return false;
             if (! super.equals(o)) return false;
-            aliasSpec1 other = (aliasSpec1) o;
+            aliasSpec__EOL_KEY_produces_alias_rhs other = (aliasSpec__EOL_KEY_produces_alias_rhs) o;
             if (! _EOL_KEY.equals(other._EOL_KEY)) return false;
             if (! _produces.equals(other._produces)) return false;
             if (! _alias_rhs.equals(other._alias_rhs)) return false;
@@ -5912,7 +5912,7 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 42:  aliasSpec ::= EOF_KEY produces alias_rhs
      *</b>
      */
-    static public class aliasSpec2 extends ASTNode implements IaliasSpec
+    static public class aliasSpec__EOF_KEY_produces_alias_rhs extends ASTNode implements IaliasSpec
     {
         private ASTNodeToken _EOF_KEY;
         private Iproduces _produces;
@@ -5922,10 +5922,10 @@ public class LPGParser implements RuleAction, IParser
         public Iproduces getproduces() { return _produces; }
         public Ialias_rhs getalias_rhs() { return _alias_rhs; }
 
-        public aliasSpec2(IToken leftIToken, IToken rightIToken,
-                          ASTNodeToken _EOF_KEY,
-                          Iproduces _produces,
-                          Ialias_rhs _alias_rhs)
+        public aliasSpec__EOF_KEY_produces_alias_rhs(IToken leftIToken, IToken rightIToken,
+                                                     ASTNodeToken _EOF_KEY,
+                                                     Iproduces _produces,
+                                                     Ialias_rhs _alias_rhs)
         {
             super(leftIToken, rightIToken);
 
@@ -5953,9 +5953,9 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof aliasSpec2)) return false;
+            if (! (o instanceof aliasSpec__EOF_KEY_produces_alias_rhs)) return false;
             if (! super.equals(o)) return false;
-            aliasSpec2 other = (aliasSpec2) o;
+            aliasSpec__EOF_KEY_produces_alias_rhs other = (aliasSpec__EOF_KEY_produces_alias_rhs) o;
             if (! _EOF_KEY.equals(other._EOF_KEY)) return false;
             if (! _produces.equals(other._produces)) return false;
             if (! _alias_rhs.equals(other._alias_rhs)) return false;
@@ -5996,7 +5996,7 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 43:  aliasSpec ::= IDENTIFIER_KEY produces alias_rhs
      *</b>
      */
-    static public class aliasSpec3 extends ASTNode implements IaliasSpec
+    static public class aliasSpec__IDENTIFIER_KEY_produces_alias_rhs extends ASTNode implements IaliasSpec
     {
         private ASTNodeToken _IDENTIFIER_KEY;
         private Iproduces _produces;
@@ -6006,10 +6006,10 @@ public class LPGParser implements RuleAction, IParser
         public Iproduces getproduces() { return _produces; }
         public Ialias_rhs getalias_rhs() { return _alias_rhs; }
 
-        public aliasSpec3(IToken leftIToken, IToken rightIToken,
-                          ASTNodeToken _IDENTIFIER_KEY,
-                          Iproduces _produces,
-                          Ialias_rhs _alias_rhs)
+        public aliasSpec__IDENTIFIER_KEY_produces_alias_rhs(IToken leftIToken, IToken rightIToken,
+                                                            ASTNodeToken _IDENTIFIER_KEY,
+                                                            Iproduces _produces,
+                                                            Ialias_rhs _alias_rhs)
         {
             super(leftIToken, rightIToken);
 
@@ -6037,9 +6037,9 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof aliasSpec3)) return false;
+            if (! (o instanceof aliasSpec__IDENTIFIER_KEY_produces_alias_rhs)) return false;
             if (! super.equals(o)) return false;
-            aliasSpec3 other = (aliasSpec3) o;
+            aliasSpec__IDENTIFIER_KEY_produces_alias_rhs other = (aliasSpec__IDENTIFIER_KEY_produces_alias_rhs) o;
             if (! _IDENTIFIER_KEY.equals(other._IDENTIFIER_KEY)) return false;
             if (! _produces.equals(other._produces)) return false;
             if (! _alias_rhs.equals(other._alias_rhs)) return false;
@@ -6080,7 +6080,7 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 44:  aliasSpec ::= SYMBOL produces alias_rhs
      *</b>
      */
-    static public class aliasSpec4 extends ASTNode implements IaliasSpec
+    static public class aliasSpec__SYMBOL_produces_alias_rhs extends ASTNode implements IaliasSpec
     {
         private ASTNodeToken _SYMBOL;
         private Iproduces _produces;
@@ -6090,10 +6090,10 @@ public class LPGParser implements RuleAction, IParser
         public Iproduces getproduces() { return _produces; }
         public Ialias_rhs getalias_rhs() { return _alias_rhs; }
 
-        public aliasSpec4(IToken leftIToken, IToken rightIToken,
-                          ASTNodeToken _SYMBOL,
-                          Iproduces _produces,
-                          Ialias_rhs _alias_rhs)
+        public aliasSpec__SYMBOL_produces_alias_rhs(IToken leftIToken, IToken rightIToken,
+                                                    ASTNodeToken _SYMBOL,
+                                                    Iproduces _produces,
+                                                    Ialias_rhs _alias_rhs)
         {
             super(leftIToken, rightIToken);
 
@@ -6121,9 +6121,9 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof aliasSpec4)) return false;
+            if (! (o instanceof aliasSpec__SYMBOL_produces_alias_rhs)) return false;
             if (! super.equals(o)) return false;
-            aliasSpec4 other = (aliasSpec4) o;
+            aliasSpec__SYMBOL_produces_alias_rhs other = (aliasSpec__SYMBOL_produces_alias_rhs) o;
             if (! _SYMBOL.equals(other._SYMBOL)) return false;
             if (! _produces.equals(other._produces)) return false;
             if (! _alias_rhs.equals(other._alias_rhs)) return false;
@@ -6164,7 +6164,7 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 45:  aliasSpec ::= alias_lhs_macro_name produces alias_rhs
      *</b>
      */
-    static public class aliasSpec5 extends ASTNode implements IaliasSpec
+    static public class aliasSpec__alias_lhs_macro_name_produces_alias_rhs extends ASTNode implements IaliasSpec
     {
         private alias_lhs_macro_name _alias_lhs_macro_name;
         private Iproduces _produces;
@@ -6174,10 +6174,10 @@ public class LPGParser implements RuleAction, IParser
         public Iproduces getproduces() { return _produces; }
         public Ialias_rhs getalias_rhs() { return _alias_rhs; }
 
-        public aliasSpec5(IToken leftIToken, IToken rightIToken,
-                          alias_lhs_macro_name _alias_lhs_macro_name,
-                          Iproduces _produces,
-                          Ialias_rhs _alias_rhs)
+        public aliasSpec__alias_lhs_macro_name_produces_alias_rhs(IToken leftIToken, IToken rightIToken,
+                                                                  alias_lhs_macro_name _alias_lhs_macro_name,
+                                                                  Iproduces _produces,
+                                                                  Ialias_rhs _alias_rhs)
         {
             super(leftIToken, rightIToken);
 
@@ -6205,9 +6205,9 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof aliasSpec5)) return false;
+            if (! (o instanceof aliasSpec__alias_lhs_macro_name_produces_alias_rhs)) return false;
             if (! super.equals(o)) return false;
-            aliasSpec5 other = (aliasSpec5) o;
+            aliasSpec__alias_lhs_macro_name_produces_alias_rhs other = (aliasSpec__alias_lhs_macro_name_produces_alias_rhs) o;
             if (! _alias_lhs_macro_name.equals(other._alias_lhs_macro_name)) return false;
             if (! _produces.equals(other._produces)) return false;
             if (! _alias_rhs.equals(other._alias_rhs)) return false;
@@ -6248,11 +6248,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 47:  alias_rhs ::= SYMBOL
      *</b>
      */
-    static public class alias_rhs0 extends ASTNodeToken implements Ialias_rhs
+    static public class alias_rhs__SYMBOL extends ASTNodeToken implements Ialias_rhs
     {
         public IToken getSYMBOL() { return leftIToken; }
 
-        public alias_rhs0(IToken token) { super(token); initialize(); }
+        public alias_rhs__SYMBOL(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6273,11 +6273,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 48:  alias_rhs ::= MACRO_NAME
      *</b>
      */
-    static public class alias_rhs1 extends ASTNodeToken implements Ialias_rhs
+    static public class alias_rhs__MACRO_NAME extends ASTNodeToken implements Ialias_rhs
     {
         public IToken getMACRO_NAME() { return leftIToken; }
 
-        public alias_rhs1(IToken token) { super(token); initialize(); }
+        public alias_rhs__MACRO_NAME(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6298,11 +6298,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 49:  alias_rhs ::= ERROR_KEY
      *</b>
      */
-    static public class alias_rhs2 extends ASTNodeToken implements Ialias_rhs
+    static public class alias_rhs__ERROR_KEY extends ASTNodeToken implements Ialias_rhs
     {
         public IToken getERROR_KEY() { return leftIToken; }
 
-        public alias_rhs2(IToken token) { super(token); initialize(); }
+        public alias_rhs__ERROR_KEY(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6323,11 +6323,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 50:  alias_rhs ::= EOL_KEY
      *</b>
      */
-    static public class alias_rhs3 extends ASTNodeToken implements Ialias_rhs
+    static public class alias_rhs__EOL_KEY extends ASTNodeToken implements Ialias_rhs
     {
         public IToken getEOL_KEY() { return leftIToken; }
 
-        public alias_rhs3(IToken token) { super(token); initialize(); }
+        public alias_rhs__EOL_KEY(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6348,11 +6348,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 51:  alias_rhs ::= EOF_KEY
      *</b>
      */
-    static public class alias_rhs4 extends ASTNodeToken implements Ialias_rhs
+    static public class alias_rhs__EOF_KEY extends ASTNodeToken implements Ialias_rhs
     {
         public IToken getEOF_KEY() { return leftIToken; }
 
-        public alias_rhs4(IToken token) { super(token); initialize(); }
+        public alias_rhs__EOF_KEY(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6373,11 +6373,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 52:  alias_rhs ::= EMPTY_KEY
      *</b>
      */
-    static public class alias_rhs5 extends ASTNodeToken implements Ialias_rhs
+    static public class alias_rhs__EMPTY_KEY extends ASTNodeToken implements Ialias_rhs
     {
         public IToken getEMPTY_KEY() { return leftIToken; }
 
-        public alias_rhs5(IToken token) { super(token); initialize(); }
+        public alias_rhs__EMPTY_KEY(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6398,11 +6398,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 53:  alias_rhs ::= IDENTIFIER_KEY
      *</b>
      */
-    static public class alias_rhs6 extends ASTNodeToken implements Ialias_rhs
+    static public class alias_rhs__IDENTIFIER_KEY extends ASTNodeToken implements Ialias_rhs
     {
         public IToken getIDENTIFIER_KEY() { return leftIToken; }
 
-        public alias_rhs6(IToken token) { super(token); initialize(); }
+        public alias_rhs__IDENTIFIER_KEY(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6423,11 +6423,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 58:  macro_name_symbol ::= MACRO_NAME
      *</b>
      */
-    static public class macro_name_symbol0 extends ASTNodeToken implements Imacro_name_symbol
+    static public class macro_name_symbol__MACRO_NAME extends ASTNodeToken implements Imacro_name_symbol
     {
         public IToken getMACRO_NAME() { return leftIToken; }
 
-        public macro_name_symbol0(IToken token) { super(token); initialize(); }
+        public macro_name_symbol__MACRO_NAME(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6448,11 +6448,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 59:  macro_name_symbol ::= SYMBOL
      *</b>
      */
-    static public class macro_name_symbol1 extends ASTNodeToken implements Imacro_name_symbol
+    static public class macro_name_symbol__SYMBOL extends ASTNodeToken implements Imacro_name_symbol
     {
         public IToken getSYMBOL() { return leftIToken; }
 
-        public macro_name_symbol1(IToken token) { super(token); initialize(); }
+        public macro_name_symbol__SYMBOL(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6473,7 +6473,7 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 73:  drop_command ::= DROPSYMBOLS_KEY drop_symbols
      *</b>
      */
-    static public class drop_command0 extends ASTNode implements Idrop_command
+    static public class drop_command__DROPSYMBOLS_KEY_drop_symbols extends ASTNode implements Idrop_command
     {
         private ASTNodeToken _DROPSYMBOLS_KEY;
         private SYMBOLList _drop_symbols;
@@ -6481,9 +6481,9 @@ public class LPGParser implements RuleAction, IParser
         public ASTNodeToken getDROPSYMBOLS_KEY() { return _DROPSYMBOLS_KEY; }
         public SYMBOLList getdrop_symbols() { return _drop_symbols; }
 
-        public drop_command0(IToken leftIToken, IToken rightIToken,
-                             ASTNodeToken _DROPSYMBOLS_KEY,
-                             SYMBOLList _drop_symbols)
+        public drop_command__DROPSYMBOLS_KEY_drop_symbols(IToken leftIToken, IToken rightIToken,
+                                                          ASTNodeToken _DROPSYMBOLS_KEY,
+                                                          SYMBOLList _drop_symbols)
         {
             super(leftIToken, rightIToken);
 
@@ -6508,9 +6508,9 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof drop_command0)) return false;
+            if (! (o instanceof drop_command__DROPSYMBOLS_KEY_drop_symbols)) return false;
             if (! super.equals(o)) return false;
-            drop_command0 other = (drop_command0) o;
+            drop_command__DROPSYMBOLS_KEY_drop_symbols other = (drop_command__DROPSYMBOLS_KEY_drop_symbols) o;
             if (! _DROPSYMBOLS_KEY.equals(other._DROPSYMBOLS_KEY)) return false;
             if (! _drop_symbols.equals(other._drop_symbols)) return false;
             return true;
@@ -6548,7 +6548,7 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 74:  drop_command ::= DROPRULES_KEY drop_rules
      *</b>
      */
-    static public class drop_command1 extends ASTNode implements Idrop_command
+    static public class drop_command__DROPRULES_KEY_drop_rules extends ASTNode implements Idrop_command
     {
         private ASTNodeToken _DROPRULES_KEY;
         private drop_ruleList _drop_rules;
@@ -6556,9 +6556,9 @@ public class LPGParser implements RuleAction, IParser
         public ASTNodeToken getDROPRULES_KEY() { return _DROPRULES_KEY; }
         public drop_ruleList getdrop_rules() { return _drop_rules; }
 
-        public drop_command1(IToken leftIToken, IToken rightIToken,
-                             ASTNodeToken _DROPRULES_KEY,
-                             drop_ruleList _drop_rules)
+        public drop_command__DROPRULES_KEY_drop_rules(IToken leftIToken, IToken rightIToken,
+                                                      ASTNodeToken _DROPRULES_KEY,
+                                                      drop_ruleList _drop_rules)
         {
             super(leftIToken, rightIToken);
 
@@ -6583,9 +6583,9 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof drop_command1)) return false;
+            if (! (o instanceof drop_command__DROPRULES_KEY_drop_rules)) return false;
             if (! super.equals(o)) return false;
-            drop_command1 other = (drop_command1) o;
+            drop_command__DROPRULES_KEY_drop_rules other = (drop_command__DROPRULES_KEY_drop_rules) o;
             if (! _DROPRULES_KEY.equals(other._DROPRULES_KEY)) return false;
             if (! _drop_rules.equals(other._drop_rules)) return false;
             return true;
@@ -6623,11 +6623,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 90:  name ::= SYMBOL
      *</b>
      */
-    static public class name0 extends ASTNodeToken implements Iname
+    static public class name__SYMBOL extends ASTNodeToken implements Iname
     {
         public IToken getSYMBOL() { return leftIToken; }
 
-        public name0(IToken token) { super(token); initialize(); }
+        public name__SYMBOL(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6648,11 +6648,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 91:  name ::= MACRO_NAME
      *</b>
      */
-    static public class name1 extends ASTNodeToken implements Iname
+    static public class name__MACRO_NAME extends ASTNodeToken implements Iname
     {
         public IToken getMACRO_NAME() { return leftIToken; }
 
-        public name1(IToken token) { super(token); initialize(); }
+        public name__MACRO_NAME(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6673,11 +6673,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 92:  name ::= EMPTY_KEY
      *</b>
      */
-    static public class name2 extends ASTNodeToken implements Iname
+    static public class name__EMPTY_KEY extends ASTNodeToken implements Iname
     {
         public IToken getEMPTY_KEY() { return leftIToken; }
 
-        public name2(IToken token) { super(token); initialize(); }
+        public name__EMPTY_KEY(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6698,11 +6698,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 93:  name ::= ERROR_KEY
      *</b>
      */
-    static public class name3 extends ASTNodeToken implements Iname
+    static public class name__ERROR_KEY extends ASTNodeToken implements Iname
     {
         public IToken getERROR_KEY() { return leftIToken; }
 
-        public name3(IToken token) { super(token); initialize(); }
+        public name__ERROR_KEY(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6723,11 +6723,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 94:  name ::= EOL_KEY
      *</b>
      */
-    static public class name4 extends ASTNodeToken implements Iname
+    static public class name__EOL_KEY extends ASTNodeToken implements Iname
     {
         public IToken getEOL_KEY() { return leftIToken; }
 
-        public name4(IToken token) { super(token); initialize(); }
+        public name__EOL_KEY(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6748,11 +6748,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 95:  name ::= IDENTIFIER_KEY
      *</b>
      */
-    static public class name5 extends ASTNodeToken implements Iname
+    static public class name__IDENTIFIER_KEY extends ASTNodeToken implements Iname
     {
         public IToken getIDENTIFIER_KEY() { return leftIToken; }
 
-        public name5(IToken token) { super(token); initialize(); }
+        public name__IDENTIFIER_KEY(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6773,11 +6773,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 107:  produces ::= ::=
      *</b>
      */
-    static public class produces0 extends ASTNodeToken implements Iproduces
+    static public class produces__EQUIVALENCE extends ASTNodeToken implements Iproduces
     {
         public IToken getEQUIVALENCE() { return leftIToken; }
 
-        public produces0(IToken token) { super(token); initialize(); }
+        public produces__EQUIVALENCE(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6798,11 +6798,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 108:  produces ::= ::=?
      *</b>
      */
-    static public class produces1 extends ASTNodeToken implements Iproduces
+    static public class produces__PRIORITY_EQUIVALENCE extends ASTNodeToken implements Iproduces
     {
         public IToken getPRIORITY_EQUIVALENCE() { return leftIToken; }
 
-        public produces1(IToken token) { super(token); initialize(); }
+        public produces__PRIORITY_EQUIVALENCE(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6823,11 +6823,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 109:  produces ::= ->
      *</b>
      */
-    static public class produces2 extends ASTNodeToken implements Iproduces
+    static public class produces__ARROW extends ASTNodeToken implements Iproduces
     {
         public IToken getARROW() { return leftIToken; }
 
-        public produces2(IToken token) { super(token); initialize(); }
+        public produces__ARROW(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6848,11 +6848,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 110:  produces ::= ->?
      *</b>
      */
-    static public class produces3 extends ASTNodeToken implements Iproduces
+    static public class produces__PRIORITY_ARROW extends ASTNodeToken implements Iproduces
     {
         public IToken getPRIORITY_ARROW() { return leftIToken; }
 
-        public produces3(IToken token) { super(token); initialize(); }
+        public produces__PRIORITY_ARROW(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6873,11 +6873,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 114:  symWithAttrs ::= EMPTY_KEY
      *</b>
      */
-    static public class symWithAttrs0 extends ASTNodeToken implements IsymWithAttrs
+    static public class symWithAttrs__EMPTY_KEY extends ASTNodeToken implements IsymWithAttrs
     {
         public IToken getEMPTY_KEY() { return leftIToken; }
 
-        public symWithAttrs0(IToken token) { super(token); initialize(); }
+        public symWithAttrs__EMPTY_KEY(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -6898,7 +6898,7 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 115:  symWithAttrs ::= SYMBOL optAttrList
      *</b>
      */
-    static public class symWithAttrs1 extends ASTNode implements IsymWithAttrs
+    static public class symWithAttrs__SYMBOL_optAttrList extends ASTNode implements IsymWithAttrs
     {
         private ASTNodeToken _SYMBOL;
         private symAttrs _optAttrList;
@@ -6909,9 +6909,9 @@ public class LPGParser implements RuleAction, IParser
          */
         public symAttrs getoptAttrList() { return _optAttrList; }
 
-        public symWithAttrs1(IToken leftIToken, IToken rightIToken,
-                             ASTNodeToken _SYMBOL,
-                             symAttrs _optAttrList)
+        public symWithAttrs__SYMBOL_optAttrList(IToken leftIToken, IToken rightIToken,
+                                                ASTNodeToken _SYMBOL,
+                                                symAttrs _optAttrList)
         {
             super(leftIToken, rightIToken);
 
@@ -6936,9 +6936,9 @@ public class LPGParser implements RuleAction, IParser
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof symWithAttrs1)) return false;
+            if (! (o instanceof symWithAttrs__SYMBOL_optAttrList)) return false;
             if (! super.equals(o)) return false;
-            symWithAttrs1 other = (symWithAttrs1) o;
+            symWithAttrs__SYMBOL_optAttrList other = (symWithAttrs__SYMBOL_optAttrList) o;
             if (! _SYMBOL.equals(other._SYMBOL)) return false;
             if (_optAttrList == null)
                 if (other._optAttrList != null) return false;
@@ -6979,11 +6979,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 123:  start_symbol ::= SYMBOL
      *</b>
      */
-    static public class start_symbol0 extends ASTNodeToken implements Istart_symbol
+    static public class start_symbol__SYMBOL extends ASTNodeToken implements Istart_symbol
     {
         public IToken getSYMBOL() { return leftIToken; }
 
-        public start_symbol0(IToken token) { super(token); initialize(); }
+        public start_symbol__SYMBOL(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -7004,11 +7004,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 124:  start_symbol ::= MACRO_NAME
      *</b>
      */
-    static public class start_symbol1 extends ASTNodeToken implements Istart_symbol
+    static public class start_symbol__MACRO_NAME extends ASTNodeToken implements Istart_symbol
     {
         public IToken getMACRO_NAME() { return leftIToken; }
 
-        public start_symbol1(IToken token) { super(token); initialize(); }
+        public start_symbol__MACRO_NAME(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -7029,14 +7029,14 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 130:  terminal_symbol ::= SYMBOL
      *</b>
      */
-    static public class terminal_symbol0 extends ASTNodeToken implements Iterminal_symbol
+    static public class terminal_symbol__SYMBOL extends ASTNodeToken implements Iterminal_symbol
     {
         private LPGParser environment;
         public LPGParser getEnvironment() { return environment; }
 
         public IToken getSYMBOL() { return leftIToken; }
 
-        public terminal_symbol0(LPGParser environment, IToken token)        {
+        public terminal_symbol__SYMBOL(LPGParser environment, IToken token)        {
             super(token);
             this.environment = environment;
             initialize();
@@ -7063,11 +7063,11 @@ public class LPGParser implements RuleAction, IParser
      *<li>Rule 131:  terminal_symbol ::= MACRO_NAME
      *</b>
      */
-    static public class terminal_symbol1 extends ASTNodeToken implements Iterminal_symbol
+    static public class terminal_symbol__MACRO_NAME extends ASTNodeToken implements Iterminal_symbol
     {
         public IToken getMACRO_NAME() { return leftIToken; }
 
-        public terminal_symbol1(IToken token) { super(token); initialize(); }
+        public terminal_symbol__MACRO_NAME(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -7289,110 +7289,110 @@ public class LPGParser implements RuleAction, IParser
         boolean visit(END_KEY_OPT n);
         void endVisit(END_KEY_OPT n);
 
-        boolean visit(option_value0 n);
-        void endVisit(option_value0 n);
+        boolean visit(option_value__EQUAL_SYMBOL n);
+        void endVisit(option_value__EQUAL_SYMBOL n);
 
-        boolean visit(option_value1 n);
-        void endVisit(option_value1 n);
+        boolean visit(option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN n);
+        void endVisit(option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN n);
 
-        boolean visit(aliasSpec0 n);
-        void endVisit(aliasSpec0 n);
+        boolean visit(aliasSpec__ERROR_KEY_produces_alias_rhs n);
+        void endVisit(aliasSpec__ERROR_KEY_produces_alias_rhs n);
 
-        boolean visit(aliasSpec1 n);
-        void endVisit(aliasSpec1 n);
+        boolean visit(aliasSpec__EOL_KEY_produces_alias_rhs n);
+        void endVisit(aliasSpec__EOL_KEY_produces_alias_rhs n);
 
-        boolean visit(aliasSpec2 n);
-        void endVisit(aliasSpec2 n);
+        boolean visit(aliasSpec__EOF_KEY_produces_alias_rhs n);
+        void endVisit(aliasSpec__EOF_KEY_produces_alias_rhs n);
 
-        boolean visit(aliasSpec3 n);
-        void endVisit(aliasSpec3 n);
+        boolean visit(aliasSpec__IDENTIFIER_KEY_produces_alias_rhs n);
+        void endVisit(aliasSpec__IDENTIFIER_KEY_produces_alias_rhs n);
 
-        boolean visit(aliasSpec4 n);
-        void endVisit(aliasSpec4 n);
+        boolean visit(aliasSpec__SYMBOL_produces_alias_rhs n);
+        void endVisit(aliasSpec__SYMBOL_produces_alias_rhs n);
 
-        boolean visit(aliasSpec5 n);
-        void endVisit(aliasSpec5 n);
+        boolean visit(aliasSpec__alias_lhs_macro_name_produces_alias_rhs n);
+        void endVisit(aliasSpec__alias_lhs_macro_name_produces_alias_rhs n);
 
-        boolean visit(alias_rhs0 n);
-        void endVisit(alias_rhs0 n);
+        boolean visit(alias_rhs__SYMBOL n);
+        void endVisit(alias_rhs__SYMBOL n);
 
-        boolean visit(alias_rhs1 n);
-        void endVisit(alias_rhs1 n);
+        boolean visit(alias_rhs__MACRO_NAME n);
+        void endVisit(alias_rhs__MACRO_NAME n);
 
-        boolean visit(alias_rhs2 n);
-        void endVisit(alias_rhs2 n);
+        boolean visit(alias_rhs__ERROR_KEY n);
+        void endVisit(alias_rhs__ERROR_KEY n);
 
-        boolean visit(alias_rhs3 n);
-        void endVisit(alias_rhs3 n);
+        boolean visit(alias_rhs__EOL_KEY n);
+        void endVisit(alias_rhs__EOL_KEY n);
 
-        boolean visit(alias_rhs4 n);
-        void endVisit(alias_rhs4 n);
+        boolean visit(alias_rhs__EOF_KEY n);
+        void endVisit(alias_rhs__EOF_KEY n);
 
-        boolean visit(alias_rhs5 n);
-        void endVisit(alias_rhs5 n);
+        boolean visit(alias_rhs__EMPTY_KEY n);
+        void endVisit(alias_rhs__EMPTY_KEY n);
 
-        boolean visit(alias_rhs6 n);
-        void endVisit(alias_rhs6 n);
+        boolean visit(alias_rhs__IDENTIFIER_KEY n);
+        void endVisit(alias_rhs__IDENTIFIER_KEY n);
 
-        boolean visit(macro_name_symbol0 n);
-        void endVisit(macro_name_symbol0 n);
+        boolean visit(macro_name_symbol__MACRO_NAME n);
+        void endVisit(macro_name_symbol__MACRO_NAME n);
 
-        boolean visit(macro_name_symbol1 n);
-        void endVisit(macro_name_symbol1 n);
+        boolean visit(macro_name_symbol__SYMBOL n);
+        void endVisit(macro_name_symbol__SYMBOL n);
 
-        boolean visit(drop_command0 n);
-        void endVisit(drop_command0 n);
+        boolean visit(drop_command__DROPSYMBOLS_KEY_drop_symbols n);
+        void endVisit(drop_command__DROPSYMBOLS_KEY_drop_symbols n);
 
-        boolean visit(drop_command1 n);
-        void endVisit(drop_command1 n);
+        boolean visit(drop_command__DROPRULES_KEY_drop_rules n);
+        void endVisit(drop_command__DROPRULES_KEY_drop_rules n);
 
-        boolean visit(name0 n);
-        void endVisit(name0 n);
+        boolean visit(name__SYMBOL n);
+        void endVisit(name__SYMBOL n);
 
-        boolean visit(name1 n);
-        void endVisit(name1 n);
+        boolean visit(name__MACRO_NAME n);
+        void endVisit(name__MACRO_NAME n);
 
-        boolean visit(name2 n);
-        void endVisit(name2 n);
+        boolean visit(name__EMPTY_KEY n);
+        void endVisit(name__EMPTY_KEY n);
 
-        boolean visit(name3 n);
-        void endVisit(name3 n);
+        boolean visit(name__ERROR_KEY n);
+        void endVisit(name__ERROR_KEY n);
 
-        boolean visit(name4 n);
-        void endVisit(name4 n);
+        boolean visit(name__EOL_KEY n);
+        void endVisit(name__EOL_KEY n);
 
-        boolean visit(name5 n);
-        void endVisit(name5 n);
+        boolean visit(name__IDENTIFIER_KEY n);
+        void endVisit(name__IDENTIFIER_KEY n);
 
-        boolean visit(produces0 n);
-        void endVisit(produces0 n);
+        boolean visit(produces__EQUIVALENCE n);
+        void endVisit(produces__EQUIVALENCE n);
 
-        boolean visit(produces1 n);
-        void endVisit(produces1 n);
+        boolean visit(produces__PRIORITY_EQUIVALENCE n);
+        void endVisit(produces__PRIORITY_EQUIVALENCE n);
 
-        boolean visit(produces2 n);
-        void endVisit(produces2 n);
+        boolean visit(produces__ARROW n);
+        void endVisit(produces__ARROW n);
 
-        boolean visit(produces3 n);
-        void endVisit(produces3 n);
+        boolean visit(produces__PRIORITY_ARROW n);
+        void endVisit(produces__PRIORITY_ARROW n);
 
-        boolean visit(symWithAttrs0 n);
-        void endVisit(symWithAttrs0 n);
+        boolean visit(symWithAttrs__EMPTY_KEY n);
+        void endVisit(symWithAttrs__EMPTY_KEY n);
 
-        boolean visit(symWithAttrs1 n);
-        void endVisit(symWithAttrs1 n);
+        boolean visit(symWithAttrs__SYMBOL_optAttrList n);
+        void endVisit(symWithAttrs__SYMBOL_optAttrList n);
 
-        boolean visit(start_symbol0 n);
-        void endVisit(start_symbol0 n);
+        boolean visit(start_symbol__SYMBOL n);
+        void endVisit(start_symbol__SYMBOL n);
 
-        boolean visit(start_symbol1 n);
-        void endVisit(start_symbol1 n);
+        boolean visit(start_symbol__MACRO_NAME n);
+        void endVisit(start_symbol__MACRO_NAME n);
 
-        boolean visit(terminal_symbol0 n);
-        void endVisit(terminal_symbol0 n);
+        boolean visit(terminal_symbol__SYMBOL n);
+        void endVisit(terminal_symbol__SYMBOL n);
 
-        boolean visit(terminal_symbol1 n);
-        void endVisit(terminal_symbol1 n);
+        boolean visit(terminal_symbol__MACRO_NAME n);
+        void endVisit(terminal_symbol__MACRO_NAME n);
 
     }
 
@@ -7605,110 +7605,110 @@ public class LPGParser implements RuleAction, IParser
         public boolean visit(END_KEY_OPT n) { unimplementedVisitor("visit(END_KEY_OPT)"); return true; }
         public void endVisit(END_KEY_OPT n) { unimplementedVisitor("endVisit(END_KEY_OPT)"); }
 
-        public boolean visit(option_value0 n) { unimplementedVisitor("visit(option_value0)"); return true; }
-        public void endVisit(option_value0 n) { unimplementedVisitor("endVisit(option_value0)"); }
+        public boolean visit(option_value__EQUAL_SYMBOL n) { unimplementedVisitor("visit(option_value__EQUAL_SYMBOL)"); return true; }
+        public void endVisit(option_value__EQUAL_SYMBOL n) { unimplementedVisitor("endVisit(option_value__EQUAL_SYMBOL)"); }
 
-        public boolean visit(option_value1 n) { unimplementedVisitor("visit(option_value1)"); return true; }
-        public void endVisit(option_value1 n) { unimplementedVisitor("endVisit(option_value1)"); }
+        public boolean visit(option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN n) { unimplementedVisitor("visit(option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN)"); return true; }
+        public void endVisit(option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN n) { unimplementedVisitor("endVisit(option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN)"); }
 
-        public boolean visit(aliasSpec0 n) { unimplementedVisitor("visit(aliasSpec0)"); return true; }
-        public void endVisit(aliasSpec0 n) { unimplementedVisitor("endVisit(aliasSpec0)"); }
+        public boolean visit(aliasSpec__ERROR_KEY_produces_alias_rhs n) { unimplementedVisitor("visit(aliasSpec__ERROR_KEY_produces_alias_rhs)"); return true; }
+        public void endVisit(aliasSpec__ERROR_KEY_produces_alias_rhs n) { unimplementedVisitor("endVisit(aliasSpec__ERROR_KEY_produces_alias_rhs)"); }
 
-        public boolean visit(aliasSpec1 n) { unimplementedVisitor("visit(aliasSpec1)"); return true; }
-        public void endVisit(aliasSpec1 n) { unimplementedVisitor("endVisit(aliasSpec1)"); }
+        public boolean visit(aliasSpec__EOL_KEY_produces_alias_rhs n) { unimplementedVisitor("visit(aliasSpec__EOL_KEY_produces_alias_rhs)"); return true; }
+        public void endVisit(aliasSpec__EOL_KEY_produces_alias_rhs n) { unimplementedVisitor("endVisit(aliasSpec__EOL_KEY_produces_alias_rhs)"); }
 
-        public boolean visit(aliasSpec2 n) { unimplementedVisitor("visit(aliasSpec2)"); return true; }
-        public void endVisit(aliasSpec2 n) { unimplementedVisitor("endVisit(aliasSpec2)"); }
+        public boolean visit(aliasSpec__EOF_KEY_produces_alias_rhs n) { unimplementedVisitor("visit(aliasSpec__EOF_KEY_produces_alias_rhs)"); return true; }
+        public void endVisit(aliasSpec__EOF_KEY_produces_alias_rhs n) { unimplementedVisitor("endVisit(aliasSpec__EOF_KEY_produces_alias_rhs)"); }
 
-        public boolean visit(aliasSpec3 n) { unimplementedVisitor("visit(aliasSpec3)"); return true; }
-        public void endVisit(aliasSpec3 n) { unimplementedVisitor("endVisit(aliasSpec3)"); }
+        public boolean visit(aliasSpec__IDENTIFIER_KEY_produces_alias_rhs n) { unimplementedVisitor("visit(aliasSpec__IDENTIFIER_KEY_produces_alias_rhs)"); return true; }
+        public void endVisit(aliasSpec__IDENTIFIER_KEY_produces_alias_rhs n) { unimplementedVisitor("endVisit(aliasSpec__IDENTIFIER_KEY_produces_alias_rhs)"); }
 
-        public boolean visit(aliasSpec4 n) { unimplementedVisitor("visit(aliasSpec4)"); return true; }
-        public void endVisit(aliasSpec4 n) { unimplementedVisitor("endVisit(aliasSpec4)"); }
+        public boolean visit(aliasSpec__SYMBOL_produces_alias_rhs n) { unimplementedVisitor("visit(aliasSpec__SYMBOL_produces_alias_rhs)"); return true; }
+        public void endVisit(aliasSpec__SYMBOL_produces_alias_rhs n) { unimplementedVisitor("endVisit(aliasSpec__SYMBOL_produces_alias_rhs)"); }
 
-        public boolean visit(aliasSpec5 n) { unimplementedVisitor("visit(aliasSpec5)"); return true; }
-        public void endVisit(aliasSpec5 n) { unimplementedVisitor("endVisit(aliasSpec5)"); }
+        public boolean visit(aliasSpec__alias_lhs_macro_name_produces_alias_rhs n) { unimplementedVisitor("visit(aliasSpec__alias_lhs_macro_name_produces_alias_rhs)"); return true; }
+        public void endVisit(aliasSpec__alias_lhs_macro_name_produces_alias_rhs n) { unimplementedVisitor("endVisit(aliasSpec__alias_lhs_macro_name_produces_alias_rhs)"); }
 
-        public boolean visit(alias_rhs0 n) { unimplementedVisitor("visit(alias_rhs0)"); return true; }
-        public void endVisit(alias_rhs0 n) { unimplementedVisitor("endVisit(alias_rhs0)"); }
+        public boolean visit(alias_rhs__SYMBOL n) { unimplementedVisitor("visit(alias_rhs__SYMBOL)"); return true; }
+        public void endVisit(alias_rhs__SYMBOL n) { unimplementedVisitor("endVisit(alias_rhs__SYMBOL)"); }
 
-        public boolean visit(alias_rhs1 n) { unimplementedVisitor("visit(alias_rhs1)"); return true; }
-        public void endVisit(alias_rhs1 n) { unimplementedVisitor("endVisit(alias_rhs1)"); }
+        public boolean visit(alias_rhs__MACRO_NAME n) { unimplementedVisitor("visit(alias_rhs__MACRO_NAME)"); return true; }
+        public void endVisit(alias_rhs__MACRO_NAME n) { unimplementedVisitor("endVisit(alias_rhs__MACRO_NAME)"); }
 
-        public boolean visit(alias_rhs2 n) { unimplementedVisitor("visit(alias_rhs2)"); return true; }
-        public void endVisit(alias_rhs2 n) { unimplementedVisitor("endVisit(alias_rhs2)"); }
+        public boolean visit(alias_rhs__ERROR_KEY n) { unimplementedVisitor("visit(alias_rhs__ERROR_KEY)"); return true; }
+        public void endVisit(alias_rhs__ERROR_KEY n) { unimplementedVisitor("endVisit(alias_rhs__ERROR_KEY)"); }
 
-        public boolean visit(alias_rhs3 n) { unimplementedVisitor("visit(alias_rhs3)"); return true; }
-        public void endVisit(alias_rhs3 n) { unimplementedVisitor("endVisit(alias_rhs3)"); }
+        public boolean visit(alias_rhs__EOL_KEY n) { unimplementedVisitor("visit(alias_rhs__EOL_KEY)"); return true; }
+        public void endVisit(alias_rhs__EOL_KEY n) { unimplementedVisitor("endVisit(alias_rhs__EOL_KEY)"); }
 
-        public boolean visit(alias_rhs4 n) { unimplementedVisitor("visit(alias_rhs4)"); return true; }
-        public void endVisit(alias_rhs4 n) { unimplementedVisitor("endVisit(alias_rhs4)"); }
+        public boolean visit(alias_rhs__EOF_KEY n) { unimplementedVisitor("visit(alias_rhs__EOF_KEY)"); return true; }
+        public void endVisit(alias_rhs__EOF_KEY n) { unimplementedVisitor("endVisit(alias_rhs__EOF_KEY)"); }
 
-        public boolean visit(alias_rhs5 n) { unimplementedVisitor("visit(alias_rhs5)"); return true; }
-        public void endVisit(alias_rhs5 n) { unimplementedVisitor("endVisit(alias_rhs5)"); }
+        public boolean visit(alias_rhs__EMPTY_KEY n) { unimplementedVisitor("visit(alias_rhs__EMPTY_KEY)"); return true; }
+        public void endVisit(alias_rhs__EMPTY_KEY n) { unimplementedVisitor("endVisit(alias_rhs__EMPTY_KEY)"); }
 
-        public boolean visit(alias_rhs6 n) { unimplementedVisitor("visit(alias_rhs6)"); return true; }
-        public void endVisit(alias_rhs6 n) { unimplementedVisitor("endVisit(alias_rhs6)"); }
+        public boolean visit(alias_rhs__IDENTIFIER_KEY n) { unimplementedVisitor("visit(alias_rhs__IDENTIFIER_KEY)"); return true; }
+        public void endVisit(alias_rhs__IDENTIFIER_KEY n) { unimplementedVisitor("endVisit(alias_rhs__IDENTIFIER_KEY)"); }
 
-        public boolean visit(macro_name_symbol0 n) { unimplementedVisitor("visit(macro_name_symbol0)"); return true; }
-        public void endVisit(macro_name_symbol0 n) { unimplementedVisitor("endVisit(macro_name_symbol0)"); }
+        public boolean visit(macro_name_symbol__MACRO_NAME n) { unimplementedVisitor("visit(macro_name_symbol__MACRO_NAME)"); return true; }
+        public void endVisit(macro_name_symbol__MACRO_NAME n) { unimplementedVisitor("endVisit(macro_name_symbol__MACRO_NAME)"); }
 
-        public boolean visit(macro_name_symbol1 n) { unimplementedVisitor("visit(macro_name_symbol1)"); return true; }
-        public void endVisit(macro_name_symbol1 n) { unimplementedVisitor("endVisit(macro_name_symbol1)"); }
+        public boolean visit(macro_name_symbol__SYMBOL n) { unimplementedVisitor("visit(macro_name_symbol__SYMBOL)"); return true; }
+        public void endVisit(macro_name_symbol__SYMBOL n) { unimplementedVisitor("endVisit(macro_name_symbol__SYMBOL)"); }
 
-        public boolean visit(drop_command0 n) { unimplementedVisitor("visit(drop_command0)"); return true; }
-        public void endVisit(drop_command0 n) { unimplementedVisitor("endVisit(drop_command0)"); }
+        public boolean visit(drop_command__DROPSYMBOLS_KEY_drop_symbols n) { unimplementedVisitor("visit(drop_command__DROPSYMBOLS_KEY_drop_symbols)"); return true; }
+        public void endVisit(drop_command__DROPSYMBOLS_KEY_drop_symbols n) { unimplementedVisitor("endVisit(drop_command__DROPSYMBOLS_KEY_drop_symbols)"); }
 
-        public boolean visit(drop_command1 n) { unimplementedVisitor("visit(drop_command1)"); return true; }
-        public void endVisit(drop_command1 n) { unimplementedVisitor("endVisit(drop_command1)"); }
+        public boolean visit(drop_command__DROPRULES_KEY_drop_rules n) { unimplementedVisitor("visit(drop_command__DROPRULES_KEY_drop_rules)"); return true; }
+        public void endVisit(drop_command__DROPRULES_KEY_drop_rules n) { unimplementedVisitor("endVisit(drop_command__DROPRULES_KEY_drop_rules)"); }
 
-        public boolean visit(name0 n) { unimplementedVisitor("visit(name0)"); return true; }
-        public void endVisit(name0 n) { unimplementedVisitor("endVisit(name0)"); }
+        public boolean visit(name__SYMBOL n) { unimplementedVisitor("visit(name__SYMBOL)"); return true; }
+        public void endVisit(name__SYMBOL n) { unimplementedVisitor("endVisit(name__SYMBOL)"); }
 
-        public boolean visit(name1 n) { unimplementedVisitor("visit(name1)"); return true; }
-        public void endVisit(name1 n) { unimplementedVisitor("endVisit(name1)"); }
+        public boolean visit(name__MACRO_NAME n) { unimplementedVisitor("visit(name__MACRO_NAME)"); return true; }
+        public void endVisit(name__MACRO_NAME n) { unimplementedVisitor("endVisit(name__MACRO_NAME)"); }
 
-        public boolean visit(name2 n) { unimplementedVisitor("visit(name2)"); return true; }
-        public void endVisit(name2 n) { unimplementedVisitor("endVisit(name2)"); }
+        public boolean visit(name__EMPTY_KEY n) { unimplementedVisitor("visit(name__EMPTY_KEY)"); return true; }
+        public void endVisit(name__EMPTY_KEY n) { unimplementedVisitor("endVisit(name__EMPTY_KEY)"); }
 
-        public boolean visit(name3 n) { unimplementedVisitor("visit(name3)"); return true; }
-        public void endVisit(name3 n) { unimplementedVisitor("endVisit(name3)"); }
+        public boolean visit(name__ERROR_KEY n) { unimplementedVisitor("visit(name__ERROR_KEY)"); return true; }
+        public void endVisit(name__ERROR_KEY n) { unimplementedVisitor("endVisit(name__ERROR_KEY)"); }
 
-        public boolean visit(name4 n) { unimplementedVisitor("visit(name4)"); return true; }
-        public void endVisit(name4 n) { unimplementedVisitor("endVisit(name4)"); }
+        public boolean visit(name__EOL_KEY n) { unimplementedVisitor("visit(name__EOL_KEY)"); return true; }
+        public void endVisit(name__EOL_KEY n) { unimplementedVisitor("endVisit(name__EOL_KEY)"); }
 
-        public boolean visit(name5 n) { unimplementedVisitor("visit(name5)"); return true; }
-        public void endVisit(name5 n) { unimplementedVisitor("endVisit(name5)"); }
+        public boolean visit(name__IDENTIFIER_KEY n) { unimplementedVisitor("visit(name__IDENTIFIER_KEY)"); return true; }
+        public void endVisit(name__IDENTIFIER_KEY n) { unimplementedVisitor("endVisit(name__IDENTIFIER_KEY)"); }
 
-        public boolean visit(produces0 n) { unimplementedVisitor("visit(produces0)"); return true; }
-        public void endVisit(produces0 n) { unimplementedVisitor("endVisit(produces0)"); }
+        public boolean visit(produces__EQUIVALENCE n) { unimplementedVisitor("visit(produces__EQUIVALENCE)"); return true; }
+        public void endVisit(produces__EQUIVALENCE n) { unimplementedVisitor("endVisit(produces__EQUIVALENCE)"); }
 
-        public boolean visit(produces1 n) { unimplementedVisitor("visit(produces1)"); return true; }
-        public void endVisit(produces1 n) { unimplementedVisitor("endVisit(produces1)"); }
+        public boolean visit(produces__PRIORITY_EQUIVALENCE n) { unimplementedVisitor("visit(produces__PRIORITY_EQUIVALENCE)"); return true; }
+        public void endVisit(produces__PRIORITY_EQUIVALENCE n) { unimplementedVisitor("endVisit(produces__PRIORITY_EQUIVALENCE)"); }
 
-        public boolean visit(produces2 n) { unimplementedVisitor("visit(produces2)"); return true; }
-        public void endVisit(produces2 n) { unimplementedVisitor("endVisit(produces2)"); }
+        public boolean visit(produces__ARROW n) { unimplementedVisitor("visit(produces__ARROW)"); return true; }
+        public void endVisit(produces__ARROW n) { unimplementedVisitor("endVisit(produces__ARROW)"); }
 
-        public boolean visit(produces3 n) { unimplementedVisitor("visit(produces3)"); return true; }
-        public void endVisit(produces3 n) { unimplementedVisitor("endVisit(produces3)"); }
+        public boolean visit(produces__PRIORITY_ARROW n) { unimplementedVisitor("visit(produces__PRIORITY_ARROW)"); return true; }
+        public void endVisit(produces__PRIORITY_ARROW n) { unimplementedVisitor("endVisit(produces__PRIORITY_ARROW)"); }
 
-        public boolean visit(symWithAttrs0 n) { unimplementedVisitor("visit(symWithAttrs0)"); return true; }
-        public void endVisit(symWithAttrs0 n) { unimplementedVisitor("endVisit(symWithAttrs0)"); }
+        public boolean visit(symWithAttrs__EMPTY_KEY n) { unimplementedVisitor("visit(symWithAttrs__EMPTY_KEY)"); return true; }
+        public void endVisit(symWithAttrs__EMPTY_KEY n) { unimplementedVisitor("endVisit(symWithAttrs__EMPTY_KEY)"); }
 
-        public boolean visit(symWithAttrs1 n) { unimplementedVisitor("visit(symWithAttrs1)"); return true; }
-        public void endVisit(symWithAttrs1 n) { unimplementedVisitor("endVisit(symWithAttrs1)"); }
+        public boolean visit(symWithAttrs__SYMBOL_optAttrList n) { unimplementedVisitor("visit(symWithAttrs__SYMBOL_optAttrList)"); return true; }
+        public void endVisit(symWithAttrs__SYMBOL_optAttrList n) { unimplementedVisitor("endVisit(symWithAttrs__SYMBOL_optAttrList)"); }
 
-        public boolean visit(start_symbol0 n) { unimplementedVisitor("visit(start_symbol0)"); return true; }
-        public void endVisit(start_symbol0 n) { unimplementedVisitor("endVisit(start_symbol0)"); }
+        public boolean visit(start_symbol__SYMBOL n) { unimplementedVisitor("visit(start_symbol__SYMBOL)"); return true; }
+        public void endVisit(start_symbol__SYMBOL n) { unimplementedVisitor("endVisit(start_symbol__SYMBOL)"); }
 
-        public boolean visit(start_symbol1 n) { unimplementedVisitor("visit(start_symbol1)"); return true; }
-        public void endVisit(start_symbol1 n) { unimplementedVisitor("endVisit(start_symbol1)"); }
+        public boolean visit(start_symbol__MACRO_NAME n) { unimplementedVisitor("visit(start_symbol__MACRO_NAME)"); return true; }
+        public void endVisit(start_symbol__MACRO_NAME n) { unimplementedVisitor("endVisit(start_symbol__MACRO_NAME)"); }
 
-        public boolean visit(terminal_symbol0 n) { unimplementedVisitor("visit(terminal_symbol0)"); return true; }
-        public void endVisit(terminal_symbol0 n) { unimplementedVisitor("endVisit(terminal_symbol0)"); }
+        public boolean visit(terminal_symbol__SYMBOL n) { unimplementedVisitor("visit(terminal_symbol__SYMBOL)"); return true; }
+        public void endVisit(terminal_symbol__SYMBOL n) { unimplementedVisitor("endVisit(terminal_symbol__SYMBOL)"); }
 
-        public boolean visit(terminal_symbol1 n) { unimplementedVisitor("visit(terminal_symbol1)"); return true; }
-        public void endVisit(terminal_symbol1 n) { unimplementedVisitor("endVisit(terminal_symbol1)"); }
+        public boolean visit(terminal_symbol__MACRO_NAME n) { unimplementedVisitor("visit(terminal_symbol__MACRO_NAME)"); return true; }
+        public void endVisit(terminal_symbol__MACRO_NAME n) { unimplementedVisitor("endVisit(terminal_symbol__MACRO_NAME)"); }
 
 
         public boolean visit(ASTNode n)
@@ -7780,41 +7780,41 @@ public class LPGParser implements RuleAction, IParser
             else if (n instanceof symbol_pair) return visit((symbol_pair) n);
             else if (n instanceof recover_symbol) return visit((recover_symbol) n);
             else if (n instanceof END_KEY_OPT) return visit((END_KEY_OPT) n);
-            else if (n instanceof option_value0) return visit((option_value0) n);
-            else if (n instanceof option_value1) return visit((option_value1) n);
-            else if (n instanceof aliasSpec0) return visit((aliasSpec0) n);
-            else if (n instanceof aliasSpec1) return visit((aliasSpec1) n);
-            else if (n instanceof aliasSpec2) return visit((aliasSpec2) n);
-            else if (n instanceof aliasSpec3) return visit((aliasSpec3) n);
-            else if (n instanceof aliasSpec4) return visit((aliasSpec4) n);
-            else if (n instanceof aliasSpec5) return visit((aliasSpec5) n);
-            else if (n instanceof alias_rhs0) return visit((alias_rhs0) n);
-            else if (n instanceof alias_rhs1) return visit((alias_rhs1) n);
-            else if (n instanceof alias_rhs2) return visit((alias_rhs2) n);
-            else if (n instanceof alias_rhs3) return visit((alias_rhs3) n);
-            else if (n instanceof alias_rhs4) return visit((alias_rhs4) n);
-            else if (n instanceof alias_rhs5) return visit((alias_rhs5) n);
-            else if (n instanceof alias_rhs6) return visit((alias_rhs6) n);
-            else if (n instanceof macro_name_symbol0) return visit((macro_name_symbol0) n);
-            else if (n instanceof macro_name_symbol1) return visit((macro_name_symbol1) n);
-            else if (n instanceof drop_command0) return visit((drop_command0) n);
-            else if (n instanceof drop_command1) return visit((drop_command1) n);
-            else if (n instanceof name0) return visit((name0) n);
-            else if (n instanceof name1) return visit((name1) n);
-            else if (n instanceof name2) return visit((name2) n);
-            else if (n instanceof name3) return visit((name3) n);
-            else if (n instanceof name4) return visit((name4) n);
-            else if (n instanceof name5) return visit((name5) n);
-            else if (n instanceof produces0) return visit((produces0) n);
-            else if (n instanceof produces1) return visit((produces1) n);
-            else if (n instanceof produces2) return visit((produces2) n);
-            else if (n instanceof produces3) return visit((produces3) n);
-            else if (n instanceof symWithAttrs0) return visit((symWithAttrs0) n);
-            else if (n instanceof symWithAttrs1) return visit((symWithAttrs1) n);
-            else if (n instanceof start_symbol0) return visit((start_symbol0) n);
-            else if (n instanceof start_symbol1) return visit((start_symbol1) n);
-            else if (n instanceof terminal_symbol0) return visit((terminal_symbol0) n);
-            else if (n instanceof terminal_symbol1) return visit((terminal_symbol1) n);
+            else if (n instanceof option_value__EQUAL_SYMBOL) return visit((option_value__EQUAL_SYMBOL) n);
+            else if (n instanceof option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN) return visit((option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN) n);
+            else if (n instanceof aliasSpec__ERROR_KEY_produces_alias_rhs) return visit((aliasSpec__ERROR_KEY_produces_alias_rhs) n);
+            else if (n instanceof aliasSpec__EOL_KEY_produces_alias_rhs) return visit((aliasSpec__EOL_KEY_produces_alias_rhs) n);
+            else if (n instanceof aliasSpec__EOF_KEY_produces_alias_rhs) return visit((aliasSpec__EOF_KEY_produces_alias_rhs) n);
+            else if (n instanceof aliasSpec__IDENTIFIER_KEY_produces_alias_rhs) return visit((aliasSpec__IDENTIFIER_KEY_produces_alias_rhs) n);
+            else if (n instanceof aliasSpec__SYMBOL_produces_alias_rhs) return visit((aliasSpec__SYMBOL_produces_alias_rhs) n);
+            else if (n instanceof aliasSpec__alias_lhs_macro_name_produces_alias_rhs) return visit((aliasSpec__alias_lhs_macro_name_produces_alias_rhs) n);
+            else if (n instanceof alias_rhs__SYMBOL) return visit((alias_rhs__SYMBOL) n);
+            else if (n instanceof alias_rhs__MACRO_NAME) return visit((alias_rhs__MACRO_NAME) n);
+            else if (n instanceof alias_rhs__ERROR_KEY) return visit((alias_rhs__ERROR_KEY) n);
+            else if (n instanceof alias_rhs__EOL_KEY) return visit((alias_rhs__EOL_KEY) n);
+            else if (n instanceof alias_rhs__EOF_KEY) return visit((alias_rhs__EOF_KEY) n);
+            else if (n instanceof alias_rhs__EMPTY_KEY) return visit((alias_rhs__EMPTY_KEY) n);
+            else if (n instanceof alias_rhs__IDENTIFIER_KEY) return visit((alias_rhs__IDENTIFIER_KEY) n);
+            else if (n instanceof macro_name_symbol__MACRO_NAME) return visit((macro_name_symbol__MACRO_NAME) n);
+            else if (n instanceof macro_name_symbol__SYMBOL) return visit((macro_name_symbol__SYMBOL) n);
+            else if (n instanceof drop_command__DROPSYMBOLS_KEY_drop_symbols) return visit((drop_command__DROPSYMBOLS_KEY_drop_symbols) n);
+            else if (n instanceof drop_command__DROPRULES_KEY_drop_rules) return visit((drop_command__DROPRULES_KEY_drop_rules) n);
+            else if (n instanceof name__SYMBOL) return visit((name__SYMBOL) n);
+            else if (n instanceof name__MACRO_NAME) return visit((name__MACRO_NAME) n);
+            else if (n instanceof name__EMPTY_KEY) return visit((name__EMPTY_KEY) n);
+            else if (n instanceof name__ERROR_KEY) return visit((name__ERROR_KEY) n);
+            else if (n instanceof name__EOL_KEY) return visit((name__EOL_KEY) n);
+            else if (n instanceof name__IDENTIFIER_KEY) return visit((name__IDENTIFIER_KEY) n);
+            else if (n instanceof produces__EQUIVALENCE) return visit((produces__EQUIVALENCE) n);
+            else if (n instanceof produces__PRIORITY_EQUIVALENCE) return visit((produces__PRIORITY_EQUIVALENCE) n);
+            else if (n instanceof produces__ARROW) return visit((produces__ARROW) n);
+            else if (n instanceof produces__PRIORITY_ARROW) return visit((produces__PRIORITY_ARROW) n);
+            else if (n instanceof symWithAttrs__EMPTY_KEY) return visit((symWithAttrs__EMPTY_KEY) n);
+            else if (n instanceof symWithAttrs__SYMBOL_optAttrList) return visit((symWithAttrs__SYMBOL_optAttrList) n);
+            else if (n instanceof start_symbol__SYMBOL) return visit((start_symbol__SYMBOL) n);
+            else if (n instanceof start_symbol__MACRO_NAME) return visit((start_symbol__MACRO_NAME) n);
+            else if (n instanceof terminal_symbol__SYMBOL) return visit((terminal_symbol__SYMBOL) n);
+            else if (n instanceof terminal_symbol__MACRO_NAME) return visit((terminal_symbol__MACRO_NAME) n);
             throw new UnsupportedOperationException("visit(" + n.getClass().toString() + ")");
         }
         public void endVisit(ASTNode n)
@@ -7886,41 +7886,41 @@ public class LPGParser implements RuleAction, IParser
             else if (n instanceof symbol_pair) endVisit((symbol_pair) n);
             else if (n instanceof recover_symbol) endVisit((recover_symbol) n);
             else if (n instanceof END_KEY_OPT) endVisit((END_KEY_OPT) n);
-            else if (n instanceof option_value0) endVisit((option_value0) n);
-            else if (n instanceof option_value1) endVisit((option_value1) n);
-            else if (n instanceof aliasSpec0) endVisit((aliasSpec0) n);
-            else if (n instanceof aliasSpec1) endVisit((aliasSpec1) n);
-            else if (n instanceof aliasSpec2) endVisit((aliasSpec2) n);
-            else if (n instanceof aliasSpec3) endVisit((aliasSpec3) n);
-            else if (n instanceof aliasSpec4) endVisit((aliasSpec4) n);
-            else if (n instanceof aliasSpec5) endVisit((aliasSpec5) n);
-            else if (n instanceof alias_rhs0) endVisit((alias_rhs0) n);
-            else if (n instanceof alias_rhs1) endVisit((alias_rhs1) n);
-            else if (n instanceof alias_rhs2) endVisit((alias_rhs2) n);
-            else if (n instanceof alias_rhs3) endVisit((alias_rhs3) n);
-            else if (n instanceof alias_rhs4) endVisit((alias_rhs4) n);
-            else if (n instanceof alias_rhs5) endVisit((alias_rhs5) n);
-            else if (n instanceof alias_rhs6) endVisit((alias_rhs6) n);
-            else if (n instanceof macro_name_symbol0) endVisit((macro_name_symbol0) n);
-            else if (n instanceof macro_name_symbol1) endVisit((macro_name_symbol1) n);
-            else if (n instanceof drop_command0) endVisit((drop_command0) n);
-            else if (n instanceof drop_command1) endVisit((drop_command1) n);
-            else if (n instanceof name0) endVisit((name0) n);
-            else if (n instanceof name1) endVisit((name1) n);
-            else if (n instanceof name2) endVisit((name2) n);
-            else if (n instanceof name3) endVisit((name3) n);
-            else if (n instanceof name4) endVisit((name4) n);
-            else if (n instanceof name5) endVisit((name5) n);
-            else if (n instanceof produces0) endVisit((produces0) n);
-            else if (n instanceof produces1) endVisit((produces1) n);
-            else if (n instanceof produces2) endVisit((produces2) n);
-            else if (n instanceof produces3) endVisit((produces3) n);
-            else if (n instanceof symWithAttrs0) endVisit((symWithAttrs0) n);
-            else if (n instanceof symWithAttrs1) endVisit((symWithAttrs1) n);
-            else if (n instanceof start_symbol0) endVisit((start_symbol0) n);
-            else if (n instanceof start_symbol1) endVisit((start_symbol1) n);
-            else if (n instanceof terminal_symbol0) endVisit((terminal_symbol0) n);
-            else if (n instanceof terminal_symbol1) endVisit((terminal_symbol1) n);
+            else if (n instanceof option_value__EQUAL_SYMBOL) endVisit((option_value__EQUAL_SYMBOL) n);
+            else if (n instanceof option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN) endVisit((option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN) n);
+            else if (n instanceof aliasSpec__ERROR_KEY_produces_alias_rhs) endVisit((aliasSpec__ERROR_KEY_produces_alias_rhs) n);
+            else if (n instanceof aliasSpec__EOL_KEY_produces_alias_rhs) endVisit((aliasSpec__EOL_KEY_produces_alias_rhs) n);
+            else if (n instanceof aliasSpec__EOF_KEY_produces_alias_rhs) endVisit((aliasSpec__EOF_KEY_produces_alias_rhs) n);
+            else if (n instanceof aliasSpec__IDENTIFIER_KEY_produces_alias_rhs) endVisit((aliasSpec__IDENTIFIER_KEY_produces_alias_rhs) n);
+            else if (n instanceof aliasSpec__SYMBOL_produces_alias_rhs) endVisit((aliasSpec__SYMBOL_produces_alias_rhs) n);
+            else if (n instanceof aliasSpec__alias_lhs_macro_name_produces_alias_rhs) endVisit((aliasSpec__alias_lhs_macro_name_produces_alias_rhs) n);
+            else if (n instanceof alias_rhs__SYMBOL) endVisit((alias_rhs__SYMBOL) n);
+            else if (n instanceof alias_rhs__MACRO_NAME) endVisit((alias_rhs__MACRO_NAME) n);
+            else if (n instanceof alias_rhs__ERROR_KEY) endVisit((alias_rhs__ERROR_KEY) n);
+            else if (n instanceof alias_rhs__EOL_KEY) endVisit((alias_rhs__EOL_KEY) n);
+            else if (n instanceof alias_rhs__EOF_KEY) endVisit((alias_rhs__EOF_KEY) n);
+            else if (n instanceof alias_rhs__EMPTY_KEY) endVisit((alias_rhs__EMPTY_KEY) n);
+            else if (n instanceof alias_rhs__IDENTIFIER_KEY) endVisit((alias_rhs__IDENTIFIER_KEY) n);
+            else if (n instanceof macro_name_symbol__MACRO_NAME) endVisit((macro_name_symbol__MACRO_NAME) n);
+            else if (n instanceof macro_name_symbol__SYMBOL) endVisit((macro_name_symbol__SYMBOL) n);
+            else if (n instanceof drop_command__DROPSYMBOLS_KEY_drop_symbols) endVisit((drop_command__DROPSYMBOLS_KEY_drop_symbols) n);
+            else if (n instanceof drop_command__DROPRULES_KEY_drop_rules) endVisit((drop_command__DROPRULES_KEY_drop_rules) n);
+            else if (n instanceof name__SYMBOL) endVisit((name__SYMBOL) n);
+            else if (n instanceof name__MACRO_NAME) endVisit((name__MACRO_NAME) n);
+            else if (n instanceof name__EMPTY_KEY) endVisit((name__EMPTY_KEY) n);
+            else if (n instanceof name__ERROR_KEY) endVisit((name__ERROR_KEY) n);
+            else if (n instanceof name__EOL_KEY) endVisit((name__EOL_KEY) n);
+            else if (n instanceof name__IDENTIFIER_KEY) endVisit((name__IDENTIFIER_KEY) n);
+            else if (n instanceof produces__EQUIVALENCE) endVisit((produces__EQUIVALENCE) n);
+            else if (n instanceof produces__PRIORITY_EQUIVALENCE) endVisit((produces__PRIORITY_EQUIVALENCE) n);
+            else if (n instanceof produces__ARROW) endVisit((produces__ARROW) n);
+            else if (n instanceof produces__PRIORITY_ARROW) endVisit((produces__PRIORITY_ARROW) n);
+            else if (n instanceof symWithAttrs__EMPTY_KEY) endVisit((symWithAttrs__EMPTY_KEY) n);
+            else if (n instanceof symWithAttrs__SYMBOL_optAttrList) endVisit((symWithAttrs__SYMBOL_optAttrList) n);
+            else if (n instanceof start_symbol__SYMBOL) endVisit((start_symbol__SYMBOL) n);
+            else if (n instanceof start_symbol__MACRO_NAME) endVisit((start_symbol__MACRO_NAME) n);
+            else if (n instanceof terminal_symbol__SYMBOL) endVisit((terminal_symbol__SYMBOL) n);
+            else if (n instanceof terminal_symbol__MACRO_NAME) endVisit((terminal_symbol__MACRO_NAME) n);
             throw new UnsupportedOperationException("visit(" + n.getClass().toString() + ")");
         }
     }
@@ -8252,8 +8252,8 @@ public class LPGParser implements RuleAction, IParser
             //
             case 34: {
                 setResult(
-                    new option_value0(getLeftIToken(), getRightIToken(),
-                                      new ASTNodeToken(getRhsIToken(2)))
+                    new option_value__EQUAL_SYMBOL(getLeftIToken(), getRightIToken(),
+                                                   new ASTNodeToken(getRhsIToken(2)))
                 );
                 break;
             }
@@ -8262,8 +8262,8 @@ public class LPGParser implements RuleAction, IParser
             //
             case 35: {
                 setResult(
-                    new option_value1(getLeftIToken(), getRightIToken(),
-                                      (SYMBOLList)getRhsSym(3))
+                    new option_value__EQUAL_LEFT_PAREN_symbol_list_RIGHT_PAREN(getLeftIToken(), getRightIToken(),
+                                                                               (SYMBOLList)getRhsSym(3))
                 );
                 break;
             }
@@ -8304,10 +8304,10 @@ public class LPGParser implements RuleAction, IParser
             //
             case 40: {
                 setResult(
-                    new aliasSpec0(getLeftIToken(), getRightIToken(),
-                                   new ASTNodeToken(getRhsIToken(1)),
-                                   (Iproduces)getRhsSym(2),
-                                   (Ialias_rhs)getRhsSym(3))
+                    new aliasSpec__ERROR_KEY_produces_alias_rhs(getLeftIToken(), getRightIToken(),
+                                                                new ASTNodeToken(getRhsIToken(1)),
+                                                                (Iproduces)getRhsSym(2),
+                                                                (Ialias_rhs)getRhsSym(3))
                 );
                 break;
             }
@@ -8316,10 +8316,10 @@ public class LPGParser implements RuleAction, IParser
             //
             case 41: {
                 setResult(
-                    new aliasSpec1(getLeftIToken(), getRightIToken(),
-                                   new ASTNodeToken(getRhsIToken(1)),
-                                   (Iproduces)getRhsSym(2),
-                                   (Ialias_rhs)getRhsSym(3))
+                    new aliasSpec__EOL_KEY_produces_alias_rhs(getLeftIToken(), getRightIToken(),
+                                                              new ASTNodeToken(getRhsIToken(1)),
+                                                              (Iproduces)getRhsSym(2),
+                                                              (Ialias_rhs)getRhsSym(3))
                 );
                 break;
             }
@@ -8328,10 +8328,10 @@ public class LPGParser implements RuleAction, IParser
             //
             case 42: {
                 setResult(
-                    new aliasSpec2(getLeftIToken(), getRightIToken(),
-                                   new ASTNodeToken(getRhsIToken(1)),
-                                   (Iproduces)getRhsSym(2),
-                                   (Ialias_rhs)getRhsSym(3))
+                    new aliasSpec__EOF_KEY_produces_alias_rhs(getLeftIToken(), getRightIToken(),
+                                                              new ASTNodeToken(getRhsIToken(1)),
+                                                              (Iproduces)getRhsSym(2),
+                                                              (Ialias_rhs)getRhsSym(3))
                 );
                 break;
             }
@@ -8340,10 +8340,10 @@ public class LPGParser implements RuleAction, IParser
             //
             case 43: {
                 setResult(
-                    new aliasSpec3(getLeftIToken(), getRightIToken(),
-                                   new ASTNodeToken(getRhsIToken(1)),
-                                   (Iproduces)getRhsSym(2),
-                                   (Ialias_rhs)getRhsSym(3))
+                    new aliasSpec__IDENTIFIER_KEY_produces_alias_rhs(getLeftIToken(), getRightIToken(),
+                                                                     new ASTNodeToken(getRhsIToken(1)),
+                                                                     (Iproduces)getRhsSym(2),
+                                                                     (Ialias_rhs)getRhsSym(3))
                 );
                 break;
             }
@@ -8352,10 +8352,10 @@ public class LPGParser implements RuleAction, IParser
             //
             case 44: {
                 setResult(
-                    new aliasSpec4(getLeftIToken(), getRightIToken(),
-                                   new ASTNodeToken(getRhsIToken(1)),
-                                   (Iproduces)getRhsSym(2),
-                                   (Ialias_rhs)getRhsSym(3))
+                    new aliasSpec__SYMBOL_produces_alias_rhs(getLeftIToken(), getRightIToken(),
+                                                             new ASTNodeToken(getRhsIToken(1)),
+                                                             (Iproduces)getRhsSym(2),
+                                                             (Ialias_rhs)getRhsSym(3))
                 );
                 break;
             }
@@ -8364,10 +8364,10 @@ public class LPGParser implements RuleAction, IParser
             //
             case 45: {
                 setResult(
-                    new aliasSpec5(getLeftIToken(), getRightIToken(),
-                                   (alias_lhs_macro_name)getRhsSym(1),
-                                   (Iproduces)getRhsSym(2),
-                                   (Ialias_rhs)getRhsSym(3))
+                    new aliasSpec__alias_lhs_macro_name_produces_alias_rhs(getLeftIToken(), getRightIToken(),
+                                                                           (alias_lhs_macro_name)getRhsSym(1),
+                                                                           (Iproduces)getRhsSym(2),
+                                                                           (Ialias_rhs)getRhsSym(3))
                 );
                 break;
             }
@@ -8385,7 +8385,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 47: {
                 setResult(
-                    new alias_rhs0(getRhsIToken(1))
+                    new alias_rhs__SYMBOL(getRhsIToken(1))
                 );
                 break;
             }
@@ -8394,7 +8394,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 48: {
                 setResult(
-                    new alias_rhs1(getRhsIToken(1))
+                    new alias_rhs__MACRO_NAME(getRhsIToken(1))
                 );
                 break;
             }
@@ -8403,7 +8403,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 49: {
                 setResult(
-                    new alias_rhs2(getRhsIToken(1))
+                    new alias_rhs__ERROR_KEY(getRhsIToken(1))
                 );
                 break;
             }
@@ -8412,7 +8412,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 50: {
                 setResult(
-                    new alias_rhs3(getRhsIToken(1))
+                    new alias_rhs__EOL_KEY(getRhsIToken(1))
                 );
                 break;
             }
@@ -8421,7 +8421,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 51: {
                 setResult(
-                    new alias_rhs4(getRhsIToken(1))
+                    new alias_rhs__EOF_KEY(getRhsIToken(1))
                 );
                 break;
             }
@@ -8430,7 +8430,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 52: {
                 setResult(
-                    new alias_rhs5(getRhsIToken(1))
+                    new alias_rhs__EMPTY_KEY(getRhsIToken(1))
                 );
                 break;
             }
@@ -8439,7 +8439,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 53: {
                 setResult(
-                    new alias_rhs6(getRhsIToken(1))
+                    new alias_rhs__IDENTIFIER_KEY(getRhsIToken(1))
                 );
                 break;
             }
@@ -8480,7 +8480,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 58: {
                 setResult(
-                    new macro_name_symbol0(getRhsIToken(1))
+                    new macro_name_symbol__MACRO_NAME(getRhsIToken(1))
                 );
                 break;
             }
@@ -8489,7 +8489,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 59: {
                 setResult(
-                    new macro_name_symbol1(getRhsIToken(1))
+                    new macro_name_symbol__SYMBOL(getRhsIToken(1))
                 );
                 break;
             }
@@ -8591,9 +8591,9 @@ public class LPGParser implements RuleAction, IParser
             //
             case 73: {
                 setResult(
-                    new drop_command0(getLeftIToken(), getRightIToken(),
-                                      new ASTNodeToken(getRhsIToken(1)),
-                                      (SYMBOLList)getRhsSym(2))
+                    new drop_command__DROPSYMBOLS_KEY_drop_symbols(getLeftIToken(), getRightIToken(),
+                                                                   new ASTNodeToken(getRhsIToken(1)),
+                                                                   (SYMBOLList)getRhsSym(2))
                 );
                 break;
             }
@@ -8602,9 +8602,9 @@ public class LPGParser implements RuleAction, IParser
             //
             case 74: {
                 setResult(
-                    new drop_command1(getLeftIToken(), getRightIToken(),
-                                      new ASTNodeToken(getRhsIToken(1)),
-                                      (drop_ruleList)getRhsSym(2))
+                    new drop_command__DROPRULES_KEY_drop_rules(getLeftIToken(), getRightIToken(),
+                                                               new ASTNodeToken(getRhsIToken(1)),
+                                                               (drop_ruleList)getRhsSym(2))
                 );
                 break;
             }
@@ -8744,7 +8744,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 90: {
                 setResult(
-                    new name0(getRhsIToken(1))
+                    new name__SYMBOL(getRhsIToken(1))
                 );
                 break;
             }
@@ -8753,7 +8753,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 91: {
                 setResult(
-                    new name1(getRhsIToken(1))
+                    new name__MACRO_NAME(getRhsIToken(1))
                 );
                 break;
             }
@@ -8762,7 +8762,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 92: {
                 setResult(
-                    new name2(getRhsIToken(1))
+                    new name__EMPTY_KEY(getRhsIToken(1))
                 );
                 break;
             }
@@ -8771,7 +8771,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 93: {
                 setResult(
-                    new name3(getRhsIToken(1))
+                    new name__ERROR_KEY(getRhsIToken(1))
                 );
                 break;
             }
@@ -8780,7 +8780,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 94: {
                 setResult(
-                    new name4(getRhsIToken(1))
+                    new name__EOL_KEY(getRhsIToken(1))
                 );
                 break;
             }
@@ -8789,7 +8789,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 95: {
                 setResult(
-                    new name5(getRhsIToken(1))
+                    new name__IDENTIFIER_KEY(getRhsIToken(1))
                 );
                 break;
             }
@@ -8905,7 +8905,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 107: {
                 setResult(
-                    new produces0(getRhsIToken(1))
+                    new produces__EQUIVALENCE(getRhsIToken(1))
                 );
                 break;
             }
@@ -8914,7 +8914,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 108: {
                 setResult(
-                    new produces1(getRhsIToken(1))
+                    new produces__PRIORITY_EQUIVALENCE(getRhsIToken(1))
                 );
                 break;
             }
@@ -8923,7 +8923,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 109: {
                 setResult(
-                    new produces2(getRhsIToken(1))
+                    new produces__ARROW(getRhsIToken(1))
                 );
                 break;
             }
@@ -8932,7 +8932,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 110: {
                 setResult(
-                    new produces3(getRhsIToken(1))
+                    new produces__PRIORITY_ARROW(getRhsIToken(1))
                 );
                 break;
             }
@@ -8968,7 +8968,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 114: {
                 setResult(
-                    new symWithAttrs0(getRhsIToken(1))
+                    new symWithAttrs__EMPTY_KEY(getRhsIToken(1))
                 );
                 break;
             }
@@ -8977,9 +8977,9 @@ public class LPGParser implements RuleAction, IParser
             //
             case 115: {
                 setResult(
-                    new symWithAttrs1(getLeftIToken(), getRightIToken(),
-                                      new ASTNodeToken(getRhsIToken(1)),
-                                      (symAttrs)getRhsSym(2))
+                    new symWithAttrs__SYMBOL_optAttrList(getLeftIToken(), getRightIToken(),
+                                                         new ASTNodeToken(getRhsIToken(1)),
+                                                         (symAttrs)getRhsSym(2))
                 );
                 break;
             }
@@ -9045,7 +9045,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 123: {
                 setResult(
-                    new start_symbol0(getRhsIToken(1))
+                    new start_symbol__SYMBOL(getRhsIToken(1))
                 );
                 break;
             }
@@ -9054,7 +9054,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 124: {
                 setResult(
-                    new start_symbol1(getRhsIToken(1))
+                    new start_symbol__MACRO_NAME(getRhsIToken(1))
                 );
                 break;
             }
@@ -9108,7 +9108,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 130: {
                 setResult(
-                    new terminal_symbol0(LPGParser.this, getRhsIToken(1))
+                    new terminal_symbol__SYMBOL(LPGParser.this, getRhsIToken(1))
                 );
                 break;
             }
@@ -9117,7 +9117,7 @@ public class LPGParser implements RuleAction, IParser
             //
             case 131: {
                 setResult(
-                    new terminal_symbol1(getRhsIToken(1))
+                    new terminal_symbol__MACRO_NAME(getRhsIToken(1))
                 );
                 break;
             }
