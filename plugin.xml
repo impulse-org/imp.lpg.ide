@@ -244,15 +244,6 @@
       </entityNameLocator>
    </extension>
    <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            name="LPG"
-            class="org.eclipse.imp.lpg.preferences.LPGPreferencePage"
-            id="org.eclipse.imp.lpg.preferences.LPG">
-      </page>
-   </extension>
-
-   <extension
          id="docBuilder"
          name="LPG Grammar Documentation Builder"
          point="org.eclipse.core.resources.builders">
@@ -265,9 +256,18 @@
    <extension
          point="org.eclipse.help.toc">
       <toc
-            category="IMP"
             file="doc/toc.xml"
-            primary="true">
+            primary="true"
+            category="IMP">
       </toc>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="LPG"
+            class="org.eclipse.imp.lpg.preferences.LPGPreferencePage"
+            id="org.eclipse.imp.lpg.preferences.LPG">
+      </page>
+   </extension>
+
 </plugin>
