@@ -7,7 +7,6 @@
 *
 * Contributors:
 *    Robert Fuhrer (rfuhrer@watson.ibm.com) - initial API and implementation
-
 *******************************************************************************/
 
 package org.eclipse.imp.lpg.parser;
@@ -31,7 +30,6 @@ import org.eclipse.imp.lpg.preferences.LPGConstants;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.parser.ISourcePositionLocator;
 import org.eclipse.imp.parser.LPGSourcePositionLocator;
-import org.eclipse.imp.parser.MessageHandlerAdapter;
 import org.eclipse.imp.parser.SimpleLPGParseController;
 import org.eclipse.imp.preferences.IPreferencesService;
 import org.eclipse.imp.preferences.PreferencesService;
@@ -74,7 +72,7 @@ public class ParseController extends SimpleLPGParseController implements IParseC
             }
         }
 
-        if (template_file != null) {
+        if (template_file != null && fProject != null) {
             IPreferencesService prefSvc= new PreferencesService(fProject.getRawProject(), LPGRuntimePlugin.getInstance().getLanguageID());
             String include_str= prefSvc.getBooleanPreference(LPGConstants.P_USEDEFAULTINCLUDEPATH) ? prefSvc.getStringPreference(IPreferencesService.DEFAULT_LEVEL, LPGConstants.P_INCLUDEPATHTOUSE) : prefSvc.getStringPreference(LPGConstants.P_INCLUDEPATHTOUSE);
             int offset, i= -1;
@@ -104,23 +102,8 @@ public class ParseController extends SimpleLPGParseController implements IParseC
     }
 
     public Object parse(String contents, IProgressMonitor monitor) {
-        PMMonitor my_monitor= new PMMonitor(monitor);
-        char[] contentsArray= contents.toCharArray();
+        super.parse(contents, monitor);
 
-        fLexer.reset(contentsArray, fFilePath.toOSString());
-        fParser.reset(fLexer.getILexStream());
-        fParser.getIPrsStream().setMessageHandler(new MessageHandlerAdapter(handler));
-
-        // RMF 1/31/2009 - Call cacheKeywordsOnce() at the earliest possible moment, which is just
-        // after the lexer and parser are initialized, but before they're called on the source text.
-        cacheKeywordsOnce();
-
-        fLexer.lexer(my_monitor, fParser.getIPrsStream()); // Lex the stream to produce the token stream
-
-        if (my_monitor.isCancelled())
-            return fCurrentAst; // TODO fCurrentAst might (probably will) be
-                                // inconsistent wrt the lex stream now
-        fCurrentAst= (ASTNode) fParser.parser(my_monitor, 0);
         if (fCurrentAst == null)
             fParser.getIPrsStream().dumpTokens();
         else {
