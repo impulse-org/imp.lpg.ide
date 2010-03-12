@@ -21,6 +21,7 @@ import java.util.Set;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.imp.editor.ModelTreeNode;
 import org.eclipse.imp.lpg.ILPGResources;
 import org.eclipse.imp.lpg.LPGRuntimePlugin;
@@ -116,8 +117,10 @@ public class LPGLabelProvider implements ILabelProvider {
         if (res instanceof IFile) {
             IFile file= (IFile) res;
             final PreferencesService preferencesService= LPGRuntimePlugin.getInstance().getPreferencesService();
-            if (!preferencesService.getStringPreference(LPGConstants.P_SOURCEFILEEXTENSIONS).contains(file.getLocation().getFileExtension()) &&
-                !preferencesService.getStringPreference(LPGConstants.P_INCLUDEFILEEXTENSIONS).contains(file.getLocation().getFileExtension()))
+            IPath fileLoc= file.getLocation();
+            if (fileLoc == null ||
+                !preferencesService.getStringPreference(LPGConstants.P_SOURCEFILEEXTENSIONS).contains(fileLoc.getFileExtension()) &&
+                !preferencesService.getStringPreference(LPGConstants.P_INCLUDEFILEEXTENSIONS).contains(fileLoc.getFileExtension()))
                 return null;
             int sev= MarkerUtils.getMaxProblemMarkerSeverity(file, IResource.DEPTH_ONE);
             switch (sev) {
