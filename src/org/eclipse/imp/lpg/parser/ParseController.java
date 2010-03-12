@@ -28,8 +28,6 @@ import org.eclipse.imp.lpg.parser.LPGParser.option_specList;
 import org.eclipse.imp.lpg.parser.LPGParser.option_value__EQUAL_SYMBOL;
 import org.eclipse.imp.lpg.preferences.LPGConstants;
 import org.eclipse.imp.parser.IParseController;
-import org.eclipse.imp.parser.ISourcePositionLocator;
-import org.eclipse.imp.parser.LPGSourcePositionLocator;
 import org.eclipse.imp.parser.SimpleLPGParseController;
 import org.eclipse.imp.preferences.IPreferencesService;
 import org.eclipse.imp.preferences.PreferencesService;
@@ -112,7 +110,8 @@ public class ParseController extends SimpleLPGParseController implements IParseC
                     Ioption_value optValue= opt.getoption_value();
                     if (optValue instanceof option_value__EQUAL_SYMBOL)
                         is_java= ((option_value__EQUAL_SYMBOL) optValue).getSYMBOL().toString().equalsIgnoreCase("java");
-                } else if (optName.equalsIgnoreCase("automatic-ast") || optName.equalsIgnoreCase("automatic_ast") || optName.equalsIgnoreCase("automaticast"))
+                }
+                if (optName.equalsIgnoreCase("automatic-ast") || optName.equalsIgnoreCase("automatic_ast") || optName.equalsIgnoreCase("automaticast"))
                     automatic_ast= true;
                 else if (optName.equalsIgnoreCase("noautomatic-ast") || optName.equalsIgnoreCase("noautomatic_ast")
                         || optName.equalsIgnoreCase("noautomaticast"))
