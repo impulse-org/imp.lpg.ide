@@ -7,7 +7,7 @@ Bundle-Activator: org.eclipse.imp.lpg.LPGRuntimePlugin
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true
 Bundle-Vendor: rfuhrer@watson.ibm.com
-Require-Bundle: lpg.runtime,
+Require-Bundle: lpg.runtime.java,
  org.eclipse.compare,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
