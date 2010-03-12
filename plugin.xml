@@ -262,6 +262,21 @@
       </toc>
    </extension>
    <extension
+         point="org.eclipse.compare.structureCreators">
+      <structureCreator
+            extensions="g,gi"
+            class="org.eclipse.imp.compare.ModelStructureCreator"
+            id="org.eclipse.imp.lpg.ide.structureCreator">
+      </structureCreator>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.compareNodeIdentifier">
+      <compareNodeIdentifier
+            class="org.eclipse.imp.lpg.compare.CompareNodeIdentifier"
+            language="LPG">
+      </compareNodeIdentifier>
+   </extension>
+   <extension
          point="org.eclipse.ui.preferencePages">
       <page
             name="LPG"
