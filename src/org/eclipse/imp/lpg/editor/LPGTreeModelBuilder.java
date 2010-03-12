@@ -329,25 +329,13 @@ public class LPGTreeModelBuilder extends TreeModelBuilderBase {
             return false;
         }
 
-        public void endVisit(start_symbol__SYMBOL n) {
-            createSubItem(n);
-        }
-
         public void endVisit(start_symbol__MACRO_NAME n) {
             createSubItem(n);
         }
 
-        public void endVisit(terminal n) {
-            Iterminal_symbol symbol= n.getterminal_symbol();
-            optTerminalAlias alias= n.getoptTerminalAlias();
-            String label;
-            if (alias != null) {
-                Iproduces prod= alias.getproduces();
-                Iname name= alias.getname();
-                label= nameImage(name) + " " + producesImage(prod) + " " + symbolImage(symbol);
-            } else
-                label= symbolImage(symbol);
-            createSubItem(symbol);
+        public boolean visit(terminal n) {
+            createSubItem(n);
+            return false;
         }
 
         public boolean visit(nonTerm n) {
