@@ -44,10 +44,6 @@ public class ParseController extends SimpleLPGParseController implements IParseC
         fParser= new LPGParser();
     }
 
-    public ISourcePositionLocator getSourcePositionLocator() {
-        return new LPGSourcePositionLocator(this);
-    }
-
     public ILanguageSyntaxProperties getSyntaxProperties() {
         return new LPGSyntaxProperties();
     }
