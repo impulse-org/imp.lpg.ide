@@ -100,9 +100,6 @@
             adaptable="false"
             nameFilter="*"
             id="org.eclipse.imp.lpg.projectContextMenu">
-         <separator
-               name="LPG">
-         </separator>
          <menu
                label="LPG"
                path="additions"
