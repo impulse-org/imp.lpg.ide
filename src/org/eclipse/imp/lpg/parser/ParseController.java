@@ -98,9 +98,9 @@ public class ParseController extends SimpleLPGParseController implements IParseC
     public Object parse(String contents, IProgressMonitor monitor) {
         super.parse(contents, monitor);
 
-        if (fCurrentAst == null)
-            fParser.getIPrsStream().dumpTokens();
-        else {
+        if (fCurrentAst == null) {
+            // fParser.getIPrsStream().dumpTokens();
+        } else {
             boolean is_java= false, automatic_ast= false;
             for(option opt : getOptions((LPG) fCurrentAst)) {
                 IASTNodeToken sym= opt.getSYMBOL();
