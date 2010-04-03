@@ -44,6 +44,21 @@ public class LPGDefaultTab extends DefaultPreferencesTab {
 	{
 		List<FieldEditor> fields = new ArrayList<FieldEditor>();
 
+		FontFieldEditor sourceFont = fPrefUtils.makeNewFontField(
+			page, this, fPrefService,
+			"default", "sourceFont", "source font",
+			"",
+			parent,
+			true, true,
+			false);
+		fields.add(sourceFont);
+
+		Link sourceFontDetailsLink = fPrefUtils.createDetailsLink(parent, sourceFont, sourceFont.getChangeControl().getParent(), "Details ...");
+
+		sourceFontDetailsLink.setEnabled(true);
+		fDetailsLinks.add(sourceFontDetailsLink);
+
+
 		BooleanFieldEditor UseDefaultExecutable = fPrefUtils.makeNewBooleanField(
 			page, this, fPrefService,
 			"default", "UseDefaultExecutable", "Use default executable",

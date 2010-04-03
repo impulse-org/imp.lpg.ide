@@ -15,6 +15,7 @@ public class LPGInitializer extends PreferencesInitializer {
 	public void initializeDefaultPreferences() {
 		IPreferencesService service = LPGRuntimePlugin.getInstance().getPreferencesService();
 
+		service.setStringPreference(IPreferencesService.DEFAULT_LEVEL, LPGConstants.P_SOURCEFONT, "Courier New");
 		service.setBooleanPreference(IPreferencesService.DEFAULT_LEVEL, LPGConstants.P_USEDEFAULTEXECUTABLE, true);
 		service.setStringPreference(IPreferencesService.DEFAULT_LEVEL, LPGConstants.P_EXECUTABLETOUSE, "${pluginResource:lpg.generator/lpgexe/lpg-${os}_${arch}}");
 		service.setBooleanPreference(IPreferencesService.DEFAULT_LEVEL, LPGConstants.P_USEDEFAULTINCLUDEPATH, true);

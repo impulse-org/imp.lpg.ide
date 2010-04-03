@@ -33,6 +33,21 @@ public class LPGInstanceTab extends InstancePreferencesTab {
 	{
 		List<FieldEditor> fields = new ArrayList<FieldEditor>();
 
+		FontFieldEditor sourceFont = fPrefUtils.makeNewFontField(
+			page, this, fPrefService,
+			"instance", "sourceFont", "source font",
+			"",
+			parent,
+			true, true,
+			true);
+		fields.add(sourceFont);
+
+		Link sourceFontDetailsLink = fPrefUtils.createDetailsLink(parent, sourceFont, sourceFont.getChangeControl().getParent(), "Details ...");
+
+		sourceFontDetailsLink.setEnabled(true);
+		fDetailsLinks.add(sourceFontDetailsLink);
+
+
 		BooleanFieldEditor UseDefaultExecutable = fPrefUtils.makeNewBooleanField(
 			page, this, fPrefService,
 			"instance", "UseDefaultExecutable", "Use default executable",
