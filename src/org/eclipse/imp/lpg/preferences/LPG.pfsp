@@ -9,7 +9,9 @@ page LPG {
     }
 
     fields {
-        font sourceFont { defvalue "Courier New" 10 normal; }
+        font    sourceFont            { defvalue "Courier New" 10 normal; }
+        int     tabWidth              { defvalue 4; }
+        boolean spacesForTabs         { defvalue false; }
     	boolean UseDefaultExecutable  { defvalue true; }
     	file    ExecutableToUse       {
             tooltip "The full path to the LPG generator executable";

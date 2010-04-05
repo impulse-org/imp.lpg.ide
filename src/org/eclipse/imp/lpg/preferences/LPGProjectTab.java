@@ -48,6 +48,40 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 		fDetailsLinks.add(sourceFontDetailsLink);
 
 
+		IntegerFieldEditor tabWidth = fPrefUtils.makeNewIntegerField(
+			page, this, fPrefService,
+			"project", "tabWidth", "tab width",
+			"",
+			parent,
+			false, false,
+			false, String.valueOf(0),
+			false, "0",
+			true);
+		fields.add(tabWidth);
+
+		Link tabWidthDetailsLink = fPrefUtils.createDetailsLink(parent, tabWidth, tabWidth.getTextControl().getParent(), "Details ...");
+
+		tabWidthDetailsLink.setEnabled(false);
+		fDetailsLinks.add(tabWidthDetailsLink);
+
+
+		BooleanFieldEditor spacesForTabs = fPrefUtils.makeNewBooleanField(
+			page, this, fPrefService,
+			"project", "spacesForTabs", "spaces for tabs",
+			"",
+			parent,
+			false, false,
+			false, false,
+			false, false,
+			true);
+		fields.add(spacesForTabs);
+
+		Link spacesForTabsDetailsLink = fPrefUtils.createDetailsLink(parent, spacesForTabs, spacesForTabs.getChangeControl().getParent(), "Details ...");
+
+		spacesForTabsDetailsLink.setEnabled(false);
+		fDetailsLinks.add(spacesForTabsDetailsLink);
+
+
 		BooleanFieldEditor UseDefaultExecutable = fPrefUtils.makeNewBooleanField(
 			page, this, fPrefService,
 			"project", "UseDefaultExecutable", "Use default executable",
@@ -242,24 +276,28 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 		// Declare local references to the fields
 		FontFieldEditor sourceFont = (FontFieldEditor) fFields[0];
 		Link sourceFontDetailsLink = (Link) fDetailsLinks.get(0);
-		BooleanFieldEditor UseDefaultExecutable = (BooleanFieldEditor) fFields[1];
-		Link UseDefaultExecutableDetailsLink = (Link) fDetailsLinks.get(1);
-		FileFieldEditor ExecutableToUse = (FileFieldEditor) fFields[2];
-		Link ExecutableToUseDetailsLink = (Link) fDetailsLinks.get(2);
-		BooleanFieldEditor UseDefaultIncludePath = (BooleanFieldEditor) fFields[3];
-		Link UseDefaultIncludePathDetailsLink = (Link) fDetailsLinks.get(3);
-		DirectoryListFieldEditor IncludePathToUse = (DirectoryListFieldEditor) fFields[4];
-		Link IncludePathToUseDetailsLink = (Link) fDetailsLinks.get(4);
-		StringFieldEditor SourceFileExtensions = (StringFieldEditor) fFields[5];
-		Link SourceFileExtensionsDetailsLink = (Link) fDetailsLinks.get(5);
-		StringFieldEditor IncludeFileExtensions = (StringFieldEditor) fFields[6];
-		Link IncludeFileExtensionsDetailsLink = (Link) fDetailsLinks.get(6);
-		BooleanFieldEditor EmitDiagnostics = (BooleanFieldEditor) fFields[7];
-		Link EmitDiagnosticsDetailsLink = (Link) fDetailsLinks.get(7);
-		BooleanFieldEditor GenerateListings = (BooleanFieldEditor) fFields[8];
-		Link GenerateListingsDetailsLink = (Link) fDetailsLinks.get(8);
-		BooleanFieldEditor QuietOutput = (BooleanFieldEditor) fFields[9];
-		Link QuietOutputDetailsLink = (Link) fDetailsLinks.get(9);
+		IntegerFieldEditor tabWidth = (IntegerFieldEditor) fFields[1];
+		Link tabWidthDetailsLink = (Link) fDetailsLinks.get(1);
+		BooleanFieldEditor spacesForTabs = (BooleanFieldEditor) fFields[2];
+		Link spacesForTabsDetailsLink = (Link) fDetailsLinks.get(2);
+		BooleanFieldEditor UseDefaultExecutable = (BooleanFieldEditor) fFields[3];
+		Link UseDefaultExecutableDetailsLink = (Link) fDetailsLinks.get(3);
+		FileFieldEditor ExecutableToUse = (FileFieldEditor) fFields[4];
+		Link ExecutableToUseDetailsLink = (Link) fDetailsLinks.get(4);
+		BooleanFieldEditor UseDefaultIncludePath = (BooleanFieldEditor) fFields[5];
+		Link UseDefaultIncludePathDetailsLink = (Link) fDetailsLinks.get(5);
+		DirectoryListFieldEditor IncludePathToUse = (DirectoryListFieldEditor) fFields[6];
+		Link IncludePathToUseDetailsLink = (Link) fDetailsLinks.get(6);
+		StringFieldEditor SourceFileExtensions = (StringFieldEditor) fFields[7];
+		Link SourceFileExtensionsDetailsLink = (Link) fDetailsLinks.get(7);
+		StringFieldEditor IncludeFileExtensions = (StringFieldEditor) fFields[8];
+		Link IncludeFileExtensionsDetailsLink = (Link) fDetailsLinks.get(8);
+		BooleanFieldEditor EmitDiagnostics = (BooleanFieldEditor) fFields[9];
+		Link EmitDiagnosticsDetailsLink = (Link) fDetailsLinks.get(9);
+		BooleanFieldEditor GenerateListings = (BooleanFieldEditor) fFields[10];
+		Link GenerateListingsDetailsLink = (Link) fDetailsLinks.get(10);
+		BooleanFieldEditor QuietOutput = (BooleanFieldEditor) fFields[11];
+		Link QuietOutputDetailsLink = (Link) fDetailsLinks.get(11);
 
 		// If we have a new project preferences node, then do various things
 		// to set up the project's preferences
@@ -281,6 +319,16 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 				// with what the listener would set.
 
 				sourceFontDetailsLink.setEnabled(selectedProjectCombo.getText().length() > 0);
+
+				fPrefUtils.setField(tabWidth, tabWidth.getHolder());
+				tabWidth.getTextControl().setEditable(true);
+				tabWidth.getTextControl().setEnabled(true);
+				tabWidth.setEnabled(true, tabWidth.getParent());
+				tabWidthDetailsLink.setEnabled(selectedProjectCombo.getText().length() > 0);
+
+				fPrefUtils.setField(spacesForTabs, spacesForTabs.getHolder());
+				spacesForTabs.getChangeControl().setEnabled(true);
+				spacesForTabsDetailsLink.setEnabled(selectedProjectCombo.getText().length() > 0);
 
 				fPrefUtils.setField(UseDefaultExecutable, UseDefaultExecutable.getHolder());
 				UseDefaultExecutable.getChangeControl().setEnabled(true);
@@ -331,6 +379,8 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 
 			// Add property change listeners
 			if (sourceFont.getHolder() != null) addProjectPreferenceChangeListeners(sourceFont, "sourceFont", sourceFont.getHolder());
+			if (tabWidth.getHolder() != null) addProjectPreferenceChangeListeners(tabWidth, "tabWidth", tabWidth.getHolder());
+			if (spacesForTabs.getHolder() != null) addProjectPreferenceChangeListeners(spacesForTabs, "spacesForTabs", spacesForTabs.getHolder());
 			if (UseDefaultExecutable.getHolder() != null) addProjectPreferenceChangeListeners(UseDefaultExecutable, "UseDefaultExecutable", UseDefaultExecutable.getHolder());
 			if (ExecutableToUse.getHolder() != null) addProjectPreferenceChangeListeners(ExecutableToUse, "ExecutableToUse", ExecutableToUse.getHolder());
 			if (UseDefaultIncludePath.getHolder() != null) addProjectPreferenceChangeListeners(UseDefaultIncludePath, "UseDefaultIncludePath", UseDefaultIncludePath.getHolder());
@@ -352,6 +402,12 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 
 			// Disable fields and make them non-editable
 			if (!composite.isDisposed()) {
+				tabWidth.getTextControl().setEditable(false);
+				tabWidth.getTextControl().setEnabled(false);
+				tabWidth.setEnabled(false, tabWidth.getParent());
+
+				spacesForTabs.getChangeControl().setEnabled(false);
+
 				UseDefaultExecutable.getChangeControl().setEnabled(false);
 
 				ExecutableToUse.getTextControl().setEditable(false);

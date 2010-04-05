@@ -59,6 +59,40 @@ public class LPGDefaultTab extends DefaultPreferencesTab {
 		fDetailsLinks.add(sourceFontDetailsLink);
 
 
+		IntegerFieldEditor tabWidth = fPrefUtils.makeNewIntegerField(
+			page, this, fPrefService,
+			"default", "tabWidth", "tab width",
+			"",
+			parent,
+			true, true,
+			false, String.valueOf(0),
+			false, "0",
+			false);
+		fields.add(tabWidth);
+
+		Link tabWidthDetailsLink = fPrefUtils.createDetailsLink(parent, tabWidth, tabWidth.getTextControl().getParent(), "Details ...");
+
+		tabWidthDetailsLink.setEnabled(true);
+		fDetailsLinks.add(tabWidthDetailsLink);
+
+
+		BooleanFieldEditor spacesForTabs = fPrefUtils.makeNewBooleanField(
+			page, this, fPrefService,
+			"default", "spacesForTabs", "spaces for tabs",
+			"",
+			parent,
+			true, true,
+			false, false,
+			false, false,
+			false);
+		fields.add(spacesForTabs);
+
+		Link spacesForTabsDetailsLink = fPrefUtils.createDetailsLink(parent, spacesForTabs, spacesForTabs.getChangeControl().getParent(), "Details ...");
+
+		spacesForTabsDetailsLink.setEnabled(true);
+		fDetailsLinks.add(spacesForTabsDetailsLink);
+
+
 		BooleanFieldEditor UseDefaultExecutable = fPrefUtils.makeNewBooleanField(
 			page, this, fPrefService,
 			"default", "UseDefaultExecutable", "Use default executable",

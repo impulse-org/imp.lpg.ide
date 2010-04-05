@@ -15,6 +15,10 @@ public class LPGConstants {
 
 	public static final String P_SOURCEFONT = "sourceFont";
 
+	public static final String P_TABWIDTH = "tabWidth";
+
+	public static final String P_SPACESFORTABS = "spacesForTabs";
+
 	public static final String P_USEDEFAULTEXECUTABLE = "UseDefaultExecutable";
 
 	public static final String P_EXECUTABLETOUSE = "ExecutableToUse";

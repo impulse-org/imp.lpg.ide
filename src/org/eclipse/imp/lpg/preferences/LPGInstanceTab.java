@@ -48,6 +48,40 @@ public class LPGInstanceTab extends InstancePreferencesTab {
 		fDetailsLinks.add(sourceFontDetailsLink);
 
 
+		IntegerFieldEditor tabWidth = fPrefUtils.makeNewIntegerField(
+			page, this, fPrefService,
+			"instance", "tabWidth", "tab width",
+			"",
+			parent,
+			true, true,
+			false, String.valueOf(0),
+			false, "0",
+			true);
+		fields.add(tabWidth);
+
+		Link tabWidthDetailsLink = fPrefUtils.createDetailsLink(parent, tabWidth, tabWidth.getTextControl().getParent(), "Details ...");
+
+		tabWidthDetailsLink.setEnabled(true);
+		fDetailsLinks.add(tabWidthDetailsLink);
+
+
+		BooleanFieldEditor spacesForTabs = fPrefUtils.makeNewBooleanField(
+			page, this, fPrefService,
+			"instance", "spacesForTabs", "spaces for tabs",
+			"",
+			parent,
+			true, true,
+			false, false,
+			false, false,
+			true);
+		fields.add(spacesForTabs);
+
+		Link spacesForTabsDetailsLink = fPrefUtils.createDetailsLink(parent, spacesForTabs, spacesForTabs.getChangeControl().getParent(), "Details ...");
+
+		spacesForTabsDetailsLink.setEnabled(true);
+		fDetailsLinks.add(spacesForTabsDetailsLink);
+
+
 		BooleanFieldEditor UseDefaultExecutable = fPrefUtils.makeNewBooleanField(
 			page, this, fPrefService,
 			"instance", "UseDefaultExecutable", "Use default executable",
