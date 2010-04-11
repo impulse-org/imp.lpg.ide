@@ -7,7 +7,7 @@
          name="LPG Nature"
          point="org.eclipse.core.resources.natures">
       <builder
-            id="org.eclipse.imp.lpg.runtime.LPGBuilder">
+            id="org.eclipse.imp.lpg.ide.LPGBuilder">
       </builder>
       <runtime>
          <run
@@ -272,6 +272,13 @@
             class="org.eclipse.imp.lpg.compare.CompareNodeIdentifier"
             language="LPG">
       </compareNodeIdentifier>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.autoEditStrategy">
+      <autoEditStrategy
+            class="org.eclipse.imp.lpg.editor.LPGAutoEditStrategy"
+            language="LPG">
+      </autoEditStrategy>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">
