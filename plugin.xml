@@ -274,6 +274,13 @@
       </compareNodeIdentifier>
    </extension>
    <extension
+         point="org.eclipse.imp.runtime.navigationTargetFinder">
+      <navigationTargetFinder
+            class="org.eclipse.imp.lpg.navigation.NavigationTargetFinder"
+            language="LPG">
+      </navigationTargetFinder>
+   </extension>
+   <extension
          point="org.eclipse.imp.runtime.autoEditStrategy">
       <autoEditStrategy
             class="org.eclipse.imp.lpg.editor.LPGAutoEditStrategy"
