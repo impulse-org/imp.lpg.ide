@@ -65,6 +65,23 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 		fDetailsLinks.add(tabWidthDetailsLink);
 
 
+		IntegerFieldEditor indentWidth = fPrefUtils.makeNewIntegerField(
+			page, this, fPrefService,
+			"project", "indentWidth", "indent width",
+			"",
+			parent,
+			false, false,
+			false, String.valueOf(0),
+			false, "0",
+			true);
+		fields.add(indentWidth);
+
+		Link indentWidthDetailsLink = fPrefUtils.createDetailsLink(parent, indentWidth, indentWidth.getTextControl().getParent(), "Details ...");
+
+		indentWidthDetailsLink.setEnabled(false);
+		fDetailsLinks.add(indentWidthDetailsLink);
+
+
 		BooleanFieldEditor spacesForTabs = fPrefUtils.makeNewBooleanField(
 			page, this, fPrefService,
 			"project", "spacesForTabs", "spaces for tabs",
@@ -278,26 +295,28 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 		Link sourceFontDetailsLink = (Link) fDetailsLinks.get(0);
 		IntegerFieldEditor tabWidth = (IntegerFieldEditor) fFields[1];
 		Link tabWidthDetailsLink = (Link) fDetailsLinks.get(1);
-		BooleanFieldEditor spacesForTabs = (BooleanFieldEditor) fFields[2];
-		Link spacesForTabsDetailsLink = (Link) fDetailsLinks.get(2);
-		BooleanFieldEditor UseDefaultExecutable = (BooleanFieldEditor) fFields[3];
-		Link UseDefaultExecutableDetailsLink = (Link) fDetailsLinks.get(3);
-		FileFieldEditor ExecutableToUse = (FileFieldEditor) fFields[4];
-		Link ExecutableToUseDetailsLink = (Link) fDetailsLinks.get(4);
-		BooleanFieldEditor UseDefaultIncludePath = (BooleanFieldEditor) fFields[5];
-		Link UseDefaultIncludePathDetailsLink = (Link) fDetailsLinks.get(5);
-		DirectoryListFieldEditor IncludePathToUse = (DirectoryListFieldEditor) fFields[6];
-		Link IncludePathToUseDetailsLink = (Link) fDetailsLinks.get(6);
-		StringFieldEditor SourceFileExtensions = (StringFieldEditor) fFields[7];
-		Link SourceFileExtensionsDetailsLink = (Link) fDetailsLinks.get(7);
-		StringFieldEditor IncludeFileExtensions = (StringFieldEditor) fFields[8];
-		Link IncludeFileExtensionsDetailsLink = (Link) fDetailsLinks.get(8);
-		BooleanFieldEditor EmitDiagnostics = (BooleanFieldEditor) fFields[9];
-		Link EmitDiagnosticsDetailsLink = (Link) fDetailsLinks.get(9);
-		BooleanFieldEditor GenerateListings = (BooleanFieldEditor) fFields[10];
-		Link GenerateListingsDetailsLink = (Link) fDetailsLinks.get(10);
-		BooleanFieldEditor QuietOutput = (BooleanFieldEditor) fFields[11];
-		Link QuietOutputDetailsLink = (Link) fDetailsLinks.get(11);
+		IntegerFieldEditor indentWidth = (IntegerFieldEditor) fFields[2];
+		Link indentWidthDetailsLink = (Link) fDetailsLinks.get(2);
+		BooleanFieldEditor spacesForTabs = (BooleanFieldEditor) fFields[3];
+		Link spacesForTabsDetailsLink = (Link) fDetailsLinks.get(3);
+		BooleanFieldEditor UseDefaultExecutable = (BooleanFieldEditor) fFields[4];
+		Link UseDefaultExecutableDetailsLink = (Link) fDetailsLinks.get(4);
+		FileFieldEditor ExecutableToUse = (FileFieldEditor) fFields[5];
+		Link ExecutableToUseDetailsLink = (Link) fDetailsLinks.get(5);
+		BooleanFieldEditor UseDefaultIncludePath = (BooleanFieldEditor) fFields[6];
+		Link UseDefaultIncludePathDetailsLink = (Link) fDetailsLinks.get(6);
+		DirectoryListFieldEditor IncludePathToUse = (DirectoryListFieldEditor) fFields[7];
+		Link IncludePathToUseDetailsLink = (Link) fDetailsLinks.get(7);
+		StringFieldEditor SourceFileExtensions = (StringFieldEditor) fFields[8];
+		Link SourceFileExtensionsDetailsLink = (Link) fDetailsLinks.get(8);
+		StringFieldEditor IncludeFileExtensions = (StringFieldEditor) fFields[9];
+		Link IncludeFileExtensionsDetailsLink = (Link) fDetailsLinks.get(9);
+		BooleanFieldEditor EmitDiagnostics = (BooleanFieldEditor) fFields[10];
+		Link EmitDiagnosticsDetailsLink = (Link) fDetailsLinks.get(10);
+		BooleanFieldEditor GenerateListings = (BooleanFieldEditor) fFields[11];
+		Link GenerateListingsDetailsLink = (Link) fDetailsLinks.get(11);
+		BooleanFieldEditor QuietOutput = (BooleanFieldEditor) fFields[12];
+		Link QuietOutputDetailsLink = (Link) fDetailsLinks.get(12);
 
 		// If we have a new project preferences node, then do various things
 		// to set up the project's preferences
@@ -325,6 +344,12 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 				tabWidth.getTextControl().setEnabled(true);
 				tabWidth.setEnabled(true, tabWidth.getParent());
 				tabWidthDetailsLink.setEnabled(selectedProjectCombo.getText().length() > 0);
+
+				fPrefUtils.setField(indentWidth, indentWidth.getHolder());
+				indentWidth.getTextControl().setEditable(true);
+				indentWidth.getTextControl().setEnabled(true);
+				indentWidth.setEnabled(true, indentWidth.getParent());
+				indentWidthDetailsLink.setEnabled(selectedProjectCombo.getText().length() > 0);
 
 				fPrefUtils.setField(spacesForTabs, spacesForTabs.getHolder());
 				spacesForTabs.getChangeControl().setEnabled(true);
@@ -380,6 +405,7 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 			// Add property change listeners
 			if (sourceFont.getHolder() != null) addProjectPreferenceChangeListeners(sourceFont, "sourceFont", sourceFont.getHolder());
 			if (tabWidth.getHolder() != null) addProjectPreferenceChangeListeners(tabWidth, "tabWidth", tabWidth.getHolder());
+			if (indentWidth.getHolder() != null) addProjectPreferenceChangeListeners(indentWidth, "indentWidth", indentWidth.getHolder());
 			if (spacesForTabs.getHolder() != null) addProjectPreferenceChangeListeners(spacesForTabs, "spacesForTabs", spacesForTabs.getHolder());
 			if (UseDefaultExecutable.getHolder() != null) addProjectPreferenceChangeListeners(UseDefaultExecutable, "UseDefaultExecutable", UseDefaultExecutable.getHolder());
 			if (ExecutableToUse.getHolder() != null) addProjectPreferenceChangeListeners(ExecutableToUse, "ExecutableToUse", ExecutableToUse.getHolder());
@@ -405,6 +431,10 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 				tabWidth.getTextControl().setEditable(false);
 				tabWidth.getTextControl().setEnabled(false);
 				tabWidth.setEnabled(false, tabWidth.getParent());
+
+				indentWidth.getTextControl().setEditable(false);
+				indentWidth.getTextControl().setEnabled(false);
+				indentWidth.setEnabled(false, indentWidth.getParent());
 
 				spacesForTabs.getChangeControl().setEnabled(false);
 

@@ -17,6 +17,8 @@ public class LPGConstants {
 
 	public static final String P_TABWIDTH = "tabWidth";
 
+	public static final String P_INDENTWIDTH = "indentWidth";
+
 	public static final String P_SPACESFORTABS = "spacesForTabs";
 
 	public static final String P_USEDEFAULTEXECUTABLE = "UseDefaultExecutable";

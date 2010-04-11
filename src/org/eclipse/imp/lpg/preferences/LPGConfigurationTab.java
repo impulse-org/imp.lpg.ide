@@ -65,6 +65,23 @@ public class LPGConfigurationTab extends ConfigurationPreferencesTab {
 		fDetailsLinks.add(tabWidthDetailsLink);
 
 
+		IntegerFieldEditor indentWidth = fPrefUtils.makeNewIntegerField(
+			page, this, fPrefService,
+			"configuration", "indentWidth", "indent width",
+			"",
+			parent,
+			true, true,
+			false, String.valueOf(0),
+			false, "0",
+			true);
+		fields.add(indentWidth);
+
+		Link indentWidthDetailsLink = fPrefUtils.createDetailsLink(parent, indentWidth, indentWidth.getTextControl().getParent(), "Details ...");
+
+		indentWidthDetailsLink.setEnabled(true);
+		fDetailsLinks.add(indentWidthDetailsLink);
+
+
 		BooleanFieldEditor spacesForTabs = fPrefUtils.makeNewBooleanField(
 			page, this, fPrefService,
 			"configuration", "spacesForTabs", "spaces for tabs",
