@@ -59,8 +59,7 @@ public class LPGBuilder extends BuilderBase {
     /**
      * ID of the LPG runtime plugin, which houses the LPG runtime library
      */
-    // SMS 22 Feb 2007  lpg -> lpg.runtime
-    public static final String LPG_RUNTIME_PLUGIN_ID= "lpg.runtime";
+    public static final String LPG_RUNTIME_PLUGIN_ID= "lpg.runtime.java";
 
     /**
      * ID of the LPG generator plugin, which houses the LPG executable and the templates.
