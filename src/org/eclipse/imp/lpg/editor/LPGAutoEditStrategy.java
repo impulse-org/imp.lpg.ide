@@ -16,8 +16,6 @@ import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.TextUtilities;
 
 public class LPGAutoEditStrategy implements IAutoEditStrategy {
-    private static final char[] SPACES= "                                                                    ".toCharArray();
-
     private IPreferencesService fPrefsService= new PreferencesService(null, LPGRuntimePlugin.getInstance().getLanguageID());
 
     private static final Pattern NEXT_SEGMENT_PATTERN= Pattern.compile("%([^eE]|([eE][^nN])|([eE][nN][^dD]))");
@@ -40,9 +38,18 @@ public class LPGAutoEditStrategy implements IAutoEditStrategy {
     public void customizeDocumentCommand(IDocument doc, DocumentCommand cmd) {
         if (cmd.doit == false)
             return;
+        fSpacesForTabs= fPrefsService.getBooleanPreference(PreferenceConstants.P_SPACES_FOR_TABS);
+        fTabWidth= fPrefsService.getIntPreference(PreferenceConstants.P_TAB_WIDTH);
+
+        // BUG If the caret is just before a tab stop (given fTabWidth), and the user hits tab, and
+        // spaces-for-tabs is set, we see a single space, which we can't distinguish from the user
+        // hitting the space bar at that spot. So, we can't do a smart indent, or else that will
+        // also happen when the user just hits the space bar.
         if (cmd.length == 0 && cmd.text != null && isLineDelimiter(doc, cmd.text)) {
             smartIndentAfterNewline(doc, cmd);
-        } else if (cmd.text.length() == 1 && cmd.text.charAt(0) == '\t') {
+        } else if (!fSpacesForTabs && cmd.length == 0 && cmd.text.length() == 1 && cmd.text.charAt(0) == '\t') {
+            smartIndentOnTab(doc, cmd);
+        } else if (fSpacesForTabs && cmd.length == 0 && cmd.text.length() > 1 && cmd.text.length() <= fTabWidth && cmd.text.trim().length() == 0) {
             smartIndentOnTab(doc, cmd);
         }
     }
@@ -50,8 +57,6 @@ public class LPGAutoEditStrategy implements IAutoEditStrategy {
     private void smartIndentAfterNewline(IDocument doc, DocumentCommand cmd) {
         try {
             fIndentWidth= fPrefsService.getIntPreference(LPGConstants.P_INDENTWIDTH);
-            fSpacesForTabs= fPrefsService.getBooleanPreference(PreferenceConstants.P_SPACES_FOR_TABS);
-            fTabWidth= fPrefsService.getIntPreference(PreferenceConstants.P_TAB_WIDTH);
 
             IRegion r= doc.getLineInformation(doc.getLineOfOffset(cmd.offset));
             String thisLine= doc.get(r.getOffset(), r.getLength());
