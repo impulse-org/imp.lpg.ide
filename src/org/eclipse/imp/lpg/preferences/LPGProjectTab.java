@@ -1,13 +1,21 @@
 package org.eclipse.imp.lpg.preferences;
 
-import java.util.List;
 import java.util.ArrayList;
-import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
+import java.util.List;
+
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.imp.preferences.IPreferencesService;
+import org.eclipse.imp.preferences.ProjectPreferencesTab;
+import org.eclipse.imp.preferences.TabbedPreferencesPage;
+import org.eclipse.imp.preferences.fields.BooleanFieldEditor;
+import org.eclipse.imp.preferences.fields.DirectoryListFieldEditor;
+import org.eclipse.imp.preferences.fields.FieldEditor;
+import org.eclipse.imp.preferences.fields.FileFieldEditor;
+import org.eclipse.imp.preferences.fields.FontFieldEditor;
+import org.eclipse.imp.preferences.fields.IntegerFieldEditor;
+import org.eclipse.imp.preferences.fields.StringFieldEditor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Link;
-import org.eclipse.imp.preferences.*;
-import org.eclipse.imp.preferences.fields.*;
 import org.osgi.service.prefs.Preferences;
 
 
@@ -54,7 +62,6 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 			"",
 			parent,
 			false, false,
-			false, String.valueOf(0),
 			false, "0",
 			true);
 		fields.add(tabWidth);
@@ -71,7 +78,6 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 			"",
 			parent,
 			false, false,
-			false, String.valueOf(0),
 			false, "0",
 			true);
 		fields.add(indentWidth);
@@ -87,7 +93,6 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 			"project", "spacesForTabs", "spaces for tabs",
 			"",
 			parent,
-			false, false,
 			false, false,
 			false, false,
 			true);
@@ -106,7 +111,6 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 			parent,
 			false, false,
 			false, false,
-			false, false,
 			true);
 		fields.add(UseDefaultExecutable);
 
@@ -122,7 +126,6 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 			"The full path to the LPG generator executable",
 			parent,
 			false, false,
-			false, "Unspecified",
 			true, "",
 			true);
 		fields.add(ExecutableToUse);
@@ -147,7 +150,6 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 			parent,
 			false, false,
 			false, false,
-			false, false,
 			true);
 		fields.add(UseDefaultIncludePath);
 
@@ -163,7 +165,6 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 			"A semicolon-separated list of folders to search for template and include files",
 			parent,
 			false, false,
-			false, "Unspecified",
 			true, "",
 			true);
 		fields.add(IncludePathToUse);
@@ -187,7 +188,6 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 			"A comma-separated list of file name extensions identifying top-level LPG grammar files",
 			parent,
 			false, false,
-			false, "Unspecified",
 			true, "",
 			true);
 		fields.add(SourceFileExtensions);
@@ -204,7 +204,6 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 			"A comma-separated list of file name extensions identifying included LPG grammar files",
 			parent,
 			false, false,
-			false, "Unspecified",
 			true, "",
 			true);
 		fields.add(IncludeFileExtensions);
@@ -220,7 +219,6 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 			"project", "EmitDiagnostics", "Emit diagnostics",
 			"If true, emit messages to the LPG plugin log as the build proceeds",
 			parent,
-			false, false,
 			false, false,
 			false, false,
 			true);
@@ -239,7 +237,6 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 			parent,
 			false, false,
 			false, false,
-			false, false,
 			true);
 		fields.add(GenerateListings);
 
@@ -254,7 +251,6 @@ public class LPGProjectTab extends ProjectPreferencesTab {
 			"project", "QuietOutput", "Quiet output",
 			"If true, suppress the output of various facts like the number of terminals, lookahead, etc.",
 			parent,
-			false, false,
 			false, false,
 			false, false,
 			true);

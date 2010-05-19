@@ -1,14 +1,20 @@
 package org.eclipse.imp.lpg.preferences;
 
-import java.util.List;
 import java.util.ArrayList;
-import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
-import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import java.util.List;
+
+import org.eclipse.imp.preferences.ConfigurationPreferencesTab;
+import org.eclipse.imp.preferences.IPreferencesService;
+import org.eclipse.imp.preferences.TabbedPreferencesPage;
+import org.eclipse.imp.preferences.fields.BooleanFieldEditor;
+import org.eclipse.imp.preferences.fields.DirectoryListFieldEditor;
+import org.eclipse.imp.preferences.fields.FieldEditor;
+import org.eclipse.imp.preferences.fields.FileFieldEditor;
+import org.eclipse.imp.preferences.fields.FontFieldEditor;
+import org.eclipse.imp.preferences.fields.IntegerFieldEditor;
+import org.eclipse.imp.preferences.fields.StringFieldEditor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Link;
-import org.eclipse.imp.preferences.*;
-import org.eclipse.imp.preferences.fields.*;
-import org.osgi.service.prefs.Preferences;
 
 
 /**
@@ -54,7 +60,6 @@ public class LPGConfigurationTab extends ConfigurationPreferencesTab {
 			"",
 			parent,
 			true, true,
-			false, String.valueOf(0),
 			false, "0",
 			true);
 		fields.add(tabWidth);
@@ -71,7 +76,6 @@ public class LPGConfigurationTab extends ConfigurationPreferencesTab {
 			"",
 			parent,
 			true, true,
-			false, String.valueOf(0),
 			false, "0",
 			true);
 		fields.add(indentWidth);
@@ -89,7 +93,6 @@ public class LPGConfigurationTab extends ConfigurationPreferencesTab {
 			parent,
 			true, true,
 			false, false,
-			false, false,
 			true);
 		fields.add(spacesForTabs);
 
@@ -106,7 +109,6 @@ public class LPGConfigurationTab extends ConfigurationPreferencesTab {
 			parent,
 			true, true,
 			false, false,
-			false, false,
 			true);
 		fields.add(UseDefaultExecutable);
 
@@ -122,7 +124,6 @@ public class LPGConfigurationTab extends ConfigurationPreferencesTab {
 			"The full path to the LPG generator executable",
 			parent,
 			true, true,
-			false, "Unspecified",
 			true, "",
 			true);
 		fields.add(ExecutableToUse);
@@ -147,7 +148,6 @@ public class LPGConfigurationTab extends ConfigurationPreferencesTab {
 			parent,
 			true, true,
 			false, false,
-			false, false,
 			true);
 		fields.add(UseDefaultIncludePath);
 
@@ -163,7 +163,6 @@ public class LPGConfigurationTab extends ConfigurationPreferencesTab {
 			"A semicolon-separated list of folders to search for template and include files",
 			parent,
 			true, true,
-			false, "Unspecified",
 			true, "",
 			true);
 		fields.add(IncludePathToUse);
@@ -187,7 +186,6 @@ public class LPGConfigurationTab extends ConfigurationPreferencesTab {
 			"A comma-separated list of file name extensions identifying top-level LPG grammar files",
 			parent,
 			true, true,
-			false, "Unspecified",
 			true, "",
 			true);
 		fields.add(SourceFileExtensions);
@@ -204,7 +202,6 @@ public class LPGConfigurationTab extends ConfigurationPreferencesTab {
 			"A comma-separated list of file name extensions identifying included LPG grammar files",
 			parent,
 			true, true,
-			false, "Unspecified",
 			true, "",
 			true);
 		fields.add(IncludeFileExtensions);
@@ -222,7 +219,6 @@ public class LPGConfigurationTab extends ConfigurationPreferencesTab {
 			parent,
 			true, true,
 			false, false,
-			false, false,
 			true);
 		fields.add(EmitDiagnostics);
 
@@ -239,7 +235,6 @@ public class LPGConfigurationTab extends ConfigurationPreferencesTab {
 			parent,
 			true, true,
 			false, false,
-			false, false,
 			true);
 		fields.add(GenerateListings);
 
@@ -255,7 +250,6 @@ public class LPGConfigurationTab extends ConfigurationPreferencesTab {
 			"If true, suppress the output of various facts like the number of terminals, lookahead, etc.",
 			parent,
 			true, true,
-			false, false,
 			false, false,
 			true);
 		fields.add(QuietOutput);
