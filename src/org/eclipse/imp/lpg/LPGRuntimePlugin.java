@@ -13,6 +13,11 @@ package org.eclipse.imp.lpg;
 
 import java.net.URL;
 
+import org.eclipse.core.filesystem.EFS;
+import org.eclipse.core.filesystem.IFileInfo;
+import org.eclipse.core.filesystem.IFileStore;
+import org.eclipse.core.filesystem.IFileSystem;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
@@ -23,6 +28,7 @@ import org.eclipse.imp.model.IPathEntry;
 import org.eclipse.imp.model.ISourceProject;
 import org.eclipse.imp.model.ModelFactory;
 import org.eclipse.imp.model.ModelFactory.IFactoryExtender;
+import org.eclipse.imp.preferences.IPreferencesService;
 import org.eclipse.imp.preferences.PreferencesService;
 import org.eclipse.imp.runtime.PluginBase;
 import org.eclipse.imp.utils.ExtensionFactory;
@@ -55,10 +61,7 @@ public class LPGRuntimePlugin extends PluginBase {
         super();
         sPlugin= this;
     }
-    
-      // SMS 27 Apr 2008
-      // Commented out to replace with version back-ported from Eclipse 3.3 adaptation
-      // Later:  uncommented
+
     public void start(BundleContext context) throws Exception {
         super.start(context);
 
@@ -82,6 +85,28 @@ public class LPGRuntimePlugin extends PluginBase {
 		    LanguageRegistry.findLanguage(kLanguageID));
 
         fEmitInfoMessages = preferencesService.getBooleanPreference(LPGConstants.P_EMITDIAGNOSTICS);
+
+        fixGeneratorPermissions();
+    }
+
+    private void fixGeneratorPermissions() {
+        String path;
+        if (preferencesService.getBooleanPreference(LPGConstants.P_USEDEFAULTEXECUTABLE)) {
+            path= preferencesService.getStringPreference(IPreferencesService.DEFAULT_LEVEL, LPGConstants.P_EXECUTABLETOUSE);
+        } else {
+            path= preferencesService.getStringPreference(LPGConstants.P_EXECUTABLETOUSE);
+        }
+        IFileSystem fs = EFS.getLocalFileSystem();
+        IFileStore fStore= fs.getStore(new Path(path));
+        IFileInfo fInfo= fStore.fetchInfo();
+        if (!fInfo.getAttribute(EFS.ATTRIBUTE_EXECUTABLE)) {
+            fInfo.setAttribute(EFS.ATTRIBUTE_EXECUTABLE, true);
+            try {
+                fStore.putInfo(fInfo, EFS.SET_ATTRIBUTES, null);
+            } catch (CoreException e) {
+                logException("Exception encountered when attempting to fix generator permissions", e);
+            }
+        }
     }
 
     
