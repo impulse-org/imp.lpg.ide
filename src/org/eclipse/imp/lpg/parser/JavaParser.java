@@ -461,99 +461,99 @@ public class JavaParser implements RuleAction
      *<li>SynchronizedStatement
      *<li>Commaopt
      *<li>Ellipsisopt
-     *<li>LPGUserAction0
-     *<li>LPGUserAction1
-     *<li>LPGUserAction2
-     *<li>LPGUserAction3
-     *<li>LPGUserAction4
-     *<li>IntegralType0
-     *<li>IntegralType1
-     *<li>IntegralType2
-     *<li>IntegralType3
-     *<li>IntegralType4
-     *<li>FloatingPointType0
-     *<li>FloatingPointType1
-     *<li>ClassModifier0
-     *<li>ClassModifier1
-     *<li>ClassModifier2
-     *<li>ClassModifier3
-     *<li>ClassModifier4
-     *<li>ClassModifier5
-     *<li>ClassModifier6
-     *<li>FieldModifier0
-     *<li>FieldModifier1
-     *<li>FieldModifier2
-     *<li>FieldModifier3
-     *<li>FieldModifier4
-     *<li>FieldModifier5
-     *<li>FieldModifier6
-     *<li>MethodModifier0
-     *<li>MethodModifier1
-     *<li>MethodModifier2
-     *<li>MethodModifier3
-     *<li>MethodModifier4
-     *<li>MethodModifier5
-     *<li>MethodModifier6
-     *<li>MethodModifier7
-     *<li>MethodModifier8
-     *<li>ConstructorModifier0
-     *<li>ConstructorModifier1
-     *<li>ConstructorModifier2
-     *<li>InterfaceModifier0
-     *<li>InterfaceModifier1
-     *<li>InterfaceModifier2
-     *<li>InterfaceModifier3
-     *<li>InterfaceModifier4
-     *<li>InterfaceModifier5
-     *<li>ConstantModifier0
-     *<li>ConstantModifier1
-     *<li>ConstantModifier2
-     *<li>AbstractMethodModifier0
-     *<li>AbstractMethodModifier1
-     *<li>AnnotationTypeElementDeclaration0
-     *<li>AnnotationTypeElementDeclaration1
-     *<li>AssertStatement0
-     *<li>AssertStatement1
-     *<li>TryStatement0
-     *<li>TryStatement1
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>AssignmentOperator0
-     *<li>AssignmentOperator1
-     *<li>AssignmentOperator2
-     *<li>AssignmentOperator3
-     *<li>AssignmentOperator4
-     *<li>AssignmentOperator5
-     *<li>AssignmentOperator6
-     *<li>AssignmentOperator7
-     *<li>AssignmentOperator8
-     *<li>AssignmentOperator9
-     *<li>AssignmentOperator10
-     *<li>AssignmentOperator11
+     *<li>LPGUserAction__BeginAction_BlockStatementsopt_EndAction
+     *<li>LPGUserAction__BeginJava_BlockStatementsopt_EndJava
+     *<li>LPGUserAction__NoAction
+     *<li>LPGUserAction__NullAction
+     *<li>LPGUserAction__BadAction
+     *<li>IntegralType__byte
+     *<li>IntegralType__short
+     *<li>IntegralType__int
+     *<li>IntegralType__long
+     *<li>IntegralType__char
+     *<li>FloatingPointType__float
+     *<li>FloatingPointType__double
+     *<li>ClassModifier__public
+     *<li>ClassModifier__protected
+     *<li>ClassModifier__private
+     *<li>ClassModifier__abstract
+     *<li>ClassModifier__static
+     *<li>ClassModifier__final
+     *<li>ClassModifier__strictfp
+     *<li>FieldModifier__public
+     *<li>FieldModifier__protected
+     *<li>FieldModifier__private
+     *<li>FieldModifier__static
+     *<li>FieldModifier__final
+     *<li>FieldModifier__transient
+     *<li>FieldModifier__volatile
+     *<li>MethodModifier__public
+     *<li>MethodModifier__protected
+     *<li>MethodModifier__private
+     *<li>MethodModifier__abstract
+     *<li>MethodModifier__static
+     *<li>MethodModifier__final
+     *<li>MethodModifier__synchronized
+     *<li>MethodModifier__native
+     *<li>MethodModifier__strictfp
+     *<li>ConstructorModifier__public
+     *<li>ConstructorModifier__protected
+     *<li>ConstructorModifier__private
+     *<li>InterfaceModifier__public
+     *<li>InterfaceModifier__protected
+     *<li>InterfaceModifier__private
+     *<li>InterfaceModifier__abstract
+     *<li>InterfaceModifier__static
+     *<li>InterfaceModifier__strictfp
+     *<li>ConstantModifier__public
+     *<li>ConstantModifier__static
+     *<li>ConstantModifier__final
+     *<li>AbstractMethodModifier__public
+     *<li>AbstractMethodModifier__abstract
+     *<li>AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON
+     *<li>AnnotationTypeElementDeclaration__SEMICOLON
+     *<li>AssertStatement__assert_Expression_SEMICOLON
+     *<li>AssertStatement__assert_Expression_COLON_Expression_SEMICOLON
+     *<li>TryStatement__try_Block_Catches
+     *<li>TryStatement__try_Block_Catchesopt_Finally
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>AssignmentOperator__EQUAL
+     *<li>AssignmentOperator__MULTIPLY_EQUAL
+     *<li>AssignmentOperator__DIVIDE_EQUAL
+     *<li>AssignmentOperator__REMAINDER_EQUAL
+     *<li>AssignmentOperator__PLUS_EQUAL
+     *<li>AssignmentOperator__MINUS_EQUAL
+     *<li>AssignmentOperator__LEFT_SHIFT_EQUAL
+     *<li>AssignmentOperator__GREATER_GREATER_EQUAL
+     *<li>AssignmentOperator__GREATER_GREATER_GREATER_EQUAL
+     *<li>AssignmentOperator__AND_EQUAL
+     *<li>AssignmentOperator__XOR_EQUAL
+     *<li>AssignmentOperator__OR_EQUAL
      *</ul>
      *</b>
      */
@@ -636,15 +636,15 @@ public class JavaParser implements RuleAction
      *<li>ReturnStatement
      *<li>ThrowStatement
      *<li>SynchronizedStatement
-     *<li>LPGUserAction0
-     *<li>LPGUserAction1
-     *<li>LPGUserAction2
-     *<li>LPGUserAction3
-     *<li>LPGUserAction4
-     *<li>AssertStatement0
-     *<li>AssertStatement1
-     *<li>TryStatement0
-     *<li>TryStatement1
+     *<li>LPGUserAction__BeginAction_BlockStatementsopt_EndAction
+     *<li>LPGUserAction__BeginJava_BlockStatementsopt_EndJava
+     *<li>LPGUserAction__NoAction
+     *<li>LPGUserAction__NullAction
+     *<li>LPGUserAction__BadAction
+     *<li>AssertStatement__assert_Expression_SEMICOLON
+     *<li>AssertStatement__assert_Expression_COLON_Expression_SEMICOLON
+     *<li>TryStatement__try_Block_Catches
+     *<li>TryStatement__try_Block_Catchesopt_Finally
      *</ul>
      *</b>
      */
@@ -679,10 +679,10 @@ public class JavaParser implements RuleAction
      *<li>ReturnStatement
      *<li>ThrowStatement
      *<li>SynchronizedStatement
-     *<li>AssertStatement0
-     *<li>AssertStatement1
-     *<li>TryStatement0
-     *<li>TryStatement1
+     *<li>AssertStatement__assert_Expression_SEMICOLON
+     *<li>AssertStatement__assert_Expression_COLON_Expression_SEMICOLON
+     *<li>TryStatement__try_Block_Catches
+     *<li>TryStatement__try_Block_Catchesopt_Finally
      *</ul>
      *</b>
      */
@@ -696,13 +696,13 @@ public class JavaParser implements RuleAction
      *<li>PrimitiveType
      *<li>ClassType
      *<li>ArrayType
-     *<li>IntegralType0
-     *<li>IntegralType1
-     *<li>IntegralType2
-     *<li>IntegralType3
-     *<li>IntegralType4
-     *<li>FloatingPointType0
-     *<li>FloatingPointType1
+     *<li>IntegralType__byte
+     *<li>IntegralType__short
+     *<li>IntegralType__int
+     *<li>IntegralType__long
+     *<li>IntegralType__char
+     *<li>FloatingPointType__float
+     *<li>FloatingPointType__double
      *</ul>
      *</b>
      */
@@ -713,13 +713,13 @@ public class JavaParser implements RuleAction
      *<b>
      *<ul>
      *<li>PrimitiveType
-     *<li>IntegralType0
-     *<li>IntegralType1
-     *<li>IntegralType2
-     *<li>IntegralType3
-     *<li>IntegralType4
-     *<li>FloatingPointType0
-     *<li>FloatingPointType1
+     *<li>IntegralType__byte
+     *<li>IntegralType__short
+     *<li>IntegralType__int
+     *<li>IntegralType__long
+     *<li>IntegralType__char
+     *<li>FloatingPointType__float
+     *<li>FloatingPointType__double
      *</ul>
      *</b>
      */
@@ -741,13 +741,13 @@ public class JavaParser implements RuleAction
      * is always implemented by <b>AstToken</b>. It is also implemented by:
      *<b>
      *<ul>
-     *<li>IntegralType0
-     *<li>IntegralType1
-     *<li>IntegralType2
-     *<li>IntegralType3
-     *<li>IntegralType4
-     *<li>FloatingPointType0
-     *<li>FloatingPointType1
+     *<li>IntegralType__byte
+     *<li>IntegralType__short
+     *<li>IntegralType__int
+     *<li>IntegralType__long
+     *<li>IntegralType__char
+     *<li>FloatingPointType__float
+     *<li>FloatingPointType__double
      *</ul>
      *</b>
      */
@@ -757,11 +757,11 @@ public class JavaParser implements RuleAction
      * is always implemented by <b>AstToken</b>. It is also implemented by:
      *<b>
      *<ul>
-     *<li>IntegralType0
-     *<li>IntegralType1
-     *<li>IntegralType2
-     *<li>IntegralType3
-     *<li>IntegralType4
+     *<li>IntegralType__byte
+     *<li>IntegralType__short
+     *<li>IntegralType__int
+     *<li>IntegralType__long
+     *<li>IntegralType__char
      *</ul>
      *</b>
      */
@@ -771,8 +771,8 @@ public class JavaParser implements RuleAction
      * is always implemented by <b>AstToken</b>. It is also implemented by:
      *<b>
      *<ul>
-     *<li>FloatingPointType0
-     *<li>FloatingPointType1
+     *<li>FloatingPointType__float
+     *<li>FloatingPointType__double
      *</ul>
      *</b>
      */
@@ -943,8 +943,8 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>WildcardBounds0
-     *<li>WildcardBounds1
+     *<li>WildcardBounds__extends_ReferenceType
+     *<li>WildcardBounds__super_ReferenceType
      *</ul>
      *</b>
      */
@@ -960,8 +960,8 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>WildcardBounds0
-     *<li>WildcardBounds1
+     *<li>WildcardBounds__extends_ReferenceType
+     *<li>WildcardBounds__super_ReferenceType
      *</ul>
      *</b>
      */
@@ -1238,13 +1238,13 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>ClassModifier0
-     *<li>ClassModifier1
-     *<li>ClassModifier2
-     *<li>ClassModifier3
-     *<li>ClassModifier4
-     *<li>ClassModifier5
-     *<li>ClassModifier6
+     *<li>ClassModifier__public
+     *<li>ClassModifier__protected
+     *<li>ClassModifier__private
+     *<li>ClassModifier__abstract
+     *<li>ClassModifier__static
+     *<li>ClassModifier__final
+     *<li>ClassModifier__strictfp
      *</ul>
      *</b>
      */
@@ -1302,13 +1302,13 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>ClassModifier0
-     *<li>ClassModifier1
-     *<li>ClassModifier2
-     *<li>ClassModifier3
-     *<li>ClassModifier4
-     *<li>ClassModifier5
-     *<li>ClassModifier6
+     *<li>ClassModifier__public
+     *<li>ClassModifier__protected
+     *<li>ClassModifier__private
+     *<li>ClassModifier__abstract
+     *<li>ClassModifier__static
+     *<li>ClassModifier__final
+     *<li>ClassModifier__strictfp
      *</ul>
      *</b>
      */
@@ -1321,13 +1321,13 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>ClassModifier0
-     *<li>ClassModifier1
-     *<li>ClassModifier2
-     *<li>ClassModifier3
-     *<li>ClassModifier4
-     *<li>ClassModifier5
-     *<li>ClassModifier6
+     *<li>ClassModifier__public
+     *<li>ClassModifier__protected
+     *<li>ClassModifier__private
+     *<li>ClassModifier__abstract
+     *<li>ClassModifier__static
+     *<li>ClassModifier__final
+     *<li>ClassModifier__strictfp
      *</ul>
      *</b>
      */
@@ -1482,13 +1482,13 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>FieldModifier0
-     *<li>FieldModifier1
-     *<li>FieldModifier2
-     *<li>FieldModifier3
-     *<li>FieldModifier4
-     *<li>FieldModifier5
-     *<li>FieldModifier6
+     *<li>FieldModifier__public
+     *<li>FieldModifier__protected
+     *<li>FieldModifier__private
+     *<li>FieldModifier__static
+     *<li>FieldModifier__final
+     *<li>FieldModifier__transient
+     *<li>FieldModifier__volatile
      *</ul>
      *</b>
      */
@@ -1560,57 +1560,57 @@ public class JavaParser implements RuleAction
      *<li>ConditionalOrExpression
      *<li>ConditionalExpression
      *<li>Assignment
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
-     *<li>EqualityExpression0
-     *<li>EqualityExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
+     *<li>EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression
+     *<li>EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression
      *</ul>
      *</b>
      */
@@ -1633,57 +1633,57 @@ public class JavaParser implements RuleAction
      *<li>ConditionalOrExpression
      *<li>ConditionalExpression
      *<li>Assignment
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
-     *<li>EqualityExpression0
-     *<li>EqualityExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
+     *<li>EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression
+     *<li>EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression
      *</ul>
      *</b>
      */
@@ -1702,13 +1702,13 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>FieldModifier0
-     *<li>FieldModifier1
-     *<li>FieldModifier2
-     *<li>FieldModifier3
-     *<li>FieldModifier4
-     *<li>FieldModifier5
-     *<li>FieldModifier6
+     *<li>FieldModifier__public
+     *<li>FieldModifier__protected
+     *<li>FieldModifier__private
+     *<li>FieldModifier__static
+     *<li>FieldModifier__final
+     *<li>FieldModifier__transient
+     *<li>FieldModifier__volatile
      *</ul>
      *</b>
      */
@@ -1721,13 +1721,13 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>FieldModifier0
-     *<li>FieldModifier1
-     *<li>FieldModifier2
-     *<li>FieldModifier3
-     *<li>FieldModifier4
-     *<li>FieldModifier5
-     *<li>FieldModifier6
+     *<li>FieldModifier__public
+     *<li>FieldModifier__protected
+     *<li>FieldModifier__private
+     *<li>FieldModifier__static
+     *<li>FieldModifier__final
+     *<li>FieldModifier__transient
+     *<li>FieldModifier__volatile
      *</ul>
      *</b>
      */
@@ -1764,15 +1764,15 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>MethodModifier0
-     *<li>MethodModifier1
-     *<li>MethodModifier2
-     *<li>MethodModifier3
-     *<li>MethodModifier4
-     *<li>MethodModifier5
-     *<li>MethodModifier6
-     *<li>MethodModifier7
-     *<li>MethodModifier8
+     *<li>MethodModifier__public
+     *<li>MethodModifier__protected
+     *<li>MethodModifier__private
+     *<li>MethodModifier__abstract
+     *<li>MethodModifier__static
+     *<li>MethodModifier__final
+     *<li>MethodModifier__synchronized
+     *<li>MethodModifier__native
+     *<li>MethodModifier__strictfp
      *</ul>
      *</b>
      */
@@ -1793,13 +1793,13 @@ public class JavaParser implements RuleAction
      *<li>ClassType
      *<li>ArrayType
      *<li>ResultType
-     *<li>IntegralType0
-     *<li>IntegralType1
-     *<li>IntegralType2
-     *<li>IntegralType3
-     *<li>IntegralType4
-     *<li>FloatingPointType0
-     *<li>FloatingPointType1
+     *<li>IntegralType__byte
+     *<li>IntegralType__short
+     *<li>IntegralType__int
+     *<li>IntegralType__long
+     *<li>IntegralType__char
+     *<li>FloatingPointType__float
+     *<li>FloatingPointType__double
      *</ul>
      *</b>
      */
@@ -1809,8 +1809,8 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>MethodDeclarator0
-     *<li>MethodDeclarator1
+     *<li>MethodDeclarator__identifier_LPAREN_FormalParameterListopt_RPAREN
+     *<li>MethodDeclarator__MethodDeclarator_LBRACKET_RBRACKET
      *</ul>
      *</b>
      */
@@ -1960,15 +1960,15 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>MethodModifier0
-     *<li>MethodModifier1
-     *<li>MethodModifier2
-     *<li>MethodModifier3
-     *<li>MethodModifier4
-     *<li>MethodModifier5
-     *<li>MethodModifier6
-     *<li>MethodModifier7
-     *<li>MethodModifier8
+     *<li>MethodModifier__public
+     *<li>MethodModifier__protected
+     *<li>MethodModifier__private
+     *<li>MethodModifier__abstract
+     *<li>MethodModifier__static
+     *<li>MethodModifier__final
+     *<li>MethodModifier__synchronized
+     *<li>MethodModifier__native
+     *<li>MethodModifier__strictfp
      *</ul>
      *</b>
      */
@@ -1982,15 +1982,15 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>MethodModifier0
-     *<li>MethodModifier1
-     *<li>MethodModifier2
-     *<li>MethodModifier3
-     *<li>MethodModifier4
-     *<li>MethodModifier5
-     *<li>MethodModifier6
-     *<li>MethodModifier7
-     *<li>MethodModifier8
+     *<li>MethodModifier__public
+     *<li>MethodModifier__protected
+     *<li>MethodModifier__private
+     *<li>MethodModifier__abstract
+     *<li>MethodModifier__static
+     *<li>MethodModifier__final
+     *<li>MethodModifier__synchronized
+     *<li>MethodModifier__native
+     *<li>MethodModifier__strictfp
      *</ul>
      *</b>
      */
@@ -2044,9 +2044,9 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>ConstructorModifier0
-     *<li>ConstructorModifier1
-     *<li>ConstructorModifier2
+     *<li>ConstructorModifier__public
+     *<li>ConstructorModifier__protected
+     *<li>ConstructorModifier__private
      *</ul>
      *</b>
      */
@@ -2100,9 +2100,9 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>ConstructorModifier0
-     *<li>ConstructorModifier1
-     *<li>ConstructorModifier2
+     *<li>ConstructorModifier__public
+     *<li>ConstructorModifier__protected
+     *<li>ConstructorModifier__private
      *</ul>
      *</b>
      */
@@ -2116,9 +2116,9 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>ConstructorModifier0
-     *<li>ConstructorModifier1
-     *<li>ConstructorModifier2
+     *<li>ConstructorModifier__public
+     *<li>ConstructorModifier__protected
+     *<li>ConstructorModifier__private
      *</ul>
      *</b>
      */
@@ -2128,9 +2128,9 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>ExplicitConstructorInvocation0
-     *<li>ExplicitConstructorInvocation1
-     *<li>ExplicitConstructorInvocation2
+     *<li>ExplicitConstructorInvocation__TypeArgumentsopt_this_LPAREN_ArgumentListopt_RPAREN_SEMICOLON
+     *<li>ExplicitConstructorInvocation__TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON
+     *<li>ExplicitConstructorInvocation__Primary_DOT_TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON
      *</ul>
      *</b>
      */
@@ -2146,9 +2146,9 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>ExplicitConstructorInvocation0
-     *<li>ExplicitConstructorInvocation1
-     *<li>ExplicitConstructorInvocation2
+     *<li>ExplicitConstructorInvocation__TypeArgumentsopt_this_LPAREN_ArgumentListopt_RPAREN_SEMICOLON
+     *<li>ExplicitConstructorInvocation__TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON
+     *<li>ExplicitConstructorInvocation__Primary_DOT_TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON
      *</ul>
      *</b>
      */
@@ -2172,57 +2172,57 @@ public class JavaParser implements RuleAction
      *<li>ConditionalOrExpression
      *<li>ConditionalExpression
      *<li>Assignment
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
-     *<li>EqualityExpression0
-     *<li>EqualityExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
+     *<li>EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression
+     *<li>EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression
      *</ul>
      *</b>
      */
@@ -2238,36 +2238,36 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
      *</ul>
      *</b>
      */
@@ -2386,12 +2386,12 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>InterfaceModifier0
-     *<li>InterfaceModifier1
-     *<li>InterfaceModifier2
-     *<li>InterfaceModifier3
-     *<li>InterfaceModifier4
-     *<li>InterfaceModifier5
+     *<li>InterfaceModifier__public
+     *<li>InterfaceModifier__protected
+     *<li>InterfaceModifier__private
+     *<li>InterfaceModifier__abstract
+     *<li>InterfaceModifier__static
+     *<li>InterfaceModifier__strictfp
      *</ul>
      *</b>
      */
@@ -2407,8 +2407,8 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>ExtendsInterfaces0
-     *<li>ExtendsInterfaces1
+     *<li>ExtendsInterfaces__extends_InterfaceType
+     *<li>ExtendsInterfaces__ExtendsInterfaces_COMMA_InterfaceType
      *</ul>
      *</b>
      */
@@ -2439,12 +2439,12 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>InterfaceModifier0
-     *<li>InterfaceModifier1
-     *<li>InterfaceModifier2
-     *<li>InterfaceModifier3
-     *<li>InterfaceModifier4
-     *<li>InterfaceModifier5
+     *<li>InterfaceModifier__public
+     *<li>InterfaceModifier__protected
+     *<li>InterfaceModifier__private
+     *<li>InterfaceModifier__abstract
+     *<li>InterfaceModifier__static
+     *<li>InterfaceModifier__strictfp
      *</ul>
      *</b>
      */
@@ -2457,12 +2457,12 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>InterfaceModifier0
-     *<li>InterfaceModifier1
-     *<li>InterfaceModifier2
-     *<li>InterfaceModifier3
-     *<li>InterfaceModifier4
-     *<li>InterfaceModifier5
+     *<li>InterfaceModifier__public
+     *<li>InterfaceModifier__protected
+     *<li>InterfaceModifier__private
+     *<li>InterfaceModifier__abstract
+     *<li>InterfaceModifier__static
+     *<li>InterfaceModifier__strictfp
      *</ul>
      *</b>
      */
@@ -2472,8 +2472,8 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>ExtendsInterfaces0
-     *<li>ExtendsInterfaces1
+     *<li>ExtendsInterfaces__extends_InterfaceType
+     *<li>ExtendsInterfaces__ExtendsInterfaces_COMMA_InterfaceType
      *</ul>
      *</b>
      */
@@ -2553,9 +2553,9 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>ConstantModifier0
-     *<li>ConstantModifier1
-     *<li>ConstantModifier2
+     *<li>ConstantModifier__public
+     *<li>ConstantModifier__static
+     *<li>ConstantModifier__final
      *</ul>
      *</b>
      */
@@ -2575,9 +2575,9 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>ConstantModifier0
-     *<li>ConstantModifier1
-     *<li>ConstantModifier2
+     *<li>ConstantModifier__public
+     *<li>ConstantModifier__static
+     *<li>ConstantModifier__final
      *</ul>
      *</b>
      */
@@ -2590,9 +2590,9 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>ConstantModifier0
-     *<li>ConstantModifier1
-     *<li>ConstantModifier2
+     *<li>ConstantModifier__public
+     *<li>ConstantModifier__static
+     *<li>ConstantModifier__final
      *</ul>
      *</b>
      */
@@ -2607,8 +2607,8 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>AbstractMethodModifier0
-     *<li>AbstractMethodModifier1
+     *<li>AbstractMethodModifier__public
+     *<li>AbstractMethodModifier__abstract
      *</ul>
      *</b>
      */
@@ -2629,8 +2629,8 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>AbstractMethodModifier0
-     *<li>AbstractMethodModifier1
+     *<li>AbstractMethodModifier__public
+     *<li>AbstractMethodModifier__abstract
      *</ul>
      *</b>
      */
@@ -2644,8 +2644,8 @@ public class JavaParser implements RuleAction
      *<li>NormalAnnotation
      *<li>MarkerAnnotation
      *<li>SingleElementAnnotation
-     *<li>AbstractMethodModifier0
-     *<li>AbstractMethodModifier1
+     *<li>AbstractMethodModifier__public
+     *<li>AbstractMethodModifier__abstract
      *</ul>
      *</b>
      */
@@ -2672,8 +2672,8 @@ public class JavaParser implements RuleAction
      *<li>ConstantDeclaration
      *<li>AnnotationTypeDeclaration
      *<li>AnnotationTypeElementDeclarations
-     *<li>AnnotationTypeElementDeclaration0
-     *<li>AnnotationTypeElementDeclaration1
+     *<li>AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON
+     *<li>AnnotationTypeElementDeclaration__SEMICOLON
      *</ul>
      *</b>
      */
@@ -2695,8 +2695,8 @@ public class JavaParser implements RuleAction
      *<li>ConstantDeclaration
      *<li>AnnotationTypeDeclaration
      *<li>AnnotationTypeElementDeclarations
-     *<li>AnnotationTypeElementDeclaration0
-     *<li>AnnotationTypeElementDeclaration1
+     *<li>AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON
+     *<li>AnnotationTypeElementDeclaration__SEMICOLON
      *</ul>
      *</b>
      */
@@ -2711,8 +2711,8 @@ public class JavaParser implements RuleAction
      *<li>NormalInterfaceDeclaration
      *<li>ConstantDeclaration
      *<li>AnnotationTypeDeclaration
-     *<li>AnnotationTypeElementDeclaration0
-     *<li>AnnotationTypeElementDeclaration1
+     *<li>AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON
+     *<li>AnnotationTypeElementDeclaration__SEMICOLON
      *</ul>
      *</b>
      */
@@ -2754,57 +2754,57 @@ public class JavaParser implements RuleAction
      *<li>ConditionalAndExpression
      *<li>ConditionalOrExpression
      *<li>ConditionalExpression
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
-     *<li>EqualityExpression0
-     *<li>EqualityExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
+     *<li>EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression
+     *<li>EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression
      *</ul>
      *</b>
      */
@@ -2885,57 +2885,57 @@ public class JavaParser implements RuleAction
      *<li>ConditionalAndExpression
      *<li>ConditionalOrExpression
      *<li>ConditionalExpression
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
-     *<li>EqualityExpression0
-     *<li>EqualityExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
+     *<li>EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression
+     *<li>EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression
      *</ul>
      *</b>
      */
@@ -2967,57 +2967,57 @@ public class JavaParser implements RuleAction
      *<li>ConditionalAndExpression
      *<li>ConditionalOrExpression
      *<li>ConditionalExpression
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
-     *<li>EqualityExpression0
-     *<li>EqualityExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
+     *<li>EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression
+     *<li>EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression
      *</ul>
      *</b>
      */
@@ -3050,57 +3050,57 @@ public class JavaParser implements RuleAction
      *<li>ConditionalAndExpression
      *<li>ConditionalOrExpression
      *<li>ConditionalExpression
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
-     *<li>EqualityExpression0
-     *<li>EqualityExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
+     *<li>EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression
+     *<li>EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression
      *</ul>
      *</b>
      */
@@ -3125,57 +3125,57 @@ public class JavaParser implements RuleAction
      *<li>ConditionalOrExpression
      *<li>ConditionalExpression
      *<li>Assignment
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
-     *<li>EqualityExpression0
-     *<li>EqualityExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
+     *<li>EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression
+     *<li>EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression
      *</ul>
      *</b>
      */
@@ -3206,57 +3206,57 @@ public class JavaParser implements RuleAction
      *<li>ConditionalOrExpression
      *<li>ConditionalExpression
      *<li>Assignment
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
-     *<li>EqualityExpression0
-     *<li>EqualityExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
+     *<li>EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression
+     *<li>EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression
      *</ul>
      *</b>
      */
@@ -3286,10 +3286,10 @@ public class JavaParser implements RuleAction
      *<li>ReturnStatement
      *<li>ThrowStatement
      *<li>SynchronizedStatement
-     *<li>AssertStatement0
-     *<li>AssertStatement1
-     *<li>TryStatement0
-     *<li>TryStatement1
+     *<li>AssertStatement__assert_Expression_SEMICOLON
+     *<li>AssertStatement__assert_Expression_COLON_Expression_SEMICOLON
+     *<li>TryStatement__try_Block_Catches
+     *<li>TryStatement__try_Block_Catchesopt_Finally
      *</ul>
      *</b>
      */
@@ -3318,10 +3318,10 @@ public class JavaParser implements RuleAction
      *<li>ReturnStatement
      *<li>ThrowStatement
      *<li>SynchronizedStatement
-     *<li>AssertStatement0
-     *<li>AssertStatement1
-     *<li>TryStatement0
-     *<li>TryStatement1
+     *<li>AssertStatement__assert_Expression_SEMICOLON
+     *<li>AssertStatement__assert_Expression_COLON_Expression_SEMICOLON
+     *<li>TryStatement__try_Block_Catches
+     *<li>TryStatement__try_Block_Catchesopt_Finally
      *</ul>
      *</b>
      */
@@ -3352,10 +3352,10 @@ public class JavaParser implements RuleAction
      *<li>ReturnStatement
      *<li>ThrowStatement
      *<li>SynchronizedStatement
-     *<li>AssertStatement0
-     *<li>AssertStatement1
-     *<li>TryStatement0
-     *<li>TryStatement1
+     *<li>AssertStatement__assert_Expression_SEMICOLON
+     *<li>AssertStatement__assert_Expression_COLON_Expression_SEMICOLON
+     *<li>TryStatement__try_Block_Catches
+     *<li>TryStatement__try_Block_Catchesopt_Finally
      *</ul>
      *</b>
      */
@@ -3380,10 +3380,10 @@ public class JavaParser implements RuleAction
      *<li>ReturnStatement
      *<li>ThrowStatement
      *<li>SynchronizedStatement
-     *<li>AssertStatement0
-     *<li>AssertStatement1
-     *<li>TryStatement0
-     *<li>TryStatement1
+     *<li>AssertStatement__assert_Expression_SEMICOLON
+     *<li>AssertStatement__assert_Expression_COLON_Expression_SEMICOLON
+     *<li>TryStatement__try_Block_Catches
+     *<li>TryStatement__try_Block_Catchesopt_Finally
      *</ul>
      *</b>
      */
@@ -3434,8 +3434,8 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>AssertStatement0
-     *<li>AssertStatement1
+     *<li>AssertStatement__assert_Expression_SEMICOLON
+     *<li>AssertStatement__assert_Expression_COLON_Expression_SEMICOLON
      *</ul>
      *</b>
      */
@@ -3480,8 +3480,8 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>TryStatement0
-     *<li>TryStatement1
+     *<li>TryStatement__try_Block_Catches
+     *<li>TryStatement__try_Block_Catchesopt_Finally
      *</ul>
      *</b>
      */
@@ -3505,10 +3505,10 @@ public class JavaParser implements RuleAction
      *<li>ReturnStatement
      *<li>ThrowStatement
      *<li>SynchronizedStatement
-     *<li>AssertStatement0
-     *<li>AssertStatement1
-     *<li>TryStatement0
-     *<li>TryStatement1
+     *<li>AssertStatement__assert_Expression_SEMICOLON
+     *<li>AssertStatement__assert_Expression_COLON_Expression_SEMICOLON
+     *<li>TryStatement__try_Block_Catches
+     *<li>TryStatement__try_Block_Catchesopt_Finally
      *</ul>
      *</b>
      */
@@ -3549,13 +3549,13 @@ public class JavaParser implements RuleAction
      *<li>PreIncrementExpression
      *<li>PreDecrementExpression
      *<li>Assignment
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
      *</ul>
      *</b>
      */
@@ -3590,11 +3590,11 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
      *</ul>
      *</b>
      */
@@ -3604,8 +3604,8 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
      *</ul>
      *</b>
      */
@@ -3644,9 +3644,9 @@ public class JavaParser implements RuleAction
      *<b>
      *<ul>
      *<li>SwitchLabels
-     *<li>SwitchLabel0
-     *<li>SwitchLabel1
-     *<li>SwitchLabel2
+     *<li>SwitchLabel__case_ConstantExpression_COLON
+     *<li>SwitchLabel__case_EnumConstant_COLON
+     *<li>SwitchLabel__default_COLON
      *</ul>
      *</b>
      */
@@ -3679,9 +3679,9 @@ public class JavaParser implements RuleAction
      *<b>
      *<ul>
      *<li>SwitchLabels
-     *<li>SwitchLabel0
-     *<li>SwitchLabel1
-     *<li>SwitchLabel2
+     *<li>SwitchLabel__case_ConstantExpression_COLON
+     *<li>SwitchLabel__case_EnumConstant_COLON
+     *<li>SwitchLabel__default_COLON
      *</ul>
      *</b>
      */
@@ -3691,9 +3691,9 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>SwitchLabel0
-     *<li>SwitchLabel1
-     *<li>SwitchLabel2
+     *<li>SwitchLabel__case_ConstantExpression_COLON
+     *<li>SwitchLabel__case_EnumConstant_COLON
+     *<li>SwitchLabel__default_COLON
      *</ul>
      *</b>
      */
@@ -3716,57 +3716,57 @@ public class JavaParser implements RuleAction
      *<li>ConditionalOrExpression
      *<li>ConditionalExpression
      *<li>Assignment
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
-     *<li>EqualityExpression0
-     *<li>EqualityExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
+     *<li>EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression
+     *<li>EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression
      *</ul>
      *</b>
      */
@@ -3799,13 +3799,13 @@ public class JavaParser implements RuleAction
      *<li>PreIncrementExpression
      *<li>PreDecrementExpression
      *<li>Assignment
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
      *</ul>
      *</b>
      */
@@ -3834,57 +3834,57 @@ public class JavaParser implements RuleAction
      *<li>ConditionalOrExpression
      *<li>ConditionalExpression
      *<li>Assignment
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
-     *<li>EqualityExpression0
-     *<li>EqualityExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
+     *<li>EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression
+     *<li>EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression
      *</ul>
      *</b>
      */
@@ -3906,13 +3906,13 @@ public class JavaParser implements RuleAction
      *<li>PreIncrementExpression
      *<li>PreDecrementExpression
      *<li>Assignment
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
      *</ul>
      *</b>
      */
@@ -3935,13 +3935,13 @@ public class JavaParser implements RuleAction
      *<li>PreIncrementExpression
      *<li>PreDecrementExpression
      *<li>Assignment
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
      *</ul>
      *</b>
      */
@@ -3957,13 +3957,13 @@ public class JavaParser implements RuleAction
      *<li>PreIncrementExpression
      *<li>PreDecrementExpression
      *<li>Assignment
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
      *</ul>
      *</b>
      */
@@ -3979,13 +3979,13 @@ public class JavaParser implements RuleAction
      *<li>PreIncrementExpression
      *<li>PreDecrementExpression
      *<li>Assignment
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
      *</ul>
      *</b>
      */
@@ -4050,32 +4050,32 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
      *</ul>
      *</b>
      */
@@ -4085,10 +4085,10 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
      *</ul>
      *</b>
      */
@@ -4098,15 +4098,15 @@ public class JavaParser implements RuleAction
      * is always implemented by <b>AstToken</b>. It is also implemented by:
      *<b>
      *<ul>
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
      *</ul>
      *</b>
      */
@@ -4116,9 +4116,9 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
      *</ul>
      *</b>
      */
@@ -4128,8 +4128,8 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
      *</ul>
      *</b>
      */
@@ -4139,8 +4139,8 @@ public class JavaParser implements RuleAction
      * is always implemented by <b>AstToken</b>. It is also implemented by:
      *<b>
      *<ul>
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
      *</ul>
      *</b>
      */
@@ -4164,57 +4164,57 @@ public class JavaParser implements RuleAction
      *<li>ConditionalOrExpression
      *<li>ConditionalExpression
      *<li>Assignment
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
-     *<li>EqualityExpression0
-     *<li>EqualityExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
+     *<li>EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression
+     *<li>EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression
      *</ul>
      *</b>
      */
@@ -4241,8 +4241,8 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>Dims0
-     *<li>Dims1
+     *<li>Dims__LBRACKET_RBRACKET
+     *<li>Dims__Dims_LBRACKET_RBRACKET
      *</ul>
      *</b>
      */
@@ -4258,8 +4258,8 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>Dims0
-     *<li>Dims1
+     *<li>Dims__LBRACKET_RBRACKET
+     *<li>Dims__Dims_LBRACKET_RBRACKET
      *</ul>
      *</b>
      */
@@ -4278,36 +4278,36 @@ public class JavaParser implements RuleAction
      *<li>ExpressionName
      *<li>PostIncrementExpression
      *<li>PostDecrementExpression
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
      *</ul>
      *</b>
      */
@@ -4323,42 +4323,42 @@ public class JavaParser implements RuleAction
      *<li>PostDecrementExpression
      *<li>PreIncrementExpression
      *<li>PreDecrementExpression
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
      *</ul>
      *</b>
      */
@@ -4372,40 +4372,40 @@ public class JavaParser implements RuleAction
      *<li>ExpressionName
      *<li>PostIncrementExpression
      *<li>PostDecrementExpression
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
      *</ul>
      *</b>
      */
@@ -4415,8 +4415,8 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>CastExpression0
-     *<li>CastExpression1
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
      *</ul>
      *</b>
      */
@@ -4432,45 +4432,45 @@ public class JavaParser implements RuleAction
      *<li>PostDecrementExpression
      *<li>PreIncrementExpression
      *<li>PreDecrementExpression
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
      *</ul>
      *</b>
      */
@@ -4486,47 +4486,47 @@ public class JavaParser implements RuleAction
      *<li>PostDecrementExpression
      *<li>PreIncrementExpression
      *<li>PreDecrementExpression
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
      *</ul>
      *</b>
      */
@@ -4542,50 +4542,50 @@ public class JavaParser implements RuleAction
      *<li>PostDecrementExpression
      *<li>PreIncrementExpression
      *<li>PreDecrementExpression
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
      *</ul>
      *</b>
      */
@@ -4601,55 +4601,55 @@ public class JavaParser implements RuleAction
      *<li>PostDecrementExpression
      *<li>PreIncrementExpression
      *<li>PreDecrementExpression
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
      *</ul>
      *</b>
      */
@@ -4665,57 +4665,57 @@ public class JavaParser implements RuleAction
      *<li>PostDecrementExpression
      *<li>PreIncrementExpression
      *<li>PreDecrementExpression
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
-     *<li>EqualityExpression0
-     *<li>EqualityExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
+     *<li>EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression
+     *<li>EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression
      *</ul>
      *</b>
      */
@@ -4732,57 +4732,57 @@ public class JavaParser implements RuleAction
      *<li>PreIncrementExpression
      *<li>PreDecrementExpression
      *<li>AndExpression
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
-     *<li>EqualityExpression0
-     *<li>EqualityExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
+     *<li>EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression
+     *<li>EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression
      *</ul>
      *</b>
      */
@@ -4800,57 +4800,57 @@ public class JavaParser implements RuleAction
      *<li>PreDecrementExpression
      *<li>AndExpression
      *<li>ExclusiveOrExpression
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
-     *<li>EqualityExpression0
-     *<li>EqualityExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
+     *<li>EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression
+     *<li>EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression
      *</ul>
      *</b>
      */
@@ -4869,57 +4869,57 @@ public class JavaParser implements RuleAction
      *<li>AndExpression
      *<li>ExclusiveOrExpression
      *<li>InclusiveOrExpression
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
-     *<li>EqualityExpression0
-     *<li>EqualityExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
+     *<li>EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression
+     *<li>EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression
      *</ul>
      *</b>
      */
@@ -4939,57 +4939,57 @@ public class JavaParser implements RuleAction
      *<li>ExclusiveOrExpression
      *<li>InclusiveOrExpression
      *<li>ConditionalAndExpression
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
-     *<li>EqualityExpression0
-     *<li>EqualityExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
+     *<li>EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression
+     *<li>EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression
      *</ul>
      *</b>
      */
@@ -5010,57 +5010,57 @@ public class JavaParser implements RuleAction
      *<li>InclusiveOrExpression
      *<li>ConditionalAndExpression
      *<li>ConditionalOrExpression
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
-     *<li>EqualityExpression0
-     *<li>EqualityExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
+     *<li>EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression
+     *<li>EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression
      *</ul>
      *</b>
      */
@@ -5083,57 +5083,57 @@ public class JavaParser implements RuleAction
      *<li>ConditionalOrExpression
      *<li>ConditionalExpression
      *<li>Assignment
-     *<li>PrimaryNoNewArray0
-     *<li>PrimaryNoNewArray1
-     *<li>PrimaryNoNewArray2
-     *<li>PrimaryNoNewArray3
-     *<li>PrimaryNoNewArray4
-     *<li>Literal0
-     *<li>Literal1
-     *<li>Literal2
-     *<li>Literal3
-     *<li>Literal4
-     *<li>Literal5
-     *<li>Literal6
-     *<li>BooleanLiteral0
-     *<li>BooleanLiteral1
-     *<li>ClassInstanceCreationExpression0
-     *<li>ClassInstanceCreationExpression1
-     *<li>ArrayCreationExpression0
-     *<li>ArrayCreationExpression1
-     *<li>ArrayCreationExpression2
-     *<li>ArrayCreationExpression3
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>MethodInvocation0
-     *<li>MethodInvocation1
-     *<li>MethodInvocation2
-     *<li>MethodInvocation3
-     *<li>MethodInvocation4
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
-     *<li>UnaryExpression0
-     *<li>UnaryExpression1
-     *<li>UnaryExpressionNotPlusMinus0
-     *<li>UnaryExpressionNotPlusMinus1
-     *<li>CastExpression0
-     *<li>CastExpression1
-     *<li>MultiplicativeExpression0
-     *<li>MultiplicativeExpression1
-     *<li>MultiplicativeExpression2
-     *<li>AdditiveExpression0
-     *<li>AdditiveExpression1
-     *<li>ShiftExpression0
-     *<li>ShiftExpression1
-     *<li>ShiftExpression2
-     *<li>RelationalExpression0
-     *<li>RelationalExpression1
-     *<li>RelationalExpression2
-     *<li>RelationalExpression3
-     *<li>RelationalExpression4
-     *<li>EqualityExpression0
-     *<li>EqualityExpression1
+     *<li>PrimaryNoNewArray__Type_DOT_class
+     *<li>PrimaryNoNewArray__void_DOT_class
+     *<li>PrimaryNoNewArray__this
+     *<li>PrimaryNoNewArray__ClassName_DOT_this
+     *<li>PrimaryNoNewArray__LPAREN_Expression_RPAREN
+     *<li>Literal__IntegerLiteral
+     *<li>Literal__LongLiteral
+     *<li>Literal__FloatingPointLiteral
+     *<li>Literal__DoubleLiteral
+     *<li>Literal__CharacterLiteral
+     *<li>Literal__StringLiteral
+     *<li>Literal__null
+     *<li>BooleanLiteral__true
+     *<li>BooleanLiteral__false
+     *<li>ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt
+     *<li>ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer
+     *<li>ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
+     *<li>UnaryExpression__PLUS_UnaryExpression
+     *<li>UnaryExpression__MINUS_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression
+     *<li>UnaryExpressionNotPlusMinus__NOT_UnaryExpression
+     *<li>CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression
+     *<li>CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus
+     *<li>MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression
+     *<li>MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression
+     *<li>AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression
+     *<li>AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression
+     *<li>ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression
+     *<li>ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression
+     *<li>RelationalExpression__RelationalExpression_instanceof_ReferenceType
+     *<li>EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression
+     *<li>EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression
      *</ul>
      *</b>
      */
@@ -5145,11 +5145,11 @@ public class JavaParser implements RuleAction
      *<ul>
      *<li>identifier
      *<li>ExpressionName
-     *<li>FieldAccess0
-     *<li>FieldAccess1
-     *<li>FieldAccess2
-     *<li>ArrayAccess0
-     *<li>ArrayAccess1
+     *<li>FieldAccess__Primary_DOT_identifier
+     *<li>FieldAccess__super_DOT_identifier
+     *<li>FieldAccess__ClassName_DOT_super_DOT_identifier
+     *<li>ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET
+     *<li>ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET
      *</ul>
      *</b>
      */
@@ -5165,18 +5165,18 @@ public class JavaParser implements RuleAction
      * is implemented by:
      *<b>
      *<ul>
-     *<li>AssignmentOperator0
-     *<li>AssignmentOperator1
-     *<li>AssignmentOperator2
-     *<li>AssignmentOperator3
-     *<li>AssignmentOperator4
-     *<li>AssignmentOperator5
-     *<li>AssignmentOperator6
-     *<li>AssignmentOperator7
-     *<li>AssignmentOperator8
-     *<li>AssignmentOperator9
-     *<li>AssignmentOperator10
-     *<li>AssignmentOperator11
+     *<li>AssignmentOperator__EQUAL
+     *<li>AssignmentOperator__MULTIPLY_EQUAL
+     *<li>AssignmentOperator__DIVIDE_EQUAL
+     *<li>AssignmentOperator__REMAINDER_EQUAL
+     *<li>AssignmentOperator__PLUS_EQUAL
+     *<li>AssignmentOperator__MINUS_EQUAL
+     *<li>AssignmentOperator__LEFT_SHIFT_EQUAL
+     *<li>AssignmentOperator__GREATER_GREATER_EQUAL
+     *<li>AssignmentOperator__GREATER_GREATER_GREATER_EQUAL
+     *<li>AssignmentOperator__AND_EQUAL
+     *<li>AssignmentOperator__XOR_EQUAL
+     *<li>AssignmentOperator__OR_EQUAL
      *</ul>
      *</b>
      */
@@ -16978,7 +16978,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 5:  LPGUserAction ::= $BeginAction BlockStatementsopt $EndAction
      *</b>
      */
-    static public class LPGUserAction0 extends Ast implements ILPGUserAction
+    static public class LPGUserAction__BeginAction_BlockStatementsopt_EndAction extends Ast implements ILPGUserAction
     {
         private AstToken _BeginAction;
         private IBlockStatementsopt _BlockStatementsopt;
@@ -16991,10 +16991,10 @@ public class JavaParser implements RuleAction
         public IBlockStatementsopt getBlockStatementsopt() { return _BlockStatementsopt; }
         public AstToken getEndAction() { return _EndAction; }
 
-        public LPGUserAction0(IToken leftIToken, IToken rightIToken,
-                              AstToken _BeginAction,
-                              IBlockStatementsopt _BlockStatementsopt,
-                              AstToken _EndAction)
+        public LPGUserAction__BeginAction_BlockStatementsopt_EndAction(IToken leftIToken, IToken rightIToken,
+                                                                       AstToken _BeginAction,
+                                                                       IBlockStatementsopt _BlockStatementsopt,
+                                                                       AstToken _EndAction)
         {
             super(leftIToken, rightIToken);
 
@@ -17022,9 +17022,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof LPGUserAction0)) return false;
+            if (! (o instanceof LPGUserAction__BeginAction_BlockStatementsopt_EndAction)) return false;
             if (! super.equals(o)) return false;
-            LPGUserAction0 other = (LPGUserAction0) o;
+            LPGUserAction__BeginAction_BlockStatementsopt_EndAction other = (LPGUserAction__BeginAction_BlockStatementsopt_EndAction) o;
             if (! _BeginAction.equals(other._BeginAction)) return false;
             if (_BlockStatementsopt == null)
                 if (other._BlockStatementsopt != null) return false;
@@ -17068,7 +17068,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 6:  LPGUserAction ::= $BeginJava BlockStatementsopt $EndJava
      *</b>
      */
-    static public class LPGUserAction1 extends Ast implements ILPGUserAction
+    static public class LPGUserAction__BeginJava_BlockStatementsopt_EndJava extends Ast implements ILPGUserAction
     {
         private AstToken _BeginJava;
         private IBlockStatementsopt _BlockStatementsopt;
@@ -17081,10 +17081,10 @@ public class JavaParser implements RuleAction
         public IBlockStatementsopt getBlockStatementsopt() { return _BlockStatementsopt; }
         public AstToken getEndJava() { return _EndJava; }
 
-        public LPGUserAction1(IToken leftIToken, IToken rightIToken,
-                              AstToken _BeginJava,
-                              IBlockStatementsopt _BlockStatementsopt,
-                              AstToken _EndJava)
+        public LPGUserAction__BeginJava_BlockStatementsopt_EndJava(IToken leftIToken, IToken rightIToken,
+                                                                   AstToken _BeginJava,
+                                                                   IBlockStatementsopt _BlockStatementsopt,
+                                                                   AstToken _EndJava)
         {
             super(leftIToken, rightIToken);
 
@@ -17112,9 +17112,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof LPGUserAction1)) return false;
+            if (! (o instanceof LPGUserAction__BeginJava_BlockStatementsopt_EndJava)) return false;
             if (! super.equals(o)) return false;
-            LPGUserAction1 other = (LPGUserAction1) o;
+            LPGUserAction__BeginJava_BlockStatementsopt_EndJava other = (LPGUserAction__BeginJava_BlockStatementsopt_EndJava) o;
             if (! _BeginJava.equals(other._BeginJava)) return false;
             if (_BlockStatementsopt == null)
                 if (other._BlockStatementsopt != null) return false;
@@ -17158,11 +17158,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 7:  LPGUserAction ::= $NoAction
      *</b>
      */
-    static public class LPGUserAction2 extends AstToken implements ILPGUserAction
+    static public class LPGUserAction__NoAction extends AstToken implements ILPGUserAction
     {
         public IToken getNoAction() { return leftIToken; }
 
-        public LPGUserAction2(IToken token) { super(token); initialize(); }
+        public LPGUserAction__NoAction(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17183,11 +17183,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 8:  LPGUserAction ::= $NullAction
      *</b>
      */
-    static public class LPGUserAction3 extends AstToken implements ILPGUserAction
+    static public class LPGUserAction__NullAction extends AstToken implements ILPGUserAction
     {
         public IToken getNullAction() { return leftIToken; }
 
-        public LPGUserAction3(IToken token) { super(token); initialize(); }
+        public LPGUserAction__NullAction(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17208,11 +17208,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 9:  LPGUserAction ::= $BadAction
      *</b>
      */
-    static public class LPGUserAction4 extends AstToken implements ILPGUserAction
+    static public class LPGUserAction__BadAction extends AstToken implements ILPGUserAction
     {
         public IToken getBadAction() { return leftIToken; }
 
-        public LPGUserAction4(IToken token) { super(token); initialize(); }
+        public LPGUserAction__BadAction(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17233,11 +17233,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 16:  IntegralType ::= byte
      *</b>
      */
-    static public class IntegralType0 extends AstToken implements IIntegralType
+    static public class IntegralType__byte extends AstToken implements IIntegralType
     {
         public IToken getbyte() { return leftIToken; }
 
-        public IntegralType0(IToken token) { super(token); initialize(); }
+        public IntegralType__byte(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17258,11 +17258,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 17:  IntegralType ::= short
      *</b>
      */
-    static public class IntegralType1 extends AstToken implements IIntegralType
+    static public class IntegralType__short extends AstToken implements IIntegralType
     {
         public IToken getshort() { return leftIToken; }
 
-        public IntegralType1(IToken token) { super(token); initialize(); }
+        public IntegralType__short(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17283,11 +17283,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 18:  IntegralType ::= int
      *</b>
      */
-    static public class IntegralType2 extends AstToken implements IIntegralType
+    static public class IntegralType__int extends AstToken implements IIntegralType
     {
         public IToken getint() { return leftIToken; }
 
-        public IntegralType2(IToken token) { super(token); initialize(); }
+        public IntegralType__int(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17308,11 +17308,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 19:  IntegralType ::= long
      *</b>
      */
-    static public class IntegralType3 extends AstToken implements IIntegralType
+    static public class IntegralType__long extends AstToken implements IIntegralType
     {
         public IToken getlong() { return leftIToken; }
 
-        public IntegralType3(IToken token) { super(token); initialize(); }
+        public IntegralType__long(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17333,11 +17333,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 20:  IntegralType ::= char
      *</b>
      */
-    static public class IntegralType4 extends AstToken implements IIntegralType
+    static public class IntegralType__char extends AstToken implements IIntegralType
     {
         public IToken getchar() { return leftIToken; }
 
-        public IntegralType4(IToken token) { super(token); initialize(); }
+        public IntegralType__char(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17358,11 +17358,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 21:  FloatingPointType ::= float
      *</b>
      */
-    static public class FloatingPointType0 extends AstToken implements IFloatingPointType
+    static public class FloatingPointType__float extends AstToken implements IFloatingPointType
     {
         public IToken getfloat() { return leftIToken; }
 
-        public FloatingPointType0(IToken token) { super(token); initialize(); }
+        public FloatingPointType__float(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17383,11 +17383,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 22:  FloatingPointType ::= double
      *</b>
      */
-    static public class FloatingPointType1 extends AstToken implements IFloatingPointType
+    static public class FloatingPointType__double extends AstToken implements IFloatingPointType
     {
         public IToken getdouble() { return leftIToken; }
 
-        public FloatingPointType1(IToken token) { super(token); initialize(); }
+        public FloatingPointType__double(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17408,7 +17408,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 45:  WildcardBounds ::= extends ReferenceType
      *</b>
      */
-    static public class WildcardBounds0 extends Ast implements IWildcardBounds
+    static public class WildcardBounds__extends_ReferenceType extends Ast implements IWildcardBounds
     {
         private AstToken _extends;
         private IReferenceType _ReferenceType;
@@ -17416,9 +17416,9 @@ public class JavaParser implements RuleAction
         public AstToken getextends() { return _extends; }
         public IReferenceType getReferenceType() { return _ReferenceType; }
 
-        public WildcardBounds0(IToken leftIToken, IToken rightIToken,
-                               AstToken _extends,
-                               IReferenceType _ReferenceType)
+        public WildcardBounds__extends_ReferenceType(IToken leftIToken, IToken rightIToken,
+                                                     AstToken _extends,
+                                                     IReferenceType _ReferenceType)
         {
             super(leftIToken, rightIToken);
 
@@ -17443,9 +17443,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof WildcardBounds0)) return false;
+            if (! (o instanceof WildcardBounds__extends_ReferenceType)) return false;
             if (! super.equals(o)) return false;
-            WildcardBounds0 other = (WildcardBounds0) o;
+            WildcardBounds__extends_ReferenceType other = (WildcardBounds__extends_ReferenceType) o;
             if (! _extends.equals(other._extends)) return false;
             if (! _ReferenceType.equals(other._ReferenceType)) return false;
             return true;
@@ -17483,7 +17483,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 46:  WildcardBounds ::= super ReferenceType
      *</b>
      */
-    static public class WildcardBounds1 extends Ast implements IWildcardBounds
+    static public class WildcardBounds__super_ReferenceType extends Ast implements IWildcardBounds
     {
         private AstToken _super;
         private IReferenceType _ReferenceType;
@@ -17491,9 +17491,9 @@ public class JavaParser implements RuleAction
         public AstToken getsuper() { return _super; }
         public IReferenceType getReferenceType() { return _ReferenceType; }
 
-        public WildcardBounds1(IToken leftIToken, IToken rightIToken,
-                               AstToken _super,
-                               IReferenceType _ReferenceType)
+        public WildcardBounds__super_ReferenceType(IToken leftIToken, IToken rightIToken,
+                                                   AstToken _super,
+                                                   IReferenceType _ReferenceType)
         {
             super(leftIToken, rightIToken);
 
@@ -17518,9 +17518,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof WildcardBounds1)) return false;
+            if (! (o instanceof WildcardBounds__super_ReferenceType)) return false;
             if (! super.equals(o)) return false;
-            WildcardBounds1 other = (WildcardBounds1) o;
+            WildcardBounds__super_ReferenceType other = (WildcardBounds__super_ReferenceType) o;
             if (! _super.equals(other._super)) return false;
             if (! _ReferenceType.equals(other._ReferenceType)) return false;
             return true;
@@ -17558,11 +17558,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 80:  ClassModifier ::= public
      *</b>
      */
-    static public class ClassModifier0 extends AstToken implements IClassModifier
+    static public class ClassModifier__public extends AstToken implements IClassModifier
     {
         public IToken getpublic() { return leftIToken; }
 
-        public ClassModifier0(IToken token) { super(token); initialize(); }
+        public ClassModifier__public(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17583,11 +17583,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 81:  ClassModifier ::= protected
      *</b>
      */
-    static public class ClassModifier1 extends AstToken implements IClassModifier
+    static public class ClassModifier__protected extends AstToken implements IClassModifier
     {
         public IToken getprotected() { return leftIToken; }
 
-        public ClassModifier1(IToken token) { super(token); initialize(); }
+        public ClassModifier__protected(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17608,11 +17608,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 82:  ClassModifier ::= private
      *</b>
      */
-    static public class ClassModifier2 extends AstToken implements IClassModifier
+    static public class ClassModifier__private extends AstToken implements IClassModifier
     {
         public IToken getprivate() { return leftIToken; }
 
-        public ClassModifier2(IToken token) { super(token); initialize(); }
+        public ClassModifier__private(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17633,11 +17633,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 83:  ClassModifier ::= abstract
      *</b>
      */
-    static public class ClassModifier3 extends AstToken implements IClassModifier
+    static public class ClassModifier__abstract extends AstToken implements IClassModifier
     {
         public IToken getabstract() { return leftIToken; }
 
-        public ClassModifier3(IToken token) { super(token); initialize(); }
+        public ClassModifier__abstract(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17658,11 +17658,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 84:  ClassModifier ::= static
      *</b>
      */
-    static public class ClassModifier4 extends AstToken implements IClassModifier
+    static public class ClassModifier__static extends AstToken implements IClassModifier
     {
         public IToken getstatic() { return leftIToken; }
 
-        public ClassModifier4(IToken token) { super(token); initialize(); }
+        public ClassModifier__static(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17683,11 +17683,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 85:  ClassModifier ::= final
      *</b>
      */
-    static public class ClassModifier5 extends AstToken implements IClassModifier
+    static public class ClassModifier__final extends AstToken implements IClassModifier
     {
         public IToken getfinal() { return leftIToken; }
 
-        public ClassModifier5(IToken token) { super(token); initialize(); }
+        public ClassModifier__final(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17708,11 +17708,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 86:  ClassModifier ::= strictfp
      *</b>
      */
-    static public class ClassModifier6 extends AstToken implements IClassModifier
+    static public class ClassModifier__strictfp extends AstToken implements IClassModifier
     {
         public IToken getstrictfp() { return leftIToken; }
 
-        public ClassModifier6(IToken token) { super(token); initialize(); }
+        public ClassModifier__strictfp(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17733,11 +17733,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 118:  FieldModifier ::= public
      *</b>
      */
-    static public class FieldModifier0 extends AstToken implements IFieldModifier
+    static public class FieldModifier__public extends AstToken implements IFieldModifier
     {
         public IToken getpublic() { return leftIToken; }
 
-        public FieldModifier0(IToken token) { super(token); initialize(); }
+        public FieldModifier__public(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17758,11 +17758,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 119:  FieldModifier ::= protected
      *</b>
      */
-    static public class FieldModifier1 extends AstToken implements IFieldModifier
+    static public class FieldModifier__protected extends AstToken implements IFieldModifier
     {
         public IToken getprotected() { return leftIToken; }
 
-        public FieldModifier1(IToken token) { super(token); initialize(); }
+        public FieldModifier__protected(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17783,11 +17783,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 120:  FieldModifier ::= private
      *</b>
      */
-    static public class FieldModifier2 extends AstToken implements IFieldModifier
+    static public class FieldModifier__private extends AstToken implements IFieldModifier
     {
         public IToken getprivate() { return leftIToken; }
 
-        public FieldModifier2(IToken token) { super(token); initialize(); }
+        public FieldModifier__private(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17808,11 +17808,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 121:  FieldModifier ::= static
      *</b>
      */
-    static public class FieldModifier3 extends AstToken implements IFieldModifier
+    static public class FieldModifier__static extends AstToken implements IFieldModifier
     {
         public IToken getstatic() { return leftIToken; }
 
-        public FieldModifier3(IToken token) { super(token); initialize(); }
+        public FieldModifier__static(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17833,11 +17833,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 122:  FieldModifier ::= final
      *</b>
      */
-    static public class FieldModifier4 extends AstToken implements IFieldModifier
+    static public class FieldModifier__final extends AstToken implements IFieldModifier
     {
         public IToken getfinal() { return leftIToken; }
 
-        public FieldModifier4(IToken token) { super(token); initialize(); }
+        public FieldModifier__final(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17858,11 +17858,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 123:  FieldModifier ::= transient
      *</b>
      */
-    static public class FieldModifier5 extends AstToken implements IFieldModifier
+    static public class FieldModifier__transient extends AstToken implements IFieldModifier
     {
         public IToken gettransient() { return leftIToken; }
 
-        public FieldModifier5(IToken token) { super(token); initialize(); }
+        public FieldModifier__transient(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17883,11 +17883,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 124:  FieldModifier ::= volatile
      *</b>
      */
-    static public class FieldModifier6 extends AstToken implements IFieldModifier
+    static public class FieldModifier__volatile extends AstToken implements IFieldModifier
     {
         public IToken getvolatile() { return leftIToken; }
 
-        public FieldModifier6(IToken token) { super(token); initialize(); }
+        public FieldModifier__volatile(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -17908,7 +17908,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 129:  MethodDeclarator ::= identifier ( FormalParameterListopt )
      *</b>
      */
-    static public class MethodDeclarator0 extends Ast implements IMethodDeclarator
+    static public class MethodDeclarator__identifier_LPAREN_FormalParameterListopt_RPAREN extends Ast implements IMethodDeclarator
     {
         private identifier _identifier;
         private AstToken _LPAREN;
@@ -17923,11 +17923,11 @@ public class JavaParser implements RuleAction
         public IFormalParameterListopt getFormalParameterListopt() { return _FormalParameterListopt; }
         public AstToken getRPAREN() { return _RPAREN; }
 
-        public MethodDeclarator0(IToken leftIToken, IToken rightIToken,
-                                 identifier _identifier,
-                                 AstToken _LPAREN,
-                                 IFormalParameterListopt _FormalParameterListopt,
-                                 AstToken _RPAREN)
+        public MethodDeclarator__identifier_LPAREN_FormalParameterListopt_RPAREN(IToken leftIToken, IToken rightIToken,
+                                                                                 identifier _identifier,
+                                                                                 AstToken _LPAREN,
+                                                                                 IFormalParameterListopt _FormalParameterListopt,
+                                                                                 AstToken _RPAREN)
         {
             super(leftIToken, rightIToken);
 
@@ -17958,9 +17958,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof MethodDeclarator0)) return false;
+            if (! (o instanceof MethodDeclarator__identifier_LPAREN_FormalParameterListopt_RPAREN)) return false;
             if (! super.equals(o)) return false;
-            MethodDeclarator0 other = (MethodDeclarator0) o;
+            MethodDeclarator__identifier_LPAREN_FormalParameterListopt_RPAREN other = (MethodDeclarator__identifier_LPAREN_FormalParameterListopt_RPAREN) o;
             if (! _identifier.equals(other._identifier)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
             if (_FormalParameterListopt == null)
@@ -18007,7 +18007,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 130:  MethodDeclarator ::= MethodDeclarator [ ]
      *</b>
      */
-    static public class MethodDeclarator1 extends Ast implements IMethodDeclarator
+    static public class MethodDeclarator__MethodDeclarator_LBRACKET_RBRACKET extends Ast implements IMethodDeclarator
     {
         private IMethodDeclarator _MethodDeclarator;
         private AstToken _LBRACKET;
@@ -18017,10 +18017,10 @@ public class JavaParser implements RuleAction
         public AstToken getLBRACKET() { return _LBRACKET; }
         public AstToken getRBRACKET() { return _RBRACKET; }
 
-        public MethodDeclarator1(IToken leftIToken, IToken rightIToken,
-                                 IMethodDeclarator _MethodDeclarator,
-                                 AstToken _LBRACKET,
-                                 AstToken _RBRACKET)
+        public MethodDeclarator__MethodDeclarator_LBRACKET_RBRACKET(IToken leftIToken, IToken rightIToken,
+                                                                    IMethodDeclarator _MethodDeclarator,
+                                                                    AstToken _LBRACKET,
+                                                                    AstToken _RBRACKET)
         {
             super(leftIToken, rightIToken);
 
@@ -18048,9 +18048,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof MethodDeclarator1)) return false;
+            if (! (o instanceof MethodDeclarator__MethodDeclarator_LBRACKET_RBRACKET)) return false;
             if (! super.equals(o)) return false;
-            MethodDeclarator1 other = (MethodDeclarator1) o;
+            MethodDeclarator__MethodDeclarator_LBRACKET_RBRACKET other = (MethodDeclarator__MethodDeclarator_LBRACKET_RBRACKET) o;
             if (! _MethodDeclarator.equals(other._MethodDeclarator)) return false;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
             if (! _RBRACKET.equals(other._RBRACKET)) return false;
@@ -18091,11 +18091,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 144:  MethodModifier ::= public
      *</b>
      */
-    static public class MethodModifier0 extends AstToken implements IMethodModifier
+    static public class MethodModifier__public extends AstToken implements IMethodModifier
     {
         public IToken getpublic() { return leftIToken; }
 
-        public MethodModifier0(IToken token) { super(token); initialize(); }
+        public MethodModifier__public(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -18116,11 +18116,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 145:  MethodModifier ::= protected
      *</b>
      */
-    static public class MethodModifier1 extends AstToken implements IMethodModifier
+    static public class MethodModifier__protected extends AstToken implements IMethodModifier
     {
         public IToken getprotected() { return leftIToken; }
 
-        public MethodModifier1(IToken token) { super(token); initialize(); }
+        public MethodModifier__protected(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -18141,11 +18141,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 146:  MethodModifier ::= private
      *</b>
      */
-    static public class MethodModifier2 extends AstToken implements IMethodModifier
+    static public class MethodModifier__private extends AstToken implements IMethodModifier
     {
         public IToken getprivate() { return leftIToken; }
 
-        public MethodModifier2(IToken token) { super(token); initialize(); }
+        public MethodModifier__private(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -18166,11 +18166,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 147:  MethodModifier ::= abstract
      *</b>
      */
-    static public class MethodModifier3 extends AstToken implements IMethodModifier
+    static public class MethodModifier__abstract extends AstToken implements IMethodModifier
     {
         public IToken getabstract() { return leftIToken; }
 
-        public MethodModifier3(IToken token) { super(token); initialize(); }
+        public MethodModifier__abstract(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -18191,11 +18191,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 148:  MethodModifier ::= static
      *</b>
      */
-    static public class MethodModifier4 extends AstToken implements IMethodModifier
+    static public class MethodModifier__static extends AstToken implements IMethodModifier
     {
         public IToken getstatic() { return leftIToken; }
 
-        public MethodModifier4(IToken token) { super(token); initialize(); }
+        public MethodModifier__static(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -18216,11 +18216,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 149:  MethodModifier ::= final
      *</b>
      */
-    static public class MethodModifier5 extends AstToken implements IMethodModifier
+    static public class MethodModifier__final extends AstToken implements IMethodModifier
     {
         public IToken getfinal() { return leftIToken; }
 
-        public MethodModifier5(IToken token) { super(token); initialize(); }
+        public MethodModifier__final(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -18241,11 +18241,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 150:  MethodModifier ::= synchronized
      *</b>
      */
-    static public class MethodModifier6 extends AstToken implements IMethodModifier
+    static public class MethodModifier__synchronized extends AstToken implements IMethodModifier
     {
         public IToken getsynchronized() { return leftIToken; }
 
-        public MethodModifier6(IToken token) { super(token); initialize(); }
+        public MethodModifier__synchronized(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -18266,11 +18266,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 151:  MethodModifier ::= native
      *</b>
      */
-    static public class MethodModifier7 extends AstToken implements IMethodModifier
+    static public class MethodModifier__native extends AstToken implements IMethodModifier
     {
         public IToken getnative() { return leftIToken; }
 
-        public MethodModifier7(IToken token) { super(token); initialize(); }
+        public MethodModifier__native(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -18291,11 +18291,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 152:  MethodModifier ::= strictfp
      *</b>
      */
-    static public class MethodModifier8 extends AstToken implements IMethodModifier
+    static public class MethodModifier__strictfp extends AstToken implements IMethodModifier
     {
         public IToken getstrictfp() { return leftIToken; }
 
-        public MethodModifier8(IToken token) { super(token); initialize(); }
+        public MethodModifier__strictfp(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -18316,11 +18316,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 168:  ConstructorModifier ::= public
      *</b>
      */
-    static public class ConstructorModifier0 extends AstToken implements IConstructorModifier
+    static public class ConstructorModifier__public extends AstToken implements IConstructorModifier
     {
         public IToken getpublic() { return leftIToken; }
 
-        public ConstructorModifier0(IToken token) { super(token); initialize(); }
+        public ConstructorModifier__public(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -18341,11 +18341,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 169:  ConstructorModifier ::= protected
      *</b>
      */
-    static public class ConstructorModifier1 extends AstToken implements IConstructorModifier
+    static public class ConstructorModifier__protected extends AstToken implements IConstructorModifier
     {
         public IToken getprotected() { return leftIToken; }
 
-        public ConstructorModifier1(IToken token) { super(token); initialize(); }
+        public ConstructorModifier__protected(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -18366,11 +18366,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 170:  ConstructorModifier ::= private
      *</b>
      */
-    static public class ConstructorModifier2 extends AstToken implements IConstructorModifier
+    static public class ConstructorModifier__private extends AstToken implements IConstructorModifier
     {
         public IToken getprivate() { return leftIToken; }
 
-        public ConstructorModifier2(IToken token) { super(token); initialize(); }
+        public ConstructorModifier__private(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -18391,7 +18391,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 172:  ExplicitConstructorInvocation ::= TypeArgumentsopt this ( ArgumentListopt ) ;
      *</b>
      */
-    static public class ExplicitConstructorInvocation0 extends Ast implements IExplicitConstructorInvocation
+    static public class ExplicitConstructorInvocation__TypeArgumentsopt_this_LPAREN_ArgumentListopt_RPAREN_SEMICOLON extends Ast implements IExplicitConstructorInvocation
     {
         private TypeArguments _TypeArgumentsopt;
         private AstToken _this;
@@ -18413,13 +18413,13 @@ public class JavaParser implements RuleAction
         public AstToken getRPAREN() { return _RPAREN; }
         public AstToken getSEMICOLON() { return _SEMICOLON; }
 
-        public ExplicitConstructorInvocation0(IToken leftIToken, IToken rightIToken,
-                                              TypeArguments _TypeArgumentsopt,
-                                              AstToken _this,
-                                              AstToken _LPAREN,
-                                              IArgumentListopt _ArgumentListopt,
-                                              AstToken _RPAREN,
-                                              AstToken _SEMICOLON)
+        public ExplicitConstructorInvocation__TypeArgumentsopt_this_LPAREN_ArgumentListopt_RPAREN_SEMICOLON(IToken leftIToken, IToken rightIToken,
+                                                                                                            TypeArguments _TypeArgumentsopt,
+                                                                                                            AstToken _this,
+                                                                                                            AstToken _LPAREN,
+                                                                                                            IArgumentListopt _ArgumentListopt,
+                                                                                                            AstToken _RPAREN,
+                                                                                                            AstToken _SEMICOLON)
         {
             super(leftIToken, rightIToken);
 
@@ -18456,9 +18456,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof ExplicitConstructorInvocation0)) return false;
+            if (! (o instanceof ExplicitConstructorInvocation__TypeArgumentsopt_this_LPAREN_ArgumentListopt_RPAREN_SEMICOLON)) return false;
             if (! super.equals(o)) return false;
-            ExplicitConstructorInvocation0 other = (ExplicitConstructorInvocation0) o;
+            ExplicitConstructorInvocation__TypeArgumentsopt_this_LPAREN_ArgumentListopt_RPAREN_SEMICOLON other = (ExplicitConstructorInvocation__TypeArgumentsopt_this_LPAREN_ArgumentListopt_RPAREN_SEMICOLON) o;
             if (_TypeArgumentsopt == null)
                 if (other._TypeArgumentsopt != null) return false;
                 else; // continue
@@ -18514,7 +18514,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 173:  ExplicitConstructorInvocation ::= TypeArgumentsopt super ( ArgumentListopt ) ;
      *</b>
      */
-    static public class ExplicitConstructorInvocation1 extends Ast implements IExplicitConstructorInvocation
+    static public class ExplicitConstructorInvocation__TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON extends Ast implements IExplicitConstructorInvocation
     {
         private TypeArguments _TypeArgumentsopt;
         private AstToken _super;
@@ -18536,13 +18536,13 @@ public class JavaParser implements RuleAction
         public AstToken getRPAREN() { return _RPAREN; }
         public AstToken getSEMICOLON() { return _SEMICOLON; }
 
-        public ExplicitConstructorInvocation1(IToken leftIToken, IToken rightIToken,
-                                              TypeArguments _TypeArgumentsopt,
-                                              AstToken _super,
-                                              AstToken _LPAREN,
-                                              IArgumentListopt _ArgumentListopt,
-                                              AstToken _RPAREN,
-                                              AstToken _SEMICOLON)
+        public ExplicitConstructorInvocation__TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON(IToken leftIToken, IToken rightIToken,
+                                                                                                             TypeArguments _TypeArgumentsopt,
+                                                                                                             AstToken _super,
+                                                                                                             AstToken _LPAREN,
+                                                                                                             IArgumentListopt _ArgumentListopt,
+                                                                                                             AstToken _RPAREN,
+                                                                                                             AstToken _SEMICOLON)
         {
             super(leftIToken, rightIToken);
 
@@ -18579,9 +18579,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof ExplicitConstructorInvocation1)) return false;
+            if (! (o instanceof ExplicitConstructorInvocation__TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON)) return false;
             if (! super.equals(o)) return false;
-            ExplicitConstructorInvocation1 other = (ExplicitConstructorInvocation1) o;
+            ExplicitConstructorInvocation__TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON other = (ExplicitConstructorInvocation__TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON) o;
             if (_TypeArgumentsopt == null)
                 if (other._TypeArgumentsopt != null) return false;
                 else; // continue
@@ -18637,7 +18637,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 174:  ExplicitConstructorInvocation ::= Primary . TypeArgumentsopt super ( ArgumentListopt ) ;
      *</b>
      */
-    static public class ExplicitConstructorInvocation2 extends Ast implements IExplicitConstructorInvocation
+    static public class ExplicitConstructorInvocation__Primary_DOT_TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON extends Ast implements IExplicitConstructorInvocation
     {
         private IPrimary _Primary;
         private AstToken _DOT;
@@ -18663,15 +18663,15 @@ public class JavaParser implements RuleAction
         public AstToken getRPAREN() { return _RPAREN; }
         public AstToken getSEMICOLON() { return _SEMICOLON; }
 
-        public ExplicitConstructorInvocation2(IToken leftIToken, IToken rightIToken,
-                                              IPrimary _Primary,
-                                              AstToken _DOT,
-                                              TypeArguments _TypeArgumentsopt,
-                                              AstToken _super,
-                                              AstToken _LPAREN,
-                                              IArgumentListopt _ArgumentListopt,
-                                              AstToken _RPAREN,
-                                              AstToken _SEMICOLON)
+        public ExplicitConstructorInvocation__Primary_DOT_TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON(IToken leftIToken, IToken rightIToken,
+                                                                                                                         IPrimary _Primary,
+                                                                                                                         AstToken _DOT,
+                                                                                                                         TypeArguments _TypeArgumentsopt,
+                                                                                                                         AstToken _super,
+                                                                                                                         AstToken _LPAREN,
+                                                                                                                         IArgumentListopt _ArgumentListopt,
+                                                                                                                         AstToken _RPAREN,
+                                                                                                                         AstToken _SEMICOLON)
         {
             super(leftIToken, rightIToken);
 
@@ -18714,9 +18714,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof ExplicitConstructorInvocation2)) return false;
+            if (! (o instanceof ExplicitConstructorInvocation__Primary_DOT_TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON)) return false;
             if (! super.equals(o)) return false;
-            ExplicitConstructorInvocation2 other = (ExplicitConstructorInvocation2) o;
+            ExplicitConstructorInvocation__Primary_DOT_TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON other = (ExplicitConstructorInvocation__Primary_DOT_TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON) o;
             if (! _Primary.equals(other._Primary)) return false;
             if (! _DOT.equals(other._DOT)) return false;
             if (_TypeArgumentsopt == null)
@@ -18778,11 +18778,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 188:  InterfaceModifier ::= public
      *</b>
      */
-    static public class InterfaceModifier0 extends AstToken implements IInterfaceModifier
+    static public class InterfaceModifier__public extends AstToken implements IInterfaceModifier
     {
         public IToken getpublic() { return leftIToken; }
 
-        public InterfaceModifier0(IToken token) { super(token); initialize(); }
+        public InterfaceModifier__public(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -18803,11 +18803,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 189:  InterfaceModifier ::= protected
      *</b>
      */
-    static public class InterfaceModifier1 extends AstToken implements IInterfaceModifier
+    static public class InterfaceModifier__protected extends AstToken implements IInterfaceModifier
     {
         public IToken getprotected() { return leftIToken; }
 
-        public InterfaceModifier1(IToken token) { super(token); initialize(); }
+        public InterfaceModifier__protected(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -18828,11 +18828,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 190:  InterfaceModifier ::= private
      *</b>
      */
-    static public class InterfaceModifier2 extends AstToken implements IInterfaceModifier
+    static public class InterfaceModifier__private extends AstToken implements IInterfaceModifier
     {
         public IToken getprivate() { return leftIToken; }
 
-        public InterfaceModifier2(IToken token) { super(token); initialize(); }
+        public InterfaceModifier__private(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -18853,11 +18853,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 191:  InterfaceModifier ::= abstract
      *</b>
      */
-    static public class InterfaceModifier3 extends AstToken implements IInterfaceModifier
+    static public class InterfaceModifier__abstract extends AstToken implements IInterfaceModifier
     {
         public IToken getabstract() { return leftIToken; }
 
-        public InterfaceModifier3(IToken token) { super(token); initialize(); }
+        public InterfaceModifier__abstract(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -18878,11 +18878,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 192:  InterfaceModifier ::= static
      *</b>
      */
-    static public class InterfaceModifier4 extends AstToken implements IInterfaceModifier
+    static public class InterfaceModifier__static extends AstToken implements IInterfaceModifier
     {
         public IToken getstatic() { return leftIToken; }
 
-        public InterfaceModifier4(IToken token) { super(token); initialize(); }
+        public InterfaceModifier__static(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -18903,11 +18903,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 193:  InterfaceModifier ::= strictfp
      *</b>
      */
-    static public class InterfaceModifier5 extends AstToken implements IInterfaceModifier
+    static public class InterfaceModifier__strictfp extends AstToken implements IInterfaceModifier
     {
         public IToken getstrictfp() { return leftIToken; }
 
-        public InterfaceModifier5(IToken token) { super(token); initialize(); }
+        public InterfaceModifier__strictfp(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -18928,7 +18928,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 194:  ExtendsInterfaces ::= extends InterfaceType
      *</b>
      */
-    static public class ExtendsInterfaces0 extends Ast implements IExtendsInterfaces
+    static public class ExtendsInterfaces__extends_InterfaceType extends Ast implements IExtendsInterfaces
     {
         private AstToken _extends;
         private InterfaceType _InterfaceType;
@@ -18936,9 +18936,9 @@ public class JavaParser implements RuleAction
         public AstToken getextends() { return _extends; }
         public InterfaceType getInterfaceType() { return _InterfaceType; }
 
-        public ExtendsInterfaces0(IToken leftIToken, IToken rightIToken,
-                                  AstToken _extends,
-                                  InterfaceType _InterfaceType)
+        public ExtendsInterfaces__extends_InterfaceType(IToken leftIToken, IToken rightIToken,
+                                                        AstToken _extends,
+                                                        InterfaceType _InterfaceType)
         {
             super(leftIToken, rightIToken);
 
@@ -18963,9 +18963,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof ExtendsInterfaces0)) return false;
+            if (! (o instanceof ExtendsInterfaces__extends_InterfaceType)) return false;
             if (! super.equals(o)) return false;
-            ExtendsInterfaces0 other = (ExtendsInterfaces0) o;
+            ExtendsInterfaces__extends_InterfaceType other = (ExtendsInterfaces__extends_InterfaceType) o;
             if (! _extends.equals(other._extends)) return false;
             if (! _InterfaceType.equals(other._InterfaceType)) return false;
             return true;
@@ -19003,7 +19003,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 195:  ExtendsInterfaces ::= ExtendsInterfaces , InterfaceType
      *</b>
      */
-    static public class ExtendsInterfaces1 extends Ast implements IExtendsInterfaces
+    static public class ExtendsInterfaces__ExtendsInterfaces_COMMA_InterfaceType extends Ast implements IExtendsInterfaces
     {
         private IExtendsInterfaces _ExtendsInterfaces;
         private AstToken _COMMA;
@@ -19013,10 +19013,10 @@ public class JavaParser implements RuleAction
         public AstToken getCOMMA() { return _COMMA; }
         public InterfaceType getInterfaceType() { return _InterfaceType; }
 
-        public ExtendsInterfaces1(IToken leftIToken, IToken rightIToken,
-                                  IExtendsInterfaces _ExtendsInterfaces,
-                                  AstToken _COMMA,
-                                  InterfaceType _InterfaceType)
+        public ExtendsInterfaces__ExtendsInterfaces_COMMA_InterfaceType(IToken leftIToken, IToken rightIToken,
+                                                                        IExtendsInterfaces _ExtendsInterfaces,
+                                                                        AstToken _COMMA,
+                                                                        InterfaceType _InterfaceType)
         {
             super(leftIToken, rightIToken);
 
@@ -19044,9 +19044,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof ExtendsInterfaces1)) return false;
+            if (! (o instanceof ExtendsInterfaces__ExtendsInterfaces_COMMA_InterfaceType)) return false;
             if (! super.equals(o)) return false;
-            ExtendsInterfaces1 other = (ExtendsInterfaces1) o;
+            ExtendsInterfaces__ExtendsInterfaces_COMMA_InterfaceType other = (ExtendsInterfaces__ExtendsInterfaces_COMMA_InterfaceType) o;
             if (! _ExtendsInterfaces.equals(other._ExtendsInterfaces)) return false;
             if (! _COMMA.equals(other._COMMA)) return false;
             if (! _InterfaceType.equals(other._InterfaceType)) return false;
@@ -19087,11 +19087,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 208:  ConstantModifier ::= public
      *</b>
      */
-    static public class ConstantModifier0 extends AstToken implements IConstantModifier
+    static public class ConstantModifier__public extends AstToken implements IConstantModifier
     {
         public IToken getpublic() { return leftIToken; }
 
-        public ConstantModifier0(IToken token) { super(token); initialize(); }
+        public ConstantModifier__public(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -19112,11 +19112,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 209:  ConstantModifier ::= static
      *</b>
      */
-    static public class ConstantModifier1 extends AstToken implements IConstantModifier
+    static public class ConstantModifier__static extends AstToken implements IConstantModifier
     {
         public IToken getstatic() { return leftIToken; }
 
-        public ConstantModifier1(IToken token) { super(token); initialize(); }
+        public ConstantModifier__static(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -19137,11 +19137,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 210:  ConstantModifier ::= final
      *</b>
      */
-    static public class ConstantModifier2 extends AstToken implements IConstantModifier
+    static public class ConstantModifier__final extends AstToken implements IConstantModifier
     {
         public IToken getfinal() { return leftIToken; }
 
-        public ConstantModifier2(IToken token) { super(token); initialize(); }
+        public ConstantModifier__final(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -19162,11 +19162,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 215:  AbstractMethodModifier ::= public
      *</b>
      */
-    static public class AbstractMethodModifier0 extends AstToken implements IAbstractMethodModifier
+    static public class AbstractMethodModifier__public extends AstToken implements IAbstractMethodModifier
     {
         public IToken getpublic() { return leftIToken; }
 
-        public AbstractMethodModifier0(IToken token) { super(token); initialize(); }
+        public AbstractMethodModifier__public(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -19187,11 +19187,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 216:  AbstractMethodModifier ::= abstract
      *</b>
      */
-    static public class AbstractMethodModifier1 extends AstToken implements IAbstractMethodModifier
+    static public class AbstractMethodModifier__abstract extends AstToken implements IAbstractMethodModifier
     {
         public IToken getabstract() { return leftIToken; }
 
-        public AbstractMethodModifier1(IToken token) { super(token); initialize(); }
+        public AbstractMethodModifier__abstract(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -19212,7 +19212,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 221:  AnnotationTypeElementDeclaration ::= AbstractMethodModifiersopt Type identifier ( ) DefaultValueopt ;
      *</b>
      */
-    static public class AnnotationTypeElementDeclaration0 extends Ast implements IAnnotationTypeElementDeclaration
+    static public class AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON extends Ast implements IAnnotationTypeElementDeclaration
     {
         private IAbstractMethodModifiersopt _AbstractMethodModifiersopt;
         private IType _Type;
@@ -19236,14 +19236,14 @@ public class JavaParser implements RuleAction
         public DefaultValue getDefaultValueopt() { return _DefaultValueopt; }
         public AstToken getSEMICOLON() { return _SEMICOLON; }
 
-        public AnnotationTypeElementDeclaration0(IToken leftIToken, IToken rightIToken,
-                                                 IAbstractMethodModifiersopt _AbstractMethodModifiersopt,
-                                                 IType _Type,
-                                                 identifier _identifier,
-                                                 AstToken _LPAREN,
-                                                 AstToken _RPAREN,
-                                                 DefaultValue _DefaultValueopt,
-                                                 AstToken _SEMICOLON)
+        public AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON(IToken leftIToken, IToken rightIToken,
+                                                                                                                                    IAbstractMethodModifiersopt _AbstractMethodModifiersopt,
+                                                                                                                                    IType _Type,
+                                                                                                                                    identifier _identifier,
+                                                                                                                                    AstToken _LPAREN,
+                                                                                                                                    AstToken _RPAREN,
+                                                                                                                                    DefaultValue _DefaultValueopt,
+                                                                                                                                    AstToken _SEMICOLON)
         {
             super(leftIToken, rightIToken);
 
@@ -19283,9 +19283,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof AnnotationTypeElementDeclaration0)) return false;
+            if (! (o instanceof AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON)) return false;
             if (! super.equals(o)) return false;
-            AnnotationTypeElementDeclaration0 other = (AnnotationTypeElementDeclaration0) o;
+            AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON other = (AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON) o;
             if (_AbstractMethodModifiersopt == null)
                 if (other._AbstractMethodModifiersopt != null) return false;
                 else; // continue
@@ -19344,11 +19344,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 227:  AnnotationTypeElementDeclaration ::= ;
      *</b>
      */
-    static public class AnnotationTypeElementDeclaration1 extends AstToken implements IAnnotationTypeElementDeclaration
+    static public class AnnotationTypeElementDeclaration__SEMICOLON extends AstToken implements IAnnotationTypeElementDeclaration
     {
         public IToken getSEMICOLON() { return leftIToken; }
 
-        public AnnotationTypeElementDeclaration1(IToken token) { super(token); initialize(); }
+        public AnnotationTypeElementDeclaration__SEMICOLON(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -19369,7 +19369,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 295:  AssertStatement ::= assert Expression ;
      *</b>
      */
-    static public class AssertStatement0 extends Ast implements IAssertStatement
+    static public class AssertStatement__assert_Expression_SEMICOLON extends Ast implements IAssertStatement
     {
         private AstToken _assert;
         private IExpression _Expression;
@@ -19379,10 +19379,10 @@ public class JavaParser implements RuleAction
         public IExpression getExpression() { return _Expression; }
         public AstToken getSEMICOLON() { return _SEMICOLON; }
 
-        public AssertStatement0(IToken leftIToken, IToken rightIToken,
-                                AstToken _assert,
-                                IExpression _Expression,
-                                AstToken _SEMICOLON)
+        public AssertStatement__assert_Expression_SEMICOLON(IToken leftIToken, IToken rightIToken,
+                                                            AstToken _assert,
+                                                            IExpression _Expression,
+                                                            AstToken _SEMICOLON)
         {
             super(leftIToken, rightIToken);
 
@@ -19410,9 +19410,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof AssertStatement0)) return false;
+            if (! (o instanceof AssertStatement__assert_Expression_SEMICOLON)) return false;
             if (! super.equals(o)) return false;
-            AssertStatement0 other = (AssertStatement0) o;
+            AssertStatement__assert_Expression_SEMICOLON other = (AssertStatement__assert_Expression_SEMICOLON) o;
             if (! _assert.equals(other._assert)) return false;
             if (! _Expression.equals(other._Expression)) return false;
             if (! _SEMICOLON.equals(other._SEMICOLON)) return false;
@@ -19453,7 +19453,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 296:  AssertStatement ::= assert Expression : Expression ;
      *</b>
      */
-    static public class AssertStatement1 extends Ast implements IAssertStatement
+    static public class AssertStatement__assert_Expression_COLON_Expression_SEMICOLON extends Ast implements IAssertStatement
     {
         private AstToken _assert;
         private IExpression _Expression;
@@ -19467,12 +19467,12 @@ public class JavaParser implements RuleAction
         public IExpression getExpression4() { return _Expression4; }
         public AstToken getSEMICOLON() { return _SEMICOLON; }
 
-        public AssertStatement1(IToken leftIToken, IToken rightIToken,
-                                AstToken _assert,
-                                IExpression _Expression,
-                                AstToken _COLON,
-                                IExpression _Expression4,
-                                AstToken _SEMICOLON)
+        public AssertStatement__assert_Expression_COLON_Expression_SEMICOLON(IToken leftIToken, IToken rightIToken,
+                                                                             AstToken _assert,
+                                                                             IExpression _Expression,
+                                                                             AstToken _COLON,
+                                                                             IExpression _Expression4,
+                                                                             AstToken _SEMICOLON)
         {
             super(leftIToken, rightIToken);
 
@@ -19506,9 +19506,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof AssertStatement1)) return false;
+            if (! (o instanceof AssertStatement__assert_Expression_COLON_Expression_SEMICOLON)) return false;
             if (! super.equals(o)) return false;
-            AssertStatement1 other = (AssertStatement1) o;
+            AssertStatement__assert_Expression_COLON_Expression_SEMICOLON other = (AssertStatement__assert_Expression_COLON_Expression_SEMICOLON) o;
             if (! _assert.equals(other._assert)) return false;
             if (! _Expression.equals(other._Expression)) return false;
             if (! _COLON.equals(other._COLON)) return false;
@@ -19555,7 +19555,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 304:  SwitchLabel ::= case ConstantExpression :
      *</b>
      */
-    static public class SwitchLabel0 extends Ast implements ISwitchLabel
+    static public class SwitchLabel__case_ConstantExpression_COLON extends Ast implements ISwitchLabel
     {
         private AstToken _case;
         private IConstantExpression _ConstantExpression;
@@ -19565,10 +19565,10 @@ public class JavaParser implements RuleAction
         public IConstantExpression getConstantExpression() { return _ConstantExpression; }
         public AstToken getCOLON() { return _COLON; }
 
-        public SwitchLabel0(IToken leftIToken, IToken rightIToken,
-                            AstToken _case,
-                            IConstantExpression _ConstantExpression,
-                            AstToken _COLON)
+        public SwitchLabel__case_ConstantExpression_COLON(IToken leftIToken, IToken rightIToken,
+                                                          AstToken _case,
+                                                          IConstantExpression _ConstantExpression,
+                                                          AstToken _COLON)
         {
             super(leftIToken, rightIToken);
 
@@ -19596,9 +19596,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof SwitchLabel0)) return false;
+            if (! (o instanceof SwitchLabel__case_ConstantExpression_COLON)) return false;
             if (! super.equals(o)) return false;
-            SwitchLabel0 other = (SwitchLabel0) o;
+            SwitchLabel__case_ConstantExpression_COLON other = (SwitchLabel__case_ConstantExpression_COLON) o;
             if (! _case.equals(other._case)) return false;
             if (! _ConstantExpression.equals(other._ConstantExpression)) return false;
             if (! _COLON.equals(other._COLON)) return false;
@@ -19639,7 +19639,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 305:  SwitchLabel ::= case EnumConstant :
      *</b>
      */
-    static public class SwitchLabel1 extends Ast implements ISwitchLabel
+    static public class SwitchLabel__case_EnumConstant_COLON extends Ast implements ISwitchLabel
     {
         private AstToken _case;
         private IEnumConstant _EnumConstant;
@@ -19649,10 +19649,10 @@ public class JavaParser implements RuleAction
         public IEnumConstant getEnumConstant() { return _EnumConstant; }
         public AstToken getCOLON() { return _COLON; }
 
-        public SwitchLabel1(IToken leftIToken, IToken rightIToken,
-                            AstToken _case,
-                            IEnumConstant _EnumConstant,
-                            AstToken _COLON)
+        public SwitchLabel__case_EnumConstant_COLON(IToken leftIToken, IToken rightIToken,
+                                                    AstToken _case,
+                                                    IEnumConstant _EnumConstant,
+                                                    AstToken _COLON)
         {
             super(leftIToken, rightIToken);
 
@@ -19680,9 +19680,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof SwitchLabel1)) return false;
+            if (! (o instanceof SwitchLabel__case_EnumConstant_COLON)) return false;
             if (! super.equals(o)) return false;
-            SwitchLabel1 other = (SwitchLabel1) o;
+            SwitchLabel__case_EnumConstant_COLON other = (SwitchLabel__case_EnumConstant_COLON) o;
             if (! _case.equals(other._case)) return false;
             if (! _EnumConstant.equals(other._EnumConstant)) return false;
             if (! _COLON.equals(other._COLON)) return false;
@@ -19723,7 +19723,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 306:  SwitchLabel ::= default :
      *</b>
      */
-    static public class SwitchLabel2 extends Ast implements ISwitchLabel
+    static public class SwitchLabel__default_COLON extends Ast implements ISwitchLabel
     {
         private AstToken _default;
         private AstToken _COLON;
@@ -19731,9 +19731,9 @@ public class JavaParser implements RuleAction
         public AstToken getdefault() { return _default; }
         public AstToken getCOLON() { return _COLON; }
 
-        public SwitchLabel2(IToken leftIToken, IToken rightIToken,
-                            AstToken _default,
-                            AstToken _COLON)
+        public SwitchLabel__default_COLON(IToken leftIToken, IToken rightIToken,
+                                          AstToken _default,
+                                          AstToken _COLON)
         {
             super(leftIToken, rightIToken);
 
@@ -19758,9 +19758,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof SwitchLabel2)) return false;
+            if (! (o instanceof SwitchLabel__default_COLON)) return false;
             if (! super.equals(o)) return false;
-            SwitchLabel2 other = (SwitchLabel2) o;
+            SwitchLabel__default_COLON other = (SwitchLabel__default_COLON) o;
             if (! _default.equals(other._default)) return false;
             if (! _COLON.equals(other._COLON)) return false;
             return true;
@@ -19798,7 +19798,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 326:  TryStatement ::= try Block Catches
      *</b>
      */
-    static public class TryStatement0 extends Ast implements ITryStatement
+    static public class TryStatement__try_Block_Catches extends Ast implements ITryStatement
     {
         private AstToken _try;
         private Block _Block;
@@ -19808,10 +19808,10 @@ public class JavaParser implements RuleAction
         public Block getBlock() { return _Block; }
         public ICatches getCatches() { return _Catches; }
 
-        public TryStatement0(IToken leftIToken, IToken rightIToken,
-                             AstToken _try,
-                             Block _Block,
-                             ICatches _Catches)
+        public TryStatement__try_Block_Catches(IToken leftIToken, IToken rightIToken,
+                                               AstToken _try,
+                                               Block _Block,
+                                               ICatches _Catches)
         {
             super(leftIToken, rightIToken);
 
@@ -19839,9 +19839,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof TryStatement0)) return false;
+            if (! (o instanceof TryStatement__try_Block_Catches)) return false;
             if (! super.equals(o)) return false;
-            TryStatement0 other = (TryStatement0) o;
+            TryStatement__try_Block_Catches other = (TryStatement__try_Block_Catches) o;
             if (! _try.equals(other._try)) return false;
             if (! _Block.equals(other._Block)) return false;
             if (! _Catches.equals(other._Catches)) return false;
@@ -19882,7 +19882,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 327:  TryStatement ::= try Block Catchesopt Finally
      *</b>
      */
-    static public class TryStatement1 extends Ast implements ITryStatement
+    static public class TryStatement__try_Block_Catchesopt_Finally extends Ast implements ITryStatement
     {
         private AstToken _try;
         private Block _Block;
@@ -19897,11 +19897,11 @@ public class JavaParser implements RuleAction
         public ICatchesopt getCatchesopt() { return _Catchesopt; }
         public Finally getFinally() { return _Finally; }
 
-        public TryStatement1(IToken leftIToken, IToken rightIToken,
-                             AstToken _try,
-                             Block _Block,
-                             ICatchesopt _Catchesopt,
-                             Finally _Finally)
+        public TryStatement__try_Block_Catchesopt_Finally(IToken leftIToken, IToken rightIToken,
+                                                          AstToken _try,
+                                                          Block _Block,
+                                                          ICatchesopt _Catchesopt,
+                                                          Finally _Finally)
         {
             super(leftIToken, rightIToken);
 
@@ -19932,9 +19932,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof TryStatement1)) return false;
+            if (! (o instanceof TryStatement__try_Block_Catchesopt_Finally)) return false;
             if (! super.equals(o)) return false;
-            TryStatement1 other = (TryStatement1) o;
+            TryStatement__try_Block_Catchesopt_Finally other = (TryStatement__try_Block_Catchesopt_Finally) o;
             if (! _try.equals(other._try)) return false;
             if (! _Block.equals(other._Block)) return false;
             if (_Catchesopt == null)
@@ -19981,7 +19981,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 335:  PrimaryNoNewArray ::= Type . class
      *</b>
      */
-    static public class PrimaryNoNewArray0 extends Ast implements IPrimaryNoNewArray
+    static public class PrimaryNoNewArray__Type_DOT_class extends Ast implements IPrimaryNoNewArray
     {
         private IType _Type;
         private AstToken _DOT;
@@ -19991,10 +19991,10 @@ public class JavaParser implements RuleAction
         public AstToken getDOT() { return _DOT; }
         public AstToken getclass() { return _class; }
 
-        public PrimaryNoNewArray0(IToken leftIToken, IToken rightIToken,
-                                  IType _Type,
-                                  AstToken _DOT,
-                                  AstToken _class)
+        public PrimaryNoNewArray__Type_DOT_class(IToken leftIToken, IToken rightIToken,
+                                                 IType _Type,
+                                                 AstToken _DOT,
+                                                 AstToken _class)
         {
             super(leftIToken, rightIToken);
 
@@ -20022,9 +20022,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof PrimaryNoNewArray0)) return false;
+            if (! (o instanceof PrimaryNoNewArray__Type_DOT_class)) return false;
             if (! super.equals(o)) return false;
-            PrimaryNoNewArray0 other = (PrimaryNoNewArray0) o;
+            PrimaryNoNewArray__Type_DOT_class other = (PrimaryNoNewArray__Type_DOT_class) o;
             if (! _Type.equals(other._Type)) return false;
             if (! _DOT.equals(other._DOT)) return false;
             if (! _class.equals(other._class)) return false;
@@ -20065,7 +20065,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 336:  PrimaryNoNewArray ::= void . class
      *</b>
      */
-    static public class PrimaryNoNewArray1 extends Ast implements IPrimaryNoNewArray
+    static public class PrimaryNoNewArray__void_DOT_class extends Ast implements IPrimaryNoNewArray
     {
         private AstToken _void;
         private AstToken _DOT;
@@ -20075,10 +20075,10 @@ public class JavaParser implements RuleAction
         public AstToken getDOT() { return _DOT; }
         public AstToken getclass() { return _class; }
 
-        public PrimaryNoNewArray1(IToken leftIToken, IToken rightIToken,
-                                  AstToken _void,
-                                  AstToken _DOT,
-                                  AstToken _class)
+        public PrimaryNoNewArray__void_DOT_class(IToken leftIToken, IToken rightIToken,
+                                                 AstToken _void,
+                                                 AstToken _DOT,
+                                                 AstToken _class)
         {
             super(leftIToken, rightIToken);
 
@@ -20106,9 +20106,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof PrimaryNoNewArray1)) return false;
+            if (! (o instanceof PrimaryNoNewArray__void_DOT_class)) return false;
             if (! super.equals(o)) return false;
-            PrimaryNoNewArray1 other = (PrimaryNoNewArray1) o;
+            PrimaryNoNewArray__void_DOT_class other = (PrimaryNoNewArray__void_DOT_class) o;
             if (! _void.equals(other._void)) return false;
             if (! _DOT.equals(other._DOT)) return false;
             if (! _class.equals(other._class)) return false;
@@ -20149,11 +20149,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 337:  PrimaryNoNewArray ::= this
      *</b>
      */
-    static public class PrimaryNoNewArray2 extends AstToken implements IPrimaryNoNewArray
+    static public class PrimaryNoNewArray__this extends AstToken implements IPrimaryNoNewArray
     {
         public IToken getthis() { return leftIToken; }
 
-        public PrimaryNoNewArray2(IToken token) { super(token); initialize(); }
+        public PrimaryNoNewArray__this(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -20174,7 +20174,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 338:  PrimaryNoNewArray ::= ClassName . this
      *</b>
      */
-    static public class PrimaryNoNewArray3 extends Ast implements IPrimaryNoNewArray
+    static public class PrimaryNoNewArray__ClassName_DOT_this extends Ast implements IPrimaryNoNewArray
     {
         private IClassName _ClassName;
         private AstToken _DOT;
@@ -20184,10 +20184,10 @@ public class JavaParser implements RuleAction
         public AstToken getDOT() { return _DOT; }
         public AstToken getthis() { return _this; }
 
-        public PrimaryNoNewArray3(IToken leftIToken, IToken rightIToken,
-                                  IClassName _ClassName,
-                                  AstToken _DOT,
-                                  AstToken _this)
+        public PrimaryNoNewArray__ClassName_DOT_this(IToken leftIToken, IToken rightIToken,
+                                                     IClassName _ClassName,
+                                                     AstToken _DOT,
+                                                     AstToken _this)
         {
             super(leftIToken, rightIToken);
 
@@ -20215,9 +20215,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof PrimaryNoNewArray3)) return false;
+            if (! (o instanceof PrimaryNoNewArray__ClassName_DOT_this)) return false;
             if (! super.equals(o)) return false;
-            PrimaryNoNewArray3 other = (PrimaryNoNewArray3) o;
+            PrimaryNoNewArray__ClassName_DOT_this other = (PrimaryNoNewArray__ClassName_DOT_this) o;
             if (! _ClassName.equals(other._ClassName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
             if (! _this.equals(other._this)) return false;
@@ -20258,7 +20258,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 339:  PrimaryNoNewArray ::= ( Expression )
      *</b>
      */
-    static public class PrimaryNoNewArray4 extends Ast implements IPrimaryNoNewArray
+    static public class PrimaryNoNewArray__LPAREN_Expression_RPAREN extends Ast implements IPrimaryNoNewArray
     {
         private AstToken _LPAREN;
         private IExpression _Expression;
@@ -20268,10 +20268,10 @@ public class JavaParser implements RuleAction
         public IExpression getExpression() { return _Expression; }
         public AstToken getRPAREN() { return _RPAREN; }
 
-        public PrimaryNoNewArray4(IToken leftIToken, IToken rightIToken,
-                                  AstToken _LPAREN,
-                                  IExpression _Expression,
-                                  AstToken _RPAREN)
+        public PrimaryNoNewArray__LPAREN_Expression_RPAREN(IToken leftIToken, IToken rightIToken,
+                                                           AstToken _LPAREN,
+                                                           IExpression _Expression,
+                                                           AstToken _RPAREN)
         {
             super(leftIToken, rightIToken);
 
@@ -20299,9 +20299,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof PrimaryNoNewArray4)) return false;
+            if (! (o instanceof PrimaryNoNewArray__LPAREN_Expression_RPAREN)) return false;
             if (! super.equals(o)) return false;
-            PrimaryNoNewArray4 other = (PrimaryNoNewArray4) o;
+            PrimaryNoNewArray__LPAREN_Expression_RPAREN other = (PrimaryNoNewArray__LPAREN_Expression_RPAREN) o;
             if (! _LPAREN.equals(other._LPAREN)) return false;
             if (! _Expression.equals(other._Expression)) return false;
             if (! _RPAREN.equals(other._RPAREN)) return false;
@@ -20342,11 +20342,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 344:  Literal ::= IntegerLiteral
      *</b>
      */
-    static public class Literal0 extends AstToken implements ILiteral
+    static public class Literal__IntegerLiteral extends AstToken implements ILiteral
     {
         public IToken getIntegerLiteral() { return leftIToken; }
 
-        public Literal0(IToken token) { super(token); initialize(); }
+        public Literal__IntegerLiteral(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -20367,11 +20367,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 345:  Literal ::= LongLiteral
      *</b>
      */
-    static public class Literal1 extends AstToken implements ILiteral
+    static public class Literal__LongLiteral extends AstToken implements ILiteral
     {
         public IToken getLongLiteral() { return leftIToken; }
 
-        public Literal1(IToken token) { super(token); initialize(); }
+        public Literal__LongLiteral(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -20392,11 +20392,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 346:  Literal ::= FloatingPointLiteral
      *</b>
      */
-    static public class Literal2 extends AstToken implements ILiteral
+    static public class Literal__FloatingPointLiteral extends AstToken implements ILiteral
     {
         public IToken getFloatingPointLiteral() { return leftIToken; }
 
-        public Literal2(IToken token) { super(token); initialize(); }
+        public Literal__FloatingPointLiteral(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -20417,11 +20417,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 347:  Literal ::= DoubleLiteral
      *</b>
      */
-    static public class Literal3 extends AstToken implements ILiteral
+    static public class Literal__DoubleLiteral extends AstToken implements ILiteral
     {
         public IToken getDoubleLiteral() { return leftIToken; }
 
-        public Literal3(IToken token) { super(token); initialize(); }
+        public Literal__DoubleLiteral(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -20442,11 +20442,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 349:  Literal ::= CharacterLiteral
      *</b>
      */
-    static public class Literal4 extends AstToken implements ILiteral
+    static public class Literal__CharacterLiteral extends AstToken implements ILiteral
     {
         public IToken getCharacterLiteral() { return leftIToken; }
 
-        public Literal4(IToken token) { super(token); initialize(); }
+        public Literal__CharacterLiteral(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -20467,11 +20467,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 350:  Literal ::= StringLiteral
      *</b>
      */
-    static public class Literal5 extends AstToken implements ILiteral
+    static public class Literal__StringLiteral extends AstToken implements ILiteral
     {
         public IToken getStringLiteral() { return leftIToken; }
 
-        public Literal5(IToken token) { super(token); initialize(); }
+        public Literal__StringLiteral(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -20492,11 +20492,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 351:  Literal ::= null
      *</b>
      */
-    static public class Literal6 extends AstToken implements ILiteral
+    static public class Literal__null extends AstToken implements ILiteral
     {
         public IToken getnull() { return leftIToken; }
 
-        public Literal6(IToken token) { super(token); initialize(); }
+        public Literal__null(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -20517,11 +20517,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 352:  BooleanLiteral ::= true
      *</b>
      */
-    static public class BooleanLiteral0 extends AstToken implements IBooleanLiteral
+    static public class BooleanLiteral__true extends AstToken implements IBooleanLiteral
     {
         public IToken gettrue() { return leftIToken; }
 
-        public BooleanLiteral0(IToken token) { super(token); initialize(); }
+        public BooleanLiteral__true(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -20542,11 +20542,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 353:  BooleanLiteral ::= false
      *</b>
      */
-    static public class BooleanLiteral1 extends AstToken implements IBooleanLiteral
+    static public class BooleanLiteral__false extends AstToken implements IBooleanLiteral
     {
         public IToken getfalse() { return leftIToken; }
 
-        public BooleanLiteral1(IToken token) { super(token); initialize(); }
+        public BooleanLiteral__false(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -20567,7 +20567,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 354:  ClassInstanceCreationExpression ::= new TypeArgumentsopt ClassOrInterfaceType TypeArgumentsopt ( ArgumentListopt ) ClassBodyopt
      *</b>
      */
-    static public class ClassInstanceCreationExpression0 extends Ast implements IClassInstanceCreationExpression
+    static public class ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt extends Ast implements IClassInstanceCreationExpression
     {
         private AstToken _new;
         private TypeArguments _TypeArgumentsopt;
@@ -20599,15 +20599,15 @@ public class JavaParser implements RuleAction
          */
         public ClassBody getClassBodyopt() { return _ClassBodyopt; }
 
-        public ClassInstanceCreationExpression0(IToken leftIToken, IToken rightIToken,
-                                                AstToken _new,
-                                                TypeArguments _TypeArgumentsopt,
-                                                ClassType _ClassOrInterfaceType,
-                                                TypeArguments _TypeArgumentsopt4,
-                                                AstToken _LPAREN,
-                                                IArgumentListopt _ArgumentListopt,
-                                                AstToken _RPAREN,
-                                                ClassBody _ClassBodyopt)
+        public ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt(IToken leftIToken, IToken rightIToken,
+                                                                                                                                                      AstToken _new,
+                                                                                                                                                      TypeArguments _TypeArgumentsopt,
+                                                                                                                                                      ClassType _ClassOrInterfaceType,
+                                                                                                                                                      TypeArguments _TypeArgumentsopt4,
+                                                                                                                                                      AstToken _LPAREN,
+                                                                                                                                                      IArgumentListopt _ArgumentListopt,
+                                                                                                                                                      AstToken _RPAREN,
+                                                                                                                                                      ClassBody _ClassBodyopt)
         {
             super(leftIToken, rightIToken);
 
@@ -20650,9 +20650,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof ClassInstanceCreationExpression0)) return false;
+            if (! (o instanceof ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt)) return false;
             if (! super.equals(o)) return false;
-            ClassInstanceCreationExpression0 other = (ClassInstanceCreationExpression0) o;
+            ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt other = (ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt) o;
             if (! _new.equals(other._new)) return false;
             if (_TypeArgumentsopt == null)
                 if (other._TypeArgumentsopt != null) return false;
@@ -20720,7 +20720,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 355:  ClassInstanceCreationExpression ::= Primary . new TypeArgumentsopt identifier TypeArgumentsopt ( ArgumentListopt ) ClassBodyopt
      *</b>
      */
-    static public class ClassInstanceCreationExpression1 extends Ast implements IClassInstanceCreationExpression
+    static public class ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt extends Ast implements IClassInstanceCreationExpression
     {
         private IPrimary _Primary;
         private AstToken _DOT;
@@ -20756,17 +20756,17 @@ public class JavaParser implements RuleAction
          */
         public ClassBody getClassBodyopt() { return _ClassBodyopt; }
 
-        public ClassInstanceCreationExpression1(IToken leftIToken, IToken rightIToken,
-                                                IPrimary _Primary,
-                                                AstToken _DOT,
-                                                AstToken _new,
-                                                TypeArguments _TypeArgumentsopt,
-                                                identifier _identifier,
-                                                TypeArguments _TypeArgumentsopt6,
-                                                AstToken _LPAREN,
-                                                IArgumentListopt _ArgumentListopt,
-                                                AstToken _RPAREN,
-                                                ClassBody _ClassBodyopt)
+        public ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt(IToken leftIToken, IToken rightIToken,
+                                                                                                                                                        IPrimary _Primary,
+                                                                                                                                                        AstToken _DOT,
+                                                                                                                                                        AstToken _new,
+                                                                                                                                                        TypeArguments _TypeArgumentsopt,
+                                                                                                                                                        identifier _identifier,
+                                                                                                                                                        TypeArguments _TypeArgumentsopt6,
+                                                                                                                                                        AstToken _LPAREN,
+                                                                                                                                                        IArgumentListopt _ArgumentListopt,
+                                                                                                                                                        AstToken _RPAREN,
+                                                                                                                                                        ClassBody _ClassBodyopt)
         {
             super(leftIToken, rightIToken);
 
@@ -20815,9 +20815,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof ClassInstanceCreationExpression1)) return false;
+            if (! (o instanceof ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt)) return false;
             if (! super.equals(o)) return false;
-            ClassInstanceCreationExpression1 other = (ClassInstanceCreationExpression1) o;
+            ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt other = (ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt) o;
             if (! _Primary.equals(other._Primary)) return false;
             if (! _DOT.equals(other._DOT)) return false;
             if (! _new.equals(other._new)) return false;
@@ -20891,7 +20891,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 358:  ArrayCreationExpression ::= new PrimitiveType DimExprs Dimsopt
      *</b>
      */
-    static public class ArrayCreationExpression0 extends Ast implements IArrayCreationExpression
+    static public class ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt extends Ast implements IArrayCreationExpression
     {
         private AstToken _new;
         private IPrimitiveType _PrimitiveType;
@@ -20906,11 +20906,11 @@ public class JavaParser implements RuleAction
          */
         public IDimsopt getDimsopt() { return _Dimsopt; }
 
-        public ArrayCreationExpression0(IToken leftIToken, IToken rightIToken,
-                                        AstToken _new,
-                                        IPrimitiveType _PrimitiveType,
-                                        IDimExprs _DimExprs,
-                                        IDimsopt _Dimsopt)
+        public ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt(IToken leftIToken, IToken rightIToken,
+                                                                           AstToken _new,
+                                                                           IPrimitiveType _PrimitiveType,
+                                                                           IDimExprs _DimExprs,
+                                                                           IDimsopt _Dimsopt)
         {
             super(leftIToken, rightIToken);
 
@@ -20941,9 +20941,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof ArrayCreationExpression0)) return false;
+            if (! (o instanceof ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt)) return false;
             if (! super.equals(o)) return false;
-            ArrayCreationExpression0 other = (ArrayCreationExpression0) o;
+            ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt other = (ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt) o;
             if (! _new.equals(other._new)) return false;
             if (! _PrimitiveType.equals(other._PrimitiveType)) return false;
             if (! _DimExprs.equals(other._DimExprs)) return false;
@@ -20990,7 +20990,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 359:  ArrayCreationExpression ::= new ClassOrInterfaceType DimExprs Dimsopt
      *</b>
      */
-    static public class ArrayCreationExpression1 extends Ast implements IArrayCreationExpression
+    static public class ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt extends Ast implements IArrayCreationExpression
     {
         private AstToken _new;
         private ClassType _ClassOrInterfaceType;
@@ -21005,11 +21005,11 @@ public class JavaParser implements RuleAction
          */
         public IDimsopt getDimsopt() { return _Dimsopt; }
 
-        public ArrayCreationExpression1(IToken leftIToken, IToken rightIToken,
-                                        AstToken _new,
-                                        ClassType _ClassOrInterfaceType,
-                                        IDimExprs _DimExprs,
-                                        IDimsopt _Dimsopt)
+        public ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt(IToken leftIToken, IToken rightIToken,
+                                                                                  AstToken _new,
+                                                                                  ClassType _ClassOrInterfaceType,
+                                                                                  IDimExprs _DimExprs,
+                                                                                  IDimsopt _Dimsopt)
         {
             super(leftIToken, rightIToken);
 
@@ -21040,9 +21040,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof ArrayCreationExpression1)) return false;
+            if (! (o instanceof ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt)) return false;
             if (! super.equals(o)) return false;
-            ArrayCreationExpression1 other = (ArrayCreationExpression1) o;
+            ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt other = (ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt) o;
             if (! _new.equals(other._new)) return false;
             if (! _ClassOrInterfaceType.equals(other._ClassOrInterfaceType)) return false;
             if (! _DimExprs.equals(other._DimExprs)) return false;
@@ -21089,7 +21089,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 360:  ArrayCreationExpression ::= new PrimitiveType Dims ArrayInitializer
      *</b>
      */
-    static public class ArrayCreationExpression2 extends Ast implements IArrayCreationExpression
+    static public class ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer extends Ast implements IArrayCreationExpression
     {
         private AstToken _new;
         private IPrimitiveType _PrimitiveType;
@@ -21101,11 +21101,11 @@ public class JavaParser implements RuleAction
         public IDims getDims() { return _Dims; }
         public ArrayInitializer getArrayInitializer() { return _ArrayInitializer; }
 
-        public ArrayCreationExpression2(IToken leftIToken, IToken rightIToken,
-                                        AstToken _new,
-                                        IPrimitiveType _PrimitiveType,
-                                        IDims _Dims,
-                                        ArrayInitializer _ArrayInitializer)
+        public ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer(IToken leftIToken, IToken rightIToken,
+                                                                                AstToken _new,
+                                                                                IPrimitiveType _PrimitiveType,
+                                                                                IDims _Dims,
+                                                                                ArrayInitializer _ArrayInitializer)
         {
             super(leftIToken, rightIToken);
 
@@ -21136,9 +21136,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof ArrayCreationExpression2)) return false;
+            if (! (o instanceof ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer)) return false;
             if (! super.equals(o)) return false;
-            ArrayCreationExpression2 other = (ArrayCreationExpression2) o;
+            ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer other = (ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer) o;
             if (! _new.equals(other._new)) return false;
             if (! _PrimitiveType.equals(other._PrimitiveType)) return false;
             if (! _Dims.equals(other._Dims)) return false;
@@ -21182,7 +21182,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 361:  ArrayCreationExpression ::= new ClassOrInterfaceType Dims ArrayInitializer
      *</b>
      */
-    static public class ArrayCreationExpression3 extends Ast implements IArrayCreationExpression
+    static public class ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer extends Ast implements IArrayCreationExpression
     {
         private AstToken _new;
         private ClassType _ClassOrInterfaceType;
@@ -21194,11 +21194,11 @@ public class JavaParser implements RuleAction
         public IDims getDims() { return _Dims; }
         public ArrayInitializer getArrayInitializer() { return _ArrayInitializer; }
 
-        public ArrayCreationExpression3(IToken leftIToken, IToken rightIToken,
-                                        AstToken _new,
-                                        ClassType _ClassOrInterfaceType,
-                                        IDims _Dims,
-                                        ArrayInitializer _ArrayInitializer)
+        public ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer(IToken leftIToken, IToken rightIToken,
+                                                                                       AstToken _new,
+                                                                                       ClassType _ClassOrInterfaceType,
+                                                                                       IDims _Dims,
+                                                                                       ArrayInitializer _ArrayInitializer)
         {
             super(leftIToken, rightIToken);
 
@@ -21229,9 +21229,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof ArrayCreationExpression3)) return false;
+            if (! (o instanceof ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer)) return false;
             if (! super.equals(o)) return false;
-            ArrayCreationExpression3 other = (ArrayCreationExpression3) o;
+            ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer other = (ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer) o;
             if (! _new.equals(other._new)) return false;
             if (! _ClassOrInterfaceType.equals(other._ClassOrInterfaceType)) return false;
             if (! _Dims.equals(other._Dims)) return false;
@@ -21275,7 +21275,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 365:  Dims ::= [ ]
      *</b>
      */
-    static public class Dims0 extends Ast implements IDims
+    static public class Dims__LBRACKET_RBRACKET extends Ast implements IDims
     {
         private AstToken _LBRACKET;
         private AstToken _RBRACKET;
@@ -21283,9 +21283,9 @@ public class JavaParser implements RuleAction
         public AstToken getLBRACKET() { return _LBRACKET; }
         public AstToken getRBRACKET() { return _RBRACKET; }
 
-        public Dims0(IToken leftIToken, IToken rightIToken,
-                     AstToken _LBRACKET,
-                     AstToken _RBRACKET)
+        public Dims__LBRACKET_RBRACKET(IToken leftIToken, IToken rightIToken,
+                                       AstToken _LBRACKET,
+                                       AstToken _RBRACKET)
         {
             super(leftIToken, rightIToken);
 
@@ -21310,9 +21310,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof Dims0)) return false;
+            if (! (o instanceof Dims__LBRACKET_RBRACKET)) return false;
             if (! super.equals(o)) return false;
-            Dims0 other = (Dims0) o;
+            Dims__LBRACKET_RBRACKET other = (Dims__LBRACKET_RBRACKET) o;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
             if (! _RBRACKET.equals(other._RBRACKET)) return false;
             return true;
@@ -21350,7 +21350,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 366:  Dims ::= Dims [ ]
      *</b>
      */
-    static public class Dims1 extends Ast implements IDims
+    static public class Dims__Dims_LBRACKET_RBRACKET extends Ast implements IDims
     {
         private IDims _Dims;
         private AstToken _LBRACKET;
@@ -21360,10 +21360,10 @@ public class JavaParser implements RuleAction
         public AstToken getLBRACKET() { return _LBRACKET; }
         public AstToken getRBRACKET() { return _RBRACKET; }
 
-        public Dims1(IToken leftIToken, IToken rightIToken,
-                     IDims _Dims,
-                     AstToken _LBRACKET,
-                     AstToken _RBRACKET)
+        public Dims__Dims_LBRACKET_RBRACKET(IToken leftIToken, IToken rightIToken,
+                                            IDims _Dims,
+                                            AstToken _LBRACKET,
+                                            AstToken _RBRACKET)
         {
             super(leftIToken, rightIToken);
 
@@ -21391,9 +21391,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof Dims1)) return false;
+            if (! (o instanceof Dims__Dims_LBRACKET_RBRACKET)) return false;
             if (! super.equals(o)) return false;
-            Dims1 other = (Dims1) o;
+            Dims__Dims_LBRACKET_RBRACKET other = (Dims__Dims_LBRACKET_RBRACKET) o;
             if (! _Dims.equals(other._Dims)) return false;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
             if (! _RBRACKET.equals(other._RBRACKET)) return false;
@@ -21434,7 +21434,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 367:  FieldAccess ::= Primary . identifier
      *</b>
      */
-    static public class FieldAccess0 extends Ast implements IFieldAccess
+    static public class FieldAccess__Primary_DOT_identifier extends Ast implements IFieldAccess
     {
         private IPrimary _Primary;
         private AstToken _DOT;
@@ -21444,10 +21444,10 @@ public class JavaParser implements RuleAction
         public AstToken getDOT() { return _DOT; }
         public identifier getidentifier() { return _identifier; }
 
-        public FieldAccess0(IToken leftIToken, IToken rightIToken,
-                            IPrimary _Primary,
-                            AstToken _DOT,
-                            identifier _identifier)
+        public FieldAccess__Primary_DOT_identifier(IToken leftIToken, IToken rightIToken,
+                                                   IPrimary _Primary,
+                                                   AstToken _DOT,
+                                                   identifier _identifier)
         {
             super(leftIToken, rightIToken);
 
@@ -21475,9 +21475,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof FieldAccess0)) return false;
+            if (! (o instanceof FieldAccess__Primary_DOT_identifier)) return false;
             if (! super.equals(o)) return false;
-            FieldAccess0 other = (FieldAccess0) o;
+            FieldAccess__Primary_DOT_identifier other = (FieldAccess__Primary_DOT_identifier) o;
             if (! _Primary.equals(other._Primary)) return false;
             if (! _DOT.equals(other._DOT)) return false;
             if (! _identifier.equals(other._identifier)) return false;
@@ -21518,7 +21518,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 368:  FieldAccess ::= super . identifier
      *</b>
      */
-    static public class FieldAccess1 extends Ast implements IFieldAccess
+    static public class FieldAccess__super_DOT_identifier extends Ast implements IFieldAccess
     {
         private AstToken _super;
         private AstToken _DOT;
@@ -21528,10 +21528,10 @@ public class JavaParser implements RuleAction
         public AstToken getDOT() { return _DOT; }
         public identifier getidentifier() { return _identifier; }
 
-        public FieldAccess1(IToken leftIToken, IToken rightIToken,
-                            AstToken _super,
-                            AstToken _DOT,
-                            identifier _identifier)
+        public FieldAccess__super_DOT_identifier(IToken leftIToken, IToken rightIToken,
+                                                 AstToken _super,
+                                                 AstToken _DOT,
+                                                 identifier _identifier)
         {
             super(leftIToken, rightIToken);
 
@@ -21559,9 +21559,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof FieldAccess1)) return false;
+            if (! (o instanceof FieldAccess__super_DOT_identifier)) return false;
             if (! super.equals(o)) return false;
-            FieldAccess1 other = (FieldAccess1) o;
+            FieldAccess__super_DOT_identifier other = (FieldAccess__super_DOT_identifier) o;
             if (! _super.equals(other._super)) return false;
             if (! _DOT.equals(other._DOT)) return false;
             if (! _identifier.equals(other._identifier)) return false;
@@ -21602,7 +21602,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 369:  FieldAccess ::= ClassName . super . identifier
      *</b>
      */
-    static public class FieldAccess2 extends Ast implements IFieldAccess
+    static public class FieldAccess__ClassName_DOT_super_DOT_identifier extends Ast implements IFieldAccess
     {
         private IClassName _ClassName;
         private AstToken _DOT;
@@ -21616,12 +21616,12 @@ public class JavaParser implements RuleAction
         public AstToken getDOT4() { return _DOT4; }
         public identifier getidentifier() { return _identifier; }
 
-        public FieldAccess2(IToken leftIToken, IToken rightIToken,
-                            IClassName _ClassName,
-                            AstToken _DOT,
-                            AstToken _super,
-                            AstToken _DOT4,
-                            identifier _identifier)
+        public FieldAccess__ClassName_DOT_super_DOT_identifier(IToken leftIToken, IToken rightIToken,
+                                                               IClassName _ClassName,
+                                                               AstToken _DOT,
+                                                               AstToken _super,
+                                                               AstToken _DOT4,
+                                                               identifier _identifier)
         {
             super(leftIToken, rightIToken);
 
@@ -21655,9 +21655,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof FieldAccess2)) return false;
+            if (! (o instanceof FieldAccess__ClassName_DOT_super_DOT_identifier)) return false;
             if (! super.equals(o)) return false;
-            FieldAccess2 other = (FieldAccess2) o;
+            FieldAccess__ClassName_DOT_super_DOT_identifier other = (FieldAccess__ClassName_DOT_super_DOT_identifier) o;
             if (! _ClassName.equals(other._ClassName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
             if (! _super.equals(other._super)) return false;
@@ -21704,7 +21704,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 370:  MethodInvocation ::= MethodName ( ArgumentListopt )
      *</b>
      */
-    static public class MethodInvocation0 extends Ast implements IMethodInvocation
+    static public class MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN extends Ast implements IMethodInvocation
     {
         private IMethodName _MethodName;
         private AstToken _LPAREN;
@@ -21719,11 +21719,11 @@ public class JavaParser implements RuleAction
         public IArgumentListopt getArgumentListopt() { return _ArgumentListopt; }
         public AstToken getRPAREN() { return _RPAREN; }
 
-        public MethodInvocation0(IToken leftIToken, IToken rightIToken,
-                                 IMethodName _MethodName,
-                                 AstToken _LPAREN,
-                                 IArgumentListopt _ArgumentListopt,
-                                 AstToken _RPAREN)
+        public MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN(IToken leftIToken, IToken rightIToken,
+                                                                          IMethodName _MethodName,
+                                                                          AstToken _LPAREN,
+                                                                          IArgumentListopt _ArgumentListopt,
+                                                                          AstToken _RPAREN)
         {
             super(leftIToken, rightIToken);
 
@@ -21754,9 +21754,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof MethodInvocation0)) return false;
+            if (! (o instanceof MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN)) return false;
             if (! super.equals(o)) return false;
-            MethodInvocation0 other = (MethodInvocation0) o;
+            MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN other = (MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN) o;
             if (! _MethodName.equals(other._MethodName)) return false;
             if (! _LPAREN.equals(other._LPAREN)) return false;
             if (_ArgumentListopt == null)
@@ -21803,7 +21803,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 371:  MethodInvocation ::= Primary . TypeArgumentsopt identifier ( ArgumentListopt )
      *</b>
      */
-    static public class MethodInvocation1 extends Ast implements IMethodInvocation
+    static public class MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN extends Ast implements IMethodInvocation
     {
         private IPrimary _Primary;
         private AstToken _DOT;
@@ -21827,14 +21827,14 @@ public class JavaParser implements RuleAction
         public IArgumentListopt getArgumentListopt() { return _ArgumentListopt; }
         public AstToken getRPAREN() { return _RPAREN; }
 
-        public MethodInvocation1(IToken leftIToken, IToken rightIToken,
-                                 IPrimary _Primary,
-                                 AstToken _DOT,
-                                 TypeArguments _TypeArgumentsopt,
-                                 identifier _identifier,
-                                 AstToken _LPAREN,
-                                 IArgumentListopt _ArgumentListopt,
-                                 AstToken _RPAREN)
+        public MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN(IToken leftIToken, IToken rightIToken,
+                                                                                                       IPrimary _Primary,
+                                                                                                       AstToken _DOT,
+                                                                                                       TypeArguments _TypeArgumentsopt,
+                                                                                                       identifier _identifier,
+                                                                                                       AstToken _LPAREN,
+                                                                                                       IArgumentListopt _ArgumentListopt,
+                                                                                                       AstToken _RPAREN)
         {
             super(leftIToken, rightIToken);
 
@@ -21874,9 +21874,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof MethodInvocation1)) return false;
+            if (! (o instanceof MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN)) return false;
             if (! super.equals(o)) return false;
-            MethodInvocation1 other = (MethodInvocation1) o;
+            MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN other = (MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN) o;
             if (! _Primary.equals(other._Primary)) return false;
             if (! _DOT.equals(other._DOT)) return false;
             if (_TypeArgumentsopt == null)
@@ -21935,7 +21935,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 372:  MethodInvocation ::= super . TypeArgumentsopt identifier ( ArgumentListopt )
      *</b>
      */
-    static public class MethodInvocation2 extends Ast implements IMethodInvocation
+    static public class MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN extends Ast implements IMethodInvocation
     {
         private AstToken _super;
         private AstToken _DOT;
@@ -21959,14 +21959,14 @@ public class JavaParser implements RuleAction
         public IArgumentListopt getArgumentListopt() { return _ArgumentListopt; }
         public AstToken getRPAREN() { return _RPAREN; }
 
-        public MethodInvocation2(IToken leftIToken, IToken rightIToken,
-                                 AstToken _super,
-                                 AstToken _DOT,
-                                 TypeArguments _TypeArgumentsopt,
-                                 identifier _identifier,
-                                 AstToken _LPAREN,
-                                 IArgumentListopt _ArgumentListopt,
-                                 AstToken _RPAREN)
+        public MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN(IToken leftIToken, IToken rightIToken,
+                                                                                                     AstToken _super,
+                                                                                                     AstToken _DOT,
+                                                                                                     TypeArguments _TypeArgumentsopt,
+                                                                                                     identifier _identifier,
+                                                                                                     AstToken _LPAREN,
+                                                                                                     IArgumentListopt _ArgumentListopt,
+                                                                                                     AstToken _RPAREN)
         {
             super(leftIToken, rightIToken);
 
@@ -22006,9 +22006,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof MethodInvocation2)) return false;
+            if (! (o instanceof MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN)) return false;
             if (! super.equals(o)) return false;
-            MethodInvocation2 other = (MethodInvocation2) o;
+            MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN other = (MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN) o;
             if (! _super.equals(other._super)) return false;
             if (! _DOT.equals(other._DOT)) return false;
             if (_TypeArgumentsopt == null)
@@ -22067,7 +22067,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 373:  MethodInvocation ::= ClassName . super . TypeArgumentsopt identifier ( ArgumentListopt )
      *</b>
      */
-    static public class MethodInvocation3 extends Ast implements IMethodInvocation
+    static public class MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN extends Ast implements IMethodInvocation
     {
         private IClassName _ClassName;
         private AstToken _DOT;
@@ -22095,16 +22095,16 @@ public class JavaParser implements RuleAction
         public IArgumentListopt getArgumentListopt() { return _ArgumentListopt; }
         public AstToken getRPAREN() { return _RPAREN; }
 
-        public MethodInvocation3(IToken leftIToken, IToken rightIToken,
-                                 IClassName _ClassName,
-                                 AstToken _DOT,
-                                 AstToken _super,
-                                 AstToken _DOT4,
-                                 TypeArguments _TypeArgumentsopt,
-                                 identifier _identifier,
-                                 AstToken _LPAREN,
-                                 IArgumentListopt _ArgumentListopt,
-                                 AstToken _RPAREN)
+        public MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN(IToken leftIToken, IToken rightIToken,
+                                                                                                                   IClassName _ClassName,
+                                                                                                                   AstToken _DOT,
+                                                                                                                   AstToken _super,
+                                                                                                                   AstToken _DOT4,
+                                                                                                                   TypeArguments _TypeArgumentsopt,
+                                                                                                                   identifier _identifier,
+                                                                                                                   AstToken _LPAREN,
+                                                                                                                   IArgumentListopt _ArgumentListopt,
+                                                                                                                   AstToken _RPAREN)
         {
             super(leftIToken, rightIToken);
 
@@ -22150,9 +22150,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof MethodInvocation3)) return false;
+            if (! (o instanceof MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN)) return false;
             if (! super.equals(o)) return false;
-            MethodInvocation3 other = (MethodInvocation3) o;
+            MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN other = (MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN) o;
             if (! _ClassName.equals(other._ClassName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
             if (! _super.equals(other._super)) return false;
@@ -22217,7 +22217,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 374:  MethodInvocation ::= TypeName . TypeArguments identifier ( ArgumentListopt )
      *</b>
      */
-    static public class MethodInvocation4 extends Ast implements IMethodInvocation
+    static public class MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN extends Ast implements IMethodInvocation
     {
         private ITypeName _TypeName;
         private AstToken _DOT;
@@ -22238,14 +22238,14 @@ public class JavaParser implements RuleAction
         public IArgumentListopt getArgumentListopt() { return _ArgumentListopt; }
         public AstToken getRPAREN() { return _RPAREN; }
 
-        public MethodInvocation4(IToken leftIToken, IToken rightIToken,
-                                 ITypeName _TypeName,
-                                 AstToken _DOT,
-                                 TypeArguments _TypeArguments,
-                                 identifier _identifier,
-                                 AstToken _LPAREN,
-                                 IArgumentListopt _ArgumentListopt,
-                                 AstToken _RPAREN)
+        public MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN(IToken leftIToken, IToken rightIToken,
+                                                                                                     ITypeName _TypeName,
+                                                                                                     AstToken _DOT,
+                                                                                                     TypeArguments _TypeArguments,
+                                                                                                     identifier _identifier,
+                                                                                                     AstToken _LPAREN,
+                                                                                                     IArgumentListopt _ArgumentListopt,
+                                                                                                     AstToken _RPAREN)
         {
             super(leftIToken, rightIToken);
 
@@ -22285,9 +22285,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof MethodInvocation4)) return false;
+            if (! (o instanceof MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN)) return false;
             if (! super.equals(o)) return false;
-            MethodInvocation4 other = (MethodInvocation4) o;
+            MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN other = (MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN) o;
             if (! _TypeName.equals(other._TypeName)) return false;
             if (! _DOT.equals(other._DOT)) return false;
             if (! _TypeArguments.equals(other._TypeArguments)) return false;
@@ -22343,7 +22343,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 375:  ArrayAccess ::= ExpressionName [ Expression ]
      *</b>
      */
-    static public class ArrayAccess0 extends Ast implements IArrayAccess
+    static public class ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET extends Ast implements IArrayAccess
     {
         private IExpressionName _ExpressionName;
         private AstToken _LBRACKET;
@@ -22355,11 +22355,11 @@ public class JavaParser implements RuleAction
         public IExpression getExpression() { return _Expression; }
         public AstToken getRBRACKET() { return _RBRACKET; }
 
-        public ArrayAccess0(IToken leftIToken, IToken rightIToken,
-                            IExpressionName _ExpressionName,
-                            AstToken _LBRACKET,
-                            IExpression _Expression,
-                            AstToken _RBRACKET)
+        public ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET(IToken leftIToken, IToken rightIToken,
+                                                                        IExpressionName _ExpressionName,
+                                                                        AstToken _LBRACKET,
+                                                                        IExpression _Expression,
+                                                                        AstToken _RBRACKET)
         {
             super(leftIToken, rightIToken);
 
@@ -22390,9 +22390,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof ArrayAccess0)) return false;
+            if (! (o instanceof ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET)) return false;
             if (! super.equals(o)) return false;
-            ArrayAccess0 other = (ArrayAccess0) o;
+            ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET other = (ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET) o;
             if (! _ExpressionName.equals(other._ExpressionName)) return false;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
             if (! _Expression.equals(other._Expression)) return false;
@@ -22436,7 +22436,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 376:  ArrayAccess ::= PrimaryNoNewArray [ Expression ]
      *</b>
      */
-    static public class ArrayAccess1 extends Ast implements IArrayAccess
+    static public class ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET extends Ast implements IArrayAccess
     {
         private IPrimaryNoNewArray _PrimaryNoNewArray;
         private AstToken _LBRACKET;
@@ -22448,11 +22448,11 @@ public class JavaParser implements RuleAction
         public IExpression getExpression() { return _Expression; }
         public AstToken getRBRACKET() { return _RBRACKET; }
 
-        public ArrayAccess1(IToken leftIToken, IToken rightIToken,
-                            IPrimaryNoNewArray _PrimaryNoNewArray,
-                            AstToken _LBRACKET,
-                            IExpression _Expression,
-                            AstToken _RBRACKET)
+        public ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET(IToken leftIToken, IToken rightIToken,
+                                                                           IPrimaryNoNewArray _PrimaryNoNewArray,
+                                                                           AstToken _LBRACKET,
+                                                                           IExpression _Expression,
+                                                                           AstToken _RBRACKET)
         {
             super(leftIToken, rightIToken);
 
@@ -22483,9 +22483,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof ArrayAccess1)) return false;
+            if (! (o instanceof ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET)) return false;
             if (! super.equals(o)) return false;
-            ArrayAccess1 other = (ArrayAccess1) o;
+            ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET other = (ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET) o;
             if (! _PrimaryNoNewArray.equals(other._PrimaryNoNewArray)) return false;
             if (! _LBRACKET.equals(other._LBRACKET)) return false;
             if (! _Expression.equals(other._Expression)) return false;
@@ -22529,7 +22529,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 385:  UnaryExpression ::= + UnaryExpression
      *</b>
      */
-    static public class UnaryExpression0 extends Ast implements IUnaryExpression
+    static public class UnaryExpression__PLUS_UnaryExpression extends Ast implements IUnaryExpression
     {
         private AstToken _PLUS;
         private IUnaryExpression _UnaryExpression;
@@ -22537,9 +22537,9 @@ public class JavaParser implements RuleAction
         public AstToken getPLUS() { return _PLUS; }
         public IUnaryExpression getUnaryExpression() { return _UnaryExpression; }
 
-        public UnaryExpression0(IToken leftIToken, IToken rightIToken,
-                                AstToken _PLUS,
-                                IUnaryExpression _UnaryExpression)
+        public UnaryExpression__PLUS_UnaryExpression(IToken leftIToken, IToken rightIToken,
+                                                     AstToken _PLUS,
+                                                     IUnaryExpression _UnaryExpression)
         {
             super(leftIToken, rightIToken);
 
@@ -22564,9 +22564,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof UnaryExpression0)) return false;
+            if (! (o instanceof UnaryExpression__PLUS_UnaryExpression)) return false;
             if (! super.equals(o)) return false;
-            UnaryExpression0 other = (UnaryExpression0) o;
+            UnaryExpression__PLUS_UnaryExpression other = (UnaryExpression__PLUS_UnaryExpression) o;
             if (! _PLUS.equals(other._PLUS)) return false;
             if (! _UnaryExpression.equals(other._UnaryExpression)) return false;
             return true;
@@ -22604,7 +22604,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 386:  UnaryExpression ::= - UnaryExpression
      *</b>
      */
-    static public class UnaryExpression1 extends Ast implements IUnaryExpression
+    static public class UnaryExpression__MINUS_UnaryExpression extends Ast implements IUnaryExpression
     {
         private AstToken _MINUS;
         private IUnaryExpression _UnaryExpression;
@@ -22612,9 +22612,9 @@ public class JavaParser implements RuleAction
         public AstToken getMINUS() { return _MINUS; }
         public IUnaryExpression getUnaryExpression() { return _UnaryExpression; }
 
-        public UnaryExpression1(IToken leftIToken, IToken rightIToken,
-                                AstToken _MINUS,
-                                IUnaryExpression _UnaryExpression)
+        public UnaryExpression__MINUS_UnaryExpression(IToken leftIToken, IToken rightIToken,
+                                                      AstToken _MINUS,
+                                                      IUnaryExpression _UnaryExpression)
         {
             super(leftIToken, rightIToken);
 
@@ -22639,9 +22639,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof UnaryExpression1)) return false;
+            if (! (o instanceof UnaryExpression__MINUS_UnaryExpression)) return false;
             if (! super.equals(o)) return false;
-            UnaryExpression1 other = (UnaryExpression1) o;
+            UnaryExpression__MINUS_UnaryExpression other = (UnaryExpression__MINUS_UnaryExpression) o;
             if (! _MINUS.equals(other._MINUS)) return false;
             if (! _UnaryExpression.equals(other._UnaryExpression)) return false;
             return true;
@@ -22679,7 +22679,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 391:  UnaryExpressionNotPlusMinus ::= ~ UnaryExpression
      *</b>
      */
-    static public class UnaryExpressionNotPlusMinus0 extends Ast implements IUnaryExpressionNotPlusMinus
+    static public class UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression extends Ast implements IUnaryExpressionNotPlusMinus
     {
         private AstToken _TWIDDLE;
         private IUnaryExpression _UnaryExpression;
@@ -22687,9 +22687,9 @@ public class JavaParser implements RuleAction
         public AstToken getTWIDDLE() { return _TWIDDLE; }
         public IUnaryExpression getUnaryExpression() { return _UnaryExpression; }
 
-        public UnaryExpressionNotPlusMinus0(IToken leftIToken, IToken rightIToken,
-                                            AstToken _TWIDDLE,
-                                            IUnaryExpression _UnaryExpression)
+        public UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression(IToken leftIToken, IToken rightIToken,
+                                                                    AstToken _TWIDDLE,
+                                                                    IUnaryExpression _UnaryExpression)
         {
             super(leftIToken, rightIToken);
 
@@ -22714,9 +22714,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof UnaryExpressionNotPlusMinus0)) return false;
+            if (! (o instanceof UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression)) return false;
             if (! super.equals(o)) return false;
-            UnaryExpressionNotPlusMinus0 other = (UnaryExpressionNotPlusMinus0) o;
+            UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression other = (UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression) o;
             if (! _TWIDDLE.equals(other._TWIDDLE)) return false;
             if (! _UnaryExpression.equals(other._UnaryExpression)) return false;
             return true;
@@ -22754,7 +22754,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 392:  UnaryExpressionNotPlusMinus ::= ! UnaryExpression
      *</b>
      */
-    static public class UnaryExpressionNotPlusMinus1 extends Ast implements IUnaryExpressionNotPlusMinus
+    static public class UnaryExpressionNotPlusMinus__NOT_UnaryExpression extends Ast implements IUnaryExpressionNotPlusMinus
     {
         private AstToken _NOT;
         private IUnaryExpression _UnaryExpression;
@@ -22762,9 +22762,9 @@ public class JavaParser implements RuleAction
         public AstToken getNOT() { return _NOT; }
         public IUnaryExpression getUnaryExpression() { return _UnaryExpression; }
 
-        public UnaryExpressionNotPlusMinus1(IToken leftIToken, IToken rightIToken,
-                                            AstToken _NOT,
-                                            IUnaryExpression _UnaryExpression)
+        public UnaryExpressionNotPlusMinus__NOT_UnaryExpression(IToken leftIToken, IToken rightIToken,
+                                                                AstToken _NOT,
+                                                                IUnaryExpression _UnaryExpression)
         {
             super(leftIToken, rightIToken);
 
@@ -22789,9 +22789,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof UnaryExpressionNotPlusMinus1)) return false;
+            if (! (o instanceof UnaryExpressionNotPlusMinus__NOT_UnaryExpression)) return false;
             if (! super.equals(o)) return false;
-            UnaryExpressionNotPlusMinus1 other = (UnaryExpressionNotPlusMinus1) o;
+            UnaryExpressionNotPlusMinus__NOT_UnaryExpression other = (UnaryExpressionNotPlusMinus__NOT_UnaryExpression) o;
             if (! _NOT.equals(other._NOT)) return false;
             if (! _UnaryExpression.equals(other._UnaryExpression)) return false;
             return true;
@@ -22829,7 +22829,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 394:  CastExpression ::= ( PrimitiveType Dimsopt ) UnaryExpression
      *</b>
      */
-    static public class CastExpression0 extends Ast implements ICastExpression
+    static public class CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression extends Ast implements ICastExpression
     {
         private AstToken _LPAREN;
         private IPrimitiveType _PrimitiveType;
@@ -22846,12 +22846,12 @@ public class JavaParser implements RuleAction
         public AstToken getRPAREN() { return _RPAREN; }
         public IUnaryExpression getUnaryExpression() { return _UnaryExpression; }
 
-        public CastExpression0(IToken leftIToken, IToken rightIToken,
-                               AstToken _LPAREN,
-                               IPrimitiveType _PrimitiveType,
-                               IDimsopt _Dimsopt,
-                               AstToken _RPAREN,
-                               IUnaryExpression _UnaryExpression)
+        public CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression(IToken leftIToken, IToken rightIToken,
+                                                                                   AstToken _LPAREN,
+                                                                                   IPrimitiveType _PrimitiveType,
+                                                                                   IDimsopt _Dimsopt,
+                                                                                   AstToken _RPAREN,
+                                                                                   IUnaryExpression _UnaryExpression)
         {
             super(leftIToken, rightIToken);
 
@@ -22885,9 +22885,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof CastExpression0)) return false;
+            if (! (o instanceof CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression)) return false;
             if (! super.equals(o)) return false;
-            CastExpression0 other = (CastExpression0) o;
+            CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression other = (CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression) o;
             if (! _LPAREN.equals(other._LPAREN)) return false;
             if (! _PrimitiveType.equals(other._PrimitiveType)) return false;
             if (_Dimsopt == null)
@@ -22937,7 +22937,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 395:  CastExpression ::= ( ReferenceType ) UnaryExpressionNotPlusMinus
      *</b>
      */
-    static public class CastExpression1 extends Ast implements ICastExpression
+    static public class CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus extends Ast implements ICastExpression
     {
         private AstToken _LPAREN;
         private IReferenceType _ReferenceType;
@@ -22949,11 +22949,11 @@ public class JavaParser implements RuleAction
         public AstToken getRPAREN() { return _RPAREN; }
         public IUnaryExpressionNotPlusMinus getUnaryExpressionNotPlusMinus() { return _UnaryExpressionNotPlusMinus; }
 
-        public CastExpression1(IToken leftIToken, IToken rightIToken,
-                               AstToken _LPAREN,
-                               IReferenceType _ReferenceType,
-                               AstToken _RPAREN,
-                               IUnaryExpressionNotPlusMinus _UnaryExpressionNotPlusMinus)
+        public CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus(IToken leftIToken, IToken rightIToken,
+                                                                                       AstToken _LPAREN,
+                                                                                       IReferenceType _ReferenceType,
+                                                                                       AstToken _RPAREN,
+                                                                                       IUnaryExpressionNotPlusMinus _UnaryExpressionNotPlusMinus)
         {
             super(leftIToken, rightIToken);
 
@@ -22984,9 +22984,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof CastExpression1)) return false;
+            if (! (o instanceof CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus)) return false;
             if (! super.equals(o)) return false;
-            CastExpression1 other = (CastExpression1) o;
+            CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus other = (CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus) o;
             if (! _LPAREN.equals(other._LPAREN)) return false;
             if (! _ReferenceType.equals(other._ReferenceType)) return false;
             if (! _RPAREN.equals(other._RPAREN)) return false;
@@ -23030,7 +23030,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 397:  MultiplicativeExpression ::= MultiplicativeExpression * UnaryExpression
      *</b>
      */
-    static public class MultiplicativeExpression0 extends Ast implements IMultiplicativeExpression
+    static public class MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression extends Ast implements IMultiplicativeExpression
     {
         private IMultiplicativeExpression _MultiplicativeExpression;
         private AstToken _MULTIPLY;
@@ -23040,10 +23040,10 @@ public class JavaParser implements RuleAction
         public AstToken getMULTIPLY() { return _MULTIPLY; }
         public IUnaryExpression getUnaryExpression() { return _UnaryExpression; }
 
-        public MultiplicativeExpression0(IToken leftIToken, IToken rightIToken,
-                                         IMultiplicativeExpression _MultiplicativeExpression,
-                                         AstToken _MULTIPLY,
-                                         IUnaryExpression _UnaryExpression)
+        public MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression(IToken leftIToken, IToken rightIToken,
+                                                                                           IMultiplicativeExpression _MultiplicativeExpression,
+                                                                                           AstToken _MULTIPLY,
+                                                                                           IUnaryExpression _UnaryExpression)
         {
             super(leftIToken, rightIToken);
 
@@ -23071,9 +23071,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof MultiplicativeExpression0)) return false;
+            if (! (o instanceof MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression)) return false;
             if (! super.equals(o)) return false;
-            MultiplicativeExpression0 other = (MultiplicativeExpression0) o;
+            MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression other = (MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression) o;
             if (! _MultiplicativeExpression.equals(other._MultiplicativeExpression)) return false;
             if (! _MULTIPLY.equals(other._MULTIPLY)) return false;
             if (! _UnaryExpression.equals(other._UnaryExpression)) return false;
@@ -23114,7 +23114,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 398:  MultiplicativeExpression ::= MultiplicativeExpression / UnaryExpression
      *</b>
      */
-    static public class MultiplicativeExpression1 extends Ast implements IMultiplicativeExpression
+    static public class MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression extends Ast implements IMultiplicativeExpression
     {
         private IMultiplicativeExpression _MultiplicativeExpression;
         private AstToken _DIVIDE;
@@ -23124,10 +23124,10 @@ public class JavaParser implements RuleAction
         public AstToken getDIVIDE() { return _DIVIDE; }
         public IUnaryExpression getUnaryExpression() { return _UnaryExpression; }
 
-        public MultiplicativeExpression1(IToken leftIToken, IToken rightIToken,
-                                         IMultiplicativeExpression _MultiplicativeExpression,
-                                         AstToken _DIVIDE,
-                                         IUnaryExpression _UnaryExpression)
+        public MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression(IToken leftIToken, IToken rightIToken,
+                                                                                         IMultiplicativeExpression _MultiplicativeExpression,
+                                                                                         AstToken _DIVIDE,
+                                                                                         IUnaryExpression _UnaryExpression)
         {
             super(leftIToken, rightIToken);
 
@@ -23155,9 +23155,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof MultiplicativeExpression1)) return false;
+            if (! (o instanceof MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression)) return false;
             if (! super.equals(o)) return false;
-            MultiplicativeExpression1 other = (MultiplicativeExpression1) o;
+            MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression other = (MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression) o;
             if (! _MultiplicativeExpression.equals(other._MultiplicativeExpression)) return false;
             if (! _DIVIDE.equals(other._DIVIDE)) return false;
             if (! _UnaryExpression.equals(other._UnaryExpression)) return false;
@@ -23198,7 +23198,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 399:  MultiplicativeExpression ::= MultiplicativeExpression % UnaryExpression
      *</b>
      */
-    static public class MultiplicativeExpression2 extends Ast implements IMultiplicativeExpression
+    static public class MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression extends Ast implements IMultiplicativeExpression
     {
         private IMultiplicativeExpression _MultiplicativeExpression;
         private AstToken _REMAINDER;
@@ -23208,10 +23208,10 @@ public class JavaParser implements RuleAction
         public AstToken getREMAINDER() { return _REMAINDER; }
         public IUnaryExpression getUnaryExpression() { return _UnaryExpression; }
 
-        public MultiplicativeExpression2(IToken leftIToken, IToken rightIToken,
-                                         IMultiplicativeExpression _MultiplicativeExpression,
-                                         AstToken _REMAINDER,
-                                         IUnaryExpression _UnaryExpression)
+        public MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression(IToken leftIToken, IToken rightIToken,
+                                                                                            IMultiplicativeExpression _MultiplicativeExpression,
+                                                                                            AstToken _REMAINDER,
+                                                                                            IUnaryExpression _UnaryExpression)
         {
             super(leftIToken, rightIToken);
 
@@ -23239,9 +23239,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof MultiplicativeExpression2)) return false;
+            if (! (o instanceof MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression)) return false;
             if (! super.equals(o)) return false;
-            MultiplicativeExpression2 other = (MultiplicativeExpression2) o;
+            MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression other = (MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression) o;
             if (! _MultiplicativeExpression.equals(other._MultiplicativeExpression)) return false;
             if (! _REMAINDER.equals(other._REMAINDER)) return false;
             if (! _UnaryExpression.equals(other._UnaryExpression)) return false;
@@ -23282,7 +23282,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 401:  AdditiveExpression ::= AdditiveExpression + MultiplicativeExpression
      *</b>
      */
-    static public class AdditiveExpression0 extends Ast implements IAdditiveExpression
+    static public class AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression extends Ast implements IAdditiveExpression
     {
         private IAdditiveExpression _AdditiveExpression;
         private AstToken _PLUS;
@@ -23292,10 +23292,10 @@ public class JavaParser implements RuleAction
         public AstToken getPLUS() { return _PLUS; }
         public IMultiplicativeExpression getMultiplicativeExpression() { return _MultiplicativeExpression; }
 
-        public AdditiveExpression0(IToken leftIToken, IToken rightIToken,
-                                   IAdditiveExpression _AdditiveExpression,
-                                   AstToken _PLUS,
-                                   IMultiplicativeExpression _MultiplicativeExpression)
+        public AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression(IToken leftIToken, IToken rightIToken,
+                                                                                    IAdditiveExpression _AdditiveExpression,
+                                                                                    AstToken _PLUS,
+                                                                                    IMultiplicativeExpression _MultiplicativeExpression)
         {
             super(leftIToken, rightIToken);
 
@@ -23323,9 +23323,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof AdditiveExpression0)) return false;
+            if (! (o instanceof AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression)) return false;
             if (! super.equals(o)) return false;
-            AdditiveExpression0 other = (AdditiveExpression0) o;
+            AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression other = (AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression) o;
             if (! _AdditiveExpression.equals(other._AdditiveExpression)) return false;
             if (! _PLUS.equals(other._PLUS)) return false;
             if (! _MultiplicativeExpression.equals(other._MultiplicativeExpression)) return false;
@@ -23366,7 +23366,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 402:  AdditiveExpression ::= AdditiveExpression - MultiplicativeExpression
      *</b>
      */
-    static public class AdditiveExpression1 extends Ast implements IAdditiveExpression
+    static public class AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression extends Ast implements IAdditiveExpression
     {
         private IAdditiveExpression _AdditiveExpression;
         private AstToken _MINUS;
@@ -23376,10 +23376,10 @@ public class JavaParser implements RuleAction
         public AstToken getMINUS() { return _MINUS; }
         public IMultiplicativeExpression getMultiplicativeExpression() { return _MultiplicativeExpression; }
 
-        public AdditiveExpression1(IToken leftIToken, IToken rightIToken,
-                                   IAdditiveExpression _AdditiveExpression,
-                                   AstToken _MINUS,
-                                   IMultiplicativeExpression _MultiplicativeExpression)
+        public AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression(IToken leftIToken, IToken rightIToken,
+                                                                                     IAdditiveExpression _AdditiveExpression,
+                                                                                     AstToken _MINUS,
+                                                                                     IMultiplicativeExpression _MultiplicativeExpression)
         {
             super(leftIToken, rightIToken);
 
@@ -23407,9 +23407,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof AdditiveExpression1)) return false;
+            if (! (o instanceof AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression)) return false;
             if (! super.equals(o)) return false;
-            AdditiveExpression1 other = (AdditiveExpression1) o;
+            AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression other = (AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression) o;
             if (! _AdditiveExpression.equals(other._AdditiveExpression)) return false;
             if (! _MINUS.equals(other._MINUS)) return false;
             if (! _MultiplicativeExpression.equals(other._MultiplicativeExpression)) return false;
@@ -23450,7 +23450,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 404:  ShiftExpression ::= ShiftExpression << AdditiveExpression
      *</b>
      */
-    static public class ShiftExpression0 extends Ast implements IShiftExpression
+    static public class ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression extends Ast implements IShiftExpression
     {
         private IShiftExpression _ShiftExpression;
         private AstToken _LEFT_SHIFT;
@@ -23460,10 +23460,10 @@ public class JavaParser implements RuleAction
         public AstToken getLEFT_SHIFT() { return _LEFT_SHIFT; }
         public IAdditiveExpression getAdditiveExpression() { return _AdditiveExpression; }
 
-        public ShiftExpression0(IToken leftIToken, IToken rightIToken,
-                                IShiftExpression _ShiftExpression,
-                                AstToken _LEFT_SHIFT,
-                                IAdditiveExpression _AdditiveExpression)
+        public ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression(IToken leftIToken, IToken rightIToken,
+                                                                              IShiftExpression _ShiftExpression,
+                                                                              AstToken _LEFT_SHIFT,
+                                                                              IAdditiveExpression _AdditiveExpression)
         {
             super(leftIToken, rightIToken);
 
@@ -23491,9 +23491,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof ShiftExpression0)) return false;
+            if (! (o instanceof ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression)) return false;
             if (! super.equals(o)) return false;
-            ShiftExpression0 other = (ShiftExpression0) o;
+            ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression other = (ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression) o;
             if (! _ShiftExpression.equals(other._ShiftExpression)) return false;
             if (! _LEFT_SHIFT.equals(other._LEFT_SHIFT)) return false;
             if (! _AdditiveExpression.equals(other._AdditiveExpression)) return false;
@@ -23534,7 +23534,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 405:  ShiftExpression ::= ShiftExpression > > AdditiveExpression
      *</b>
      */
-    static public class ShiftExpression1 extends Ast implements IShiftExpression
+    static public class ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression extends Ast implements IShiftExpression
     {
         private IShiftExpression _ShiftExpression;
         private AstToken _GREATER;
@@ -23546,11 +23546,11 @@ public class JavaParser implements RuleAction
         public AstToken getGREATER3() { return _GREATER3; }
         public IAdditiveExpression getAdditiveExpression() { return _AdditiveExpression; }
 
-        public ShiftExpression1(IToken leftIToken, IToken rightIToken,
-                                IShiftExpression _ShiftExpression,
-                                AstToken _GREATER,
-                                AstToken _GREATER3,
-                                IAdditiveExpression _AdditiveExpression)
+        public ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression(IToken leftIToken, IToken rightIToken,
+                                                                                   IShiftExpression _ShiftExpression,
+                                                                                   AstToken _GREATER,
+                                                                                   AstToken _GREATER3,
+                                                                                   IAdditiveExpression _AdditiveExpression)
         {
             super(leftIToken, rightIToken);
 
@@ -23581,9 +23581,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof ShiftExpression1)) return false;
+            if (! (o instanceof ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression)) return false;
             if (! super.equals(o)) return false;
-            ShiftExpression1 other = (ShiftExpression1) o;
+            ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression other = (ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression) o;
             if (! _ShiftExpression.equals(other._ShiftExpression)) return false;
             if (! _GREATER.equals(other._GREATER)) return false;
             if (! _GREATER3.equals(other._GREATER3)) return false;
@@ -23627,7 +23627,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 406:  ShiftExpression ::= ShiftExpression > > > AdditiveExpression
      *</b>
      */
-    static public class ShiftExpression2 extends Ast implements IShiftExpression
+    static public class ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression extends Ast implements IShiftExpression
     {
         private IShiftExpression _ShiftExpression;
         private AstToken _GREATER;
@@ -23641,12 +23641,12 @@ public class JavaParser implements RuleAction
         public AstToken getGREATER4() { return _GREATER4; }
         public IAdditiveExpression getAdditiveExpression() { return _AdditiveExpression; }
 
-        public ShiftExpression2(IToken leftIToken, IToken rightIToken,
-                                IShiftExpression _ShiftExpression,
-                                AstToken _GREATER,
-                                AstToken _GREATER3,
-                                AstToken _GREATER4,
-                                IAdditiveExpression _AdditiveExpression)
+        public ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression(IToken leftIToken, IToken rightIToken,
+                                                                                           IShiftExpression _ShiftExpression,
+                                                                                           AstToken _GREATER,
+                                                                                           AstToken _GREATER3,
+                                                                                           AstToken _GREATER4,
+                                                                                           IAdditiveExpression _AdditiveExpression)
         {
             super(leftIToken, rightIToken);
 
@@ -23680,9 +23680,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof ShiftExpression2)) return false;
+            if (! (o instanceof ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression)) return false;
             if (! super.equals(o)) return false;
-            ShiftExpression2 other = (ShiftExpression2) o;
+            ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression other = (ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression) o;
             if (! _ShiftExpression.equals(other._ShiftExpression)) return false;
             if (! _GREATER.equals(other._GREATER)) return false;
             if (! _GREATER3.equals(other._GREATER3)) return false;
@@ -23729,7 +23729,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 408:  RelationalExpression ::= RelationalExpression < ShiftExpression
      *</b>
      */
-    static public class RelationalExpression0 extends Ast implements IRelationalExpression
+    static public class RelationalExpression__RelationalExpression_LESS_ShiftExpression extends Ast implements IRelationalExpression
     {
         private IRelationalExpression _RelationalExpression;
         private AstToken _LESS;
@@ -23739,10 +23739,10 @@ public class JavaParser implements RuleAction
         public AstToken getLESS() { return _LESS; }
         public IShiftExpression getShiftExpression() { return _ShiftExpression; }
 
-        public RelationalExpression0(IToken leftIToken, IToken rightIToken,
-                                     IRelationalExpression _RelationalExpression,
-                                     AstToken _LESS,
-                                     IShiftExpression _ShiftExpression)
+        public RelationalExpression__RelationalExpression_LESS_ShiftExpression(IToken leftIToken, IToken rightIToken,
+                                                                               IRelationalExpression _RelationalExpression,
+                                                                               AstToken _LESS,
+                                                                               IShiftExpression _ShiftExpression)
         {
             super(leftIToken, rightIToken);
 
@@ -23770,9 +23770,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof RelationalExpression0)) return false;
+            if (! (o instanceof RelationalExpression__RelationalExpression_LESS_ShiftExpression)) return false;
             if (! super.equals(o)) return false;
-            RelationalExpression0 other = (RelationalExpression0) o;
+            RelationalExpression__RelationalExpression_LESS_ShiftExpression other = (RelationalExpression__RelationalExpression_LESS_ShiftExpression) o;
             if (! _RelationalExpression.equals(other._RelationalExpression)) return false;
             if (! _LESS.equals(other._LESS)) return false;
             if (! _ShiftExpression.equals(other._ShiftExpression)) return false;
@@ -23813,7 +23813,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 409:  RelationalExpression ::= RelationalExpression > ShiftExpression
      *</b>
      */
-    static public class RelationalExpression1 extends Ast implements IRelationalExpression
+    static public class RelationalExpression__RelationalExpression_GREATER_ShiftExpression extends Ast implements IRelationalExpression
     {
         private IRelationalExpression _RelationalExpression;
         private AstToken _GREATER;
@@ -23823,10 +23823,10 @@ public class JavaParser implements RuleAction
         public AstToken getGREATER() { return _GREATER; }
         public IShiftExpression getShiftExpression() { return _ShiftExpression; }
 
-        public RelationalExpression1(IToken leftIToken, IToken rightIToken,
-                                     IRelationalExpression _RelationalExpression,
-                                     AstToken _GREATER,
-                                     IShiftExpression _ShiftExpression)
+        public RelationalExpression__RelationalExpression_GREATER_ShiftExpression(IToken leftIToken, IToken rightIToken,
+                                                                                  IRelationalExpression _RelationalExpression,
+                                                                                  AstToken _GREATER,
+                                                                                  IShiftExpression _ShiftExpression)
         {
             super(leftIToken, rightIToken);
 
@@ -23854,9 +23854,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof RelationalExpression1)) return false;
+            if (! (o instanceof RelationalExpression__RelationalExpression_GREATER_ShiftExpression)) return false;
             if (! super.equals(o)) return false;
-            RelationalExpression1 other = (RelationalExpression1) o;
+            RelationalExpression__RelationalExpression_GREATER_ShiftExpression other = (RelationalExpression__RelationalExpression_GREATER_ShiftExpression) o;
             if (! _RelationalExpression.equals(other._RelationalExpression)) return false;
             if (! _GREATER.equals(other._GREATER)) return false;
             if (! _ShiftExpression.equals(other._ShiftExpression)) return false;
@@ -23897,7 +23897,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 410:  RelationalExpression ::= RelationalExpression <= ShiftExpression
      *</b>
      */
-    static public class RelationalExpression2 extends Ast implements IRelationalExpression
+    static public class RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression extends Ast implements IRelationalExpression
     {
         private IRelationalExpression _RelationalExpression;
         private AstToken _LESS_EQUAL;
@@ -23907,10 +23907,10 @@ public class JavaParser implements RuleAction
         public AstToken getLESS_EQUAL() { return _LESS_EQUAL; }
         public IShiftExpression getShiftExpression() { return _ShiftExpression; }
 
-        public RelationalExpression2(IToken leftIToken, IToken rightIToken,
-                                     IRelationalExpression _RelationalExpression,
-                                     AstToken _LESS_EQUAL,
-                                     IShiftExpression _ShiftExpression)
+        public RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression(IToken leftIToken, IToken rightIToken,
+                                                                                     IRelationalExpression _RelationalExpression,
+                                                                                     AstToken _LESS_EQUAL,
+                                                                                     IShiftExpression _ShiftExpression)
         {
             super(leftIToken, rightIToken);
 
@@ -23938,9 +23938,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof RelationalExpression2)) return false;
+            if (! (o instanceof RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression)) return false;
             if (! super.equals(o)) return false;
-            RelationalExpression2 other = (RelationalExpression2) o;
+            RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression other = (RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression) o;
             if (! _RelationalExpression.equals(other._RelationalExpression)) return false;
             if (! _LESS_EQUAL.equals(other._LESS_EQUAL)) return false;
             if (! _ShiftExpression.equals(other._ShiftExpression)) return false;
@@ -23981,7 +23981,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 411:  RelationalExpression ::= RelationalExpression > = ShiftExpression
      *</b>
      */
-    static public class RelationalExpression3 extends Ast implements IRelationalExpression
+    static public class RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression extends Ast implements IRelationalExpression
     {
         private IRelationalExpression _RelationalExpression;
         private AstToken _GREATER;
@@ -23993,11 +23993,11 @@ public class JavaParser implements RuleAction
         public AstToken getEQUAL() { return _EQUAL; }
         public IShiftExpression getShiftExpression() { return _ShiftExpression; }
 
-        public RelationalExpression3(IToken leftIToken, IToken rightIToken,
-                                     IRelationalExpression _RelationalExpression,
-                                     AstToken _GREATER,
-                                     AstToken _EQUAL,
-                                     IShiftExpression _ShiftExpression)
+        public RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression(IToken leftIToken, IToken rightIToken,
+                                                                                        IRelationalExpression _RelationalExpression,
+                                                                                        AstToken _GREATER,
+                                                                                        AstToken _EQUAL,
+                                                                                        IShiftExpression _ShiftExpression)
         {
             super(leftIToken, rightIToken);
 
@@ -24028,9 +24028,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof RelationalExpression3)) return false;
+            if (! (o instanceof RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression)) return false;
             if (! super.equals(o)) return false;
-            RelationalExpression3 other = (RelationalExpression3) o;
+            RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression other = (RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression) o;
             if (! _RelationalExpression.equals(other._RelationalExpression)) return false;
             if (! _GREATER.equals(other._GREATER)) return false;
             if (! _EQUAL.equals(other._EQUAL)) return false;
@@ -24074,7 +24074,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 412:  RelationalExpression ::= RelationalExpression instanceof ReferenceType
      *</b>
      */
-    static public class RelationalExpression4 extends Ast implements IRelationalExpression
+    static public class RelationalExpression__RelationalExpression_instanceof_ReferenceType extends Ast implements IRelationalExpression
     {
         private IRelationalExpression _RelationalExpression;
         private AstToken _instanceof;
@@ -24084,10 +24084,10 @@ public class JavaParser implements RuleAction
         public AstToken getinstanceof() { return _instanceof; }
         public IReferenceType getReferenceType() { return _ReferenceType; }
 
-        public RelationalExpression4(IToken leftIToken, IToken rightIToken,
-                                     IRelationalExpression _RelationalExpression,
-                                     AstToken _instanceof,
-                                     IReferenceType _ReferenceType)
+        public RelationalExpression__RelationalExpression_instanceof_ReferenceType(IToken leftIToken, IToken rightIToken,
+                                                                                   IRelationalExpression _RelationalExpression,
+                                                                                   AstToken _instanceof,
+                                                                                   IReferenceType _ReferenceType)
         {
             super(leftIToken, rightIToken);
 
@@ -24115,9 +24115,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof RelationalExpression4)) return false;
+            if (! (o instanceof RelationalExpression__RelationalExpression_instanceof_ReferenceType)) return false;
             if (! super.equals(o)) return false;
-            RelationalExpression4 other = (RelationalExpression4) o;
+            RelationalExpression__RelationalExpression_instanceof_ReferenceType other = (RelationalExpression__RelationalExpression_instanceof_ReferenceType) o;
             if (! _RelationalExpression.equals(other._RelationalExpression)) return false;
             if (! _instanceof.equals(other._instanceof)) return false;
             if (! _ReferenceType.equals(other._ReferenceType)) return false;
@@ -24158,7 +24158,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 414:  EqualityExpression ::= EqualityExpression == RelationalExpression
      *</b>
      */
-    static public class EqualityExpression0 extends Ast implements IEqualityExpression
+    static public class EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression extends Ast implements IEqualityExpression
     {
         private IEqualityExpression _EqualityExpression;
         private AstToken _EQUAL_EQUAL;
@@ -24168,10 +24168,10 @@ public class JavaParser implements RuleAction
         public AstToken getEQUAL_EQUAL() { return _EQUAL_EQUAL; }
         public IRelationalExpression getRelationalExpression() { return _RelationalExpression; }
 
-        public EqualityExpression0(IToken leftIToken, IToken rightIToken,
-                                   IEqualityExpression _EqualityExpression,
-                                   AstToken _EQUAL_EQUAL,
-                                   IRelationalExpression _RelationalExpression)
+        public EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression(IToken leftIToken, IToken rightIToken,
+                                                                                       IEqualityExpression _EqualityExpression,
+                                                                                       AstToken _EQUAL_EQUAL,
+                                                                                       IRelationalExpression _RelationalExpression)
         {
             super(leftIToken, rightIToken);
 
@@ -24199,9 +24199,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof EqualityExpression0)) return false;
+            if (! (o instanceof EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression)) return false;
             if (! super.equals(o)) return false;
-            EqualityExpression0 other = (EqualityExpression0) o;
+            EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression other = (EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression) o;
             if (! _EqualityExpression.equals(other._EqualityExpression)) return false;
             if (! _EQUAL_EQUAL.equals(other._EQUAL_EQUAL)) return false;
             if (! _RelationalExpression.equals(other._RelationalExpression)) return false;
@@ -24242,7 +24242,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 415:  EqualityExpression ::= EqualityExpression != RelationalExpression
      *</b>
      */
-    static public class EqualityExpression1 extends Ast implements IEqualityExpression
+    static public class EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression extends Ast implements IEqualityExpression
     {
         private IEqualityExpression _EqualityExpression;
         private AstToken _NOT_EQUAL;
@@ -24252,10 +24252,10 @@ public class JavaParser implements RuleAction
         public AstToken getNOT_EQUAL() { return _NOT_EQUAL; }
         public IRelationalExpression getRelationalExpression() { return _RelationalExpression; }
 
-        public EqualityExpression1(IToken leftIToken, IToken rightIToken,
-                                   IEqualityExpression _EqualityExpression,
-                                   AstToken _NOT_EQUAL,
-                                   IRelationalExpression _RelationalExpression)
+        public EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression(IToken leftIToken, IToken rightIToken,
+                                                                                     IEqualityExpression _EqualityExpression,
+                                                                                     AstToken _NOT_EQUAL,
+                                                                                     IRelationalExpression _RelationalExpression)
         {
             super(leftIToken, rightIToken);
 
@@ -24283,9 +24283,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof EqualityExpression1)) return false;
+            if (! (o instanceof EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression)) return false;
             if (! super.equals(o)) return false;
-            EqualityExpression1 other = (EqualityExpression1) o;
+            EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression other = (EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression) o;
             if (! _EqualityExpression.equals(other._EqualityExpression)) return false;
             if (! _NOT_EQUAL.equals(other._NOT_EQUAL)) return false;
             if (! _RelationalExpression.equals(other._RelationalExpression)) return false;
@@ -24326,11 +24326,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 434:  AssignmentOperator ::= =
      *</b>
      */
-    static public class AssignmentOperator0 extends AstToken implements IAssignmentOperator
+    static public class AssignmentOperator__EQUAL extends AstToken implements IAssignmentOperator
     {
         public IToken getEQUAL() { return leftIToken; }
 
-        public AssignmentOperator0(IToken token) { super(token); initialize(); }
+        public AssignmentOperator__EQUAL(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -24351,11 +24351,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 435:  AssignmentOperator ::= *=
      *</b>
      */
-    static public class AssignmentOperator1 extends AstToken implements IAssignmentOperator
+    static public class AssignmentOperator__MULTIPLY_EQUAL extends AstToken implements IAssignmentOperator
     {
         public IToken getMULTIPLY_EQUAL() { return leftIToken; }
 
-        public AssignmentOperator1(IToken token) { super(token); initialize(); }
+        public AssignmentOperator__MULTIPLY_EQUAL(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -24376,11 +24376,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 436:  AssignmentOperator ::= /=
      *</b>
      */
-    static public class AssignmentOperator2 extends AstToken implements IAssignmentOperator
+    static public class AssignmentOperator__DIVIDE_EQUAL extends AstToken implements IAssignmentOperator
     {
         public IToken getDIVIDE_EQUAL() { return leftIToken; }
 
-        public AssignmentOperator2(IToken token) { super(token); initialize(); }
+        public AssignmentOperator__DIVIDE_EQUAL(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -24401,11 +24401,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 437:  AssignmentOperator ::= %=
      *</b>
      */
-    static public class AssignmentOperator3 extends AstToken implements IAssignmentOperator
+    static public class AssignmentOperator__REMAINDER_EQUAL extends AstToken implements IAssignmentOperator
     {
         public IToken getREMAINDER_EQUAL() { return leftIToken; }
 
-        public AssignmentOperator3(IToken token) { super(token); initialize(); }
+        public AssignmentOperator__REMAINDER_EQUAL(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -24426,11 +24426,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 438:  AssignmentOperator ::= +=
      *</b>
      */
-    static public class AssignmentOperator4 extends AstToken implements IAssignmentOperator
+    static public class AssignmentOperator__PLUS_EQUAL extends AstToken implements IAssignmentOperator
     {
         public IToken getPLUS_EQUAL() { return leftIToken; }
 
-        public AssignmentOperator4(IToken token) { super(token); initialize(); }
+        public AssignmentOperator__PLUS_EQUAL(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -24451,11 +24451,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 439:  AssignmentOperator ::= -=
      *</b>
      */
-    static public class AssignmentOperator5 extends AstToken implements IAssignmentOperator
+    static public class AssignmentOperator__MINUS_EQUAL extends AstToken implements IAssignmentOperator
     {
         public IToken getMINUS_EQUAL() { return leftIToken; }
 
-        public AssignmentOperator5(IToken token) { super(token); initialize(); }
+        public AssignmentOperator__MINUS_EQUAL(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -24476,11 +24476,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 440:  AssignmentOperator ::= <<=
      *</b>
      */
-    static public class AssignmentOperator6 extends AstToken implements IAssignmentOperator
+    static public class AssignmentOperator__LEFT_SHIFT_EQUAL extends AstToken implements IAssignmentOperator
     {
         public IToken getLEFT_SHIFT_EQUAL() { return leftIToken; }
 
-        public AssignmentOperator6(IToken token) { super(token); initialize(); }
+        public AssignmentOperator__LEFT_SHIFT_EQUAL(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -24501,7 +24501,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 441:  AssignmentOperator ::= > > =
      *</b>
      */
-    static public class AssignmentOperator7 extends Ast implements IAssignmentOperator
+    static public class AssignmentOperator__GREATER_GREATER_EQUAL extends Ast implements IAssignmentOperator
     {
         private AstToken _GREATER;
         private AstToken _GREATER2;
@@ -24511,10 +24511,10 @@ public class JavaParser implements RuleAction
         public AstToken getGREATER2() { return _GREATER2; }
         public AstToken getEQUAL() { return _EQUAL; }
 
-        public AssignmentOperator7(IToken leftIToken, IToken rightIToken,
-                                   AstToken _GREATER,
-                                   AstToken _GREATER2,
-                                   AstToken _EQUAL)
+        public AssignmentOperator__GREATER_GREATER_EQUAL(IToken leftIToken, IToken rightIToken,
+                                                         AstToken _GREATER,
+                                                         AstToken _GREATER2,
+                                                         AstToken _EQUAL)
         {
             super(leftIToken, rightIToken);
 
@@ -24542,9 +24542,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof AssignmentOperator7)) return false;
+            if (! (o instanceof AssignmentOperator__GREATER_GREATER_EQUAL)) return false;
             if (! super.equals(o)) return false;
-            AssignmentOperator7 other = (AssignmentOperator7) o;
+            AssignmentOperator__GREATER_GREATER_EQUAL other = (AssignmentOperator__GREATER_GREATER_EQUAL) o;
             if (! _GREATER.equals(other._GREATER)) return false;
             if (! _GREATER2.equals(other._GREATER2)) return false;
             if (! _EQUAL.equals(other._EQUAL)) return false;
@@ -24585,7 +24585,7 @@ public class JavaParser implements RuleAction
      *<li>Rule 442:  AssignmentOperator ::= > > > =
      *</b>
      */
-    static public class AssignmentOperator8 extends Ast implements IAssignmentOperator
+    static public class AssignmentOperator__GREATER_GREATER_GREATER_EQUAL extends Ast implements IAssignmentOperator
     {
         private AstToken _GREATER;
         private AstToken _GREATER2;
@@ -24597,11 +24597,11 @@ public class JavaParser implements RuleAction
         public AstToken getGREATER3() { return _GREATER3; }
         public AstToken getEQUAL() { return _EQUAL; }
 
-        public AssignmentOperator8(IToken leftIToken, IToken rightIToken,
-                                   AstToken _GREATER,
-                                   AstToken _GREATER2,
-                                   AstToken _GREATER3,
-                                   AstToken _EQUAL)
+        public AssignmentOperator__GREATER_GREATER_GREATER_EQUAL(IToken leftIToken, IToken rightIToken,
+                                                                 AstToken _GREATER,
+                                                                 AstToken _GREATER2,
+                                                                 AstToken _GREATER3,
+                                                                 AstToken _EQUAL)
         {
             super(leftIToken, rightIToken);
 
@@ -24632,9 +24632,9 @@ public class JavaParser implements RuleAction
         public boolean equals(Object o)
         {
             if (o == this) return true;
-            if (! (o instanceof AssignmentOperator8)) return false;
+            if (! (o instanceof AssignmentOperator__GREATER_GREATER_GREATER_EQUAL)) return false;
             if (! super.equals(o)) return false;
-            AssignmentOperator8 other = (AssignmentOperator8) o;
+            AssignmentOperator__GREATER_GREATER_GREATER_EQUAL other = (AssignmentOperator__GREATER_GREATER_GREATER_EQUAL) o;
             if (! _GREATER.equals(other._GREATER)) return false;
             if (! _GREATER2.equals(other._GREATER2)) return false;
             if (! _GREATER3.equals(other._GREATER3)) return false;
@@ -24678,11 +24678,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 443:  AssignmentOperator ::= &=
      *</b>
      */
-    static public class AssignmentOperator9 extends AstToken implements IAssignmentOperator
+    static public class AssignmentOperator__AND_EQUAL extends AstToken implements IAssignmentOperator
     {
         public IToken getAND_EQUAL() { return leftIToken; }
 
-        public AssignmentOperator9(IToken token) { super(token); initialize(); }
+        public AssignmentOperator__AND_EQUAL(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -24703,11 +24703,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 444:  AssignmentOperator ::= ^=
      *</b>
      */
-    static public class AssignmentOperator10 extends AstToken implements IAssignmentOperator
+    static public class AssignmentOperator__XOR_EQUAL extends AstToken implements IAssignmentOperator
     {
         public IToken getXOR_EQUAL() { return leftIToken; }
 
-        public AssignmentOperator10(IToken token) { super(token); initialize(); }
+        public AssignmentOperator__XOR_EQUAL(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -24728,11 +24728,11 @@ public class JavaParser implements RuleAction
      *<li>Rule 445:  AssignmentOperator ::= |=
      *</b>
      */
-    static public class AssignmentOperator11 extends AstToken implements IAssignmentOperator
+    static public class AssignmentOperator__OR_EQUAL extends AstToken implements IAssignmentOperator
     {
         public IToken getOR_EQUAL() { return leftIToken; }
 
-        public AssignmentOperator11(IToken token) { super(token); initialize(); }
+        public AssignmentOperator__OR_EQUAL(IToken token) { super(token); initialize(); }
 
         public void accept(IAstVisitor v)
         {
@@ -25164,401 +25164,401 @@ public class JavaParser implements RuleAction
         boolean visit(Ellipsisopt n);
         void endVisit(Ellipsisopt n);
 
-        boolean visit(LPGUserAction0 n);
-        void endVisit(LPGUserAction0 n);
+        boolean visit(LPGUserAction__BeginAction_BlockStatementsopt_EndAction n);
+        void endVisit(LPGUserAction__BeginAction_BlockStatementsopt_EndAction n);
 
-        boolean visit(LPGUserAction1 n);
-        void endVisit(LPGUserAction1 n);
+        boolean visit(LPGUserAction__BeginJava_BlockStatementsopt_EndJava n);
+        void endVisit(LPGUserAction__BeginJava_BlockStatementsopt_EndJava n);
 
-        boolean visit(LPGUserAction2 n);
-        void endVisit(LPGUserAction2 n);
+        boolean visit(LPGUserAction__NoAction n);
+        void endVisit(LPGUserAction__NoAction n);
 
-        boolean visit(LPGUserAction3 n);
-        void endVisit(LPGUserAction3 n);
+        boolean visit(LPGUserAction__NullAction n);
+        void endVisit(LPGUserAction__NullAction n);
 
-        boolean visit(LPGUserAction4 n);
-        void endVisit(LPGUserAction4 n);
+        boolean visit(LPGUserAction__BadAction n);
+        void endVisit(LPGUserAction__BadAction n);
 
-        boolean visit(IntegralType0 n);
-        void endVisit(IntegralType0 n);
+        boolean visit(IntegralType__byte n);
+        void endVisit(IntegralType__byte n);
 
-        boolean visit(IntegralType1 n);
-        void endVisit(IntegralType1 n);
+        boolean visit(IntegralType__short n);
+        void endVisit(IntegralType__short n);
 
-        boolean visit(IntegralType2 n);
-        void endVisit(IntegralType2 n);
+        boolean visit(IntegralType__int n);
+        void endVisit(IntegralType__int n);
 
-        boolean visit(IntegralType3 n);
-        void endVisit(IntegralType3 n);
+        boolean visit(IntegralType__long n);
+        void endVisit(IntegralType__long n);
 
-        boolean visit(IntegralType4 n);
-        void endVisit(IntegralType4 n);
+        boolean visit(IntegralType__char n);
+        void endVisit(IntegralType__char n);
 
-        boolean visit(FloatingPointType0 n);
-        void endVisit(FloatingPointType0 n);
+        boolean visit(FloatingPointType__float n);
+        void endVisit(FloatingPointType__float n);
 
-        boolean visit(FloatingPointType1 n);
-        void endVisit(FloatingPointType1 n);
+        boolean visit(FloatingPointType__double n);
+        void endVisit(FloatingPointType__double n);
 
-        boolean visit(WildcardBounds0 n);
-        void endVisit(WildcardBounds0 n);
+        boolean visit(WildcardBounds__extends_ReferenceType n);
+        void endVisit(WildcardBounds__extends_ReferenceType n);
 
-        boolean visit(WildcardBounds1 n);
-        void endVisit(WildcardBounds1 n);
+        boolean visit(WildcardBounds__super_ReferenceType n);
+        void endVisit(WildcardBounds__super_ReferenceType n);
 
-        boolean visit(ClassModifier0 n);
-        void endVisit(ClassModifier0 n);
+        boolean visit(ClassModifier__public n);
+        void endVisit(ClassModifier__public n);
 
-        boolean visit(ClassModifier1 n);
-        void endVisit(ClassModifier1 n);
+        boolean visit(ClassModifier__protected n);
+        void endVisit(ClassModifier__protected n);
 
-        boolean visit(ClassModifier2 n);
-        void endVisit(ClassModifier2 n);
+        boolean visit(ClassModifier__private n);
+        void endVisit(ClassModifier__private n);
 
-        boolean visit(ClassModifier3 n);
-        void endVisit(ClassModifier3 n);
+        boolean visit(ClassModifier__abstract n);
+        void endVisit(ClassModifier__abstract n);
 
-        boolean visit(ClassModifier4 n);
-        void endVisit(ClassModifier4 n);
+        boolean visit(ClassModifier__static n);
+        void endVisit(ClassModifier__static n);
 
-        boolean visit(ClassModifier5 n);
-        void endVisit(ClassModifier5 n);
+        boolean visit(ClassModifier__final n);
+        void endVisit(ClassModifier__final n);
 
-        boolean visit(ClassModifier6 n);
-        void endVisit(ClassModifier6 n);
+        boolean visit(ClassModifier__strictfp n);
+        void endVisit(ClassModifier__strictfp n);
 
-        boolean visit(FieldModifier0 n);
-        void endVisit(FieldModifier0 n);
+        boolean visit(FieldModifier__public n);
+        void endVisit(FieldModifier__public n);
 
-        boolean visit(FieldModifier1 n);
-        void endVisit(FieldModifier1 n);
+        boolean visit(FieldModifier__protected n);
+        void endVisit(FieldModifier__protected n);
 
-        boolean visit(FieldModifier2 n);
-        void endVisit(FieldModifier2 n);
+        boolean visit(FieldModifier__private n);
+        void endVisit(FieldModifier__private n);
 
-        boolean visit(FieldModifier3 n);
-        void endVisit(FieldModifier3 n);
+        boolean visit(FieldModifier__static n);
+        void endVisit(FieldModifier__static n);
 
-        boolean visit(FieldModifier4 n);
-        void endVisit(FieldModifier4 n);
+        boolean visit(FieldModifier__final n);
+        void endVisit(FieldModifier__final n);
 
-        boolean visit(FieldModifier5 n);
-        void endVisit(FieldModifier5 n);
+        boolean visit(FieldModifier__transient n);
+        void endVisit(FieldModifier__transient n);
 
-        boolean visit(FieldModifier6 n);
-        void endVisit(FieldModifier6 n);
+        boolean visit(FieldModifier__volatile n);
+        void endVisit(FieldModifier__volatile n);
 
-        boolean visit(MethodDeclarator0 n);
-        void endVisit(MethodDeclarator0 n);
+        boolean visit(MethodDeclarator__identifier_LPAREN_FormalParameterListopt_RPAREN n);
+        void endVisit(MethodDeclarator__identifier_LPAREN_FormalParameterListopt_RPAREN n);
 
-        boolean visit(MethodDeclarator1 n);
-        void endVisit(MethodDeclarator1 n);
+        boolean visit(MethodDeclarator__MethodDeclarator_LBRACKET_RBRACKET n);
+        void endVisit(MethodDeclarator__MethodDeclarator_LBRACKET_RBRACKET n);
 
-        boolean visit(MethodModifier0 n);
-        void endVisit(MethodModifier0 n);
+        boolean visit(MethodModifier__public n);
+        void endVisit(MethodModifier__public n);
 
-        boolean visit(MethodModifier1 n);
-        void endVisit(MethodModifier1 n);
+        boolean visit(MethodModifier__protected n);
+        void endVisit(MethodModifier__protected n);
 
-        boolean visit(MethodModifier2 n);
-        void endVisit(MethodModifier2 n);
+        boolean visit(MethodModifier__private n);
+        void endVisit(MethodModifier__private n);
 
-        boolean visit(MethodModifier3 n);
-        void endVisit(MethodModifier3 n);
+        boolean visit(MethodModifier__abstract n);
+        void endVisit(MethodModifier__abstract n);
 
-        boolean visit(MethodModifier4 n);
-        void endVisit(MethodModifier4 n);
+        boolean visit(MethodModifier__static n);
+        void endVisit(MethodModifier__static n);
 
-        boolean visit(MethodModifier5 n);
-        void endVisit(MethodModifier5 n);
+        boolean visit(MethodModifier__final n);
+        void endVisit(MethodModifier__final n);
 
-        boolean visit(MethodModifier6 n);
-        void endVisit(MethodModifier6 n);
+        boolean visit(MethodModifier__synchronized n);
+        void endVisit(MethodModifier__synchronized n);
 
-        boolean visit(MethodModifier7 n);
-        void endVisit(MethodModifier7 n);
+        boolean visit(MethodModifier__native n);
+        void endVisit(MethodModifier__native n);
 
-        boolean visit(MethodModifier8 n);
-        void endVisit(MethodModifier8 n);
+        boolean visit(MethodModifier__strictfp n);
+        void endVisit(MethodModifier__strictfp n);
 
-        boolean visit(ConstructorModifier0 n);
-        void endVisit(ConstructorModifier0 n);
+        boolean visit(ConstructorModifier__public n);
+        void endVisit(ConstructorModifier__public n);
 
-        boolean visit(ConstructorModifier1 n);
-        void endVisit(ConstructorModifier1 n);
+        boolean visit(ConstructorModifier__protected n);
+        void endVisit(ConstructorModifier__protected n);
 
-        boolean visit(ConstructorModifier2 n);
-        void endVisit(ConstructorModifier2 n);
+        boolean visit(ConstructorModifier__private n);
+        void endVisit(ConstructorModifier__private n);
 
-        boolean visit(ExplicitConstructorInvocation0 n);
-        void endVisit(ExplicitConstructorInvocation0 n);
+        boolean visit(ExplicitConstructorInvocation__TypeArgumentsopt_this_LPAREN_ArgumentListopt_RPAREN_SEMICOLON n);
+        void endVisit(ExplicitConstructorInvocation__TypeArgumentsopt_this_LPAREN_ArgumentListopt_RPAREN_SEMICOLON n);
 
-        boolean visit(ExplicitConstructorInvocation1 n);
-        void endVisit(ExplicitConstructorInvocation1 n);
+        boolean visit(ExplicitConstructorInvocation__TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON n);
+        void endVisit(ExplicitConstructorInvocation__TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON n);
 
-        boolean visit(ExplicitConstructorInvocation2 n);
-        void endVisit(ExplicitConstructorInvocation2 n);
+        boolean visit(ExplicitConstructorInvocation__Primary_DOT_TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON n);
+        void endVisit(ExplicitConstructorInvocation__Primary_DOT_TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON n);
 
-        boolean visit(InterfaceModifier0 n);
-        void endVisit(InterfaceModifier0 n);
+        boolean visit(InterfaceModifier__public n);
+        void endVisit(InterfaceModifier__public n);
 
-        boolean visit(InterfaceModifier1 n);
-        void endVisit(InterfaceModifier1 n);
+        boolean visit(InterfaceModifier__protected n);
+        void endVisit(InterfaceModifier__protected n);
 
-        boolean visit(InterfaceModifier2 n);
-        void endVisit(InterfaceModifier2 n);
+        boolean visit(InterfaceModifier__private n);
+        void endVisit(InterfaceModifier__private n);
 
-        boolean visit(InterfaceModifier3 n);
-        void endVisit(InterfaceModifier3 n);
+        boolean visit(InterfaceModifier__abstract n);
+        void endVisit(InterfaceModifier__abstract n);
 
-        boolean visit(InterfaceModifier4 n);
-        void endVisit(InterfaceModifier4 n);
+        boolean visit(InterfaceModifier__static n);
+        void endVisit(InterfaceModifier__static n);
 
-        boolean visit(InterfaceModifier5 n);
-        void endVisit(InterfaceModifier5 n);
+        boolean visit(InterfaceModifier__strictfp n);
+        void endVisit(InterfaceModifier__strictfp n);
 
-        boolean visit(ExtendsInterfaces0 n);
-        void endVisit(ExtendsInterfaces0 n);
+        boolean visit(ExtendsInterfaces__extends_InterfaceType n);
+        void endVisit(ExtendsInterfaces__extends_InterfaceType n);
 
-        boolean visit(ExtendsInterfaces1 n);
-        void endVisit(ExtendsInterfaces1 n);
+        boolean visit(ExtendsInterfaces__ExtendsInterfaces_COMMA_InterfaceType n);
+        void endVisit(ExtendsInterfaces__ExtendsInterfaces_COMMA_InterfaceType n);
 
-        boolean visit(ConstantModifier0 n);
-        void endVisit(ConstantModifier0 n);
+        boolean visit(ConstantModifier__public n);
+        void endVisit(ConstantModifier__public n);
 
-        boolean visit(ConstantModifier1 n);
-        void endVisit(ConstantModifier1 n);
+        boolean visit(ConstantModifier__static n);
+        void endVisit(ConstantModifier__static n);
 
-        boolean visit(ConstantModifier2 n);
-        void endVisit(ConstantModifier2 n);
+        boolean visit(ConstantModifier__final n);
+        void endVisit(ConstantModifier__final n);
 
-        boolean visit(AbstractMethodModifier0 n);
-        void endVisit(AbstractMethodModifier0 n);
+        boolean visit(AbstractMethodModifier__public n);
+        void endVisit(AbstractMethodModifier__public n);
 
-        boolean visit(AbstractMethodModifier1 n);
-        void endVisit(AbstractMethodModifier1 n);
+        boolean visit(AbstractMethodModifier__abstract n);
+        void endVisit(AbstractMethodModifier__abstract n);
 
-        boolean visit(AnnotationTypeElementDeclaration0 n);
-        void endVisit(AnnotationTypeElementDeclaration0 n);
+        boolean visit(AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON n);
+        void endVisit(AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON n);
 
-        boolean visit(AnnotationTypeElementDeclaration1 n);
-        void endVisit(AnnotationTypeElementDeclaration1 n);
+        boolean visit(AnnotationTypeElementDeclaration__SEMICOLON n);
+        void endVisit(AnnotationTypeElementDeclaration__SEMICOLON n);
 
-        boolean visit(AssertStatement0 n);
-        void endVisit(AssertStatement0 n);
+        boolean visit(AssertStatement__assert_Expression_SEMICOLON n);
+        void endVisit(AssertStatement__assert_Expression_SEMICOLON n);
 
-        boolean visit(AssertStatement1 n);
-        void endVisit(AssertStatement1 n);
+        boolean visit(AssertStatement__assert_Expression_COLON_Expression_SEMICOLON n);
+        void endVisit(AssertStatement__assert_Expression_COLON_Expression_SEMICOLON n);
 
-        boolean visit(SwitchLabel0 n);
-        void endVisit(SwitchLabel0 n);
+        boolean visit(SwitchLabel__case_ConstantExpression_COLON n);
+        void endVisit(SwitchLabel__case_ConstantExpression_COLON n);
 
-        boolean visit(SwitchLabel1 n);
-        void endVisit(SwitchLabel1 n);
+        boolean visit(SwitchLabel__case_EnumConstant_COLON n);
+        void endVisit(SwitchLabel__case_EnumConstant_COLON n);
 
-        boolean visit(SwitchLabel2 n);
-        void endVisit(SwitchLabel2 n);
+        boolean visit(SwitchLabel__default_COLON n);
+        void endVisit(SwitchLabel__default_COLON n);
 
-        boolean visit(TryStatement0 n);
-        void endVisit(TryStatement0 n);
+        boolean visit(TryStatement__try_Block_Catches n);
+        void endVisit(TryStatement__try_Block_Catches n);
 
-        boolean visit(TryStatement1 n);
-        void endVisit(TryStatement1 n);
+        boolean visit(TryStatement__try_Block_Catchesopt_Finally n);
+        void endVisit(TryStatement__try_Block_Catchesopt_Finally n);
 
-        boolean visit(PrimaryNoNewArray0 n);
-        void endVisit(PrimaryNoNewArray0 n);
+        boolean visit(PrimaryNoNewArray__Type_DOT_class n);
+        void endVisit(PrimaryNoNewArray__Type_DOT_class n);
 
-        boolean visit(PrimaryNoNewArray1 n);
-        void endVisit(PrimaryNoNewArray1 n);
+        boolean visit(PrimaryNoNewArray__void_DOT_class n);
+        void endVisit(PrimaryNoNewArray__void_DOT_class n);
 
-        boolean visit(PrimaryNoNewArray2 n);
-        void endVisit(PrimaryNoNewArray2 n);
+        boolean visit(PrimaryNoNewArray__this n);
+        void endVisit(PrimaryNoNewArray__this n);
 
-        boolean visit(PrimaryNoNewArray3 n);
-        void endVisit(PrimaryNoNewArray3 n);
+        boolean visit(PrimaryNoNewArray__ClassName_DOT_this n);
+        void endVisit(PrimaryNoNewArray__ClassName_DOT_this n);
 
-        boolean visit(PrimaryNoNewArray4 n);
-        void endVisit(PrimaryNoNewArray4 n);
+        boolean visit(PrimaryNoNewArray__LPAREN_Expression_RPAREN n);
+        void endVisit(PrimaryNoNewArray__LPAREN_Expression_RPAREN n);
 
-        boolean visit(Literal0 n);
-        void endVisit(Literal0 n);
+        boolean visit(Literal__IntegerLiteral n);
+        void endVisit(Literal__IntegerLiteral n);
 
-        boolean visit(Literal1 n);
-        void endVisit(Literal1 n);
+        boolean visit(Literal__LongLiteral n);
+        void endVisit(Literal__LongLiteral n);
 
-        boolean visit(Literal2 n);
-        void endVisit(Literal2 n);
+        boolean visit(Literal__FloatingPointLiteral n);
+        void endVisit(Literal__FloatingPointLiteral n);
 
-        boolean visit(Literal3 n);
-        void endVisit(Literal3 n);
+        boolean visit(Literal__DoubleLiteral n);
+        void endVisit(Literal__DoubleLiteral n);
 
-        boolean visit(Literal4 n);
-        void endVisit(Literal4 n);
+        boolean visit(Literal__CharacterLiteral n);
+        void endVisit(Literal__CharacterLiteral n);
 
-        boolean visit(Literal5 n);
-        void endVisit(Literal5 n);
+        boolean visit(Literal__StringLiteral n);
+        void endVisit(Literal__StringLiteral n);
 
-        boolean visit(Literal6 n);
-        void endVisit(Literal6 n);
+        boolean visit(Literal__null n);
+        void endVisit(Literal__null n);
 
-        boolean visit(BooleanLiteral0 n);
-        void endVisit(BooleanLiteral0 n);
+        boolean visit(BooleanLiteral__true n);
+        void endVisit(BooleanLiteral__true n);
 
-        boolean visit(BooleanLiteral1 n);
-        void endVisit(BooleanLiteral1 n);
+        boolean visit(BooleanLiteral__false n);
+        void endVisit(BooleanLiteral__false n);
 
-        boolean visit(ClassInstanceCreationExpression0 n);
-        void endVisit(ClassInstanceCreationExpression0 n);
+        boolean visit(ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt n);
+        void endVisit(ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt n);
 
-        boolean visit(ClassInstanceCreationExpression1 n);
-        void endVisit(ClassInstanceCreationExpression1 n);
+        boolean visit(ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt n);
+        void endVisit(ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt n);
 
-        boolean visit(ArrayCreationExpression0 n);
-        void endVisit(ArrayCreationExpression0 n);
+        boolean visit(ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt n);
+        void endVisit(ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt n);
 
-        boolean visit(ArrayCreationExpression1 n);
-        void endVisit(ArrayCreationExpression1 n);
+        boolean visit(ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt n);
+        void endVisit(ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt n);
 
-        boolean visit(ArrayCreationExpression2 n);
-        void endVisit(ArrayCreationExpression2 n);
+        boolean visit(ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer n);
+        void endVisit(ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer n);
 
-        boolean visit(ArrayCreationExpression3 n);
-        void endVisit(ArrayCreationExpression3 n);
+        boolean visit(ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer n);
+        void endVisit(ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer n);
 
-        boolean visit(Dims0 n);
-        void endVisit(Dims0 n);
+        boolean visit(Dims__LBRACKET_RBRACKET n);
+        void endVisit(Dims__LBRACKET_RBRACKET n);
 
-        boolean visit(Dims1 n);
-        void endVisit(Dims1 n);
+        boolean visit(Dims__Dims_LBRACKET_RBRACKET n);
+        void endVisit(Dims__Dims_LBRACKET_RBRACKET n);
 
-        boolean visit(FieldAccess0 n);
-        void endVisit(FieldAccess0 n);
+        boolean visit(FieldAccess__Primary_DOT_identifier n);
+        void endVisit(FieldAccess__Primary_DOT_identifier n);
 
-        boolean visit(FieldAccess1 n);
-        void endVisit(FieldAccess1 n);
+        boolean visit(FieldAccess__super_DOT_identifier n);
+        void endVisit(FieldAccess__super_DOT_identifier n);
 
-        boolean visit(FieldAccess2 n);
-        void endVisit(FieldAccess2 n);
+        boolean visit(FieldAccess__ClassName_DOT_super_DOT_identifier n);
+        void endVisit(FieldAccess__ClassName_DOT_super_DOT_identifier n);
 
-        boolean visit(MethodInvocation0 n);
-        void endVisit(MethodInvocation0 n);
+        boolean visit(MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN n);
+        void endVisit(MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN n);
 
-        boolean visit(MethodInvocation1 n);
-        void endVisit(MethodInvocation1 n);
+        boolean visit(MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN n);
+        void endVisit(MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN n);
 
-        boolean visit(MethodInvocation2 n);
-        void endVisit(MethodInvocation2 n);
+        boolean visit(MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN n);
+        void endVisit(MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN n);
 
-        boolean visit(MethodInvocation3 n);
-        void endVisit(MethodInvocation3 n);
+        boolean visit(MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN n);
+        void endVisit(MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN n);
 
-        boolean visit(MethodInvocation4 n);
-        void endVisit(MethodInvocation4 n);
+        boolean visit(MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN n);
+        void endVisit(MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN n);
 
-        boolean visit(ArrayAccess0 n);
-        void endVisit(ArrayAccess0 n);
+        boolean visit(ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET n);
+        void endVisit(ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET n);
 
-        boolean visit(ArrayAccess1 n);
-        void endVisit(ArrayAccess1 n);
+        boolean visit(ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET n);
+        void endVisit(ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET n);
 
-        boolean visit(UnaryExpression0 n);
-        void endVisit(UnaryExpression0 n);
+        boolean visit(UnaryExpression__PLUS_UnaryExpression n);
+        void endVisit(UnaryExpression__PLUS_UnaryExpression n);
 
-        boolean visit(UnaryExpression1 n);
-        void endVisit(UnaryExpression1 n);
+        boolean visit(UnaryExpression__MINUS_UnaryExpression n);
+        void endVisit(UnaryExpression__MINUS_UnaryExpression n);
 
-        boolean visit(UnaryExpressionNotPlusMinus0 n);
-        void endVisit(UnaryExpressionNotPlusMinus0 n);
+        boolean visit(UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression n);
+        void endVisit(UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression n);
 
-        boolean visit(UnaryExpressionNotPlusMinus1 n);
-        void endVisit(UnaryExpressionNotPlusMinus1 n);
+        boolean visit(UnaryExpressionNotPlusMinus__NOT_UnaryExpression n);
+        void endVisit(UnaryExpressionNotPlusMinus__NOT_UnaryExpression n);
 
-        boolean visit(CastExpression0 n);
-        void endVisit(CastExpression0 n);
+        boolean visit(CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression n);
+        void endVisit(CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression n);
 
-        boolean visit(CastExpression1 n);
-        void endVisit(CastExpression1 n);
+        boolean visit(CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus n);
+        void endVisit(CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus n);
 
-        boolean visit(MultiplicativeExpression0 n);
-        void endVisit(MultiplicativeExpression0 n);
+        boolean visit(MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression n);
+        void endVisit(MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression n);
 
-        boolean visit(MultiplicativeExpression1 n);
-        void endVisit(MultiplicativeExpression1 n);
+        boolean visit(MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression n);
+        void endVisit(MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression n);
 
-        boolean visit(MultiplicativeExpression2 n);
-        void endVisit(MultiplicativeExpression2 n);
+        boolean visit(MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression n);
+        void endVisit(MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression n);
 
-        boolean visit(AdditiveExpression0 n);
-        void endVisit(AdditiveExpression0 n);
+        boolean visit(AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression n);
+        void endVisit(AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression n);
 
-        boolean visit(AdditiveExpression1 n);
-        void endVisit(AdditiveExpression1 n);
+        boolean visit(AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression n);
+        void endVisit(AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression n);
 
-        boolean visit(ShiftExpression0 n);
-        void endVisit(ShiftExpression0 n);
+        boolean visit(ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression n);
+        void endVisit(ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression n);
 
-        boolean visit(ShiftExpression1 n);
-        void endVisit(ShiftExpression1 n);
+        boolean visit(ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression n);
+        void endVisit(ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression n);
 
-        boolean visit(ShiftExpression2 n);
-        void endVisit(ShiftExpression2 n);
+        boolean visit(ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression n);
+        void endVisit(ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression n);
 
-        boolean visit(RelationalExpression0 n);
-        void endVisit(RelationalExpression0 n);
+        boolean visit(RelationalExpression__RelationalExpression_LESS_ShiftExpression n);
+        void endVisit(RelationalExpression__RelationalExpression_LESS_ShiftExpression n);
 
-        boolean visit(RelationalExpression1 n);
-        void endVisit(RelationalExpression1 n);
+        boolean visit(RelationalExpression__RelationalExpression_GREATER_ShiftExpression n);
+        void endVisit(RelationalExpression__RelationalExpression_GREATER_ShiftExpression n);
 
-        boolean visit(RelationalExpression2 n);
-        void endVisit(RelationalExpression2 n);
+        boolean visit(RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression n);
+        void endVisit(RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression n);
 
-        boolean visit(RelationalExpression3 n);
-        void endVisit(RelationalExpression3 n);
+        boolean visit(RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression n);
+        void endVisit(RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression n);
 
-        boolean visit(RelationalExpression4 n);
-        void endVisit(RelationalExpression4 n);
+        boolean visit(RelationalExpression__RelationalExpression_instanceof_ReferenceType n);
+        void endVisit(RelationalExpression__RelationalExpression_instanceof_ReferenceType n);
 
-        boolean visit(EqualityExpression0 n);
-        void endVisit(EqualityExpression0 n);
+        boolean visit(EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression n);
+        void endVisit(EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression n);
 
-        boolean visit(EqualityExpression1 n);
-        void endVisit(EqualityExpression1 n);
+        boolean visit(EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression n);
+        void endVisit(EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression n);
 
-        boolean visit(AssignmentOperator0 n);
-        void endVisit(AssignmentOperator0 n);
+        boolean visit(AssignmentOperator__EQUAL n);
+        void endVisit(AssignmentOperator__EQUAL n);
 
-        boolean visit(AssignmentOperator1 n);
-        void endVisit(AssignmentOperator1 n);
+        boolean visit(AssignmentOperator__MULTIPLY_EQUAL n);
+        void endVisit(AssignmentOperator__MULTIPLY_EQUAL n);
 
-        boolean visit(AssignmentOperator2 n);
-        void endVisit(AssignmentOperator2 n);
+        boolean visit(AssignmentOperator__DIVIDE_EQUAL n);
+        void endVisit(AssignmentOperator__DIVIDE_EQUAL n);
 
-        boolean visit(AssignmentOperator3 n);
-        void endVisit(AssignmentOperator3 n);
+        boolean visit(AssignmentOperator__REMAINDER_EQUAL n);
+        void endVisit(AssignmentOperator__REMAINDER_EQUAL n);
 
-        boolean visit(AssignmentOperator4 n);
-        void endVisit(AssignmentOperator4 n);
+        boolean visit(AssignmentOperator__PLUS_EQUAL n);
+        void endVisit(AssignmentOperator__PLUS_EQUAL n);
 
-        boolean visit(AssignmentOperator5 n);
-        void endVisit(AssignmentOperator5 n);
+        boolean visit(AssignmentOperator__MINUS_EQUAL n);
+        void endVisit(AssignmentOperator__MINUS_EQUAL n);
 
-        boolean visit(AssignmentOperator6 n);
-        void endVisit(AssignmentOperator6 n);
+        boolean visit(AssignmentOperator__LEFT_SHIFT_EQUAL n);
+        void endVisit(AssignmentOperator__LEFT_SHIFT_EQUAL n);
 
-        boolean visit(AssignmentOperator7 n);
-        void endVisit(AssignmentOperator7 n);
+        boolean visit(AssignmentOperator__GREATER_GREATER_EQUAL n);
+        void endVisit(AssignmentOperator__GREATER_GREATER_EQUAL n);
 
-        boolean visit(AssignmentOperator8 n);
-        void endVisit(AssignmentOperator8 n);
+        boolean visit(AssignmentOperator__GREATER_GREATER_GREATER_EQUAL n);
+        void endVisit(AssignmentOperator__GREATER_GREATER_GREATER_EQUAL n);
 
-        boolean visit(AssignmentOperator9 n);
-        void endVisit(AssignmentOperator9 n);
+        boolean visit(AssignmentOperator__AND_EQUAL n);
+        void endVisit(AssignmentOperator__AND_EQUAL n);
 
-        boolean visit(AssignmentOperator10 n);
-        void endVisit(AssignmentOperator10 n);
+        boolean visit(AssignmentOperator__XOR_EQUAL n);
+        void endVisit(AssignmentOperator__XOR_EQUAL n);
 
-        boolean visit(AssignmentOperator11 n);
-        void endVisit(AssignmentOperator11 n);
+        boolean visit(AssignmentOperator__OR_EQUAL n);
+        void endVisit(AssignmentOperator__OR_EQUAL n);
 
     }
 
@@ -25981,401 +25981,401 @@ public class JavaParser implements RuleAction
         public boolean visit(Ellipsisopt n) { unimplementedVisitor("visit(Ellipsisopt)"); return true; }
         public void endVisit(Ellipsisopt n) { unimplementedVisitor("endVisit(Ellipsisopt)"); }
 
-        public boolean visit(LPGUserAction0 n) { unimplementedVisitor("visit(LPGUserAction0)"); return true; }
-        public void endVisit(LPGUserAction0 n) { unimplementedVisitor("endVisit(LPGUserAction0)"); }
+        public boolean visit(LPGUserAction__BeginAction_BlockStatementsopt_EndAction n) { unimplementedVisitor("visit(LPGUserAction__BeginAction_BlockStatementsopt_EndAction)"); return true; }
+        public void endVisit(LPGUserAction__BeginAction_BlockStatementsopt_EndAction n) { unimplementedVisitor("endVisit(LPGUserAction__BeginAction_BlockStatementsopt_EndAction)"); }
 
-        public boolean visit(LPGUserAction1 n) { unimplementedVisitor("visit(LPGUserAction1)"); return true; }
-        public void endVisit(LPGUserAction1 n) { unimplementedVisitor("endVisit(LPGUserAction1)"); }
+        public boolean visit(LPGUserAction__BeginJava_BlockStatementsopt_EndJava n) { unimplementedVisitor("visit(LPGUserAction__BeginJava_BlockStatementsopt_EndJava)"); return true; }
+        public void endVisit(LPGUserAction__BeginJava_BlockStatementsopt_EndJava n) { unimplementedVisitor("endVisit(LPGUserAction__BeginJava_BlockStatementsopt_EndJava)"); }
 
-        public boolean visit(LPGUserAction2 n) { unimplementedVisitor("visit(LPGUserAction2)"); return true; }
-        public void endVisit(LPGUserAction2 n) { unimplementedVisitor("endVisit(LPGUserAction2)"); }
+        public boolean visit(LPGUserAction__NoAction n) { unimplementedVisitor("visit(LPGUserAction__NoAction)"); return true; }
+        public void endVisit(LPGUserAction__NoAction n) { unimplementedVisitor("endVisit(LPGUserAction__NoAction)"); }
 
-        public boolean visit(LPGUserAction3 n) { unimplementedVisitor("visit(LPGUserAction3)"); return true; }
-        public void endVisit(LPGUserAction3 n) { unimplementedVisitor("endVisit(LPGUserAction3)"); }
+        public boolean visit(LPGUserAction__NullAction n) { unimplementedVisitor("visit(LPGUserAction__NullAction)"); return true; }
+        public void endVisit(LPGUserAction__NullAction n) { unimplementedVisitor("endVisit(LPGUserAction__NullAction)"); }
 
-        public boolean visit(LPGUserAction4 n) { unimplementedVisitor("visit(LPGUserAction4)"); return true; }
-        public void endVisit(LPGUserAction4 n) { unimplementedVisitor("endVisit(LPGUserAction4)"); }
+        public boolean visit(LPGUserAction__BadAction n) { unimplementedVisitor("visit(LPGUserAction__BadAction)"); return true; }
+        public void endVisit(LPGUserAction__BadAction n) { unimplementedVisitor("endVisit(LPGUserAction__BadAction)"); }
 
-        public boolean visit(IntegralType0 n) { unimplementedVisitor("visit(IntegralType0)"); return true; }
-        public void endVisit(IntegralType0 n) { unimplementedVisitor("endVisit(IntegralType0)"); }
+        public boolean visit(IntegralType__byte n) { unimplementedVisitor("visit(IntegralType__byte)"); return true; }
+        public void endVisit(IntegralType__byte n) { unimplementedVisitor("endVisit(IntegralType__byte)"); }
 
-        public boolean visit(IntegralType1 n) { unimplementedVisitor("visit(IntegralType1)"); return true; }
-        public void endVisit(IntegralType1 n) { unimplementedVisitor("endVisit(IntegralType1)"); }
+        public boolean visit(IntegralType__short n) { unimplementedVisitor("visit(IntegralType__short)"); return true; }
+        public void endVisit(IntegralType__short n) { unimplementedVisitor("endVisit(IntegralType__short)"); }
 
-        public boolean visit(IntegralType2 n) { unimplementedVisitor("visit(IntegralType2)"); return true; }
-        public void endVisit(IntegralType2 n) { unimplementedVisitor("endVisit(IntegralType2)"); }
+        public boolean visit(IntegralType__int n) { unimplementedVisitor("visit(IntegralType__int)"); return true; }
+        public void endVisit(IntegralType__int n) { unimplementedVisitor("endVisit(IntegralType__int)"); }
 
-        public boolean visit(IntegralType3 n) { unimplementedVisitor("visit(IntegralType3)"); return true; }
-        public void endVisit(IntegralType3 n) { unimplementedVisitor("endVisit(IntegralType3)"); }
+        public boolean visit(IntegralType__long n) { unimplementedVisitor("visit(IntegralType__long)"); return true; }
+        public void endVisit(IntegralType__long n) { unimplementedVisitor("endVisit(IntegralType__long)"); }
 
-        public boolean visit(IntegralType4 n) { unimplementedVisitor("visit(IntegralType4)"); return true; }
-        public void endVisit(IntegralType4 n) { unimplementedVisitor("endVisit(IntegralType4)"); }
+        public boolean visit(IntegralType__char n) { unimplementedVisitor("visit(IntegralType__char)"); return true; }
+        public void endVisit(IntegralType__char n) { unimplementedVisitor("endVisit(IntegralType__char)"); }
 
-        public boolean visit(FloatingPointType0 n) { unimplementedVisitor("visit(FloatingPointType0)"); return true; }
-        public void endVisit(FloatingPointType0 n) { unimplementedVisitor("endVisit(FloatingPointType0)"); }
+        public boolean visit(FloatingPointType__float n) { unimplementedVisitor("visit(FloatingPointType__float)"); return true; }
+        public void endVisit(FloatingPointType__float n) { unimplementedVisitor("endVisit(FloatingPointType__float)"); }
 
-        public boolean visit(FloatingPointType1 n) { unimplementedVisitor("visit(FloatingPointType1)"); return true; }
-        public void endVisit(FloatingPointType1 n) { unimplementedVisitor("endVisit(FloatingPointType1)"); }
+        public boolean visit(FloatingPointType__double n) { unimplementedVisitor("visit(FloatingPointType__double)"); return true; }
+        public void endVisit(FloatingPointType__double n) { unimplementedVisitor("endVisit(FloatingPointType__double)"); }
 
-        public boolean visit(WildcardBounds0 n) { unimplementedVisitor("visit(WildcardBounds0)"); return true; }
-        public void endVisit(WildcardBounds0 n) { unimplementedVisitor("endVisit(WildcardBounds0)"); }
+        public boolean visit(WildcardBounds__extends_ReferenceType n) { unimplementedVisitor("visit(WildcardBounds__extends_ReferenceType)"); return true; }
+        public void endVisit(WildcardBounds__extends_ReferenceType n) { unimplementedVisitor("endVisit(WildcardBounds__extends_ReferenceType)"); }
 
-        public boolean visit(WildcardBounds1 n) { unimplementedVisitor("visit(WildcardBounds1)"); return true; }
-        public void endVisit(WildcardBounds1 n) { unimplementedVisitor("endVisit(WildcardBounds1)"); }
+        public boolean visit(WildcardBounds__super_ReferenceType n) { unimplementedVisitor("visit(WildcardBounds__super_ReferenceType)"); return true; }
+        public void endVisit(WildcardBounds__super_ReferenceType n) { unimplementedVisitor("endVisit(WildcardBounds__super_ReferenceType)"); }
 
-        public boolean visit(ClassModifier0 n) { unimplementedVisitor("visit(ClassModifier0)"); return true; }
-        public void endVisit(ClassModifier0 n) { unimplementedVisitor("endVisit(ClassModifier0)"); }
+        public boolean visit(ClassModifier__public n) { unimplementedVisitor("visit(ClassModifier__public)"); return true; }
+        public void endVisit(ClassModifier__public n) { unimplementedVisitor("endVisit(ClassModifier__public)"); }
 
-        public boolean visit(ClassModifier1 n) { unimplementedVisitor("visit(ClassModifier1)"); return true; }
-        public void endVisit(ClassModifier1 n) { unimplementedVisitor("endVisit(ClassModifier1)"); }
+        public boolean visit(ClassModifier__protected n) { unimplementedVisitor("visit(ClassModifier__protected)"); return true; }
+        public void endVisit(ClassModifier__protected n) { unimplementedVisitor("endVisit(ClassModifier__protected)"); }
 
-        public boolean visit(ClassModifier2 n) { unimplementedVisitor("visit(ClassModifier2)"); return true; }
-        public void endVisit(ClassModifier2 n) { unimplementedVisitor("endVisit(ClassModifier2)"); }
+        public boolean visit(ClassModifier__private n) { unimplementedVisitor("visit(ClassModifier__private)"); return true; }
+        public void endVisit(ClassModifier__private n) { unimplementedVisitor("endVisit(ClassModifier__private)"); }
 
-        public boolean visit(ClassModifier3 n) { unimplementedVisitor("visit(ClassModifier3)"); return true; }
-        public void endVisit(ClassModifier3 n) { unimplementedVisitor("endVisit(ClassModifier3)"); }
+        public boolean visit(ClassModifier__abstract n) { unimplementedVisitor("visit(ClassModifier__abstract)"); return true; }
+        public void endVisit(ClassModifier__abstract n) { unimplementedVisitor("endVisit(ClassModifier__abstract)"); }
 
-        public boolean visit(ClassModifier4 n) { unimplementedVisitor("visit(ClassModifier4)"); return true; }
-        public void endVisit(ClassModifier4 n) { unimplementedVisitor("endVisit(ClassModifier4)"); }
+        public boolean visit(ClassModifier__static n) { unimplementedVisitor("visit(ClassModifier__static)"); return true; }
+        public void endVisit(ClassModifier__static n) { unimplementedVisitor("endVisit(ClassModifier__static)"); }
 
-        public boolean visit(ClassModifier5 n) { unimplementedVisitor("visit(ClassModifier5)"); return true; }
-        public void endVisit(ClassModifier5 n) { unimplementedVisitor("endVisit(ClassModifier5)"); }
+        public boolean visit(ClassModifier__final n) { unimplementedVisitor("visit(ClassModifier__final)"); return true; }
+        public void endVisit(ClassModifier__final n) { unimplementedVisitor("endVisit(ClassModifier__final)"); }
 
-        public boolean visit(ClassModifier6 n) { unimplementedVisitor("visit(ClassModifier6)"); return true; }
-        public void endVisit(ClassModifier6 n) { unimplementedVisitor("endVisit(ClassModifier6)"); }
+        public boolean visit(ClassModifier__strictfp n) { unimplementedVisitor("visit(ClassModifier__strictfp)"); return true; }
+        public void endVisit(ClassModifier__strictfp n) { unimplementedVisitor("endVisit(ClassModifier__strictfp)"); }
 
-        public boolean visit(FieldModifier0 n) { unimplementedVisitor("visit(FieldModifier0)"); return true; }
-        public void endVisit(FieldModifier0 n) { unimplementedVisitor("endVisit(FieldModifier0)"); }
+        public boolean visit(FieldModifier__public n) { unimplementedVisitor("visit(FieldModifier__public)"); return true; }
+        public void endVisit(FieldModifier__public n) { unimplementedVisitor("endVisit(FieldModifier__public)"); }
 
-        public boolean visit(FieldModifier1 n) { unimplementedVisitor("visit(FieldModifier1)"); return true; }
-        public void endVisit(FieldModifier1 n) { unimplementedVisitor("endVisit(FieldModifier1)"); }
+        public boolean visit(FieldModifier__protected n) { unimplementedVisitor("visit(FieldModifier__protected)"); return true; }
+        public void endVisit(FieldModifier__protected n) { unimplementedVisitor("endVisit(FieldModifier__protected)"); }
 
-        public boolean visit(FieldModifier2 n) { unimplementedVisitor("visit(FieldModifier2)"); return true; }
-        public void endVisit(FieldModifier2 n) { unimplementedVisitor("endVisit(FieldModifier2)"); }
+        public boolean visit(FieldModifier__private n) { unimplementedVisitor("visit(FieldModifier__private)"); return true; }
+        public void endVisit(FieldModifier__private n) { unimplementedVisitor("endVisit(FieldModifier__private)"); }
 
-        public boolean visit(FieldModifier3 n) { unimplementedVisitor("visit(FieldModifier3)"); return true; }
-        public void endVisit(FieldModifier3 n) { unimplementedVisitor("endVisit(FieldModifier3)"); }
+        public boolean visit(FieldModifier__static n) { unimplementedVisitor("visit(FieldModifier__static)"); return true; }
+        public void endVisit(FieldModifier__static n) { unimplementedVisitor("endVisit(FieldModifier__static)"); }
 
-        public boolean visit(FieldModifier4 n) { unimplementedVisitor("visit(FieldModifier4)"); return true; }
-        public void endVisit(FieldModifier4 n) { unimplementedVisitor("endVisit(FieldModifier4)"); }
+        public boolean visit(FieldModifier__final n) { unimplementedVisitor("visit(FieldModifier__final)"); return true; }
+        public void endVisit(FieldModifier__final n) { unimplementedVisitor("endVisit(FieldModifier__final)"); }
 
-        public boolean visit(FieldModifier5 n) { unimplementedVisitor("visit(FieldModifier5)"); return true; }
-        public void endVisit(FieldModifier5 n) { unimplementedVisitor("endVisit(FieldModifier5)"); }
+        public boolean visit(FieldModifier__transient n) { unimplementedVisitor("visit(FieldModifier__transient)"); return true; }
+        public void endVisit(FieldModifier__transient n) { unimplementedVisitor("endVisit(FieldModifier__transient)"); }
 
-        public boolean visit(FieldModifier6 n) { unimplementedVisitor("visit(FieldModifier6)"); return true; }
-        public void endVisit(FieldModifier6 n) { unimplementedVisitor("endVisit(FieldModifier6)"); }
+        public boolean visit(FieldModifier__volatile n) { unimplementedVisitor("visit(FieldModifier__volatile)"); return true; }
+        public void endVisit(FieldModifier__volatile n) { unimplementedVisitor("endVisit(FieldModifier__volatile)"); }
 
-        public boolean visit(MethodDeclarator0 n) { unimplementedVisitor("visit(MethodDeclarator0)"); return true; }
-        public void endVisit(MethodDeclarator0 n) { unimplementedVisitor("endVisit(MethodDeclarator0)"); }
+        public boolean visit(MethodDeclarator__identifier_LPAREN_FormalParameterListopt_RPAREN n) { unimplementedVisitor("visit(MethodDeclarator__identifier_LPAREN_FormalParameterListopt_RPAREN)"); return true; }
+        public void endVisit(MethodDeclarator__identifier_LPAREN_FormalParameterListopt_RPAREN n) { unimplementedVisitor("endVisit(MethodDeclarator__identifier_LPAREN_FormalParameterListopt_RPAREN)"); }
 
-        public boolean visit(MethodDeclarator1 n) { unimplementedVisitor("visit(MethodDeclarator1)"); return true; }
-        public void endVisit(MethodDeclarator1 n) { unimplementedVisitor("endVisit(MethodDeclarator1)"); }
+        public boolean visit(MethodDeclarator__MethodDeclarator_LBRACKET_RBRACKET n) { unimplementedVisitor("visit(MethodDeclarator__MethodDeclarator_LBRACKET_RBRACKET)"); return true; }
+        public void endVisit(MethodDeclarator__MethodDeclarator_LBRACKET_RBRACKET n) { unimplementedVisitor("endVisit(MethodDeclarator__MethodDeclarator_LBRACKET_RBRACKET)"); }
 
-        public boolean visit(MethodModifier0 n) { unimplementedVisitor("visit(MethodModifier0)"); return true; }
-        public void endVisit(MethodModifier0 n) { unimplementedVisitor("endVisit(MethodModifier0)"); }
+        public boolean visit(MethodModifier__public n) { unimplementedVisitor("visit(MethodModifier__public)"); return true; }
+        public void endVisit(MethodModifier__public n) { unimplementedVisitor("endVisit(MethodModifier__public)"); }
 
-        public boolean visit(MethodModifier1 n) { unimplementedVisitor("visit(MethodModifier1)"); return true; }
-        public void endVisit(MethodModifier1 n) { unimplementedVisitor("endVisit(MethodModifier1)"); }
+        public boolean visit(MethodModifier__protected n) { unimplementedVisitor("visit(MethodModifier__protected)"); return true; }
+        public void endVisit(MethodModifier__protected n) { unimplementedVisitor("endVisit(MethodModifier__protected)"); }
 
-        public boolean visit(MethodModifier2 n) { unimplementedVisitor("visit(MethodModifier2)"); return true; }
-        public void endVisit(MethodModifier2 n) { unimplementedVisitor("endVisit(MethodModifier2)"); }
+        public boolean visit(MethodModifier__private n) { unimplementedVisitor("visit(MethodModifier__private)"); return true; }
+        public void endVisit(MethodModifier__private n) { unimplementedVisitor("endVisit(MethodModifier__private)"); }
 
-        public boolean visit(MethodModifier3 n) { unimplementedVisitor("visit(MethodModifier3)"); return true; }
-        public void endVisit(MethodModifier3 n) { unimplementedVisitor("endVisit(MethodModifier3)"); }
+        public boolean visit(MethodModifier__abstract n) { unimplementedVisitor("visit(MethodModifier__abstract)"); return true; }
+        public void endVisit(MethodModifier__abstract n) { unimplementedVisitor("endVisit(MethodModifier__abstract)"); }
 
-        public boolean visit(MethodModifier4 n) { unimplementedVisitor("visit(MethodModifier4)"); return true; }
-        public void endVisit(MethodModifier4 n) { unimplementedVisitor("endVisit(MethodModifier4)"); }
+        public boolean visit(MethodModifier__static n) { unimplementedVisitor("visit(MethodModifier__static)"); return true; }
+        public void endVisit(MethodModifier__static n) { unimplementedVisitor("endVisit(MethodModifier__static)"); }
 
-        public boolean visit(MethodModifier5 n) { unimplementedVisitor("visit(MethodModifier5)"); return true; }
-        public void endVisit(MethodModifier5 n) { unimplementedVisitor("endVisit(MethodModifier5)"); }
+        public boolean visit(MethodModifier__final n) { unimplementedVisitor("visit(MethodModifier__final)"); return true; }
+        public void endVisit(MethodModifier__final n) { unimplementedVisitor("endVisit(MethodModifier__final)"); }
 
-        public boolean visit(MethodModifier6 n) { unimplementedVisitor("visit(MethodModifier6)"); return true; }
-        public void endVisit(MethodModifier6 n) { unimplementedVisitor("endVisit(MethodModifier6)"); }
+        public boolean visit(MethodModifier__synchronized n) { unimplementedVisitor("visit(MethodModifier__synchronized)"); return true; }
+        public void endVisit(MethodModifier__synchronized n) { unimplementedVisitor("endVisit(MethodModifier__synchronized)"); }
 
-        public boolean visit(MethodModifier7 n) { unimplementedVisitor("visit(MethodModifier7)"); return true; }
-        public void endVisit(MethodModifier7 n) { unimplementedVisitor("endVisit(MethodModifier7)"); }
+        public boolean visit(MethodModifier__native n) { unimplementedVisitor("visit(MethodModifier__native)"); return true; }
+        public void endVisit(MethodModifier__native n) { unimplementedVisitor("endVisit(MethodModifier__native)"); }
 
-        public boolean visit(MethodModifier8 n) { unimplementedVisitor("visit(MethodModifier8)"); return true; }
-        public void endVisit(MethodModifier8 n) { unimplementedVisitor("endVisit(MethodModifier8)"); }
+        public boolean visit(MethodModifier__strictfp n) { unimplementedVisitor("visit(MethodModifier__strictfp)"); return true; }
+        public void endVisit(MethodModifier__strictfp n) { unimplementedVisitor("endVisit(MethodModifier__strictfp)"); }
 
-        public boolean visit(ConstructorModifier0 n) { unimplementedVisitor("visit(ConstructorModifier0)"); return true; }
-        public void endVisit(ConstructorModifier0 n) { unimplementedVisitor("endVisit(ConstructorModifier0)"); }
+        public boolean visit(ConstructorModifier__public n) { unimplementedVisitor("visit(ConstructorModifier__public)"); return true; }
+        public void endVisit(ConstructorModifier__public n) { unimplementedVisitor("endVisit(ConstructorModifier__public)"); }
 
-        public boolean visit(ConstructorModifier1 n) { unimplementedVisitor("visit(ConstructorModifier1)"); return true; }
-        public void endVisit(ConstructorModifier1 n) { unimplementedVisitor("endVisit(ConstructorModifier1)"); }
+        public boolean visit(ConstructorModifier__protected n) { unimplementedVisitor("visit(ConstructorModifier__protected)"); return true; }
+        public void endVisit(ConstructorModifier__protected n) { unimplementedVisitor("endVisit(ConstructorModifier__protected)"); }
 
-        public boolean visit(ConstructorModifier2 n) { unimplementedVisitor("visit(ConstructorModifier2)"); return true; }
-        public void endVisit(ConstructorModifier2 n) { unimplementedVisitor("endVisit(ConstructorModifier2)"); }
+        public boolean visit(ConstructorModifier__private n) { unimplementedVisitor("visit(ConstructorModifier__private)"); return true; }
+        public void endVisit(ConstructorModifier__private n) { unimplementedVisitor("endVisit(ConstructorModifier__private)"); }
 
-        public boolean visit(ExplicitConstructorInvocation0 n) { unimplementedVisitor("visit(ExplicitConstructorInvocation0)"); return true; }
-        public void endVisit(ExplicitConstructorInvocation0 n) { unimplementedVisitor("endVisit(ExplicitConstructorInvocation0)"); }
+        public boolean visit(ExplicitConstructorInvocation__TypeArgumentsopt_this_LPAREN_ArgumentListopt_RPAREN_SEMICOLON n) { unimplementedVisitor("visit(ExplicitConstructorInvocation__TypeArgumentsopt_this_LPAREN_ArgumentListopt_RPAREN_SEMICOLON)"); return true; }
+        public void endVisit(ExplicitConstructorInvocation__TypeArgumentsopt_this_LPAREN_ArgumentListopt_RPAREN_SEMICOLON n) { unimplementedVisitor("endVisit(ExplicitConstructorInvocation__TypeArgumentsopt_this_LPAREN_ArgumentListopt_RPAREN_SEMICOLON)"); }
 
-        public boolean visit(ExplicitConstructorInvocation1 n) { unimplementedVisitor("visit(ExplicitConstructorInvocation1)"); return true; }
-        public void endVisit(ExplicitConstructorInvocation1 n) { unimplementedVisitor("endVisit(ExplicitConstructorInvocation1)"); }
+        public boolean visit(ExplicitConstructorInvocation__TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON n) { unimplementedVisitor("visit(ExplicitConstructorInvocation__TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON)"); return true; }
+        public void endVisit(ExplicitConstructorInvocation__TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON n) { unimplementedVisitor("endVisit(ExplicitConstructorInvocation__TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON)"); }
 
-        public boolean visit(ExplicitConstructorInvocation2 n) { unimplementedVisitor("visit(ExplicitConstructorInvocation2)"); return true; }
-        public void endVisit(ExplicitConstructorInvocation2 n) { unimplementedVisitor("endVisit(ExplicitConstructorInvocation2)"); }
+        public boolean visit(ExplicitConstructorInvocation__Primary_DOT_TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON n) { unimplementedVisitor("visit(ExplicitConstructorInvocation__Primary_DOT_TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON)"); return true; }
+        public void endVisit(ExplicitConstructorInvocation__Primary_DOT_TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON n) { unimplementedVisitor("endVisit(ExplicitConstructorInvocation__Primary_DOT_TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON)"); }
 
-        public boolean visit(InterfaceModifier0 n) { unimplementedVisitor("visit(InterfaceModifier0)"); return true; }
-        public void endVisit(InterfaceModifier0 n) { unimplementedVisitor("endVisit(InterfaceModifier0)"); }
+        public boolean visit(InterfaceModifier__public n) { unimplementedVisitor("visit(InterfaceModifier__public)"); return true; }
+        public void endVisit(InterfaceModifier__public n) { unimplementedVisitor("endVisit(InterfaceModifier__public)"); }
 
-        public boolean visit(InterfaceModifier1 n) { unimplementedVisitor("visit(InterfaceModifier1)"); return true; }
-        public void endVisit(InterfaceModifier1 n) { unimplementedVisitor("endVisit(InterfaceModifier1)"); }
+        public boolean visit(InterfaceModifier__protected n) { unimplementedVisitor("visit(InterfaceModifier__protected)"); return true; }
+        public void endVisit(InterfaceModifier__protected n) { unimplementedVisitor("endVisit(InterfaceModifier__protected)"); }
 
-        public boolean visit(InterfaceModifier2 n) { unimplementedVisitor("visit(InterfaceModifier2)"); return true; }
-        public void endVisit(InterfaceModifier2 n) { unimplementedVisitor("endVisit(InterfaceModifier2)"); }
+        public boolean visit(InterfaceModifier__private n) { unimplementedVisitor("visit(InterfaceModifier__private)"); return true; }
+        public void endVisit(InterfaceModifier__private n) { unimplementedVisitor("endVisit(InterfaceModifier__private)"); }
 
-        public boolean visit(InterfaceModifier3 n) { unimplementedVisitor("visit(InterfaceModifier3)"); return true; }
-        public void endVisit(InterfaceModifier3 n) { unimplementedVisitor("endVisit(InterfaceModifier3)"); }
+        public boolean visit(InterfaceModifier__abstract n) { unimplementedVisitor("visit(InterfaceModifier__abstract)"); return true; }
+        public void endVisit(InterfaceModifier__abstract n) { unimplementedVisitor("endVisit(InterfaceModifier__abstract)"); }
 
-        public boolean visit(InterfaceModifier4 n) { unimplementedVisitor("visit(InterfaceModifier4)"); return true; }
-        public void endVisit(InterfaceModifier4 n) { unimplementedVisitor("endVisit(InterfaceModifier4)"); }
+        public boolean visit(InterfaceModifier__static n) { unimplementedVisitor("visit(InterfaceModifier__static)"); return true; }
+        public void endVisit(InterfaceModifier__static n) { unimplementedVisitor("endVisit(InterfaceModifier__static)"); }
 
-        public boolean visit(InterfaceModifier5 n) { unimplementedVisitor("visit(InterfaceModifier5)"); return true; }
-        public void endVisit(InterfaceModifier5 n) { unimplementedVisitor("endVisit(InterfaceModifier5)"); }
+        public boolean visit(InterfaceModifier__strictfp n) { unimplementedVisitor("visit(InterfaceModifier__strictfp)"); return true; }
+        public void endVisit(InterfaceModifier__strictfp n) { unimplementedVisitor("endVisit(InterfaceModifier__strictfp)"); }
 
-        public boolean visit(ExtendsInterfaces0 n) { unimplementedVisitor("visit(ExtendsInterfaces0)"); return true; }
-        public void endVisit(ExtendsInterfaces0 n) { unimplementedVisitor("endVisit(ExtendsInterfaces0)"); }
+        public boolean visit(ExtendsInterfaces__extends_InterfaceType n) { unimplementedVisitor("visit(ExtendsInterfaces__extends_InterfaceType)"); return true; }
+        public void endVisit(ExtendsInterfaces__extends_InterfaceType n) { unimplementedVisitor("endVisit(ExtendsInterfaces__extends_InterfaceType)"); }
 
-        public boolean visit(ExtendsInterfaces1 n) { unimplementedVisitor("visit(ExtendsInterfaces1)"); return true; }
-        public void endVisit(ExtendsInterfaces1 n) { unimplementedVisitor("endVisit(ExtendsInterfaces1)"); }
+        public boolean visit(ExtendsInterfaces__ExtendsInterfaces_COMMA_InterfaceType n) { unimplementedVisitor("visit(ExtendsInterfaces__ExtendsInterfaces_COMMA_InterfaceType)"); return true; }
+        public void endVisit(ExtendsInterfaces__ExtendsInterfaces_COMMA_InterfaceType n) { unimplementedVisitor("endVisit(ExtendsInterfaces__ExtendsInterfaces_COMMA_InterfaceType)"); }
 
-        public boolean visit(ConstantModifier0 n) { unimplementedVisitor("visit(ConstantModifier0)"); return true; }
-        public void endVisit(ConstantModifier0 n) { unimplementedVisitor("endVisit(ConstantModifier0)"); }
+        public boolean visit(ConstantModifier__public n) { unimplementedVisitor("visit(ConstantModifier__public)"); return true; }
+        public void endVisit(ConstantModifier__public n) { unimplementedVisitor("endVisit(ConstantModifier__public)"); }
 
-        public boolean visit(ConstantModifier1 n) { unimplementedVisitor("visit(ConstantModifier1)"); return true; }
-        public void endVisit(ConstantModifier1 n) { unimplementedVisitor("endVisit(ConstantModifier1)"); }
+        public boolean visit(ConstantModifier__static n) { unimplementedVisitor("visit(ConstantModifier__static)"); return true; }
+        public void endVisit(ConstantModifier__static n) { unimplementedVisitor("endVisit(ConstantModifier__static)"); }
 
-        public boolean visit(ConstantModifier2 n) { unimplementedVisitor("visit(ConstantModifier2)"); return true; }
-        public void endVisit(ConstantModifier2 n) { unimplementedVisitor("endVisit(ConstantModifier2)"); }
+        public boolean visit(ConstantModifier__final n) { unimplementedVisitor("visit(ConstantModifier__final)"); return true; }
+        public void endVisit(ConstantModifier__final n) { unimplementedVisitor("endVisit(ConstantModifier__final)"); }
 
-        public boolean visit(AbstractMethodModifier0 n) { unimplementedVisitor("visit(AbstractMethodModifier0)"); return true; }
-        public void endVisit(AbstractMethodModifier0 n) { unimplementedVisitor("endVisit(AbstractMethodModifier0)"); }
+        public boolean visit(AbstractMethodModifier__public n) { unimplementedVisitor("visit(AbstractMethodModifier__public)"); return true; }
+        public void endVisit(AbstractMethodModifier__public n) { unimplementedVisitor("endVisit(AbstractMethodModifier__public)"); }
 
-        public boolean visit(AbstractMethodModifier1 n) { unimplementedVisitor("visit(AbstractMethodModifier1)"); return true; }
-        public void endVisit(AbstractMethodModifier1 n) { unimplementedVisitor("endVisit(AbstractMethodModifier1)"); }
+        public boolean visit(AbstractMethodModifier__abstract n) { unimplementedVisitor("visit(AbstractMethodModifier__abstract)"); return true; }
+        public void endVisit(AbstractMethodModifier__abstract n) { unimplementedVisitor("endVisit(AbstractMethodModifier__abstract)"); }
 
-        public boolean visit(AnnotationTypeElementDeclaration0 n) { unimplementedVisitor("visit(AnnotationTypeElementDeclaration0)"); return true; }
-        public void endVisit(AnnotationTypeElementDeclaration0 n) { unimplementedVisitor("endVisit(AnnotationTypeElementDeclaration0)"); }
+        public boolean visit(AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON n) { unimplementedVisitor("visit(AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON)"); return true; }
+        public void endVisit(AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON n) { unimplementedVisitor("endVisit(AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON)"); }
 
-        public boolean visit(AnnotationTypeElementDeclaration1 n) { unimplementedVisitor("visit(AnnotationTypeElementDeclaration1)"); return true; }
-        public void endVisit(AnnotationTypeElementDeclaration1 n) { unimplementedVisitor("endVisit(AnnotationTypeElementDeclaration1)"); }
+        public boolean visit(AnnotationTypeElementDeclaration__SEMICOLON n) { unimplementedVisitor("visit(AnnotationTypeElementDeclaration__SEMICOLON)"); return true; }
+        public void endVisit(AnnotationTypeElementDeclaration__SEMICOLON n) { unimplementedVisitor("endVisit(AnnotationTypeElementDeclaration__SEMICOLON)"); }
 
-        public boolean visit(AssertStatement0 n) { unimplementedVisitor("visit(AssertStatement0)"); return true; }
-        public void endVisit(AssertStatement0 n) { unimplementedVisitor("endVisit(AssertStatement0)"); }
+        public boolean visit(AssertStatement__assert_Expression_SEMICOLON n) { unimplementedVisitor("visit(AssertStatement__assert_Expression_SEMICOLON)"); return true; }
+        public void endVisit(AssertStatement__assert_Expression_SEMICOLON n) { unimplementedVisitor("endVisit(AssertStatement__assert_Expression_SEMICOLON)"); }
 
-        public boolean visit(AssertStatement1 n) { unimplementedVisitor("visit(AssertStatement1)"); return true; }
-        public void endVisit(AssertStatement1 n) { unimplementedVisitor("endVisit(AssertStatement1)"); }
+        public boolean visit(AssertStatement__assert_Expression_COLON_Expression_SEMICOLON n) { unimplementedVisitor("visit(AssertStatement__assert_Expression_COLON_Expression_SEMICOLON)"); return true; }
+        public void endVisit(AssertStatement__assert_Expression_COLON_Expression_SEMICOLON n) { unimplementedVisitor("endVisit(AssertStatement__assert_Expression_COLON_Expression_SEMICOLON)"); }
 
-        public boolean visit(SwitchLabel0 n) { unimplementedVisitor("visit(SwitchLabel0)"); return true; }
-        public void endVisit(SwitchLabel0 n) { unimplementedVisitor("endVisit(SwitchLabel0)"); }
+        public boolean visit(SwitchLabel__case_ConstantExpression_COLON n) { unimplementedVisitor("visit(SwitchLabel__case_ConstantExpression_COLON)"); return true; }
+        public void endVisit(SwitchLabel__case_ConstantExpression_COLON n) { unimplementedVisitor("endVisit(SwitchLabel__case_ConstantExpression_COLON)"); }
 
-        public boolean visit(SwitchLabel1 n) { unimplementedVisitor("visit(SwitchLabel1)"); return true; }
-        public void endVisit(SwitchLabel1 n) { unimplementedVisitor("endVisit(SwitchLabel1)"); }
+        public boolean visit(SwitchLabel__case_EnumConstant_COLON n) { unimplementedVisitor("visit(SwitchLabel__case_EnumConstant_COLON)"); return true; }
+        public void endVisit(SwitchLabel__case_EnumConstant_COLON n) { unimplementedVisitor("endVisit(SwitchLabel__case_EnumConstant_COLON)"); }
 
-        public boolean visit(SwitchLabel2 n) { unimplementedVisitor("visit(SwitchLabel2)"); return true; }
-        public void endVisit(SwitchLabel2 n) { unimplementedVisitor("endVisit(SwitchLabel2)"); }
+        public boolean visit(SwitchLabel__default_COLON n) { unimplementedVisitor("visit(SwitchLabel__default_COLON)"); return true; }
+        public void endVisit(SwitchLabel__default_COLON n) { unimplementedVisitor("endVisit(SwitchLabel__default_COLON)"); }
 
-        public boolean visit(TryStatement0 n) { unimplementedVisitor("visit(TryStatement0)"); return true; }
-        public void endVisit(TryStatement0 n) { unimplementedVisitor("endVisit(TryStatement0)"); }
+        public boolean visit(TryStatement__try_Block_Catches n) { unimplementedVisitor("visit(TryStatement__try_Block_Catches)"); return true; }
+        public void endVisit(TryStatement__try_Block_Catches n) { unimplementedVisitor("endVisit(TryStatement__try_Block_Catches)"); }
 
-        public boolean visit(TryStatement1 n) { unimplementedVisitor("visit(TryStatement1)"); return true; }
-        public void endVisit(TryStatement1 n) { unimplementedVisitor("endVisit(TryStatement1)"); }
+        public boolean visit(TryStatement__try_Block_Catchesopt_Finally n) { unimplementedVisitor("visit(TryStatement__try_Block_Catchesopt_Finally)"); return true; }
+        public void endVisit(TryStatement__try_Block_Catchesopt_Finally n) { unimplementedVisitor("endVisit(TryStatement__try_Block_Catchesopt_Finally)"); }
 
-        public boolean visit(PrimaryNoNewArray0 n) { unimplementedVisitor("visit(PrimaryNoNewArray0)"); return true; }
-        public void endVisit(PrimaryNoNewArray0 n) { unimplementedVisitor("endVisit(PrimaryNoNewArray0)"); }
+        public boolean visit(PrimaryNoNewArray__Type_DOT_class n) { unimplementedVisitor("visit(PrimaryNoNewArray__Type_DOT_class)"); return true; }
+        public void endVisit(PrimaryNoNewArray__Type_DOT_class n) { unimplementedVisitor("endVisit(PrimaryNoNewArray__Type_DOT_class)"); }
 
-        public boolean visit(PrimaryNoNewArray1 n) { unimplementedVisitor("visit(PrimaryNoNewArray1)"); return true; }
-        public void endVisit(PrimaryNoNewArray1 n) { unimplementedVisitor("endVisit(PrimaryNoNewArray1)"); }
+        public boolean visit(PrimaryNoNewArray__void_DOT_class n) { unimplementedVisitor("visit(PrimaryNoNewArray__void_DOT_class)"); return true; }
+        public void endVisit(PrimaryNoNewArray__void_DOT_class n) { unimplementedVisitor("endVisit(PrimaryNoNewArray__void_DOT_class)"); }
 
-        public boolean visit(PrimaryNoNewArray2 n) { unimplementedVisitor("visit(PrimaryNoNewArray2)"); return true; }
-        public void endVisit(PrimaryNoNewArray2 n) { unimplementedVisitor("endVisit(PrimaryNoNewArray2)"); }
+        public boolean visit(PrimaryNoNewArray__this n) { unimplementedVisitor("visit(PrimaryNoNewArray__this)"); return true; }
+        public void endVisit(PrimaryNoNewArray__this n) { unimplementedVisitor("endVisit(PrimaryNoNewArray__this)"); }
 
-        public boolean visit(PrimaryNoNewArray3 n) { unimplementedVisitor("visit(PrimaryNoNewArray3)"); return true; }
-        public void endVisit(PrimaryNoNewArray3 n) { unimplementedVisitor("endVisit(PrimaryNoNewArray3)"); }
+        public boolean visit(PrimaryNoNewArray__ClassName_DOT_this n) { unimplementedVisitor("visit(PrimaryNoNewArray__ClassName_DOT_this)"); return true; }
+        public void endVisit(PrimaryNoNewArray__ClassName_DOT_this n) { unimplementedVisitor("endVisit(PrimaryNoNewArray__ClassName_DOT_this)"); }
 
-        public boolean visit(PrimaryNoNewArray4 n) { unimplementedVisitor("visit(PrimaryNoNewArray4)"); return true; }
-        public void endVisit(PrimaryNoNewArray4 n) { unimplementedVisitor("endVisit(PrimaryNoNewArray4)"); }
+        public boolean visit(PrimaryNoNewArray__LPAREN_Expression_RPAREN n) { unimplementedVisitor("visit(PrimaryNoNewArray__LPAREN_Expression_RPAREN)"); return true; }
+        public void endVisit(PrimaryNoNewArray__LPAREN_Expression_RPAREN n) { unimplementedVisitor("endVisit(PrimaryNoNewArray__LPAREN_Expression_RPAREN)"); }
 
-        public boolean visit(Literal0 n) { unimplementedVisitor("visit(Literal0)"); return true; }
-        public void endVisit(Literal0 n) { unimplementedVisitor("endVisit(Literal0)"); }
+        public boolean visit(Literal__IntegerLiteral n) { unimplementedVisitor("visit(Literal__IntegerLiteral)"); return true; }
+        public void endVisit(Literal__IntegerLiteral n) { unimplementedVisitor("endVisit(Literal__IntegerLiteral)"); }
 
-        public boolean visit(Literal1 n) { unimplementedVisitor("visit(Literal1)"); return true; }
-        public void endVisit(Literal1 n) { unimplementedVisitor("endVisit(Literal1)"); }
+        public boolean visit(Literal__LongLiteral n) { unimplementedVisitor("visit(Literal__LongLiteral)"); return true; }
+        public void endVisit(Literal__LongLiteral n) { unimplementedVisitor("endVisit(Literal__LongLiteral)"); }
 
-        public boolean visit(Literal2 n) { unimplementedVisitor("visit(Literal2)"); return true; }
-        public void endVisit(Literal2 n) { unimplementedVisitor("endVisit(Literal2)"); }
+        public boolean visit(Literal__FloatingPointLiteral n) { unimplementedVisitor("visit(Literal__FloatingPointLiteral)"); return true; }
+        public void endVisit(Literal__FloatingPointLiteral n) { unimplementedVisitor("endVisit(Literal__FloatingPointLiteral)"); }
 
-        public boolean visit(Literal3 n) { unimplementedVisitor("visit(Literal3)"); return true; }
-        public void endVisit(Literal3 n) { unimplementedVisitor("endVisit(Literal3)"); }
+        public boolean visit(Literal__DoubleLiteral n) { unimplementedVisitor("visit(Literal__DoubleLiteral)"); return true; }
+        public void endVisit(Literal__DoubleLiteral n) { unimplementedVisitor("endVisit(Literal__DoubleLiteral)"); }
 
-        public boolean visit(Literal4 n) { unimplementedVisitor("visit(Literal4)"); return true; }
-        public void endVisit(Literal4 n) { unimplementedVisitor("endVisit(Literal4)"); }
+        public boolean visit(Literal__CharacterLiteral n) { unimplementedVisitor("visit(Literal__CharacterLiteral)"); return true; }
+        public void endVisit(Literal__CharacterLiteral n) { unimplementedVisitor("endVisit(Literal__CharacterLiteral)"); }
 
-        public boolean visit(Literal5 n) { unimplementedVisitor("visit(Literal5)"); return true; }
-        public void endVisit(Literal5 n) { unimplementedVisitor("endVisit(Literal5)"); }
+        public boolean visit(Literal__StringLiteral n) { unimplementedVisitor("visit(Literal__StringLiteral)"); return true; }
+        public void endVisit(Literal__StringLiteral n) { unimplementedVisitor("endVisit(Literal__StringLiteral)"); }
 
-        public boolean visit(Literal6 n) { unimplementedVisitor("visit(Literal6)"); return true; }
-        public void endVisit(Literal6 n) { unimplementedVisitor("endVisit(Literal6)"); }
+        public boolean visit(Literal__null n) { unimplementedVisitor("visit(Literal__null)"); return true; }
+        public void endVisit(Literal__null n) { unimplementedVisitor("endVisit(Literal__null)"); }
 
-        public boolean visit(BooleanLiteral0 n) { unimplementedVisitor("visit(BooleanLiteral0)"); return true; }
-        public void endVisit(BooleanLiteral0 n) { unimplementedVisitor("endVisit(BooleanLiteral0)"); }
+        public boolean visit(BooleanLiteral__true n) { unimplementedVisitor("visit(BooleanLiteral__true)"); return true; }
+        public void endVisit(BooleanLiteral__true n) { unimplementedVisitor("endVisit(BooleanLiteral__true)"); }
 
-        public boolean visit(BooleanLiteral1 n) { unimplementedVisitor("visit(BooleanLiteral1)"); return true; }
-        public void endVisit(BooleanLiteral1 n) { unimplementedVisitor("endVisit(BooleanLiteral1)"); }
+        public boolean visit(BooleanLiteral__false n) { unimplementedVisitor("visit(BooleanLiteral__false)"); return true; }
+        public void endVisit(BooleanLiteral__false n) { unimplementedVisitor("endVisit(BooleanLiteral__false)"); }
 
-        public boolean visit(ClassInstanceCreationExpression0 n) { unimplementedVisitor("visit(ClassInstanceCreationExpression0)"); return true; }
-        public void endVisit(ClassInstanceCreationExpression0 n) { unimplementedVisitor("endVisit(ClassInstanceCreationExpression0)"); }
+        public boolean visit(ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt n) { unimplementedVisitor("visit(ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt)"); return true; }
+        public void endVisit(ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt n) { unimplementedVisitor("endVisit(ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt)"); }
 
-        public boolean visit(ClassInstanceCreationExpression1 n) { unimplementedVisitor("visit(ClassInstanceCreationExpression1)"); return true; }
-        public void endVisit(ClassInstanceCreationExpression1 n) { unimplementedVisitor("endVisit(ClassInstanceCreationExpression1)"); }
+        public boolean visit(ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt n) { unimplementedVisitor("visit(ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt)"); return true; }
+        public void endVisit(ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt n) { unimplementedVisitor("endVisit(ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt)"); }
 
-        public boolean visit(ArrayCreationExpression0 n) { unimplementedVisitor("visit(ArrayCreationExpression0)"); return true; }
-        public void endVisit(ArrayCreationExpression0 n) { unimplementedVisitor("endVisit(ArrayCreationExpression0)"); }
+        public boolean visit(ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt n) { unimplementedVisitor("visit(ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt)"); return true; }
+        public void endVisit(ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt n) { unimplementedVisitor("endVisit(ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt)"); }
 
-        public boolean visit(ArrayCreationExpression1 n) { unimplementedVisitor("visit(ArrayCreationExpression1)"); return true; }
-        public void endVisit(ArrayCreationExpression1 n) { unimplementedVisitor("endVisit(ArrayCreationExpression1)"); }
+        public boolean visit(ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt n) { unimplementedVisitor("visit(ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt)"); return true; }
+        public void endVisit(ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt n) { unimplementedVisitor("endVisit(ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt)"); }
 
-        public boolean visit(ArrayCreationExpression2 n) { unimplementedVisitor("visit(ArrayCreationExpression2)"); return true; }
-        public void endVisit(ArrayCreationExpression2 n) { unimplementedVisitor("endVisit(ArrayCreationExpression2)"); }
+        public boolean visit(ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer n) { unimplementedVisitor("visit(ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer)"); return true; }
+        public void endVisit(ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer n) { unimplementedVisitor("endVisit(ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer)"); }
 
-        public boolean visit(ArrayCreationExpression3 n) { unimplementedVisitor("visit(ArrayCreationExpression3)"); return true; }
-        public void endVisit(ArrayCreationExpression3 n) { unimplementedVisitor("endVisit(ArrayCreationExpression3)"); }
+        public boolean visit(ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer n) { unimplementedVisitor("visit(ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer)"); return true; }
+        public void endVisit(ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer n) { unimplementedVisitor("endVisit(ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer)"); }
 
-        public boolean visit(Dims0 n) { unimplementedVisitor("visit(Dims0)"); return true; }
-        public void endVisit(Dims0 n) { unimplementedVisitor("endVisit(Dims0)"); }
+        public boolean visit(Dims__LBRACKET_RBRACKET n) { unimplementedVisitor("visit(Dims__LBRACKET_RBRACKET)"); return true; }
+        public void endVisit(Dims__LBRACKET_RBRACKET n) { unimplementedVisitor("endVisit(Dims__LBRACKET_RBRACKET)"); }
 
-        public boolean visit(Dims1 n) { unimplementedVisitor("visit(Dims1)"); return true; }
-        public void endVisit(Dims1 n) { unimplementedVisitor("endVisit(Dims1)"); }
+        public boolean visit(Dims__Dims_LBRACKET_RBRACKET n) { unimplementedVisitor("visit(Dims__Dims_LBRACKET_RBRACKET)"); return true; }
+        public void endVisit(Dims__Dims_LBRACKET_RBRACKET n) { unimplementedVisitor("endVisit(Dims__Dims_LBRACKET_RBRACKET)"); }
 
-        public boolean visit(FieldAccess0 n) { unimplementedVisitor("visit(FieldAccess0)"); return true; }
-        public void endVisit(FieldAccess0 n) { unimplementedVisitor("endVisit(FieldAccess0)"); }
+        public boolean visit(FieldAccess__Primary_DOT_identifier n) { unimplementedVisitor("visit(FieldAccess__Primary_DOT_identifier)"); return true; }
+        public void endVisit(FieldAccess__Primary_DOT_identifier n) { unimplementedVisitor("endVisit(FieldAccess__Primary_DOT_identifier)"); }
 
-        public boolean visit(FieldAccess1 n) { unimplementedVisitor("visit(FieldAccess1)"); return true; }
-        public void endVisit(FieldAccess1 n) { unimplementedVisitor("endVisit(FieldAccess1)"); }
+        public boolean visit(FieldAccess__super_DOT_identifier n) { unimplementedVisitor("visit(FieldAccess__super_DOT_identifier)"); return true; }
+        public void endVisit(FieldAccess__super_DOT_identifier n) { unimplementedVisitor("endVisit(FieldAccess__super_DOT_identifier)"); }
 
-        public boolean visit(FieldAccess2 n) { unimplementedVisitor("visit(FieldAccess2)"); return true; }
-        public void endVisit(FieldAccess2 n) { unimplementedVisitor("endVisit(FieldAccess2)"); }
+        public boolean visit(FieldAccess__ClassName_DOT_super_DOT_identifier n) { unimplementedVisitor("visit(FieldAccess__ClassName_DOT_super_DOT_identifier)"); return true; }
+        public void endVisit(FieldAccess__ClassName_DOT_super_DOT_identifier n) { unimplementedVisitor("endVisit(FieldAccess__ClassName_DOT_super_DOT_identifier)"); }
 
-        public boolean visit(MethodInvocation0 n) { unimplementedVisitor("visit(MethodInvocation0)"); return true; }
-        public void endVisit(MethodInvocation0 n) { unimplementedVisitor("endVisit(MethodInvocation0)"); }
+        public boolean visit(MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN n) { unimplementedVisitor("visit(MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN)"); return true; }
+        public void endVisit(MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN n) { unimplementedVisitor("endVisit(MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN)"); }
 
-        public boolean visit(MethodInvocation1 n) { unimplementedVisitor("visit(MethodInvocation1)"); return true; }
-        public void endVisit(MethodInvocation1 n) { unimplementedVisitor("endVisit(MethodInvocation1)"); }
+        public boolean visit(MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN n) { unimplementedVisitor("visit(MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN)"); return true; }
+        public void endVisit(MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN n) { unimplementedVisitor("endVisit(MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN)"); }
 
-        public boolean visit(MethodInvocation2 n) { unimplementedVisitor("visit(MethodInvocation2)"); return true; }
-        public void endVisit(MethodInvocation2 n) { unimplementedVisitor("endVisit(MethodInvocation2)"); }
+        public boolean visit(MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN n) { unimplementedVisitor("visit(MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN)"); return true; }
+        public void endVisit(MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN n) { unimplementedVisitor("endVisit(MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN)"); }
 
-        public boolean visit(MethodInvocation3 n) { unimplementedVisitor("visit(MethodInvocation3)"); return true; }
-        public void endVisit(MethodInvocation3 n) { unimplementedVisitor("endVisit(MethodInvocation3)"); }
+        public boolean visit(MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN n) { unimplementedVisitor("visit(MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN)"); return true; }
+        public void endVisit(MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN n) { unimplementedVisitor("endVisit(MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN)"); }
 
-        public boolean visit(MethodInvocation4 n) { unimplementedVisitor("visit(MethodInvocation4)"); return true; }
-        public void endVisit(MethodInvocation4 n) { unimplementedVisitor("endVisit(MethodInvocation4)"); }
+        public boolean visit(MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN n) { unimplementedVisitor("visit(MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN)"); return true; }
+        public void endVisit(MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN n) { unimplementedVisitor("endVisit(MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN)"); }
 
-        public boolean visit(ArrayAccess0 n) { unimplementedVisitor("visit(ArrayAccess0)"); return true; }
-        public void endVisit(ArrayAccess0 n) { unimplementedVisitor("endVisit(ArrayAccess0)"); }
+        public boolean visit(ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET n) { unimplementedVisitor("visit(ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET)"); return true; }
+        public void endVisit(ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET n) { unimplementedVisitor("endVisit(ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET)"); }
 
-        public boolean visit(ArrayAccess1 n) { unimplementedVisitor("visit(ArrayAccess1)"); return true; }
-        public void endVisit(ArrayAccess1 n) { unimplementedVisitor("endVisit(ArrayAccess1)"); }
+        public boolean visit(ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET n) { unimplementedVisitor("visit(ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET)"); return true; }
+        public void endVisit(ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET n) { unimplementedVisitor("endVisit(ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET)"); }
 
-        public boolean visit(UnaryExpression0 n) { unimplementedVisitor("visit(UnaryExpression0)"); return true; }
-        public void endVisit(UnaryExpression0 n) { unimplementedVisitor("endVisit(UnaryExpression0)"); }
+        public boolean visit(UnaryExpression__PLUS_UnaryExpression n) { unimplementedVisitor("visit(UnaryExpression__PLUS_UnaryExpression)"); return true; }
+        public void endVisit(UnaryExpression__PLUS_UnaryExpression n) { unimplementedVisitor("endVisit(UnaryExpression__PLUS_UnaryExpression)"); }
 
-        public boolean visit(UnaryExpression1 n) { unimplementedVisitor("visit(UnaryExpression1)"); return true; }
-        public void endVisit(UnaryExpression1 n) { unimplementedVisitor("endVisit(UnaryExpression1)"); }
+        public boolean visit(UnaryExpression__MINUS_UnaryExpression n) { unimplementedVisitor("visit(UnaryExpression__MINUS_UnaryExpression)"); return true; }
+        public void endVisit(UnaryExpression__MINUS_UnaryExpression n) { unimplementedVisitor("endVisit(UnaryExpression__MINUS_UnaryExpression)"); }
 
-        public boolean visit(UnaryExpressionNotPlusMinus0 n) { unimplementedVisitor("visit(UnaryExpressionNotPlusMinus0)"); return true; }
-        public void endVisit(UnaryExpressionNotPlusMinus0 n) { unimplementedVisitor("endVisit(UnaryExpressionNotPlusMinus0)"); }
+        public boolean visit(UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression n) { unimplementedVisitor("visit(UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression)"); return true; }
+        public void endVisit(UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression n) { unimplementedVisitor("endVisit(UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression)"); }
 
-        public boolean visit(UnaryExpressionNotPlusMinus1 n) { unimplementedVisitor("visit(UnaryExpressionNotPlusMinus1)"); return true; }
-        public void endVisit(UnaryExpressionNotPlusMinus1 n) { unimplementedVisitor("endVisit(UnaryExpressionNotPlusMinus1)"); }
+        public boolean visit(UnaryExpressionNotPlusMinus__NOT_UnaryExpression n) { unimplementedVisitor("visit(UnaryExpressionNotPlusMinus__NOT_UnaryExpression)"); return true; }
+        public void endVisit(UnaryExpressionNotPlusMinus__NOT_UnaryExpression n) { unimplementedVisitor("endVisit(UnaryExpressionNotPlusMinus__NOT_UnaryExpression)"); }
 
-        public boolean visit(CastExpression0 n) { unimplementedVisitor("visit(CastExpression0)"); return true; }
-        public void endVisit(CastExpression0 n) { unimplementedVisitor("endVisit(CastExpression0)"); }
+        public boolean visit(CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression n) { unimplementedVisitor("visit(CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression)"); return true; }
+        public void endVisit(CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression n) { unimplementedVisitor("endVisit(CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression)"); }
 
-        public boolean visit(CastExpression1 n) { unimplementedVisitor("visit(CastExpression1)"); return true; }
-        public void endVisit(CastExpression1 n) { unimplementedVisitor("endVisit(CastExpression1)"); }
+        public boolean visit(CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus n) { unimplementedVisitor("visit(CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus)"); return true; }
+        public void endVisit(CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus n) { unimplementedVisitor("endVisit(CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus)"); }
 
-        public boolean visit(MultiplicativeExpression0 n) { unimplementedVisitor("visit(MultiplicativeExpression0)"); return true; }
-        public void endVisit(MultiplicativeExpression0 n) { unimplementedVisitor("endVisit(MultiplicativeExpression0)"); }
+        public boolean visit(MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression n) { unimplementedVisitor("visit(MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression)"); return true; }
+        public void endVisit(MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression n) { unimplementedVisitor("endVisit(MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression)"); }
 
-        public boolean visit(MultiplicativeExpression1 n) { unimplementedVisitor("visit(MultiplicativeExpression1)"); return true; }
-        public void endVisit(MultiplicativeExpression1 n) { unimplementedVisitor("endVisit(MultiplicativeExpression1)"); }
+        public boolean visit(MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression n) { unimplementedVisitor("visit(MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression)"); return true; }
+        public void endVisit(MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression n) { unimplementedVisitor("endVisit(MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression)"); }
 
-        public boolean visit(MultiplicativeExpression2 n) { unimplementedVisitor("visit(MultiplicativeExpression2)"); return true; }
-        public void endVisit(MultiplicativeExpression2 n) { unimplementedVisitor("endVisit(MultiplicativeExpression2)"); }
+        public boolean visit(MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression n) { unimplementedVisitor("visit(MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression)"); return true; }
+        public void endVisit(MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression n) { unimplementedVisitor("endVisit(MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression)"); }
 
-        public boolean visit(AdditiveExpression0 n) { unimplementedVisitor("visit(AdditiveExpression0)"); return true; }
-        public void endVisit(AdditiveExpression0 n) { unimplementedVisitor("endVisit(AdditiveExpression0)"); }
+        public boolean visit(AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression n) { unimplementedVisitor("visit(AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression)"); return true; }
+        public void endVisit(AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression n) { unimplementedVisitor("endVisit(AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression)"); }
 
-        public boolean visit(AdditiveExpression1 n) { unimplementedVisitor("visit(AdditiveExpression1)"); return true; }
-        public void endVisit(AdditiveExpression1 n) { unimplementedVisitor("endVisit(AdditiveExpression1)"); }
+        public boolean visit(AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression n) { unimplementedVisitor("visit(AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression)"); return true; }
+        public void endVisit(AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression n) { unimplementedVisitor("endVisit(AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression)"); }
 
-        public boolean visit(ShiftExpression0 n) { unimplementedVisitor("visit(ShiftExpression0)"); return true; }
-        public void endVisit(ShiftExpression0 n) { unimplementedVisitor("endVisit(ShiftExpression0)"); }
+        public boolean visit(ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression n) { unimplementedVisitor("visit(ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression)"); return true; }
+        public void endVisit(ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression n) { unimplementedVisitor("endVisit(ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression)"); }
 
-        public boolean visit(ShiftExpression1 n) { unimplementedVisitor("visit(ShiftExpression1)"); return true; }
-        public void endVisit(ShiftExpression1 n) { unimplementedVisitor("endVisit(ShiftExpression1)"); }
+        public boolean visit(ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression n) { unimplementedVisitor("visit(ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression)"); return true; }
+        public void endVisit(ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression n) { unimplementedVisitor("endVisit(ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression)"); }
 
-        public boolean visit(ShiftExpression2 n) { unimplementedVisitor("visit(ShiftExpression2)"); return true; }
-        public void endVisit(ShiftExpression2 n) { unimplementedVisitor("endVisit(ShiftExpression2)"); }
+        public boolean visit(ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression n) { unimplementedVisitor("visit(ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression)"); return true; }
+        public void endVisit(ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression n) { unimplementedVisitor("endVisit(ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression)"); }
 
-        public boolean visit(RelationalExpression0 n) { unimplementedVisitor("visit(RelationalExpression0)"); return true; }
-        public void endVisit(RelationalExpression0 n) { unimplementedVisitor("endVisit(RelationalExpression0)"); }
+        public boolean visit(RelationalExpression__RelationalExpression_LESS_ShiftExpression n) { unimplementedVisitor("visit(RelationalExpression__RelationalExpression_LESS_ShiftExpression)"); return true; }
+        public void endVisit(RelationalExpression__RelationalExpression_LESS_ShiftExpression n) { unimplementedVisitor("endVisit(RelationalExpression__RelationalExpression_LESS_ShiftExpression)"); }
 
-        public boolean visit(RelationalExpression1 n) { unimplementedVisitor("visit(RelationalExpression1)"); return true; }
-        public void endVisit(RelationalExpression1 n) { unimplementedVisitor("endVisit(RelationalExpression1)"); }
+        public boolean visit(RelationalExpression__RelationalExpression_GREATER_ShiftExpression n) { unimplementedVisitor("visit(RelationalExpression__RelationalExpression_GREATER_ShiftExpression)"); return true; }
+        public void endVisit(RelationalExpression__RelationalExpression_GREATER_ShiftExpression n) { unimplementedVisitor("endVisit(RelationalExpression__RelationalExpression_GREATER_ShiftExpression)"); }
 
-        public boolean visit(RelationalExpression2 n) { unimplementedVisitor("visit(RelationalExpression2)"); return true; }
-        public void endVisit(RelationalExpression2 n) { unimplementedVisitor("endVisit(RelationalExpression2)"); }
+        public boolean visit(RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression n) { unimplementedVisitor("visit(RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression)"); return true; }
+        public void endVisit(RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression n) { unimplementedVisitor("endVisit(RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression)"); }
 
-        public boolean visit(RelationalExpression3 n) { unimplementedVisitor("visit(RelationalExpression3)"); return true; }
-        public void endVisit(RelationalExpression3 n) { unimplementedVisitor("endVisit(RelationalExpression3)"); }
+        public boolean visit(RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression n) { unimplementedVisitor("visit(RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression)"); return true; }
+        public void endVisit(RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression n) { unimplementedVisitor("endVisit(RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression)"); }
 
-        public boolean visit(RelationalExpression4 n) { unimplementedVisitor("visit(RelationalExpression4)"); return true; }
-        public void endVisit(RelationalExpression4 n) { unimplementedVisitor("endVisit(RelationalExpression4)"); }
+        public boolean visit(RelationalExpression__RelationalExpression_instanceof_ReferenceType n) { unimplementedVisitor("visit(RelationalExpression__RelationalExpression_instanceof_ReferenceType)"); return true; }
+        public void endVisit(RelationalExpression__RelationalExpression_instanceof_ReferenceType n) { unimplementedVisitor("endVisit(RelationalExpression__RelationalExpression_instanceof_ReferenceType)"); }
 
-        public boolean visit(EqualityExpression0 n) { unimplementedVisitor("visit(EqualityExpression0)"); return true; }
-        public void endVisit(EqualityExpression0 n) { unimplementedVisitor("endVisit(EqualityExpression0)"); }
+        public boolean visit(EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression n) { unimplementedVisitor("visit(EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression)"); return true; }
+        public void endVisit(EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression n) { unimplementedVisitor("endVisit(EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression)"); }
 
-        public boolean visit(EqualityExpression1 n) { unimplementedVisitor("visit(EqualityExpression1)"); return true; }
-        public void endVisit(EqualityExpression1 n) { unimplementedVisitor("endVisit(EqualityExpression1)"); }
+        public boolean visit(EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression n) { unimplementedVisitor("visit(EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression)"); return true; }
+        public void endVisit(EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression n) { unimplementedVisitor("endVisit(EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression)"); }
 
-        public boolean visit(AssignmentOperator0 n) { unimplementedVisitor("visit(AssignmentOperator0)"); return true; }
-        public void endVisit(AssignmentOperator0 n) { unimplementedVisitor("endVisit(AssignmentOperator0)"); }
+        public boolean visit(AssignmentOperator__EQUAL n) { unimplementedVisitor("visit(AssignmentOperator__EQUAL)"); return true; }
+        public void endVisit(AssignmentOperator__EQUAL n) { unimplementedVisitor("endVisit(AssignmentOperator__EQUAL)"); }
 
-        public boolean visit(AssignmentOperator1 n) { unimplementedVisitor("visit(AssignmentOperator1)"); return true; }
-        public void endVisit(AssignmentOperator1 n) { unimplementedVisitor("endVisit(AssignmentOperator1)"); }
+        public boolean visit(AssignmentOperator__MULTIPLY_EQUAL n) { unimplementedVisitor("visit(AssignmentOperator__MULTIPLY_EQUAL)"); return true; }
+        public void endVisit(AssignmentOperator__MULTIPLY_EQUAL n) { unimplementedVisitor("endVisit(AssignmentOperator__MULTIPLY_EQUAL)"); }
 
-        public boolean visit(AssignmentOperator2 n) { unimplementedVisitor("visit(AssignmentOperator2)"); return true; }
-        public void endVisit(AssignmentOperator2 n) { unimplementedVisitor("endVisit(AssignmentOperator2)"); }
+        public boolean visit(AssignmentOperator__DIVIDE_EQUAL n) { unimplementedVisitor("visit(AssignmentOperator__DIVIDE_EQUAL)"); return true; }
+        public void endVisit(AssignmentOperator__DIVIDE_EQUAL n) { unimplementedVisitor("endVisit(AssignmentOperator__DIVIDE_EQUAL)"); }
 
-        public boolean visit(AssignmentOperator3 n) { unimplementedVisitor("visit(AssignmentOperator3)"); return true; }
-        public void endVisit(AssignmentOperator3 n) { unimplementedVisitor("endVisit(AssignmentOperator3)"); }
+        public boolean visit(AssignmentOperator__REMAINDER_EQUAL n) { unimplementedVisitor("visit(AssignmentOperator__REMAINDER_EQUAL)"); return true; }
+        public void endVisit(AssignmentOperator__REMAINDER_EQUAL n) { unimplementedVisitor("endVisit(AssignmentOperator__REMAINDER_EQUAL)"); }
 
-        public boolean visit(AssignmentOperator4 n) { unimplementedVisitor("visit(AssignmentOperator4)"); return true; }
-        public void endVisit(AssignmentOperator4 n) { unimplementedVisitor("endVisit(AssignmentOperator4)"); }
+        public boolean visit(AssignmentOperator__PLUS_EQUAL n) { unimplementedVisitor("visit(AssignmentOperator__PLUS_EQUAL)"); return true; }
+        public void endVisit(AssignmentOperator__PLUS_EQUAL n) { unimplementedVisitor("endVisit(AssignmentOperator__PLUS_EQUAL)"); }
 
-        public boolean visit(AssignmentOperator5 n) { unimplementedVisitor("visit(AssignmentOperator5)"); return true; }
-        public void endVisit(AssignmentOperator5 n) { unimplementedVisitor("endVisit(AssignmentOperator5)"); }
+        public boolean visit(AssignmentOperator__MINUS_EQUAL n) { unimplementedVisitor("visit(AssignmentOperator__MINUS_EQUAL)"); return true; }
+        public void endVisit(AssignmentOperator__MINUS_EQUAL n) { unimplementedVisitor("endVisit(AssignmentOperator__MINUS_EQUAL)"); }
 
-        public boolean visit(AssignmentOperator6 n) { unimplementedVisitor("visit(AssignmentOperator6)"); return true; }
-        public void endVisit(AssignmentOperator6 n) { unimplementedVisitor("endVisit(AssignmentOperator6)"); }
+        public boolean visit(AssignmentOperator__LEFT_SHIFT_EQUAL n) { unimplementedVisitor("visit(AssignmentOperator__LEFT_SHIFT_EQUAL)"); return true; }
+        public void endVisit(AssignmentOperator__LEFT_SHIFT_EQUAL n) { unimplementedVisitor("endVisit(AssignmentOperator__LEFT_SHIFT_EQUAL)"); }
 
-        public boolean visit(AssignmentOperator7 n) { unimplementedVisitor("visit(AssignmentOperator7)"); return true; }
-        public void endVisit(AssignmentOperator7 n) { unimplementedVisitor("endVisit(AssignmentOperator7)"); }
+        public boolean visit(AssignmentOperator__GREATER_GREATER_EQUAL n) { unimplementedVisitor("visit(AssignmentOperator__GREATER_GREATER_EQUAL)"); return true; }
+        public void endVisit(AssignmentOperator__GREATER_GREATER_EQUAL n) { unimplementedVisitor("endVisit(AssignmentOperator__GREATER_GREATER_EQUAL)"); }
 
-        public boolean visit(AssignmentOperator8 n) { unimplementedVisitor("visit(AssignmentOperator8)"); return true; }
-        public void endVisit(AssignmentOperator8 n) { unimplementedVisitor("endVisit(AssignmentOperator8)"); }
+        public boolean visit(AssignmentOperator__GREATER_GREATER_GREATER_EQUAL n) { unimplementedVisitor("visit(AssignmentOperator__GREATER_GREATER_GREATER_EQUAL)"); return true; }
+        public void endVisit(AssignmentOperator__GREATER_GREATER_GREATER_EQUAL n) { unimplementedVisitor("endVisit(AssignmentOperator__GREATER_GREATER_GREATER_EQUAL)"); }
 
-        public boolean visit(AssignmentOperator9 n) { unimplementedVisitor("visit(AssignmentOperator9)"); return true; }
-        public void endVisit(AssignmentOperator9 n) { unimplementedVisitor("endVisit(AssignmentOperator9)"); }
+        public boolean visit(AssignmentOperator__AND_EQUAL n) { unimplementedVisitor("visit(AssignmentOperator__AND_EQUAL)"); return true; }
+        public void endVisit(AssignmentOperator__AND_EQUAL n) { unimplementedVisitor("endVisit(AssignmentOperator__AND_EQUAL)"); }
 
-        public boolean visit(AssignmentOperator10 n) { unimplementedVisitor("visit(AssignmentOperator10)"); return true; }
-        public void endVisit(AssignmentOperator10 n) { unimplementedVisitor("endVisit(AssignmentOperator10)"); }
+        public boolean visit(AssignmentOperator__XOR_EQUAL n) { unimplementedVisitor("visit(AssignmentOperator__XOR_EQUAL)"); return true; }
+        public void endVisit(AssignmentOperator__XOR_EQUAL n) { unimplementedVisitor("endVisit(AssignmentOperator__XOR_EQUAL)"); }
 
-        public boolean visit(AssignmentOperator11 n) { unimplementedVisitor("visit(AssignmentOperator11)"); return true; }
-        public void endVisit(AssignmentOperator11 n) { unimplementedVisitor("endVisit(AssignmentOperator11)"); }
+        public boolean visit(AssignmentOperator__OR_EQUAL n) { unimplementedVisitor("visit(AssignmentOperator__OR_EQUAL)"); return true; }
+        public void endVisit(AssignmentOperator__OR_EQUAL n) { unimplementedVisitor("endVisit(AssignmentOperator__OR_EQUAL)"); }
 
 
         public boolean visit(Ast n)
@@ -26517,138 +26517,138 @@ public class JavaParser implements RuleAction
             else if (n instanceof Assignment) return visit((Assignment) n);
             else if (n instanceof Commaopt) return visit((Commaopt) n);
             else if (n instanceof Ellipsisopt) return visit((Ellipsisopt) n);
-            else if (n instanceof LPGUserAction0) return visit((LPGUserAction0) n);
-            else if (n instanceof LPGUserAction1) return visit((LPGUserAction1) n);
-            else if (n instanceof LPGUserAction2) return visit((LPGUserAction2) n);
-            else if (n instanceof LPGUserAction3) return visit((LPGUserAction3) n);
-            else if (n instanceof LPGUserAction4) return visit((LPGUserAction4) n);
-            else if (n instanceof IntegralType0) return visit((IntegralType0) n);
-            else if (n instanceof IntegralType1) return visit((IntegralType1) n);
-            else if (n instanceof IntegralType2) return visit((IntegralType2) n);
-            else if (n instanceof IntegralType3) return visit((IntegralType3) n);
-            else if (n instanceof IntegralType4) return visit((IntegralType4) n);
-            else if (n instanceof FloatingPointType0) return visit((FloatingPointType0) n);
-            else if (n instanceof FloatingPointType1) return visit((FloatingPointType1) n);
-            else if (n instanceof WildcardBounds0) return visit((WildcardBounds0) n);
-            else if (n instanceof WildcardBounds1) return visit((WildcardBounds1) n);
-            else if (n instanceof ClassModifier0) return visit((ClassModifier0) n);
-            else if (n instanceof ClassModifier1) return visit((ClassModifier1) n);
-            else if (n instanceof ClassModifier2) return visit((ClassModifier2) n);
-            else if (n instanceof ClassModifier3) return visit((ClassModifier3) n);
-            else if (n instanceof ClassModifier4) return visit((ClassModifier4) n);
-            else if (n instanceof ClassModifier5) return visit((ClassModifier5) n);
-            else if (n instanceof ClassModifier6) return visit((ClassModifier6) n);
-            else if (n instanceof FieldModifier0) return visit((FieldModifier0) n);
-            else if (n instanceof FieldModifier1) return visit((FieldModifier1) n);
-            else if (n instanceof FieldModifier2) return visit((FieldModifier2) n);
-            else if (n instanceof FieldModifier3) return visit((FieldModifier3) n);
-            else if (n instanceof FieldModifier4) return visit((FieldModifier4) n);
-            else if (n instanceof FieldModifier5) return visit((FieldModifier5) n);
-            else if (n instanceof FieldModifier6) return visit((FieldModifier6) n);
-            else if (n instanceof MethodDeclarator0) return visit((MethodDeclarator0) n);
-            else if (n instanceof MethodDeclarator1) return visit((MethodDeclarator1) n);
-            else if (n instanceof MethodModifier0) return visit((MethodModifier0) n);
-            else if (n instanceof MethodModifier1) return visit((MethodModifier1) n);
-            else if (n instanceof MethodModifier2) return visit((MethodModifier2) n);
-            else if (n instanceof MethodModifier3) return visit((MethodModifier3) n);
-            else if (n instanceof MethodModifier4) return visit((MethodModifier4) n);
-            else if (n instanceof MethodModifier5) return visit((MethodModifier5) n);
-            else if (n instanceof MethodModifier6) return visit((MethodModifier6) n);
-            else if (n instanceof MethodModifier7) return visit((MethodModifier7) n);
-            else if (n instanceof MethodModifier8) return visit((MethodModifier8) n);
-            else if (n instanceof ConstructorModifier0) return visit((ConstructorModifier0) n);
-            else if (n instanceof ConstructorModifier1) return visit((ConstructorModifier1) n);
-            else if (n instanceof ConstructorModifier2) return visit((ConstructorModifier2) n);
-            else if (n instanceof ExplicitConstructorInvocation0) return visit((ExplicitConstructorInvocation0) n);
-            else if (n instanceof ExplicitConstructorInvocation1) return visit((ExplicitConstructorInvocation1) n);
-            else if (n instanceof ExplicitConstructorInvocation2) return visit((ExplicitConstructorInvocation2) n);
-            else if (n instanceof InterfaceModifier0) return visit((InterfaceModifier0) n);
-            else if (n instanceof InterfaceModifier1) return visit((InterfaceModifier1) n);
-            else if (n instanceof InterfaceModifier2) return visit((InterfaceModifier2) n);
-            else if (n instanceof InterfaceModifier3) return visit((InterfaceModifier3) n);
-            else if (n instanceof InterfaceModifier4) return visit((InterfaceModifier4) n);
-            else if (n instanceof InterfaceModifier5) return visit((InterfaceModifier5) n);
-            else if (n instanceof ExtendsInterfaces0) return visit((ExtendsInterfaces0) n);
-            else if (n instanceof ExtendsInterfaces1) return visit((ExtendsInterfaces1) n);
-            else if (n instanceof ConstantModifier0) return visit((ConstantModifier0) n);
-            else if (n instanceof ConstantModifier1) return visit((ConstantModifier1) n);
-            else if (n instanceof ConstantModifier2) return visit((ConstantModifier2) n);
-            else if (n instanceof AbstractMethodModifier0) return visit((AbstractMethodModifier0) n);
-            else if (n instanceof AbstractMethodModifier1) return visit((AbstractMethodModifier1) n);
-            else if (n instanceof AnnotationTypeElementDeclaration0) return visit((AnnotationTypeElementDeclaration0) n);
-            else if (n instanceof AnnotationTypeElementDeclaration1) return visit((AnnotationTypeElementDeclaration1) n);
-            else if (n instanceof AssertStatement0) return visit((AssertStatement0) n);
-            else if (n instanceof AssertStatement1) return visit((AssertStatement1) n);
-            else if (n instanceof SwitchLabel0) return visit((SwitchLabel0) n);
-            else if (n instanceof SwitchLabel1) return visit((SwitchLabel1) n);
-            else if (n instanceof SwitchLabel2) return visit((SwitchLabel2) n);
-            else if (n instanceof TryStatement0) return visit((TryStatement0) n);
-            else if (n instanceof TryStatement1) return visit((TryStatement1) n);
-            else if (n instanceof PrimaryNoNewArray0) return visit((PrimaryNoNewArray0) n);
-            else if (n instanceof PrimaryNoNewArray1) return visit((PrimaryNoNewArray1) n);
-            else if (n instanceof PrimaryNoNewArray2) return visit((PrimaryNoNewArray2) n);
-            else if (n instanceof PrimaryNoNewArray3) return visit((PrimaryNoNewArray3) n);
-            else if (n instanceof PrimaryNoNewArray4) return visit((PrimaryNoNewArray4) n);
-            else if (n instanceof Literal0) return visit((Literal0) n);
-            else if (n instanceof Literal1) return visit((Literal1) n);
-            else if (n instanceof Literal2) return visit((Literal2) n);
-            else if (n instanceof Literal3) return visit((Literal3) n);
-            else if (n instanceof Literal4) return visit((Literal4) n);
-            else if (n instanceof Literal5) return visit((Literal5) n);
-            else if (n instanceof Literal6) return visit((Literal6) n);
-            else if (n instanceof BooleanLiteral0) return visit((BooleanLiteral0) n);
-            else if (n instanceof BooleanLiteral1) return visit((BooleanLiteral1) n);
-            else if (n instanceof ClassInstanceCreationExpression0) return visit((ClassInstanceCreationExpression0) n);
-            else if (n instanceof ClassInstanceCreationExpression1) return visit((ClassInstanceCreationExpression1) n);
-            else if (n instanceof ArrayCreationExpression0) return visit((ArrayCreationExpression0) n);
-            else if (n instanceof ArrayCreationExpression1) return visit((ArrayCreationExpression1) n);
-            else if (n instanceof ArrayCreationExpression2) return visit((ArrayCreationExpression2) n);
-            else if (n instanceof ArrayCreationExpression3) return visit((ArrayCreationExpression3) n);
-            else if (n instanceof Dims0) return visit((Dims0) n);
-            else if (n instanceof Dims1) return visit((Dims1) n);
-            else if (n instanceof FieldAccess0) return visit((FieldAccess0) n);
-            else if (n instanceof FieldAccess1) return visit((FieldAccess1) n);
-            else if (n instanceof FieldAccess2) return visit((FieldAccess2) n);
-            else if (n instanceof MethodInvocation0) return visit((MethodInvocation0) n);
-            else if (n instanceof MethodInvocation1) return visit((MethodInvocation1) n);
-            else if (n instanceof MethodInvocation2) return visit((MethodInvocation2) n);
-            else if (n instanceof MethodInvocation3) return visit((MethodInvocation3) n);
-            else if (n instanceof MethodInvocation4) return visit((MethodInvocation4) n);
-            else if (n instanceof ArrayAccess0) return visit((ArrayAccess0) n);
-            else if (n instanceof ArrayAccess1) return visit((ArrayAccess1) n);
-            else if (n instanceof UnaryExpression0) return visit((UnaryExpression0) n);
-            else if (n instanceof UnaryExpression1) return visit((UnaryExpression1) n);
-            else if (n instanceof UnaryExpressionNotPlusMinus0) return visit((UnaryExpressionNotPlusMinus0) n);
-            else if (n instanceof UnaryExpressionNotPlusMinus1) return visit((UnaryExpressionNotPlusMinus1) n);
-            else if (n instanceof CastExpression0) return visit((CastExpression0) n);
-            else if (n instanceof CastExpression1) return visit((CastExpression1) n);
-            else if (n instanceof MultiplicativeExpression0) return visit((MultiplicativeExpression0) n);
-            else if (n instanceof MultiplicativeExpression1) return visit((MultiplicativeExpression1) n);
-            else if (n instanceof MultiplicativeExpression2) return visit((MultiplicativeExpression2) n);
-            else if (n instanceof AdditiveExpression0) return visit((AdditiveExpression0) n);
-            else if (n instanceof AdditiveExpression1) return visit((AdditiveExpression1) n);
-            else if (n instanceof ShiftExpression0) return visit((ShiftExpression0) n);
-            else if (n instanceof ShiftExpression1) return visit((ShiftExpression1) n);
-            else if (n instanceof ShiftExpression2) return visit((ShiftExpression2) n);
-            else if (n instanceof RelationalExpression0) return visit((RelationalExpression0) n);
-            else if (n instanceof RelationalExpression1) return visit((RelationalExpression1) n);
-            else if (n instanceof RelationalExpression2) return visit((RelationalExpression2) n);
-            else if (n instanceof RelationalExpression3) return visit((RelationalExpression3) n);
-            else if (n instanceof RelationalExpression4) return visit((RelationalExpression4) n);
-            else if (n instanceof EqualityExpression0) return visit((EqualityExpression0) n);
-            else if (n instanceof EqualityExpression1) return visit((EqualityExpression1) n);
-            else if (n instanceof AssignmentOperator0) return visit((AssignmentOperator0) n);
-            else if (n instanceof AssignmentOperator1) return visit((AssignmentOperator1) n);
-            else if (n instanceof AssignmentOperator2) return visit((AssignmentOperator2) n);
-            else if (n instanceof AssignmentOperator3) return visit((AssignmentOperator3) n);
-            else if (n instanceof AssignmentOperator4) return visit((AssignmentOperator4) n);
-            else if (n instanceof AssignmentOperator5) return visit((AssignmentOperator5) n);
-            else if (n instanceof AssignmentOperator6) return visit((AssignmentOperator6) n);
-            else if (n instanceof AssignmentOperator7) return visit((AssignmentOperator7) n);
-            else if (n instanceof AssignmentOperator8) return visit((AssignmentOperator8) n);
-            else if (n instanceof AssignmentOperator9) return visit((AssignmentOperator9) n);
-            else if (n instanceof AssignmentOperator10) return visit((AssignmentOperator10) n);
-            else if (n instanceof AssignmentOperator11) return visit((AssignmentOperator11) n);
+            else if (n instanceof LPGUserAction__BeginAction_BlockStatementsopt_EndAction) return visit((LPGUserAction__BeginAction_BlockStatementsopt_EndAction) n);
+            else if (n instanceof LPGUserAction__BeginJava_BlockStatementsopt_EndJava) return visit((LPGUserAction__BeginJava_BlockStatementsopt_EndJava) n);
+            else if (n instanceof LPGUserAction__NoAction) return visit((LPGUserAction__NoAction) n);
+            else if (n instanceof LPGUserAction__NullAction) return visit((LPGUserAction__NullAction) n);
+            else if (n instanceof LPGUserAction__BadAction) return visit((LPGUserAction__BadAction) n);
+            else if (n instanceof IntegralType__byte) return visit((IntegralType__byte) n);
+            else if (n instanceof IntegralType__short) return visit((IntegralType__short) n);
+            else if (n instanceof IntegralType__int) return visit((IntegralType__int) n);
+            else if (n instanceof IntegralType__long) return visit((IntegralType__long) n);
+            else if (n instanceof IntegralType__char) return visit((IntegralType__char) n);
+            else if (n instanceof FloatingPointType__float) return visit((FloatingPointType__float) n);
+            else if (n instanceof FloatingPointType__double) return visit((FloatingPointType__double) n);
+            else if (n instanceof WildcardBounds__extends_ReferenceType) return visit((WildcardBounds__extends_ReferenceType) n);
+            else if (n instanceof WildcardBounds__super_ReferenceType) return visit((WildcardBounds__super_ReferenceType) n);
+            else if (n instanceof ClassModifier__public) return visit((ClassModifier__public) n);
+            else if (n instanceof ClassModifier__protected) return visit((ClassModifier__protected) n);
+            else if (n instanceof ClassModifier__private) return visit((ClassModifier__private) n);
+            else if (n instanceof ClassModifier__abstract) return visit((ClassModifier__abstract) n);
+            else if (n instanceof ClassModifier__static) return visit((ClassModifier__static) n);
+            else if (n instanceof ClassModifier__final) return visit((ClassModifier__final) n);
+            else if (n instanceof ClassModifier__strictfp) return visit((ClassModifier__strictfp) n);
+            else if (n instanceof FieldModifier__public) return visit((FieldModifier__public) n);
+            else if (n instanceof FieldModifier__protected) return visit((FieldModifier__protected) n);
+            else if (n instanceof FieldModifier__private) return visit((FieldModifier__private) n);
+            else if (n instanceof FieldModifier__static) return visit((FieldModifier__static) n);
+            else if (n instanceof FieldModifier__final) return visit((FieldModifier__final) n);
+            else if (n instanceof FieldModifier__transient) return visit((FieldModifier__transient) n);
+            else if (n instanceof FieldModifier__volatile) return visit((FieldModifier__volatile) n);
+            else if (n instanceof MethodDeclarator__identifier_LPAREN_FormalParameterListopt_RPAREN) return visit((MethodDeclarator__identifier_LPAREN_FormalParameterListopt_RPAREN) n);
+            else if (n instanceof MethodDeclarator__MethodDeclarator_LBRACKET_RBRACKET) return visit((MethodDeclarator__MethodDeclarator_LBRACKET_RBRACKET) n);
+            else if (n instanceof MethodModifier__public) return visit((MethodModifier__public) n);
+            else if (n instanceof MethodModifier__protected) return visit((MethodModifier__protected) n);
+            else if (n instanceof MethodModifier__private) return visit((MethodModifier__private) n);
+            else if (n instanceof MethodModifier__abstract) return visit((MethodModifier__abstract) n);
+            else if (n instanceof MethodModifier__static) return visit((MethodModifier__static) n);
+            else if (n instanceof MethodModifier__final) return visit((MethodModifier__final) n);
+            else if (n instanceof MethodModifier__synchronized) return visit((MethodModifier__synchronized) n);
+            else if (n instanceof MethodModifier__native) return visit((MethodModifier__native) n);
+            else if (n instanceof MethodModifier__strictfp) return visit((MethodModifier__strictfp) n);
+            else if (n instanceof ConstructorModifier__public) return visit((ConstructorModifier__public) n);
+            else if (n instanceof ConstructorModifier__protected) return visit((ConstructorModifier__protected) n);
+            else if (n instanceof ConstructorModifier__private) return visit((ConstructorModifier__private) n);
+            else if (n instanceof ExplicitConstructorInvocation__TypeArgumentsopt_this_LPAREN_ArgumentListopt_RPAREN_SEMICOLON) return visit((ExplicitConstructorInvocation__TypeArgumentsopt_this_LPAREN_ArgumentListopt_RPAREN_SEMICOLON) n);
+            else if (n instanceof ExplicitConstructorInvocation__TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON) return visit((ExplicitConstructorInvocation__TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON) n);
+            else if (n instanceof ExplicitConstructorInvocation__Primary_DOT_TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON) return visit((ExplicitConstructorInvocation__Primary_DOT_TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON) n);
+            else if (n instanceof InterfaceModifier__public) return visit((InterfaceModifier__public) n);
+            else if (n instanceof InterfaceModifier__protected) return visit((InterfaceModifier__protected) n);
+            else if (n instanceof InterfaceModifier__private) return visit((InterfaceModifier__private) n);
+            else if (n instanceof InterfaceModifier__abstract) return visit((InterfaceModifier__abstract) n);
+            else if (n instanceof InterfaceModifier__static) return visit((InterfaceModifier__static) n);
+            else if (n instanceof InterfaceModifier__strictfp) return visit((InterfaceModifier__strictfp) n);
+            else if (n instanceof ExtendsInterfaces__extends_InterfaceType) return visit((ExtendsInterfaces__extends_InterfaceType) n);
+            else if (n instanceof ExtendsInterfaces__ExtendsInterfaces_COMMA_InterfaceType) return visit((ExtendsInterfaces__ExtendsInterfaces_COMMA_InterfaceType) n);
+            else if (n instanceof ConstantModifier__public) return visit((ConstantModifier__public) n);
+            else if (n instanceof ConstantModifier__static) return visit((ConstantModifier__static) n);
+            else if (n instanceof ConstantModifier__final) return visit((ConstantModifier__final) n);
+            else if (n instanceof AbstractMethodModifier__public) return visit((AbstractMethodModifier__public) n);
+            else if (n instanceof AbstractMethodModifier__abstract) return visit((AbstractMethodModifier__abstract) n);
+            else if (n instanceof AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON) return visit((AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON) n);
+            else if (n instanceof AnnotationTypeElementDeclaration__SEMICOLON) return visit((AnnotationTypeElementDeclaration__SEMICOLON) n);
+            else if (n instanceof AssertStatement__assert_Expression_SEMICOLON) return visit((AssertStatement__assert_Expression_SEMICOLON) n);
+            else if (n instanceof AssertStatement__assert_Expression_COLON_Expression_SEMICOLON) return visit((AssertStatement__assert_Expression_COLON_Expression_SEMICOLON) n);
+            else if (n instanceof SwitchLabel__case_ConstantExpression_COLON) return visit((SwitchLabel__case_ConstantExpression_COLON) n);
+            else if (n instanceof SwitchLabel__case_EnumConstant_COLON) return visit((SwitchLabel__case_EnumConstant_COLON) n);
+            else if (n instanceof SwitchLabel__default_COLON) return visit((SwitchLabel__default_COLON) n);
+            else if (n instanceof TryStatement__try_Block_Catches) return visit((TryStatement__try_Block_Catches) n);
+            else if (n instanceof TryStatement__try_Block_Catchesopt_Finally) return visit((TryStatement__try_Block_Catchesopt_Finally) n);
+            else if (n instanceof PrimaryNoNewArray__Type_DOT_class) return visit((PrimaryNoNewArray__Type_DOT_class) n);
+            else if (n instanceof PrimaryNoNewArray__void_DOT_class) return visit((PrimaryNoNewArray__void_DOT_class) n);
+            else if (n instanceof PrimaryNoNewArray__this) return visit((PrimaryNoNewArray__this) n);
+            else if (n instanceof PrimaryNoNewArray__ClassName_DOT_this) return visit((PrimaryNoNewArray__ClassName_DOT_this) n);
+            else if (n instanceof PrimaryNoNewArray__LPAREN_Expression_RPAREN) return visit((PrimaryNoNewArray__LPAREN_Expression_RPAREN) n);
+            else if (n instanceof Literal__IntegerLiteral) return visit((Literal__IntegerLiteral) n);
+            else if (n instanceof Literal__LongLiteral) return visit((Literal__LongLiteral) n);
+            else if (n instanceof Literal__FloatingPointLiteral) return visit((Literal__FloatingPointLiteral) n);
+            else if (n instanceof Literal__DoubleLiteral) return visit((Literal__DoubleLiteral) n);
+            else if (n instanceof Literal__CharacterLiteral) return visit((Literal__CharacterLiteral) n);
+            else if (n instanceof Literal__StringLiteral) return visit((Literal__StringLiteral) n);
+            else if (n instanceof Literal__null) return visit((Literal__null) n);
+            else if (n instanceof BooleanLiteral__true) return visit((BooleanLiteral__true) n);
+            else if (n instanceof BooleanLiteral__false) return visit((BooleanLiteral__false) n);
+            else if (n instanceof ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt) return visit((ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt) n);
+            else if (n instanceof ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt) return visit((ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt) n);
+            else if (n instanceof ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt) return visit((ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt) n);
+            else if (n instanceof ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt) return visit((ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt) n);
+            else if (n instanceof ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer) return visit((ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer) n);
+            else if (n instanceof ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer) return visit((ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer) n);
+            else if (n instanceof Dims__LBRACKET_RBRACKET) return visit((Dims__LBRACKET_RBRACKET) n);
+            else if (n instanceof Dims__Dims_LBRACKET_RBRACKET) return visit((Dims__Dims_LBRACKET_RBRACKET) n);
+            else if (n instanceof FieldAccess__Primary_DOT_identifier) return visit((FieldAccess__Primary_DOT_identifier) n);
+            else if (n instanceof FieldAccess__super_DOT_identifier) return visit((FieldAccess__super_DOT_identifier) n);
+            else if (n instanceof FieldAccess__ClassName_DOT_super_DOT_identifier) return visit((FieldAccess__ClassName_DOT_super_DOT_identifier) n);
+            else if (n instanceof MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN) return visit((MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN) n);
+            else if (n instanceof MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN) return visit((MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN) n);
+            else if (n instanceof MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN) return visit((MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN) n);
+            else if (n instanceof MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN) return visit((MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN) n);
+            else if (n instanceof MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN) return visit((MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN) n);
+            else if (n instanceof ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET) return visit((ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET) n);
+            else if (n instanceof ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET) return visit((ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET) n);
+            else if (n instanceof UnaryExpression__PLUS_UnaryExpression) return visit((UnaryExpression__PLUS_UnaryExpression) n);
+            else if (n instanceof UnaryExpression__MINUS_UnaryExpression) return visit((UnaryExpression__MINUS_UnaryExpression) n);
+            else if (n instanceof UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression) return visit((UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression) n);
+            else if (n instanceof UnaryExpressionNotPlusMinus__NOT_UnaryExpression) return visit((UnaryExpressionNotPlusMinus__NOT_UnaryExpression) n);
+            else if (n instanceof CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression) return visit((CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression) n);
+            else if (n instanceof CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus) return visit((CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus) n);
+            else if (n instanceof MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression) return visit((MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression) n);
+            else if (n instanceof MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression) return visit((MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression) n);
+            else if (n instanceof MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression) return visit((MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression) n);
+            else if (n instanceof AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression) return visit((AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression) n);
+            else if (n instanceof AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression) return visit((AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression) n);
+            else if (n instanceof ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression) return visit((ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression) n);
+            else if (n instanceof ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression) return visit((ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression) n);
+            else if (n instanceof ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression) return visit((ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression) n);
+            else if (n instanceof RelationalExpression__RelationalExpression_LESS_ShiftExpression) return visit((RelationalExpression__RelationalExpression_LESS_ShiftExpression) n);
+            else if (n instanceof RelationalExpression__RelationalExpression_GREATER_ShiftExpression) return visit((RelationalExpression__RelationalExpression_GREATER_ShiftExpression) n);
+            else if (n instanceof RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression) return visit((RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression) n);
+            else if (n instanceof RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression) return visit((RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression) n);
+            else if (n instanceof RelationalExpression__RelationalExpression_instanceof_ReferenceType) return visit((RelationalExpression__RelationalExpression_instanceof_ReferenceType) n);
+            else if (n instanceof EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression) return visit((EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression) n);
+            else if (n instanceof EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression) return visit((EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression) n);
+            else if (n instanceof AssignmentOperator__EQUAL) return visit((AssignmentOperator__EQUAL) n);
+            else if (n instanceof AssignmentOperator__MULTIPLY_EQUAL) return visit((AssignmentOperator__MULTIPLY_EQUAL) n);
+            else if (n instanceof AssignmentOperator__DIVIDE_EQUAL) return visit((AssignmentOperator__DIVIDE_EQUAL) n);
+            else if (n instanceof AssignmentOperator__REMAINDER_EQUAL) return visit((AssignmentOperator__REMAINDER_EQUAL) n);
+            else if (n instanceof AssignmentOperator__PLUS_EQUAL) return visit((AssignmentOperator__PLUS_EQUAL) n);
+            else if (n instanceof AssignmentOperator__MINUS_EQUAL) return visit((AssignmentOperator__MINUS_EQUAL) n);
+            else if (n instanceof AssignmentOperator__LEFT_SHIFT_EQUAL) return visit((AssignmentOperator__LEFT_SHIFT_EQUAL) n);
+            else if (n instanceof AssignmentOperator__GREATER_GREATER_EQUAL) return visit((AssignmentOperator__GREATER_GREATER_EQUAL) n);
+            else if (n instanceof AssignmentOperator__GREATER_GREATER_GREATER_EQUAL) return visit((AssignmentOperator__GREATER_GREATER_GREATER_EQUAL) n);
+            else if (n instanceof AssignmentOperator__AND_EQUAL) return visit((AssignmentOperator__AND_EQUAL) n);
+            else if (n instanceof AssignmentOperator__XOR_EQUAL) return visit((AssignmentOperator__XOR_EQUAL) n);
+            else if (n instanceof AssignmentOperator__OR_EQUAL) return visit((AssignmentOperator__OR_EQUAL) n);
             throw new UnsupportedOperationException("visit(" + n.getClass().toString() + ")");
         }
         public void endVisit(Ast n)
@@ -26790,138 +26790,138 @@ public class JavaParser implements RuleAction
             else if (n instanceof Assignment) endVisit((Assignment) n);
             else if (n instanceof Commaopt) endVisit((Commaopt) n);
             else if (n instanceof Ellipsisopt) endVisit((Ellipsisopt) n);
-            else if (n instanceof LPGUserAction0) endVisit((LPGUserAction0) n);
-            else if (n instanceof LPGUserAction1) endVisit((LPGUserAction1) n);
-            else if (n instanceof LPGUserAction2) endVisit((LPGUserAction2) n);
-            else if (n instanceof LPGUserAction3) endVisit((LPGUserAction3) n);
-            else if (n instanceof LPGUserAction4) endVisit((LPGUserAction4) n);
-            else if (n instanceof IntegralType0) endVisit((IntegralType0) n);
-            else if (n instanceof IntegralType1) endVisit((IntegralType1) n);
-            else if (n instanceof IntegralType2) endVisit((IntegralType2) n);
-            else if (n instanceof IntegralType3) endVisit((IntegralType3) n);
-            else if (n instanceof IntegralType4) endVisit((IntegralType4) n);
-            else if (n instanceof FloatingPointType0) endVisit((FloatingPointType0) n);
-            else if (n instanceof FloatingPointType1) endVisit((FloatingPointType1) n);
-            else if (n instanceof WildcardBounds0) endVisit((WildcardBounds0) n);
-            else if (n instanceof WildcardBounds1) endVisit((WildcardBounds1) n);
-            else if (n instanceof ClassModifier0) endVisit((ClassModifier0) n);
-            else if (n instanceof ClassModifier1) endVisit((ClassModifier1) n);
-            else if (n instanceof ClassModifier2) endVisit((ClassModifier2) n);
-            else if (n instanceof ClassModifier3) endVisit((ClassModifier3) n);
-            else if (n instanceof ClassModifier4) endVisit((ClassModifier4) n);
-            else if (n instanceof ClassModifier5) endVisit((ClassModifier5) n);
-            else if (n instanceof ClassModifier6) endVisit((ClassModifier6) n);
-            else if (n instanceof FieldModifier0) endVisit((FieldModifier0) n);
-            else if (n instanceof FieldModifier1) endVisit((FieldModifier1) n);
-            else if (n instanceof FieldModifier2) endVisit((FieldModifier2) n);
-            else if (n instanceof FieldModifier3) endVisit((FieldModifier3) n);
-            else if (n instanceof FieldModifier4) endVisit((FieldModifier4) n);
-            else if (n instanceof FieldModifier5) endVisit((FieldModifier5) n);
-            else if (n instanceof FieldModifier6) endVisit((FieldModifier6) n);
-            else if (n instanceof MethodDeclarator0) endVisit((MethodDeclarator0) n);
-            else if (n instanceof MethodDeclarator1) endVisit((MethodDeclarator1) n);
-            else if (n instanceof MethodModifier0) endVisit((MethodModifier0) n);
-            else if (n instanceof MethodModifier1) endVisit((MethodModifier1) n);
-            else if (n instanceof MethodModifier2) endVisit((MethodModifier2) n);
-            else if (n instanceof MethodModifier3) endVisit((MethodModifier3) n);
-            else if (n instanceof MethodModifier4) endVisit((MethodModifier4) n);
-            else if (n instanceof MethodModifier5) endVisit((MethodModifier5) n);
-            else if (n instanceof MethodModifier6) endVisit((MethodModifier6) n);
-            else if (n instanceof MethodModifier7) endVisit((MethodModifier7) n);
-            else if (n instanceof MethodModifier8) endVisit((MethodModifier8) n);
-            else if (n instanceof ConstructorModifier0) endVisit((ConstructorModifier0) n);
-            else if (n instanceof ConstructorModifier1) endVisit((ConstructorModifier1) n);
-            else if (n instanceof ConstructorModifier2) endVisit((ConstructorModifier2) n);
-            else if (n instanceof ExplicitConstructorInvocation0) endVisit((ExplicitConstructorInvocation0) n);
-            else if (n instanceof ExplicitConstructorInvocation1) endVisit((ExplicitConstructorInvocation1) n);
-            else if (n instanceof ExplicitConstructorInvocation2) endVisit((ExplicitConstructorInvocation2) n);
-            else if (n instanceof InterfaceModifier0) endVisit((InterfaceModifier0) n);
-            else if (n instanceof InterfaceModifier1) endVisit((InterfaceModifier1) n);
-            else if (n instanceof InterfaceModifier2) endVisit((InterfaceModifier2) n);
-            else if (n instanceof InterfaceModifier3) endVisit((InterfaceModifier3) n);
-            else if (n instanceof InterfaceModifier4) endVisit((InterfaceModifier4) n);
-            else if (n instanceof InterfaceModifier5) endVisit((InterfaceModifier5) n);
-            else if (n instanceof ExtendsInterfaces0) endVisit((ExtendsInterfaces0) n);
-            else if (n instanceof ExtendsInterfaces1) endVisit((ExtendsInterfaces1) n);
-            else if (n instanceof ConstantModifier0) endVisit((ConstantModifier0) n);
-            else if (n instanceof ConstantModifier1) endVisit((ConstantModifier1) n);
-            else if (n instanceof ConstantModifier2) endVisit((ConstantModifier2) n);
-            else if (n instanceof AbstractMethodModifier0) endVisit((AbstractMethodModifier0) n);
-            else if (n instanceof AbstractMethodModifier1) endVisit((AbstractMethodModifier1) n);
-            else if (n instanceof AnnotationTypeElementDeclaration0) endVisit((AnnotationTypeElementDeclaration0) n);
-            else if (n instanceof AnnotationTypeElementDeclaration1) endVisit((AnnotationTypeElementDeclaration1) n);
-            else if (n instanceof AssertStatement0) endVisit((AssertStatement0) n);
-            else if (n instanceof AssertStatement1) endVisit((AssertStatement1) n);
-            else if (n instanceof SwitchLabel0) endVisit((SwitchLabel0) n);
-            else if (n instanceof SwitchLabel1) endVisit((SwitchLabel1) n);
-            else if (n instanceof SwitchLabel2) endVisit((SwitchLabel2) n);
-            else if (n instanceof TryStatement0) endVisit((TryStatement0) n);
-            else if (n instanceof TryStatement1) endVisit((TryStatement1) n);
-            else if (n instanceof PrimaryNoNewArray0) endVisit((PrimaryNoNewArray0) n);
-            else if (n instanceof PrimaryNoNewArray1) endVisit((PrimaryNoNewArray1) n);
-            else if (n instanceof PrimaryNoNewArray2) endVisit((PrimaryNoNewArray2) n);
-            else if (n instanceof PrimaryNoNewArray3) endVisit((PrimaryNoNewArray3) n);
-            else if (n instanceof PrimaryNoNewArray4) endVisit((PrimaryNoNewArray4) n);
-            else if (n instanceof Literal0) endVisit((Literal0) n);
-            else if (n instanceof Literal1) endVisit((Literal1) n);
-            else if (n instanceof Literal2) endVisit((Literal2) n);
-            else if (n instanceof Literal3) endVisit((Literal3) n);
-            else if (n instanceof Literal4) endVisit((Literal4) n);
-            else if (n instanceof Literal5) endVisit((Literal5) n);
-            else if (n instanceof Literal6) endVisit((Literal6) n);
-            else if (n instanceof BooleanLiteral0) endVisit((BooleanLiteral0) n);
-            else if (n instanceof BooleanLiteral1) endVisit((BooleanLiteral1) n);
-            else if (n instanceof ClassInstanceCreationExpression0) endVisit((ClassInstanceCreationExpression0) n);
-            else if (n instanceof ClassInstanceCreationExpression1) endVisit((ClassInstanceCreationExpression1) n);
-            else if (n instanceof ArrayCreationExpression0) endVisit((ArrayCreationExpression0) n);
-            else if (n instanceof ArrayCreationExpression1) endVisit((ArrayCreationExpression1) n);
-            else if (n instanceof ArrayCreationExpression2) endVisit((ArrayCreationExpression2) n);
-            else if (n instanceof ArrayCreationExpression3) endVisit((ArrayCreationExpression3) n);
-            else if (n instanceof Dims0) endVisit((Dims0) n);
-            else if (n instanceof Dims1) endVisit((Dims1) n);
-            else if (n instanceof FieldAccess0) endVisit((FieldAccess0) n);
-            else if (n instanceof FieldAccess1) endVisit((FieldAccess1) n);
-            else if (n instanceof FieldAccess2) endVisit((FieldAccess2) n);
-            else if (n instanceof MethodInvocation0) endVisit((MethodInvocation0) n);
-            else if (n instanceof MethodInvocation1) endVisit((MethodInvocation1) n);
-            else if (n instanceof MethodInvocation2) endVisit((MethodInvocation2) n);
-            else if (n instanceof MethodInvocation3) endVisit((MethodInvocation3) n);
-            else if (n instanceof MethodInvocation4) endVisit((MethodInvocation4) n);
-            else if (n instanceof ArrayAccess0) endVisit((ArrayAccess0) n);
-            else if (n instanceof ArrayAccess1) endVisit((ArrayAccess1) n);
-            else if (n instanceof UnaryExpression0) endVisit((UnaryExpression0) n);
-            else if (n instanceof UnaryExpression1) endVisit((UnaryExpression1) n);
-            else if (n instanceof UnaryExpressionNotPlusMinus0) endVisit((UnaryExpressionNotPlusMinus0) n);
-            else if (n instanceof UnaryExpressionNotPlusMinus1) endVisit((UnaryExpressionNotPlusMinus1) n);
-            else if (n instanceof CastExpression0) endVisit((CastExpression0) n);
-            else if (n instanceof CastExpression1) endVisit((CastExpression1) n);
-            else if (n instanceof MultiplicativeExpression0) endVisit((MultiplicativeExpression0) n);
-            else if (n instanceof MultiplicativeExpression1) endVisit((MultiplicativeExpression1) n);
-            else if (n instanceof MultiplicativeExpression2) endVisit((MultiplicativeExpression2) n);
-            else if (n instanceof AdditiveExpression0) endVisit((AdditiveExpression0) n);
-            else if (n instanceof AdditiveExpression1) endVisit((AdditiveExpression1) n);
-            else if (n instanceof ShiftExpression0) endVisit((ShiftExpression0) n);
-            else if (n instanceof ShiftExpression1) endVisit((ShiftExpression1) n);
-            else if (n instanceof ShiftExpression2) endVisit((ShiftExpression2) n);
-            else if (n instanceof RelationalExpression0) endVisit((RelationalExpression0) n);
-            else if (n instanceof RelationalExpression1) endVisit((RelationalExpression1) n);
-            else if (n instanceof RelationalExpression2) endVisit((RelationalExpression2) n);
-            else if (n instanceof RelationalExpression3) endVisit((RelationalExpression3) n);
-            else if (n instanceof RelationalExpression4) endVisit((RelationalExpression4) n);
-            else if (n instanceof EqualityExpression0) endVisit((EqualityExpression0) n);
-            else if (n instanceof EqualityExpression1) endVisit((EqualityExpression1) n);
-            else if (n instanceof AssignmentOperator0) endVisit((AssignmentOperator0) n);
-            else if (n instanceof AssignmentOperator1) endVisit((AssignmentOperator1) n);
-            else if (n instanceof AssignmentOperator2) endVisit((AssignmentOperator2) n);
-            else if (n instanceof AssignmentOperator3) endVisit((AssignmentOperator3) n);
-            else if (n instanceof AssignmentOperator4) endVisit((AssignmentOperator4) n);
-            else if (n instanceof AssignmentOperator5) endVisit((AssignmentOperator5) n);
-            else if (n instanceof AssignmentOperator6) endVisit((AssignmentOperator6) n);
-            else if (n instanceof AssignmentOperator7) endVisit((AssignmentOperator7) n);
-            else if (n instanceof AssignmentOperator8) endVisit((AssignmentOperator8) n);
-            else if (n instanceof AssignmentOperator9) endVisit((AssignmentOperator9) n);
-            else if (n instanceof AssignmentOperator10) endVisit((AssignmentOperator10) n);
-            else if (n instanceof AssignmentOperator11) endVisit((AssignmentOperator11) n);
+            else if (n instanceof LPGUserAction__BeginAction_BlockStatementsopt_EndAction) endVisit((LPGUserAction__BeginAction_BlockStatementsopt_EndAction) n);
+            else if (n instanceof LPGUserAction__BeginJava_BlockStatementsopt_EndJava) endVisit((LPGUserAction__BeginJava_BlockStatementsopt_EndJava) n);
+            else if (n instanceof LPGUserAction__NoAction) endVisit((LPGUserAction__NoAction) n);
+            else if (n instanceof LPGUserAction__NullAction) endVisit((LPGUserAction__NullAction) n);
+            else if (n instanceof LPGUserAction__BadAction) endVisit((LPGUserAction__BadAction) n);
+            else if (n instanceof IntegralType__byte) endVisit((IntegralType__byte) n);
+            else if (n instanceof IntegralType__short) endVisit((IntegralType__short) n);
+            else if (n instanceof IntegralType__int) endVisit((IntegralType__int) n);
+            else if (n instanceof IntegralType__long) endVisit((IntegralType__long) n);
+            else if (n instanceof IntegralType__char) endVisit((IntegralType__char) n);
+            else if (n instanceof FloatingPointType__float) endVisit((FloatingPointType__float) n);
+            else if (n instanceof FloatingPointType__double) endVisit((FloatingPointType__double) n);
+            else if (n instanceof WildcardBounds__extends_ReferenceType) endVisit((WildcardBounds__extends_ReferenceType) n);
+            else if (n instanceof WildcardBounds__super_ReferenceType) endVisit((WildcardBounds__super_ReferenceType) n);
+            else if (n instanceof ClassModifier__public) endVisit((ClassModifier__public) n);
+            else if (n instanceof ClassModifier__protected) endVisit((ClassModifier__protected) n);
+            else if (n instanceof ClassModifier__private) endVisit((ClassModifier__private) n);
+            else if (n instanceof ClassModifier__abstract) endVisit((ClassModifier__abstract) n);
+            else if (n instanceof ClassModifier__static) endVisit((ClassModifier__static) n);
+            else if (n instanceof ClassModifier__final) endVisit((ClassModifier__final) n);
+            else if (n instanceof ClassModifier__strictfp) endVisit((ClassModifier__strictfp) n);
+            else if (n instanceof FieldModifier__public) endVisit((FieldModifier__public) n);
+            else if (n instanceof FieldModifier__protected) endVisit((FieldModifier__protected) n);
+            else if (n instanceof FieldModifier__private) endVisit((FieldModifier__private) n);
+            else if (n instanceof FieldModifier__static) endVisit((FieldModifier__static) n);
+            else if (n instanceof FieldModifier__final) endVisit((FieldModifier__final) n);
+            else if (n instanceof FieldModifier__transient) endVisit((FieldModifier__transient) n);
+            else if (n instanceof FieldModifier__volatile) endVisit((FieldModifier__volatile) n);
+            else if (n instanceof MethodDeclarator__identifier_LPAREN_FormalParameterListopt_RPAREN) endVisit((MethodDeclarator__identifier_LPAREN_FormalParameterListopt_RPAREN) n);
+            else if (n instanceof MethodDeclarator__MethodDeclarator_LBRACKET_RBRACKET) endVisit((MethodDeclarator__MethodDeclarator_LBRACKET_RBRACKET) n);
+            else if (n instanceof MethodModifier__public) endVisit((MethodModifier__public) n);
+            else if (n instanceof MethodModifier__protected) endVisit((MethodModifier__protected) n);
+            else if (n instanceof MethodModifier__private) endVisit((MethodModifier__private) n);
+            else if (n instanceof MethodModifier__abstract) endVisit((MethodModifier__abstract) n);
+            else if (n instanceof MethodModifier__static) endVisit((MethodModifier__static) n);
+            else if (n instanceof MethodModifier__final) endVisit((MethodModifier__final) n);
+            else if (n instanceof MethodModifier__synchronized) endVisit((MethodModifier__synchronized) n);
+            else if (n instanceof MethodModifier__native) endVisit((MethodModifier__native) n);
+            else if (n instanceof MethodModifier__strictfp) endVisit((MethodModifier__strictfp) n);
+            else if (n instanceof ConstructorModifier__public) endVisit((ConstructorModifier__public) n);
+            else if (n instanceof ConstructorModifier__protected) endVisit((ConstructorModifier__protected) n);
+            else if (n instanceof ConstructorModifier__private) endVisit((ConstructorModifier__private) n);
+            else if (n instanceof ExplicitConstructorInvocation__TypeArgumentsopt_this_LPAREN_ArgumentListopt_RPAREN_SEMICOLON) endVisit((ExplicitConstructorInvocation__TypeArgumentsopt_this_LPAREN_ArgumentListopt_RPAREN_SEMICOLON) n);
+            else if (n instanceof ExplicitConstructorInvocation__TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON) endVisit((ExplicitConstructorInvocation__TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON) n);
+            else if (n instanceof ExplicitConstructorInvocation__Primary_DOT_TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON) endVisit((ExplicitConstructorInvocation__Primary_DOT_TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON) n);
+            else if (n instanceof InterfaceModifier__public) endVisit((InterfaceModifier__public) n);
+            else if (n instanceof InterfaceModifier__protected) endVisit((InterfaceModifier__protected) n);
+            else if (n instanceof InterfaceModifier__private) endVisit((InterfaceModifier__private) n);
+            else if (n instanceof InterfaceModifier__abstract) endVisit((InterfaceModifier__abstract) n);
+            else if (n instanceof InterfaceModifier__static) endVisit((InterfaceModifier__static) n);
+            else if (n instanceof InterfaceModifier__strictfp) endVisit((InterfaceModifier__strictfp) n);
+            else if (n instanceof ExtendsInterfaces__extends_InterfaceType) endVisit((ExtendsInterfaces__extends_InterfaceType) n);
+            else if (n instanceof ExtendsInterfaces__ExtendsInterfaces_COMMA_InterfaceType) endVisit((ExtendsInterfaces__ExtendsInterfaces_COMMA_InterfaceType) n);
+            else if (n instanceof ConstantModifier__public) endVisit((ConstantModifier__public) n);
+            else if (n instanceof ConstantModifier__static) endVisit((ConstantModifier__static) n);
+            else if (n instanceof ConstantModifier__final) endVisit((ConstantModifier__final) n);
+            else if (n instanceof AbstractMethodModifier__public) endVisit((AbstractMethodModifier__public) n);
+            else if (n instanceof AbstractMethodModifier__abstract) endVisit((AbstractMethodModifier__abstract) n);
+            else if (n instanceof AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON) endVisit((AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON) n);
+            else if (n instanceof AnnotationTypeElementDeclaration__SEMICOLON) endVisit((AnnotationTypeElementDeclaration__SEMICOLON) n);
+            else if (n instanceof AssertStatement__assert_Expression_SEMICOLON) endVisit((AssertStatement__assert_Expression_SEMICOLON) n);
+            else if (n instanceof AssertStatement__assert_Expression_COLON_Expression_SEMICOLON) endVisit((AssertStatement__assert_Expression_COLON_Expression_SEMICOLON) n);
+            else if (n instanceof SwitchLabel__case_ConstantExpression_COLON) endVisit((SwitchLabel__case_ConstantExpression_COLON) n);
+            else if (n instanceof SwitchLabel__case_EnumConstant_COLON) endVisit((SwitchLabel__case_EnumConstant_COLON) n);
+            else if (n instanceof SwitchLabel__default_COLON) endVisit((SwitchLabel__default_COLON) n);
+            else if (n instanceof TryStatement__try_Block_Catches) endVisit((TryStatement__try_Block_Catches) n);
+            else if (n instanceof TryStatement__try_Block_Catchesopt_Finally) endVisit((TryStatement__try_Block_Catchesopt_Finally) n);
+            else if (n instanceof PrimaryNoNewArray__Type_DOT_class) endVisit((PrimaryNoNewArray__Type_DOT_class) n);
+            else if (n instanceof PrimaryNoNewArray__void_DOT_class) endVisit((PrimaryNoNewArray__void_DOT_class) n);
+            else if (n instanceof PrimaryNoNewArray__this) endVisit((PrimaryNoNewArray__this) n);
+            else if (n instanceof PrimaryNoNewArray__ClassName_DOT_this) endVisit((PrimaryNoNewArray__ClassName_DOT_this) n);
+            else if (n instanceof PrimaryNoNewArray__LPAREN_Expression_RPAREN) endVisit((PrimaryNoNewArray__LPAREN_Expression_RPAREN) n);
+            else if (n instanceof Literal__IntegerLiteral) endVisit((Literal__IntegerLiteral) n);
+            else if (n instanceof Literal__LongLiteral) endVisit((Literal__LongLiteral) n);
+            else if (n instanceof Literal__FloatingPointLiteral) endVisit((Literal__FloatingPointLiteral) n);
+            else if (n instanceof Literal__DoubleLiteral) endVisit((Literal__DoubleLiteral) n);
+            else if (n instanceof Literal__CharacterLiteral) endVisit((Literal__CharacterLiteral) n);
+            else if (n instanceof Literal__StringLiteral) endVisit((Literal__StringLiteral) n);
+            else if (n instanceof Literal__null) endVisit((Literal__null) n);
+            else if (n instanceof BooleanLiteral__true) endVisit((BooleanLiteral__true) n);
+            else if (n instanceof BooleanLiteral__false) endVisit((BooleanLiteral__false) n);
+            else if (n instanceof ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt) endVisit((ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt) n);
+            else if (n instanceof ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt) endVisit((ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt) n);
+            else if (n instanceof ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt) endVisit((ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt) n);
+            else if (n instanceof ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt) endVisit((ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt) n);
+            else if (n instanceof ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer) endVisit((ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer) n);
+            else if (n instanceof ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer) endVisit((ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer) n);
+            else if (n instanceof Dims__LBRACKET_RBRACKET) endVisit((Dims__LBRACKET_RBRACKET) n);
+            else if (n instanceof Dims__Dims_LBRACKET_RBRACKET) endVisit((Dims__Dims_LBRACKET_RBRACKET) n);
+            else if (n instanceof FieldAccess__Primary_DOT_identifier) endVisit((FieldAccess__Primary_DOT_identifier) n);
+            else if (n instanceof FieldAccess__super_DOT_identifier) endVisit((FieldAccess__super_DOT_identifier) n);
+            else if (n instanceof FieldAccess__ClassName_DOT_super_DOT_identifier) endVisit((FieldAccess__ClassName_DOT_super_DOT_identifier) n);
+            else if (n instanceof MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN) endVisit((MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN) n);
+            else if (n instanceof MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN) endVisit((MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN) n);
+            else if (n instanceof MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN) endVisit((MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN) n);
+            else if (n instanceof MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN) endVisit((MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN) n);
+            else if (n instanceof MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN) endVisit((MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN) n);
+            else if (n instanceof ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET) endVisit((ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET) n);
+            else if (n instanceof ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET) endVisit((ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET) n);
+            else if (n instanceof UnaryExpression__PLUS_UnaryExpression) endVisit((UnaryExpression__PLUS_UnaryExpression) n);
+            else if (n instanceof UnaryExpression__MINUS_UnaryExpression) endVisit((UnaryExpression__MINUS_UnaryExpression) n);
+            else if (n instanceof UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression) endVisit((UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression) n);
+            else if (n instanceof UnaryExpressionNotPlusMinus__NOT_UnaryExpression) endVisit((UnaryExpressionNotPlusMinus__NOT_UnaryExpression) n);
+            else if (n instanceof CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression) endVisit((CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression) n);
+            else if (n instanceof CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus) endVisit((CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus) n);
+            else if (n instanceof MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression) endVisit((MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression) n);
+            else if (n instanceof MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression) endVisit((MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression) n);
+            else if (n instanceof MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression) endVisit((MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression) n);
+            else if (n instanceof AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression) endVisit((AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression) n);
+            else if (n instanceof AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression) endVisit((AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression) n);
+            else if (n instanceof ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression) endVisit((ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression) n);
+            else if (n instanceof ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression) endVisit((ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression) n);
+            else if (n instanceof ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression) endVisit((ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression) n);
+            else if (n instanceof RelationalExpression__RelationalExpression_LESS_ShiftExpression) endVisit((RelationalExpression__RelationalExpression_LESS_ShiftExpression) n);
+            else if (n instanceof RelationalExpression__RelationalExpression_GREATER_ShiftExpression) endVisit((RelationalExpression__RelationalExpression_GREATER_ShiftExpression) n);
+            else if (n instanceof RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression) endVisit((RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression) n);
+            else if (n instanceof RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression) endVisit((RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression) n);
+            else if (n instanceof RelationalExpression__RelationalExpression_instanceof_ReferenceType) endVisit((RelationalExpression__RelationalExpression_instanceof_ReferenceType) n);
+            else if (n instanceof EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression) endVisit((EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression) n);
+            else if (n instanceof EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression) endVisit((EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression) n);
+            else if (n instanceof AssignmentOperator__EQUAL) endVisit((AssignmentOperator__EQUAL) n);
+            else if (n instanceof AssignmentOperator__MULTIPLY_EQUAL) endVisit((AssignmentOperator__MULTIPLY_EQUAL) n);
+            else if (n instanceof AssignmentOperator__DIVIDE_EQUAL) endVisit((AssignmentOperator__DIVIDE_EQUAL) n);
+            else if (n instanceof AssignmentOperator__REMAINDER_EQUAL) endVisit((AssignmentOperator__REMAINDER_EQUAL) n);
+            else if (n instanceof AssignmentOperator__PLUS_EQUAL) endVisit((AssignmentOperator__PLUS_EQUAL) n);
+            else if (n instanceof AssignmentOperator__MINUS_EQUAL) endVisit((AssignmentOperator__MINUS_EQUAL) n);
+            else if (n instanceof AssignmentOperator__LEFT_SHIFT_EQUAL) endVisit((AssignmentOperator__LEFT_SHIFT_EQUAL) n);
+            else if (n instanceof AssignmentOperator__GREATER_GREATER_EQUAL) endVisit((AssignmentOperator__GREATER_GREATER_EQUAL) n);
+            else if (n instanceof AssignmentOperator__GREATER_GREATER_GREATER_EQUAL) endVisit((AssignmentOperator__GREATER_GREATER_GREATER_EQUAL) n);
+            else if (n instanceof AssignmentOperator__AND_EQUAL) endVisit((AssignmentOperator__AND_EQUAL) n);
+            else if (n instanceof AssignmentOperator__XOR_EQUAL) endVisit((AssignmentOperator__XOR_EQUAL) n);
+            else if (n instanceof AssignmentOperator__OR_EQUAL) endVisit((AssignmentOperator__OR_EQUAL) n);
             throw new UnsupportedOperationException("visit(" + n.getClass().toString() + ")");
         }
     }
@@ -26935,7 +26935,7 @@ public class JavaParser implements RuleAction
             // Rule 3:  identifier ::= IDENTIFIER
             //
             case 3: {
-               //#line 184 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 184 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new identifier(JavaParser.this, getRhsIToken(1))
                 );
@@ -26950,12 +26950,12 @@ public class JavaParser implements RuleAction
             // Rule 5:  LPGUserAction ::= $BeginAction BlockStatementsopt $EndAction
             //
             case 5: {
-               //#line 194 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 194 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new LPGUserAction0(getLeftIToken(), getRightIToken(),
-                                       new AstToken(getRhsIToken(1)),
-                                       (IBlockStatementsopt)getRhsSym(2),
-                                       new AstToken(getRhsIToken(3)))
+                    new LPGUserAction__BeginAction_BlockStatementsopt_EndAction(getLeftIToken(), getRightIToken(),
+                                                                                new AstToken(getRhsIToken(1)),
+                                                                                (IBlockStatementsopt)getRhsSym(2),
+                                                                                new AstToken(getRhsIToken(3)))
                 );
                 break;
             }
@@ -26963,12 +26963,12 @@ public class JavaParser implements RuleAction
             // Rule 6:  LPGUserAction ::= $BeginJava BlockStatementsopt $EndJava
             //
             case 6: {
-               //#line 195 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 195 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new LPGUserAction1(getLeftIToken(), getRightIToken(),
-                                       new AstToken(getRhsIToken(1)),
-                                       (IBlockStatementsopt)getRhsSym(2),
-                                       new AstToken(getRhsIToken(3)))
+                    new LPGUserAction__BeginJava_BlockStatementsopt_EndJava(getLeftIToken(), getRightIToken(),
+                                                                            new AstToken(getRhsIToken(1)),
+                                                                            (IBlockStatementsopt)getRhsSym(2),
+                                                                            new AstToken(getRhsIToken(3)))
                 );
                 break;
             }
@@ -26976,9 +26976,9 @@ public class JavaParser implements RuleAction
             // Rule 7:  LPGUserAction ::= $NoAction
             //
             case 7: {
-               //#line 196 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 196 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new LPGUserAction2(getRhsIToken(1))
+                    new LPGUserAction__NoAction(getRhsIToken(1))
                 );
                 break;
             }
@@ -26986,9 +26986,9 @@ public class JavaParser implements RuleAction
             // Rule 8:  LPGUserAction ::= $NullAction
             //
             case 8: {
-               //#line 197 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 197 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new LPGUserAction3(getRhsIToken(1))
+                    new LPGUserAction__NullAction(getRhsIToken(1))
                 );
                 break;
             }
@@ -26996,9 +26996,9 @@ public class JavaParser implements RuleAction
             // Rule 9:  LPGUserAction ::= $BadAction
             //
             case 9: {
-               //#line 198 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 198 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new LPGUserAction4(getRhsIToken(1))
+                    new LPGUserAction__BadAction(getRhsIToken(1))
                 );
                 break;
             }
@@ -27021,7 +27021,7 @@ public class JavaParser implements RuleAction
             // Rule 13:  PrimitiveType ::= boolean
             //
             case 13: {
-               //#line 207 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 207 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PrimitiveType(getRhsIToken(1))
                 );
@@ -27041,9 +27041,9 @@ public class JavaParser implements RuleAction
             // Rule 16:  IntegralType ::= byte
             //
             case 16: {
-               //#line 212 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 212 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new IntegralType0(getRhsIToken(1))
+                    new IntegralType__byte(getRhsIToken(1))
                 );
                 break;
             }
@@ -27051,9 +27051,9 @@ public class JavaParser implements RuleAction
             // Rule 17:  IntegralType ::= short
             //
             case 17: {
-               //#line 213 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 213 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new IntegralType1(getRhsIToken(1))
+                    new IntegralType__short(getRhsIToken(1))
                 );
                 break;
             }
@@ -27061,9 +27061,9 @@ public class JavaParser implements RuleAction
             // Rule 18:  IntegralType ::= int
             //
             case 18: {
-               //#line 214 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 214 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new IntegralType2(getRhsIToken(1))
+                    new IntegralType__int(getRhsIToken(1))
                 );
                 break;
             }
@@ -27071,9 +27071,9 @@ public class JavaParser implements RuleAction
             // Rule 19:  IntegralType ::= long
             //
             case 19: {
-               //#line 215 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 215 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new IntegralType3(getRhsIToken(1))
+                    new IntegralType__long(getRhsIToken(1))
                 );
                 break;
             }
@@ -27081,9 +27081,9 @@ public class JavaParser implements RuleAction
             // Rule 20:  IntegralType ::= char
             //
             case 20: {
-               //#line 216 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 216 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new IntegralType4(getRhsIToken(1))
+                    new IntegralType__char(getRhsIToken(1))
                 );
                 break;
             }
@@ -27091,9 +27091,9 @@ public class JavaParser implements RuleAction
             // Rule 21:  FloatingPointType ::= float
             //
             case 21: {
-               //#line 218 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 218 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new FloatingPointType0(getRhsIToken(1))
+                    new FloatingPointType__float(getRhsIToken(1))
                 );
                 break;
             }
@@ -27101,9 +27101,9 @@ public class JavaParser implements RuleAction
             // Rule 22:  FloatingPointType ::= double
             //
             case 22: {
-               //#line 219 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 219 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new FloatingPointType1(getRhsIToken(1))
+                    new FloatingPointType__double(getRhsIToken(1))
                 );
                 break;
             }
@@ -27131,7 +27131,7 @@ public class JavaParser implements RuleAction
             // Rule 27:  ClassType ::= TypeName TypeArgumentsopt
             //
             case 27: {
-               //#line 231 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 231 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassType(getLeftIToken(), getRightIToken(),
                                   (ITypeName)getRhsSym(1),
@@ -27143,7 +27143,7 @@ public class JavaParser implements RuleAction
             // Rule 28:  InterfaceType ::= TypeName TypeArgumentsopt
             //
             case 28: {
-               //#line 233 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 233 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceType(getLeftIToken(), getRightIToken(),
                                       (ITypeName)getRhsSym(1),
@@ -27160,7 +27160,7 @@ public class JavaParser implements RuleAction
             // Rule 30:  TypeName ::= TypeName . identifier
             //
             case 30: {
-               //#line 236 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 236 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeName(getLeftIToken(), getRightIToken(),
                                  (ITypeName)getRhsSym(1),
@@ -27183,7 +27183,7 @@ public class JavaParser implements RuleAction
             // Rule 33:  ArrayType ::= Type [ ]
             //
             case 33: {
-               //#line 242 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 242 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArrayType(getLeftIToken(), getRightIToken(),
                                   (IType)getRhsSym(1),
@@ -27196,7 +27196,7 @@ public class JavaParser implements RuleAction
             // Rule 34:  TypeParameter ::= TypeVariable TypeBoundopt
             //
             case 34: {
-               //#line 244 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 244 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeParameter(getLeftIToken(), getRightIToken(),
                                       (identifier)getRhsSym(1),
@@ -27208,7 +27208,7 @@ public class JavaParser implements RuleAction
             // Rule 35:  TypeBound ::= extends ClassOrInterfaceType AdditionalBoundListopt
             //
             case 35: {
-               //#line 246 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 246 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeBound(getLeftIToken(), getRightIToken(),
                                   new AstToken(getRhsIToken(1)),
@@ -27226,7 +27226,7 @@ public class JavaParser implements RuleAction
             // Rule 37:  AdditionalBoundList ::= AdditionalBoundList AdditionalBound
             //
             case 37: {
-               //#line 249 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 249 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AdditionalBoundList(getLeftIToken(), getRightIToken(),
                                             (IAdditionalBoundList)getRhsSym(1),
@@ -27238,7 +27238,7 @@ public class JavaParser implements RuleAction
             // Rule 38:  AdditionalBound ::= & InterfaceType
             //
             case 38: {
-               //#line 251 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 251 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AdditionalBound(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -27250,7 +27250,7 @@ public class JavaParser implements RuleAction
             // Rule 39:  TypeArguments ::= < ActualTypeArgumentList >
             //
             case 39: {
-               //#line 253 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 253 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeArguments(getLeftIToken(), getRightIToken(),
                                       new AstToken(getRhsIToken(1)),
@@ -27268,7 +27268,7 @@ public class JavaParser implements RuleAction
             // Rule 41:  ActualTypeArgumentList ::= ActualTypeArgumentList , ActualTypeArgument
             //
             case 41: {
-               //#line 256 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 256 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ActualTypeArgumentList(getLeftIToken(), getRightIToken(),
                                                (IActualTypeArgumentList)getRhsSym(1),
@@ -27291,7 +27291,7 @@ public class JavaParser implements RuleAction
             // Rule 44:  Wildcard ::= ? WildcardBoundsOpt
             //
             case 44: {
-               //#line 261 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 261 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Wildcard(getLeftIToken(), getRightIToken(),
                                  new AstToken(getRhsIToken(1)),
@@ -27303,11 +27303,11 @@ public class JavaParser implements RuleAction
             // Rule 45:  WildcardBounds ::= extends ReferenceType
             //
             case 45: {
-               //#line 263 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 263 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new WildcardBounds0(getLeftIToken(), getRightIToken(),
-                                        new AstToken(getRhsIToken(1)),
-                                        (IReferenceType)getRhsSym(2))
+                    new WildcardBounds__extends_ReferenceType(getLeftIToken(), getRightIToken(),
+                                                              new AstToken(getRhsIToken(1)),
+                                                              (IReferenceType)getRhsSym(2))
                 );
                 break;
             }
@@ -27315,11 +27315,11 @@ public class JavaParser implements RuleAction
             // Rule 46:  WildcardBounds ::= super ReferenceType
             //
             case 46: {
-               //#line 264 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 264 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new WildcardBounds1(getLeftIToken(), getRightIToken(),
-                                        new AstToken(getRhsIToken(1)),
-                                        (IReferenceType)getRhsSym(2))
+                    new WildcardBounds__super_ReferenceType(getLeftIToken(), getRightIToken(),
+                                                            new AstToken(getRhsIToken(1)),
+                                                            (IReferenceType)getRhsSym(2))
                 );
                 break;
             }
@@ -27332,7 +27332,7 @@ public class JavaParser implements RuleAction
             // Rule 48:  PackageName ::= PackageName . identifier
             //
             case 48: {
-               //#line 271 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 271 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PackageName(getLeftIToken(), getRightIToken(),
                                     (IPackageName)getRhsSym(1),
@@ -27350,7 +27350,7 @@ public class JavaParser implements RuleAction
             // Rule 50:  ExpressionName ::= AmbiguousName . identifier
             //
             case 50: {
-               //#line 280 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 280 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExpressionName(getLeftIToken(), getRightIToken(),
                                        (IAmbiguousName)getRhsSym(1),
@@ -27368,7 +27368,7 @@ public class JavaParser implements RuleAction
             // Rule 52:  MethodName ::= AmbiguousName . identifier
             //
             case 52: {
-               //#line 283 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 283 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodName(getLeftIToken(), getRightIToken(),
                                    (IAmbiguousName)getRhsSym(1),
@@ -27386,7 +27386,7 @@ public class JavaParser implements RuleAction
             // Rule 54:  PackageOrTypeName ::= PackageOrTypeName . identifier
             //
             case 54: {
-               //#line 286 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 286 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PackageOrTypeName(getLeftIToken(), getRightIToken(),
                                           (IPackageOrTypeName)getRhsSym(1),
@@ -27404,7 +27404,7 @@ public class JavaParser implements RuleAction
             // Rule 56:  AmbiguousName ::= AmbiguousName . identifier
             //
             case 56: {
-               //#line 289 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 289 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AmbiguousName(getLeftIToken(), getRightIToken(),
                                       (IAmbiguousName)getRhsSym(1),
@@ -27417,7 +27417,7 @@ public class JavaParser implements RuleAction
             // Rule 57:  CompilationUnit ::= PackageDeclarationopt ImportDeclarationsopt TypeDeclarationsopt
             //
             case 57: {
-               //#line 293 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 293 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new CompilationUnit(getLeftIToken(), getRightIToken(),
                                         (PackageDeclaration)getRhsSym(1),
@@ -27435,7 +27435,7 @@ public class JavaParser implements RuleAction
             // Rule 59:  ImportDeclarations ::= ImportDeclarations ImportDeclaration
             //
             case 59: {
-               //#line 296 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 296 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ImportDeclarations(getLeftIToken(), getRightIToken(),
                                            (IImportDeclarations)getRhsSym(1),
@@ -27452,7 +27452,7 @@ public class JavaParser implements RuleAction
             // Rule 61:  TypeDeclarations ::= TypeDeclarations TypeDeclaration
             //
             case 61: {
-               //#line 299 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 299 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeDeclarations(getLeftIToken(), getRightIToken(),
                                          (ITypeDeclarations)getRhsSym(1),
@@ -27464,7 +27464,7 @@ public class JavaParser implements RuleAction
             // Rule 62:  PackageDeclaration ::= Annotationsopt package PackageName ;
             //
             case 62: {
-               //#line 301 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 301 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PackageDeclaration(getLeftIToken(), getRightIToken(),
                                            (IAnnotationsopt)getRhsSym(1),
@@ -27498,7 +27498,7 @@ public class JavaParser implements RuleAction
             // Rule 67:  SingleTypeImportDeclaration ::= import TypeName ;
             //
             case 67: {
-               //#line 308 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 308 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SingleTypeImportDeclaration(getLeftIToken(), getRightIToken(),
                                                     new AstToken(getRhsIToken(1)),
@@ -27511,7 +27511,7 @@ public class JavaParser implements RuleAction
             // Rule 68:  TypeImportOnDemandDeclaration ::= import PackageOrTypeName . * ;
             //
             case 68: {
-               //#line 310 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 310 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeImportOnDemandDeclaration(getLeftIToken(), getRightIToken(),
                                                       new AstToken(getRhsIToken(1)),
@@ -27526,7 +27526,7 @@ public class JavaParser implements RuleAction
             // Rule 69:  SingleStaticImportDeclaration ::= import static TypeName . identifier ;
             //
             case 69: {
-               //#line 312 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 312 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SingleStaticImportDeclaration(getLeftIToken(), getRightIToken(),
                                                       new AstToken(getRhsIToken(1)),
@@ -27542,7 +27542,7 @@ public class JavaParser implements RuleAction
             // Rule 70:  StaticImportOnDemandDeclaration ::= import static TypeName . * ;
             //
             case 70: {
-               //#line 314 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 314 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new StaticImportOnDemandDeclaration(getLeftIToken(), getRightIToken(),
                                                         new AstToken(getRhsIToken(1)),
@@ -27568,7 +27568,7 @@ public class JavaParser implements RuleAction
             // Rule 73:  TypeDeclaration ::= ;
             //
             case 73: {
-               //#line 318 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 318 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeDeclaration(getRhsIToken(1))
                 );
@@ -27588,7 +27588,7 @@ public class JavaParser implements RuleAction
             // Rule 76:  NormalClassDeclaration ::= ClassModifiersopt class identifier TypeParametersopt Superopt Interfacesopt ClassBody
             //
             case 76: {
-               //#line 325 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 325 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new NormalClassDeclaration(getLeftIToken(), getRightIToken(),
                                                (IClassModifiersopt)getRhsSym(1),
@@ -27610,7 +27610,7 @@ public class JavaParser implements RuleAction
             // Rule 78:  ClassModifiers ::= ClassModifiers ClassModifier
             //
             case 78: {
-               //#line 328 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 328 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassModifiers(getLeftIToken(), getRightIToken(),
                                        (IClassModifiers)getRhsSym(1),
@@ -27627,9 +27627,9 @@ public class JavaParser implements RuleAction
             // Rule 80:  ClassModifier ::= public
             //
             case 80: {
-               //#line 331 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 331 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ClassModifier0(getRhsIToken(1))
+                    new ClassModifier__public(getRhsIToken(1))
                 );
                 break;
             }
@@ -27637,9 +27637,9 @@ public class JavaParser implements RuleAction
             // Rule 81:  ClassModifier ::= protected
             //
             case 81: {
-               //#line 332 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 332 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ClassModifier1(getRhsIToken(1))
+                    new ClassModifier__protected(getRhsIToken(1))
                 );
                 break;
             }
@@ -27647,9 +27647,9 @@ public class JavaParser implements RuleAction
             // Rule 82:  ClassModifier ::= private
             //
             case 82: {
-               //#line 333 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 333 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ClassModifier2(getRhsIToken(1))
+                    new ClassModifier__private(getRhsIToken(1))
                 );
                 break;
             }
@@ -27657,9 +27657,9 @@ public class JavaParser implements RuleAction
             // Rule 83:  ClassModifier ::= abstract
             //
             case 83: {
-               //#line 334 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 334 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ClassModifier3(getRhsIToken(1))
+                    new ClassModifier__abstract(getRhsIToken(1))
                 );
                 break;
             }
@@ -27667,9 +27667,9 @@ public class JavaParser implements RuleAction
             // Rule 84:  ClassModifier ::= static
             //
             case 84: {
-               //#line 335 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 335 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ClassModifier4(getRhsIToken(1))
+                    new ClassModifier__static(getRhsIToken(1))
                 );
                 break;
             }
@@ -27677,9 +27677,9 @@ public class JavaParser implements RuleAction
             // Rule 85:  ClassModifier ::= final
             //
             case 85: {
-               //#line 336 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 336 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ClassModifier5(getRhsIToken(1))
+                    new ClassModifier__final(getRhsIToken(1))
                 );
                 break;
             }
@@ -27687,9 +27687,9 @@ public class JavaParser implements RuleAction
             // Rule 86:  ClassModifier ::= strictfp
             //
             case 86: {
-               //#line 337 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 337 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ClassModifier6(getRhsIToken(1))
+                    new ClassModifier__strictfp(getRhsIToken(1))
                 );
                 break;
             }
@@ -27697,7 +27697,7 @@ public class JavaParser implements RuleAction
             // Rule 87:  TypeParameters ::= < TypeParameterList >
             //
             case 87: {
-               //#line 339 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 339 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeParameters(getLeftIToken(), getRightIToken(),
                                        new AstToken(getRhsIToken(1)),
@@ -27715,7 +27715,7 @@ public class JavaParser implements RuleAction
             // Rule 89:  TypeParameterList ::= TypeParameterList , TypeParameter
             //
             case 89: {
-               //#line 342 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 342 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new TypeParameterList(getLeftIToken(), getRightIToken(),
                                           (ITypeParameterList)getRhsSym(1),
@@ -27728,7 +27728,7 @@ public class JavaParser implements RuleAction
             // Rule 90:  Super ::= extends ClassType
             //
             case 90: {
-               //#line 344 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 344 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Super(getLeftIToken(), getRightIToken(),
                               new AstToken(getRhsIToken(1)),
@@ -27740,7 +27740,7 @@ public class JavaParser implements RuleAction
             // Rule 91:  Interfaces ::= implements InterfaceTypeList
             //
             case 91: {
-               //#line 351 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 351 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Interfaces(getLeftIToken(), getRightIToken(),
                                    new AstToken(getRhsIToken(1)),
@@ -27757,7 +27757,7 @@ public class JavaParser implements RuleAction
             // Rule 93:  InterfaceTypeList ::= InterfaceTypeList , InterfaceType
             //
             case 93: {
-               //#line 354 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 354 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceTypeList(getLeftIToken(), getRightIToken(),
                                           (IInterfaceTypeList)getRhsSym(1),
@@ -27770,7 +27770,7 @@ public class JavaParser implements RuleAction
             // Rule 94:  ClassBody ::= { ClassBodyDeclarationsopt }
             //
             case 94: {
-               //#line 361 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 361 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassBody(getLeftIToken(), getRightIToken(),
                                   new AstToken(getRhsIToken(1)),
@@ -27788,7 +27788,7 @@ public class JavaParser implements RuleAction
             // Rule 96:  ClassBodyDeclarations ::= ClassBodyDeclarations ClassBodyDeclaration
             //
             case 96: {
-               //#line 364 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 364 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassBodyDeclarations(getLeftIToken(), getRightIToken(),
                                               (IClassBodyDeclarations)getRhsSym(1),
@@ -27840,7 +27840,7 @@ public class JavaParser implements RuleAction
             // Rule 105:  ClassMemberDeclaration ::= ;
             //
             case 105: {
-               //#line 375 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 375 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ClassMemberDeclaration(getRhsIToken(1))
                 );
@@ -27850,7 +27850,7 @@ public class JavaParser implements RuleAction
             // Rule 106:  FieldDeclaration ::= FieldModifiersopt Type VariableDeclarators ;
             //
             case 106: {
-               //#line 377 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 377 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldDeclaration(getLeftIToken(), getRightIToken(),
                                          (IFieldModifiersopt)getRhsSym(1),
@@ -27869,7 +27869,7 @@ public class JavaParser implements RuleAction
             // Rule 108:  VariableDeclarators ::= VariableDeclarators , VariableDeclarator
             //
             case 108: {
-               //#line 380 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 380 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new VariableDeclarators(getLeftIToken(), getRightIToken(),
                                             (IVariableDeclarators)getRhsSym(1),
@@ -27887,7 +27887,7 @@ public class JavaParser implements RuleAction
             // Rule 110:  VariableDeclarator ::= VariableDeclaratorId = VariableInitializer
             //
             case 110: {
-               //#line 383 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 383 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new VariableDeclarator(getLeftIToken(), getRightIToken(),
                                            (IVariableDeclaratorId)getRhsSym(1),
@@ -27905,7 +27905,7 @@ public class JavaParser implements RuleAction
             // Rule 112:  VariableDeclaratorId ::= VariableDeclaratorId [ ]
             //
             case 112: {
-               //#line 386 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 386 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new VariableDeclaratorId(getLeftIToken(), getRightIToken(),
                                              (IVariableDeclaratorId)getRhsSym(1),
@@ -27933,7 +27933,7 @@ public class JavaParser implements RuleAction
             // Rule 116:  FieldModifiers ::= FieldModifiers FieldModifier
             //
             case 116: {
-               //#line 392 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 392 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FieldModifiers(getLeftIToken(), getRightIToken(),
                                        (IFieldModifiers)getRhsSym(1),
@@ -27950,9 +27950,9 @@ public class JavaParser implements RuleAction
             // Rule 118:  FieldModifier ::= public
             //
             case 118: {
-               //#line 395 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 395 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new FieldModifier0(getRhsIToken(1))
+                    new FieldModifier__public(getRhsIToken(1))
                 );
                 break;
             }
@@ -27960,9 +27960,9 @@ public class JavaParser implements RuleAction
             // Rule 119:  FieldModifier ::= protected
             //
             case 119: {
-               //#line 396 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 396 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new FieldModifier1(getRhsIToken(1))
+                    new FieldModifier__protected(getRhsIToken(1))
                 );
                 break;
             }
@@ -27970,9 +27970,9 @@ public class JavaParser implements RuleAction
             // Rule 120:  FieldModifier ::= private
             //
             case 120: {
-               //#line 397 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 397 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new FieldModifier2(getRhsIToken(1))
+                    new FieldModifier__private(getRhsIToken(1))
                 );
                 break;
             }
@@ -27980,9 +27980,9 @@ public class JavaParser implements RuleAction
             // Rule 121:  FieldModifier ::= static
             //
             case 121: {
-               //#line 398 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 398 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new FieldModifier3(getRhsIToken(1))
+                    new FieldModifier__static(getRhsIToken(1))
                 );
                 break;
             }
@@ -27990,9 +27990,9 @@ public class JavaParser implements RuleAction
             // Rule 122:  FieldModifier ::= final
             //
             case 122: {
-               //#line 399 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 399 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new FieldModifier4(getRhsIToken(1))
+                    new FieldModifier__final(getRhsIToken(1))
                 );
                 break;
             }
@@ -28000,9 +28000,9 @@ public class JavaParser implements RuleAction
             // Rule 123:  FieldModifier ::= transient
             //
             case 123: {
-               //#line 400 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 400 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new FieldModifier5(getRhsIToken(1))
+                    new FieldModifier__transient(getRhsIToken(1))
                 );
                 break;
             }
@@ -28010,9 +28010,9 @@ public class JavaParser implements RuleAction
             // Rule 124:  FieldModifier ::= volatile
             //
             case 124: {
-               //#line 401 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 401 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new FieldModifier6(getRhsIToken(1))
+                    new FieldModifier__volatile(getRhsIToken(1))
                 );
                 break;
             }
@@ -28020,7 +28020,7 @@ public class JavaParser implements RuleAction
             // Rule 125:  MethodDeclaration ::= MethodHeader MethodBody
             //
             case 125: {
-               //#line 403 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 403 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodDeclaration(getLeftIToken(), getRightIToken(),
                                           (MethodHeader)getRhsSym(1),
@@ -28032,7 +28032,7 @@ public class JavaParser implements RuleAction
             // Rule 126:  MethodHeader ::= MethodModifiersopt TypeParametersopt ResultType MethodDeclarator Throwsopt
             //
             case 126: {
-               //#line 405 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 405 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodHeader(getLeftIToken(), getRightIToken(),
                                      (IMethodModifiersopt)getRhsSym(1),
@@ -28052,7 +28052,7 @@ public class JavaParser implements RuleAction
             // Rule 128:  ResultType ::= void
             //
             case 128: {
-               //#line 408 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 408 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ResultType(getRhsIToken(1))
                 );
@@ -28062,13 +28062,13 @@ public class JavaParser implements RuleAction
             // Rule 129:  MethodDeclarator ::= identifier ( FormalParameterListopt )
             //
             case 129: {
-               //#line 410 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 410 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new MethodDeclarator0(getLeftIToken(), getRightIToken(),
-                                          (identifier)getRhsSym(1),
-                                          new AstToken(getRhsIToken(2)),
-                                          (IFormalParameterListopt)getRhsSym(3),
-                                          new AstToken(getRhsIToken(4)))
+                    new MethodDeclarator__identifier_LPAREN_FormalParameterListopt_RPAREN(getLeftIToken(), getRightIToken(),
+                                                                                          (identifier)getRhsSym(1),
+                                                                                          new AstToken(getRhsIToken(2)),
+                                                                                          (IFormalParameterListopt)getRhsSym(3),
+                                                                                          new AstToken(getRhsIToken(4)))
                 );
                 break;
             }
@@ -28076,12 +28076,12 @@ public class JavaParser implements RuleAction
             // Rule 130:  MethodDeclarator ::= MethodDeclarator [ ]
             //
             case 130: {
-               //#line 412 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 412 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new MethodDeclarator1(getLeftIToken(), getRightIToken(),
-                                          (IMethodDeclarator)getRhsSym(1),
-                                          new AstToken(getRhsIToken(2)),
-                                          new AstToken(getRhsIToken(3)))
+                    new MethodDeclarator__MethodDeclarator_LBRACKET_RBRACKET(getLeftIToken(), getRightIToken(),
+                                                                             (IMethodDeclarator)getRhsSym(1),
+                                                                             new AstToken(getRhsIToken(2)),
+                                                                             new AstToken(getRhsIToken(3)))
                 );
                 break;
             }
@@ -28094,7 +28094,7 @@ public class JavaParser implements RuleAction
             // Rule 132:  FormalParameterList ::= FormalParameters , LastFormalParameter
             //
             case 132: {
-               //#line 415 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 415 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FormalParameterList(getLeftIToken(), getRightIToken(),
                                             (IFormalParameters)getRhsSym(1),
@@ -28112,7 +28112,7 @@ public class JavaParser implements RuleAction
             // Rule 134:  FormalParameters ::= FormalParameters , FormalParameter
             //
             case 134: {
-               //#line 418 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 418 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FormalParameters(getLeftIToken(), getRightIToken(),
                                          (IFormalParameters)getRhsSym(1),
@@ -28125,7 +28125,7 @@ public class JavaParser implements RuleAction
             // Rule 135:  FormalParameter ::= VariableModifiersopt Type VariableDeclaratorId
             //
             case 135: {
-               //#line 420 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 420 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new FormalParameter(getLeftIToken(), getRightIToken(),
                                         (IVariableModifiersopt)getRhsSym(1),
@@ -28143,7 +28143,7 @@ public class JavaParser implements RuleAction
             // Rule 137:  VariableModifiers ::= VariableModifiers VariableModifier
             //
             case 137: {
-               //#line 423 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 423 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new VariableModifiers(getLeftIToken(), getRightIToken(),
                                           (IVariableModifiers)getRhsSym(1),
@@ -28155,7 +28155,7 @@ public class JavaParser implements RuleAction
             // Rule 138:  VariableModifier ::= final
             //
             case 138: {
-               //#line 425 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 425 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new VariableModifier(getRhsIToken(1))
                 );
@@ -28170,7 +28170,7 @@ public class JavaParser implements RuleAction
             // Rule 140:  LastFormalParameter ::= VariableModifiersopt Type ...opt VariableDeclaratorId
             //
             case 140: {
-               //#line 428 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 428 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LastFormalParameter(getLeftIToken(), getRightIToken(),
                                             (IVariableModifiersopt)getRhsSym(1),
@@ -28189,7 +28189,7 @@ public class JavaParser implements RuleAction
             // Rule 142:  MethodModifiers ::= MethodModifiers MethodModifier
             //
             case 142: {
-               //#line 437 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 437 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodModifiers(getLeftIToken(), getRightIToken(),
                                         (IMethodModifiers)getRhsSym(1),
@@ -28206,9 +28206,9 @@ public class JavaParser implements RuleAction
             // Rule 144:  MethodModifier ::= public
             //
             case 144: {
-               //#line 440 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 440 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new MethodModifier0(getRhsIToken(1))
+                    new MethodModifier__public(getRhsIToken(1))
                 );
                 break;
             }
@@ -28216,9 +28216,9 @@ public class JavaParser implements RuleAction
             // Rule 145:  MethodModifier ::= protected
             //
             case 145: {
-               //#line 441 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 441 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new MethodModifier1(getRhsIToken(1))
+                    new MethodModifier__protected(getRhsIToken(1))
                 );
                 break;
             }
@@ -28226,9 +28226,9 @@ public class JavaParser implements RuleAction
             // Rule 146:  MethodModifier ::= private
             //
             case 146: {
-               //#line 442 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 442 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new MethodModifier2(getRhsIToken(1))
+                    new MethodModifier__private(getRhsIToken(1))
                 );
                 break;
             }
@@ -28236,9 +28236,9 @@ public class JavaParser implements RuleAction
             // Rule 147:  MethodModifier ::= abstract
             //
             case 147: {
-               //#line 443 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 443 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new MethodModifier3(getRhsIToken(1))
+                    new MethodModifier__abstract(getRhsIToken(1))
                 );
                 break;
             }
@@ -28246,9 +28246,9 @@ public class JavaParser implements RuleAction
             // Rule 148:  MethodModifier ::= static
             //
             case 148: {
-               //#line 444 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 444 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new MethodModifier4(getRhsIToken(1))
+                    new MethodModifier__static(getRhsIToken(1))
                 );
                 break;
             }
@@ -28256,9 +28256,9 @@ public class JavaParser implements RuleAction
             // Rule 149:  MethodModifier ::= final
             //
             case 149: {
-               //#line 445 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 445 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new MethodModifier5(getRhsIToken(1))
+                    new MethodModifier__final(getRhsIToken(1))
                 );
                 break;
             }
@@ -28266,9 +28266,9 @@ public class JavaParser implements RuleAction
             // Rule 150:  MethodModifier ::= synchronized
             //
             case 150: {
-               //#line 446 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 446 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new MethodModifier6(getRhsIToken(1))
+                    new MethodModifier__synchronized(getRhsIToken(1))
                 );
                 break;
             }
@@ -28276,9 +28276,9 @@ public class JavaParser implements RuleAction
             // Rule 151:  MethodModifier ::= native
             //
             case 151: {
-               //#line 447 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 447 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new MethodModifier7(getRhsIToken(1))
+                    new MethodModifier__native(getRhsIToken(1))
                 );
                 break;
             }
@@ -28286,9 +28286,9 @@ public class JavaParser implements RuleAction
             // Rule 152:  MethodModifier ::= strictfp
             //
             case 152: {
-               //#line 448 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 448 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new MethodModifier8(getRhsIToken(1))
+                    new MethodModifier__strictfp(getRhsIToken(1))
                 );
                 break;
             }
@@ -28296,7 +28296,7 @@ public class JavaParser implements RuleAction
             // Rule 153:  Throws ::= throws ExceptionTypeList
             //
             case 153: {
-               //#line 450 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 450 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Throws(getLeftIToken(), getRightIToken(),
                                new AstToken(getRhsIToken(1)),
@@ -28313,7 +28313,7 @@ public class JavaParser implements RuleAction
             // Rule 155:  ExceptionTypeList ::= ExceptionTypeList , ExceptionType
             //
             case 155: {
-               //#line 453 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 453 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExceptionTypeList(getLeftIToken(), getRightIToken(),
                                           (IExceptionTypeList)getRhsSym(1),
@@ -28341,7 +28341,7 @@ public class JavaParser implements RuleAction
             // Rule 159:  MethodBody ::= ;
             //
             case 159: {
-               //#line 459 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 459 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MethodBody(getRhsIToken(1))
                 );
@@ -28356,7 +28356,7 @@ public class JavaParser implements RuleAction
             // Rule 161:  StaticInitializer ::= static Block
             //
             case 161: {
-               //#line 463 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 463 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new StaticInitializer(getLeftIToken(), getRightIToken(),
                                           new AstToken(getRhsIToken(1)),
@@ -28368,7 +28368,7 @@ public class JavaParser implements RuleAction
             // Rule 162:  ConstructorDeclaration ::= ConstructorModifiersopt ConstructorDeclarator Throwsopt ConstructorBody
             //
             case 162: {
-               //#line 465 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 465 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstructorDeclaration(getLeftIToken(), getRightIToken(),
                                                (IConstructorModifiersopt)getRhsSym(1),
@@ -28382,7 +28382,7 @@ public class JavaParser implements RuleAction
             // Rule 163:  ConstructorDeclarator ::= TypeParametersopt SimpleTypeName ( FormalParameterListopt )
             //
             case 163: {
-               //#line 467 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 467 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstructorDeclarator(getLeftIToken(), getRightIToken(),
                                               (TypeParameters)getRhsSym(1),
@@ -28407,7 +28407,7 @@ public class JavaParser implements RuleAction
             // Rule 166:  ConstructorModifiers ::= ConstructorModifiers ConstructorModifier
             //
             case 166: {
-               //#line 472 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 472 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstructorModifiers(getLeftIToken(), getRightIToken(),
                                              (IConstructorModifiers)getRhsSym(1),
@@ -28424,9 +28424,9 @@ public class JavaParser implements RuleAction
             // Rule 168:  ConstructorModifier ::= public
             //
             case 168: {
-               //#line 475 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 475 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ConstructorModifier0(getRhsIToken(1))
+                    new ConstructorModifier__public(getRhsIToken(1))
                 );
                 break;
             }
@@ -28434,9 +28434,9 @@ public class JavaParser implements RuleAction
             // Rule 169:  ConstructorModifier ::= protected
             //
             case 169: {
-               //#line 476 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 476 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ConstructorModifier1(getRhsIToken(1))
+                    new ConstructorModifier__protected(getRhsIToken(1))
                 );
                 break;
             }
@@ -28444,9 +28444,9 @@ public class JavaParser implements RuleAction
             // Rule 170:  ConstructorModifier ::= private
             //
             case 170: {
-               //#line 477 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 477 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ConstructorModifier2(getRhsIToken(1))
+                    new ConstructorModifier__private(getRhsIToken(1))
                 );
                 break;
             }
@@ -28454,7 +28454,7 @@ public class JavaParser implements RuleAction
             // Rule 171:  ConstructorBody ::= { ExplicitConstructorInvocationopt BlockStatementsopt }
             //
             case 171: {
-               //#line 479 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 479 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstructorBody(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -28468,15 +28468,15 @@ public class JavaParser implements RuleAction
             // Rule 172:  ExplicitConstructorInvocation ::= TypeArgumentsopt this ( ArgumentListopt ) ;
             //
             case 172: {
-               //#line 481 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 481 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ExplicitConstructorInvocation0(getLeftIToken(), getRightIToken(),
-                                                       (TypeArguments)getRhsSym(1),
-                                                       new AstToken(getRhsIToken(2)),
-                                                       new AstToken(getRhsIToken(3)),
-                                                       (IArgumentListopt)getRhsSym(4),
-                                                       new AstToken(getRhsIToken(5)),
-                                                       new AstToken(getRhsIToken(6)))
+                    new ExplicitConstructorInvocation__TypeArgumentsopt_this_LPAREN_ArgumentListopt_RPAREN_SEMICOLON(getLeftIToken(), getRightIToken(),
+                                                                                                                     (TypeArguments)getRhsSym(1),
+                                                                                                                     new AstToken(getRhsIToken(2)),
+                                                                                                                     new AstToken(getRhsIToken(3)),
+                                                                                                                     (IArgumentListopt)getRhsSym(4),
+                                                                                                                     new AstToken(getRhsIToken(5)),
+                                                                                                                     new AstToken(getRhsIToken(6)))
                 );
                 break;
             }
@@ -28484,15 +28484,15 @@ public class JavaParser implements RuleAction
             // Rule 173:  ExplicitConstructorInvocation ::= TypeArgumentsopt super ( ArgumentListopt ) ;
             //
             case 173: {
-               //#line 482 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 482 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ExplicitConstructorInvocation1(getLeftIToken(), getRightIToken(),
-                                                       (TypeArguments)getRhsSym(1),
-                                                       new AstToken(getRhsIToken(2)),
-                                                       new AstToken(getRhsIToken(3)),
-                                                       (IArgumentListopt)getRhsSym(4),
-                                                       new AstToken(getRhsIToken(5)),
-                                                       new AstToken(getRhsIToken(6)))
+                    new ExplicitConstructorInvocation__TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON(getLeftIToken(), getRightIToken(),
+                                                                                                                      (TypeArguments)getRhsSym(1),
+                                                                                                                      new AstToken(getRhsIToken(2)),
+                                                                                                                      new AstToken(getRhsIToken(3)),
+                                                                                                                      (IArgumentListopt)getRhsSym(4),
+                                                                                                                      new AstToken(getRhsIToken(5)),
+                                                                                                                      new AstToken(getRhsIToken(6)))
                 );
                 break;
             }
@@ -28500,17 +28500,17 @@ public class JavaParser implements RuleAction
             // Rule 174:  ExplicitConstructorInvocation ::= Primary . TypeArgumentsopt super ( ArgumentListopt ) ;
             //
             case 174: {
-               //#line 483 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 483 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ExplicitConstructorInvocation2(getLeftIToken(), getRightIToken(),
-                                                       (IPrimary)getRhsSym(1),
-                                                       new AstToken(getRhsIToken(2)),
-                                                       (TypeArguments)getRhsSym(3),
-                                                       new AstToken(getRhsIToken(4)),
-                                                       new AstToken(getRhsIToken(5)),
-                                                       (IArgumentListopt)getRhsSym(6),
-                                                       new AstToken(getRhsIToken(7)),
-                                                       new AstToken(getRhsIToken(8)))
+                    new ExplicitConstructorInvocation__Primary_DOT_TypeArgumentsopt_super_LPAREN_ArgumentListopt_RPAREN_SEMICOLON(getLeftIToken(), getRightIToken(),
+                                                                                                                                  (IPrimary)getRhsSym(1),
+                                                                                                                                  new AstToken(getRhsIToken(2)),
+                                                                                                                                  (TypeArguments)getRhsSym(3),
+                                                                                                                                  new AstToken(getRhsIToken(4)),
+                                                                                                                                  new AstToken(getRhsIToken(5)),
+                                                                                                                                  (IArgumentListopt)getRhsSym(6),
+                                                                                                                                  new AstToken(getRhsIToken(7)),
+                                                                                                                                  new AstToken(getRhsIToken(8)))
                 );
                 break;
             }
@@ -28518,7 +28518,7 @@ public class JavaParser implements RuleAction
             // Rule 175:  EnumDeclaration ::= ClassModifiersopt enum identifier Interfacesopt EnumBody
             //
             case 175: {
-               //#line 485 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 485 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EnumDeclaration(getLeftIToken(), getRightIToken(),
                                         (IClassModifiersopt)getRhsSym(1),
@@ -28533,7 +28533,7 @@ public class JavaParser implements RuleAction
             // Rule 176:  EnumBody ::= { EnumConstantsopt ,opt EnumBodyDeclarationsopt }
             //
             case 176: {
-               //#line 487 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 487 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EnumBody(getLeftIToken(), getRightIToken(),
                                  new AstToken(getRhsIToken(1)),
@@ -28553,7 +28553,7 @@ public class JavaParser implements RuleAction
             // Rule 178:  EnumConstants ::= EnumConstants , EnumConstant
             //
             case 178: {
-               //#line 490 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 490 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EnumConstants(getLeftIToken(), getRightIToken(),
                                       (IEnumConstants)getRhsSym(1),
@@ -28566,7 +28566,7 @@ public class JavaParser implements RuleAction
             // Rule 179:  EnumConstant ::= Annotationsopt identifier Argumentsopt ClassBodyopt
             //
             case 179: {
-               //#line 492 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 492 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EnumConstant(getLeftIToken(), getRightIToken(),
                                      (IAnnotationsopt)getRhsSym(1),
@@ -28580,7 +28580,7 @@ public class JavaParser implements RuleAction
             // Rule 180:  Arguments ::= ( ArgumentListopt )
             //
             case 180: {
-               //#line 494 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 494 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Arguments(getLeftIToken(), getRightIToken(),
                                   new AstToken(getRhsIToken(1)),
@@ -28593,7 +28593,7 @@ public class JavaParser implements RuleAction
             // Rule 181:  EnumBodyDeclarations ::= ; ClassBodyDeclarationsopt
             //
             case 181: {
-               //#line 496 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 496 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EnumBodyDeclarations(getLeftIToken(), getRightIToken(),
                                              new AstToken(getRhsIToken(1)),
@@ -28615,7 +28615,7 @@ public class JavaParser implements RuleAction
             // Rule 184:  NormalInterfaceDeclaration ::= InterfaceModifiersopt interface identifier TypeParametersopt ExtendsInterfacesopt InterfaceBody
             //
             case 184: {
-               //#line 503 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 503 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new NormalInterfaceDeclaration(getLeftIToken(), getRightIToken(),
                                                    (IInterfaceModifiersopt)getRhsSym(1),
@@ -28636,7 +28636,7 @@ public class JavaParser implements RuleAction
             // Rule 186:  InterfaceModifiers ::= InterfaceModifiers InterfaceModifier
             //
             case 186: {
-               //#line 506 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 506 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceModifiers(getLeftIToken(), getRightIToken(),
                                            (IInterfaceModifiers)getRhsSym(1),
@@ -28653,9 +28653,9 @@ public class JavaParser implements RuleAction
             // Rule 188:  InterfaceModifier ::= public
             //
             case 188: {
-               //#line 509 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 509 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new InterfaceModifier0(getRhsIToken(1))
+                    new InterfaceModifier__public(getRhsIToken(1))
                 );
                 break;
             }
@@ -28663,9 +28663,9 @@ public class JavaParser implements RuleAction
             // Rule 189:  InterfaceModifier ::= protected
             //
             case 189: {
-               //#line 510 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 510 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new InterfaceModifier1(getRhsIToken(1))
+                    new InterfaceModifier__protected(getRhsIToken(1))
                 );
                 break;
             }
@@ -28673,9 +28673,9 @@ public class JavaParser implements RuleAction
             // Rule 190:  InterfaceModifier ::= private
             //
             case 190: {
-               //#line 511 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 511 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new InterfaceModifier2(getRhsIToken(1))
+                    new InterfaceModifier__private(getRhsIToken(1))
                 );
                 break;
             }
@@ -28683,9 +28683,9 @@ public class JavaParser implements RuleAction
             // Rule 191:  InterfaceModifier ::= abstract
             //
             case 191: {
-               //#line 512 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 512 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new InterfaceModifier3(getRhsIToken(1))
+                    new InterfaceModifier__abstract(getRhsIToken(1))
                 );
                 break;
             }
@@ -28693,9 +28693,9 @@ public class JavaParser implements RuleAction
             // Rule 192:  InterfaceModifier ::= static
             //
             case 192: {
-               //#line 513 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 513 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new InterfaceModifier4(getRhsIToken(1))
+                    new InterfaceModifier__static(getRhsIToken(1))
                 );
                 break;
             }
@@ -28703,9 +28703,9 @@ public class JavaParser implements RuleAction
             // Rule 193:  InterfaceModifier ::= strictfp
             //
             case 193: {
-               //#line 514 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 514 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new InterfaceModifier5(getRhsIToken(1))
+                    new InterfaceModifier__strictfp(getRhsIToken(1))
                 );
                 break;
             }
@@ -28713,11 +28713,11 @@ public class JavaParser implements RuleAction
             // Rule 194:  ExtendsInterfaces ::= extends InterfaceType
             //
             case 194: {
-               //#line 516 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 516 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ExtendsInterfaces0(getLeftIToken(), getRightIToken(),
-                                           new AstToken(getRhsIToken(1)),
-                                           (InterfaceType)getRhsSym(2))
+                    new ExtendsInterfaces__extends_InterfaceType(getLeftIToken(), getRightIToken(),
+                                                                 new AstToken(getRhsIToken(1)),
+                                                                 (InterfaceType)getRhsSym(2))
                 );
                 break;
             }
@@ -28725,12 +28725,12 @@ public class JavaParser implements RuleAction
             // Rule 195:  ExtendsInterfaces ::= ExtendsInterfaces , InterfaceType
             //
             case 195: {
-               //#line 517 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 517 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ExtendsInterfaces1(getLeftIToken(), getRightIToken(),
-                                           (IExtendsInterfaces)getRhsSym(1),
-                                           new AstToken(getRhsIToken(2)),
-                                           (InterfaceType)getRhsSym(3))
+                    new ExtendsInterfaces__ExtendsInterfaces_COMMA_InterfaceType(getLeftIToken(), getRightIToken(),
+                                                                                 (IExtendsInterfaces)getRhsSym(1),
+                                                                                 new AstToken(getRhsIToken(2)),
+                                                                                 (InterfaceType)getRhsSym(3))
                 );
                 break;
             }
@@ -28738,7 +28738,7 @@ public class JavaParser implements RuleAction
             // Rule 196:  InterfaceBody ::= { InterfaceMemberDeclarationsopt }
             //
             case 196: {
-               //#line 524 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 524 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceBody(getLeftIToken(), getRightIToken(),
                                       new AstToken(getRhsIToken(1)),
@@ -28756,7 +28756,7 @@ public class JavaParser implements RuleAction
             // Rule 198:  InterfaceMemberDeclarations ::= InterfaceMemberDeclarations InterfaceMemberDeclaration
             //
             case 198: {
-               //#line 527 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 527 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceMemberDeclarations(getLeftIToken(), getRightIToken(),
                                                     (IInterfaceMemberDeclarations)getRhsSym(1),
@@ -28788,7 +28788,7 @@ public class JavaParser implements RuleAction
             // Rule 203:  InterfaceMemberDeclaration ::= ;
             //
             case 203: {
-               //#line 533 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 533 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InterfaceMemberDeclaration(getRhsIToken(1))
                 );
@@ -28798,7 +28798,7 @@ public class JavaParser implements RuleAction
             // Rule 204:  ConstantDeclaration ::= ConstantModifiersopt Type VariableDeclarators
             //
             case 204: {
-               //#line 535 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 535 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstantDeclaration(getLeftIToken(), getRightIToken(),
                                             (IConstantModifiersopt)getRhsSym(1),
@@ -28816,7 +28816,7 @@ public class JavaParser implements RuleAction
             // Rule 206:  ConstantModifiers ::= ConstantModifiers ConstantModifier
             //
             case 206: {
-               //#line 538 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 538 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConstantModifiers(getLeftIToken(), getRightIToken(),
                                           (IConstantModifiers)getRhsSym(1),
@@ -28833,9 +28833,9 @@ public class JavaParser implements RuleAction
             // Rule 208:  ConstantModifier ::= public
             //
             case 208: {
-               //#line 541 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 541 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ConstantModifier0(getRhsIToken(1))
+                    new ConstantModifier__public(getRhsIToken(1))
                 );
                 break;
             }
@@ -28843,9 +28843,9 @@ public class JavaParser implements RuleAction
             // Rule 209:  ConstantModifier ::= static
             //
             case 209: {
-               //#line 542 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 542 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ConstantModifier1(getRhsIToken(1))
+                    new ConstantModifier__static(getRhsIToken(1))
                 );
                 break;
             }
@@ -28853,9 +28853,9 @@ public class JavaParser implements RuleAction
             // Rule 210:  ConstantModifier ::= final
             //
             case 210: {
-               //#line 543 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 543 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ConstantModifier2(getRhsIToken(1))
+                    new ConstantModifier__final(getRhsIToken(1))
                 );
                 break;
             }
@@ -28863,7 +28863,7 @@ public class JavaParser implements RuleAction
             // Rule 211:  AbstractMethodDeclaration ::= AbstractMethodModifiersopt TypeParametersopt ResultType MethodDeclarator Throwsopt ;
             //
             case 211: {
-               //#line 545 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 545 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AbstractMethodDeclaration(getLeftIToken(), getRightIToken(),
                                                   (IAbstractMethodModifiersopt)getRhsSym(1),
@@ -28884,7 +28884,7 @@ public class JavaParser implements RuleAction
             // Rule 213:  AbstractMethodModifiers ::= AbstractMethodModifiers AbstractMethodModifier
             //
             case 213: {
-               //#line 548 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 548 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AbstractMethodModifiers(getLeftIToken(), getRightIToken(),
                                                 (IAbstractMethodModifiers)getRhsSym(1),
@@ -28901,9 +28901,9 @@ public class JavaParser implements RuleAction
             // Rule 215:  AbstractMethodModifier ::= public
             //
             case 215: {
-               //#line 551 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 551 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AbstractMethodModifier0(getRhsIToken(1))
+                    new AbstractMethodModifier__public(getRhsIToken(1))
                 );
                 break;
             }
@@ -28911,9 +28911,9 @@ public class JavaParser implements RuleAction
             // Rule 216:  AbstractMethodModifier ::= abstract
             //
             case 216: {
-               //#line 552 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 552 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AbstractMethodModifier1(getRhsIToken(1))
+                    new AbstractMethodModifier__abstract(getRhsIToken(1))
                 );
                 break;
             }
@@ -28921,7 +28921,7 @@ public class JavaParser implements RuleAction
             // Rule 217:  AnnotationTypeDeclaration ::= InterfaceModifiersopt @ interface identifier AnnotationTypeBody
             //
             case 217: {
-               //#line 554 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 554 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AnnotationTypeDeclaration(getLeftIToken(), getRightIToken(),
                                                   (IInterfaceModifiersopt)getRhsSym(1),
@@ -28936,7 +28936,7 @@ public class JavaParser implements RuleAction
             // Rule 218:  AnnotationTypeBody ::= { AnnotationTypeElementDeclarationsopt }
             //
             case 218: {
-               //#line 556 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 556 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AnnotationTypeBody(getLeftIToken(), getRightIToken(),
                                            new AstToken(getRhsIToken(1)),
@@ -28954,7 +28954,7 @@ public class JavaParser implements RuleAction
             // Rule 220:  AnnotationTypeElementDeclarations ::= AnnotationTypeElementDeclarations AnnotationTypeElementDeclaration
             //
             case 220: {
-               //#line 559 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 559 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AnnotationTypeElementDeclarations(getLeftIToken(), getRightIToken(),
                                                           (IAnnotationTypeElementDeclarations)getRhsSym(1),
@@ -28966,16 +28966,16 @@ public class JavaParser implements RuleAction
             // Rule 221:  AnnotationTypeElementDeclaration ::= AbstractMethodModifiersopt Type identifier ( ) DefaultValueopt ;
             //
             case 221: {
-               //#line 561 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 561 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AnnotationTypeElementDeclaration0(getLeftIToken(), getRightIToken(),
-                                                          (IAbstractMethodModifiersopt)getRhsSym(1),
-                                                          (IType)getRhsSym(2),
-                                                          (identifier)getRhsSym(3),
-                                                          new AstToken(getRhsIToken(4)),
-                                                          new AstToken(getRhsIToken(5)),
-                                                          (DefaultValue)getRhsSym(6),
-                                                          new AstToken(getRhsIToken(7)))
+                    new AnnotationTypeElementDeclaration__AbstractMethodModifiersopt_Type_identifier_LPAREN_RPAREN_DefaultValueopt_SEMICOLON(getLeftIToken(), getRightIToken(),
+                                                                                                                                             (IAbstractMethodModifiersopt)getRhsSym(1),
+                                                                                                                                             (IType)getRhsSym(2),
+                                                                                                                                             (identifier)getRhsSym(3),
+                                                                                                                                             new AstToken(getRhsIToken(4)),
+                                                                                                                                             new AstToken(getRhsIToken(5)),
+                                                                                                                                             (DefaultValue)getRhsSym(6),
+                                                                                                                                             new AstToken(getRhsIToken(7)))
                 );
                 break;
             }
@@ -29008,9 +29008,9 @@ public class JavaParser implements RuleAction
             // Rule 227:  AnnotationTypeElementDeclaration ::= ;
             //
             case 227: {
-               //#line 567 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 567 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AnnotationTypeElementDeclaration1(getRhsIToken(1))
+                    new AnnotationTypeElementDeclaration__SEMICOLON(getRhsIToken(1))
                 );
                 break;
             }
@@ -29018,7 +29018,7 @@ public class JavaParser implements RuleAction
             // Rule 228:  DefaultValue ::= default ElementValue
             //
             case 228: {
-               //#line 569 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 569 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new DefaultValue(getLeftIToken(), getRightIToken(),
                                      new AstToken(getRhsIToken(1)),
@@ -29035,7 +29035,7 @@ public class JavaParser implements RuleAction
             // Rule 230:  Annotations ::= Annotations Annotation
             //
             case 230: {
-               //#line 572 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 572 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Annotations(getLeftIToken(), getRightIToken(),
                                     (IAnnotations)getRhsSym(1),
@@ -29062,7 +29062,7 @@ public class JavaParser implements RuleAction
             // Rule 234:  NormalAnnotation ::= @ TypeName ( ElementValuePairsopt )
             //
             case 234: {
-               //#line 578 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 578 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new NormalAnnotation(getLeftIToken(), getRightIToken(),
                                          new AstToken(getRhsIToken(1)),
@@ -29082,7 +29082,7 @@ public class JavaParser implements RuleAction
             // Rule 236:  ElementValuePairs ::= ElementValuePairs , ElementValuePair
             //
             case 236: {
-               //#line 581 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 581 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ElementValuePairs(getLeftIToken(), getRightIToken(),
                                           (IElementValuePairs)getRhsSym(1),
@@ -29095,7 +29095,7 @@ public class JavaParser implements RuleAction
             // Rule 237:  ElementValuePair ::= SimpleName = ElementValue
             //
             case 237: {
-               //#line 583 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 583 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ElementValuePair(getLeftIToken(), getRightIToken(),
                                          (identifier)getRhsSym(1),
@@ -29128,7 +29128,7 @@ public class JavaParser implements RuleAction
             // Rule 242:  ElementValueArrayInitializer ::= { ElementValuesopt ,opt }
             //
             case 242: {
-               //#line 591 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 591 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ElementValueArrayInitializer(getLeftIToken(), getRightIToken(),
                                                      new AstToken(getRhsIToken(1)),
@@ -29147,7 +29147,7 @@ public class JavaParser implements RuleAction
             // Rule 244:  ElementValues ::= ElementValues , ElementValue
             //
             case 244: {
-               //#line 594 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 594 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ElementValues(getLeftIToken(), getRightIToken(),
                                       (IElementValues)getRhsSym(1),
@@ -29160,7 +29160,7 @@ public class JavaParser implements RuleAction
             // Rule 245:  MarkerAnnotation ::= @ TypeName
             //
             case 245: {
-               //#line 596 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 596 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new MarkerAnnotation(getLeftIToken(), getRightIToken(),
                                          new AstToken(getRhsIToken(1)),
@@ -29172,7 +29172,7 @@ public class JavaParser implements RuleAction
             // Rule 246:  SingleElementAnnotation ::= @ TypeName ( ElementValue )
             //
             case 246: {
-               //#line 598 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 598 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SingleElementAnnotation(getLeftIToken(), getRightIToken(),
                                                 new AstToken(getRhsIToken(1)),
@@ -29187,7 +29187,7 @@ public class JavaParser implements RuleAction
             // Rule 247:  ArrayInitializer ::= { VariableInitializersopt ,opt }
             //
             case 247: {
-               //#line 602 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 602 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArrayInitializer(getLeftIToken(), getRightIToken(),
                                          new AstToken(getRhsIToken(1)),
@@ -29206,7 +29206,7 @@ public class JavaParser implements RuleAction
             // Rule 249:  VariableInitializers ::= VariableInitializers , VariableInitializer
             //
             case 249: {
-               //#line 605 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 605 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new VariableInitializers(getLeftIToken(), getRightIToken(),
                                              (IVariableInitializers)getRhsSym(1),
@@ -29219,7 +29219,7 @@ public class JavaParser implements RuleAction
             // Rule 250:  Block ::= { BlockStatementsopt }
             //
             case 250: {
-               //#line 621 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 621 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Block(getLeftIToken(), getRightIToken(),
                               new AstToken(getRhsIToken(1)),
@@ -29237,7 +29237,7 @@ public class JavaParser implements RuleAction
             // Rule 252:  BlockStatements ::= BlockStatements BlockStatement
             //
             case 252: {
-               //#line 624 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 624 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new BlockStatements(getLeftIToken(), getRightIToken(),
                                         (IBlockStatements)getRhsSym(1),
@@ -29264,7 +29264,7 @@ public class JavaParser implements RuleAction
             // Rule 256:  LocalVariableDeclarationStatement ::= LocalVariableDeclaration ;
             //
             case 256: {
-               //#line 630 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 630 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LocalVariableDeclarationStatement(getLeftIToken(), getRightIToken(),
                                                           (LocalVariableDeclaration)getRhsSym(1),
@@ -29276,7 +29276,7 @@ public class JavaParser implements RuleAction
             // Rule 257:  LocalVariableDeclaration ::= VariableModifiersopt Type VariableDeclarators
             //
             case 257: {
-               //#line 632 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 632 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LocalVariableDeclaration(getLeftIToken(), getRightIToken(),
                                                  (IVariableModifiersopt)getRhsSym(1),
@@ -29404,7 +29404,7 @@ public class JavaParser implements RuleAction
             // Rule 281:  IfThenStatement ::= if ( Expression ) Statement
             //
             case 281: {
-               //#line 675 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 675 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new IfThenStatement(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -29419,7 +29419,7 @@ public class JavaParser implements RuleAction
             // Rule 282:  IfThenElseStatement ::= if ( Expression ) StatementNoShortIf else Statement
             //
             case 282: {
-               //#line 677 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 677 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new IfThenElseStatement(getLeftIToken(), getRightIToken(),
                                             new AstToken(getRhsIToken(1)),
@@ -29436,7 +29436,7 @@ public class JavaParser implements RuleAction
             // Rule 283:  IfThenElseStatementNoShortIf ::= if ( Expression ) StatementNoShortIf else StatementNoShortIf
             //
             case 283: {
-               //#line 679 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 679 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new IfThenElseStatementNoShortIf(getLeftIToken(), getRightIToken(),
                                                      new AstToken(getRhsIToken(1)),
@@ -29453,7 +29453,7 @@ public class JavaParser implements RuleAction
             // Rule 284:  EmptyStatement ::= ;
             //
             case 284: {
-               //#line 681 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 681 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EmptyStatement(getRhsIToken(1))
                 );
@@ -29463,7 +29463,7 @@ public class JavaParser implements RuleAction
             // Rule 285:  LabeledStatement ::= identifier : Statement
             //
             case 285: {
-               //#line 683 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 683 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LabeledStatement(getLeftIToken(), getRightIToken(),
                                          (identifier)getRhsSym(1),
@@ -29476,7 +29476,7 @@ public class JavaParser implements RuleAction
             // Rule 286:  LabeledStatementNoShortIf ::= identifier : StatementNoShortIf
             //
             case 286: {
-               //#line 685 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 685 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new LabeledStatementNoShortIf(getLeftIToken(), getRightIToken(),
                                                   (identifier)getRhsSym(1),
@@ -29489,7 +29489,7 @@ public class JavaParser implements RuleAction
             // Rule 287:  ExpressionStatement ::= StatementExpression ;
             //
             case 287: {
-               //#line 687 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 687 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExpressionStatement(getLeftIToken(), getRightIToken(),
                                             (IStatementExpression)getRhsSym(1),
@@ -29536,12 +29536,12 @@ public class JavaParser implements RuleAction
             // Rule 295:  AssertStatement ::= assert Expression ;
             //
             case 295: {
-               //#line 706 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 706 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AssertStatement0(getLeftIToken(), getRightIToken(),
-                                         new AstToken(getRhsIToken(1)),
-                                         (IExpression)getRhsSym(2),
-                                         new AstToken(getRhsIToken(3)))
+                    new AssertStatement__assert_Expression_SEMICOLON(getLeftIToken(), getRightIToken(),
+                                                                     new AstToken(getRhsIToken(1)),
+                                                                     (IExpression)getRhsSym(2),
+                                                                     new AstToken(getRhsIToken(3)))
                 );
                 break;
             }
@@ -29549,14 +29549,14 @@ public class JavaParser implements RuleAction
             // Rule 296:  AssertStatement ::= assert Expression : Expression ;
             //
             case 296: {
-               //#line 707 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 707 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AssertStatement1(getLeftIToken(), getRightIToken(),
-                                         new AstToken(getRhsIToken(1)),
-                                         (IExpression)getRhsSym(2),
-                                         new AstToken(getRhsIToken(3)),
-                                         (IExpression)getRhsSym(4),
-                                         new AstToken(getRhsIToken(5)))
+                    new AssertStatement__assert_Expression_COLON_Expression_SEMICOLON(getLeftIToken(), getRightIToken(),
+                                                                                      new AstToken(getRhsIToken(1)),
+                                                                                      (IExpression)getRhsSym(2),
+                                                                                      new AstToken(getRhsIToken(3)),
+                                                                                      (IExpression)getRhsSym(4),
+                                                                                      new AstToken(getRhsIToken(5)))
                 );
                 break;
             }
@@ -29564,7 +29564,7 @@ public class JavaParser implements RuleAction
             // Rule 297:  SwitchStatement ::= switch ( Expression ) SwitchBlock
             //
             case 297: {
-               //#line 709 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 709 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchStatement(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -29579,7 +29579,7 @@ public class JavaParser implements RuleAction
             // Rule 298:  SwitchBlock ::= { SwitchBlockStatementGroupsopt SwitchLabelsopt }
             //
             case 298: {
-               //#line 711 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 711 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchBlock(getLeftIToken(), getRightIToken(),
                                     new AstToken(getRhsIToken(1)),
@@ -29598,7 +29598,7 @@ public class JavaParser implements RuleAction
             // Rule 300:  SwitchBlockStatementGroups ::= SwitchBlockStatementGroups SwitchBlockStatementGroup
             //
             case 300: {
-               //#line 714 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 714 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchBlockStatementGroups(getLeftIToken(), getRightIToken(),
                                                    (ISwitchBlockStatementGroups)getRhsSym(1),
@@ -29610,7 +29610,7 @@ public class JavaParser implements RuleAction
             // Rule 301:  SwitchBlockStatementGroup ::= SwitchLabels BlockStatements
             //
             case 301: {
-               //#line 716 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 716 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchBlockStatementGroup(getLeftIToken(), getRightIToken(),
                                                   (ISwitchLabels)getRhsSym(1),
@@ -29627,7 +29627,7 @@ public class JavaParser implements RuleAction
             // Rule 303:  SwitchLabels ::= SwitchLabels SwitchLabel
             //
             case 303: {
-               //#line 719 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 719 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SwitchLabels(getLeftIToken(), getRightIToken(),
                                      (ISwitchLabels)getRhsSym(1),
@@ -29639,12 +29639,12 @@ public class JavaParser implements RuleAction
             // Rule 304:  SwitchLabel ::= case ConstantExpression :
             //
             case 304: {
-               //#line 721 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 721 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new SwitchLabel0(getLeftIToken(), getRightIToken(),
-                                     new AstToken(getRhsIToken(1)),
-                                     (IConstantExpression)getRhsSym(2),
-                                     new AstToken(getRhsIToken(3)))
+                    new SwitchLabel__case_ConstantExpression_COLON(getLeftIToken(), getRightIToken(),
+                                                                   new AstToken(getRhsIToken(1)),
+                                                                   (IConstantExpression)getRhsSym(2),
+                                                                   new AstToken(getRhsIToken(3)))
                 );
                 break;
             }
@@ -29652,12 +29652,12 @@ public class JavaParser implements RuleAction
             // Rule 305:  SwitchLabel ::= case EnumConstant :
             //
             case 305: {
-               //#line 722 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 722 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new SwitchLabel1(getLeftIToken(), getRightIToken(),
-                                     new AstToken(getRhsIToken(1)),
-                                     (IEnumConstant)getRhsSym(2),
-                                     new AstToken(getRhsIToken(3)))
+                    new SwitchLabel__case_EnumConstant_COLON(getLeftIToken(), getRightIToken(),
+                                                             new AstToken(getRhsIToken(1)),
+                                                             (IEnumConstant)getRhsSym(2),
+                                                             new AstToken(getRhsIToken(3)))
                 );
                 break;
             }
@@ -29665,11 +29665,11 @@ public class JavaParser implements RuleAction
             // Rule 306:  SwitchLabel ::= default :
             //
             case 306: {
-               //#line 723 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 723 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new SwitchLabel2(getLeftIToken(), getRightIToken(),
-                                     new AstToken(getRhsIToken(1)),
-                                     new AstToken(getRhsIToken(2)))
+                    new SwitchLabel__default_COLON(getLeftIToken(), getRightIToken(),
+                                                   new AstToken(getRhsIToken(1)),
+                                                   new AstToken(getRhsIToken(2)))
                 );
                 break;
             }
@@ -29682,7 +29682,7 @@ public class JavaParser implements RuleAction
             // Rule 308:  WhileStatement ::= while ( Expression ) Statement
             //
             case 308: {
-               //#line 727 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 727 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new WhileStatement(getLeftIToken(), getRightIToken(),
                                        new AstToken(getRhsIToken(1)),
@@ -29697,7 +29697,7 @@ public class JavaParser implements RuleAction
             // Rule 309:  WhileStatementNoShortIf ::= while ( Expression ) StatementNoShortIf
             //
             case 309: {
-               //#line 729 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 729 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new WhileStatementNoShortIf(getLeftIToken(), getRightIToken(),
                                                 new AstToken(getRhsIToken(1)),
@@ -29712,7 +29712,7 @@ public class JavaParser implements RuleAction
             // Rule 310:  DoStatement ::= do Statement while ( Expression ) ;
             //
             case 310: {
-               //#line 731 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 731 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new DoStatement(getLeftIToken(), getRightIToken(),
                                     new AstToken(getRhsIToken(1)),
@@ -29739,7 +29739,7 @@ public class JavaParser implements RuleAction
             // Rule 313:  BasicForStatement ::= for ( ForInitopt ; Expressionopt ; ForUpdateopt ) Statement
             //
             case 313: {
-               //#line 736 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 736 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new BasicForStatement(getLeftIToken(), getRightIToken(),
                                           new AstToken(getRhsIToken(1)),
@@ -29758,7 +29758,7 @@ public class JavaParser implements RuleAction
             // Rule 314:  ForStatementNoShortIf ::= for ( ForInitopt ; Expressionopt ; ForUpdateopt ) StatementNoShortIf
             //
             case 314: {
-               //#line 738 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 738 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ForStatementNoShortIf(getLeftIToken(), getRightIToken(),
                                               new AstToken(getRhsIToken(1)),
@@ -29797,7 +29797,7 @@ public class JavaParser implements RuleAction
             // Rule 319:  StatementExpressionList ::= StatementExpressionList , StatementExpression
             //
             case 319: {
-               //#line 746 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 746 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new StatementExpressionList(getLeftIToken(), getRightIToken(),
                                                 (IStatementExpressionList)getRhsSym(1),
@@ -29810,7 +29810,7 @@ public class JavaParser implements RuleAction
             // Rule 320:  EnhancedForStatement ::= for ( FormalParameter : Expression ) Statement
             //
             case 320: {
-               //#line 748 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 748 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new EnhancedForStatement(getLeftIToken(), getRightIToken(),
                                              new AstToken(getRhsIToken(1)),
@@ -29827,7 +29827,7 @@ public class JavaParser implements RuleAction
             // Rule 321:  BreakStatement ::= break identifieropt ;
             //
             case 321: {
-               //#line 750 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 750 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new BreakStatement(getLeftIToken(), getRightIToken(),
                                        new AstToken(getRhsIToken(1)),
@@ -29840,7 +29840,7 @@ public class JavaParser implements RuleAction
             // Rule 322:  ContinueStatement ::= continue identifieropt ;
             //
             case 322: {
-               //#line 752 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 752 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ContinueStatement(getLeftIToken(), getRightIToken(),
                                           new AstToken(getRhsIToken(1)),
@@ -29853,7 +29853,7 @@ public class JavaParser implements RuleAction
             // Rule 323:  ReturnStatement ::= return Expressionopt ;
             //
             case 323: {
-               //#line 754 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 754 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ReturnStatement(getLeftIToken(), getRightIToken(),
                                         new AstToken(getRhsIToken(1)),
@@ -29866,7 +29866,7 @@ public class JavaParser implements RuleAction
             // Rule 324:  ThrowStatement ::= throw Expression ;
             //
             case 324: {
-               //#line 756 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 756 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ThrowStatement(getLeftIToken(), getRightIToken(),
                                        new AstToken(getRhsIToken(1)),
@@ -29879,7 +29879,7 @@ public class JavaParser implements RuleAction
             // Rule 325:  SynchronizedStatement ::= synchronized ( Expression ) Block
             //
             case 325: {
-               //#line 758 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 758 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new SynchronizedStatement(getLeftIToken(), getRightIToken(),
                                               new AstToken(getRhsIToken(1)),
@@ -29894,12 +29894,12 @@ public class JavaParser implements RuleAction
             // Rule 326:  TryStatement ::= try Block Catches
             //
             case 326: {
-               //#line 760 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 760 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new TryStatement0(getLeftIToken(), getRightIToken(),
-                                      new AstToken(getRhsIToken(1)),
-                                      (Block)getRhsSym(2),
-                                      (ICatches)getRhsSym(3))
+                    new TryStatement__try_Block_Catches(getLeftIToken(), getRightIToken(),
+                                                        new AstToken(getRhsIToken(1)),
+                                                        (Block)getRhsSym(2),
+                                                        (ICatches)getRhsSym(3))
                 );
                 break;
             }
@@ -29907,13 +29907,13 @@ public class JavaParser implements RuleAction
             // Rule 327:  TryStatement ::= try Block Catchesopt Finally
             //
             case 327: {
-               //#line 761 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 761 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new TryStatement1(getLeftIToken(), getRightIToken(),
-                                      new AstToken(getRhsIToken(1)),
-                                      (Block)getRhsSym(2),
-                                      (ICatchesopt)getRhsSym(3),
-                                      (Finally)getRhsSym(4))
+                    new TryStatement__try_Block_Catchesopt_Finally(getLeftIToken(), getRightIToken(),
+                                                                   new AstToken(getRhsIToken(1)),
+                                                                   (Block)getRhsSym(2),
+                                                                   (ICatchesopt)getRhsSym(3),
+                                                                   (Finally)getRhsSym(4))
                 );
                 break;
             }
@@ -29926,7 +29926,7 @@ public class JavaParser implements RuleAction
             // Rule 329:  Catches ::= Catches CatchClause
             //
             case 329: {
-               //#line 764 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 764 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Catches(getLeftIToken(), getRightIToken(),
                                 (ICatches)getRhsSym(1),
@@ -29938,7 +29938,7 @@ public class JavaParser implements RuleAction
             // Rule 330:  CatchClause ::= catch ( FormalParameter ) Block
             //
             case 330: {
-               //#line 766 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 766 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new CatchClause(getLeftIToken(), getRightIToken(),
                                     new AstToken(getRhsIToken(1)),
@@ -29953,7 +29953,7 @@ public class JavaParser implements RuleAction
             // Rule 331:  Finally ::= finally Block
             //
             case 331: {
-               //#line 768 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 768 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Finally(getLeftIToken(), getRightIToken(),
                                 new AstToken(getRhsIToken(1)),
@@ -29980,12 +29980,12 @@ public class JavaParser implements RuleAction
             // Rule 335:  PrimaryNoNewArray ::= Type . class
             //
             case 335: {
-               //#line 784 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 784 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new PrimaryNoNewArray0(getLeftIToken(), getRightIToken(),
-                                           (IType)getRhsSym(1),
-                                           new AstToken(getRhsIToken(2)),
-                                           new AstToken(getRhsIToken(3)))
+                    new PrimaryNoNewArray__Type_DOT_class(getLeftIToken(), getRightIToken(),
+                                                          (IType)getRhsSym(1),
+                                                          new AstToken(getRhsIToken(2)),
+                                                          new AstToken(getRhsIToken(3)))
                 );
                 break;
             }
@@ -29993,12 +29993,12 @@ public class JavaParser implements RuleAction
             // Rule 336:  PrimaryNoNewArray ::= void . class
             //
             case 336: {
-               //#line 785 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 785 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new PrimaryNoNewArray1(getLeftIToken(), getRightIToken(),
-                                           new AstToken(getRhsIToken(1)),
-                                           new AstToken(getRhsIToken(2)),
-                                           new AstToken(getRhsIToken(3)))
+                    new PrimaryNoNewArray__void_DOT_class(getLeftIToken(), getRightIToken(),
+                                                          new AstToken(getRhsIToken(1)),
+                                                          new AstToken(getRhsIToken(2)),
+                                                          new AstToken(getRhsIToken(3)))
                 );
                 break;
             }
@@ -30006,9 +30006,9 @@ public class JavaParser implements RuleAction
             // Rule 337:  PrimaryNoNewArray ::= this
             //
             case 337: {
-               //#line 786 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 786 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new PrimaryNoNewArray2(getRhsIToken(1))
+                    new PrimaryNoNewArray__this(getRhsIToken(1))
                 );
                 break;
             }
@@ -30016,12 +30016,12 @@ public class JavaParser implements RuleAction
             // Rule 338:  PrimaryNoNewArray ::= ClassName . this
             //
             case 338: {
-               //#line 787 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 787 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new PrimaryNoNewArray3(getLeftIToken(), getRightIToken(),
-                                           (IClassName)getRhsSym(1),
-                                           new AstToken(getRhsIToken(2)),
-                                           new AstToken(getRhsIToken(3)))
+                    new PrimaryNoNewArray__ClassName_DOT_this(getLeftIToken(), getRightIToken(),
+                                                              (IClassName)getRhsSym(1),
+                                                              new AstToken(getRhsIToken(2)),
+                                                              new AstToken(getRhsIToken(3)))
                 );
                 break;
             }
@@ -30029,12 +30029,12 @@ public class JavaParser implements RuleAction
             // Rule 339:  PrimaryNoNewArray ::= ( Expression )
             //
             case 339: {
-               //#line 788 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 788 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new PrimaryNoNewArray4(getLeftIToken(), getRightIToken(),
-                                           new AstToken(getRhsIToken(1)),
-                                           (IExpression)getRhsSym(2),
-                                           new AstToken(getRhsIToken(3)))
+                    new PrimaryNoNewArray__LPAREN_Expression_RPAREN(getLeftIToken(), getRightIToken(),
+                                                                    new AstToken(getRhsIToken(1)),
+                                                                    (IExpression)getRhsSym(2),
+                                                                    new AstToken(getRhsIToken(3)))
                 );
                 break;
             }
@@ -30062,9 +30062,9 @@ public class JavaParser implements RuleAction
             // Rule 344:  Literal ::= IntegerLiteral
             //
             case 344: {
-               //#line 794 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 794 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new Literal0(getRhsIToken(1))
+                    new Literal__IntegerLiteral(getRhsIToken(1))
                 );
                 break;
             }
@@ -30072,9 +30072,9 @@ public class JavaParser implements RuleAction
             // Rule 345:  Literal ::= LongLiteral
             //
             case 345: {
-               //#line 795 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 795 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new Literal1(getRhsIToken(1))
+                    new Literal__LongLiteral(getRhsIToken(1))
                 );
                 break;
             }
@@ -30082,9 +30082,9 @@ public class JavaParser implements RuleAction
             // Rule 346:  Literal ::= FloatingPointLiteral
             //
             case 346: {
-               //#line 796 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 796 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new Literal2(getRhsIToken(1))
+                    new Literal__FloatingPointLiteral(getRhsIToken(1))
                 );
                 break;
             }
@@ -30092,9 +30092,9 @@ public class JavaParser implements RuleAction
             // Rule 347:  Literal ::= DoubleLiteral
             //
             case 347: {
-               //#line 797 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 797 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new Literal3(getRhsIToken(1))
+                    new Literal__DoubleLiteral(getRhsIToken(1))
                 );
                 break;
             }
@@ -30107,9 +30107,9 @@ public class JavaParser implements RuleAction
             // Rule 349:  Literal ::= CharacterLiteral
             //
             case 349: {
-               //#line 799 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 799 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new Literal4(getRhsIToken(1))
+                    new Literal__CharacterLiteral(getRhsIToken(1))
                 );
                 break;
             }
@@ -30117,9 +30117,9 @@ public class JavaParser implements RuleAction
             // Rule 350:  Literal ::= StringLiteral
             //
             case 350: {
-               //#line 800 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 800 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new Literal5(getRhsIToken(1))
+                    new Literal__StringLiteral(getRhsIToken(1))
                 );
                 break;
             }
@@ -30127,9 +30127,9 @@ public class JavaParser implements RuleAction
             // Rule 351:  Literal ::= null
             //
             case 351: {
-               //#line 801 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 801 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new Literal6(getRhsIToken(1))
+                    new Literal__null(getRhsIToken(1))
                 );
                 break;
             }
@@ -30137,9 +30137,9 @@ public class JavaParser implements RuleAction
             // Rule 352:  BooleanLiteral ::= true
             //
             case 352: {
-               //#line 803 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 803 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new BooleanLiteral0(getRhsIToken(1))
+                    new BooleanLiteral__true(getRhsIToken(1))
                 );
                 break;
             }
@@ -30147,9 +30147,9 @@ public class JavaParser implements RuleAction
             // Rule 353:  BooleanLiteral ::= false
             //
             case 353: {
-               //#line 804 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 804 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new BooleanLiteral1(getRhsIToken(1))
+                    new BooleanLiteral__false(getRhsIToken(1))
                 );
                 break;
             }
@@ -30157,17 +30157,17 @@ public class JavaParser implements RuleAction
             // Rule 354:  ClassInstanceCreationExpression ::= new TypeArgumentsopt ClassOrInterfaceType TypeArgumentsopt ( ArgumentListopt ) ClassBodyopt
             //
             case 354: {
-               //#line 811 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 811 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ClassInstanceCreationExpression0(getLeftIToken(), getRightIToken(),
-                                                         new AstToken(getRhsIToken(1)),
-                                                         (TypeArguments)getRhsSym(2),
-                                                         (ClassType)getRhsSym(3),
-                                                         (TypeArguments)getRhsSym(4),
-                                                         new AstToken(getRhsIToken(5)),
-                                                         (IArgumentListopt)getRhsSym(6),
-                                                         new AstToken(getRhsIToken(7)),
-                                                         (ClassBody)getRhsSym(8))
+                    new ClassInstanceCreationExpression__new_TypeArgumentsopt_ClassOrInterfaceType_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt(getLeftIToken(), getRightIToken(),
+                                                                                                                                                               new AstToken(getRhsIToken(1)),
+                                                                                                                                                               (TypeArguments)getRhsSym(2),
+                                                                                                                                                               (ClassType)getRhsSym(3),
+                                                                                                                                                               (TypeArguments)getRhsSym(4),
+                                                                                                                                                               new AstToken(getRhsIToken(5)),
+                                                                                                                                                               (IArgumentListopt)getRhsSym(6),
+                                                                                                                                                               new AstToken(getRhsIToken(7)),
+                                                                                                                                                               (ClassBody)getRhsSym(8))
                 );
                 break;
             }
@@ -30175,19 +30175,19 @@ public class JavaParser implements RuleAction
             // Rule 355:  ClassInstanceCreationExpression ::= Primary . new TypeArgumentsopt identifier TypeArgumentsopt ( ArgumentListopt ) ClassBodyopt
             //
             case 355: {
-               //#line 812 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 812 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ClassInstanceCreationExpression1(getLeftIToken(), getRightIToken(),
-                                                         (IPrimary)getRhsSym(1),
-                                                         new AstToken(getRhsIToken(2)),
-                                                         new AstToken(getRhsIToken(3)),
-                                                         (TypeArguments)getRhsSym(4),
-                                                         (identifier)getRhsSym(5),
-                                                         (TypeArguments)getRhsSym(6),
-                                                         new AstToken(getRhsIToken(7)),
-                                                         (IArgumentListopt)getRhsSym(8),
-                                                         new AstToken(getRhsIToken(9)),
-                                                         (ClassBody)getRhsSym(10))
+                    new ClassInstanceCreationExpression__Primary_DOT_new_TypeArgumentsopt_identifier_TypeArgumentsopt_LPAREN_ArgumentListopt_RPAREN_ClassBodyopt(getLeftIToken(), getRightIToken(),
+                                                                                                                                                                 (IPrimary)getRhsSym(1),
+                                                                                                                                                                 new AstToken(getRhsIToken(2)),
+                                                                                                                                                                 new AstToken(getRhsIToken(3)),
+                                                                                                                                                                 (TypeArguments)getRhsSym(4),
+                                                                                                                                                                 (identifier)getRhsSym(5),
+                                                                                                                                                                 (TypeArguments)getRhsSym(6),
+                                                                                                                                                                 new AstToken(getRhsIToken(7)),
+                                                                                                                                                                 (IArgumentListopt)getRhsSym(8),
+                                                                                                                                                                 new AstToken(getRhsIToken(9)),
+                                                                                                                                                                 (ClassBody)getRhsSym(10))
                 );
                 break;
             }
@@ -30200,7 +30200,7 @@ public class JavaParser implements RuleAction
             // Rule 357:  ArgumentList ::= ArgumentList , Expression
             //
             case 357: {
-               //#line 816 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 816 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ArgumentList(getLeftIToken(), getRightIToken(),
                                      (IArgumentList)getRhsSym(1),
@@ -30213,13 +30213,13 @@ public class JavaParser implements RuleAction
             // Rule 358:  ArrayCreationExpression ::= new PrimitiveType DimExprs Dimsopt
             //
             case 358: {
-               //#line 826 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 826 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ArrayCreationExpression0(getLeftIToken(), getRightIToken(),
-                                                 new AstToken(getRhsIToken(1)),
-                                                 (IPrimitiveType)getRhsSym(2),
-                                                 (IDimExprs)getRhsSym(3),
-                                                 (IDimsopt)getRhsSym(4))
+                    new ArrayCreationExpression__new_PrimitiveType_DimExprs_Dimsopt(getLeftIToken(), getRightIToken(),
+                                                                                    new AstToken(getRhsIToken(1)),
+                                                                                    (IPrimitiveType)getRhsSym(2),
+                                                                                    (IDimExprs)getRhsSym(3),
+                                                                                    (IDimsopt)getRhsSym(4))
                 );
                 break;
             }
@@ -30227,13 +30227,13 @@ public class JavaParser implements RuleAction
             // Rule 359:  ArrayCreationExpression ::= new ClassOrInterfaceType DimExprs Dimsopt
             //
             case 359: {
-               //#line 827 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 827 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ArrayCreationExpression1(getLeftIToken(), getRightIToken(),
-                                                 new AstToken(getRhsIToken(1)),
-                                                 (ClassType)getRhsSym(2),
-                                                 (IDimExprs)getRhsSym(3),
-                                                 (IDimsopt)getRhsSym(4))
+                    new ArrayCreationExpression__new_ClassOrInterfaceType_DimExprs_Dimsopt(getLeftIToken(), getRightIToken(),
+                                                                                           new AstToken(getRhsIToken(1)),
+                                                                                           (ClassType)getRhsSym(2),
+                                                                                           (IDimExprs)getRhsSym(3),
+                                                                                           (IDimsopt)getRhsSym(4))
                 );
                 break;
             }
@@ -30241,13 +30241,13 @@ public class JavaParser implements RuleAction
             // Rule 360:  ArrayCreationExpression ::= new PrimitiveType Dims ArrayInitializer
             //
             case 360: {
-               //#line 828 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 828 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ArrayCreationExpression2(getLeftIToken(), getRightIToken(),
-                                                 new AstToken(getRhsIToken(1)),
-                                                 (IPrimitiveType)getRhsSym(2),
-                                                 (IDims)getRhsSym(3),
-                                                 (ArrayInitializer)getRhsSym(4))
+                    new ArrayCreationExpression__new_PrimitiveType_Dims_ArrayInitializer(getLeftIToken(), getRightIToken(),
+                                                                                         new AstToken(getRhsIToken(1)),
+                                                                                         (IPrimitiveType)getRhsSym(2),
+                                                                                         (IDims)getRhsSym(3),
+                                                                                         (ArrayInitializer)getRhsSym(4))
                 );
                 break;
             }
@@ -30255,13 +30255,13 @@ public class JavaParser implements RuleAction
             // Rule 361:  ArrayCreationExpression ::= new ClassOrInterfaceType Dims ArrayInitializer
             //
             case 361: {
-               //#line 829 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 829 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ArrayCreationExpression3(getLeftIToken(), getRightIToken(),
-                                                 new AstToken(getRhsIToken(1)),
-                                                 (ClassType)getRhsSym(2),
-                                                 (IDims)getRhsSym(3),
-                                                 (ArrayInitializer)getRhsSym(4))
+                    new ArrayCreationExpression__new_ClassOrInterfaceType_Dims_ArrayInitializer(getLeftIToken(), getRightIToken(),
+                                                                                                new AstToken(getRhsIToken(1)),
+                                                                                                (ClassType)getRhsSym(2),
+                                                                                                (IDims)getRhsSym(3),
+                                                                                                (ArrayInitializer)getRhsSym(4))
                 );
                 break;
             }
@@ -30274,7 +30274,7 @@ public class JavaParser implements RuleAction
             // Rule 363:  DimExprs ::= DimExprs DimExpr
             //
             case 363: {
-               //#line 832 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 832 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new DimExprs(getLeftIToken(), getRightIToken(),
                                  (IDimExprs)getRhsSym(1),
@@ -30286,7 +30286,7 @@ public class JavaParser implements RuleAction
             // Rule 364:  DimExpr ::= [ Expression ]
             //
             case 364: {
-               //#line 834 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 834 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new DimExpr(getLeftIToken(), getRightIToken(),
                                 new AstToken(getRhsIToken(1)),
@@ -30299,11 +30299,11 @@ public class JavaParser implements RuleAction
             // Rule 365:  Dims ::= [ ]
             //
             case 365: {
-               //#line 836 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 836 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new Dims0(getLeftIToken(), getRightIToken(),
-                              new AstToken(getRhsIToken(1)),
-                              new AstToken(getRhsIToken(2)))
+                    new Dims__LBRACKET_RBRACKET(getLeftIToken(), getRightIToken(),
+                                                new AstToken(getRhsIToken(1)),
+                                                new AstToken(getRhsIToken(2)))
                 );
                 break;
             }
@@ -30311,12 +30311,12 @@ public class JavaParser implements RuleAction
             // Rule 366:  Dims ::= Dims [ ]
             //
             case 366: {
-               //#line 837 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 837 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new Dims1(getLeftIToken(), getRightIToken(),
-                              (IDims)getRhsSym(1),
-                              new AstToken(getRhsIToken(2)),
-                              new AstToken(getRhsIToken(3)))
+                    new Dims__Dims_LBRACKET_RBRACKET(getLeftIToken(), getRightIToken(),
+                                                     (IDims)getRhsSym(1),
+                                                     new AstToken(getRhsIToken(2)),
+                                                     new AstToken(getRhsIToken(3)))
                 );
                 break;
             }
@@ -30324,12 +30324,12 @@ public class JavaParser implements RuleAction
             // Rule 367:  FieldAccess ::= Primary . identifier
             //
             case 367: {
-               //#line 839 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 839 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new FieldAccess0(getLeftIToken(), getRightIToken(),
-                                     (IPrimary)getRhsSym(1),
-                                     new AstToken(getRhsIToken(2)),
-                                     (identifier)getRhsSym(3))
+                    new FieldAccess__Primary_DOT_identifier(getLeftIToken(), getRightIToken(),
+                                                            (IPrimary)getRhsSym(1),
+                                                            new AstToken(getRhsIToken(2)),
+                                                            (identifier)getRhsSym(3))
                 );
                 break;
             }
@@ -30337,12 +30337,12 @@ public class JavaParser implements RuleAction
             // Rule 368:  FieldAccess ::= super . identifier
             //
             case 368: {
-               //#line 840 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 840 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new FieldAccess1(getLeftIToken(), getRightIToken(),
-                                     new AstToken(getRhsIToken(1)),
-                                     new AstToken(getRhsIToken(2)),
-                                     (identifier)getRhsSym(3))
+                    new FieldAccess__super_DOT_identifier(getLeftIToken(), getRightIToken(),
+                                                          new AstToken(getRhsIToken(1)),
+                                                          new AstToken(getRhsIToken(2)),
+                                                          (identifier)getRhsSym(3))
                 );
                 break;
             }
@@ -30350,14 +30350,14 @@ public class JavaParser implements RuleAction
             // Rule 369:  FieldAccess ::= ClassName . super . identifier
             //
             case 369: {
-               //#line 841 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 841 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new FieldAccess2(getLeftIToken(), getRightIToken(),
-                                     (IClassName)getRhsSym(1),
-                                     new AstToken(getRhsIToken(2)),
-                                     new AstToken(getRhsIToken(3)),
-                                     new AstToken(getRhsIToken(4)),
-                                     (identifier)getRhsSym(5))
+                    new FieldAccess__ClassName_DOT_super_DOT_identifier(getLeftIToken(), getRightIToken(),
+                                                                        (IClassName)getRhsSym(1),
+                                                                        new AstToken(getRhsIToken(2)),
+                                                                        new AstToken(getRhsIToken(3)),
+                                                                        new AstToken(getRhsIToken(4)),
+                                                                        (identifier)getRhsSym(5))
                 );
                 break;
             }
@@ -30365,13 +30365,13 @@ public class JavaParser implements RuleAction
             // Rule 370:  MethodInvocation ::= MethodName ( ArgumentListopt )
             //
             case 370: {
-               //#line 843 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 843 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new MethodInvocation0(getLeftIToken(), getRightIToken(),
-                                          (IMethodName)getRhsSym(1),
-                                          new AstToken(getRhsIToken(2)),
-                                          (IArgumentListopt)getRhsSym(3),
-                                          new AstToken(getRhsIToken(4)))
+                    new MethodInvocation__MethodName_LPAREN_ArgumentListopt_RPAREN(getLeftIToken(), getRightIToken(),
+                                                                                   (IMethodName)getRhsSym(1),
+                                                                                   new AstToken(getRhsIToken(2)),
+                                                                                   (IArgumentListopt)getRhsSym(3),
+                                                                                   new AstToken(getRhsIToken(4)))
                 );
                 break;
             }
@@ -30379,16 +30379,16 @@ public class JavaParser implements RuleAction
             // Rule 371:  MethodInvocation ::= Primary . TypeArgumentsopt identifier ( ArgumentListopt )
             //
             case 371: {
-               //#line 844 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 844 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new MethodInvocation1(getLeftIToken(), getRightIToken(),
-                                          (IPrimary)getRhsSym(1),
-                                          new AstToken(getRhsIToken(2)),
-                                          (TypeArguments)getRhsSym(3),
-                                          (identifier)getRhsSym(4),
-                                          new AstToken(getRhsIToken(5)),
-                                          (IArgumentListopt)getRhsSym(6),
-                                          new AstToken(getRhsIToken(7)))
+                    new MethodInvocation__Primary_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN(getLeftIToken(), getRightIToken(),
+                                                                                                                (IPrimary)getRhsSym(1),
+                                                                                                                new AstToken(getRhsIToken(2)),
+                                                                                                                (TypeArguments)getRhsSym(3),
+                                                                                                                (identifier)getRhsSym(4),
+                                                                                                                new AstToken(getRhsIToken(5)),
+                                                                                                                (IArgumentListopt)getRhsSym(6),
+                                                                                                                new AstToken(getRhsIToken(7)))
                 );
                 break;
             }
@@ -30396,16 +30396,16 @@ public class JavaParser implements RuleAction
             // Rule 372:  MethodInvocation ::= super . TypeArgumentsopt identifier ( ArgumentListopt )
             //
             case 372: {
-               //#line 845 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 845 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new MethodInvocation2(getLeftIToken(), getRightIToken(),
-                                          new AstToken(getRhsIToken(1)),
-                                          new AstToken(getRhsIToken(2)),
-                                          (TypeArguments)getRhsSym(3),
-                                          (identifier)getRhsSym(4),
-                                          new AstToken(getRhsIToken(5)),
-                                          (IArgumentListopt)getRhsSym(6),
-                                          new AstToken(getRhsIToken(7)))
+                    new MethodInvocation__super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN(getLeftIToken(), getRightIToken(),
+                                                                                                              new AstToken(getRhsIToken(1)),
+                                                                                                              new AstToken(getRhsIToken(2)),
+                                                                                                              (TypeArguments)getRhsSym(3),
+                                                                                                              (identifier)getRhsSym(4),
+                                                                                                              new AstToken(getRhsIToken(5)),
+                                                                                                              (IArgumentListopt)getRhsSym(6),
+                                                                                                              new AstToken(getRhsIToken(7)))
                 );
                 break;
             }
@@ -30413,18 +30413,18 @@ public class JavaParser implements RuleAction
             // Rule 373:  MethodInvocation ::= ClassName . super . TypeArgumentsopt identifier ( ArgumentListopt )
             //
             case 373: {
-               //#line 846 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 846 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new MethodInvocation3(getLeftIToken(), getRightIToken(),
-                                          (IClassName)getRhsSym(1),
-                                          new AstToken(getRhsIToken(2)),
-                                          new AstToken(getRhsIToken(3)),
-                                          new AstToken(getRhsIToken(4)),
-                                          (TypeArguments)getRhsSym(5),
-                                          (identifier)getRhsSym(6),
-                                          new AstToken(getRhsIToken(7)),
-                                          (IArgumentListopt)getRhsSym(8),
-                                          new AstToken(getRhsIToken(9)))
+                    new MethodInvocation__ClassName_DOT_super_DOT_TypeArgumentsopt_identifier_LPAREN_ArgumentListopt_RPAREN(getLeftIToken(), getRightIToken(),
+                                                                                                                            (IClassName)getRhsSym(1),
+                                                                                                                            new AstToken(getRhsIToken(2)),
+                                                                                                                            new AstToken(getRhsIToken(3)),
+                                                                                                                            new AstToken(getRhsIToken(4)),
+                                                                                                                            (TypeArguments)getRhsSym(5),
+                                                                                                                            (identifier)getRhsSym(6),
+                                                                                                                            new AstToken(getRhsIToken(7)),
+                                                                                                                            (IArgumentListopt)getRhsSym(8),
+                                                                                                                            new AstToken(getRhsIToken(9)))
                 );
                 break;
             }
@@ -30432,16 +30432,16 @@ public class JavaParser implements RuleAction
             // Rule 374:  MethodInvocation ::= TypeName . TypeArguments identifier ( ArgumentListopt )
             //
             case 374: {
-               //#line 847 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 847 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new MethodInvocation4(getLeftIToken(), getRightIToken(),
-                                          (ITypeName)getRhsSym(1),
-                                          new AstToken(getRhsIToken(2)),
-                                          (TypeArguments)getRhsSym(3),
-                                          (identifier)getRhsSym(4),
-                                          new AstToken(getRhsIToken(5)),
-                                          (IArgumentListopt)getRhsSym(6),
-                                          new AstToken(getRhsIToken(7)))
+                    new MethodInvocation__TypeName_DOT_TypeArguments_identifier_LPAREN_ArgumentListopt_RPAREN(getLeftIToken(), getRightIToken(),
+                                                                                                              (ITypeName)getRhsSym(1),
+                                                                                                              new AstToken(getRhsIToken(2)),
+                                                                                                              (TypeArguments)getRhsSym(3),
+                                                                                                              (identifier)getRhsSym(4),
+                                                                                                              new AstToken(getRhsIToken(5)),
+                                                                                                              (IArgumentListopt)getRhsSym(6),
+                                                                                                              new AstToken(getRhsIToken(7)))
                 );
                 break;
             }
@@ -30449,13 +30449,13 @@ public class JavaParser implements RuleAction
             // Rule 375:  ArrayAccess ::= ExpressionName [ Expression ]
             //
             case 375: {
-               //#line 855 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 855 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ArrayAccess0(getLeftIToken(), getRightIToken(),
-                                     (IExpressionName)getRhsSym(1),
-                                     new AstToken(getRhsIToken(2)),
-                                     (IExpression)getRhsSym(3),
-                                     new AstToken(getRhsIToken(4)))
+                    new ArrayAccess__ExpressionName_LBRACKET_Expression_RBRACKET(getLeftIToken(), getRightIToken(),
+                                                                                 (IExpressionName)getRhsSym(1),
+                                                                                 new AstToken(getRhsIToken(2)),
+                                                                                 (IExpression)getRhsSym(3),
+                                                                                 new AstToken(getRhsIToken(4)))
                 );
                 break;
             }
@@ -30463,13 +30463,13 @@ public class JavaParser implements RuleAction
             // Rule 376:  ArrayAccess ::= PrimaryNoNewArray [ Expression ]
             //
             case 376: {
-               //#line 856 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 856 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ArrayAccess1(getLeftIToken(), getRightIToken(),
-                                     (IPrimaryNoNewArray)getRhsSym(1),
-                                     new AstToken(getRhsIToken(2)),
-                                     (IExpression)getRhsSym(3),
-                                     new AstToken(getRhsIToken(4)))
+                    new ArrayAccess__PrimaryNoNewArray_LBRACKET_Expression_RBRACKET(getLeftIToken(), getRightIToken(),
+                                                                                    (IPrimaryNoNewArray)getRhsSym(1),
+                                                                                    new AstToken(getRhsIToken(2)),
+                                                                                    (IExpression)getRhsSym(3),
+                                                                                    new AstToken(getRhsIToken(4)))
                 );
                 break;
             }
@@ -30497,7 +30497,7 @@ public class JavaParser implements RuleAction
             // Rule 381:  PostIncrementExpression ::= PostfixExpression ++
             //
             case 381: {
-               //#line 863 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 863 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PostIncrementExpression(getLeftIToken(), getRightIToken(),
                                                 (IPostfixExpression)getRhsSym(1),
@@ -30509,7 +30509,7 @@ public class JavaParser implements RuleAction
             // Rule 382:  PostDecrementExpression ::= PostfixExpression --
             //
             case 382: {
-               //#line 865 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 865 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PostDecrementExpression(getLeftIToken(), getRightIToken(),
                                                 (IPostfixExpression)getRhsSym(1),
@@ -30531,11 +30531,11 @@ public class JavaParser implements RuleAction
             // Rule 385:  UnaryExpression ::= + UnaryExpression
             //
             case 385: {
-               //#line 869 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 869 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new UnaryExpression0(getLeftIToken(), getRightIToken(),
-                                         new AstToken(getRhsIToken(1)),
-                                         (IUnaryExpression)getRhsSym(2))
+                    new UnaryExpression__PLUS_UnaryExpression(getLeftIToken(), getRightIToken(),
+                                                              new AstToken(getRhsIToken(1)),
+                                                              (IUnaryExpression)getRhsSym(2))
                 );
                 break;
             }
@@ -30543,11 +30543,11 @@ public class JavaParser implements RuleAction
             // Rule 386:  UnaryExpression ::= - UnaryExpression
             //
             case 386: {
-               //#line 870 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 870 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new UnaryExpression1(getLeftIToken(), getRightIToken(),
-                                         new AstToken(getRhsIToken(1)),
-                                         (IUnaryExpression)getRhsSym(2))
+                    new UnaryExpression__MINUS_UnaryExpression(getLeftIToken(), getRightIToken(),
+                                                               new AstToken(getRhsIToken(1)),
+                                                               (IUnaryExpression)getRhsSym(2))
                 );
                 break;
             }
@@ -30560,7 +30560,7 @@ public class JavaParser implements RuleAction
             // Rule 388:  PreIncrementExpression ::= ++ UnaryExpression
             //
             case 388: {
-               //#line 873 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 873 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PreIncrementExpression(getLeftIToken(), getRightIToken(),
                                                new AstToken(getRhsIToken(1)),
@@ -30572,7 +30572,7 @@ public class JavaParser implements RuleAction
             // Rule 389:  PreDecrementExpression ::= -- UnaryExpression
             //
             case 389: {
-               //#line 875 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 875 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new PreDecrementExpression(getLeftIToken(), getRightIToken(),
                                                new AstToken(getRhsIToken(1)),
@@ -30589,11 +30589,11 @@ public class JavaParser implements RuleAction
             // Rule 391:  UnaryExpressionNotPlusMinus ::= ~ UnaryExpression
             //
             case 391: {
-               //#line 878 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 878 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new UnaryExpressionNotPlusMinus0(getLeftIToken(), getRightIToken(),
-                                                     new AstToken(getRhsIToken(1)),
-                                                     (IUnaryExpression)getRhsSym(2))
+                    new UnaryExpressionNotPlusMinus__TWIDDLE_UnaryExpression(getLeftIToken(), getRightIToken(),
+                                                                             new AstToken(getRhsIToken(1)),
+                                                                             (IUnaryExpression)getRhsSym(2))
                 );
                 break;
             }
@@ -30601,11 +30601,11 @@ public class JavaParser implements RuleAction
             // Rule 392:  UnaryExpressionNotPlusMinus ::= ! UnaryExpression
             //
             case 392: {
-               //#line 879 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 879 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new UnaryExpressionNotPlusMinus1(getLeftIToken(), getRightIToken(),
-                                                     new AstToken(getRhsIToken(1)),
-                                                     (IUnaryExpression)getRhsSym(2))
+                    new UnaryExpressionNotPlusMinus__NOT_UnaryExpression(getLeftIToken(), getRightIToken(),
+                                                                         new AstToken(getRhsIToken(1)),
+                                                                         (IUnaryExpression)getRhsSym(2))
                 );
                 break;
             }
@@ -30618,14 +30618,14 @@ public class JavaParser implements RuleAction
             // Rule 394:  CastExpression ::= ( PrimitiveType Dimsopt ) UnaryExpression
             //
             case 394: {
-               //#line 882 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 882 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new CastExpression0(getLeftIToken(), getRightIToken(),
-                                        new AstToken(getRhsIToken(1)),
-                                        (IPrimitiveType)getRhsSym(2),
-                                        (IDimsopt)getRhsSym(3),
-                                        new AstToken(getRhsIToken(4)),
-                                        (IUnaryExpression)getRhsSym(5))
+                    new CastExpression__LPAREN_PrimitiveType_Dimsopt_RPAREN_UnaryExpression(getLeftIToken(), getRightIToken(),
+                                                                                            new AstToken(getRhsIToken(1)),
+                                                                                            (IPrimitiveType)getRhsSym(2),
+                                                                                            (IDimsopt)getRhsSym(3),
+                                                                                            new AstToken(getRhsIToken(4)),
+                                                                                            (IUnaryExpression)getRhsSym(5))
                 );
                 break;
             }
@@ -30633,13 +30633,13 @@ public class JavaParser implements RuleAction
             // Rule 395:  CastExpression ::= ( ReferenceType ) UnaryExpressionNotPlusMinus
             //
             case 395: {
-               //#line 883 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 883 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new CastExpression1(getLeftIToken(), getRightIToken(),
-                                        new AstToken(getRhsIToken(1)),
-                                        (IReferenceType)getRhsSym(2),
-                                        new AstToken(getRhsIToken(3)),
-                                        (IUnaryExpressionNotPlusMinus)getRhsSym(4))
+                    new CastExpression__LPAREN_ReferenceType_RPAREN_UnaryExpressionNotPlusMinus(getLeftIToken(), getRightIToken(),
+                                                                                                new AstToken(getRhsIToken(1)),
+                                                                                                (IReferenceType)getRhsSym(2),
+                                                                                                new AstToken(getRhsIToken(3)),
+                                                                                                (IUnaryExpressionNotPlusMinus)getRhsSym(4))
                 );
                 break;
             }
@@ -30652,12 +30652,12 @@ public class JavaParser implements RuleAction
             // Rule 397:  MultiplicativeExpression ::= MultiplicativeExpression * UnaryExpression
             //
             case 397: {
-               //#line 886 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 886 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new MultiplicativeExpression0(getLeftIToken(), getRightIToken(),
-                                                  (IMultiplicativeExpression)getRhsSym(1),
-                                                  new AstToken(getRhsIToken(2)),
-                                                  (IUnaryExpression)getRhsSym(3))
+                    new MultiplicativeExpression__MultiplicativeExpression_MULTIPLY_UnaryExpression(getLeftIToken(), getRightIToken(),
+                                                                                                    (IMultiplicativeExpression)getRhsSym(1),
+                                                                                                    new AstToken(getRhsIToken(2)),
+                                                                                                    (IUnaryExpression)getRhsSym(3))
                 );
                 break;
             }
@@ -30665,12 +30665,12 @@ public class JavaParser implements RuleAction
             // Rule 398:  MultiplicativeExpression ::= MultiplicativeExpression / UnaryExpression
             //
             case 398: {
-               //#line 887 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 887 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new MultiplicativeExpression1(getLeftIToken(), getRightIToken(),
-                                                  (IMultiplicativeExpression)getRhsSym(1),
-                                                  new AstToken(getRhsIToken(2)),
-                                                  (IUnaryExpression)getRhsSym(3))
+                    new MultiplicativeExpression__MultiplicativeExpression_DIVIDE_UnaryExpression(getLeftIToken(), getRightIToken(),
+                                                                                                  (IMultiplicativeExpression)getRhsSym(1),
+                                                                                                  new AstToken(getRhsIToken(2)),
+                                                                                                  (IUnaryExpression)getRhsSym(3))
                 );
                 break;
             }
@@ -30678,12 +30678,12 @@ public class JavaParser implements RuleAction
             // Rule 399:  MultiplicativeExpression ::= MultiplicativeExpression % UnaryExpression
             //
             case 399: {
-               //#line 888 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 888 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new MultiplicativeExpression2(getLeftIToken(), getRightIToken(),
-                                                  (IMultiplicativeExpression)getRhsSym(1),
-                                                  new AstToken(getRhsIToken(2)),
-                                                  (IUnaryExpression)getRhsSym(3))
+                    new MultiplicativeExpression__MultiplicativeExpression_REMAINDER_UnaryExpression(getLeftIToken(), getRightIToken(),
+                                                                                                     (IMultiplicativeExpression)getRhsSym(1),
+                                                                                                     new AstToken(getRhsIToken(2)),
+                                                                                                     (IUnaryExpression)getRhsSym(3))
                 );
                 break;
             }
@@ -30696,12 +30696,12 @@ public class JavaParser implements RuleAction
             // Rule 401:  AdditiveExpression ::= AdditiveExpression + MultiplicativeExpression
             //
             case 401: {
-               //#line 891 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 891 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AdditiveExpression0(getLeftIToken(), getRightIToken(),
-                                            (IAdditiveExpression)getRhsSym(1),
-                                            new AstToken(getRhsIToken(2)),
-                                            (IMultiplicativeExpression)getRhsSym(3))
+                    new AdditiveExpression__AdditiveExpression_PLUS_MultiplicativeExpression(getLeftIToken(), getRightIToken(),
+                                                                                             (IAdditiveExpression)getRhsSym(1),
+                                                                                             new AstToken(getRhsIToken(2)),
+                                                                                             (IMultiplicativeExpression)getRhsSym(3))
                 );
                 break;
             }
@@ -30709,12 +30709,12 @@ public class JavaParser implements RuleAction
             // Rule 402:  AdditiveExpression ::= AdditiveExpression - MultiplicativeExpression
             //
             case 402: {
-               //#line 892 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 892 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AdditiveExpression1(getLeftIToken(), getRightIToken(),
-                                            (IAdditiveExpression)getRhsSym(1),
-                                            new AstToken(getRhsIToken(2)),
-                                            (IMultiplicativeExpression)getRhsSym(3))
+                    new AdditiveExpression__AdditiveExpression_MINUS_MultiplicativeExpression(getLeftIToken(), getRightIToken(),
+                                                                                              (IAdditiveExpression)getRhsSym(1),
+                                                                                              new AstToken(getRhsIToken(2)),
+                                                                                              (IMultiplicativeExpression)getRhsSym(3))
                 );
                 break;
             }
@@ -30727,12 +30727,12 @@ public class JavaParser implements RuleAction
             // Rule 404:  ShiftExpression ::= ShiftExpression << AdditiveExpression
             //
             case 404: {
-               //#line 895 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 895 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ShiftExpression0(getLeftIToken(), getRightIToken(),
-                                         (IShiftExpression)getRhsSym(1),
-                                         new AstToken(getRhsIToken(2)),
-                                         (IAdditiveExpression)getRhsSym(3))
+                    new ShiftExpression__ShiftExpression_LEFT_SHIFT_AdditiveExpression(getLeftIToken(), getRightIToken(),
+                                                                                       (IShiftExpression)getRhsSym(1),
+                                                                                       new AstToken(getRhsIToken(2)),
+                                                                                       (IAdditiveExpression)getRhsSym(3))
                 );
                 break;
             }
@@ -30740,13 +30740,13 @@ public class JavaParser implements RuleAction
             // Rule 405:  ShiftExpression ::= ShiftExpression > > AdditiveExpression
             //
             case 405: {
-               //#line 896 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 896 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ShiftExpression1(getLeftIToken(), getRightIToken(),
-                                         (IShiftExpression)getRhsSym(1),
-                                         new AstToken(getRhsIToken(2)),
-                                         new AstToken(getRhsIToken(3)),
-                                         (IAdditiveExpression)getRhsSym(4))
+                    new ShiftExpression__ShiftExpression_GREATER_GREATER_AdditiveExpression(getLeftIToken(), getRightIToken(),
+                                                                                            (IShiftExpression)getRhsSym(1),
+                                                                                            new AstToken(getRhsIToken(2)),
+                                                                                            new AstToken(getRhsIToken(3)),
+                                                                                            (IAdditiveExpression)getRhsSym(4))
                 );
                 break;
             }
@@ -30754,14 +30754,14 @@ public class JavaParser implements RuleAction
             // Rule 406:  ShiftExpression ::= ShiftExpression > > > AdditiveExpression
             //
             case 406: {
-               //#line 897 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 897 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new ShiftExpression2(getLeftIToken(), getRightIToken(),
-                                         (IShiftExpression)getRhsSym(1),
-                                         new AstToken(getRhsIToken(2)),
-                                         new AstToken(getRhsIToken(3)),
-                                         new AstToken(getRhsIToken(4)),
-                                         (IAdditiveExpression)getRhsSym(5))
+                    new ShiftExpression__ShiftExpression_GREATER_GREATER_GREATER_AdditiveExpression(getLeftIToken(), getRightIToken(),
+                                                                                                    (IShiftExpression)getRhsSym(1),
+                                                                                                    new AstToken(getRhsIToken(2)),
+                                                                                                    new AstToken(getRhsIToken(3)),
+                                                                                                    new AstToken(getRhsIToken(4)),
+                                                                                                    (IAdditiveExpression)getRhsSym(5))
                 );
                 break;
             }
@@ -30774,12 +30774,12 @@ public class JavaParser implements RuleAction
             // Rule 408:  RelationalExpression ::= RelationalExpression < ShiftExpression
             //
             case 408: {
-               //#line 900 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 900 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new RelationalExpression0(getLeftIToken(), getRightIToken(),
-                                              (IRelationalExpression)getRhsSym(1),
-                                              new AstToken(getRhsIToken(2)),
-                                              (IShiftExpression)getRhsSym(3))
+                    new RelationalExpression__RelationalExpression_LESS_ShiftExpression(getLeftIToken(), getRightIToken(),
+                                                                                        (IRelationalExpression)getRhsSym(1),
+                                                                                        new AstToken(getRhsIToken(2)),
+                                                                                        (IShiftExpression)getRhsSym(3))
                 );
                 break;
             }
@@ -30787,12 +30787,12 @@ public class JavaParser implements RuleAction
             // Rule 409:  RelationalExpression ::= RelationalExpression > ShiftExpression
             //
             case 409: {
-               //#line 901 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 901 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new RelationalExpression1(getLeftIToken(), getRightIToken(),
-                                              (IRelationalExpression)getRhsSym(1),
-                                              new AstToken(getRhsIToken(2)),
-                                              (IShiftExpression)getRhsSym(3))
+                    new RelationalExpression__RelationalExpression_GREATER_ShiftExpression(getLeftIToken(), getRightIToken(),
+                                                                                           (IRelationalExpression)getRhsSym(1),
+                                                                                           new AstToken(getRhsIToken(2)),
+                                                                                           (IShiftExpression)getRhsSym(3))
                 );
                 break;
             }
@@ -30800,12 +30800,12 @@ public class JavaParser implements RuleAction
             // Rule 410:  RelationalExpression ::= RelationalExpression <= ShiftExpression
             //
             case 410: {
-               //#line 902 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 902 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new RelationalExpression2(getLeftIToken(), getRightIToken(),
-                                              (IRelationalExpression)getRhsSym(1),
-                                              new AstToken(getRhsIToken(2)),
-                                              (IShiftExpression)getRhsSym(3))
+                    new RelationalExpression__RelationalExpression_LESS_EQUAL_ShiftExpression(getLeftIToken(), getRightIToken(),
+                                                                                              (IRelationalExpression)getRhsSym(1),
+                                                                                              new AstToken(getRhsIToken(2)),
+                                                                                              (IShiftExpression)getRhsSym(3))
                 );
                 break;
             }
@@ -30813,13 +30813,13 @@ public class JavaParser implements RuleAction
             // Rule 411:  RelationalExpression ::= RelationalExpression > = ShiftExpression
             //
             case 411: {
-               //#line 903 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 903 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new RelationalExpression3(getLeftIToken(), getRightIToken(),
-                                              (IRelationalExpression)getRhsSym(1),
-                                              new AstToken(getRhsIToken(2)),
-                                              new AstToken(getRhsIToken(3)),
-                                              (IShiftExpression)getRhsSym(4))
+                    new RelationalExpression__RelationalExpression_GREATER_EQUAL_ShiftExpression(getLeftIToken(), getRightIToken(),
+                                                                                                 (IRelationalExpression)getRhsSym(1),
+                                                                                                 new AstToken(getRhsIToken(2)),
+                                                                                                 new AstToken(getRhsIToken(3)),
+                                                                                                 (IShiftExpression)getRhsSym(4))
                 );
                 break;
             }
@@ -30827,12 +30827,12 @@ public class JavaParser implements RuleAction
             // Rule 412:  RelationalExpression ::= RelationalExpression instanceof ReferenceType
             //
             case 412: {
-               //#line 904 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 904 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new RelationalExpression4(getLeftIToken(), getRightIToken(),
-                                              (IRelationalExpression)getRhsSym(1),
-                                              new AstToken(getRhsIToken(2)),
-                                              (IReferenceType)getRhsSym(3))
+                    new RelationalExpression__RelationalExpression_instanceof_ReferenceType(getLeftIToken(), getRightIToken(),
+                                                                                            (IRelationalExpression)getRhsSym(1),
+                                                                                            new AstToken(getRhsIToken(2)),
+                                                                                            (IReferenceType)getRhsSym(3))
                 );
                 break;
             }
@@ -30845,12 +30845,12 @@ public class JavaParser implements RuleAction
             // Rule 414:  EqualityExpression ::= EqualityExpression == RelationalExpression
             //
             case 414: {
-               //#line 907 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 907 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new EqualityExpression0(getLeftIToken(), getRightIToken(),
-                                            (IEqualityExpression)getRhsSym(1),
-                                            new AstToken(getRhsIToken(2)),
-                                            (IRelationalExpression)getRhsSym(3))
+                    new EqualityExpression__EqualityExpression_EQUAL_EQUAL_RelationalExpression(getLeftIToken(), getRightIToken(),
+                                                                                                (IEqualityExpression)getRhsSym(1),
+                                                                                                new AstToken(getRhsIToken(2)),
+                                                                                                (IRelationalExpression)getRhsSym(3))
                 );
                 break;
             }
@@ -30858,12 +30858,12 @@ public class JavaParser implements RuleAction
             // Rule 415:  EqualityExpression ::= EqualityExpression != RelationalExpression
             //
             case 415: {
-               //#line 908 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 908 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new EqualityExpression1(getLeftIToken(), getRightIToken(),
-                                            (IEqualityExpression)getRhsSym(1),
-                                            new AstToken(getRhsIToken(2)),
-                                            (IRelationalExpression)getRhsSym(3))
+                    new EqualityExpression__EqualityExpression_NOT_EQUAL_RelationalExpression(getLeftIToken(), getRightIToken(),
+                                                                                              (IEqualityExpression)getRhsSym(1),
+                                                                                              new AstToken(getRhsIToken(2)),
+                                                                                              (IRelationalExpression)getRhsSym(3))
                 );
                 break;
             }
@@ -30876,7 +30876,7 @@ public class JavaParser implements RuleAction
             // Rule 417:  AndExpression ::= AndExpression & EqualityExpression
             //
             case 417: {
-               //#line 911 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 911 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new AndExpression(getLeftIToken(), getRightIToken(),
                                       (IAndExpression)getRhsSym(1),
@@ -30894,7 +30894,7 @@ public class JavaParser implements RuleAction
             // Rule 419:  ExclusiveOrExpression ::= ExclusiveOrExpression ^ AndExpression
             //
             case 419: {
-               //#line 914 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 914 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ExclusiveOrExpression(getLeftIToken(), getRightIToken(),
                                               (IExclusiveOrExpression)getRhsSym(1),
@@ -30912,7 +30912,7 @@ public class JavaParser implements RuleAction
             // Rule 421:  InclusiveOrExpression ::= InclusiveOrExpression | ExclusiveOrExpression
             //
             case 421: {
-               //#line 917 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 917 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new InclusiveOrExpression(getLeftIToken(), getRightIToken(),
                                               (IInclusiveOrExpression)getRhsSym(1),
@@ -30930,7 +30930,7 @@ public class JavaParser implements RuleAction
             // Rule 423:  ConditionalAndExpression ::= ConditionalAndExpression && InclusiveOrExpression
             //
             case 423: {
-               //#line 920 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 920 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConditionalAndExpression(getLeftIToken(), getRightIToken(),
                                                  (IConditionalAndExpression)getRhsSym(1),
@@ -30948,7 +30948,7 @@ public class JavaParser implements RuleAction
             // Rule 425:  ConditionalOrExpression ::= ConditionalOrExpression || ConditionalAndExpression
             //
             case 425: {
-               //#line 923 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 923 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConditionalOrExpression(getLeftIToken(), getRightIToken(),
                                                 (IConditionalOrExpression)getRhsSym(1),
@@ -30966,7 +30966,7 @@ public class JavaParser implements RuleAction
             // Rule 427:  ConditionalExpression ::= ConditionalOrExpression ? Expression : ConditionalExpression
             //
             case 427: {
-               //#line 926 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 926 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new ConditionalExpression(getLeftIToken(), getRightIToken(),
                                               (IConditionalOrExpression)getRhsSym(1),
@@ -30991,7 +30991,7 @@ public class JavaParser implements RuleAction
             // Rule 430:  Assignment ::= LeftHandSide AssignmentOperator AssignmentExpression
             //
             case 430: {
-               //#line 931 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 931 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Assignment(getLeftIToken(), getRightIToken(),
                                    (ILeftHandSide)getRhsSym(1),
@@ -31019,9 +31019,9 @@ public class JavaParser implements RuleAction
             // Rule 434:  AssignmentOperator ::= =
             //
             case 434: {
-               //#line 937 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 937 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AssignmentOperator0(getRhsIToken(1))
+                    new AssignmentOperator__EQUAL(getRhsIToken(1))
                 );
                 break;
             }
@@ -31029,9 +31029,9 @@ public class JavaParser implements RuleAction
             // Rule 435:  AssignmentOperator ::= *=
             //
             case 435: {
-               //#line 938 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 938 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AssignmentOperator1(getRhsIToken(1))
+                    new AssignmentOperator__MULTIPLY_EQUAL(getRhsIToken(1))
                 );
                 break;
             }
@@ -31039,9 +31039,9 @@ public class JavaParser implements RuleAction
             // Rule 436:  AssignmentOperator ::= /=
             //
             case 436: {
-               //#line 939 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 939 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AssignmentOperator2(getRhsIToken(1))
+                    new AssignmentOperator__DIVIDE_EQUAL(getRhsIToken(1))
                 );
                 break;
             }
@@ -31049,9 +31049,9 @@ public class JavaParser implements RuleAction
             // Rule 437:  AssignmentOperator ::= %=
             //
             case 437: {
-               //#line 940 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 940 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AssignmentOperator3(getRhsIToken(1))
+                    new AssignmentOperator__REMAINDER_EQUAL(getRhsIToken(1))
                 );
                 break;
             }
@@ -31059,9 +31059,9 @@ public class JavaParser implements RuleAction
             // Rule 438:  AssignmentOperator ::= +=
             //
             case 438: {
-               //#line 941 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 941 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AssignmentOperator4(getRhsIToken(1))
+                    new AssignmentOperator__PLUS_EQUAL(getRhsIToken(1))
                 );
                 break;
             }
@@ -31069,9 +31069,9 @@ public class JavaParser implements RuleAction
             // Rule 439:  AssignmentOperator ::= -=
             //
             case 439: {
-               //#line 942 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 942 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AssignmentOperator5(getRhsIToken(1))
+                    new AssignmentOperator__MINUS_EQUAL(getRhsIToken(1))
                 );
                 break;
             }
@@ -31079,9 +31079,9 @@ public class JavaParser implements RuleAction
             // Rule 440:  AssignmentOperator ::= <<=
             //
             case 440: {
-               //#line 943 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 943 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AssignmentOperator6(getRhsIToken(1))
+                    new AssignmentOperator__LEFT_SHIFT_EQUAL(getRhsIToken(1))
                 );
                 break;
             }
@@ -31089,12 +31089,12 @@ public class JavaParser implements RuleAction
             // Rule 441:  AssignmentOperator ::= > > =
             //
             case 441: {
-               //#line 944 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 944 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AssignmentOperator7(getLeftIToken(), getRightIToken(),
-                                            new AstToken(getRhsIToken(1)),
-                                            new AstToken(getRhsIToken(2)),
-                                            new AstToken(getRhsIToken(3)))
+                    new AssignmentOperator__GREATER_GREATER_EQUAL(getLeftIToken(), getRightIToken(),
+                                                                  new AstToken(getRhsIToken(1)),
+                                                                  new AstToken(getRhsIToken(2)),
+                                                                  new AstToken(getRhsIToken(3)))
                 );
                 break;
             }
@@ -31102,13 +31102,13 @@ public class JavaParser implements RuleAction
             // Rule 442:  AssignmentOperator ::= > > > =
             //
             case 442: {
-               //#line 945 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 945 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AssignmentOperator8(getLeftIToken(), getRightIToken(),
-                                            new AstToken(getRhsIToken(1)),
-                                            new AstToken(getRhsIToken(2)),
-                                            new AstToken(getRhsIToken(3)),
-                                            new AstToken(getRhsIToken(4)))
+                    new AssignmentOperator__GREATER_GREATER_GREATER_EQUAL(getLeftIToken(), getRightIToken(),
+                                                                          new AstToken(getRhsIToken(1)),
+                                                                          new AstToken(getRhsIToken(2)),
+                                                                          new AstToken(getRhsIToken(3)),
+                                                                          new AstToken(getRhsIToken(4)))
                 );
                 break;
             }
@@ -31116,9 +31116,9 @@ public class JavaParser implements RuleAction
             // Rule 443:  AssignmentOperator ::= &=
             //
             case 443: {
-               //#line 946 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 946 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AssignmentOperator9(getRhsIToken(1))
+                    new AssignmentOperator__AND_EQUAL(getRhsIToken(1))
                 );
                 break;
             }
@@ -31126,9 +31126,9 @@ public class JavaParser implements RuleAction
             // Rule 444:  AssignmentOperator ::= ^=
             //
             case 444: {
-               //#line 947 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 947 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AssignmentOperator10(getRhsIToken(1))
+                    new AssignmentOperator__XOR_EQUAL(getRhsIToken(1))
                 );
                 break;
             }
@@ -31136,9 +31136,9 @@ public class JavaParser implements RuleAction
             // Rule 445:  AssignmentOperator ::= |=
             //
             case 445: {
-               //#line 948 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 948 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
-                    new AssignmentOperator11(getRhsIToken(1))
+                    new AssignmentOperator__OR_EQUAL(getRhsIToken(1))
                 );
                 break;
             }
@@ -31156,7 +31156,7 @@ public class JavaParser implements RuleAction
             // Rule 448:  Dimsopt ::= $Empty
             //
             case 448: {
-               //#line 957 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 957 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31169,7 +31169,7 @@ public class JavaParser implements RuleAction
             // Rule 450:  Catchesopt ::= $Empty
             //
             case 450: {
-               //#line 960 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 960 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31182,7 +31182,7 @@ public class JavaParser implements RuleAction
             // Rule 452:  identifieropt ::= $Empty
             //
             case 452: {
-               //#line 963 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 963 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31195,7 +31195,7 @@ public class JavaParser implements RuleAction
             // Rule 454:  ForUpdateopt ::= $Empty
             //
             case 454: {
-               //#line 966 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 966 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31208,7 +31208,7 @@ public class JavaParser implements RuleAction
             // Rule 456:  Expressionopt ::= $Empty
             //
             case 456: {
-               //#line 969 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 969 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31221,7 +31221,7 @@ public class JavaParser implements RuleAction
             // Rule 458:  ForInitopt ::= $Empty
             //
             case 458: {
-               //#line 972 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 972 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31234,7 +31234,7 @@ public class JavaParser implements RuleAction
             // Rule 460:  SwitchLabelsopt ::= $Empty
             //
             case 460: {
-               //#line 975 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 975 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31247,7 +31247,7 @@ public class JavaParser implements RuleAction
             // Rule 462:  SwitchBlockStatementGroupsopt ::= $Empty
             //
             case 462: {
-               //#line 978 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 978 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31260,7 +31260,7 @@ public class JavaParser implements RuleAction
             // Rule 464:  VariableModifiersopt ::= $Empty
             //
             case 464: {
-               //#line 981 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 981 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31273,7 +31273,7 @@ public class JavaParser implements RuleAction
             // Rule 466:  VariableInitializersopt ::= $Empty
             //
             case 466: {
-               //#line 984 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 984 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31286,7 +31286,7 @@ public class JavaParser implements RuleAction
             // Rule 468:  ElementValuesopt ::= $Empty
             //
             case 468: {
-               //#line 987 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 987 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31299,7 +31299,7 @@ public class JavaParser implements RuleAction
             // Rule 470:  ElementValuePairsopt ::= $Empty
             //
             case 470: {
-               //#line 990 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 990 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31312,7 +31312,7 @@ public class JavaParser implements RuleAction
             // Rule 472:  DefaultValueopt ::= $Empty
             //
             case 472: {
-               //#line 993 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 993 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31325,7 +31325,7 @@ public class JavaParser implements RuleAction
             // Rule 474:  AnnotationTypeElementDeclarationsopt ::= $Empty
             //
             case 474: {
-               //#line 996 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 996 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31338,7 +31338,7 @@ public class JavaParser implements RuleAction
             // Rule 476:  AbstractMethodModifiersopt ::= $Empty
             //
             case 476: {
-               //#line 999 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 999 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31351,7 +31351,7 @@ public class JavaParser implements RuleAction
             // Rule 478:  ConstantModifiersopt ::= $Empty
             //
             case 478: {
-               //#line 1002 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1002 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31364,7 +31364,7 @@ public class JavaParser implements RuleAction
             // Rule 480:  InterfaceMemberDeclarationsopt ::= $Empty
             //
             case 480: {
-               //#line 1005 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1005 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31377,7 +31377,7 @@ public class JavaParser implements RuleAction
             // Rule 482:  ExtendsInterfacesopt ::= $Empty
             //
             case 482: {
-               //#line 1008 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1008 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31390,7 +31390,7 @@ public class JavaParser implements RuleAction
             // Rule 484:  InterfaceModifiersopt ::= $Empty
             //
             case 484: {
-               //#line 1011 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1011 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31403,7 +31403,7 @@ public class JavaParser implements RuleAction
             // Rule 486:  ClassBodyopt ::= $Empty
             //
             case 486: {
-               //#line 1014 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1014 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31416,7 +31416,7 @@ public class JavaParser implements RuleAction
             // Rule 488:  Argumentsopt ::= $Empty
             //
             case 488: {
-               //#line 1017 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1017 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31429,7 +31429,7 @@ public class JavaParser implements RuleAction
             // Rule 490:  EnumBodyDeclarationsopt ::= $Empty
             //
             case 490: {
-               //#line 1020 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1020 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31442,7 +31442,7 @@ public class JavaParser implements RuleAction
             // Rule 492:  ,opt ::= $Empty
             //
             case 492: {
-               //#line 1023 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1023 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31450,7 +31450,7 @@ public class JavaParser implements RuleAction
             // Rule 493:  ,opt ::= ,
             //
             case 493: {
-               //#line 1024 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1024 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Commaopt(getRhsIToken(1))
                 );
@@ -31460,7 +31460,7 @@ public class JavaParser implements RuleAction
             // Rule 494:  EnumConstantsopt ::= $Empty
             //
             case 494: {
-               //#line 1026 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1026 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31473,7 +31473,7 @@ public class JavaParser implements RuleAction
             // Rule 496:  ArgumentListopt ::= $Empty
             //
             case 496: {
-               //#line 1029 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1029 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31486,7 +31486,7 @@ public class JavaParser implements RuleAction
             // Rule 498:  BlockStatementsopt ::= $Empty
             //
             case 498: {
-               //#line 1032 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1032 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31499,7 +31499,7 @@ public class JavaParser implements RuleAction
             // Rule 500:  ExplicitConstructorInvocationopt ::= $Empty
             //
             case 500: {
-               //#line 1035 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1035 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31512,7 +31512,7 @@ public class JavaParser implements RuleAction
             // Rule 502:  ConstructorModifiersopt ::= $Empty
             //
             case 502: {
-               //#line 1038 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1038 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31525,7 +31525,7 @@ public class JavaParser implements RuleAction
             // Rule 504:  ...opt ::= $Empty
             //
             case 504: {
-               //#line 1041 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1041 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31533,7 +31533,7 @@ public class JavaParser implements RuleAction
             // Rule 505:  ...opt ::= ...
             //
             case 505: {
-               //#line 1042 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1042 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(
                     new Ellipsisopt(getRhsIToken(1))
                 );
@@ -31543,7 +31543,7 @@ public class JavaParser implements RuleAction
             // Rule 506:  FormalParameterListopt ::= $Empty
             //
             case 506: {
-               //#line 1044 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1044 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31556,7 +31556,7 @@ public class JavaParser implements RuleAction
             // Rule 508:  Throwsopt ::= $Empty
             //
             case 508: {
-               //#line 1047 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1047 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31569,7 +31569,7 @@ public class JavaParser implements RuleAction
             // Rule 510:  MethodModifiersopt ::= $Empty
             //
             case 510: {
-               //#line 1050 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1050 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31582,7 +31582,7 @@ public class JavaParser implements RuleAction
             // Rule 512:  FieldModifiersopt ::= $Empty
             //
             case 512: {
-               //#line 1053 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1053 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31595,7 +31595,7 @@ public class JavaParser implements RuleAction
             // Rule 514:  ClassBodyDeclarationsopt ::= $Empty
             //
             case 514: {
-               //#line 1056 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1056 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31608,7 +31608,7 @@ public class JavaParser implements RuleAction
             // Rule 516:  Interfacesopt ::= $Empty
             //
             case 516: {
-               //#line 1059 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1059 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31621,7 +31621,7 @@ public class JavaParser implements RuleAction
             // Rule 518:  Superopt ::= $Empty
             //
             case 518: {
-               //#line 1062 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1062 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31634,7 +31634,7 @@ public class JavaParser implements RuleAction
             // Rule 520:  TypeParametersopt ::= $Empty
             //
             case 520: {
-               //#line 1065 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1065 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31647,7 +31647,7 @@ public class JavaParser implements RuleAction
             // Rule 522:  ClassModifiersopt ::= $Empty
             //
             case 522: {
-               //#line 1068 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1068 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31660,7 +31660,7 @@ public class JavaParser implements RuleAction
             // Rule 524:  Annotationsopt ::= $Empty
             //
             case 524: {
-               //#line 1071 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1071 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31673,7 +31673,7 @@ public class JavaParser implements RuleAction
             // Rule 526:  TypeDeclarationsopt ::= $Empty
             //
             case 526: {
-               //#line 1074 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1074 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31686,7 +31686,7 @@ public class JavaParser implements RuleAction
             // Rule 528:  ImportDeclarationsopt ::= $Empty
             //
             case 528: {
-               //#line 1077 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1077 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31699,7 +31699,7 @@ public class JavaParser implements RuleAction
             // Rule 530:  PackageDeclarationopt ::= $Empty
             //
             case 530: {
-               //#line 1080 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1080 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31712,7 +31712,7 @@ public class JavaParser implements RuleAction
             // Rule 532:  WildcardBoundsOpt ::= $Empty
             //
             case 532: {
-               //#line 1083 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1083 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31725,7 +31725,7 @@ public class JavaParser implements RuleAction
             // Rule 534:  AdditionalBoundListopt ::= $Empty
             //
             case 534: {
-               //#line 1086 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1086 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31738,7 +31738,7 @@ public class JavaParser implements RuleAction
             // Rule 536:  TypeBoundopt ::= $Empty
             //
             case 536: {
-               //#line 1089 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1089 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
@@ -31751,7 +31751,7 @@ public class JavaParser implements RuleAction
             // Rule 538:  TypeArgumentsopt ::= $Empty
             //
             case 538: {
-               //#line 1092 "/Developer/eclipse-3.5-RCP/plugins/lpg.generator_2.0.17/templates/java/btParserTemplateF.gi"
+               //#line 1092 "/Developer/eclipse-3.5.2-Classic/plugins/lpg.generator_2.0.19/templates/java/btParserTemplateF.gi"
                 setResult(null);
                 break;
             }
