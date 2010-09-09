@@ -118,7 +118,7 @@ public class ASTUtils {
                         || optName.equals("filter")) {
                     Ioption_value optValue= opt.getoption_value();
                     if (optValue instanceof option_value__EQUAL_SYMBOL) {
-                        String fileName= ((option_value__EQUAL_SYMBOL) optValue).getSYMBOL().toString();
+                        String fileName= ((option_value__EQUAL_SYMBOL) optValue).getSYMBOL().toString().replace("\"", "");
                         result.add(fileName);
                         if (optName.equals("import_terminals")) {
                             // pick up defs from the filter
