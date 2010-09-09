@@ -127,8 +127,10 @@ public class ASTUtils {
                             LPG filterRoot= (LPG) findAndParseSourceFile(refUnit.getProject(),
                                     filterPath, fileName, new NullProgressMonitor());
 
-                            List<String> level2Incs= collectIncludedFiles(filterRoot, filterUnit);
-                            result.addAll(level2Incs);
+                            if (filterRoot != null) {
+                                List<String> level2Incs= collectIncludedFiles(filterRoot, filterUnit);
+                                result.addAll(level2Incs);
+                            }
                         }
                     }
                 }
