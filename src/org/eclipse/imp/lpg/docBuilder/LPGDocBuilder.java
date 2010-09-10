@@ -1,42 +1,28 @@
 package org.eclipse.imp.lpg.docBuilder;
 
-import java.io.File;
 import java.io.StringBufferInputStream;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.TreeSet;
 
 import lpg.runtime.IPrsStream;
 import lpg.runtime.IToken;
-import lpg.runtime.PrsStream;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
-
+import org.eclipse.imp.builder.BuilderBase;
 import org.eclipse.imp.builder.BuilderUtils;
 import org.eclipse.imp.builder.MarkerCreator;
-import org.eclipse.imp.builder.BuilderBase;
 import org.eclipse.imp.language.Language;
 import org.eclipse.imp.language.LanguageRegistry;
-import org.eclipse.imp.model.ISourceProject;
-import org.eclipse.imp.model.ModelFactory;
-import org.eclipse.imp.model.ModelFactory.ModelException;
-import org.eclipse.imp.parser.IParseController;
-import org.eclipse.imp.runtime.PluginBase;
-import org.eclipse.imp.utils.StreamUtils;
-
 import org.eclipse.imp.lpg.LPGRuntimePlugin;
 import org.eclipse.imp.lpg.parser.ASTUtils;
 import org.eclipse.imp.lpg.parser.ParseController;
-import org.eclipse.imp.lpg.parser.LPGParser.ASTNode;
 import org.eclipse.imp.lpg.parser.LPGParser.IsymWithAttrs;
 import org.eclipse.imp.lpg.parser.LPGParser.LPG;
 import org.eclipse.imp.lpg.parser.LPGParser.nonTerm;
@@ -44,6 +30,11 @@ import org.eclipse.imp.lpg.parser.LPGParser.ruleList;
 import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrsList;
 import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs__EMPTY_KEY;
 import org.eclipse.imp.lpg.parser.LPGParser.symWithAttrs__SYMBOL_optAttrList;
+import org.eclipse.imp.model.ISourceProject;
+import org.eclipse.imp.model.ModelFactory;
+import org.eclipse.imp.model.ModelFactory.ModelException;
+import org.eclipse.imp.parser.IParseController;
+import org.eclipse.imp.runtime.PluginBase;
 
 /**
  * A builder may be activated on a file containing LPG code every time it
@@ -327,7 +318,7 @@ public class LPGDocBuilder extends BuilderBase {
         try {
             IParseController parseController= new ParseController();
 
-            MarkerCreator markerCreator= new MarkerCreator(file, parseController, PROBLEM_MARKER_ID);
+            MarkerCreator markerCreator= new MarkerCreator(file, PROBLEM_MARKER_ID);
             parseController.getAnnotationTypeInfo().addProblemMarkerType(getErrorMarkerID());
 
             ISourceProject sourceProject= ModelFactory.open(file.getProject());
