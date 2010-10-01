@@ -139,8 +139,7 @@ public class ASTUtils {
         return result;
     }
 
-    public static Object findDefOf(IASTNodeToken s, LPG root,
-            ICompilationUnit refUnit, IProgressMonitor monitor) {
+    public static Object findDefOf(IASTNodeToken s, LPG root, ICompilationUnit refUnit, IProgressMonitor monitor) {
         String id= stripName(s.toString());
         List<String> includedFiles= collectIncludedFiles(root, refUnit);
         for(String fileName : includedFiles) {
@@ -157,8 +156,7 @@ public class ASTUtils {
         return null;
     }
 
-    public static Object findDefOf(IASTNodeToken s, LPG root,
-            IParseController parseController) {
+    public static Object findDefOf(IASTNodeToken s, LPG root, IParseController parseController) {
         // This would use the auto-generated bindings if they were implemented
         // already...
         String id= stripName(s.toString());
