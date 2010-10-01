@@ -12,16 +12,15 @@
 
 package org.eclipse.imp.lpg.parser;
 
-import org.eclipse.imp.services.ILanguageSyntaxProperties;
+import org.eclipse.imp.services.base.LanguageSyntaxPropertiesBase;
 
-public class LPGSyntaxProperties implements ILanguageSyntaxProperties {
-
+public class LPGSyntaxProperties extends LanguageSyntaxPropertiesBase {
     public String getBlockCommentStart() {
         return null;
     }
 
     public String getBlockCommentContinuation() {
-        return "*";
+        return null;
     }
 
     public String getBlockCommentEnd() {
@@ -33,17 +32,6 @@ public class LPGSyntaxProperties implements ILanguageSyntaxProperties {
     }
 
     public String[][] getFences() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public int[] getIdentifierComponents(String ident) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public String getIdentifierConstituentChars() {
-        // TODO Auto-generated method stub
         return null;
     }
 }
