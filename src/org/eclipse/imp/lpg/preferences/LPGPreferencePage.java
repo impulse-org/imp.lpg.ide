@@ -1,3 +1,6 @@
+/******************************************/
+/* WARNING: GENERATED FILE - DO NOT EDIT! */
+/******************************************/
 package org.eclipse.imp.lpg.preferences;
 
 import org.eclipse.swt.widgets.TabFolder;import org.eclipse.imp.preferences.IPreferencesService;import org.eclipse.imp.preferences.PreferencesInitializer;import org.eclipse.imp.preferences.PreferencesTab;import org.eclipse.imp.preferences.TabbedPreferencesPage;import org.eclipse.imp.lpg.LPGRuntimePlugin;
@@ -5,8 +8,6 @@ import org.eclipse.swt.widgets.TabFolder;import org.eclipse.imp.preferences.IPre
 /**
  * A preference page class.
  */
-
-
 public class LPGPreferencePage extends TabbedPreferencesPage {
 	public LPGPreferencePage() {
 		super();

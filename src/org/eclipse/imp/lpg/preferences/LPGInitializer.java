@@ -1,3 +1,6 @@
+/******************************************/
+/* WARNING: GENERATED FILE - DO NOT EDIT! */
+/******************************************/
 package org.eclipse.imp.lpg.preferences;
 
 import org.eclipse.imp.preferences.PreferencesInitializer;
