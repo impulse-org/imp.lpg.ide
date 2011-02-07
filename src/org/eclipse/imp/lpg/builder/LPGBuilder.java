@@ -161,6 +161,7 @@ public class LPGBuilder extends BuilderBase {
 
     private String[] buildCmdlineArgs(String fileName, String executablePath, String includePath) {
         String includeSearchPath= "-include-directory='" + includePath + "'";
+        String directoryPrefixPath= "-directory-prefix='" + this.getProject().getLocation().toOSString() + "'";
 
         String cmd[]= new String[] {
                 executablePath,
@@ -176,6 +177,8 @@ public class LPGBuilder extends BuilderBase {
                 // survived, the part that actually needed quoting would be "bare"! Hence
                 // we use double quotes for the outer level and single quotes inside.
                 (fIsWin32 ? "\"" + includeSearchPath + "\"" : includeSearchPath),
+                // TODO RMF 2/7/11 -- enable this once we switch to LPG 2.0.19+
+//              (fIsWin32 ? "\"" + directoryPrefixPath + "\"" : directoryPrefixPath),
                 // TODO RMF 7/21/05 -- Don't specify -dat-directory; causes performance issues with Eclipse.
                 // Lexer tables can get quite large, so large that Java as spec'ed can't swallow them
                 // when translated to a switch statement, or even an array initializer. As a result,
